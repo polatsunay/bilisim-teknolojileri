@@ -205,7 +205,7 @@ renderK();renderQ();
 <script>
 /* Cevapları öğretmene gönder (e-posta) */
 (function(){
-var TO='sunaypolat@mek.k12.tr';
+var TO='polat.sunayy@gmail.com';
 function nameKey(){return KEY+'-name'}
 function getName(){try{return localStorage.getItem(nameKey())||''}catch(e){return ''}}
 function buildText(name){
@@ -226,7 +226,7 @@ function buildText(name){
   return {text:L.concat(body.length?body.join('\n\n'):['(Henüz cevap yazılmadı)']).join('\n'),count:c};
 }
 function boxHtml(){
-  return '<div class="sendq" style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)"><b style="display:block;margin-bottom:4px">Cevaplarımı öğretmene gönder</b><p class="sub" style="margin:0 0 8px;font-size:14px">Bu soruya kadar yazdığın bütün cevaplar sunaypolat@mek.k12.tr adresine gönderilir.</p><input class="stn" type="text" maxlength="60" placeholder="Adın soyadın ve sınıfın (örn. Ayşe Yılmaz 9-A)" aria-label="Adın soyadın ve sınıfın" style="width:100%;font:16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-bottom:8px"><div class="row" style="margin-top:0"><button class="btn fill" data-snd="mail">Öğretmene gönder</button><button class="btn" data-snd="copy">Metni kopyala</button><button class="btn" data-snd="file">Dosya olarak indir</button></div><p class="sub snm" role="status" style="margin:8px 0 0;font-size:14px"></p></div>';
+  return '<div class="sendq" style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)"><b style="display:block;margin-bottom:4px">Cevaplarımı öğretmene gönder</b><p class="sub" style="margin:0 0 8px;font-size:14px">Bu soruya kadar yazdığın bütün cevaplar polat.sunayy@gmail.com adresine gönderilir.</p><input class="stn" type="text" maxlength="60" placeholder="Adın soyadın ve sınıfın (örn. Ayşe Yılmaz 9-A)" aria-label="Adın soyadın ve sınıfın" style="width:100%;font:16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-bottom:8px"><div class="row" style="margin-top:0"><button class="btn fill" data-snd="mail">Öğretmene gönder</button><button class="btn" data-snd="copy">Metni kopyala</button><button class="btn" data-snd="file">Dosya olarak indir</button></div><p class="sub snm" role="status" style="margin:8px 0 0;font-size:14px"></p></div>';
 }
 function mount(){
   document.querySelectorAll('#soru .qs').forEach(function(s){
