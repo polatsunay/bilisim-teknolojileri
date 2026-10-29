@@ -1,0 +1,124 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>
+<title>Marmara BT Çalışma Merkezi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one column header with search and school chips, then school groups each holding a grid of course tiles */
+:root{
+  --bg:#f5f6fa; --sheet:#ffffff; --fg:#1b2336; --muted:#5b6479; --line:#d6dbe8; --navy:#1f3864; --on:#ffffff;
+  --o:#16a34a; --k:#8a3b2e; --f:#2563eb; --m:#f59e0b; --a:#7c4dff;--h:#ff6b57;
+  --display:'Bricolage Grotesque','Segoe UI',sans-serif; --body:'Source Sans 3','Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161f; --sheet:#1a2030; --fg:#e8ebf4; --muted:#9aa4bd; --line:#2c3550; --navy:#9db8f0; --on:#12161f;
+  --o:#7fd0a3; --k:#f0a090; --f:#9db8f0; --m:#e8c46a; --a:#b9a8f0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161f; --sheet:#1a2030; --fg:#e8ebf4; --muted:#9aa4bd; --line:#2c3550; --navy:#9db8f0; --on:#12161f;
+  --o:#7fd0a3; --k:#f0a090; --f:#9db8f0; --m:#e8c46a; --a:#b9a8f0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 56px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 14px}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--display);font-size:clamp(26px,6vw,38px);line-height:1.1;margin:0;color:var(--navy);text-wrap:balance}
+.sub{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-block:16px 6px;align-items:center}
+input[type=search]{flex:1 1 220px;min-width:0;font:16px var(--body);color:var(--fg);background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 13px var(--body);border:1px solid var(--line);background:var(--sheet);color:var(--fg);border-radius:99px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--on);border-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+section.grp{margin-top:26px}
+section.grp h2{font-family:var(--display);font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+section.grp h2::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c)}
+.grp .note{color:var(--muted);font-size:14px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+a.tile{display:block;min-width:0;text-decoration:none;color:var(--fg);background:var(--sheet);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:14px 14px 12px}
+a.tile:hover{border-color:var(--c)}
+.cls{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tt{font-family:var(--display);font-size:18px;line-height:1.2;margin:2px 0 6px;color:var(--navy);text-wrap:balance}
+.meta{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.go{display:inline-block;margin-top:8px;font-weight:600;font-size:14px;color:var(--c)}
+.empty{color:var(--muted);margin-top:24px}
+footer{margin-top:34px;color:var(--muted);font-size:14px;max-width:70ch}
+</style>
+<div class="wrap">
+<header>
+  <p class="kicker">Marmara Eğitim Kurumları · 2026-2027 · 1. Dönem 1. Ortak Yazılı</p>
+  <h1>Bilişim Çalışma Merkezi</h1>
+  <p class="sub">Dersini seç, konu anlatımını oku, 40 soruyu çöz, örnek cevapla karşılaştır ve cevaplarını öğretmenine gönder. 🚀</p>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Ders veya sınıf ara" aria-label="Ders ara">
+    <div class="chips" id="chips" role="group" aria-label="Okul türü"></div>
+  </div>
+</header>
+<main id="list"></main>
+<footer>Giriş gerekmez. Sorular sırayla açılır; cevabını yazıp kontrol edince sonraki soruya geçersin. Yazdığın cevapları her sorunun altından öğretmenine e-postayla gönderebilirsin.</footer>
+</div>
+<script>
+var BASE='';
+var GROUPS=[
+ {id:'o',name:'Ortaokul',c:'--o',note:'5. ve 6. sınıf',items:[
+  {cls:'5. sınıf',t:'Bilişim Teknolojileri',u:'5-sinif-bt.html',m:'Kazanım BTY.5.1.1 – 5.1.3'},
+  {cls:'6. sınıf',t:'Bilişim Teknolojileri',u:'6-sinif-bt.html',m:'Kazanım BTY.6.1.1 – 6.2.5'}]},
+ {id:'a',name:'Anadolu Lisesi',c:'--a',note:'9. ve 10. sınıf',items:[
+  {cls:'9. sınıf',t:'Bilişim Teknolojileri ve Yazılım',u:'9-sinif-bty.html',m:'Kazanım 1.1 – 2.5'},
+  {cls:'10. sınıf',t:'Bilişim Teknolojileri ve Yazılım',u:'10-sinif-anadolu-bty.html',m:'Kazanım 1.1 – 2.3'}]},
+ {id:'h',name:'Hazırlık Sınıfı',c:'--h',note:'Özel Marmara Anadolu Lisesi · Senaryo 2',items:[
+  {cls:'Hazırlık',t:'Bilişim Teknolojileri ve Yazılım',u:'hazirlik-bty.html',m:'Kazanım 1.2 – 2.5'}]},
+ {id:'f',name:'Fen Lisesi',c:'--f',note:'9. ve 10. sınıf',items:[
+  {cls:'9. sınıf',t:'BT ve Yazılım (Python)',u:'9-python.html',m:'Kazanım 1.1 – 1.7'},
+  {cls:'10. sınıf',t:'BT ve Yazılım (Robotik Kodlama)',u:'10-robotik.html',m:'Kazanım 1.1 – 1.7'}]},
+ {id:'m',name:'Meslek Lisesi',c:'--m',note:'9. ve 10. sınıf',items:[
+  {cls:'9. sınıf',t:'Programlama Temelleri',u:'9-programlama.html',m:'Kazanım PT.1.1 – PT.2.1'},
+  {cls:'9. sınıf',t:'Bilişim Teknolojilerinin Temelleri',u:'9-btt.html',m:'Kazanım BTT.1.1 – 2.1'},
+  {cls:'9. sınıf',t:'Mesleki Gelişim Atölyesi',u:'9-mga.html',m:'Kazanım MG.1.1 – 2.3'},
+  {cls:'9. sınıf',t:'Bilgisayarlı Tasarım Uygulamaları',u:'9-btu.html',m:'Kazanım BTU.1.1'},
+  {cls:'10. sınıf',t:'Seçmeli Bilişim Teknolojileri ve Yazılım',u:'10-secmeli-bty.html',m:'Kazanım 1.1 – 2.3'}]}
+];
+var sel='',term='';
+function tr(s){return s.toLocaleLowerCase('tr-TR')}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function renderChips(){
+  var h='<button class="chip" data-g="" aria-pressed="'+(sel==='')+'">Tümü</button>'+GROUPS.map(function(g){return '<button class="chip" data-g="'+g.id+'" aria-pressed="'+(sel===g.id)+'">'+g.name+'</button>'}).join('');
+  document.getElementById('chips').innerHTML=h;
+}
+function render(){
+  var n=0,h=GROUPS.map(function(g){
+    if(sel&&sel!==g.id)return '';
+    var its=g.items.filter(function(i){return !term||tr(i.cls+' '+i.t+' '+g.name).indexOf(term)>-1});
+    if(!its.length)return '';n+=its.length;
+    return '<section class="grp" style="--c:var('+g.c+')"><h2>'+g.name+'</h2><p class="note">'+g.note+'</p><div class="grid">'+its.map(function(i){
+      return '<a class="tile" href="'+BASE+esc(i.u)+'"><span class="cls">'+i.cls+'</span><div class="tt">'+i.t+'</div><div class="meta">40 soru · '+i.m+'</div><span class="acts"><span class="act on">Dersi aç →</span></span></a>'}).join('')+'</div></section>';
+  }).join('');
+  document.getElementById('list').innerHTML=h||'<p class="empty">Aramaya uyan ders bulunamadı.</p>';
+}
+document.getElementById('chips').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;sel=b.dataset.g;renderChips();render()});
+document.getElementById('q').addEventListener('input',function(e){term=tr(e.target.value.trim());render()});
+renderChips();render();
+</script>
+
+<style>
+[hidden]{display:none!important}
+body{background:radial-gradient(1000px 500px at 0 -10%,rgba(124,77,255,.16),transparent),radial-gradient(900px 500px at 100% 0,rgba(255,107,87,.16),transparent),var(--bg)!important}
+header{margin-top:16px;padding:32px 28px!important;border-radius:26px;color:#fff;background:linear-gradient(135deg,#7c4dff,#d946ef 55%,#ff6b57);box-shadow:0 14px 40px rgba(124,77,255,.35);position:relative;overflow:hidden}
+header::after{content:"💻";position:absolute;right:22px;top:6px;font-size:90px;opacity:.28}
+header h1,header .kicker,header .sub{color:#fff!important;position:relative}
+input[type=search]{border-radius:99px!important;border:2px solid var(--line)!important;padding:11px 18px!important}
+.chip{padding:7px 16px!important}
+.chip[aria-pressed="true"]{background:linear-gradient(135deg,#7c4dff,#d946ef)!important;color:#fff!important}
+section.grp h2{font-size:24px!important}
+section.grp h2::before{width:14px!important;height:14px!important;border-radius:50%!important}
+a.tile{border-top:0!important;border-radius:20px!important;padding:0!important;overflow:hidden;box-shadow:0 6px 20px rgba(30,40,80,.1);transition:transform .15s,box-shadow .15s;cursor:pointer}
+a.tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(30,40,80,.18)}
+a.tile .cls{display:block;background:var(--c);color:#fff;padding:10px 16px;font-weight:700;letter-spacing:.08em}
+a.tile .tt{padding:0 16px;margin-top:12px!important;font-size:20px!important}
+a.tile .meta{padding:0 16px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 16px}
+.act{font-weight:700;font-size:14px;border-radius:99px;padding:7px 14px;border:2px solid var(--c);color:var(--c);background:var(--sheet)}
+.act.on{background:var(--c);color:#fff}
+.act:hover{filter:brightness(1.08)}
+a.tile{cursor:pointer}</style>
+
+</body></html>

@@ -1,0 +1,408 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>
+<title>10. Sınıf Python Çalışma Sayfası</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>:root{--bg:#f5f6fa;--sheet:#ffffff;--fg:#1b2336;--muted:#5b6479;--line:#d6dbe8;--navy:#1f3864;--ink:#b3261e;--inkbg:#fdf0ef;--note:#fff4d6;--ok:#1d7a46;--warn:#a86300;--display:'Bricolage Grotesque','Segoe UI',sans-serif;--body:'Source Sans 3','Segoe UI',Arial,sans-serif;--mono:'JetBrains Mono',Consolas,monospace;}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161f;--sheet:#1a2030;--fg:#e8ebf4;--muted:#9aa4bd;--line:#2c3550;--navy:#9db8f0;--ink:#ff8a80;--inkbg:#2a1d20;--note:#2e2a18;--ok:#6fd49b;--warn:#f0b254;color-scheme:dark}}:root[data-theme="dark"]{--bg:#12161f;--sheet:#1a2030;--fg:#e8ebf4;--muted:#9aa4bd;--line:#2c3550;--navy:#9db8f0;--ink:#ff8a80;--inkbg:#2a1d20;--note:#2e2a18;--ok:#6fd49b;--warn:#f0b254;color-scheme:dark}*{box-sizing:border-box}body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}.wrap{max-width:820px;margin:0 auto}header{padding-block:22px 10px}.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}h1{font-family:var(--display);font-size:clamp(24px,5vw,34px);line-height:1.15;margin:0;color:var(--navy);text-wrap:balance}.sub{color:var(--muted);margin:6px 0 0}nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:4px;padding-block:8px}nav button{font:600 15px var(--body);border:0;background:none;color:var(--muted);padding:9px 16px;border-radius:8px;cursor:pointer}nav button[aria-selected="true"]{background:var(--navy);color:var(--bg)}nav .sp{flex:1}nav .score{align-self:center;font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}button:focus-visible,textarea:focus-visible{outline:3px solid var(--navy);outline-offset:2px}main{padding-top:18px;display:grid;gap:18px}.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;min-width:0}.qh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;margin-bottom:8px}.qno{font-family:var(--display);font-size:22px;color:var(--navy)}.kaz{font-size:13px;color:var(--muted);flex:1;min-width:200px}.pt{font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;border:1px solid var(--line);border-radius:99px;padding:1px 10px}.intro{margin:0 0 12px}.part{margin-top:14px}.part p.q{margin:0 0 6px;font-weight:600}table{border-collapse:collapse;width:100%;font-size:15px;margin:6px 0}th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}th{background:color-mix(in srgb,var(--navy) 10%,var(--sheet));font-weight:600}.scroll{overflow-x:auto}pre{font:14px/1.5 var(--mono);background:color-mix(in srgb,var(--navy) 7%,var(--sheet));border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;overflow-x:auto}textarea{width:100%;min-height:72px;resize:vertical;font:16px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px}.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}.btn{font:600 14px var(--body);border:1px solid var(--navy);background:none;color:var(--navy);border-radius:8px;padding:7px 14px;cursor:pointer}.btn.fill{background:var(--navy);color:var(--bg)}.ans{margin-top:10px;background:var(--inkbg);color:var(--ink);border-left:4px solid var(--ink);border-radius:0 8px 8px 0;padding:9px 12px;font-size:15px}.ans b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}.ans ul{margin:0;padding-left:18px}.ans table th,.ans table td{border-color:color-mix(in srgb,var(--ink) 35%,transparent)}.ans th{background:transparent}.mark{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;font-size:14px;color:var(--muted)}.mark button{font:600 13px var(--body);border:1px solid var(--line);background:var(--sheet);color:var(--fg);border-radius:99px;padding:4px 12px;cursor:pointer}.mark button[aria-pressed="true"]{color:var(--bg);border-color:transparent}.mark button[data-v="1"][aria-pressed="true"]{background:var(--ok)}.mark button[data-v="0.5"][aria-pressed="true"]{background:var(--warn)}.mark button[data-v="0"][aria-pressed="true"]{background:var(--ink)}.topic h2{font-family:var(--display);font-size:21px;margin:0 0 4px;color:var(--navy)}.topic .kz{font-size:13px;color:var(--muted);margin:0 0 10px}.topic ul{margin:6px 0;padding-left:20px}.tip{background:var(--note);border-radius:8px;padding:9px 12px;margin-top:10px;font-size:15px}.tip b{display:block}.check label{display:block;padding:3px 0}.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font:600 13px var(--body);border:1px solid var(--line);background:var(--sheet);color:var(--fg);border-radius:99px;padding:5px 13px;cursor:pointer}.chip[aria-pressed="true"]{background:var(--navy);color:var(--bg);border-color:transparent}.dots{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:2px}.dot{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);font:600 13px var(--body);cursor:pointer;font-variant-numeric:tabular-nums}.dot.done{background:var(--ok);border-color:transparent;color:var(--bg)}.dot.cur{outline:3px solid var(--navy);outline-offset:1px;color:var(--fg)}.dot.done.cur{color:var(--bg)}.dot[aria-disabled="true"]{opacity:.45;cursor:not-allowed}.dprog{flex-basis:100%;font-size:14px;color:var(--muted);margin-top:4px}.warn{color:var(--ink);font-weight:600;font-size:14px;flex:1;min-width:200px}.total{font-family:var(--display);font-size:20px;color:var(--navy)}@media(max-width:480px){nav button{padding:9px 11px}.sheet{padding:14px 12px}}@media(prefers-reduced-motion:no-preference){.ans{animation:in .18s ease-out}@keyframes in{from{opacity:0;transform:translateY(-3px)}}}</style>
+<div class="wrap"><a class="homelink" href="index.html" target="_blank" rel="noopener">← Ana sayfa</a>
+<header>
+  <p class="kicker">Özel Marmara Koleji Anadolu Lisesi · 2026-2027 · Programlama Dilleri (Python) · 1. Dönem 1. Ortak Yazılı · Senaryo 3</p>
+  <h1>10. Sınıf Bilişim Teknolojileri ve Yazılım – Python</h1>
+  <p class="sub">Önce konuyu oku, sonra soruları kendi cümlelerinle yanıtla. Cevabını kontrol et; sistem kitapla karşılaştırıp puanlar.</p>
+</header>
+<nav role="tablist">
+  <button role="tab" id="t-konu" aria-selected="true" data-tab="konu">Konu anlatımı</button>
+  <button role="tab" id="t-soru" aria-selected="false" data-tab="soru">Sorular</button>
+  <button role="tab" id="t-ogr" aria-selected="false" data-tab="ogr" hidden>Öğretmen</button>
+  <span class="sp"></span><span class="score" id="navscore"></span>
+</nav>
+<main id="konu" role="tabpanel"></main>
+<main id="soru" role="tabpanel" hidden></main>
+<main id="ogr" role="tabpanel" hidden></main>
+</div>
+<script>
+var LV={k:'Kolay',o:'Orta',z:'Zor'};
+function mk(k,lv,q,o){o=o||{};return {kz:k,kaz:k+' – '+KZ[k],lv:lv,p:2.5,intro:o.intro,code:o.code,parts:[{q:q,ans:o.ans,tbl:o.tbl,after:o.after}]}}
+function fin(arr){return arr.map(function(q,i){q.no=i+1;return q})}
+var COURSE='10. Sınıf Bilişim Teknolojileri ve Yazılım – Python';
+var KZ={'1.2':'Farklı entegre geliştirme ortamlarını analiz ederek kendisine en uygun çalışma ortamını seçer.','1.3':'Değişkenlerde tutulacak verileri tanımlar.','1.4':'Bir değişkeni tanımlarken hangi tür veriyi tutacağını belirler.','1.5':'Tanımlanan değişkenlerde işlem önceliğini gözetir.','1.6':'Kullanıcıdan veri alır.','1.7':'Kullanıcıdan alınan veriyi değişkene tanımlar.'};
+var Q=fin([
+mk('1.2','k','Tümleşik geliştirme ortamı (IDE) nedir? Bir IDE’de bulunan dört temel bileşeni yaz.',{ans:['Program yazmak için gereken araçları tek bir yazılımda toplayan ortamdır.','Bileşenler: kod editörü, yorumlayıcı/derleyici bağlantısı, hata ayıklayıcı (debugger), proje ve dosya yönetimi (otomatik tamamlama da kabul edilir).']}),
+mk('1.2','k','Derleyici ile yorumlayıcı arasındaki farkı açıkla. Python hangi gruptadır?',{tbl:[['','Derleyici','Yorumlayıcı'],['Çalışma','Kodun tamamını makine diline çevirip sonra çalıştırır','Kodu satır satır çevirip hemen çalıştırır'],['Hata','Hata varsa program hiç çalışmaz','Hatalı satıra kadar çalışır, orada durur'],['Örnek','C, C++','Python, JavaScript']],after:'Python yorumlanan bir dildir.'}),
+mk('1.2','o','Python’a yeni başlayan ve okul laboratuvarında eski, düşük bellekli bilgisayar kullanan bir öğrenciye hangi IDE’yi önerirsin? Gerekçesini yaz.',{ans:['IDLE veya Thonny.','Gerekçe: hafiftir, eski bilgisayarlarda rahat çalışır, sadedir; IDLE Python ile birlikte gelir, Thonny değişkenleri adım adım görsel gösterir.']}),
+mk('1.2','o','Veri analizi yapan bir öğrenci kodunu parça parça çalıştırıp grafikleri hemen görmek istiyor. Hangi IDE uygundur? Neden?',{ans:['Jupyter Notebook (Spyder da kabul edilir).','Gerekçe: kod hücre hücre çalıştırılır; kod, çıktı ve grafik aynı sayfada görünür.']}),
+mk('1.2','z','Aşağıdaki iki durum için uygun IDE’yi seç ve seçimini gerekçelendir.',{intro:'1) Evdeki bilgisayara program kurulamıyor, öğrenci tarayıcıdan çalışmak istiyor.<br>2) Çok dosyalı büyük bir projede hata ayıklama ve otomatik tamamlama gerekiyor.',tbl:[['Durum','IDE','Gerekçe'],['1','Google Colab (çevrim içi IDE)','Kurulum gerektirmez, tarayıcıda çalışır, dosyalar bulutta saklanır'],['2','PyCharm (veya VS Code)','Gelişmiş hata ayıklayıcı, akıllı kod tamamlama, proje yönetimi']]}),
+mk('1.3','k','Değişken nedir? Python’da bir değişken nasıl tanımlanır? Bir örnek ver.',{ans:['Bir değeri bellekte saklamak için kullanılan isimlendirilmiş alandır.','“=” ile tanımlanır: solda değişkenin adı, sağda değer bulunur. Örnek: sehir = "Ankara"']}),
+mk('1.3','k','Python’da değişkenlere isim verirken uyulması gereken dört kuralı yaz.',{ans:['Harf veya alt çizgi (_) ile başlar, rakamla başlayamaz.','Boşluk ve aritmetik operatör (- + * /) içeremez.','Büyük-küçük harfe duyarlıdır (toplam ≠ Toplam).','if, else, for, True gibi ayrılmış kelimeler kullanılamaz (Türkçe karakter kullanılmaması ve anlamlı isim seçilmesi de kabul edilir).']}),
+mk('1.3','o','Aşağıdaki değişken isimlerinin kurallara uygun olup olmadığını nedeniyle yaz: ogrenci adi, _sayac, 5kisi, Toplam, for',{tbl:[['İsim','Uygun mu?','Nedeni'],['ogrenci adi','Hayır','Boşluk içeriyor'],['_sayac','Evet','Alt çizgiyle başlayabilir'],['5kisi','Hayır','Rakamla başlıyor'],['Toplam','Evet','Harfle başlıyor, kurala uygun'],['for','Hayır','Ayrılmış (anahtar) kelime']]}),
+mk('1.3','o','“toplam ders saati” bilgisini tutacak değişkenin adını snake_case, camelCase ve PascalCase biçiminde yaz.',{tbl:[['Standart','Yazım'],['snake_case','toplam_ders_saati'],['camelCase','toplamDersSaati'],['PascalCase','ToplamDersSaati']]}),
+mk('1.3','z','Aşağıdaki kodun ekran çıktısını yaz ve nedenini açıkla.',{code:'puan = 50\nPuan = 70\npuan = puan + 10\nprint(puan, Puan)',ans:['Çıktı: 60 70','Python büyük-küçük harfe duyarlıdır; puan ve Puan farklı değişkenlerdir. puan değişkenine yeni değer (50 + 10) atanmış, Puan değişmemiştir.']}),
+mk('1.4','k','Python’daki temel veri türlerinden dördünü birer örnekle yaz.',{tbl:[['Tür','Örnek'],['int (tam sayı)','yas = 16'],['float (ondalıklı sayı)','boy = 1.68'],['str (metin)','ad = "Deniz"'],['bool (mantıksal)','gecti = True']],after:'list, tuple, set, dict de kabul edilir.'}),
+mk('1.4','k','type() fonksiyonu ne işe yarar? print(type(3.0)) satırının çıktısı nedir?',{ans:['Bir değişkenin veya değerin veri türünü gösterir.','Çıktı: &lt;class \'float\'&gt;']}),
+mk('1.4','o','Aşağıdaki veriler için uygun veri türünü yaz: kütüphanedeki kitap sayısı, bir ürünün fiyatı, öğrencinin adı, üyeliğin aktif olup olmadığı, sınıftaki öğrencilerin adları.',{tbl:[['Veri','Veri türü'],['Kitap sayısı','int'],['Ürün fiyatı','float'],['Öğrencinin adı','str'],['Üyelik aktif mi','bool'],['Öğrenci adları','list']]}),
+mk('1.4','o','Aşağıdaki kodun ekran çıktılarını yaz.',{code:'a = "3.14"\nb = 10\nc = False\nd = [1, 2]\nprint(type(a))\nprint(type(b))\nprint(type(c))\nprint(type(d))',ans:['&lt;class \'str\'&gt;','&lt;class \'int\'&gt;','&lt;class \'bool\'&gt;','&lt;class \'list\'&gt;']}),
+mk('1.4','o','list ve tuple veri türleri arasındaki farkı birer örnekle açıkla.',{ans:['list köşeli parantezle yazılır ve değiştirilebilir: renkler = ["mavi", "yeşil"]','tuple normal parantezle yazılır ve oluşturulduktan sonra değiştirilemez: konum = (41.0, 29.0)']}),
+mk('1.4','o','set ve dict veri türlerini tanımlayarak birer örnek ver.',{ans:['set: tekrarsız elemanlardan oluşan kümedir, süslü parantezle yazılır: sayilar = {1, 2, 3}','dict: anahtar–değer çiftlerinden oluşur: ogrenci = {"ad": "Ece", "yas": 16}']}),
+mk('1.4','z','Aşağıdaki ifadelerin sonucunu yaz.',{tbl:[['İfade','Sonuç'],['int("25") + 5','30'],['str(7) + "7"','"77"'],['float("2.5") * 2','5.0'],['int(8.9)','8 (ondalık kısım atılır)']]}),
+mk('1.4','z','int("4.5") ifadesi neden hata verir? Bu metni sayıya doğru biçimde nasıl dönüştürürsün?',{ans:['int() ondalık noktası olan bir metni doğrudan tam sayıya çeviremez; ValueError hatası oluşur.','Düzeltme: float("4.5") yazılır (tam sayı gerekiyorsa int(float("4.5")) → 4).']}),
+mk('1.4','z','Bir öğrencinin adı, numarası ve not ortalamasını tek bir değişkende anahtarlarıyla saklamak için hangi veri türü uygundur? Örnek bir tanım yaz.',{ans:['dict (sözlük) uygundur; her bilgi bir anahtarla saklanır.','Örnek: ogrenci = {"ad": "Mert", "no": 215, "ortalama": 84.5}']}),
+mk('1.5','k','//, % ve ** operatörlerinin ne işe yaradığını birer örnekle yaz.',{tbl:[['Operatör','Anlamı','Örnek'],['//','Tam sayı (taban) bölme','7 // 2 → 3'],['%','Mod (bölümden kalan)','7 % 2 → 1'],['**','Üs alma','2 ** 3 → 8']]}),
+mk('1.5','k','Aritmetik operatörlerde işlem önceliği sırasını yaz.',{ans:['1) Parantez ( )','2) Üs alma **','3) Çarpma, bölme, tam bölme, mod: * / // %','4) Toplama, çıkarma: + -','Aynı öncelikte olanlar soldan sağa yapılır.']}),
+mk('1.5','o','a = 15 ve b = 4 için aşağıdaki ifadelerin sonucunu yaz.',{tbl:[['İfade','Sonuç'],['a / b','3.75'],['a // b','3'],['a % b','3'],['b ** 2','16']]}),
+mk('1.5','o','Aşağıdaki ifadelerin sonucunu işlem önceliğine dikkat ederek yaz.',{tbl:[['İfade','Sonuç'],['3 + 4 * 2','11'],['(3 + 4) * 2','14'],['10 - 4 - 2','4 (soldan sağa)'],['20 / 4 * 2','10.0 (soldan sağa)']]}),
+mk('1.5','o','x = 8 için aşağıdaki karşılaştırmaların sonucunu yaz.',{tbl:[['İfade','Sonuç'],['x > 5','True'],['x == 8','True'],['x != 8','False'],['x <= 7','False']]}),
+mk('1.5','o','a = True ve b = False için aşağıdaki mantıksal ifadelerin sonucunu yaz.',{tbl:[['İfade','Sonuç'],['a and b','False'],['a or b','True'],['not a','False'],['not b and a','True']]}),
+mk('1.5','o','Aşağıdaki kod çalıştırıldığında s değişkeninin son değeri kaç olur? Adım adım göster.',{code:'s = 10\ns += 5\ns *= 2\ns -= 4\nprint(s)',ans:['s = 10 → s += 5 → 15 → s *= 2 → 30 → s -= 4 → 26','Çıktı: 26']}),
+mk('1.5','z','(5 > 3) and (2 > 4) or not False ifadesinin sonucunu adım adım bul.',{ans:['5 > 3 → True; 2 > 4 → False','True and False → False','not False → True','False or True → True']}),
+mk('1.5','z','İki notun ortalaması için ortalama = a + b / 2 yazılmıştır (a = 8, b = 6). Bulunan sonucu ve doğru sonucu yaz, hatanın nedenini açıkla.',{ans:['Yazılan ifade: 8 + 6 / 2 = 8 + 3.0 = 11.0 (yanlış).','Bölmenin önceliği toplamadan yüksek olduğu için yalnızca b ikiye bölünmüştür.','Doğrusu: ortalama = (a + b) / 2 → 7.0']}),
+mk('1.6','k','input() fonksiyonu ne işe yarar? Kullanıcının girdiği veriyi hangi türde döndürür?',{ans:['Programı durdurup kullanıcının klavyeden veri girmesini bekler; parantez içindeki metin ipucu mesajı olarak gösterilir.','Girilen veriyi her zaman str (metin) türünde döndürür.']}),
+mk('1.6','k','Kullanıcıdan yaşadığı şehrin adını alıp “Şehriniz: ...” biçiminde yazdıran iki satırlık programı yaz.',{ans:['sehir = input("Yaşadığınız şehir: ")','print("Şehriniz:", sehir)']}),
+mk('1.6','o','Kullanıcı 4 girdiğinde aşağıdaki programın çıktısı nedir? Nedenini açıkla.',{code:'s = input("Bir sayı: ")\nprint(s * 3)',ans:['Çıktı: 444','input() veriyi metin olarak alır; metin * 3 metni üç kez yan yana yazar. Sayı olarak çarpmak için s = int(input(...)) yazılmalıdır (sonuç 12).']}),
+mk('1.6','o','Kullanıcı önce 5, sonra 7 girmiştir. Çıktıyı yaz ve programı iki sayının toplamını verecek biçimde düzelt.',{code:'a = input("1. sayı: ")\nb = input("2. sayı: ")\nprint(a + b)',ans:['Çıktı: 57 (iki metin birleştirilir).','Düzeltme: a = int(input("1. sayı: ")) ve b = int(input("2. sayı: ")) → çıktı 12']}),
+mk('1.6','o','Kullanıcıdan iki tam sayı alıp çarpımını ekrana yazdıran programı yaz.',{ans:['s1 = int(input("Birinci sayı: "))','s2 = int(input("İkinci sayı: "))','carpim = s1 * s2','print("Çarpım:", carpim)']}),
+mk('1.6','o','Kullanıcıdan Celsius cinsinden sıcaklığı alıp Fahrenheit’a çeviren programı yaz (F = C × 9 / 5 + 32). 25 girilirse çıktı ne olur?',{ans:['c = float(input("Sıcaklık (°C): "))','f = c * 9 / 5 + 32','print("Fahrenheit:", f)','25 girilirse çıktı: Fahrenheit: 77.0']}),
+mk('1.6','z','Aşağıdaki program çalıştırıldığında ne olur? Nedenini açıkla ve düzelt.',{code:'yil = input("Doğum yılınız: ")\nprint(yil + 1)',ans:['Program TypeError hatası verir.','yil metindir; metne sayı (1) eklenemez.','Düzeltme: yil = int(input("Doğum yılınız: "))']}),
+mk('1.6','z','Kullanıcıdan ürünün fiyatını ve indirim oranını (%) alıp indirimli fiyatı yazdıran programı yaz. 200 ve 15 girilirse sonuç nedir?',{ans:['fiyat = float(input("Fiyat: "))','oran = float(input("İndirim oranı: "))','indirimli = fiyat - fiyat * oran / 100','print("İndirimli fiyat:", indirimli)','200 ve 15 girilirse: 170.0']}),
+mk('1.7','k','Kullanıcıdan alınan veri için int(input()) ve float(input()) kullanımı arasındaki farkı birer örnekle yaz.',{ans:['int(input()): tam sayı beklenen veriler için; örnek: adet = int(input("Adet: "))','float(input()): ondalıklı olabilecek veriler için; örnek: boy = float(input("Boy: "))']}),
+mk('1.7','o','Aşağıdaki veriler kullanıcıdan alınırken nasıl tanımlanmalıdır? yaş, boy, ad, telefon numarası',{tbl:[['Veri','Tanımlama','Nedeni'],['Yaş','yas = int(input())','Tam sayıdır'],['Boy','boy = float(input())','Ondalıklı olabilir'],['Ad','ad = input()','Metindir'],['Telefon','tel = input()','Hesaplamada kullanılmaz; baştaki 0 kaybolmamalı']]}),
+mk('1.7','o','Kullanıcı sırasıyla Ali, 16 ve 1.75 girmiştir. Her değişkenin türünü ve değerini yaz.',{code:'ad = input("Ad: ")\nyas = int(input("Yaş: "))\nboy = float(input("Boy: "))',tbl:[['Değişken','Tür','Değer'],['ad','str','"Ali"'],['yas','int','16'],['boy','float','1.75']]}),
+mk('1.7','z','Kullanıcıdan bir dikdörtgenin uzun ve kısa kenarını alıp alanını ve çevresini yazdıran programı yaz. 7.5 ve 4 girilirse çıktı ne olur?',{ans:['uzun = float(input("Uzun kenar: "))','kisa = float(input("Kısa kenar: "))','alan = uzun * kisa','cevre = 2 * (uzun + kisa)','print("Alan:", alan, "Çevre:", cevre)','Çıktı: Alan: 30.0 Çevre: 23.0']})
+]);
+var K=[
+{t:'Python çalışma ortamları ve IDE seçimi',k:'1.2',li:['IDE: kod editörü, yorumlayıcı, hata ayıklayıcı ve proje yönetimini bir araya getiren ortam.','Derleyici kodun tamamını çevirip sonra çalıştırır; yorumlayıcı satır satır çalıştırır. Python yorumlanan bir dildir.','IDLE ve Thonny: hafif, yeni başlayanlar için. PyCharm ve VS Code: büyük projeler, hata ayıklama. Jupyter ve Spyder: veri analizi. Google Colab: kurulum gerektirmez, tarayıcıda çalışır.'],tip:['IDE seçerken mutlaka gerekçe yaz: deneyim, proje büyüklüğü, donanım, internet, çalışma alanı.']},
+{t:'Değişkenler',k:'1.3',li:['Değişken, bir değeri bellekte saklayan isimlendirilmiş alandır; “=” ile tanımlanır (solda ad, sağda değer).','Kurallar: rakamla başlamaz, boşluk ve operatör içermez, büyük-küçük harfe duyarlıdır, ayrılmış kelimeler kullanılmaz.','Yazım standartları: snake_case (ogrenci_sayisi), camelCase (ogrenciSayisi), PascalCase (OgrenciSayisi), sabitler BÜYÜK HARF.'],tip:['“Uygun değil” dediğin her isim için hangi kuralı bozduğunu yaz.']},
+{t:'Veri türleri ve tür dönüşümü',k:'1.4',tb:[['Tür','Örnek'],['int','yas = 17'],['float','boy = 1.72'],['str','il = "Bursa"'],['bool','gecti = False'],['list / tuple','[3, 5] / (4, 1)'],['set / dict','{1, 2} / {"il": "Van"}']],li:['type() bir değerin türünü gösterir: type("7") → str.','Dönüşüm: int("42") → 42, float("2.5") → 2.5, str(25) → "25", int(9.8) → 9. int("3.5") hata verir.'],tip:['Tırnak içindeki her değer metindir: "7" str, 7 int, 7.0 float.']},
+{t:'Operatörler ve işlem önceliği',k:'1.5',li:['Aritmetik: + - * / // % **. Karşılaştırma: == != > < >= <=. Mantıksal: and, or, not. Atama: = += -= *= /=.','Öncelik: parantez → ** → * / // % → + - → karşılaştırma → not → and → or.','Aynı öncelikteki işlemler soldan sağa yapılır.'],tip:['Ortalama gibi formüllerde parantezi unutma: (a + b) / 2.']},
+{t:'Kullanıcıdan veri alma ve değişkene tanımlama',k:'1.6 – 1.7',li:['input() kullanıcının girdiği veriyi her zaman metin (str) olarak döndürür.','Sayı gerekiyorsa int(input()) veya float(input()) kullanılır.','Adet, yaş → int; fiyat, boy → float; ad, telefon, posta kodu → input() (metin).'],tip:['“57” ve “444” gibi beklenmedik çıktıların nedeni genellikle int() dönüşümünün unutulmasıdır.']}
+];
+var KEY='cs-10kolejpy-s3-v2';
+var st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function gtbl(r){return tbl(r.map(function(x,i){return i?[x[0]].concat(x.slice(1).map(function(){return '&nbsp;'})):x}))}
+function tbl(r){return '<div class="scroll"><table><tr>'+r[0].map(function(h){return '<th>'+h+'</th>'}).join('')+'</tr>'+r.slice(1).map(function(x){return '<tr>'+x.map(function(c){return '<td>'+c+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'}
+function renderK(){
+  var h=K.map(function(k){
+    return '<section class="sheet topic"><h2>'+k.t+'</h2><p class="kz">Kazanım '+k.k+'</p>'+
+    (k.li?'<ul>'+k.li.map(function(l){return '<li>'+l+'</li>'}).join('')+'</ul>':'')+
+    (k.tb?tbl(k.tb):'')+
+    (k.tip?'<div class="tip"><b>Sınavda dikkat</b><ul>'+k.tip.map(function(l){return '<li>'+l+'</li>'}).join('')+'</ul></div>':'')+'</section>'}).join('');
+  h+='<section class="sheet check topic"><h2>Hızlı tekrar</h2>'+['İhtiyaca göre uygun IDE’yi gerekçesiyle seçebilirim.','Değişken adlandırma kurallarını uygulayabilirim.','Verilere uygun veri türünü belirleyebilir, type() çıktısını yazabilirim.','İşlem önceliğine göre ifadelerin sonucunu bulabilirim.','input() ile veri alıp int() / float() ile doğru türe dönüştürebilirim.'].map(function(t,i){return '<label><input type="checkbox" id="chk'+i+'" data-chk="'+i+'"'+(st['c'+i]?' checked':'')+'> '+t+'</label>'}).join('')+'</section>';
+  document.getElementById('konu').innerHTML=h;
+}
+function renderQ(){
+  var h='<div class="dots" id="dots" role="group" aria-label="Soru haritası"></div>'+Q.map(function(q){
+    var s='<section class="sheet qs" data-k="'+q.kz+'" data-i="'+(q.no-1)+'" hidden id="q'+q.no+'"><div class="qh"><span class="qno">'+q.no+'.</span><span class="kaz">['+q.kaz+']</span><span class="pt">'+q.p+' puan</span></div>';
+    if(q.intro)s+='<p class="intro">'+q.intro+'</p>';
+    if(q.code)s+='<pre>'+esc(q.code)+'</pre>';
+    q.parts.forEach(function(p,i){
+      var id=q.no+'-'+i;
+      s+='<div class="part"><p class="q">'+p.q+'</p>'+(p.tbl&&/aşağıdaki|Aşağıdaki|Durumların|tabloyu|tabloda/.test(p.q)?gtbl(p.tbl):'')+'<textarea id="ta'+id+'" data-id="'+id+'" placeholder="Cevabını buraya yaz..." aria-label="Cevap '+id+'">'+esc(st['a'+id]||'')+'</textarea>';
+      s+='<div class="row"><button class="btn fill" data-chk2="'+id+'">Cevabı kontrol et</button><span class="warn" id="w'+id+'" role="alert"></span></div><div id="an'+id+'" hidden class="ans"><b>Örnek cevap</b>';
+      if(p.tbl)s+=tbl(p.tbl);
+      if(p.ans)s+=p.ans.length>1?'<ul>'+p.ans.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>':p.ans[0];
+      if(p.after)s+='<p style="margin:6px 0 0">'+p.after+'</p>';
+      s+='</div></div>';
+    });
+    s+='<div class="mark"><span>Bu soruyu değerlendir:</span>'+[['1','Tam doğru'],['0.5','Kısmen'],['0','Tekrar çalış']].map(function(m){return '<button data-mark="'+q.no+'" data-v="'+m[0]+'" aria-pressed="'+(String(st['m'+q.no])===m[0])+'">'+m[1]+'</button>'}).join('')+'</div><div class="row"><button class="btn fill" data-next="'+q.no+'">'+(q.no<Q.length?'Sonraki soru →':'Bitir ve sonucu gör')+'</button><span class="warn" id="wn'+q.no+'" role="alert"></span></div></section>';
+    return s}).join('');
+  h+='<div id="fin" hidden><section class="sheet"><div class="total" id="total"></div><p class="sub" style="margin:4px 0 12px">Puan, cevapların kitaptaki örnek cevaplarla otomatik karşılaştırılarak hesaplanır; öğretmen ayrıca kontrol edebilir.</p><div class="row"><button class="btn" id="reset">Yazdıklarımı sil</button></div></section>';
+  h+='<section class="sheet" id="sendbox" hidden><h2 style="font-family:var(--display);font-size:20px;margin:0 0 6px;color:var(--navy)">Cevaplarımı öğretmene gönder</h2><p class="sub" style="margin:0 0 10px">Yazdığın cevaplar ve kendi puanın öğretmen ekranına düşer. İstediğin kadar tekrar gönderebilirsin; son gönderim geçerlidir.</p><label for="stname" style="font-weight:600">Adın soyadın ve sınıfın</label><input id="stname" type="text" maxlength="60" placeholder="Örn. Ayşe Yılmaz 9-A" style="width:100%;font:16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:4px 0 10px"><div class="row" style="margin-top:0"><button class="btn fill" id="send">Gönder</button><span id="sendmsg" role="status" class="sub" style="margin:0"></span></div></section></div>';
+  document.getElementById('soru').innerHTML=h;
+  restore();
+  score();
+}
+function score(){
+  var t=0,n=0;Q.forEach(function(q){var v=st['m'+q.no];if(v!==undefined){t+=q.p*Number(v);n++}});
+  var txt=n?(Math.round(t*2)/2)+' / 100 puan ('+n+'/'+Q.length+' soru değerlendirildi)':'';
+  var el=document.getElementById('total');if(el)el.textContent=n?txt:'Cevaplarını kontrol ettikçe puanın burada görünür.';
+  document.getElementById('navscore').textContent=n?(Math.round(t*2)/2)+' / 100':'';
+}
+function tab(n){
+  ['konu','soru','ogr'].forEach(function(x){document.getElementById(x).hidden=x!==n;var b=document.getElementById('t-'+x);b.setAttribute('aria-selected',x===n)});
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.tab)return tab(b.dataset.tab);
+  if(b.dataset.mark){var q=b.dataset.mark;st['m'+q]=b.dataset.v;save();document.querySelectorAll('[data-mark="'+q+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});score()}
+  if(b.id==='reset'){if(b.dataset.c!=='1'){b.dataset.c='1';b.textContent='Emin misin? Tekrar bas';return}st={};save();renderK();renderQ()}
+});
+document.addEventListener('input',function(e){var t=e.target;if(t.dataset&&t.dataset.id){st['a'+t.dataset.id]=t.value;save()}});
+document.addEventListener('change',function(e){var t=e.target;if(t.dataset&&t.dataset.chk!==undefined){st['c'+t.dataset.chk]=t.checked;save()}});
+var CUR=0,TEACH=false;
+function doneQ(q){return q.parts.every(function(p,i){return st['v'+q.no+'-'+i]})}
+function firstOpen(){for(var i=0;i<Q.length;i++)if(!doneQ(Q[i]))return i;return Q.length}
+function allowed(){return Q.length}
+function tr(s){return String(s).replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase()}
+function plain(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent||''}
+function ansText(p){var t=(p.ans||[]).join(' ');(p.tbl||[]).forEach(function(r,i){if(i)t+=' '+r.join(' ')});return plain(t)}
+var STOP={'bir':1,'bu':1,'ile':1,'için':1,'icin':1,'ama':1,'gibi':1,'olan':1,'daha':1,'çok':1,'cok':1,'veya':1,'her':1,'ben':1,'sen':1,'nin':1,'nın':1,'mi':1,'mı':1,'ne':1,'de':1,'da':1,'ki':1,'ve':1,'o':1};
+function toks(s){return tr(s).replace(/[^a-zçğıöşü0-9]+/g,' ').split(' ').filter(function(w){return w&&!STOP[w]})}
+function stem(w){return w.length>4?w.slice(0,4):w}
+function check(txt,q,p){
+  var t=txt.trim();
+  if(!t)return 'Önce cevabını yaz, sonra kontrol et. İstersen bu soruyu atlayıp başka soruya geçebilirsin.';
+  var ref=ansText(p),need=Math.min(12,Math.max(2,Math.floor(ref.length*0.4)));
+  var letters=(t.match(/[A-Za-zÇĞİÖŞÜçğıöşü0-9]/g)||[]).length;
+  if(t.length<need||letters<Math.min(2,need))return 'Cevabın çok kısa. Soruyu kendi cümlelerinle yaz.';
+  var code=/[=()\[\]{}"#*\/%<>:;]/.test(t);
+  var flat=tr(t).replace(/[^a-zçğıöşü]/g,'');
+  if(!code){
+    if(/([^\d\s])\1{3,}/.test(t)||/(.{2,3})\1{2,}/.test(flat))return 'Bu anlamlı bir cevap gibi görünmüyor. Gerçek bir cevap yaz.';
+    var ws=flat?tr(t).split(/[^a-zçğıöşü]+/).filter(function(w){return w.length>=4}):[];
+    var bad=ws.filter(function(w){var v=(w.match(/[aeıioöuü]/g)||[]).length;return v/w.length<0.2||v/w.length>0.8}).length;
+    if(ws.length&&bad*2>=ws.length)return 'Bu anlamlı bir cevap gibi görünmüyor. Gerçek bir cevap yaz.';
+  }
+  var refS={};toks(ref+' '+p.q+' '+(q.intro||'')+' '+(q.code||'')).forEach(function(w){refS[stem(w)]=1});
+  var ok=toks(t).some(function(w){return refS[stem(w)]});
+  if(!ok)return 'Cevabın soruyla ilgili görünmüyor. Soruda geçen kavramları kullanarak yaz.';
+  return '';
+}
+function renderDots(){
+  var el=document.getElementById('dots');if(!el)return;var a=allowed();
+  var h=Q.map(function(q,i){var d=doneQ(q);return '<button class="dot'+(d?' done':'')+(i===CUR?' cur':'')+'" data-go="'+i+'" aria-label="Soru '+q.no+(d?' (tamamlandı)':i>a?'':'')+'"'+(i>a?' aria-disabled="true"':'')+'>'+q.no+'</button>'}).join('');
+  h+='<span class="dprog">'+Q.filter(doneQ).length+' / '+Q.length+' soru tamamlandı'+(TEACH?' · öğretmen: tüm sorular açık':'')+'</span>';
+  el.innerHTML=h;
+}
+function showQ(i,scroll){
+  var a=allowed();if(i>a)i=a;if(i<0)i=0;CUR=i;
+  document.querySelectorAll('#soru .qs').forEach(function(x){x.hidden=Number(x.dataset.i)!==i});
+  var fin=document.getElementById('fin');if(fin)fin.hidden=i<Q.length;
+  renderDots();score();if(scroll)window.scrollTo(0,0);
+}
+function reveal(id){
+  var a=document.getElementById('an'+id),b=document.querySelector('[data-chk2="'+id+'"]'),ta=document.getElementById('ta'+id);
+  if(a)a.hidden=false;if(b){b.textContent='Kontrol edildi';b.disabled=true}if(ta)ta.readOnly=true;
+}
+function restore(){
+  Q.forEach(function(q){q.parts.forEach(function(p,i){if(st['v'+q.no+'-'+i])reveal(q.no+'-'+i)})});
+  showQ(firstOpen(),false);
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.go!==undefined){var i=Number(b.dataset.go);if(i>allowed()){var w=document.getElementById('dprog');b.title='Önce önceki soruları cevapla';return}showQ(i,true);return}
+  if(b.dataset.chk2){
+    var id=b.dataset.chk2,no=Number(id.split('-')[0]),pi=Number(id.split('-')[1]),q=Q[no-1],p=q.parts[pi];
+    var ta=document.getElementById('ta'+id),w=document.getElementById('w'+id),msg=check(ta.value,q,p);
+    if(msg&&!TEACH){w.textContent=msg;ta.focus();return}
+    w.textContent='';st['v'+id]=1;save();reveal(id);renderDots();return}
+  if(b.dataset.next){
+    var qn=Number(b.dataset.next),qq=Q[qn-1],wn=document.getElementById('wn'+qn);
+    
+    wn.textContent='';showQ(qn,true)}
+});
+renderK();renderQ();
+</script>
+<script>
+/* Cevapları öğretmene gönder (e-posta) */
+(function(){
+var TO='sunaypolat@mek.k12.tr';
+function nameKey(){return KEY+'-name'}
+function getName(){try{return localStorage.getItem(nameKey())||''}catch(e){return ''}}
+function buildText(name){
+  var L=[],c=0,t=0;
+  L.push(COURSE+' - 1. Ortak Yazılı Çalışma Sayfası');
+  L.push('Öğrenci: '+name);
+  L.push('Tarih: '+new Date().toLocaleString('tr-TR'));
+  var body=[];
+  Q.forEach(function(q){
+    q.parts.forEach(function(p,i){
+      var a=(st['a'+q.no+'-'+i]||'').trim();
+      if(a){c++;body.push(q.no+') '+plain(p.q)+'\nCevap: '+a)}
+    });
+    var v=st['m'+q.no];if(v!==undefined)t+=q.p*Number(v);
+  });
+  L.push('Cevaplanan soru: '+c+' / '+Q.length+'   Puan: '+(Math.round(t*2)/2)+' / 100');
+  L.push('');
+  return {text:L.concat(body.length?body.join('\n\n'):['(Henüz cevap yazılmadı)']).join('\n'),count:c};
+}
+function boxHtml(){
+  return '<div class="sendq" style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)"><b style="display:block;margin-bottom:4px">Cevaplarımı öğretmene gönder</b><p class="sub" style="margin:0 0 8px;font-size:14px">Bu soruya kadar yazdığın bütün cevaplar sunaypolat@mek.k12.tr adresine gönderilir.</p><input class="stn" type="text" maxlength="60" placeholder="Adın soyadın ve sınıfın (örn. Ayşe Yılmaz 9-A)" aria-label="Adın soyadın ve sınıfın" style="width:100%;font:16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-bottom:8px"><div class="row" style="margin-top:0"><button class="btn fill" data-snd="mail">Öğretmene gönder</button><button class="btn" data-snd="copy">Metni kopyala</button><button class="btn" data-snd="file">Dosya olarak indir</button></div><p class="sub snm" role="status" style="margin:8px 0 0;font-size:14px"></p></div>';
+}
+function mount(){
+  document.querySelectorAll('#soru .qs').forEach(function(s){
+    if(s.querySelector('.sendq'))return;
+    s.insertAdjacentHTML('beforeend',boxHtml());
+  });
+  var n=getName();document.querySelectorAll('.stn').forEach(function(i){if(n)i.value=n});
+}
+mount();
+document.addEventListener('input',function(e){
+  var t=e.target;if(!t.classList||!t.classList.contains('stn'))return;
+  try{localStorage.setItem(nameKey(),t.value)}catch(x){}
+  document.querySelectorAll('.stn').forEach(function(i){if(i!==t)i.value=t.value});
+});
+function copyText(txt,cb){
+  var fb=function(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(x){}ta.remove();cb(ok)};
+  try{navigator.clipboard.writeText(txt).then(function(){cb(true)},fb)}catch(x){fb()}
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-snd]');if(!b)return;
+  var box=b.closest('.sendq'),inp=box.querySelector('.stn'),msg=box.querySelector('.snm'),name=inp.value.trim();
+  if(!name){msg.textContent='Önce adını soyadını ve sınıfını yaz.';inp.focus();return}
+  try{localStorage.setItem(nameKey(),name)}catch(x){}
+  var r=buildText(name);
+  if(!r.count){msg.textContent='Henüz yazılmış cevap yok. Önce soruları cevapla.';return}
+  var subj=COURSE+' - Çalışma sayfası cevapları - '+name;
+  if(b.dataset.snd==='copy'){copyText(r.text,function(ok){msg.textContent=ok?'Kopyalandı. E-postaya yapıştırıp '+TO+' adresine gönderebilirsin.':'Kopyalanamadı. "Dosya olarak indir"i dene.'})}
+  if(b.dataset.snd==='file'){
+    var blob=new Blob([r.text],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download=name.replace(/[^A-Za-z0-9ÇĞİÖŞÜçğıöşü\-]+/g,'_')+'_cevaplar.txt';document.body.appendChild(a);a.click();a.remove();
+    msg.textContent='Dosya indirildi. Bunu '+TO+' adresine e-postayla ekle ve gönder.';
+  }
+  if(b.dataset.snd==='mail'){/*__DIRECT__*/var EP='https://script.google.com/macros/s/AKfycbwrmVquJKWz-52VauSqofVuDCnGl9ZEEbCMOFAE5f1lumBrlVYx2Gu52oMwKbhPlVYrIw/exec';msg.textContent='Gönderiliyor...';b.disabled=true;var fd=new URLSearchParams();fd.set('name',name);fd.set('course',COURSE);fd.set('body',r.text);fetch(EP,{method:'POST',mode:'no-cors',body:fd}).then(function(){b.disabled=false;msg.textContent='Gönderildi ✔ ('+r.count+' cevap). Yeni cevaplar yazıp tekrar gönderebilirsin.'}).catch(function(){b.disabled=false;msg.textContent='Gönderilemedi. "Metni kopyala" veya "Dosya olarak indir"i kullan.'});return}
+if(false){
+    var full='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(r.text);
+    var long=full.length>1900;
+    var go=function(url,m){var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();msg.textContent=m};
+    if(!long){go(full,r.count+' cevap e-posta taslağına yazıldı. Mail uygulaman açılmazsa "Metni kopyala"yı kullan.')}
+    else{copyText(r.text,function(ok){
+      go('mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent('Cevaplarım (yapıştır):\n\n'),
+         ok?'Cevapların çok uzun olduğu için kopyalandı. Açılan e-postanın içine yapıştır (Ctrl+V) ve gönder.':'Cevaplar çok uzun. "Dosya olarak indir"i kullanıp dosyayı e-postaya ekle.')})}
+  }
+});
+window.__buildText=buildText;
+})();
+</script>
+<style>[hidden]{display:none!important}:root{--A:#7c4dff;--B:#d946ef;--navy:var(--A)}body{background:radial-gradient(1200px 500px at 10% -10%,color-mix(in srgb,var(--A) 14%,transparent),transparent),radial-gradient(900px 500px at 100% 0,color-mix(in srgb,var(--B) 14%,transparent),transparent),var(--bg)!important}header{margin-top:14px;padding:26px 24px!important;border-radius:22px;color:#fff;background:linear-gradient(135deg,var(--A),var(--B));box-shadow:0 10px 30px color-mix(in srgb,var(--A) 35%,transparent);position:relative;overflow:hidden}header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.15)}header h1,header .kicker,header .sub{color:#fff!important;position:relative;z-index:1}header .kicker{opacity:.9}nav{border-bottom:0!important;padding-block:12px!important;background:color-mix(in srgb,var(--bg) 92%,transparent)!important;backdrop-filter:blur(6px)}nav button{border-radius:99px!important;background:var(--sheet)!important;color:var(--fg)!important;border:1px solid var(--line)!important;box-shadow:0 1px 3px rgba(0,0,0,.06)}nav button[aria-selected="true"]{background:linear-gradient(135deg,var(--A),var(--B))!important;color:#fff!important;border-color:transparent!important}#t-konu::before{content:"📘 "}#t-soru::before{content:"✏️ "}#t-ogr::before{content:"👩‍🏫 "}nav .score{font-weight:700;color:var(--A)}.sheet{border-radius:18px!important;box-shadow:0 4px 18px rgba(30,40,80,.07);border-color:var(--line)}.topic{border-left:6px solid var(--tc,var(--A))!important}.topic:nth-child(5n+1){--tc:#7c4dff}.topic:nth-child(5n+2){--tc:#0ea5a4}.topic:nth-child(5n+3){--tc:#f59e0b}.topic:nth-child(5n+4){--tc:#ef4444}.topic:nth-child(5n+5){--tc:#2563eb}.topic h2{color:var(--tc,var(--A))!important}.topic th{background:color-mix(in srgb,var(--tc,var(--A)) 14%,var(--sheet))!important}.tip{background:color-mix(in srgb,#f59e0b 16%,var(--sheet))!important;border-left:4px solid #f59e0b}.tip b::before{content:"💡 "}.qs{border-top:6px solid var(--lc,var(--A))!important}.qs[data-lv="k"]{--lc:#16a34a}.qs[data-lv="o"]{--lc:#f59e0b}.qs[data-lv="z"]{--lc:#ef4444}.qno{background:var(--lc,var(--A));color:#fff!important;border-radius:12px;padding:0 12px;font-size:20px}.qs .pt:nth-of-type(2){background:color-mix(in srgb,var(--lc,var(--A)) 18%,var(--sheet));border-color:transparent;color:var(--fg);font-weight:700}.btn{border-radius:99px!important;padding:8px 18px!important;transition:transform .12s}.btn:hover{transform:translateY(-1px)}.btn.fill{background:linear-gradient(135deg,var(--A),var(--B))!important;border-color:transparent!important;color:#fff!important}textarea,.stn{border-radius:12px!important;border:2px solid var(--line)!important}textarea:focus,.stn:focus{border-color:var(--A)!important;outline:none}.ans{border-radius:12px!important;background:color-mix(in srgb,#16a34a 12%,var(--sheet))!important;color:var(--fg)!important;border-left-color:#16a34a!important}.ans b{color:#15803d}.ans b::before{content:"✅ "}.dot{border-radius:50%!important;width:38px!important;height:38px!important;border:2px solid var(--line)!important;background:var(--sheet)}.dot.done{background:#16a34a!important;color:#fff!important;border-color:transparent!important}.dot.cur{background:linear-gradient(135deg,var(--A),var(--B))!important;color:#fff!important;border-color:transparent!important;outline:none!important;transform:scale(1.12)}.dprog{font-weight:600}.mark button[aria-pressed="false"]{border-radius:99px}.sendq{background:color-mix(in srgb,var(--B) 8%,var(--sheet));border-radius:14px;padding:14px!important;border:2px dashed color-mix(in srgb,var(--A) 40%,var(--line))!important}.sendq b::before{content:"📧 "}</style>
+<script>(function(){function t(){document.querySelectorAll('.qs').forEach(function(s){var q=Q[Number(s.dataset.i)];if(q)s.dataset.lv=q.lv})}t();})();</script>
+<style>.homelink{display:inline-block;margin:12px 0 0;font:700 14px system-ui,sans-serif;color:var(--A);text-decoration:none;border:2px solid var(--A);border-radius:99px;padding:6px 16px;background:var(--sheet)}.homelink:hover{background:var(--A);color:#fff}</style><style>.mark{display:none!important}.verdict{margin:10px 0 8px;padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.45;font-family:var(--body)}.verdict b{display:inline!important;font-size:15px!important;letter-spacing:0!important;text-transform:none!important;margin:0!important}.verdict.ok{background:#e7f6ec;color:#155c33;border:1px solid #9ad5ae}.verdict.mid{background:#fff4d6;color:#7a4b00;border:1px solid #f0cf7a}.verdict.bad{background:#fdecea;color:#8c1d18;border:1px solid #f2a9a3}.verdict ul{margin:6px 0 0;padding-left:18px}.verdict small{display:block;margin-top:6px;opacity:.8}</style>
+<script>
+/* Otomatik puanlama: öğrencinin cevabı kitaptaki örnek cevabın anahtar noktaları ve kabul edilen alternatiflerle karşılaştırılır. */
+(function(){
+if(typeof Q==='undefined'||typeof reveal!=='function')return;
+if(!window.__GIVEN)window.__GIVEN=/aşağıdaki|Aşağıdaki|Durumların|tabloyu|tabloda/;
+var NUMW={'iki':2,'uc':3,'dort':4,'bes':5,'alti':6,'yedi':7,'sekiz':8};
+var STOP={};('bir ve ile icin bu su o da de ki mi mu mı gibi olan olarak veya ya yada her cok daha en ise var yok olur olurlar eder yapar yapilir saglar kullanilir kullanilan ornek ornegin orn cevap cozum yani kabul edilir herhangi biri bazi tum butun gore kadar sonra once ama fakat cunku nedeni neden kendi olabilir olmali olmasi olması icinde uzerinde arasinda seklinde sekilde bunu buna bunun bunlar onu ona onun onlar sey seyler gerekir gerekli yazilir yaz yazin yaziniz ac acikla aciklayiniz belirt belirtiniz ne nedir nasil hangi hangisi kim kimdir mudur midir dir dır tir tır dur dür tur tür lar ler i in un ın a e the and or is are nin nın nun nün in ın den dan ten tan de da te ta ile hem hemde dahi bile sadece yalnizca ayni cok az ilk son olan olanlar class cikti ciktisi sonuc sonucu').split(' ').forEach(function(w){STOP[w]=1});
+var SYN={'string':'metin','str':'metin','metinsel':'metin','yazi':'metin','integer':'int','tamsayi':'int','tamsayilar':'int','boolean':'bool','mantiksal':'bool','dogru':'true','yanlis':'false','vr':'sg','ar':'ag','ai':'yapayzeka','yz':'yapayzeka','webde':'internet','web':'internet','sebeke':'ag','cpu':'islemci','motor':'motor','servo':'motor','robotkol':'robotkolu','drone':'iha','dron':'iha','ucak':'iha','sicaklik':'sicaklik','listesi':'list','liste':'list','demet':'tuple','kume':'set','sozluk':'dict','dictionary':'dict','yorumlayici':'yorumlayici','interpreter':'yorumlayici','derleyici':'derleyici','compiler':'derleyici','anahtar':'ayrilmis','rezerve':'ayrilmis','reserved':'ayrilmis','keyword':'ayrilmis','mesaj':'ileti','mesaji':'ileti','gonderici':'kaynak','gonderen':'kaynak','verici':'kaynak'};
+var GEN={'akilli':1,'dijital':1,'elektronik':1,'cevrim':1,'ici':1,'sistem':1,'sistemi':1,'araci':1,'cihaz':1,'cihazi':1,'program':1,'programi':1,'uygulama':1,'uygulamasi':1};
+var PHR=[[/tam\s*say[ıi]\w*/g,' int '],[/ondal[ıi]kl?[ıi]?\w*\s*(say[ıi]\w*)?/g,' float '],[/genel\s*a[ğg]\w*/g,' internet '],[/yapay\s*zek[aâ]\w*/g,' yapayzeka '],[/nesnelerin\s*internet\w*/g,' iot '],[/sanal\s*ger[çc]eklik\w*/g,' sg '],[/art[ıi]r[ıi]lm[ıi][şs]\s*ger[çc]eklik\w*/g,' ag '],[/\b3\s*[db]\b/g,' 3d '],[/robot\s*kol\w*/g,' robotkolu '],[/insans[ıi]z\s*hava\s*arac\w*/g,' iha '],[/ya\s*da/g,' veya ']];
+var OPS=[['//',' op_tambol '],['**',' op_us '],['==',' op_esit '],['!=',' op_esitdegil '],['<=',' op_kucesit '],['>=',' op_buyesit '],['+=',' op_arteq '],['-=',' op_eksieq '],['*=',' op_carpeq '],['/=',' op_boleq '],['%',' op_mod ']];
+function low(s){return String(s).replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase()}
+function deacc(s){return s.replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[âà]/g,'a').replace(/[îì]/g,'i').replace(/û/g,'u')}
+function txt(h){return typeof plain==='function'?plain(String(h)):String(h).replace(/<[^>]+>/g,' ')}
+function norm(s,raw){
+  s=low(raw?String(s):txt(s));
+  OPS.forEach(function(o){s=s.split(o[0]).join(o[1])});
+  s=s.replace(/(\d),(\d)/g,'$1.$2');
+  PHR.forEach(function(p){s=s.replace(p[0],p[1])});
+  return deacc(s);
+}
+function toks(s,raw){
+  var t=norm(s,raw),out=[];
+  var re=/op_[a-z]+|\d+(?:\.\d+)?|[a-z_][a-z0-9_]*/g,m;
+  while((m=re.exec(t))){var w=m[0];if(SYN[w])w=SYN[w];else if(w.length>5&&/(amaz|emez|amazlar|emezler)$/.test(w))w='olmaz';if(/^\d/.test(w)||w.indexOf('op_')===0||(!STOP[w]&&w.length>1))out.push(w)}
+  return out;
+}
+function pref(a,b){var n=Math.min(a.length,b.length),i=0;while(i<n&&a.charCodeAt(i)===b.charCodeAt(i))i++;return i}
+var SUF='lerinden larindan lerinde larinda lerine larina lerini larini sindan sinden lerin larin leri lari ler lar sidir sidur idir udur dir tir dur tur indan inden undan unden inda inde unda unde nin nun nden ndan den dan ten tan iyor uyor yor erek arak irken mis mus mak mek abilir ebilir ilir ulur lik luk li lu siz suz si su yi yu ye ya in un de da te ta i u e a'.split(' ');
+function stm(w){if(/^\d/.test(w)||w.indexOf('op_')===0)return w;var c=0,ch=true;while(ch&&c<3){ch=false;for(var i=0;i<SUF.length;i++){var s=SUF[i];if(w.length-s.length>=3&&w.slice(-s.length)===s){w=w.slice(0,-s.length);ch=true;c++;break}}}return w}
+var SC={};function st2(w){return SC[w]||(SC[w]=stm(w))}
+function hit(k,list){
+  if(/^\d/.test(k)||k.indexOf('op_')===0||k.length<=3){return list.indexOf(k)>-1}
+  var sk=st2(k);
+  for(var i=0;i<list.length;i++){var a=list[i];if(a===k)return true;if(/^\d/.test(a))continue;var sa=st2(a),m=Math.min(sa.length,sk.length);if(sa===sk||(m>=4&&pref(sa,sk)>=m))return true}
+  return false;
+}
+function uniq(a){var o=[],s={};a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x)}});return o}
+/* bir metinden anahtar nokta oluştur */
+function point(text,qset,opt){
+  var alt=[];
+  text=String(text).replace(/\(([^)]*kabul edilir[^)]*)\)/gi,function(_,x){alt.push(x.replace(/(da|de)?\s*kabul edilir/i,''));return ' '});
+  var clean=String(text).replace(/"[^"]*"/g,' ');
+  if(/\sveya\s|\s\/\s/.test(clean)){clean.split(/\sveya\s|\s\/\s/).forEach(function(x){if(x.trim())alt.push(x)})}
+  var raw=uniq(toks(clean));if(!raw.length)raw=uniq(toks(text));var keep=raw.filter(function(w){return !qset[w]||/^\d/.test(w)}),fb=false;
+  if(!keep.length){keep=raw;fb=true}
+  var p={label:txt(text).replace(/\s+/g,' ').trim(),k:keep,alts:alt.map(function(a){var r=uniq(toks(a)).filter(function(w){return !qset[w]});return r}).filter(function(r){return r.length}),opt:!!opt,fb:fb};
+  return p;
+}
+function pool(text,n,qset){
+  var body=String(text).replace(/\((?:[^)]*herhangi[^)]*)\)/gi,' ').replace(/herhangi\s+\S+/gi,' ');
+  body=body.replace(/^[^:]{0,40}:/,'');
+  var parts=body.split(/,|;|\bve\b|\bveya\b|\//).map(function(x){return x.trim()}).filter(Boolean);
+  var pl=[],dropped=0;parts.forEach(function(x){var r=uniq(toks(x)).filter(function(w){return !qset[w]});if(r.length)pl.push(r);else if(uniq(toks(x)).length)dropped++});
+  return {label:txt(text).replace(/\s+/g,' ').trim(),pool:pl,need:Math.max(1,Math.min(n,pl.length))};
+}
+function pointsOf(q,p){
+  var qset={};toks((p.q||'')+' '+(q.intro||'')+' '+(q.code||'')).forEach(function(w){qset[w]=1});
+  var pts=[];
+  if(/s[ıi]rala(y[ıi]n[ıi]z|y[ıi]n|\b|\s|\.|,|$)|s[ıi]ras[ıi]na koy|numaraland/i.test(p.q||'')&&(p.ans||[]).length){var ot=(p.ans||[]).join(', ').replace(/\d+\)\s*/g,',').split(/,|→|->|;|\.\s/).map(function(y){return y.trim()}).filter(function(y){return toks(y).length});if(ot.length>=3){pts.push({label:txt((p.ans||[]).join(' ')),order:ot.map(function(y){var r=uniq(toks(y)).filter(function(w){return !GEN[w]});return r.length?r:uniq(toks(y))}),k:[1]});return pts}}
+  (p.ans||[]).forEach(function(a){
+    var s=String(a),hm=low(deacc(low(s))).match(/herhangi\s+(iki|uc|dort|bes|alti|yedi|sekiz)/);
+    if(hm){pts.push(pool(s,NUMW[hm[1]],qset));return}
+    var pieces=s.split(/(?:\.\s+|<br>)(?=[A-ZÇĞİÖŞÜ0-9“"(])/);
+    pieces.forEach(function(x){
+      x=x.trim();if(!x)return;
+      var isEx=/^(örnek|ör\.|örneğin|not:)/i.test(x)||/^\s*örnek/i.test(x);
+      if(!isEx){var en=x.replace(/^[^:]{0,30}:/,'').replace(/\.$/,'').split(/,|\sve\s/).map(function(y){return y.trim()}).filter(Boolean);if(en.length>=2&&en.length<=8&&en.every(function(y){var tk=toks(y);return tk.length>=1&&tk.length<=3})){var pl=pool(x,en.length,qset);if(pl.pool.length>=2){pts.push(pl);return}}}
+      pts.push(point(x,qset,isEx));
+    });
+  });
+  if(p.tbl){
+    var given=window.__GIVEN?window.__GIVEN.test(p.q||''):/^(Aşağıdaki|Durumların)|tabloyu doldur/.test(p.q||'');
+    p.tbl.slice(1).forEach(function(r){
+      var cells=given?r.slice(1):r;
+      var cs=cells.map(function(c){return point(c,qset,false)}).filter(function(c){return c.k.length});
+      if(!cs.length)return;
+      pts.push({label:txt(r.join(' – ')),cells:cs,given:given,k:[1],alts:[]});
+    });
+  }
+  return pts.filter(function(x){return (x.k&&x.k.length)||(x.pool&&x.pool.length)});
+}
+function cover(keys,st){
+  if(!keys.length)return 0;
+  var n=keys.length,got=0,numMiss=false;keys.forEach(function(k){var h=hit(k,st);if(h)got++;else if(/^\d/.test(k))numMiss=true});
+  var need=Math.min(n,Math.ceil(1+0.25*n));var s=Math.min(1,got/need);
+  if(numMiss)s=Math.min(s,0.5);
+  return s;
+}
+function grade(q,p,answer){
+  var qs=uniq(toks((p.q||'')+' '+(q.intro||'')+' '+(q.code||''))),qset={};qs.forEach(function(w){qset[w]=1});
+  var all=toks(answer,true),ua=uniq(all),ov=ua.filter(function(w){return qset[w]}).length,nw=ua.filter(function(w){return !qset[w]}).length,qa=toks((p.q||'')+' '+(q.intro||''),false),run=0;
+  for(var i1=0;i1<all.length;i1++)for(var j1=0;j1<qa.length;j1++){var L=0;while(i1+L<all.length&&j1+L<qa.length&&all[i1+L]===qa[j1+L])L++;if(L>run)run=L}
+  var copied=nw<3&&qa.length>=3&&run>=Math.max(3,Math.ceil(qa.length*0.5));
+  var stF=all.filter(function(w){return !qset[w]||(/^\d/.test(w)&&!copied)});
+  var pts=pointsOf(q,p),req=pts.filter(function(x){return !x.opt}),sum=0,miss=[],okc=0;
+  function cv(k,fb){return fb?(copied?0:cover(k,all)):cover(k,stF)}
+  if(!req.length)req=pts;
+  req.forEach(function(x){
+    var s;
+    if(x.order){var pos=x.order.map(function(it){for(var i=0;i<all.length;i++){for(var j=0;j<it.length;j++){if(hit(it[j],[all[i]]))return i}}return -1});var f=pos.filter(function(v){return v>=0}).length,op=0,pc=0;for(var i2=0;i2<pos.length-1;i2++){if(pos[i2]>=0&&pos[i2+1]>=0){pc++;if(pos[i2]<pos[i2+1])op++}}s=0.3*(f/pos.length)+0.7*(x.order.length>1?op/(x.order.length-1):1)}
+    else if(x.pool){var c=0;x.pool.forEach(function(o){var o2=o.filter(function(w){return !GEN[w]});if(!o2.length)o2=o;if(cv(o2,false)>=0.5)c++});s=Math.min(1,c/Math.max(1,Math.min(x.need,x.pool.length)))}
+    else if(x.cells){var tw=0,tg=0;x.cells.forEach(function(c,ci){var w=(x.given&&ci===0&&x.cells.length>1)?2:1;var cc=cv(c.k,c.fb);c.alts.forEach(function(a){cc=Math.max(cc,cv(a,false))});tw+=w;tg+=w*cc});s=tg/tw}
+    else{s=cv(x.k,x.fb);x.alts.forEach(function(a){s=Math.max(s,cv(a,false))})}
+    sum+=s;if(s>=0.99)okc++;else miss.push(x.label);
+  });
+  var r=req.length?sum/req.length:0;
+  return {ratio:r,v:r>=0.8?1:(r>=0.4?0.5:0),total:req.length,ok:okc,miss:miss};
+}
+window.__grade=grade;window.__points=pointsOf;
+function short(s){s=String(s);return s.length>110?s.slice(0,107)+'…':s}
+function show(id,g,q){
+  var box=document.getElementById('an'+id);if(!box)return;
+  var old=box.querySelector('.verdict');if(old)old.remove();
+  var d=document.createElement('div');
+  var cls=g.v===1?'ok':(g.v===0.5?'mid':'bad');
+  var head=g.v===1?'✅ <b>Doğru.</b> Cevabın kitaptaki cevapla örtüşüyor.':(g.v===0.5?'🟡 <b>Kısmen doğru / eksik.</b> Bazı anahtar noktalar eksik.':'❌ <b>Yanlış veya çok eksik.</b> Cevabın kitaptaki bilgiyle örtüşmüyor.');
+  var pts=g.v===1?q.p:(g.v===0.5?q.p/2:0);
+  var h='<div>'+head+' <span style="white-space:nowrap">('+String(pts).replace('.',',')+' / '+String(q.p).replace('.',',')+' puan)</span></div>';
+  if(g.total>1)h+='<small>'+g.total+' anahtar noktadan '+g.ok+' tanesini tam yazdın.</small>';
+  if(g.miss.length&&g.v<1)h+='<div style="margin-top:6px">Eksik ya da hatalı kalan noktalar:</div><ul>'+g.miss.slice(0,4).map(function(m){return '<li>'+esc(short(m))+'</li>'}).join('')+'</ul>';
+  h+='<small>Aşağıdaki örnek cevapla kendi cevabını karşılaştır.</small>';
+  d.className='verdict '+cls;d.innerHTML=h;
+  box.insertBefore(d,box.firstChild);
+}
+function apply(id){
+  var no=Number(String(id).split('-')[0]),pi=Number(String(id).split('-')[1]),q=Q[no-1];if(!q)return;
+  var p=q.parts[pi],a=st['a'+id]||'';
+  var g=grade(q,p,a);st['g'+id]=g.v;show(id,g,q);
+  var all=q.parts.every(function(pp,i){return st['g'+no+'-'+i]!==undefined});
+  if(all){var s=0;q.parts.forEach(function(pp,i){s+=st['g'+no+'-'+i]});var v=s/q.parts.length;st['m'+no]=v>=0.99?'1':(v>=0.25?'0.5':'0')}
+  save();if(typeof score==='function')score();
+}
+var orig=reveal;
+reveal=window.reveal=function(id){orig(id);try{apply(id)}catch(e){}};
+try{Q.forEach(function(q){q.parts.forEach(function(p,i){var id=q.no+'-'+i;if(st['v'+id])apply(id)})})}catch(e){}
+})();
+</script>
+</body></html>
