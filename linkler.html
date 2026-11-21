@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sunay's School · Ücretsiz Kodlama ve Yapay Zekâ Siteleri</title>
+<meta name="description" content="Öğretmenler ve öğrenciler için ücretsiz kodlama, oyunla kodlama ve yapay zekâ siteleri — sınıf düzeyine göre.">
+<meta property="og:title" content="Sunay's School · Kodlama ve Yapay Zekâ Linkleri">
+<meta property="og:description" content="1–8. sınıflar için kodlama ve yapay zekâ siteleri, sınıf düzeyine göre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap">
+<style>
+:root{
+  --navy:#0b1f3f; --navy2:#16345f; --teal:#12d3c6; --dteal:#0a9f96; --yel:#ffd23f;
+  --bg:#0b1f3f; --card:#ffffff; --fg:#0b1f3f; --muted:#5a6b86; --line:#e2e9f2;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;color:#fff;
+  background:radial-gradient(900px 500px at 85% -10%,rgba(18,211,198,.25),transparent 60%),
+             radial-gradient(700px 500px at -10% 110%,rgba(255,210,63,.18),transparent 60%),var(--bg);
+  background-attachment:fixed;min-height:100vh;
+  padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 48px max(16px,env(safe-area-inset-left))}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.6px);background-size:28px 28px}
+.wrap{position:relative;max-width:640px;margin:0 auto}
+header{text-align:center;padding:18px 0 8px}
+.logo{width:84px;height:84px;margin:0 auto 12px;border-radius:24px;background:var(--teal);color:var(--navy);
+  display:grid;place-items:center;font-weight:900;font-size:30px;box-shadow:0 10px 30px rgba(18,211,198,.35)}
+h1{margin:0;font-size:26px;font-weight:900;letter-spacing:-.01em}
+.handle{display:inline-block;margin-top:4px;color:var(--teal);font-weight:700;text-decoration:none}
+.bio{margin:10px auto 0;max-width:42ch;color:#c8d8ec;font-size:15px;line-height:1.5}
+.cta{display:flex;gap:10px;justify-content:center;margin:16px 0 6px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:800;font-size:14px;
+  text-decoration:none;border:2px solid transparent}
+.btn.ig{background:var(--yel);color:var(--navy)}
+.btn.share{background:transparent;color:#fff;border-color:rgba(255,255,255,.3);cursor:pointer;font-family:inherit}
+.tools{position:sticky;top:0;z-index:5;margin:18px -16px 6px;padding:10px 16px;
+  background:rgba(11,31,63,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+input[type=search]{width:100%;font:600 16px Inter,system-ui,sans-serif;color:var(--navy);background:#fff;border:0;
+  border-radius:14px;padding:12px 14px;outline:3px solid transparent}
+input[type=search]:focus{outline-color:var(--teal)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;font:700 13px Inter,system-ui,sans-serif;color:#fff;background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 14px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+section{margin-top:22px}
+h2{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);margin:0 0 10px;font-weight:800}
+h2::after{content:"";flex:1;height:1.5px;background:rgba(18,211,198,.35)}
+.list{display:grid;gap:10px}
+a.card{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;text-decoration:none;
+  background:var(--card);color:var(--fg);border-radius:18px;padding:12px 14px 12px 12px;
+  box-shadow:0 6px 0 rgba(0,0,0,.18);transition:transform .15s ease,box-shadow .15s ease}
+a.card:hover{transform:translateY(-2px);box-shadow:0 8px 0 rgba(0,0,0,.2)}
+a.card:active{transform:translateY(2px);box-shadow:0 3px 0 rgba(0,0,0,.2)}
+a.card:focus-visible{outline:3px solid var(--yel);outline-offset:3px}
+.ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:17px;color:#fff}
+.name{font-weight:800;font-size:16px;line-height:1.2}
+.desc{color:var(--muted);font-size:13.5px;line-height:1.35;margin-top:2px}
+.meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tag{font-size:11px;font-weight:800;border-radius:999px;padding:3px 8px;background:#eaf6fa;color:var(--dteal)}
+.tag.free{background:#fff4cc;color:#7a5b00}
+.tag.part{background:#ffe3e3;color:#a3343a}
+.go{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900}
+.empty{display:none;text-align:center;color:#c8d8ec;padding:30px 0}
+footer{text-align:center;color:#8fa5c4;font-size:12.5px;margin-top:30px;line-height:1.6}
+footer a{color:var(--teal);font-weight:700;text-decoration:none}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo" aria-hidden="true">&lt;/&gt;</div>
+    <h1>Sunay's School</h1>
+    <a class="handle" href="https://www.instagram.com/sunays.school/" target="_blank" rel="noopener">@sunays.school</a>
+    <p class="bio">Videolarda anlattığım kodlama ve yapay zekâ siteleri burada. Sınıf düzeyine göre seç, dene, keşfet, üret!</p>
+    <div class="cta">
+      <a class="btn ig" href="https://www.instagram.com/sunays.school/" target="_blank" rel="noopener">Instagram'da takip et</a>
+      <button class="btn share" id="share" type="button">Bu sayfayı paylaş</button>
+    </div>
+  </header>
+
+  <div class="tools">
+    <input type="search" id="q" placeholder="Site ara… (ör. Python, çizim, oyun)" aria-label="Site ara">
+    <div class="chips" role="group" aria-label="Sınıf düzeyi filtresi" id="chips"></div>
+  </div>
+
+  <main id="main"></main>
+  <p class="empty" id="empty">Bu filtreye uygun site bulunamadı.</p>
+
+  <footer>
+    Sınıf aralıkları öneridir; öğrencinin deneyimine göre uyarlayın.<br>
+    “Kısmen ücretsiz” siteler: ilk bölümler/temel içerik ücretsiz, bazı içerikler ücretli.<br>
+    <a href="https://www.instagram.com/sunays.school/" target="_blank" rel="noopener">@sunays.school</a>
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+  { title: "Kodlama + Yapay Zekâ", items: [
+    { n:"Blockly Games", u:"https://blockly.games", d:"Komutları sırala, sonucu gör.", g:[1,4], t:["Algoritma"], f:"free", c:"#4a6cd4", i:"BG" },
+    { n:"MakeCode micro:bit", u:"https://makecode.microbit.org", d:"LED projelerini bloklarla kodla.", g:[4,7], t:["Proje","Elektronik"], f:"free", c:"#00a4a6", i:"mb" },
+    { n:"EduBlocks", u:"https://app.edublocks.org", d:"Kodunu çalıştır, çıktısını gör.", g:[5,7], t:["Python'a geçiş"], f:"free", c:"#f58b1f", i:"EB" },
+    { n:"MakeCode Arcade", u:"https://arcade.makecode.com", d:"Örnek oyunu aç, kodlarını keşfet.", g:[4,7], t:["Oyun tasarımı"], f:"free", c:"#2e9e4f", i:"MA" },
+    { n:"AutoDraw", u:"https://www.autodraw.com", d:"Çizgilerinden öneriler üret.", g:[1,7], t:["Yapay zekâ","Çizim"], f:"free", c:"#3b82f6", i:"AD" },
+    { n:"Quick, Draw!", u:"https://quickdraw.withgoogle.com", d:"Yapay zekâ çizimini tahmin etsin.", g:[1,7], t:["Yapay zekâ"], f:"free", c:"#e5b300", i:"QD" },
+    { n:"Teachable Machine", u:"https://teachablemachine.withgoogle.com", d:"Örneklerini topla, kendi modelini eğit.", g:[3,7], t:["Yapay zekâ","Öğretmen rehberliğiyle"], f:"free", c:"#e8710a", i:"TM" },
+  ]},
+  { title: "Oyunla Kodlama", items: [
+    { n:"Code.org", u:"https://studio.code.org", d:"Blokları birleştir, karakterini hareket ettir.", g:[1,8], t:["Kodlama Saati"], f:"free", c:"#00adbc", i:"C.O" },
+    { n:"Run Marco!", u:"https://allcancode.com/hourofcode/", d:"Marco'yu bloklarla hedefe ulaştır. Türkçe dil seçeneği var.", g:[1,6], t:["Algoritma macerası"], f:"free", c:"#5aa832", i:"RM" },
+    { n:"ScratchJr", u:"https://www.scratchjr.org", d:"Okumadan, simgelerle hikâye kodla. Tablet uygulaması.", g:[0,2], t:["İlk adım"], f:"free", c:"#f7a21b", i:"Jr" },
+    { n:"Scratch", u:"https://scratch.mit.edu/projects/editor", d:"Oyununu, animasyonunu kendin tasarla.", g:[3,8], t:["Proje tasarımı"], f:"free", c:"#855cd6", i:"S" },
+    { n:"Lightbot", u:"https://lightbot.com/hour-of-code.html", d:"Robotu yönlendir, ışıkları yak.", g:[2,6], t:["Problem çözme"], f:"demo", c:"#3fa7e0", i:"LB" },
+    { n:"CodeCombat", u:"https://codecombat.com", d:"Oyun oynarken Python ya da JavaScript yaz.", g:[5,8], t:["Gerçek kod"], f:"part", c:"#7b4b2a", i:"CC" },
+    { n:"Tynker", u:"https://www.tynker.com", d:"Bulmaca çöz, kendi oyununu kur.", g:[2,7], t:["Blok kodlama"], f:"part", c:"#f15a29", i:"Ty" },
+  ]},
+];
+const FILTERS = [
+  { k:"all", l:"Tümü" }, { k:"0-2", l:"Okul öncesi–2", r:[0,2] }, { k:"1-4", l:"1–4. sınıf", r:[1,4] },
+  { k:"5-8", l:"5–8. sınıf", r:[5,8] }, { k:"yz", l:"Yapay zekâ" }, { k:"free", l:"Tamamen ücretsiz" },
+];
+const FREE = { free:["Ücretsiz","free"], demo:["Ücretsiz demo","free"], part:["Kısmen ücretsiz","part"] };
+const grade = g => g[0] === 0 ? `Okul öncesi–${g[1]}. sınıf` : `${g[0]}–${g[1]}. sınıf`;
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let active = "all";
+
+const chips = document.getElementById("chips");
+FILTERS.forEach(f => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.textContent = f.l;
+  b.setAttribute("aria-pressed", f.k === active);
+  b.onclick = () => { active = f.k; [...chips.children].forEach(x => x.setAttribute("aria-pressed", x === b)); render(); };
+  chips.appendChild(b);
+});
+
+function match(it, q) {
+  const f = FILTERS.find(x => x.k === active);
+  if (f.r && (it.g[1] < f.r[0] || it.g[0] > f.r[1])) return false;
+  if (active === "yz" && !it.t.some(t => t.toLowerCase().includes("yapay"))) return false;
+  if (active === "free" && it.f !== "free") return false;
+  if (!q) return true;
+  const hay = (it.n + " " + it.d + " " + it.t.join(" ") + " " + it.u).toLocaleLowerCase("tr");
+  return hay.includes(q);
+}
+
+function render() {
+  const q = document.getElementById("q").value.trim().toLocaleLowerCase("tr");
+  const main = document.getElementById("main");
+  let total = 0, html = "";
+  SECTIONS.forEach(sec => {
+    const items = sec.items.filter(it => match(it, q));
+    if (!items.length) return;
+    total += items.length;
+    html += `<section><h2>${esc(sec.title)}</h2><div class="list">` + items.map(it => {
+      const [fl, fc] = FREE[it.f];
+      return `<a class="card" href="${it.u}" target="_blank" rel="noopener">
+        <span class="ic" style="background:${it.c}" aria-hidden="true">${esc(it.i)}</span>
+        <span><span class="name">${esc(it.n)}</span><span class="desc" style="display:block">${esc(it.d)}</span>
+        <span class="meta"><span class="tag">${grade(it.g)}</span>${it.t.map(t => `<span class="tag">${esc(t)}</span>`).join("")}<span class="tag ${fc}">${fl}</span></span></span>
+        <span class="go" aria-hidden="true">→</span></a>`;
+    }).join("") + `</div></section>`;
+  });
+  main.innerHTML = html;
+  document.getElementById("empty").style.display = total ? "none" : "block";
+}
+document.getElementById("q").addEventListener("input", render);
+document.getElementById("share").addEventListener("click", async () => {
+  const data = { title: "Sunay's School · Kodlama ve Yapay Zekâ Linkleri", url: location.href };
+  try {
+    if (navigator.share) await navigator.share(data);
+    else { await navigator.clipboard.writeText(location.href); document.getElementById("share").textContent = "Link kopyalandı ✓"; }
+  } catch (e) {}
+});
+render();
+</script>
+</body>
+</html>
