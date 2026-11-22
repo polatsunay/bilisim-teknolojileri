@@ -145,6 +145,41 @@
   .sonar{animation:dash .6s linear infinite}
   @keyframes dash{to{stroke-dashoffset:-12}}
   .smooth{transition:transform .6s ease}
+
+  /* ===== Pencere sistemi ===== */
+  #desk{position:relative;flex:1;min-height:calc(100vh - 66px);overflow:auto}
+  .win{position:absolute;background:#fff;border:1px solid #cbd2da;border-radius:12px;box-shadow:0 6px 20px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow:hidden;min-width:230px;min-height:40px}
+  .win.front{border-color:var(--teal);box-shadow:0 10px 30px rgba(15,23,42,.22)}
+  .win.min{height:auto!important}
+  .win.min .wbody,.win.min .rz{display:none}
+  .win.max{left:6px!important;top:6px!important;width:calc(100% - 12px)!important;height:calc(100% - 12px)!important;z-index:999!important}
+  .wbar{flex:none;display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;background:linear-gradient(180deg,#f8fafc,#eef1f4);border-bottom:1px solid #e2e8f0;cursor:move;user-select:none;touch-action:none;font-size:12.5px;font-weight:800;color:#334155}
+  .win.front .wbar{background:linear-gradient(180deg,#e6f6f5,#d9efee)}
+  .wt{flex:1;display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .wbtns{display:flex;gap:4px;flex:none}
+  .wbtns button{width:22px;height:22px;border-radius:6px;border:1px solid #cbd5e1;background:#fff;font-size:12px;font-weight:900;cursor:pointer;color:#334155;line-height:1}
+  .wbtns button:hover{background:#e2e8f0}
+  .wbar .zoom{display:flex;gap:3px;flex:none}
+  .wbar .zoom button{border:1px solid #cbd5e1;background:#fff;border-radius:5px;width:24px;height:22px;font-weight:800;cursor:pointer}
+  .wbar select{font-size:12px;font-weight:700;padding:2px 5px;border-radius:5px;border:1px solid #cbd5e1;flex:none}
+  .wbody{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .rz{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize;touch-action:none;background:linear-gradient(135deg,transparent 0 55%,#94a3b8 55% 62%,transparent 62% 72%,#94a3b8 72% 79%,transparent 79%);z-index:3}
+  #w-flow .flow{flex:1;min-height:0;max-height:none}
+  #w-dock .dock{flex:1;overflow:auto;align-content:flex-start}
+  #w-circuit #circuitWrap{flex:1;min-height:0;max-height:none}
+  #w-scene #sceneWrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#0f172a0d;overflow:hidden}
+  #w-scene #sceneWrap svg{width:100%;height:100%}
+  #w-scene .chips{flex:none;max-height:35%;overflow:auto}
+  #w-tabs .tabs{flex:none}
+  #w-tabs .tc{flex:1;min-height:0;max-height:none}
+  .taskbar{position:fixed;left:12px;bottom:10px;display:flex;gap:6px;flex-wrap:wrap;z-index:1000}
+  .taskbar button{background:#1e293b;color:#fff;border:1px solid #475569;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+  @media(max-width:900px){
+    #desk{display:flex;flex-direction:column;gap:10px;padding:8px}
+    .win{position:relative!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important}
+    .win .wbody{min-height:200px}.rz{display:none}.wbar{cursor:default}
+    #w-flow .flow{max-height:70vh}#w-circuit #circuitWrap{max-height:70vh}
+  }
 </style>
 </head>
 <body>
@@ -161,72 +196,82 @@
     <button id="btnRun" class="btn b-run">▶ Simülasyonu Başlat</button>
     <button id="btnStep" class="btn b-step">⏭ Adım Adım</button>
     <button id="btnReset" class="btn b-reset">■ Sıfırla</button>
+    <button id="btnLayout" class="btn b-step" title="Pencereleri başlangıç düzenine getir">🪟 Düzeni Sıfırla</button>
     <div class="speed"><span>Hız:</span><input type="range" id="speed" min="0" max="5" step="1" value="2"><b id="speedLbl">1x</b></div>
   </div>
 </header>
 
-<main class="ws">
-  <section class="panel">
-    <div class="ph">
-      <div class="pt">1. Akış Diyagramı (Flowgorithm) <span class="badge" id="loopBadge">void loop()</span></div>
+<div id="desk">
+  <section class="win" id="w-flow" data-title="Akış Diyagramı">
+    <div class="wbar"><span class="wt">🧩 1. Akış Diyagramı (Flowgorithm) <span class="badge" id="loopBadge">void loop()</span></span><span class="wbtns"></span></div>
+    <div class="wbody">
+      <div class="scenario" id="scenarioCard"></div>
+      <div class="tb">
+        <span class="tbl">+ Blok:</span>
+        <button class="ab a-sen" onclick="addMain('sensor')">▱ Sensör Oku</button>
+        <button class="ab a-out" onclick="addMain('output')">▭ Bileşen Kontrol</button>
+        <button class="ab a-if" onclick="addMain('if')">◆ Eğer</button>
+        <button class="ab a-del" onclick="addMain('delay')">⏱ Bekle</button>
+        <button class="ab a-prn" onclick="addMain('print')">▱ Yazdır</button>
+        <button class="ab a-clr" onclick="clearAlgorithm()">Temizle</button>
+      </div>
+      <div class="flow" id="flow"></div>
     </div>
-    <div class="scenario" id="scenarioCard"></div>
-    <div class="tb">
-      <span class="tbl">+ Blok:</span>
-      <button class="ab a-sen" onclick="addMain('sensor')">▱ Sensör Oku</button>
-      <button class="ab a-out" onclick="addMain('output')">▭ Bileşen Kontrol</button>
-      <button class="ab a-if" onclick="addMain('if')">◆ Eğer</button>
-      <button class="ab a-del" onclick="addMain('delay')">⏱ Bekle</button>
-      <button class="ab a-prn" onclick="addMain('print')">▱ Yazdır</button>
-      <button class="ab a-clr" onclick="clearAlgorithm()">Temizle</button>
-    </div>
-    <div class="flow" id="flow"></div>
+    <div class="rz"></div>
   </section>
 
-  <section class="panel">
-    <div class="ph">
-      <div class="pt">2. Otomatik Kurulan Devre &amp; Gerçek Hayat Karşılığı <span class="badge" id="compBadge">0 bileşen</span></div>
-    </div>
-    <div class="dock" id="dock"></div>
-    <div class="stage">
-      <div class="view">
-        <div class="vh"><span>🔌 Devre Görünümü (Tinkercad tarzı) — Arduino Uno R3 + Breadboard</span>
-          <span class="zoom"><button onclick="zoom(-1)">−</button> <button onclick="zoom(0)">⤢</button> <button onclick="zoom(1)">+</button></span></div>
-        <div id="circuitWrap"></div>
-      </div>
-      <div class="view">
-        <div class="vh"><span>🏠 Gerçek Hayat Sahnesi</span>
-          <select id="sceneSelect" onchange="setScene(this.value)">
-            <option value="ev">Akıllı Ev</option>
-            <option value="trafik">Trafik Kavşağı</option>
-            <option value="park">Otopark / Garaj</option>
-            <option value="sokak">Sokak (Gece-Gündüz)</option>
-          </select></div>
-        <div id="sceneWrap"></div>
-        <div class="chips" id="chips"></div>
-      </div>
-    </div>
-    <div class="tabs">
-      <button class="tab active" data-tab="watch" onclick="tab('watch')">Değişken İzleyici</button>
-      <button class="tab" data-tab="serial" onclick="tab('serial')">Seri Monitör</button>
-      <button class="tab" data-tab="code" onclick="tab('code')">Arduino C++ Kodu</button>
-      <button class="tab" data-tab="bom" onclick="tab('bom')">Malzeme Listesi &amp; Bağlantılar</button>
-    </div>
-    <div class="tc" id="tab-watch">
-      <div class="wgrid" id="watch"></div>
-      <div class="log" id="logBox"><span id="logText">Hazır. "Simülasyonu Başlat" veya "Adım Adım" ile çalıştır.</span><span id="stepText">Adım: 0</span></div>
-    </div>
-    <div class="tc" id="tab-serial" style="display:none">
-      <div class="rowbtn"><span>Serial.begin(9600) — Yazdır bloklarının çıktısı burada görünür.</span><button class="sbtn g" onclick="clearSerial()">Temizle</button></div>
-      <pre class="serial" id="serial"></pre>
-    </div>
-    <div class="tc" id="tab-code" style="display:none">
-      <div class="rowbtn"><span>Bu kodu Tinkercad → Kod → <b>Metin</b> moduna veya Arduino IDE'ye yapıştırabilirsin.</span><button class="sbtn" onclick="copyCode()">Kodu Kopyala</button></div>
-      <pre class="code" id="code"></pre>
-    </div>
-    <div class="tc" id="tab-bom" style="display:none"><div id="bom"></div></div>
+  <section class="win" id="w-dock" data-title="Sensör Testi">
+    <div class="wbar"><span class="wt">⚙ Sensör Testi (ortamı değiştir)</span><span class="wbtns"></span></div>
+    <div class="wbody"><div class="dock" id="dock"></div></div>
+    <div class="rz"></div>
   </section>
-</main>
+
+  <section class="win" id="w-circuit" data-title="Devre">
+    <div class="wbar"><span class="wt">🔌 2. Devre (Tinkercad tarzı) <span class="badge" id="compBadge">0 bileşen</span></span>
+      <span class="zoom" onpointerdown="event.stopPropagation()"><button onclick="zoom(-1)" title="Uzaklaş">−</button><button onclick="zoom(0)" title="Pencereye sığdır">⤢</button><button onclick="zoom(1)" title="Yakınlaş">+</button></span><span class="wbtns"></span></div>
+    <div class="wbody"><div id="circuitWrap"></div></div>
+    <div class="rz"></div>
+  </section>
+
+  <section class="win" id="w-scene" data-title="Gerçek Hayat">
+    <div class="wbar"><span class="wt">🏠 3. Gerçek Hayat Sahnesi</span>
+      <select id="sceneSelect" onpointerdown="event.stopPropagation()" onchange="setScene(this.value)">
+        <option value="ev">Akıllı Ev</option>
+        <option value="trafik">Trafik Kavşağı</option>
+        <option value="park">Otopark / Garaj</option>
+        <option value="sokak">Sokak (Gece-Gündüz)</option>
+      </select><span class="wbtns"></span></div>
+    <div class="wbody"><div id="sceneWrap"></div><div class="chips" id="chips"></div></div>
+    <div class="rz"></div>
+  </section>
+
+  <section class="win" id="w-tabs" data-title="İzleyici & Kod">
+    <div class="wbar"><span class="wt">📊 4. İzleyici · Seri Monitör · Kod · Malzemeler</span><span class="wbtns"></span></div>
+    <div class="wbody">
+      <div class="tabs">
+        <button class="tab active" data-tab="watch" onclick="tab('watch')">Değişken İzleyici</button>
+        <button class="tab" data-tab="serial" onclick="tab('serial')">Seri Monitör</button>
+        <button class="tab" data-tab="code" onclick="tab('code')">Arduino C++ Kodu</button>
+        <button class="tab" data-tab="bom" onclick="tab('bom')">Malzeme Listesi &amp; Bağlantılar</button>
+      </div>
+      <div class="tc" id="tab-watch">
+        <div class="wgrid" id="watch"></div>
+        <div class="log" id="logBox"><span id="logText">Hazır. "Simülasyonu Başlat" veya "Adım Adım" ile çalıştır.</span><span id="stepText">Adım: 0</span></div>
+      </div>
+      <div class="tc" id="tab-serial" style="display:none">
+        <div class="rowbtn"><span>Serial.begin(9600) — Yazdır bloklarının çıktısı burada görünür.</span><button class="sbtn g" onclick="clearSerial()">Temizle</button></div>
+        <pre class="serial" id="serial"></pre>
+      </div>
+      <div class="tc" id="tab-code" style="display:none">
+        <div class="rowbtn"><span>Bu kodu Tinkercad → Kod → <b>Metin</b> moduna veya Arduino IDE'ye yapıştırabilirsin.</span><button class="sbtn" onclick="copyCode()">Kodu Kopyala</button></div>
+        <pre class="code" id="code"></pre>
+      </div>
+      <div class="tc" id="tab-bom" style="display:none"><div id="bom"></div></div>
+    </div>
+    <div class="rz"></div>
+  </section>
+</div>
+<div class="taskbar" id="taskbar"></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -850,7 +895,7 @@ function renderCircuit(){
   wireCount = cnt;
   const txOn = performance.now() < sim.txUntil;
   const empty = used.size ? "" : `<text x="480" y="300" font-size="14" fill="#94a3b8" text-anchor="middle" font-weight="700">Algoritmaya blok ekledikçe bileşenler buraya otomatik yerleşir.</text>`;
-  $("circuitWrap").innerHTML = `<svg viewBox="0 0 960 660" style="width:${zoomLv*100}%;min-width:${zoomLv*620}px" xmlns="http://www.w3.org/2000/svg">
+  $("circuitWrap").innerHTML = `<svg viewBox="0 0 960 660" style="width:${zoomLv*100}%" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
       <filter id="glowS" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.2"/></filter>
@@ -914,7 +959,7 @@ const SCENES = {
       <rect x="64" y="226" width="112" height="104" fill="#ecfccb"/><rect x="184" y="226" width="150" height="104" fill="#ffedd5"/><rect x="342" y="226" width="74" height="104" fill="#e2e8f0"/>
       <rect x="236" y="128" width="8" height="90" fill="#c4a77d"/><rect x="176" y="226" width="8" height="104" fill="#c4a77d"/><rect x="334" y="226" width="8" height="104" fill="#c4a77d"/>
       <!-- Pencereler -->
-      <g class="win"><rect x="84" y="142" width="46" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="300" y="142" width="50" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="80" y="238" width="40" height="28" fill="#bfe3ff" stroke="#fff" stroke-width="3"/></g>
+      <g class="hwin"><rect x="84" y="142" width="46" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="300" y="142" width="50" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="80" y="238" width="40" height="28" fill="#bfe3ff" stroke="#fff" stroke-width="3"/></g>
       <path d="M107 142 V178 M84 160 H130 M325 142 V178 M300 160 H350 M100 238 V266" stroke="#fff" stroke-width="2"/>
       <!-- Yatak odası -->
       <rect x="150" y="192" width="78" height="18" rx="3" fill="#fff"/><rect x="150" y="196" width="56" height="16" rx="3" fill="#3b82f6"/><rect x="222" y="176" width="8" height="36" rx="2" fill="#92400e"/><rect x="208" y="186" width="14" height="8" rx="3" fill="#f8fafc"/>
@@ -975,7 +1020,7 @@ const SCENES = {
     update(){
       const u=usedSet, n=nightness();
       skyUpdate(n);
-      document.querySelectorAll("#sceneWrap .win rect").forEach(r=>r.setAttribute("fill", mix("#bfe3ff","#1b2547",n)));
+      document.querySelectorAll("#sceneWrap .hwin rect").forEach(r=>r.setAttribute("fill", mix("#bfe3ff","#1b2547",n)));
       $("evDoorOut").setAttribute("fill", mix("#bfe3ff","#1b2547",n));
       const show=(id,v)=>{ const e=$(id); if(e) e.style.display = v ? "" : "none"; };
       show("evWhite",u.has("whiteLed")); show("evBlue",u.has("blueLed")); show("evRed",u.has("redLed")); show("evGreen",u.has("greenLed"));
@@ -1363,6 +1408,76 @@ function loadPreset(i){
   loadPreset(presetIndex);
   requestAnimationFrame(animLoop);
 })();
+
+// =====================================================================
+// 12) PENCERE YÖNETİCİSİ – taşı, boyutlandır, küçült, büyüt
+// =====================================================================
+const WM = { z:10, key:"fc_layout_v1" };
+function defaultLayout(){
+  const d=$("desk"), W=Math.max(d.clientWidth,1000), H=Math.max(window.innerHeight-$("desk").getBoundingClientRect().top-8, 720);
+  const g=8, fw=Math.round(W*0.29), rx=fw+g*2, rw=W-rx-g, dockH=92, cy=g+dockH+g, ch=Math.round((H-cy)*0.62), cw=Math.round(rw*0.6);
+  return {
+    "w-flow":   {x:g, y:g, w:fw, h:H-g*2},
+    "w-dock":   {x:rx, y:g, w:rw, h:dockH},
+    "w-circuit":{x:rx, y:cy, w:cw, h:ch},
+    "w-scene":  {x:rx+cw+g, y:cy, w:rw-cw-g, h:ch},
+    "w-tabs":   {x:rx, y:cy+ch+g, w:rw, h:H-(cy+ch+g)-g}
+  };
+}
+function applyLayout(L){
+  for(const [id,r] of Object.entries(L)){ const w=$(id); if(!w) continue;
+    w.style.left=r.x+"px"; w.style.top=r.y+"px"; w.style.width=r.w+"px"; w.style.height=r.h+"px";
+    w.classList.toggle("min",!!r.min); w.classList.toggle("max",!!r.max); }
+  updateTaskbar();
+}
+function saveLayout(){
+  const L={}; document.querySelectorAll(".win").forEach(w=>{ L[w.id]={x:w.offsetLeft,y:w.offsetTop,w:parseFloat(w.style.width),h:parseFloat(w.style.height),min:w.classList.contains("min"),max:w.classList.contains("max")}; });
+  try{ localStorage.setItem(WM.key, JSON.stringify(L)); }catch(e){}
+}
+function resetLayout(){ applyLayout(defaultLayout()); saveLayout(); afterWinResize(); toast("Pencereler başlangıç düzenine getirildi"); }
+function front(w){ document.querySelectorAll(".win.front").forEach(x=>x.classList.remove("front")); w.classList.add("front"); w.style.zIndex=++WM.z; }
+function updateTaskbar(){
+  const mins=[...document.querySelectorAll(".win.min")];
+  $("taskbar").innerHTML = mins.map(w=>`<button onclick="restoreWin('${w.id}')">▢ ${esc(w.dataset.title)}</button>`).join("");
+}
+function restoreWin(id){ const w=$(id); w.classList.remove("min"); front(w); updateTaskbar(); saveLayout(); afterWinResize(); }
+let wrT=null;
+function afterWinResize(){ clearTimeout(wrT); wrT=setTimeout(()=>{ renderCircuit(); },60); }
+function initWindows(){
+  document.querySelectorAll(".win").forEach(w=>{
+    w.querySelector(".wbtns").innerHTML = `<button title="Küçült (simge durumu)" data-a="min">–</button><button title="Tam ekran / geri al" data-a="max">▢</button>`;
+    w.addEventListener("pointerdown",()=>front(w));
+    w.querySelectorAll(".wbtns button").forEach(b=>{
+      b.addEventListener("pointerdown",e=>e.stopPropagation());
+      b.addEventListener("click",()=>{
+        if(b.dataset.a==="min"){ w.classList.toggle("min"); w.classList.remove("max"); }
+        else { w.classList.toggle("max"); w.classList.remove("min"); }
+        updateTaskbar(); saveLayout(); afterWinResize();
+      });
+    });
+    const bar=w.querySelector(".wbar");
+    bar.addEventListener("dblclick",e=>{ if(e.target.closest("button,select")) return; w.classList.toggle("max"); w.classList.remove("min"); saveLayout(); afterWinResize(); });
+    bar.addEventListener("pointerdown",e=>{
+      if(e.button!==0 || e.target.closest("button,select,input") || w.classList.contains("max") || window.innerWidth<=900) return;
+      e.preventDefault(); front(w);
+      const sx=e.clientX, sy=e.clientY, ox=w.offsetLeft, oy=w.offsetTop, deskW=$("desk").clientWidth;
+      const mv=ev=>{ w.style.left=clamp(ox+ev.clientX-sx, 60-w.offsetWidth, deskW-60)+"px"; w.style.top=Math.max(0,oy+ev.clientY-sy)+"px"; };
+      const up=()=>{ window.removeEventListener("pointermove",mv); window.removeEventListener("pointerup",up); saveLayout(); };
+      window.addEventListener("pointermove",mv); window.addEventListener("pointerup",up);
+    });
+    w.querySelector(".rz").addEventListener("pointerdown",e=>{
+      e.preventDefault(); e.stopPropagation(); front(w);
+      const sx=e.clientX, sy=e.clientY, ow=w.offsetWidth, oh=w.offsetHeight;
+      const mv=ev=>{ w.style.width=Math.max(230,ow+ev.clientX-sx)+"px"; w.style.height=Math.max(90,oh+ev.clientY-sy)+"px"; };
+      const up=()=>{ window.removeEventListener("pointermove",mv); window.removeEventListener("pointerup",up); saveLayout(); afterWinResize(); };
+      window.addEventListener("pointermove",mv); window.addEventListener("pointerup",up);
+    });
+  });
+  let L=null; try{ L=JSON.parse(localStorage.getItem(WM.key)||"null"); }catch(e){}
+  applyLayout(L && L["w-flow"] ? L : defaultLayout());
+  $("btnLayout").addEventListener("click",resetLayout);
+}
+initWindows();
 </script>
 </body>
 </html>
