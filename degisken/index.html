@@ -197,6 +197,11 @@ main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:18px 16p
 .confetti{position:fixed;width:10px;height:14px;z-index:200;pointer-events:none;top:-20px}
 @media(max-width:1000px){.two{grid-template-columns:1fr}.mods{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr}.tips{grid-template-columns:1fr}}
 @media(max-width:560px){.mods{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.hero h1{font-size:34px}#mascot svg{width:60px;height:68px}#mascot .sp{max-width:240px;font-size:13px}.box{width:104px}}
+/* ---- koruma ---- */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+img,svg{-webkit-user-drag:none}
+@media print{body{display:none!important}}
 </style>
 </head>
 <body>
@@ -715,6 +720,20 @@ SOUND=store.get('snd',true);$('#snd').textContent=SOUND?'🔊':'🔇';
 $('#xp').textContent='⭐ '+XP;
 updateHome();demoLoop();
 setTimeout(()=>say('Merhaba! Ben <b>Bitbit</b> 🤖 Birlikte hafıza kutularını keşfedelim! Değişken, içinde değer saklayan <b>etiketli bir kutudur</b>.','ok',7000),600);
+
+/* ========== Koruma ========== */
+(function(){
+  const allow=e=>{const t=e.target;return t&&t.closest&&t.closest('input,textarea,select,[contenteditable]')};
+  let wt=0;const warn=()=>{if(Date.now()-wt<1500)return;wt=Date.now();try{say('🔒 Bu sitenin içeriği korunmaktadır.<br><small>© sunays.school</small>','bad',2500)}catch(e){}};
+  document.addEventListener('contextmenu',e=>{if(!allow(e)){e.preventDefault();warn()}});
+  ['copy','cut'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e)){e.preventDefault();warn()}}));
+  ['dragstart','selectstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e))e.preventDefault()}));
+  document.addEventListener('keydown',e=>{
+    const k=(e.key||'').toLowerCase(),c=e.ctrlKey||e.metaKey;
+    if(e.key==='F12'||(c&&e.shiftKey&&['i','j','c','k'].includes(k))||(c&&e.altKey&&['i','j','c','u'].includes(k))||(c&&['u','s','p'].includes(k))){e.preventDefault();e.stopPropagation();warn();return}
+    if(c&&['c','a','x'].includes(k)&&!allow(e)){e.preventDefault();warn()}
+  },true);
+})();
 </script>
 </body>
 </html>
