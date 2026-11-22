@@ -152,6 +152,10 @@ aside{width:390px;background:#fff;border-left:1px solid var(--line);display:flex
   .tb button span.t{display:none}
   #vars{height:140px}
 }
+/* koruma */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+@media print{body{display:none!important}}
 </style>
 </head>
 <body>
@@ -1325,6 +1329,20 @@ document.addEventListener('keydown',e=>{
   const cs=store.get('akislab.code');if(cs)$('#codeSel').value=cs;
   render();updateRunBtns();renderTasks();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>render());
+})();
+
+/* ================= Koruma ================= */
+(function(){
+  const allow=e=>{const t=e.target;return t&&t.closest&&t.closest('input,textarea,select,[contenteditable]')};
+  let wt=0;const warn=()=>{if(Date.now()-wt<1500)return;wt=Date.now();toast('🔒 Bu sitenin içeriği korunmaktadır · © sunays.school')};
+  document.addEventListener('contextmenu',e=>{if(!allow(e)){e.preventDefault();warn()}});
+  ['copy','cut'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e)){e.preventDefault()}}));
+  ['dragstart','selectstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e))e.preventDefault()}));
+  document.addEventListener('keydown',e=>{
+    const k=(e.key||'').toLowerCase(),c=e.ctrlKey||e.metaKey;
+    if(e.key==='F12'||(c&&e.shiftKey&&['i','j','c','k'].includes(k))||(c&&e.altKey&&['i','j','c','u'].includes(k))||(c&&['u','s','p'].includes(k))){e.preventDefault();e.stopPropagation();warn();return}
+    if(c&&['c','a','x'].includes(k)&&!allow(e))e.preventDefault(); // şekil kopyalama (Ctrl+C/X) uygulama içinde çalışmaya devam eder
+  },true);
 })();
 </script>
 </body>
