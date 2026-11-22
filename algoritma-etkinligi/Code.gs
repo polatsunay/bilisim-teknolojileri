@@ -1,6 +1,6 @@
 /**
  * Okulumuzun Algoritması – ortak çalışma arka ucu (Google Apps Script)
- * © 2026 Sunay's School – Tüm hakları saklıdır.
+ * © 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.
  *
  * KURULUM (bir kez):
  *  1) script.google.com → Yeni proje → bu kodu yapıştır → Kaydet.
@@ -306,7 +306,7 @@ function submit_(req) {
     sec('Takas ve iyileştirme') + rows(akranlar.concat([['Sözlü geri bildirim', val('takas.geribildirim')], ['Yaptığımız düzeltme', val('takas.duzeltme')],
       ['Bizim geri bildirim verdiğimiz ekip', (val('akranVerilen') || {}).ekip || val('takas.ekip')]])) +
     sec('AkışLab ekran görüntüleri') + (imgsHtml || '<p>Görüntü yok.</p>') +
-    '<p style="color:#888;font-size:12px;margin-top:24px">© 2026 Sunay\'s School – Okulumuzun Algoritması etkinliği</p></div>';
+    '<p style="color:#888;font-size:12px;margin-top:24px">© 2026 Sunay\'s School · Tüm hakları Sunay Öğretmen\'e aittir.</p></div>';
 
   var to = OGRETMEN_EPOSTA || Session.getEffectiveUser().getEmail();
   var subject = '[Algoritma Etkinliği] ' + (val('meta.sube') || '') + ' – ' + (val('meta.ekipAdi') || code) + ' – ' + (rep.problemAdi || '');

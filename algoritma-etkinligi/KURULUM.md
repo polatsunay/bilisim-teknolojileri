@@ -7,9 +7,9 @@
 | Öğrenci sayfası | `https://polatsunay.github.io/bilisim-teknolojileri/algoritma-etkinligi/` |
 | Öğretmen paneli | `https://polatsunay.github.io/bilisim-teknolojileri/algoritma-etkinligi/ogretmen.html` |
 
-`API_URL` boşken iki sayfa da **deneme modunda** çalışır: veriler yalnızca o tarayıcıda tutulur, mail gitmez, panel şifresi `1234`'tür.
+Kurulum yapıldı: arka uç Google hesabınızdaki **Okulumuzun Algoritması API** Apps Script projesi, adresi `ortak.js` içinde. Panel şifresini Apps Script'te `kurulum` fonksiyonunu çalıştırıp Yürütme günlüğünden görebilir, `sifreDegistir` ile değiştirebilirsiniz. (`API_URL` boş bırakılırsa sayfalar deneme modunda çalışır; panel şifresi `1234`.)
 
-## Gerçek kullanım için (bir kez, ~10 dakika)
+## Yeniden kurmak gerekirse (bir kez, ~10 dakika)
 
 1. [script.google.com](https://script.google.com) → **Yeni proje** → `Code.gs` dosyasının içeriğini yapıştırın → Kaydet.
 2. Fonksiyon listesinden **kurulum**'u seçin → **Çalıştır** → izinleri onaylayın.
@@ -27,4 +27,4 @@ Teslimler, scripti çalıştıran Google hesabının Gmail'ine gelir (değiştir
 3. Teslim: eksikler ve "program çalışırken" ekran görüntüsü kontrol edilir, öğretmene mail gider.
 4. Öğretmen panelinden rubrikle puanlar, not yazar ya da düzeltme ister; öğrenciler sonucu kendi sayfalarının en üstünde görür.
 
-© 2026 Sunay's School – Tüm hakları saklıdır.
+© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.

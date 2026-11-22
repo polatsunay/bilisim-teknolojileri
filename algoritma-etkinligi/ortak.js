@@ -1,9 +1,9 @@
-// Okulumuzun Algoritması – öğrenci ve öğretmen sayfalarının ortak kodu · © 2026 Sunay's School
+// Okulumuzun Algoritması – öğrenci ve öğretmen sayfalarının ortak kodu · © 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.
 
 /* ===== AYAR ===== */
 // Öğretmen: Apps Script web uygulaması URL'sini tırnakların arasına yapıştırın.
 // Boş bırakılırsa sayfalar DENEME MODUNDA çalışır (veriler yalnızca bu tarayıcıda, mail gitmez, panel şifresi: 1234).
-const API_URL = '';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwV2IgKSWdzGSTw9EOOKjYsipR4gYSaPOKTNg79m7vxRULeW6ZfRzSWsctfMs9UpH6K/exec';
 
 const DEMO = !API_URL;
 
