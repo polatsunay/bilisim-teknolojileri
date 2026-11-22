@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!--
+  FlowCircuit Studio – Algoritma, Devre ve Gerçek Hayat Simülatörü
+  © 2026 Sunay's School (sunays.school) · Tüm hakları Sunay Öğretmen'e aittir.
+  Bu yazılımın kaynak kodu, tasarımı, senaryoları ve görselleri telif hakkı ile korunmaktadır.
+  İzinsiz kopyalanması, çoğaltılması, değiştirilmesi, başka bir sitede yayımlanması veya
+  ticari amaçla kullanılması yasaktır (5846 sayılı Fikir ve Sanat Eserleri Kanunu).
+-->
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
@@ -146,6 +153,10 @@
   @keyframes dash{to{stroke-dashoffset:-12}}
   .smooth{transition:transform .6s ease}
 
+  .copyright{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);background:rgba(15,23,42,.82);color:#e2e8f0;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:99px;z-index:1001;pointer-events:none;white-space:nowrap;max-width:96vw;overflow:hidden;text-overflow:ellipsis}
+  body{-webkit-user-select:none;user-select:none}
+  input,select,textarea{-webkit-user-select:text;user-select:text}
+  @media print{body{display:none!important}}
   /* ===== Pencere sistemi ===== */
   #desk{position:relative;flex:1;min-height:calc(100vh - 66px);overflow:auto}
   .win{position:absolute;background:#fff;border:1px solid #cbd2da;border-radius:12px;box-shadow:0 6px 20px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow:hidden;min-width:230px;min-height:40px}
@@ -188,7 +199,7 @@
     <div class="logo">FC</div>
     <div>
       <h1>FlowCircuit Studio</h1>
-      <p>Algoritmanı kur → Tinkercad devren otomatik kurulsun → gerçek hayatta ne olduğunu gör</p>
+      <p>Algoritmanı kur → Tinkercad devren otomatik kurulsun → gerçek hayatta ne olduğunu gör · © 2026 Sunay's School</p>
     </div>
   </div>
   <div class="hctl">
@@ -272,6 +283,7 @@
   </section>
 </div>
 <div class="taskbar" id="taskbar"></div>
+<div class="copyright">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir. İzinsiz kopyalanamaz ve çoğaltılamaz.</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1368,6 +1380,7 @@ function renderWatch(){
 function genCode(){
   const u=detectUsed(program), L=[];
   L.push("// FlowCircuit Studio – otomatik üretilen Arduino C++ kodu");
+  L.push("// © 2026 Sunay's School · sunays.school · Tüm hakları Sunay Öğretmen'e aittir.");
   L.push("// Senaryo: " + PRESETS[presetIndex].title + (edited?" (düzenlendi)":""));
   if(u.has("servo")){ L.push("#include <Servo.h>"); L.push("Servo kapiServo;   // SG90 servo → D9"); }
   if(u.has("button")) L.push("int buton = 0;      // D2 (10k pull-down)");
@@ -1445,7 +1458,7 @@ function renderBOM(){
 }
 function copyCode(){
   const done=()=>toast("Arduino kodu panoya kopyalandı!");
-  const fallback=()=>{ const t=document.createElement("textarea"); t.value=lastCode; document.body.appendChild(t); t.select(); try{document.execCommand("copy"); done();}catch(e){toast("Kopyalanamadı – kodu seçip kopyalayın");} t.remove(); };
+  const fallback=()=>{ window.__fcAllowCopy=true; setTimeout(()=>window.__fcAllowCopy=false,300); const t=document.createElement("textarea"); t.value=lastCode; document.body.appendChild(t); t.select(); try{document.execCommand("copy"); done();}catch(e){toast("Kopyalanamadı – kodu seçip kopyalayın");} t.remove(); };
   if(navigator.clipboard) navigator.clipboard.writeText(lastCode).then(done).catch(fallback); else fallback();
 }
 function clearSerial(){ serialLines=[]; $("serial").textContent=""; }
@@ -1553,6 +1566,25 @@ function initWindows(){
   $("btnLayout").addEventListener("click",resetLayout);
 }
 initWindows();
+
+// =====================================================================
+// 13) TELİF / KOPYALAMA KORUMASI – © 2026 Sunay's School
+// =====================================================================
+(function protect(){
+  const MSG = "© Sunay's School – Bu içerik telif hakkı ile korunmaktadır.";
+  const editable = t => t && t.closest && t.closest("input,textarea,select");
+  document.addEventListener("contextmenu", e=>{ if(!editable(e.target)){ e.preventDefault(); toast(MSG); } });
+  document.addEventListener("selectstart", e=>{ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener("dragstart", e=>{ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener("copy", e=>{ if(!editable(e.target) && !window.__fcAllowCopy){ e.preventDefault(); toast(MSG); } });
+  document.addEventListener("keydown", e=>{
+    const k=(e.key||"").toLowerCase(), c=e.ctrlKey||e.metaKey;
+    const blocked = k==="f12" || (c && ["u","s","p"].includes(k)) || (c && e.shiftKey && ["i","j","c","k"].includes(k)) || (c && e.altKey && ["i","j","c","u"].includes(k));
+    if(blocked){ e.preventDefault(); e.stopPropagation(); toast(MSG); }
+  }, true);
+  console.log("%c© 2026 Sunay's School – FlowCircuit Studio", "font-size:16px;font-weight:bold;color:#0f8c8c");
+  console.log("Bu yazılımın kaynak kodu telif hakkı ile korunmaktadır. İzinsiz kopyalanması ve çoğaltılması yasaktır.");
+})();
 </script>
 </body>
 </html>
