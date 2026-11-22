@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AkışLab · sunays.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f4fa;--panel:#fff;--line:#e2e5ef;--ink:#1d2135;--mut:#6b7185;--acc:#5b5bd6;--acc2:#0ea5a4;--hd:#191c36}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+body{display:flex;flex-direction:column;overflow:hidden}
+button{font-family:inherit}
+header{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--hd);color:#fff;flex-wrap:wrap;row-gap:6px}
+.brand{display:flex;align-items:center;gap:9px;margin-right:6px}
+.brand b{font-size:19px;font-weight:800;letter-spacing:-.4px;display:block;line-height:1.1}
+.brand b i{font-style:normal;color:#8b8cff}
+.brand small{display:block;font-size:10.5px;opacity:.65;font-weight:500}
+.tb{display:flex;gap:4px;align-items:center;padding:0 6px;border-left:1px solid rgba(255,255,255,.12)}
+.tb button{background:rgba(255,255,255,.08);color:#fff;border:0;border-radius:8px;padding:7px 10px;font-weight:600;font-size:13px;cursor:pointer;display:flex;gap:6px;align-items:center;white-space:nowrap}
+.tb button:hover:not(:disabled){background:rgba(255,255,255,.2)}
+.tb button:disabled{opacity:.35;cursor:default}
+.tb button.run{background:#16a34a}.tb button.run:hover:not(:disabled){background:#12853c}
+.tb button.stop{background:#dc2626}.tb button.stop:hover:not(:disabled){background:#b91c1c}
+.tb label{font-size:11px;opacity:.75;display:flex;align-items:center;gap:6px}
+.tb input[type=range]{width:80px;accent-color:#8b8cff}
+#zl{font-size:12px;min-width:40px;text-align:center;opacity:.85}
+#main{flex:1;display:flex;min-height:0}
+#left{flex:1;display:flex;flex-direction:column;min-width:0}
+#fnbar{display:flex;gap:4px;padding:6px 10px 0;align-items:flex-end;flex-wrap:wrap}
+.ftab{padding:7px 14px;border:1px solid var(--line);border-bottom:0;border-radius:9px 9px 0 0;background:#e6e8f2;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;color:#444a63}
+.ftab.on{background:#fff;color:var(--acc)}
+.ftab.add{background:transparent;border-style:dashed;color:var(--mut)}
+.ftab.add:hover{color:var(--acc);border-color:var(--acc)}
+#selbar{margin-left:auto;display:flex;gap:4px;align-items:center;font-size:12px;color:var(--mut);padding-bottom:5px}
+#selbar button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;color:#333}
+#selbar button:hover{border-color:var(--acc);color:var(--acc)}
+#pname{border:1px solid transparent;background:transparent;font:700 13px Inter;color:#444a63;padding:4px 6px;border-radius:6px;width:170px}
+#pname:hover,#pname:focus{border-color:var(--line);background:#fff;outline:none}
+#canvasWrap{flex:1;overflow:auto;background:#fff;background-image:radial-gradient(#dde1ec 1px,transparent 1px);background-size:18px 18px;border-top:1px solid var(--line);position:relative}
+#canvas{padding:16px 20px 40px;min-width:100%;width:max-content}
+#canvas svg{display:block;margin:0 auto;user-select:none}
+#hint{font-size:11.5px;color:var(--mut);padding:5px 12px;border-top:1px solid var(--line);background:#fafbfe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hint b{color:#444a63}
+.conn{cursor:pointer}
+.conn:hover .plus{opacity:1}
+.conn:hover .cl{stroke:#5b5bd6}
+.node{cursor:pointer}
+.node:hover .shp{filter:brightness(.96)}
+.term{cursor:pointer}
+.node.sel .shp{stroke:#2563eb;stroke-width:3.5}
+.node.active .shp{stroke:#f59e0b;stroke-width:4.5;filter:drop-shadow(0 0 7px rgba(245,158,11,.9))}
+.node.err .shp{stroke:#dc2626;stroke-width:4.5;filter:drop-shadow(0 0 7px rgba(220,38,38,.8))}
+aside{width:390px;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);background:#fafbfe}
+.tabs button{flex:1;border:0;background:transparent;padding:10px 4px;font-weight:600;font-size:13px;color:var(--mut);cursor:pointer;border-bottom:2px solid transparent}
+.tabs button.on{color:var(--acc);border-bottom-color:var(--acc);background:#fff}
+.pane{display:none;flex:1;min-height:0;flex-direction:column}
+.pane.on{display:flex}
+#con{flex:1;overflow:auto;padding:12px;background:#f7f8fc;display:flex;flex-direction:column;gap:6px;min-height:120px}
+.msg{max-width:85%;padding:7px 11px;border-radius:12px;font:14px 'JetBrains Mono',monospace;white-space:pre-wrap;word-break:break-word}
+.msg.out{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:3px}
+.msg.in{background:var(--acc);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.msg.sys{align-self:center;background:transparent;color:var(--mut);font:600 11.5px Inter;padding:2px}
+.msg.err{background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;align-self:stretch;max-width:100%;font:500 13px Inter}
+.msg.ok{background:#dcfce7;border:1px solid #86efac;color:#166534;align-self:stretch;max-width:100%;font:600 13px Inter}
+#inbar{display:flex;gap:6px;padding:8px;border-top:1px solid var(--line);align-items:center}
+#inlbl{font:600 12px 'JetBrains Mono',monospace;color:var(--acc);white-space:nowrap;max-width:45%;overflow:hidden;text-overflow:ellipsis}
+#inp{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:14px 'JetBrains Mono',monospace}
+#inp:focus{outline:none;border-color:var(--acc)}
+#inp:disabled{background:#f3f4f8}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font-weight:600;font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+.btn.pri:hover{background:#4848c4;color:#fff}
+.btn.danger{color:#dc2626}.btn.danger:hover{border-color:#dc2626}
+.btn:disabled{opacity:.4;cursor:default}
+.vhead{display:flex;justify-content:space-between;align-items:center;padding:8px 12px 6px;border-top:1px solid var(--line);font-weight:700;font-size:13px}
+.vhead small{font-weight:500;color:var(--mut)}
+#vars{height:210px;overflow:auto;padding:0 8px 8px}
+#vars table{width:100%;border-collapse:collapse;font-size:13px}
+#vars th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);padding:5px 6px;position:sticky;top:0;background:#fff}
+#vars td{padding:5px 6px;border-top:1px solid #eef0f6;font-family:'JetBrains Mono',monospace;font-size:13px;word-break:break-all}
+#vars td.ty{font-family:Inter;color:var(--mut);font-size:12px;white-space:nowrap}
+#vars tr.chg td{background:#fff7d6;transition:background .2s}
+.empty{color:var(--mut);font-size:13px;padding:14px 6px;text-align:center}
+.codebar{display:flex;gap:6px;padding:8px;border-bottom:1px solid var(--line);align-items:center}
+.codebar select{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px;font:600 13px Inter}
+#code{flex:1;overflow:auto;margin:0;padding:12px 14px;font:13px/1.55 'JetBrains Mono',monospace;background:#1b1e33;color:#e5e7f5;white-space:pre;tab-size:4}
+#code .k{color:#c4a7ff;font-weight:600}#code .s{color:#9be59b}#code .c{color:#7d84a6;font-style:italic}#code .n{color:#ffcf7a}
+.scroll{flex:1;overflow:auto;padding:12px}
+.task{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer;background:#fff}
+.task:hover{border-color:var(--acc)}
+.task.on{border-color:var(--acc);box-shadow:0 0 0 3px rgba(91,91,214,.15)}
+.task h4{margin:0;font-size:14px;display:flex;align-items:center;gap:8px}
+.task h4 .lv{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;background:#eef;color:var(--acc)}
+.task h4 .done{margin-left:auto;color:#16a34a;font-size:15px}
+.task .tb2{display:none;margin-top:8px;font-size:13px;line-height:1.5;color:#3b4058}
+.task.on .tb2{display:block}
+.task .hintx{background:#f6f7fc;border-radius:8px;padding:6px 9px;margin:6px 0;font-size:12.5px;color:var(--mut)}
+.tres{margin-top:8px;font-size:12.5px}
+.tres div{padding:6px 8px;border-radius:7px;margin-bottom:4px}
+.tres .p{background:#dcfce7;color:#166534}.tres .f{background:#fee2e2;color:#991b1b}
+.prog{height:8px;background:#eceef6;border-radius:9px;overflow:hidden;margin:4px 0 12px}
+.prog div{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.help h3{font-size:14px;margin:16px 0 6px}
+.help h3:first-child{margin-top:0}
+.help p,.help li{font-size:13px;line-height:1.55;color:#3b4058}
+.help table{width:100%;border-collapse:collapse;font-size:12.5px}
+.help td{padding:5px 6px;border-top:1px solid #eef0f6;vertical-align:top}
+.help code{font-family:'JetBrains Mono',monospace;background:#f1f2f8;padding:1px 5px;border-radius:5px;font-size:12px}
+#menu{position:fixed;z-index:50;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(20,22,50,.2);padding:10px;display:none;width:300px}
+#menu.on{display:block}
+#menu h5{margin:4px 4px 6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut)}
+#menu .grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:6px}
+#menu button{display:flex;align-items:center;gap:8px;border:1px solid transparent;background:#f6f7fc;border-radius:9px;padding:7px 8px;font-size:13px;font-weight:600;cursor:pointer;text-align:left;color:var(--ink)}
+#menu button:hover{border-color:var(--acc);background:#fff}
+#menu button svg{flex:none}
+#modal{position:fixed;inset:0;background:rgba(16,18,40,.45);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+#modal.on{display:flex}
+.dlg{background:#fff;border-radius:16px;width:min(520px,100%);max-height:92vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.3);overflow:hidden}
+.dh{padding:14px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
+.dh b{font-size:17px;display:block}
+.dh span{font-size:12.5px;color:#4b5068;display:block;margin-top:4px;line-height:1.45}
+.db{padding:14px 18px;overflow:auto}
+.df{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);background:#fafbfe}
+.fld{margin-bottom:12px}
+.fld>label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:#3b4058}
+.fld input[type=text],.fld select,.fld textarea{width:100%;border:1.5px solid var(--line);border-radius:9px;padding:9px 10px;font:14px 'JetBrains Mono',monospace;color:var(--ink);background:#fff}
+.fld textarea{font-family:Inter;min-height:70px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--acc)}
+.fld small{display:block;color:var(--mut);font-size:11.5px;margin-top:4px;line-height:1.4}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+.chk{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;cursor:pointer}
+.derr{color:#dc2626;font-size:13px;font-weight:600;min-height:4px}
+.prow{display:flex;gap:6px;margin-bottom:6px;align-items:center}
+.prow input[type=text]{flex:1}
+.prow select{width:120px!important}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);background:#1d2135;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transition:.25s;z-index:80;pointer-events:none;max-width:90vw}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.dd{position:relative}
+.ddm{position:absolute;top:calc(100% + 6px);left:0;background:#fff;color:var(--ink);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.25);padding:6px;display:none;z-index:40;min-width:260px}
+.ddm.on{display:block}
+.ddm button{display:block;width:100%;text-align:left;background:transparent!important;color:var(--ink)!important;padding:8px 10px!important;border-radius:8px!important;font-weight:600}
+.ddm button:hover{background:#f1f2fb!important}
+.ddm button small{display:block;font-weight:500;color:var(--mut);font-size:11.5px}
+@media(max-width:960px){
+  #main{flex-direction:column}
+  aside{width:100%;height:46%;border-left:0;border-top:1px solid var(--line)}
+  .tb button span.t{display:none}
+  #vars{height:140px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 34 34"><rect x="9" y="2" width="16" height="7" rx="3.5" fill="#8b8cff"/><path d="M17 9v4" stroke="#fff" stroke-width="2"/><path d="M17 13l7 5-7 5-7-5z" fill="#f472b6"/><path d="M10 18H5v9h7M24 18h5v9h-7" stroke="#fff" stroke-width="2" fill="none"/><rect x="11" y="24" width="12" height="7" rx="2" fill="#34d399"/></svg>
+    <div><b>Akış<i>Lab</i></b><small>sunays.school · Algoritma &amp; Akış Diyagramı</small></div>
+  </div>
+  <div class="tb">
+    <button id="bNew" title="Yeni program">📄<span class="t">Yeni</span></button>
+    <button id="bOpen" title="Flowgorithm (.fprg) dosyası aç">📂<span class="t">Aç</span></button>
+    <button id="bSave" title="Flowgorithm (.fprg) olarak kaydet">💾<span class="t">Kaydet</span></button>
+    <button id="bPng" title="Diyagramı resim olarak indir">🖼️<span class="t">PNG</span></button>
+    <div class="dd"><button id="bEx">📚<span class="t">Örnekler ▾</span></button><div class="ddm" id="exMenu"></div></div>
+  </div>
+  <div class="tb">
+    <button id="bUndo" title="Geri al (Ctrl+Z)">↶</button>
+    <button id="bRedo" title="Yinele (Ctrl+Y)">↷</button>
+  </div>
+  <div class="tb">
+    <button id="bRun" class="run" title="Çalıştır (F5)">▶<span class="t">Çalıştır</span></button>
+    <button id="bStep" title="Adım adım çalıştır (F10)">⏭<span class="t">Adım</span></button>
+    <button id="bPause" title="Duraklat">⏸</button>
+    <button id="bStop" class="stop" title="Durdur">⏹</button>
+    <label>Hız<input type="range" id="speed" min="1" max="10" value="6"></label>
+  </div>
+  <div class="tb">
+    <button id="bZo" title="Uzaklaştır">−</button><span id="zl">100%</span><button id="bZi" title="Yakınlaştır">+</button>
+  </div>
+</header>
+<div id="main">
+  <section id="left">
+    <div id="fnbar"></div>
+    <div id="canvasWrap"><div id="canvas"></div></div>
+    <div id="hint">💡 <b>Oklara</b> tıklayarak şekil ekleyin · Şekle <b>çift tıklayarak</b> düzenleyin · <b>Del</b> sil · <b>Ctrl+C / Ctrl+V</b> kopyala-yapıştır · <b>Ctrl+Z</b> geri al</div>
+  </section>
+  <aside>
+    <div class="tabs">
+      <button data-p="pCon" class="on">Konsol</button>
+      <button data-p="pCode">Kod</button>
+      <button data-p="pTask">Görevler</button>
+      <button data-p="pHelp">Yardım</button>
+    </div>
+    <div class="pane on" id="pCon">
+      <div id="con"><div class="msg sys">Programı çalıştırmak için ▶ Çalıştır'a basın</div></div>
+      <form id="inbar"><span id="inlbl"></span><input id="inp" disabled placeholder="Girdi bekleniyor…" autocomplete="off"><button class="btn pri" id="inBtn" disabled>Gönder</button></form>
+      <div class="vhead">Değişkenler <small id="stack"></small></div>
+      <div id="vars"><div class="empty">Program çalışırken değişkenler burada görünür.</div></div>
+    </div>
+    <div class="pane" id="pCode">
+      <div class="codebar">
+        <select id="codeSel">
+          <option value="steps">Adım adım algoritma (Türkçe)</option>
+          <option value="pseudo">Sözde kod (Türkçe)</option>
+          <option value="py">Python</option>
+          <option value="js">JavaScript</option>
+        </select>
+        <button class="btn" id="bCopy">Kopyala</button>
+      </div>
+      <pre id="code"></pre>
+    </div>
+    <div class="pane" id="pTask"><div class="scroll" id="tasks"></div></div>
+    <div class="pane" id="pHelp"><div class="scroll help" id="help"></div></div>
+  </aside>
+</div>
+<div id="menu"></div>
+<div id="modal"></div>
+<div id="toast"></div>
+<input type="file" id="file" accept=".fprg,.xml,.txt" style="display:none">
+
+<script>
+"use strict";
+/* ================= Yardımcılar ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const TYPES=['Integer','Real','String','Boolean'];
+const TTR={Integer:'Tamsayı',Real:'Ondalık',String:'Metin',Boolean:'Mantıksal',None:'Yok'};
+const COL={
+  declare:{f:'#FFF3B0',s:'#C9A000'}, assign:{f:'#FFDDB3',s:'#D9822B'},
+  input:{f:'#CFE6FF',s:'#3B82F6'}, output:{f:'#D2F4D9',s:'#1FA45A'},
+  if:{f:'#FFD3E0',s:'#DB2777'}, while:{f:'#E7DBFF',s:'#7C3AED'}, for:{f:'#E7DBFF',s:'#7C3AED'}, do:{f:'#E7DBFF',s:'#7C3AED'},
+  call:{f:'#C9F2EF',s:'#0D9488'}, comment:{f:'#F2F3F7',s:'#9CA3AF'}, term:{f:'#E6E7FF',s:'#5B5BD6'}
+};
+const NAMES={declare:'Tanımla',assign:'Ata',input:'Girdi',output:'Çıktı',if:'Eğer',while:'While döngüsü',for:'For döngüsü',do:'Do döngüsü',call:'Çağır',comment:'Yorum'};
+const DESC={
+  declare:'Tanımla şekli programda kullanılacak değişkenleri oluşturur. Birden fazla değişkeni virgülle ayırabilirsiniz (ör. a, b, toplam).',
+  assign:'Ata şekli sağdaki ifadeyi hesaplar ve sonucu soldaki değişkende saklar.',
+  input:'Girdi şekli kullanıcıdan (klavyeden) bir değer okur ve değişkene yerleştirir.',
+  output:'Çıktı şekli bir ifadenin değerini ekrana yazdırır. Metin ve değerleri & ile birleştirebilirsiniz.',
+  if:'Eğer şekli bir koşulu kontrol eder. Koşul doğruysa sağdaki (Doğru), yanlışsa soldaki (Yanlış) yol izlenir.',
+  while:'While döngüsü koşul doğru olduğu sürece içindeki adımları tekrarlar. Koşul her turun başında kontrol edilir.',
+  for:'For döngüsü bir sayaç değişkenini başlangıç değerinden bitiş değerine kadar artırarak (veya azaltarak) tekrar eder.',
+  do:'Do döngüsü önce içindeki adımları çalıştırır, sonra koşulu kontrol eder. Bu yüzden en az bir kez çalışır.',
+  call:'Çağır şekli, kendi oluşturduğunuz bir fonksiyonu çalıştırır.',
+  comment:'Yorum şekli çalıştırılmaz; diyagrama açıklama notu eklemek içindir.'
+};
+let nid=1;
+const mctx=document.createElement('canvas').getContext('2d');
+function tw(s){mctx.font='600 14px Inter, Arial, sans-serif';return mctx.measureText(s).width}
+function clip(s,max){if(tw(s)<=max)return s;while(s.length>1&&tw(s+'…')>max)s=s.slice(0,-1);return s+'…'}
+function toast(m,ms=2600){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('on'),ms)}
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* ================= Program modeli ================= */
+function kids(n){return n.t==='if'?[n.then,n.else]:(n.t==='while'||n.t==='for'||n.t==='do')?[n.body]:[]}
+function assignIds(list){for(const n of list){n.id=nid++;kids(n).forEach(assignIds)}}
+function newNode(t){
+  const d={declare:{names:'',type:'Integer',array:false,size:''},assign:{variable:'',expr:''},input:{variable:''},output:{expr:'',newline:true},
+    if:{expr:'',then:[],else:[]},while:{expr:'',body:[]},for:{variable:'',start:'1',end:'10',dir:'inc',step:'1',body:[]},do:{expr:'',body:[]},call:{expr:''},comment:{text:''}}[t];
+  return Object.assign({t,id:nid++},JSON.parse(JSON.stringify(d)));
+}
+function emptyProgram(){return {name:'Yeni Program',author:'',functions:[{name:'Main',type:'None',variable:'',params:[],body:[]}]}}
+const snap=()=>JSON.stringify(prog,(k,v)=>k==='_s'||k==='id'?undefined:v);
+function loadProg(p){prog=p;prog.functions.forEach(f=>{f.params=f.params||[];assignIds(f.body)});curFn=0;selId=null}
+
+/* ================= İfade ayrıştırıcı ================= */
+class SynErr extends Error{}
+const KW={and:'and',ve:'and',or:'or',veya:'or',not:'not','değil':'not',mod:'%'};
+function tokenize(s){
+  const T=[];let i=0;
+  while(i<s.length){
+    const c=s[i];
+    if(/\s/.test(c)){i++;continue}
+    if(/[0-9]/.test(c)||(c==='.'&&/[0-9]/.test(s[i+1]||''))){
+      let j=i;while(j<s.length&&/[0-9]/.test(s[j]))j++;let isInt=true;
+      if(s[j]==='.'&&/[0-9]/.test(s[j+1]||'')){isInt=false;j++;while(j<s.length&&/[0-9]/.test(s[j]))j++}
+      if(/[A-Za-z_]/.test(s[j]||''))throw new SynErr('Sayıdan hemen sonra harf gelemez: "'+s.slice(i,j+1)+'"');
+      T.push({t:'num',v:parseFloat(s.slice(i,j)),raw:s.slice(i,j),isInt});i=j;continue}
+    if(c==='"'||c==="'"){let j=i+1;while(j<s.length&&s[j]!==c)j++;if(j>=s.length)throw new SynErr('Metin kapanmamış: tırnak işareti ('+c+') eksik.');T.push({t:'str',v:s.slice(i+1,j)});i=j+1;continue}
+    if(/[A-Za-z_ÇĞİÖŞÜçğıöşü]/.test(c)){let j=i;while(j<s.length&&/[A-Za-z0-9_ÇĞİÖŞÜçğıöşü]/.test(s[j]))j++;const w=s.slice(i,j);const lw=w.toLowerCase();
+      if(KW[lw]||lw==='deği̇l')T.push({t:'op',v:KW[lw]||'not'});else T.push({t:'id',v:w});i=j;continue}
+    const two=s.substr(i,2);const M2={'==':'==','!=':'!=','<>':'!=','<=':'<=','>=':'>=','&&':'and','||':'or'};
+    if(M2[two]){T.push({t:'op',v:M2[two]});i+=2;continue}
+    if('+-*/%^&<>=!(),[]'.includes(c)){T.push({t:'op',v:c==='='?'==':c==='!'?'not':c});i++;continue}
+    throw new SynErr('Tanınmayan karakter: "'+c+'"');
+  }
+  return T;
+}
+const pcache=new Map();
+function parseExpr(src){
+  src=String(src??'');
+  if(pcache.has(src)){const r=pcache.get(src);if(r instanceof Error)throw r;return r}
+  try{const r=parseRaw(src);pcache.set(src,r);return r}catch(e){pcache.set(src,e);throw e}
+}
+function parseRaw(src){
+  const T=tokenize(src);if(!T.length)throw new SynErr('İfade boş olamaz.');
+  let p=0;const isOp=v=>T[p]&&T[p].t==='op'&&T[p].v===v;
+  const expect=v=>{if(!isOp(v))throw new SynErr('"'+v+'" bekleniyordu'+(T[p]?' ama "'+(T[p].raw??T[p].v)+'" bulundu.':' ama ifade bitti.'));p++};
+  function or(){let a=and();while(isOp('or')){p++;a={k:'bin',op:'or',a,b:and()}}return a}
+  function and(){let a=not();while(isOp('and')){p++;a={k:'bin',op:'and',a,b:not()}}return a}
+  function not(){if(isOp('not')){p++;return{k:'un',op:'not',a:not()}}return cmp()}
+  function cmp(){let a=cat();for(const o of['==','!=','<','>','<=','>=']){if(isOp(o)){p++;return{k:'bin',op:o,a,b:cat()}}}return a}
+  function cat(){let a=add();while(isOp('&')){p++;a={k:'bin',op:'&',a,b:add()}}return a}
+  function add(){let a=mul();while(isOp('+')||isOp('-')){const o=T[p++].v;a={k:'bin',op:o,a,b:mul()}}return a}
+  function mul(){let a=un();while(isOp('*')||isOp('/')||isOp('%')){const o=T[p++].v;a={k:'bin',op:o,a,b:un()}}return a}
+  function un(){if(isOp('-')){p++;return{k:'un',op:'-',a:un()}}if(isOp('+')){p++;return un()}if(isOp('not')){p++;return{k:'un',op:'not',a:un()}}return pow()}
+  function pow(){const a=prim();if(isOp('^')){p++;return{k:'bin',op:'^',a,b:un()}}return a}
+  function prim(){
+    const t=T[p];if(!t)throw new SynErr('İfade beklenmedik şekilde bitti.');
+    if(t.t==='num'){p++;return{k:'num',v:t.v,raw:t.raw,isInt:t.isInt}}
+    if(t.t==='str'){p++;return{k:'str',v:t.v}}
+    if(t.t==='id'){p++;const l=t.v.toLowerCase();
+      if(isOp('(')){p++;const args=[];if(!isOp(')')){args.push(or());while(isOp(',')){p++;args.push(or())}}expect(')');return{k:'call',name:t.v,args}}
+      if(isOp('[')){p++;const index=or();expect(']');return{k:'idx',name:t.v,index}}
+      if(l==='true'||l==='doğru')return{k:'bool',v:true};
+      if(l==='false'||l==='yanlış')return{k:'bool',v:false};
+      if(l==='pi')return{k:'pi'};
+      return{k:'id',name:t.v}}
+    if(isOp('(')){p++;const e=or();expect(')');return{k:'par',a:e}}
+    throw new SynErr('Beklenmeyen simge: "'+t.v+'"');
+  }
+  const r=or();if(p<T.length)throw new SynErr('Fazladan simge: "'+(T[p].raw??T[p].v)+'". Operatör eksik olabilir.');
+  return r;
+}
+const IDRE=/^[A-Za-z_ÇĞİÖŞÜçğıöşü][A-Za-z0-9_ÇĞİÖŞÜçğıöşü]*$/;
+const RESERVED=['and','or','not','mod','true','false','pi','ve','veya','doğru','yanlış'];
+function chkExpr(s){try{parseExpr(s);return null}catch(e){return e.message}}
+function chkTarget(s){if(!s.trim())return 'Değişken adı boş olamaz.';try{const a=parseExpr(s);if(a.k!=='id'&&a.k!=='idx')return 'Buraya bir değişken adı (ör. x veya dizi[i]) yazılmalı.';return null}catch(e){return e.message}}
+function chkName(s){if(!IDRE.test(s))return '"'+s+'" geçerli bir ad değil. Harfle başlamalı; boşluk ve özel karakter içermemeli.';if(RESERVED.includes(s.toLowerCase()))return '"'+s+'" ayrılmış bir sözcük, değişken adı olamaz.';return null}
+const splitNames=s=>String(s||'').split(',').map(x=>x.trim()).filter(Boolean);
+
+/* ================= Yorumlayıcı ================= */
+class RunError extends Error{constructor(m,node){super(m);this.node=node}}
+const RE=m=>new RunError(m);
+function typeName(v){if(v===undefined)return 'değersiz';if(Array.isArray(v))return 'Dizi';if(typeof v==='number')return Number.isInteger(v)?'Tamsayı':'Ondalık';if(typeof v==='string')return 'Metin';if(typeof v==='boolean')return 'Mantıksal';return '?'}
+function fmt(v){if(typeof v==='number'){if(Number.isInteger(v))return String(v);return String(parseFloat(v.toPrecision(12)))}if(typeof v==='boolean')return v?'true':'false';if(Array.isArray(v))return '['+v.map(x=>x===undefined?'·':fmt(x)).join(', ')+']';return v===undefined?'':String(v)}
+const needN=(op,...xs)=>{for(const x of xs)if(typeof x!=='number')throw RE('"'+op+'" işlemi sayılarla yapılır; '+typeName(x)+' bir değer kullanılamaz.'+(op==='+'||op==='-'?'':''))};
+const needS=(f,x)=>{if(typeof x!=='string')throw RE(f+' fonksiyonu Metin bekler, '+typeName(x)+' verildi.')};
+const BI={
+  abs:[1,x=>(needN('Abs',x),Math.abs(x))], sqrt:[1,x=>{needN('Sqrt',x);if(x<0)throw RE('Negatif sayının karekökü alınamaz.');return Math.sqrt(x)}],
+  sin:[1,x=>(needN('Sin',x),Math.sin(x))], cos:[1,x=>(needN('Cos',x),Math.cos(x))], tan:[1,x=>(needN('Tan',x),Math.tan(x))],
+  arcsin:[1,x=>(needN('ArcSin',x),Math.asin(x))], arccos:[1,x=>(needN('ArcCos',x),Math.acos(x))], arctan:[1,x=>(needN('ArcTan',x),Math.atan(x))],
+  int:[1,x=>(needN('Int',x),Math.trunc(x))], ln:[1,x=>(needN('Ln',x),Math.log(x))], log:[1,x=>(needN('Log',x),Math.log(x))], log10:[1,x=>(needN('Log10',x),Math.log10(x))],
+  sgn:[1,x=>(needN('Sgn',x),Math.sign(x))],
+  random:[1,x=>{needN('Random',x);if(x<1)throw RE('Random(n) için n en az 1 olmalı.');return Math.floor(Math.random()*Math.trunc(x))}],
+  len:[1,x=>(needS('Len',x),x.length)],
+  char:[2,(s,i)=>{needS('Char',s);needN('Char',i);if(i<0||i>=s.length)throw RE('Char: '+i+' konumu metnin dışında (uzunluk '+s.length+').');return s[i]}],
+  tochar:[1,x=>(needN('ToChar',x),String.fromCharCode(x))], tocode:[1,x=>{needS('ToCode',x);if(!x.length)throw RE('ToCode: metin boş.');return x.charCodeAt(0)}],
+  tofixed:[2,(r,d)=>(needN('ToFixed',r,d),r.toFixed(Math.max(0,Math.min(20,d))))],
+  tointeger:[1,x=>{if(typeof x==='number')return Math.trunc(x);const s=String(x).trim();if(!/^[-+]?\d+$/.test(s))throw RE('"'+x+'" tamsayıya çevrilemez.');return parseInt(s,10)}],
+  toreal:[1,x=>{if(typeof x==='number')return x;const s=String(x).trim().replace(',','.');if(!/^[-+]?(\d+\.?\d*|\.\d+)$/.test(s))throw RE('"'+x+'" ondalık sayıya çevrilemez.');return parseFloat(s)}],
+  tostring:[1,x=>fmt(x)],
+  size:[1,x=>{if(!Array.isArray(x))throw RE('Size fonksiyonu bir dizi bekler.');return x.length}]
+};
+function coerce(v,type,name){
+  if(v===undefined)throw RE('Atanacak bir değer yok (fonksiyon değer döndürmüyor olabilir).');
+  if(Array.isArray(v))throw RE('Bir dizinin tamamı "'+name+'" değişkenine atanamaz.');
+  if((type==='Integer')&&typeof v==='number')return Math.trunc(v);
+  if(type==='Real'&&typeof v==='number')return v;
+  if(type==='String'&&typeof v==='string')return v;
+  if(type==='Boolean'&&typeof v==='boolean')return v;
+  throw RE('Tür uyumsuzluğu: '+TTR[type]+' türündeki "'+name+'" değişkenine '+typeName(v)+' değer ('+fmt(v)+') atanamaz.'+(type==='String'?' İpucu: ToString(...) kullanın.':(typeof v==='string'&&type!=='Boolean')?' İpucu: ToInteger(...) veya ToReal(...) kullanın.':''));
+}
+function parseInput(raw,type){
+  const s=raw.trim();
+  if(type==='Integer'){if(/^[-+]?\d+$/.test(s))return{ok:true,v:parseInt(s,10)};return{ok:false,m:'"'+raw+'" bir tamsayı değil. Lütfen tamsayı girin (ör. 42).'}}
+  if(type==='Real'){const t=s.replace(',','.');if(/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(t))return{ok:true,v:parseFloat(t)};return{ok:false,m:'"'+raw+'" bir sayı değil. Lütfen sayı girin (ör. 3.5).'}}
+  if(type==='Boolean'){const l=s.toLocaleLowerCase('tr');if(['true','doğru','evet','d','1'].includes(l))return{ok:true,v:true};if(['false','yanlış','hayır','y','0'].includes(l))return{ok:true,v:false};return{ok:false,m:'Lütfen true veya false girin.'}}
+  return{ok:true,v:raw};
+}
+function makeRunner(program,io){
+  const fnMap={};program.functions.forEach(f=>fnMap[f.name.toLowerCase()]=f);
+  const frames=[];
+  function newFrame(f){const fr={fn:f,vars:new Map()};frames.push(fr);return fr}
+  function getVar(fr,name){const v=fr.vars.get(name.toLowerCase());if(!v)throw RE('"'+name+'" adlı değişken tanımlanmamış. Önce "Tanımla" şekliyle tanımlayın.');return v}
+  function* evalStr(src,fr){let a;try{a=parseExpr(src)}catch(e){throw RE('İfade hatası ("'+src+'"): '+e.message)}return yield* ev(a,fr)}
+  function* evalNum(src,fr,what){const v=yield* evalStr(src,fr);if(typeof v!=='number')throw RE(what+' bir sayı olmalı, '+typeName(v)+' bulundu.');return v}
+  function* evalBool(src,fr){const v=yield* evalStr(src,fr);if(typeof v!=='boolean')throw RE('Koşul doğru/yanlış (Mantıksal) bir sonuç vermeli ama "'+src+'" ifadesi '+typeName(v)+' üretti. Karşılaştırma için ==, <, > gibi operatörler kullanın.');return v}
+  function checkIdx(v,i){if(typeof i!=='number'||!Number.isInteger(i))throw RE('Dizi indeksi tamsayı olmalı.');if(i<0||i>=v.value.length)throw RE('Dizi sınırı aşıldı: '+v.name+'['+i+'] yok. Geçerli indeksler 0 ile '+(v.value.length-1)+' arası.')}
+  function eq(x,y){if(typeof x!==typeof y)throw RE('Farklı türler karşılaştırılamaz: '+typeName(x)+' ve '+typeName(y)+'.');return x===y}
+  function* ev(a,fr){
+    switch(a.k){
+      case 'num':return a.v; case 'str':return a.v; case 'bool':return a.v; case 'pi':return Math.PI;
+      case 'par':return yield* ev(a.a,fr);
+      case 'id':{if(fnMap[a.name.toLowerCase()]&&!fr.vars.has(a.name.toLowerCase()))throw RE('"'+a.name+'" bir fonksiyon; çağırmak için parantez kullanın: '+a.name+'(...)');
+        const v=getVar(fr,a.name);if(v.isArr)return v.value;if(v.value===undefined)throw RE('"'+v.name+'" değişkenine henüz bir değer atanmadı.');return v.value}
+      case 'idx':{const v=getVar(fr,a.name);if(!v.isArr)throw RE('"'+v.name+'" bir dizi değil, [ ] kullanılamaz.');const i=yield* ev(a.index,fr);checkIdx(v,i);const x=v.value[i];if(x===undefined)throw RE(v.name+'['+i+'] elemanına henüz değer atanmadı.');return x}
+      case 'un':{const x=yield* ev(a.a,fr);if(a.op==='-'){needN('-',x);return -x}if(typeof x!=='boolean')throw RE('"not" işlemi Mantıksal değer bekler.');return !x}
+      case 'bin':{
+        const op=a.op;
+        if(op==='and'||op==='or'){const x=yield* ev(a.a,fr);if(typeof x!=='boolean')throw RE('"'+op+'" işleminin iki yanı da Mantıksal (doğru/yanlış) olmalı.');if(op==='and'&&!x)return false;if(op==='or'&&x)return true;const y=yield* ev(a.b,fr);if(typeof y!=='boolean')throw RE('"'+op+'" işleminin iki yanı da Mantıksal (doğru/yanlış) olmalı.');return y}
+        const x=yield* ev(a.a,fr),y=yield* ev(a.b,fr);
+        switch(op){
+          case '&':return fmt(x)+fmt(y);
+          case '+':if(typeof x==='string'||typeof y==='string')return fmt(x)+fmt(y);needN('+',x,y);return x+y;
+          case '-':needN('-',x,y);return x-y;
+          case '*':needN('*',x,y);return x*y;
+          case '/':needN('/',x,y);if(y===0)throw RE('Sıfıra bölme hatası! Bir sayı 0\'a bölünemez.');return x/y;
+          case '%':needN('%',x,y);if(y===0)throw RE('Sıfıra göre mod alınamaz.');return x%y;
+          case '^':needN('^',x,y);return Math.pow(x,y);
+          case '==':return eq(x,y); case '!=':return !eq(x,y);
+          default:{if(typeof x!==typeof y||(typeof x!=='number'&&typeof x!=='string'))throw RE('"'+op+'" karşılaştırması için iki taraf da sayı ya da iki taraf da metin olmalı.');
+            return op==='<'?x<y:op==='>'?x>y:op==='<='?x<=y:x>=y}
+        }}
+      case 'call':{
+        const k=a.name.toLowerCase();const uf=fnMap[k];
+        if(uf){const args=[];for(const x of a.args)args.push(yield* ev(x,fr));return yield* callUser(uf,args)}
+        const bi=BI[k];if(!bi)throw RE('"'+a.name+'" adında bir fonksiyon yok.');
+        if(a.args.length!==bi[0])throw RE(a.name+' fonksiyonu '+bi[0]+' parametre alır, '+a.args.length+' verildi.');
+        const args=[];for(const x of a.args)args.push(yield* ev(x,fr));return bi[1](...args)}
+    }
+    throw RE('Bilinmeyen ifade.');
+  }
+  function* callUser(f,args){
+    if(frames.length>250)throw RE('Çok fazla iç içe fonksiyon çağrısı. Sonsuz özyineleme olabilir!');
+    if(args.length!==f.params.length)throw RE(f.name+' fonksiyonu '+f.params.length+' parametre alır, '+args.length+' verildi.');
+    const fr=newFrame(f);
+    f.params.forEach((p,i)=>{let v=args[i];if(p.array){if(!Array.isArray(v))throw RE('"'+p.name+'" parametresi dizi bekliyor.')}else v=coerce(v,p.type,p.name);fr.vars.set(p.name.toLowerCase(),{name:p.name,type:p.type,isArr:!!p.array,value:v})});
+    yield* execList(f.body,fr);
+    let ret;
+    if(f.type&&f.type!=='None'){const rv=fr.vars.get((f.variable||'').toLowerCase());if(!rv||rv.value===undefined)throw RE('"'+f.name+'" fonksiyonunun dönüş değişkeni "'+f.variable+'" tanımlanmamış ya da değer almamış.');ret=rv.value}
+    frames.pop();
+    return ret;
+  }
+  function* target(src,fr){
+    let a;try{a=parseExpr(src)}catch(e){throw RE('Geçersiz değişken: '+e.message)}
+    if(a.k==='id'){const v=getVar(fr,a.name);if(v.isArr)throw RE('"'+v.name+'" bir dizi. Tek bir elemana erişmek için '+v.name+'[indeks] yazın.');return{v}}
+    if(a.k==='idx'){const v=getVar(fr,a.name);if(!v.isArr)throw RE('"'+v.name+'" bir dizi değil.');const i=yield* ev(a.index,fr);checkIdx(v,i);return{v,i}}
+    throw RE('"'+src+'" bir değişken değil.');
+  }
+  const put=(t,val)=>{const c=coerce(val,t.v.type,t.i===undefined?t.v.name:t.v.name+'['+t.i+']');if(t.i===undefined)t.v.value=c;else t.v.value[t.i]=c};
+  const get=t=>t.i===undefined?t.v.value:t.v.value[t.i];
+  function* execList(list,fr){for(const n of list)yield* execNode(n,fr)}
+  function* execNode(n,fr){
+    if(n.t==='comment')return;
+    try{
+      if(n.t!=='do')yield{k:'step',n};
+      switch(n.t){
+        case 'declare':{const names=splitNames(n.names);if(!names.length)throw RE('Tanımla şeklinde değişken adı yazılmamış.');
+          let size=0;if(n.array){size=yield* evalNum(n.size,fr,'Dizi boyutu');if(!Number.isInteger(size)||size<1)throw RE('Dizi boyutu pozitif bir tamsayı olmalı.')}
+          for(const nm of names){const e=chkName(nm);if(e)throw RE(e);if(fr.vars.has(nm.toLowerCase()))throw RE('"'+nm+'" değişkeni zaten tanımlanmış.');
+            fr.vars.set(nm.toLowerCase(),{name:nm,type:n.type,isArr:!!n.array,value:n.array?new Array(size).fill(undefined):undefined})}
+          break}
+        case 'assign':{if(!String(n.variable).trim())throw RE('Ata şeklinde değişken adı boş.');const val=yield* evalStr(n.expr,fr);const t=yield* target(n.variable,fr);put(t,val);break}
+        case 'input':{if(!String(n.variable).trim())throw RE('Girdi şeklinde değişken adı boş.');const t=yield* target(n.variable,fr);
+          while(true){const raw=yield{k:'input',name:n.variable,type:t.v.type};const r=parseInput(String(raw),t.v.type);if(r.ok){put(t,r.v);break}io.out(r.m,true,'err')}break}
+        case 'output':{const val=yield* evalStr(n.expr,fr);if(Array.isArray(val))throw RE('Dizinin tamamı yazdırılamaz; elemanları tek tek yazdırın.');io.out(fmt(val),n.newline!==false);break}
+        case 'if':{const c=yield* evalBool(n.expr,fr);yield* execList(c?n.then:n.else,fr);break}
+        case 'while':{let first=true,g=0;while(true){if(!first)yield{k:'step',n};first=false;const c=yield* evalBool(n.expr,fr);if(!c)break;yield* execList(n.body,fr)}break}
+        case 'for':{if(!String(n.variable).trim())throw RE('For döngüsünde sayaç değişkeni yazılmamış.');const t=yield* target(n.variable,fr);
+          if(t.v.type!=='Integer'&&t.v.type!=='Real')throw RE('For sayacı "'+n.variable+'" sayı türünde (Tamsayı/Ondalık) olmalı.');
+          const s=yield* evalNum(n.start,fr,'Başlangıç değeri'),e=yield* evalNum(n.end,fr,'Bitiş değeri'),st=yield* evalNum(n.step||'1',fr,'Adım değeri');
+          if(st<=0)throw RE('For döngüsünde adım değeri pozitif olmalı (azalan döngü için yönü "Azalan" seçin).');
+          let i=s,first=true;
+          while(true){if(!first)yield{k:'step',n};first=false;if(n.dir==='dec'?i<e:i>e)break;put(t,i);yield* execList(n.body,fr);i=get(t)+(n.dir==='dec'?-st:st)}
+          break}
+        case 'do':{while(true){yield* execList(n.body,fr);yield{k:'step',n};const c=yield* evalBool(n.expr,fr);if(!c)break}break}
+        case 'call':{let a;try{a=parseExpr(n.expr)}catch(e){throw RE('İfade hatası: '+e.message)}if(a.k!=='call')throw RE('Çağır şekline bir fonksiyon çağrısı yazılmalı, örn: Selamla(ad)');yield* ev(a,fr);break}
+      }
+    }catch(e){if(e instanceof RunError&&!e.node)e.node=n;throw e}
+  }
+  function* main(){
+    const m=program.functions.find(f=>f.name.toLowerCase()==='main')||program.functions[0];
+    const fr=newFrame(m);yield* execList(m.body,fr);
+  }
+  return{gen:main(),frames};
+}
+
+/* ================= Çizim ================= */
+const GAP=34,SH=44,DH=58;
+let targets=[],nodeIx={};
+function label(n){
+  switch(n.t){
+    case 'declare':return n.names?TTR[n.type]+(n.array?' dizi ':' ')+n.names+(n.array?'['+n.size+']':''):'';
+    case 'assign':return n.variable||n.expr?n.variable+' = '+n.expr:'';
+    case 'input':return n.variable?'Girdi '+n.variable:'';
+    case 'output':return n.expr?'Çıktı '+n.expr:'';
+    case 'if':case 'while':case 'do':return n.expr;
+    case 'for':return n.variable?n.variable+' = '+n.start+(n.dir==='dec'?' ↓ ':' → ')+n.end+(String(n.step)!=='1'?' (adım '+n.step+')':''):'';
+    case 'call':return n.expr?'Çağır '+n.expr:'';
+    case 'comment':return n.text;
+  }
+  return '';
+}
+function sizeList(list){let l=46,r=46,h=GAP;for(const n of list){const s=sizeNode(n);l=Math.max(l,s.l);r=Math.max(r,s.r);h+=s.h+GAP}return{l,r,h}}
+function sizeNode(n){
+  const lb=clip(label(n)||NAMES[n.t],420),w0=tw(lb);
+  let s;
+  if(['declare','assign','input','output','call','comment'].includes(n.t)){
+    const w=Math.max(120,w0+(n.t==='input'||n.t==='output'?54:36));s={l:w/2,r:w/2,h:SH,w}}
+  else if(n.t==='if'){
+    const dw=Math.max(130,w0+70),L=sizeList(n.else),R=sizeList(n.then);
+    const xL=Math.max(dw/2+22,L.r+16),xR=Math.max(dw/2+22,R.l+16);
+    s={dw,L,R,xL,xR,l:xL+L.l,r:xR+R.r,h:DH/2+Math.max(L.h,R.h)+16}}
+  else{
+    const hw=Math.max(130,w0+(n.t==='for'?52:70)),B=sizeList(n.body);
+    const xLoop=Math.max(B.l,hw/2)+26,xExit=Math.max(B.r,hw/2)+28;
+    if(n.t==='do')s={hw,B,xLoop,xExit,l:xLoop+6,r:Math.max(B.r,hw/2)+50,h:B.h+DH};
+    else s={hw,B,xLoop,xExit,l:xLoop+6,r:xExit+50,h:DH+B.h+26};
+  }
+  s.lb=lb;n._s=s;return s;
+}
+const ln=(pts,c='#4b5068',cls='')=>`<polyline ${cls?'class="'+cls+'"':''} points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>`;
+const arrowHead=(x,y,dir='d',c='#4b5068')=>{const m={d:[[x-5,y-9],[x+5,y-9],[x,y]],r:[[x-9,y-5],[x-9,y+5],[x,y]],l:[[x+9,y-5],[x+9,y+5],[x,y]],u:[[x-5,y+9],[x+5,y+9],[x,y]]}[dir];return `<polygon points="${m.map(p=>p.join(',')).join(' ')}" fill="${c}"/>`};
+const txt=(x,y,s,o={})=>`<text x="${x}" y="${y}" text-anchor="${o.a||'middle'}" font-size="${o.fs||14}" font-weight="${o.fw||600}" fill="${o.c||'#1d2135'}"${o.it?' font-style="italic"':''} font-family="Inter, Arial, sans-serif">${esc(s)}</text>`;
+function conn(cx,y1,y2,list,index,arrow){
+  const ti=targets.length;targets.push({list,index});const my=(y1+y2)/2;
+  return `<g class="conn" data-t="${ti}"><rect x="${cx-24}" y="${y1}" width="48" height="${y2-y1}" fill="transparent"/>${ln([[cx,y1],[cx,arrow?y2-8:y2]],'#4b5068','cl')}${arrow?arrowHead(cx,y2):''}<g class="plus" opacity="0"><circle cx="${cx}" cy="${my}" r="10" fill="#5b5bd6"/><path d="M${cx-5} ${my}h10M${cx} ${my-5}v10" stroke="#fff" stroke-width="2.2"/></g></g>`;
+}
+function drawList(list,cx,y,lastArrow){
+  let s='';
+  for(let i=0;i<=list.length;i++){
+    const last=i===list.length;s+=conn(cx,y,y+GAP,list,i,last?lastArrow:true);y+=GAP;
+    if(!last){s+=drawNode(list[i],cx,y,list);y+=list[i]._s.h}
+  }
+  return s;
+}
+function shapeText(n,cx,cy){const has=!!label(n);return txt(cx,cy+5,n._s.lb,{c:has?(n.t==='comment'?'#555b70':'#1d2135'):'#9aa0b4',it:!has||n.t==='comment',fw:has&&n.t!=='comment'?600:500})}
+function drawNode(n,cx,y,list){
+  nodeIx[n.id]={node:n,list};
+  const s=n._s,c=COL[n.t];let o='';
+  const g=inner=>`<g class="node" data-n="${n.id}">${inner}</g>`;
+  if(s.w){
+    const w=s.w,x=cx-w/2;let shp;
+    if(n.t==='input'||n.t==='output'){const k=14;shp=`<polygon class="shp" points="${x+k},${y} ${x+w},${y} ${x+w-k},${y+SH} ${x},${y+SH}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`}
+    else if(n.t==='call')shp=`<rect class="shp" x="${x}" y="${y}" width="${w}" height="${SH}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/><path d="M${x+9} ${y}v${SH}M${x+w-9} ${y}v${SH}" stroke="${c.s}" stroke-width="2"/>`;
+    else if(n.t==='comment')shp=`<path class="shp" d="M${x} ${y}h${w-12}l12 12v${SH-12}h${-w}z" fill="${c.f}" stroke="${c.s}" stroke-width="2" stroke-dasharray="5 3"/>`;
+    else if(n.t==='declare')shp=`<rect class="shp" x="${x}" y="${y}" width="${w}" height="${SH}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/><path d="M${x+8} ${y}v${SH}M${x} ${y+8}h${w}" stroke="${c.s}" stroke-width="1.2" opacity=".55"/>`;
+    else shp=`<rect class="shp" x="${x}" y="${y}" width="${w}" height="${SH}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`;
+    return g(shp+shapeText(n,cx+(n.t==='declare'?4:0),y+SH/2+(n.t==='declare'?2:0)));
+  }
+  const mut={fs:12,fw:700,c:'#6b7185'};
+  if(n.t==='if'){
+    const ym=y+DH/2,hd=s.dw/2;
+    o+=g(`<polygon class="shp" points="${cx},${y} ${cx+hd},${ym} ${cx},${y+DH} ${cx-hd},${ym}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`+shapeText(n,cx,ym));
+    o+=ln([[cx-hd,ym],[cx-s.xL,ym]])+ln([[cx+hd,ym],[cx+s.xR,ym]]);
+    o+=txt(cx-hd-6,ym-7,'Yanlış',{...mut,a:'end'})+txt(cx+hd+6,ym-7,'Doğru',{...mut,a:'start'});
+    o+=drawList(n.else,cx-s.xL,ym,false)+drawList(n.then,cx+s.xR,ym,false);
+    const yb=y+s.h;
+    o+=ln([[cx-s.xL,ym+s.L.h],[cx-s.xL,yb],[cx+s.xR,yb],[cx+s.xR,ym+s.R.h]]);
+    o+=`<circle cx="${cx}" cy="${yb}" r="5" fill="#fff" stroke="#4b5068" stroke-width="2"/>`;
+    return o;
+  }
+  if(n.t==='while'||n.t==='for'){
+    const hw=s.hw,x=cx-hw/2,ym=y+DH/2;
+    const shp=n.t==='while'?`<polygon class="shp" points="${cx},${y} ${cx+hw/2},${ym} ${cx},${y+DH} ${cx-hw/2},${ym}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`
+      :`<polygon class="shp" points="${x+16},${y} ${x+hw-16},${y} ${x+hw},${ym} ${x+hw-16},${y+DH} ${x+16},${y+DH} ${x},${ym}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`;
+    o+=g(shp+shapeText(n,cx,ym));
+    o+=drawList(n.body,cx,y+DH,false);
+    const be=y+DH+s.B.h;
+    o+=ln([[cx,be],[cx,be+10],[cx-s.xLoop,be+10],[cx-s.xLoop,ym],[cx-hw/2-9,ym]])+arrowHead(cx-hw/2,ym,'r');
+    o+=ln([[cx+hw/2,ym],[cx+s.xExit,ym],[cx+s.xExit,be+26],[cx,be+26]]);
+    o+=txt(cx+8,y+DH+14,n.t==='for'?'Döngü':'Doğru',{...mut,a:'start'})+txt(cx+hw/2+6,ym-7,n.t==='for'?'Bitti':'Yanlış',{...mut,a:'start'});
+    return o;
+  }
+  if(n.t==='do'){
+    const hw=s.hw,yd=y+s.B.h,ym=yd+DH/2;
+    o+=`<circle cx="${cx}" cy="${y}" r="3.5" fill="#4b5068"/>`;
+    o+=drawList(n.body,cx,y,true);
+    o+=g(`<polygon class="shp" points="${cx},${yd} ${cx+hw/2},${ym} ${cx},${yd+DH} ${cx-hw/2},${ym}" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>`+shapeText(n,cx,ym));
+    o+=ln([[cx-hw/2,ym],[cx-s.xLoop,ym],[cx-s.xLoop,y],[cx-12,y]])+arrowHead(cx-4,y,'r');
+    o+=txt(cx-hw/2-6,ym-7,'Doğru',{...mut,a:'end'})+txt(cx+8,yd+DH+13,'Yanlış',{...mut,a:'start'});
+    return o;
+  }
+  return o;
+}
+function startLabel(f){return f.name.toLowerCase()==='main'?'Başla':f.name+'('+f.params.map(p=>p.name+(p.array?'[]':'')).join(', ')+')'}
+function endLabel(f){return f.type&&f.type!=='None'?'Döndür '+f.variable:'Bitiş'}
+function oval(cx,y,w,s){const c=COL.term;return `<g class="term"><rect x="${cx-w/2}" y="${y}" width="${w}" height="40" rx="20" fill="${c.f}" stroke="${c.s}" stroke-width="2"/>${txt(cx,y+25,s,{fw:700})}</g>`}
+
+/* ================= Durum & render ================= */
+let prog,curFn=0,selId=null,zoom=1,clipNode=null,undoS=[],redoS=[],run=null;
+function render(){
+  if(curFn>=prog.functions.length)curFn=0;
+  const f=prog.functions[curFn];targets=[];nodeIx={};
+  const B=sizeList(f.body),st=startLabel(f),en=endLabel(f);
+  const sw=Math.max(120,tw(st)+50),ew=Math.max(120,tw(en)+50);
+  const l=Math.max(B.l,sw/2)+30,r=Math.max(B.r,sw/2,ew/2)+30,W=l+r,cx=l;let y=14;
+  let s=oval(cx,y,sw,st);y+=40;s+=drawList(f.body,cx,y,true);y+=B.h;s+=oval(cx,y,ew,en);y+=54;
+  $('#canvas').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="${Math.round(W*zoom)}" height="${Math.round(y*zoom)}" viewBox="0 0 ${W} ${y}" font-family="Inter, Arial, sans-serif">${s}</svg>`;
+  applyMarks();renderTabs();renderSel();renderCode();
+  $('#bUndo').disabled=!undoS.length;$('#bRedo').disabled=!redoS.length;$('#zl').textContent=Math.round(zoom*100)+'%';
+  store.set('akislab.prog',snap());
+}
+function applyMarks(){
+  document.querySelectorAll('#canvas .node').forEach(g=>{const id=+g.dataset.n;g.classList.toggle('sel',id===selId);g.classList.toggle('active',!!run&&run.active===id);g.classList.toggle('err',!!run&&run.errId===id)});
+}
+function renderTabs(){
+  const b=$('#fnbar');
+  b.innerHTML=prog.functions.map((f,i)=>`<div class="ftab${i===curFn?' on':''}" data-i="${i}" title="Çift tıklayarak fonksiyon ayarlarını açın">${esc(f.name.toLowerCase()==='main'?'Main':f.name)}</div>`).join('')+
+    `<div class="ftab add" data-i="add" title="Yeni fonksiyon ekle">＋ Fonksiyon</div><input id="pname" title="Program adı" value="${esc(prog.name)}"><div id="selbar"></div>`;
+  $('#pname').onchange=e=>{prog.name=e.target.value.trim()||'Program';render()};
+}
+function renderSel(){
+  const sb=$('#selbar');if(!sb)return;
+  const n=selId&&nodeIx[selId]?nodeIx[selId].node:null;
+  sb.innerHTML=n?`<span>Seçili: <b>${NAMES[n.t]}</b></span><button data-a="edit">✏️ Düzenle</button><button data-a="copy">⧉ Kopyala</button><button data-a="cut">✂ Kes</button><button data-a="del">🗑 Sil</button>`:'';
+}
+function select(id){selId=id;applyMarks();renderSel()}
+function pushUndo(){stopRun(true);undoS.push(snap());if(undoS.length>100)undoS.shift();redoS=[]}
+function restore(s){const c=curFn;loadProg(JSON.parse(s));curFn=Math.min(c,prog.functions.length-1);render()}
+function undo(){if(!undoS.length)return;stopRun(true);redoS.push(snap());restore(undoS.pop())}
+function redo(){if(!redoS.length)return;stopRun(true);undoS.push(snap());restore(redoS.pop())}
+function cloneNode(n){const c=JSON.parse(JSON.stringify(n,(k,v)=>k==='_s'?undefined:v));assignIds([c]);return c}
+function delSel(){if(!selId||!nodeIx[selId])return;const {node,list}=nodeIx[selId];pushUndo();list.splice(list.indexOf(node),1);selId=null;render()}
+function copySel(cut){if(!selId||!nodeIx[selId])return;clipNode=JSON.parse(JSON.stringify(nodeIx[selId].node,(k,v)=>k==='_s'?undefined:v));toast(cut?'Kesildi. Bir oka tıklayıp "Yapıştır" seçin.':'Kopyalandı. Bir oka tıklayıp "Yapıştır" seçin.');if(cut)delSel()}
+
+/* ================= Ekleme menüsü ================= */
+function miniIcon(t){
+  const c=COL[t];let p;
+  if(t==='input'||t==='output')p=`<polygon points="5,2 27,2 23,16 1,16" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/>`;
+  else if(t==='if'||t==='while')p=`<polygon points="14,1 27,9 14,17 1,9" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/>`;
+  else if(t==='for')p=`<polygon points="6,2 22,2 27,9 22,16 6,16 1,9" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/>`;
+  else if(t==='do')p=`<polygon points="14,4 26,10 14,16 2,10" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/><path d="M2 10H0V1h12" stroke="${c.s}" fill="none" stroke-width="1.3"/>`;
+  else if(t==='call')p=`<rect x="1" y="2" width="26" height="14" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/><path d="M5 2v14M23 2v14" stroke="${c.s}" stroke-width="1.4"/>`;
+  else if(t==='comment')p=`<path d="M1 2h20l6 6v8H1z" fill="${c.f}" stroke="${c.s}" stroke-width="1.6" stroke-dasharray="3 2"/>`;
+  else p=`<rect x="1" y="2" width="26" height="14" fill="${c.f}" stroke="${c.s}" stroke-width="1.6"/>`;
+  return `<svg width="28" height="18" viewBox="0 0 28 18">${p}</svg>`;
+}
+let menuTarget=null;
+function openMenu(ti,x,y){
+  menuTarget=targets[ti];const m=$('#menu');
+  const b=t=>`<button data-ins="${t}">${miniIcon(t)}${NAMES[t].replace(' döngüsü','')}</button>`;
+  m.innerHTML=`<h5>Temel</h5><div class="grid">${b('declare')}${b('assign')}${b('input')}${b('output')}</div>
+  <h5>Karar</h5><div class="grid">${b('if')}${b('call')}</div>
+  <h5>Döngüler</h5><div class="grid">${b('while')}${b('for')}${b('do')}${b('comment')}</div>
+  ${clipNode?`<div class="grid" style="grid-template-columns:1fr"><button data-ins="paste">📋 Yapıştır: ${esc(NAMES[clipNode.t])}</button></div>`:''}`;
+  m.classList.add('on');
+  const r=m.getBoundingClientRect();m.style.left=Math.max(8,Math.min(x+10,innerWidth-r.width-8))+'px';m.style.top=Math.max(8,Math.min(y-20,innerHeight-r.height-8))+'px';
+}
+function closeMenu(){$('#menu').classList.remove('on');menuTarget=null}
+$('#menu').addEventListener('click',e=>{
+  const b=e.target.closest('[data-ins]');if(!b||!menuTarget)return;const {list,index}=menuTarget;closeMenu();
+  pushUndo();
+  if(b.dataset.ins==='paste'){const n=cloneNode(clipNode);list.splice(index,0,n);selId=n.id;render();return}
+  const n=newNode(b.dataset.ins);list.splice(index,0,n);selId=n.id;render();openEdit(n,true);
+});
+document.addEventListener('mousedown',e=>{if(!e.target.closest('#menu'))closeMenu();if(!e.target.closest('.dd'))$('#exMenu').classList.remove('on')});
+
+/* ================= Diyaloglar ================= */
+let modalCB=null;
+function showModal({title,sub,color,html,onOk,onCancel,onDelete,okText}){
+  const m=$('#modal');
+  m.innerHTML=`<div class="dlg"><div class="dh" style="background:${color||'#eef'}"><b>${title}</b><span>${sub||''}</span></div><div class="db">${html}<div class="derr"></div></div>
+  <div class="df">${onDelete?'<button class="btn danger" data-a="del">Sil</button>':''}<span style="flex:1"></span>${onCancel!==false?'<button class="btn" data-a="cancel">İptal</button>':''}<button class="btn pri" data-a="ok">${okText||'Tamam'}</button></div></div>`;
+  m.classList.add('on');modalCB={onOk,onCancel,onDelete};
+  setTimeout(()=>{const f=m.querySelector('input[type=text],textarea');if(f){f.focus();f.select&&f.select()}},30);
+}
+function closeModal(){$('#modal').classList.remove('on');modalCB=null}
+$('#modal').addEventListener('click',e=>{
+  if(!modalCB)return;const a=e.target.closest('[data-a]')?.dataset.a;
+  if(e.target.id==='modal'||a==='cancel'){const c=modalCB.onCancel;closeModal();c&&c();return}
+  if(a==='del'){const d=modalCB.onDelete;closeModal();d();return}
+  if(a==='ok')modalOk();
+});
+function modalOk(){const err=modalCB.onOk();if(err){$('#modal .derr').textContent='⚠️ '+err}else closeModal()}
+$('#modal').addEventListener('keydown',e=>{if(!modalCB)return;if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'&&e.target.tagName!=='BUTTON'){e.preventDefault();modalOk()}if(e.key==='Escape'){const c=modalCB.onCancel;closeModal();c&&c()}});
+const fld=(lbl,inner,help)=>`<div class="fld"><label>${lbl}</label>${inner}${help?'<small>'+help+'</small>':''}</div>`;
+const inp=(id,v,ph)=>`<input type="text" id="${id}" value="${esc(v)}" placeholder="${esc(ph||'')}" autocomplete="off" spellcheck="false">`;
+const typeSel=(id,v,none)=>`<select id="${id}">${(none?['None',...TYPES]:TYPES).map(t=>`<option value="${t}"${t===v?' selected':''}>${TTR[t]} (${t})</option>`).join('')}</select>`;
+const V=id=>document.getElementById(id).value.trim();
+function openEdit(n,isNew){
+  const c=COL[n.t];let html='',apply;
+  switch(n.t){
+    case 'declare':
+      html=fld('Değişken adları',inp('f1',n.names,'ör. a, b, toplam'),'Birden fazla değişkeni virgülle ayırın. Adlar harfle başlamalı, boşluk içermemeli.')+fld('Tür',typeSel('f2',n.type),'Tamsayı: 5, -3 · Ondalık: 3.14 · Metin: "Ali" · Mantıksal: true/false')+
+        `<div class="fld"><label class="chk"><input type="checkbox" id="f3" ${n.array?'checked':''}> Dizi olarak tanımla</label></div>`+fld('Dizi boyutu',inp('f4',n.size,'ör. 10'),'Dizinin kaç eleman tutacağı. İndeksler 0\'dan başlar.');
+      apply=()=>{const names=splitNames(V('f1'));if(!names.length)return 'En az bir değişken adı yazın.';for(const x of names){const e=chkName(x);if(e)return e}
+        const arr=$('#f3').checked;if(arr){const e=chkExpr(V('f4'));if(e)return 'Dizi boyutu: '+e}
+        return{names:names.join(', '),type:$('#f2').value,array:arr,size:arr?V('f4'):''}};break;
+    case 'assign':
+      html=fld('Değişken',inp('f1',n.variable,'ör. toplam'),'Değerin saklanacağı değişken (dizi elemanı için: dizi[i]).')+fld('İfade',inp('f2',n.expr,'ör. a + b'),'Hesaplanacak ifade. Örnekler: x + 1 · (a + b) / 2 · "Merhaba " & ad');
+      apply=()=>{let e=chkTarget(V('f1'));if(e)return e;e=chkExpr(V('f2'));if(e)return 'İfade: '+e;return{variable:V('f1'),expr:V('f2')}};break;
+    case 'input':
+      html=fld('Değişken',inp('f1',n.variable,'ör. sayi'),'Kullanıcının gireceği değer bu değişkene yerleştirilir. Değişken önceden tanımlanmış olmalı.');
+      apply=()=>{const e=chkTarget(V('f1'));if(e)return e;return{variable:V('f1')}};break;
+    case 'output':
+      html=fld('İfade',inp('f1',n.expr,'ör. "Toplam: " & toplam'),'Metinleri "çift tırnak" içinde yazın. Metin ve değerleri & ile birleştirin.')+`<div class="fld"><label class="chk"><input type="checkbox" id="f2" ${n.newline!==false?'checked':''}> Sonrasında yeni satıra geç</label></div>`;
+      apply=()=>{const e=chkExpr(V('f1'));if(e)return e;return{expr:V('f1'),newline:$('#f2').checked}};break;
+    case 'if':case 'while':case 'do':
+      html=fld('Koşul',inp('f1',n.expr,'ör. sayi > 0'),'Sonucu doğru (true) ya da yanlış (false) olan bir ifade. Karşılaştırma: == != &lt; &gt; &lt;= &gt;= · Mantık: and or not');
+      apply=()=>{const e=chkExpr(V('f1'));if(e)return e;return{expr:V('f1')}};break;
+    case 'for':
+      html=fld('Sayaç değişkeni',inp('f1',n.variable,'ör. i'),'Önceden Tamsayı olarak tanımlanmış olmalı.')+`<div class="row">${fld('Başlangıç',inp('f2',n.start,'1'))}${fld('Bitiş',inp('f3',n.end,'10'))}</div>`+
+        `<div class="row">${fld('Yön',`<select id="f4"><option value="inc"${n.dir!=='dec'?' selected':''}>Artan ↑</option><option value="dec"${n.dir==='dec'?' selected':''}>Azalan ↓</option></select>`)}${fld('Adım',inp('f5',n.step,'1'))}</div>`;
+      apply=()=>{let e=chkTarget(V('f1'));if(e)return e;for(const [k,l] of [['f2','Başlangıç'],['f3','Bitiş'],['f5','Adım']]){e=chkExpr(V(k));if(e)return l+': '+e}
+        return{variable:V('f1'),start:V('f2'),end:V('f3'),dir:$('#f4').value,step:V('f5')}};break;
+    case 'call':
+      html=fld('Fonksiyon çağrısı',inp('f1',n.expr,'ör. Selamla(ad)'),'Çağırmak istediğiniz fonksiyonun adı ve parantez içinde parametreleri.');
+      apply=()=>{const e=chkExpr(V('f1'));if(e)return e;if(parseExpr(V('f1')).k!=='call')return 'Bir fonksiyon çağrısı yazın, ör. Selamla(ad)';return{expr:V('f1')}};break;
+    case 'comment':
+      html=fld('Yorum',`<textarea id="f1">${esc(n.text)}</textarea>`);
+      apply=()=>({text:document.getElementById('f1').value});break;
+  }
+  showModal({title:(isNew?'Yeni: ':'')+NAMES[n.t],sub:DESC[n.t],color:c.f,html,
+    onOk:()=>{const r=apply();if(typeof r==='string')return r;if(!isNew)pushUndo();Object.assign(n,r);delete n._s;selId=n.id;render();return null},
+    onCancel:()=>{if(isNew){undoS.pop();const {list}=nodeIx[n.id]||{};if(list){list.splice(list.indexOf(n),1)}selId=null;render()}},
+    onDelete:isNew?null:()=>{selId=n.id;delSel()}});
+}
+function openFnDialog(idx){
+  const isNew=idx==null,f=isNew?{name:'',type:'None',variable:'',params:[],body:[]}:prog.functions[idx];
+  const isMain=!isNew&&f.name.toLowerCase()==='main';
+  const prow=p=>`<div class="prow"><input type="text" class="pn" value="${esc(p.name)}" placeholder="parametre adı">${typeSel('',p.type).replace('<select id=""','<select class="pt"')}<label class="chk" title="Dizi"><input type="checkbox" class="pa" ${p.array?'checked':''}>[ ]</label><button class="btn" data-rm type="button">✕</button></div>`;
+  const html=fld('Fonksiyon adı',isMain?'<input type="text" value="Main" disabled>':inp('g1',f.name,'ör. Faktoriyel'),isMain?'Main, programın başladığı ana fonksiyondur.':'Fonksiyon adı harfle başlamalı ve boşluk içermemeli.')+
+    (isMain?'':fld('Parametreler','<div id="plist">'+f.params.map(prow).join('')+'</div><button class="btn" id="padd" type="button">＋ Parametre ekle</button>','Fonksiyon çağrılırken dışarıdan alacağı değerler.')+
+    `<div class="row">${fld('Dönüş türü',typeSel('g2',f.type||'None',true))}${fld('Dönüş değişkeni',inp('g3',f.variable,'ör. sonuc'),'Gövdede tanımlanmalı.')}</div>`);
+  showModal({title:isNew?'Yeni fonksiyon':'Fonksiyon: '+f.name,sub:'Fonksiyonlar, tekrar tekrar kullanılabilen alt programlardır. Değer döndüren fonksiyonlar ifadelerde kullanılabilir, ör. x = Kare(5).',color:'#E6E7FF',html,
+    onOk:()=>{if(isMain)return null;const name=V('g1');let e=chkName(name);if(e)return e;
+      if(prog.functions.some((g,i)=>i!==idx&&g.name.toLowerCase()===name.toLowerCase()))return 'Bu adda bir fonksiyon zaten var.';
+      if(BI[name.toLowerCase()])return '"'+name+'" yerleşik bir fonksiyon adı, başka ad seçin.';
+      const params=[];for(const r of document.querySelectorAll('#plist .prow')){const pn=r.querySelector('.pn').value.trim();if(!pn)continue;e=chkName(pn);if(e)return e;params.push({name:pn,type:r.querySelector('.pt').value,array:r.querySelector('.pa').checked})}
+      const type=$('#g2').value,variable=V('g3');if(type!=='None'){e=chkName(variable);if(!variable)return 'Değer döndüren fonksiyon için dönüş değişkeni yazın.';if(e)return e}
+      pushUndo();if(isNew){prog.functions.push({name,type,variable:type==='None'?'':variable,params,body:[]});curFn=prog.functions.length-1}
+      else{const g=prog.functions[idx];if(g.name!==name)renameCalls(g.name,name);Object.assign(g,{name,type,variable:type==='None'?'':variable,params})}
+      render();return null},
+    onDelete:(isNew||isMain)?null:()=>{pushUndo();prog.functions.splice(idx,1);curFn=0;render();toast('Fonksiyon silindi (Ctrl+Z ile geri alabilirsiniz).')}});
+  const pl=$('#plist');if(pl){$('#padd').onclick=()=>{pl.insertAdjacentHTML('beforeend',prow({name:'',type:'Integer',array:false}));pl.lastElementChild.querySelector('input').focus()};pl.onclick=e=>{if(e.target.closest('[data-rm]'))e.target.closest('.prow').remove()}}
+}
+function renameCalls(a,b){const re=new RegExp('\\b'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*\\(','gi');const w=list=>list.forEach(n=>{for(const k of['expr','start','end','size'])if(typeof n[k]==='string')n[k]=n[k].replace(re,b+'(');kids(n).forEach(w)});prog.functions.forEach(f=>w(f.body))}
+
+/* ================= Çalıştırma ================= */
+const DELAYS=[1400,1000,700,480,320,200,120,60,20,0];
+let openBubble=null;
+function con(){return $('#con')}
+function conClear(){con().innerHTML='';openBubble=null}
+function conOut(text,nl,cls){
+  if(cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=text;con().append(d);openBubble=null}
+  else{if(!openBubble){openBubble=document.createElement('div');openBubble.className='msg out';con().append(openBubble)}openBubble.textContent+=text;if(nl)openBubble=null}
+  con().scrollTop=1e9;
+}
+function fnOfNode(id){for(let i=0;i<prog.functions.length;i++){let found=false;const w=l=>{for(const n of l){if(n.id===id){found=true;return}kids(n).forEach(w)}};w(prog.functions[i].body);if(found)return i}return -1}
+function showPane(id){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.p===id));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===id))}
+function newRun(mode){
+  conClear();conOut('▶ Program başladı',false,'sys');
+  const R=makeRunner(prog,{out:conOut});
+  run={R,mode,waiting:false,active:null,errId:null,token:Math.random(),steps:0,prev:{}};
+  showPane('pCon');updateRunBtns();
+}
+function setActive(id){
+  run.active=id;const fi=fnOfNode(id);
+  if(fi>=0&&fi!==curFn){curFn=fi;render()}else applyMarks();
+  const el=document.querySelector(`#canvas .node[data-n="${id}"]`);
+  if(el&&DELAYS[$('#speed').value-1]>0){const w=$('#canvasWrap'),r=el.getBoundingClientRect(),wr=w.getBoundingClientRect();if(r.top<wr.top+20||r.bottom>wr.bottom-20)w.scrollTop+=r.top-wr.top-wr.height/2+r.height/2;if(r.left<wr.left||r.right>wr.right)w.scrollLeft+=r.left-wr.left-wr.width/2}
+}
+function stepOnce(send){
+  let res;
+  try{res=run.R.gen.next(send)}catch(e){fail(e);return 'end'}
+  if(res.done){finish();return 'end'}
+  const y=res.value;
+  if(y.k==='input'){run.waiting=true;askInput(y);return 'input'}
+  run.steps++;setActive(y.n.id);return 'step';
+}
+async function loop(){
+  if(!run)return;const tok=run.token;
+  while(run&&run.token===tok&&run.mode==='run'&&!run.waiting){
+    const r=stepOnce();if(r!=='step')break;
+    const d=DELAYS[$('#speed').value-1];
+    if(d>0){renderVars();await new Promise(r=>setTimeout(r,d))}
+    else if(run.steps%400===0){renderVars();await new Promise(r=>setTimeout(r,0))}
+  }
+  if(run)renderVars();updateRunBtns();
+}
+function askInput(y){
+  const i=$('#inp');i.disabled=false;$('#inBtn').disabled=false;i.value='';
+  $('#inlbl').textContent=y.name+' ('+TTR[y.type]+') =';i.placeholder=TTR[y.type]+' bir değer girin…';
+  showPane('pCon');renderVars();setTimeout(()=>i.focus(),20);updateRunBtns();
+}
+$('#inbar').addEventListener('submit',e=>{
+  e.preventDefault();if(!run||!run.waiting)return;
+  const v=$('#inp').value;openBubble=null;conOut(v===''?'(boş)':v,true,'in');
+  $('#inp').disabled=true;$('#inBtn').disabled=true;$('#inlbl').textContent='';$('#inp').placeholder='Girdi bekleniyor…';
+  run.waiting=false;const r=stepOnce(v);renderVars();if(r==='step'&&run&&run.mode==='run')loop();else updateRunBtns();
+});
+function finish(){openBubble=null;conOut('✔ Program başarıyla tamamlandı ('+run.steps+' adım)',false,'ok');run.active=null;run.done=true;applyMarks();renderVars();updateRunBtns()}
+function fail(e){
+  openBubble=null;
+  if(e instanceof RunError){conOut('⛔ Hata: '+e.message,false,'err');if(e.node){run.errId=e.node.id;run.active=null;const fi=fnOfNode(e.node.id);if(fi>=0&&fi!==curFn){curFn=fi;render()}else applyMarks()}}
+  else{conOut('⛔ Beklenmeyen hata: '+e.message,false,'err');console.error(e)}
+  run.done=true;renderVars();updateRunBtns();
+}
+function stopRun(silent){
+  if(!run)return;const was=!run.done;
+  if(was&&!silent){openBubble=null;conOut('⏹ Program durduruldu',false,'sys')}
+  run=null;$('#inp').disabled=true;$('#inBtn').disabled=true;$('#inlbl').textContent='';applyMarks();updateRunBtns();
+}
+function updateRunBtns(){
+  const live=run&&!run.done;
+  $('#bPause').disabled=!(live&&run.mode==='run');$('#bStop').disabled=!live;
+  $('#bRun').innerHTML=live&&run.mode==='pause'?'▶<span class="t">Devam</span>':'▶<span class="t">Çalıştır</span>';
+}
+function doRun(){if(run&&!run.done){if(run.mode==='pause'){run.mode='run';updateRunBtns();if(!run.waiting)loop()}return}newRun('run');loop()}
+function doStep(){if(!run||run.done)newRun('pause');run.mode='pause';if(!run.waiting){stepOnce();renderVars()}updateRunBtns()}
+function renderVars(){
+  const box=$('#vars');
+  if(!run){box.innerHTML='<div class="empty">Program çalışırken değişkenler burada görünür.</div>';$('#stack').textContent='';return}
+  const fr=run.R.frames[run.R.frames.length-1];
+  $('#stack').textContent=run.R.frames.map(f=>f.fn.name).join(' › ');
+  if(!fr||!fr.vars.size){box.innerHTML='<div class="empty">Henüz tanımlanmış değişken yok.</div>';return}
+  let h='<table><tr><th>Ad</th><th>Tür</th><th>Değer</th></tr>';
+  for(const [k,v] of fr.vars){
+    const val=v.isArr?fmt(v.value):v.value===undefined?'—':(v.type==='String'?'"'+v.value+'"':fmt(v.value));
+    const key=fr.fn.name+'.'+k,chg=run.prev[key]!==undefined&&run.prev[key]!==val;run.prev[key]=val;
+    h+=`<tr class="${chg?'chg':''}"><td><b>${esc(v.name)}</b></td><td class="ty">${TTR[v.type]}${v.isArr?' dizi':''}</td><td>${esc(val)}</td></tr>`;
+  }
+  box.innerHTML=h+'</table>';
+}
+
+/* ================= Kod üretimi ================= */
+const PREC={or:1,and:2,not:3,'==':4,'!=':4,'<':4,'>':4,'<=':4,'>=':4,'&':5,'+':6,'-':6,'*':7,'/':7,'%':7,neg:8,'^':9};
+function genE(src,L){try{return genA(parseExpr(src),0,L)}catch(e){return src||'?'}}
+function genA(a,pp,L){
+  const py=L==='py';let s,p=10;
+  switch(a.k){
+    case 'num':return a.raw; case 'str':return JSON.stringify(a.v); case 'bool':return py?(a.v?'True':'False'):String(a.v);
+    case 'pi':return py?'math.pi':'Math.PI'; case 'id':return a.name; case 'idx':return a.name+'['+genA(a.index,0,L)+']';
+    case 'par':return genA(a.a,pp,L);
+    case 'call':return genCall(a,L);
+    case 'un':if(a.op==='not'){p=3;s=(py?'not ':'!')+genA(a.a,py?3:8,L)}else{p=8;s='-'+genA(a.a,8,L)}break;
+    case 'bin':{p=PREC[a.op];
+      if(a.op==='&'){p=6;const f=x=>(x.k==='str'||(x.k==='bin'&&x.op==='&')||(x.k==='par'&&x.a.k==='bin'&&x.a.op==='&'))?genA(x,6,L):(py?'str('+genA(x,0,L)+')':(x.k==='bin'?'String('+genA(x,0,L)+')':genA(x,7,L)));
+        s=f(a.a)+' + '+f(a.b);if(!py&&a.a.k!=='str'&&a.b.k!=='str'&&!(a.a.k==='bin'&&a.a.op==='&'))s='String('+genA(a.a,0,L)+') + '+f(a.b);break}
+      if(a.op==='^'&&!py){s='Math.pow('+genA(a.a,0,L)+', '+genA(a.b,0,L)+')';p=10;break}
+      const m=py?{'^':'**'}:{and:'&&',or:'||','==':'===','!=':'!=='};const o=m[a.op]||a.op;
+      s=genA(a.a,a.op==='^'?p+1:p,L)+' '+o+' '+genA(a.b,a.op==='^'?p:p+1,L)}
+  }
+  return p<pp?'('+s+')':s;
+}
+function genCall(a,L){
+  const k=a.name.toLowerCase(),A=a.args.map(x=>genA(x,0,L)),py=L==='py';
+  if(!BI[k])return a.name+'('+A.join(', ')+')';
+  if(py){
+    const m={abs:'abs',sqrt:'math.sqrt',sin:'math.sin',cos:'math.cos',tan:'math.tan',arcsin:'math.asin',arccos:'math.acos',arctan:'math.atan',ln:'math.log',log:'math.log',log10:'math.log10',int:'int',len:'len',size:'len',tostring:'str',tointeger:'int',toreal:'float',tochar:'chr',tocode:'ord'};
+    if(m[k])return m[k]+'('+A.join(', ')+')';
+    if(k==='random')return 'random.randrange('+A[0]+')';
+    if(k==='char')return genA(a.args[0],10,L)+'['+A[1]+']';
+    if(k==='sgn')return '((' +A[0]+') > 0) - (('+A[0]+') < 0)';
+    if(k==='tofixed')return 'format('+A[0]+', ".'+(a.args[1].k==='num'?A[1]:'" + str('+A[1]+') + "')+'f")';
+  }else{
+    const m={abs:'Math.abs',sqrt:'Math.sqrt',sin:'Math.sin',cos:'Math.cos',tan:'Math.tan',arcsin:'Math.asin',arccos:'Math.acos',arctan:'Math.atan',ln:'Math.log',log:'Math.log',log10:'Math.log10',int:'Math.trunc',sgn:'Math.sign',tostring:'String',tointeger:'parseInt',toreal:'parseFloat',tochar:'String.fromCharCode'};
+    if(m[k])return m[k]+'('+A.join(', ')+')';
+    if(k==='random')return 'Math.floor(Math.random() * '+genA(a.args[0],7,L)+')';
+    if(k==='len'||k==='size')return genA(a.args[0],10,L)+'.length';
+    if(k==='char')return genA(a.args[0],10,L)+'['+A[1]+']';
+    if(k==='tocode')return genA(a.args[0],10,L)+'.charCodeAt(0)';
+    if(k==='tofixed')return genA(a.args[0],10,L)+'.toFixed('+A[1]+')';
+  }
+  return a.name+'('+A.join(', ')+')';
+}
+function varTypes(f){const m={};f.params.forEach(p=>m[p.name.toLowerCase()]=p.type);const w=l=>l.forEach(n=>{if(n.t==='declare')splitNames(n.names).forEach(x=>m[x.toLowerCase()]=n.type);kids(n).forEach(w)});w(f.body);return m}
+const baseName=v=>String(v).split('[')[0].trim().toLowerCase();
+const DEF={py:{Integer:'0',Real:'0.0',String:'""',Boolean:'False'},js:{Integer:'0',Real:'0',String:'""',Boolean:'false'}};
+function genPy(){
+  const out=['import math','import random',''];
+  const fs=[...prog.functions].sort((a,b)=>(a.name.toLowerCase()==='main')-(b.name.toLowerCase()==='main'));
+  for(const f of fs){
+    const isMain=f.name.toLowerCase()==='main',ty=varTypes(f);
+    out.push('def '+(isMain?'main':f.name)+'('+f.params.map(p=>p.name).join(', ')+'):');
+    const blk=(list,ind)=>{let any=false;for(const n of list){const I='    '.repeat(ind);any=true;
+      switch(n.t){
+        case 'declare':splitNames(n.names).forEach(x=>out.push(I+x+' = '+(n.array?'['+DEF.py[n.type]+'] * '+genE(n.size,'py'):DEF.py[n.type])));break;
+        case 'assign':out.push(I+n.variable+' = '+genE(n.expr,'py'));break;
+        case 'input':{const t=ty[baseName(n.variable)];out.push(I+n.variable+' = '+(t==='Integer'?'int(input())':t==='Real'?'float(input())':t==='Boolean'?'input().strip().lower() == "true"':'input()'));break}
+        case 'output':out.push(I+'print('+genE(n.expr,'py')+(n.newline===false?', end=""':'')+')');break;
+        case 'if':out.push(I+'if '+genE(n.expr,'py')+':');blk(n.then,ind+1);if(n.else.some(x=>x.t!=='comment')){out.push(I+'else:');blk(n.else,ind+1)}break;
+        case 'while':out.push(I+'while '+genE(n.expr,'py')+':');blk(n.body,ind+1);break;
+        case 'for':{const st=String(n.step||'1'),dec=n.dir==='dec';out.push(I+'for '+n.variable+' in range('+genE(n.start,'py')+', '+genE(n.end,'py')+(dec?' - 1':' + 1')+(dec?', -'+genE(st,'py'):(st!=='1'?', '+genE(st,'py'):''))+'):');blk(n.body,ind+1);break}
+        case 'do':out.push(I+'while True:');blk(n.body,ind+1);out.push(I+'    if not ('+genE(n.expr,'py')+'):');out.push(I+'        break');break;
+        case 'call':out.push(I+genE(n.expr,'py'));break;
+        case 'comment':out.push(I+'# '+n.text.replace(/\n/g,' '));any=list.some(x=>x.t!=='comment');break;
+      }}
+      if(!list.some(x=>x.t!=='comment'))out.push('    '.repeat(ind)+'pass')};
+    blk(f.body,1);
+    if(f.type&&f.type!=='None')out.push('    return '+f.variable);
+    out.push('');
+  }
+  out.push('main()');return out.join('\n');
+}
+function genJs(){
+  const out=['// Girdi için prompt(), çıktı için console.log() kullanılır',''];
+  for(const f of prog.functions){
+    const isMain=f.name.toLowerCase()==='main',ty=varTypes(f);
+    out.push('function '+(isMain?'main':f.name)+'('+f.params.map(p=>p.name).join(', ')+') {');
+    const blk=(list,ind)=>{for(const n of list){const I='    '.repeat(ind);
+      switch(n.t){
+        case 'declare':out.push(I+'let '+splitNames(n.names).map(x=>x+(n.array?' = new Array('+genE(n.size,'js')+').fill('+DEF.js[n.type]+')':'')).join(', ')+';');break;
+        case 'assign':out.push(I+n.variable+' = '+genE(n.expr,'js')+';');break;
+        case 'input':{const t=ty[baseName(n.variable)];out.push(I+n.variable+' = '+(t==='Integer'?'parseInt(prompt())':t==='Real'?'parseFloat(prompt())':t==='Boolean'?'prompt() === "true"':'prompt()')+';');break}
+        case 'output':out.push(I+'console.log('+genE(n.expr,'js')+');');break;
+        case 'if':out.push(I+'if ('+genE(n.expr,'js')+') {');blk(n.then,ind+1);if(n.else.length){out.push(I+'} else {');blk(n.else,ind+1)}out.push(I+'}');break;
+        case 'while':out.push(I+'while ('+genE(n.expr,'js')+') {');blk(n.body,ind+1);out.push(I+'}');break;
+        case 'for':{const dec=n.dir==='dec',st=String(n.step||'1');out.push(I+'for ('+n.variable+' = '+genE(n.start,'js')+'; '+n.variable+(dec?' >= ':' <= ')+genE(n.end,'js')+'; '+n.variable+(st==='1'?(dec?'--':'++'):(dec?' -= ':' += ')+genE(st,'js'))+') {');blk(n.body,ind+1);out.push(I+'}');break}
+        case 'do':out.push(I+'do {');blk(n.body,ind+1);out.push(I+'} while ('+genE(n.expr,'js')+');');break;
+        case 'call':out.push(I+genE(n.expr,'js')+';');break;
+        case 'comment':out.push(I+'// '+n.text.replace(/\n/g,' '));break;
+      }}};
+    blk(f.body,1);
+    if(f.type&&f.type!=='None')out.push('    return '+f.variable+';');
+    out.push('}','');
+  }
+  out.push('main();');return out.join('\n');
+}
+function genPseudo(){
+  const out=[];
+  for(const f of prog.functions){
+    const isMain=f.name.toLowerCase()==='main';
+    out.push(isMain?'ALGORİTMA '+(prog.name||'Program'):'FONKSİYON '+f.name+'('+f.params.map(p=>p.name+' : '+TTR[p.type]+(p.array?' dizisi':'')).join(', ')+')'+(f.type&&f.type!=='None'?' : '+TTR[f.type]:''));
+    out.push('BAŞLA');
+    const blk=(list,ind)=>{for(const n of list){const I='    '.repeat(ind);
+      switch(n.t){
+        case 'declare':out.push(I+'TANIMLA '+n.names+' : '+TTR[n.type]+(n.array?' dizisi ['+n.size+']':''));break;
+        case 'assign':out.push(I+n.variable+' ← '+n.expr);break;
+        case 'input':out.push(I+'OKU '+n.variable);break;
+        case 'output':out.push(I+'YAZ '+n.expr);break;
+        case 'if':out.push(I+'EĞER '+n.expr+' İSE');blk(n.then,ind+1);if(n.else.length){out.push(I+'DEĞİLSE');blk(n.else,ind+1)}out.push(I+'EĞER SONU');break;
+        case 'while':out.push(I+'İKEN '+n.expr+' TEKRARLA');blk(n.body,ind+1);out.push(I+'İKEN SONU');break;
+        case 'for':out.push(I+'İÇİN '+n.variable+' ← '+n.start+' DEN '+n.end+' E KADAR '+(n.dir==='dec'?'AZALT ':'ARTIR ')+(n.step||1)+' TEKRARLA');blk(n.body,ind+1);out.push(I+'İÇİN SONU');break;
+        case 'do':out.push(I+'TEKRARLA');blk(n.body,ind+1);out.push(I+'İKEN '+n.expr+' DEVAM ET');break;
+        case 'call':out.push(I+'ÇAĞIR '+n.expr);break;
+        case 'comment':out.push(I+'// '+n.text);break;
+      }}};
+    blk(f.body,1);
+    if(f.type&&f.type!=='None')out.push('    DÖNDÜR '+f.variable);
+    out.push('BİTİR','');
+  }
+  return out.join('\n');
+}
+function dat(n){const o=n%10,t=Math.floor(n/10)%10;if(o)return n+{1:"'e",2:"'ye",3:"'e",4:"'e",5:"'e",6:"'ya",7:"'ye",8:"'e",9:"'a"}[o];if(t)return n+{1:"'a",2:"'ye",3:"'a",4:"'a",5:"'ye",6:"'a",7:"'e",8:"'e",9:"'a"}[t];return n+"'e"}
+function genSteps(){
+  const res=[];
+  for(const f of prog.functions){
+    const isMain=f.name.toLowerCase()==='main',ins=[];
+    const L=()=>({pos:null}),mark=l=>{l.pos=ins.length},go=l=>()=>'Adım '+dat(l.pos+1)+' git';
+    const E=t=>ins.push(typeof t==='function'?t:()=>t);
+    E('Başla');
+    if(!isMain&&f.params.length)E('Parametreleri al: '+f.params.map(p=>p.name).join(', '));
+    const blk=list=>{for(const n of list){
+      switch(n.t){
+        case 'declare':E(n.names+' adlı '+TTR[n.type]+(n.array?' dizisini ('+n.size+' elemanlı)':' değişkenleri')+' tanımla');break;
+        case 'assign':E(n.variable+' ← '+n.expr);break;
+        case 'input':E(n.variable+' değerini kullanıcıdan al (oku)');break;
+        case 'output':E('Ekrana yaz: '+n.expr);break;
+        case 'if':{const le=L(),lend=L();const hasElse=n.else.some(x=>x.t!=='comment');E(()=>'Eğer '+n.expr+' değilse '+go(hasElse?le:lend)());blk(n.then);if(hasElse){E(go(lend));mark(le);blk(n.else)}mark(lend);break}
+        case 'while':{const top=L(),end=L();mark(top);E(()=>'Eğer '+n.expr+' değilse '+go(end)());blk(n.body);E(go(top));mark(end);break}
+        case 'for':{const top=L(),end=L(),st=n.step||'1';E(n.variable+' ← '+n.start);mark(top);E(()=>'Eğer '+n.variable+(n.dir==='dec'?' < ':' > ')+n.end+' ise '+go(end)());blk(n.body);E(n.variable+' ← '+n.variable+(n.dir==='dec'?' - ':' + ')+st);E(go(top));mark(end);break}
+        case 'do':{const top=L();mark(top);blk(n.body);E(()=>'Eğer '+n.expr+' ise '+go(top)());break}
+        case 'call':E(n.expr+' alt programını çalıştır');break;
+      }}};
+    blk(f.body);
+    if(f.type&&f.type!=='None')E('Sonuç olarak '+f.variable+' değerini döndür');
+    E('Bitir');
+    res.push((isMain?'ALGORİTMA: '+(prog.name||'Program'):'FONKSİYON: '+f.name)+'\n'+ins.map((fn,i)=>'Adım '+(i+1)+': '+fn()).join('\n'));
+  }
+  return res.join('\n\n');
+}
+function hl(code,lang){
+  let h=esc(code);
+  h=h.replace(/(&quot;.*?&quot;)/g,'<span class="s">$1</span>');
+  if(lang==='py')h=h.replace(/(^|\n)(\s*)(#.*)/g,'$1$2<span class="c">$3</span>').replace(/\b(def|if|else|elif|while|for|in|range|return|import|and|or|not|True|False|break|pass|print|input)\b/g,'<span class="k">$1</span>');
+  else if(lang==='js')h=h.replace(/(^|\n)(\s*)(\/\/.*)/g,'$1$2<span class="c">$3</span>').replace(/\b(function|let|if|else|while|for|do|return|true|false)\b/g,'<span class="k">$1</span>');
+  else if(lang==='pseudo')h=h.replace(/(^|\n)(\s*)(\/\/.*)/g,'$1$2<span class="c">$3</span>').replace(/(ALGORİTMA|FONKSİYON|BAŞLA|BİTİR|TANIMLA|OKU|YAZ|EĞER SONU|EĞER|İSE|DEĞİLSE|İKEN SONU|İKEN|İÇİN SONU|İÇİN|TEKRARLA|DEVAM ET|ÇAĞIR|DÖNDÜR|DEN|E KADAR|ARTIR|AZALT)/g,'<span class="k">$1</span>');
+  else h=h.replace(/(Adım \d+:)/g,'<span class="n">$1</span>').replace(/(ALGORİTMA:|FONKSİYON:)/g,'<span class="k">$1</span>');
+  return h;
+}
+function codeText(){const m=$('#codeSel').value;return m==='py'?genPy():m==='js'?genJs():m==='pseudo'?genPseudo():genSteps()}
+function renderCode(){if(!$('#pCode').classList.contains('on'))return;const m=$('#codeSel').value;try{$('#code').innerHTML=hl(codeText(),m)}catch(e){$('#code').textContent='Kod üretilemedi: '+e.message}}
+
+/* ================= Flowgorithm .fprg ================= */
+function toFprg(){
+  const X=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const B=b=>b?'True':'False';
+  const N=(n,i)=>{const p=' '.repeat(i);switch(n.t){
+    case 'declare':return `${p}<declare name="${X(n.names)}" type="${n.type}" array="${B(n.array)}" size="${X(n.size)}"/>\n`;
+    case 'assign':return `${p}<assign variable="${X(n.variable)}" expression="${X(n.expr)}"/>\n`;
+    case 'input':return `${p}<input variable="${X(n.variable)}"/>\n`;
+    case 'output':return `${p}<output expression="${X(n.expr)}" newline="${B(n.newline!==false)}"/>\n`;
+    case 'if':return `${p}<if expression="${X(n.expr)}">\n${p}    <then>\n${Ls(n.then,i+8)}${p}    </then>\n${p}    <else>\n${Ls(n.else,i+8)}${p}    </else>\n${p}</if>\n`;
+    case 'while':return `${p}<while expression="${X(n.expr)}">\n${Ls(n.body,i+4)}${p}</while>\n`;
+    case 'for':return `${p}<for variable="${X(n.variable)}" start="${X(n.start)}" end="${X(n.end)}" direction="${n.dir==='dec'?'dec':'inc'}" step="${X(n.step||'1')}">\n${Ls(n.body,i+4)}${p}</for>\n`;
+    case 'do':return `${p}<do expression="${X(n.expr)}">\n${Ls(n.body,i+4)}${p}</do>\n`;
+    case 'call':return `${p}<call expression="${X(n.expr)}"/>\n`;
+    case 'comment':return `${p}<comment text="${X(n.text)}"/>\n`;}return ''};
+  const Ls=(l,i)=>l.map(n=>N(n,i)).join('');
+  let s=`<?xml version="1.0"?>\n<flowgorithm fileversion="4.2">\n    <attributes>\n        <attribute name="name" value="${X(prog.name)}"/>\n        <attribute name="authors" value="${X(prog.author||'')}"/>\n        <attribute name="about" value="AkışLab · sunays.school"/>\n    </attributes>\n`;
+  for(const f of prog.functions){
+    s+=`    <function name="${X(f.name)}" type="${f.type||'None'}" variable="${X(f.variable||'')}">\n        <parameters>\n${f.params.map(p=>`            <parameter name="${X(p.name)}" type="${p.type}" array="${B(p.array)}"/>\n`).join('')}        </parameters>\n        <body>\n${Ls(f.body,12)}        </body>\n    </function>\n`;
+  }
+  return s+'</flowgorithm>\n';
+}
+function fromFprg(xml){
+  const doc=new DOMParser().parseFromString(xml,'application/xml');
+  if(doc.querySelector('parsererror'))throw new Error('Dosya okunamadı (XML hatası).');
+  const root=doc.documentElement;if(root.nodeName!=='flowgorithm')throw new Error('Bu bir Flowgorithm (.fprg) dosyası değil.');
+  const ch=(el,name)=>[...el.children].filter(c=>c.nodeName===name);
+  const T=t=>{const m={integer:'Integer',real:'Real',string:'String',boolean:'Boolean',none:'None'};return m[String(t||'').toLowerCase()]||'Integer'};
+  const p={name:'Program',author:'',functions:[]};
+  for(const at of ch(root,'attributes').flatMap(a=>ch(a,'attribute'))){if(at.getAttribute('name')==='name')p.name=at.getAttribute('value')||'Program';if(at.getAttribute('name')==='authors')p.author=at.getAttribute('value')||''}
+  const PL=el=>el?[...el.children].map(PE).filter(Boolean):[];
+  const PE=c=>{const a=k=>c.getAttribute(k)??'';switch(c.nodeName){
+    case 'declare':return{t:'declare',names:a('name'),type:T(a('type')),array:a('array').toLowerCase()==='true',size:a('size')};
+    case 'assign':return{t:'assign',variable:a('variable'),expr:a('expression')};
+    case 'input':return{t:'input',variable:a('variable')};
+    case 'output':return{t:'output',expr:a('expression'),newline:a('newline').toLowerCase()!=='false'};
+    case 'if':return{t:'if',expr:a('expression'),then:PL(ch(c,'then')[0]),else:PL(ch(c,'else')[0])};
+    case 'while':return{t:'while',expr:a('expression'),body:PL(c)};
+    case 'for':return{t:'for',variable:a('variable'),start:a('start'),end:a('end'),dir:a('direction').toLowerCase()==='dec'?'dec':'inc',step:a('step')||'1',body:PL(c)};
+    case 'do':return{t:'do',expr:a('expression'),body:PL(c)};
+    case 'call':return{t:'call',expr:a('expression')};
+    case 'comment':return{t:'comment',text:a('text')};}return null};
+  for(const fe of ch(root,'function')){
+    const f={name:fe.getAttribute('name')||'Main',type:T(fe.getAttribute('type')||'None'),variable:fe.getAttribute('variable')||'',params:[],body:[]};
+    for(const pe of ch(fe,'parameters').flatMap(x=>ch(x,'parameter')))f.params.push({name:pe.getAttribute('name'),type:T(pe.getAttribute('type')),array:(pe.getAttribute('array')||'').toLowerCase()==='true'});
+    f.body=PL(ch(fe,'body')[0]);p.functions.push(f);
+  }
+  if(!p.functions.length)throw new Error('Dosyada fonksiyon bulunamadı.');
+  return p;
+}
+let dlApi=null;
+try{if(window.claude&&typeof window.claude.use==='function')window.claude.use('downloads').then(d=>{dlApi=d}).catch(()=>{})}catch(e){}
+async function saveFile(name,data,alt){
+  if(dlApi){
+    try{await dlApi.save({filename:name,data});toast('Dosya kaydedildi: '+name);return}
+    catch(e){if(e&&e.code==='declined')return;if(e&&e.code==='rejected_extension'&&alt){try{await dlApi.save({filename:alt.name,data});toast(alt.msg,6000);}catch(e2){if(!e2||e2.code!=='declined')toast('Kaydedilemedi.')}return}}
+  }
+  try{const blob=data instanceof Blob?data:new Blob([data],{type:'application/octet-stream'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}catch(e){toast('İndirme bu ortamda engellendi.')}
+}
+const safeName=()=>(prog.name||'program').replace(/[^\wçğıöşüÇĞİÖŞÜ\- ]/g,'').trim().replace(/\s+/g,'_')||'program';
+function saveFprg(){
+  const xml=toFprg();
+  showModal({title:'Flowgorithm dosyası olarak kaydet',sub:'Bu dosyayı Flowgorithm programında açabilir veya daha sonra AkışLab\'a geri yükleyebilirsiniz.',color:'#E6E7FF',okText:'💾 Dosyayı indir',
+    html:fld('Program adı',inp('s1',prog.name,'Program'))+fld('Yazar',inp('s2',prog.author||'','Adınız'))+`<div class="fld"><label>.fprg içeriği (XML)</label><textarea id="s3" readonly style="font-family:'JetBrains Mono',monospace;font-size:11.5px;height:140px">${esc(xml)}</textarea><button class="btn" type="button" id="s4" style="margin-top:6px">Metni kopyala</button></div>`,
+    onOk:()=>{prog.name=V('s1')||'Program';prog.author=V('s2');render();const n=safeName();saveFile(n+'.fprg',toFprg(),{name:n+'.fprg.txt',msg:'Kaydedildi. Flowgorithm\'de açmak için dosya adının sonundaki ".txt" kısmını silin.'});return null}});
+  $('#s4').onclick=async()=>{const t=$('#s3');try{await navigator.clipboard.writeText(t.value);toast('Kopyalandı!')}catch(e){t.select();toast('Metni seçtim, Ctrl+C ile kopyalayın.')}};
+}
+function importText(text){try{const p=fromFprg(text);pushUndo();loadProg(p);render();toast('"'+p.name+'" yüklendi ✔')}catch(e){toast('⚠️ '+e.message,4000)}}
+$('#file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>importText(r.result);r.readAsText(f);e.target.value=''});
+$('#canvasWrap').addEventListener('dragover',e=>e.preventDefault());
+$('#canvasWrap').addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f){const r=new FileReader();r.onload=()=>importText(r.result);r.readAsText(f)}});
+async function exportPng(){
+  const svg=$('#canvas svg').cloneNode(true);svg.querySelectorAll('.plus').forEach(e=>e.remove());
+  const vb=svg.viewBox.baseVal,W=vb.width,H=vb.height;svg.setAttribute('width',W);svg.setAttribute('height',H);
+  const img=new Image();img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(svg));
+  try{await img.decode()}catch(e){toast('Resim oluşturulamadı.');return}
+  const c=document.createElement('canvas');c.width=W*2;c.height=H*2;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.scale(2,2);x.drawImage(img,0,0);
+  c.toBlob(b=>b&&saveFile(safeName()+'_'+prog.functions[curFn].name+'.png',b),'image/png');
+}
+
+/* ================= Örnekler ================= */
+const D=(names,type='Integer',array=false,size='')=>({t:'declare',names,type,array,size}),A=(variable,expr)=>({t:'assign',variable,expr}),
+  I=v=>({t:'input',variable:v}),O=(expr,newline=true)=>({t:'output',expr,newline}),IF=(expr,th,el=[])=>({t:'if',expr,then:th,else:el}),
+  W=(expr,body)=>({t:'while',expr,body}),F=(variable,start,end,body,step='1',dir='inc')=>({t:'for',variable,start,end,dir,step,body}),
+  DO=(body,expr)=>({t:'do',expr,body}),CM=text=>({t:'comment',text});
+const mk=(name,body,extra=[])=>({name,author:'sunays.school',functions:[{name:'Main',type:'None',variable:'',params:[],body},...extra]});
+const EXAMPLES=[
+  ['Merhaba Dünya','İlk program: ekrana yazı yazdırma',()=>mk('Merhaba Dünya',[O('"Merhaba Dünya!"'),O('"Algoritma dünyasına hoş geldin 🚀"')])],
+  ['İki sayının toplamı','Tanımla · Girdi · Ata · Çıktı',()=>mk('İki Sayının Toplamı',[D('a, b, toplam'),O('"Birinci sayıyı girin:"'),I('a'),O('"İkinci sayıyı girin:"'),I('b'),A('toplam','a + b'),O('"Toplam = " & toplam')])],
+  ['Tek mi çift mi?','Eğer (karar) yapısı',()=>mk('Tek mi Çift mi',[D('sayi'),O('"Bir tamsayı girin:"'),I('sayi'),IF('sayi % 2 == 0',[O('sayi & " bir çift sayıdır."')],[O('sayi & " bir tek sayıdır."')])])],
+  ['Not hesaplama','İç içe Eğer yapıları',()=>mk('Not Hesaplama',[D('yazili1, yazili2'),D('ortalama','Real'),O('"1. yazılı notu:"'),I('yazili1'),O('"2. yazılı notu:"'),I('yazili2'),A('ortalama','(yazili1 + yazili2) / 2'),O('"Ortalama: " & ortalama'),
+    IF('ortalama >= 85',[O('"Pekiyi (5)"')],[IF('ortalama >= 70',[O('"İyi (4)"')],[IF('ortalama >= 50',[O('"Geçer"')],[O('"Kaldı"')])])])])],
+  ['Geri sayım','While döngüsü',()=>mk('Geri Sayım',[D('sayac'),A('sayac','10'),W('sayac > 0',[O('sayac'),A('sayac','sayac - 1')]),O('"Kalkış! 🚀"')])],
+  ['1\'den N\'e toplam','For döngüsü ve sayaç',()=>mk('1den N e Toplam',[D('n, i, toplam'),O('"N sayısını girin:"'),I('n'),A('toplam','0'),F('i','1','n',[A('toplam','toplam + i')]),O('"1 + 2 + ... + " & n & " = " & toplam')])],
+  ['Çarpım tablosu','For döngüsü ile tablo',()=>mk('Çarpım Tablosu',[D('n, i'),O('"Hangi sayının çarpım tablosu?"'),I('n'),F('i','1','10',[O('n & " x " & i & " = " & n * i')])])],
+  ['Sayı tahmin oyunu','Do döngüsü + Random',()=>mk('Sayı Tahmin Oyunu',[CM('Bilgisayar 1-100 arası bir sayı tutar'),D('gizli, tahmin, deneme'),A('gizli','Random(100) + 1'),A('deneme','0'),
+    DO([O('"Tahmininiz (1-100):"'),I('tahmin'),A('deneme','deneme + 1'),IF('tahmin < gizli',[O('"⬆ Daha BÜYÜK bir sayı söyleyin"')],[IF('tahmin > gizli',[O('"⬇ Daha KÜÇÜK bir sayı söyleyin"')])])],'tahmin != gizli'),O('"🎉 Tebrikler! " & deneme & " denemede bildiniz."')])],
+  ['Dizi: not ortalaması','Diziler ve For döngüsü',()=>mk('Dizi Not Ortalaması',[D('notlar','Integer',true,'5'),D('i, toplam'),D('ortalama','Real'),A('toplam','0'),
+    F('i','0','4',[O('(i + 1) & ". öğrencinin notu:"'),I('notlar[i]'),A('toplam','toplam + notlar[i]')]),A('ortalama','toplam / 5'),O('"Sınıf ortalaması: " & ortalama')])],
+  ['Faktöriyel (fonksiyon)','Değer döndüren fonksiyon',()=>mk('Faktöriyel',[D('n, sonuc'),O('"Faktöriyeli hesaplanacak sayı:"'),I('n'),A('sonuc','Faktoriyel(n)'),O('n & "! = " & sonuc')],
+    [{name:'Faktoriyel',type:'Integer',variable:'f',params:[{name:'sayi',type:'Integer',array:false}],body:[D('f, i'),A('f','1'),F('i','1','sayi',[A('f','f * i')])]}])],
+  ['Asal sayı kontrolü','While + mantıksal değişken',()=>mk('Asal Sayı',[D('n, bolen'),D('asal','Boolean'),O('"Bir sayı girin:"'),I('n'),A('asal','n >= 2'),A('bolen','2'),
+    W('bolen * bolen <= n and asal',[IF('n % bolen == 0',[A('asal','false')]),A('bolen','bolen + 1')]),IF('asal',[O('n & " asal sayıdır."')],[O('n & " asal değildir."')])])]
+];
+$('#exMenu').innerHTML=EXAMPLES.map((e,i)=>`<button data-ex="${i}">${esc(e[0])}<small>${esc(e[1])}</small></button>`).join('');
+$('#exMenu').addEventListener('click',e=>{const b=e.target.closest('[data-ex]');if(!b)return;$('#exMenu').classList.remove('on');pushUndo();loadProg(EXAMPLES[+b.dataset.ex][2]());render();toast('Örnek yüklendi. ▶ Çalıştır\'a basın!')});
+$('#bEx').onclick=()=>$('#exMenu').classList.toggle('on');
+
+/* ================= Görevler ================= */
+const TASKS=[
+  {"id":"t1","lv":"Kolay","cat":"Temel","title":"Merhaba Dünya","desc":"Ekrana <b>Merhaba Dünya</b> yazdıran bir akış diyagramı oluşturun.","hint":"Tek bir Çıktı şekli yeter. Metni \"çift tırnak\" içinde yazın.","tests":[{"in":[],"exp":["merhaba dunya"]}]},
+  {"id":"t2","lv":"Kolay","cat":"Temel","title":"İki sayının toplamı","desc":"Kullanıcıdan iki tamsayı alın ve <b>toplamlarını</b> ekrana yazdırın.","hint":"Tanımla → Girdi → Girdi → Ata (toplam = a + b) → Çıktı","tests":[{"in":[3,5],"exp":["8"]},{"in":[10,-4],"exp":["6"]},{"in":[25,75],"exp":["100"]}]},
+  {"id":"t3","lv":"Kolay","cat":"Temel","title":"Dikdörtgenin alanı ve çevresi","desc":"Kısa ve uzun kenarı girilen dikdörtgenin önce <b>alanını</b>, sonra <b>çevresini</b> yazdırın.","hint":"Alan = a * b, Çevre = 2 * (a + b)","tests":[{"in":[3,5],"exp":["15","16"]},{"in":[4,10],"exp":["40","28"]}]},
+  {"id":"t12","lv":"Kolay","cat":"Temel","title":"Kare ve küp","desc":"Bir sayı alın; önce <b>karesini</b>, sonra <b>küpünü</b> yazdırın.","hint":"kare = n * n · küp = n * n * n","tests":[{"in":[3],"exp":["9","27"]},{"in":[5],"exp":["25","125"]},{"in":[-2],"exp":["4","-8"]}]},
+  {"id":"t13","lv":"Kolay","cat":"Temel","title":"Fark ve çarpım","desc":"İki sayı alın; önce <b>farkını (a - b)</b>, sonra <b>çarpımını</b> yazdırın.","hint":"İki ayrı Ata şekli kullanın: fark = a - b, carpim = a * b","tests":[{"in":[10,4],"exp":["6","40"]},{"in":[3,8],"exp":["-5","24"]},{"in":[7,7],"exp":["0","49"]}]},
+  {"id":"t14","lv":"Kolay","cat":"Temel","title":"Celsius → Fahrenheit","desc":"Celsius cinsinden sıcaklığı alın, <b>Fahrenheit</b> karşılığını yazdırın.","hint":"F = C * 9 / 5 + 32","tests":[{"in":[0],"exp":["32"]},{"in":[100],"exp":["212"]},{"in":[-40],"exp":["-40"]},{"in":[25],"exp":["77"]}]},
+  {"id":"t15","lv":"Kolay","cat":"Temel","title":"Saniyeyi dakikaya çevir","desc":"Toplam saniyeyi alın; kaç <b>dakika</b> ve kaç <b>saniye</b> ettiğini sırayla yazdırın (125 → 2 dakika 5 saniye).","hint":"dakika = Int(s / 60) · saniye = s % 60","tests":[{"in":[125],"exp":["2","5"]},{"in":[3600],"exp":["60","0"]},{"in":[59],"exp":["0","59"]}]},
+  {"id":"t16","lv":"Kolay","cat":"Temel","title":"Yaş hesaplama","desc":"Doğum yılını ve içinde bulunulan yılı alın, <b>yaşı</b> yazdırın.","hint":"yas = buYil - dogumYili","tests":[{"in":[2010,2026],"exp":["16"]},{"in":[1990,2025],"exp":["35"]}]},
+  {"id":"t17","lv":"Kolay","cat":"Temel","title":"Üç sayının ortalaması","desc":"Üç tamsayı alın ve <b>ortalamalarını</b> yazdırın.","hint":"ortalama = (a + b + c) / 3 · Ortalama için Ondalık (Real) değişken kullanın.","tests":[{"in":[3,6,9],"exp":["6"]},{"in":[10,20,30],"exp":["20"]},{"in":[1,2,3],"exp":["2"]}]},
+  {"id":"t18","lv":"Kolay","cat":"Temel","title":"Dairenin alanı","desc":"Yarıçapı alın, dairenin <b>alanını</b> π = 3.14 alarak yazdırın.","hint":"alan = 3.14 * r * r · alan Ondalık (Real) olmalı.","tests":[{"in":[10],"exp":["314"]},{"in":[1],"exp":["3.14"]},{"in":[2],"exp":["12.56"]}]},
+  {"id":"t19","lv":"Kolay","cat":"Temel","title":"Küpün hacmi ve yüzey alanı","desc":"Küpün bir kenarını alın; önce <b>hacmini</b>, sonra <b>yüzey alanını</b> yazdırın.","hint":"hacim = a * a * a · yüzey = 6 * a * a","tests":[{"in":[2],"exp":["8","24"]},{"in":[5],"exp":["125","150"]}]},
+  {"id":"t21","lv":"Kolay","cat":"Temel","title":"Dakikayı saate çevir","desc":"Toplam dakikayı alın; kaç <b>saat</b> ve kaç <b>dakika</b> ettiğini sırayla yazdırın.","hint":"saat = Int(dk / 60) · dakika = dk % 60","tests":[{"in":[135],"exp":["2","15"]},{"in":[60],"exp":["1","0"]},{"in":[1439],"exp":["23","59"]}]},
+  {"id":"t22","lv":"Kolay","cat":"Temel","title":"KDV'li fiyat","desc":"Ürünün fiyatını alın, <b>%20 KDV eklenmiş</b> fiyatını yazdırın.","hint":"kdvli = fiyat + fiyat * 20 / 100","tests":[{"in":[100],"exp":["120"]},{"in":[50],"exp":["60"]},{"in":[250],"exp":["300"]}]},
+  {"id":"t23","lv":"Kolay","cat":"Temel","title":"İndirimli fiyat","desc":"Fiyatı alın, <b>%25 indirimli</b> fiyatı yazdırın.","hint":"indirimli = fiyat - fiyat * 25 / 100","tests":[{"in":[200],"exp":["150"]},{"in":[80],"exp":["60"]},{"in":[1000],"exp":["750"]}]},
+  {"id":"t24","lv":"Kolay","cat":"Temel","title":"Son basamak","desc":"Bir tamsayı alın ve <b>son basamağını</b> yazdırın.","hint":"Bir sayının 10'a bölümünden kalan son basamağıdır: n % 10","tests":[{"in":[1234],"exp":["4"]},{"in":[7],"exp":["7"]},{"in":[90],"exp":["0"]}]},
+  {"id":"t25","lv":"Kolay","cat":"Temel","title":"İki basamaklı sayının basamakları toplamı","desc":"İki basamaklı bir sayı alın, <b>basamaklarının toplamını</b> yazdırın (47 → 11).","hint":"onlar = Int(n / 10) · birler = n % 10","tests":[{"in":[47],"exp":["11"]},{"in":[90],"exp":["9"]},{"in":[99],"exp":["18"]}]},
+  {"id":"t26","lv":"Kolay","cat":"Temel","title":"Üçgenin alanı","desc":"Taban ve yüksekliği alın, <b>üçgenin alanını</b> yazdırın.","hint":"alan = taban * yukseklik / 2","tests":[{"in":[10,6],"exp":["30"]},{"in":[7,4],"exp":["14"]},{"in":[5,5],"exp":["12.5"]}]},
+  {"id":"t20","lv":"Orta","cat":"Temel","title":"Değişkenlerin yerini değiştir","desc":"a ve b sayılarını alın, değerlerini <b>takas edin</b> ve önce a'yı sonra b'yi yazdırın (3, 8 → 8, 3).","hint":"Üçüncü bir değişken kullanın: gecici = a · a = b · b = gecici","tests":[{"in":[3,8],"exp":["8","3"]},{"in":[15,-2],"exp":["-2","15"]}]},
+  {"id":"t27","lv":"Orta","cat":"Temel","title":"Elmaları paylaştır","desc":"Elma sayısını ve kişi sayısını alın; kişi başına düşen <b>elma sayısını</b>, sonra <b>artan elma</b> sayısını yazdırın.","hint":"Tam bölüm: Int(elma / kisi) · Kalan: elma % kisi","tests":[{"in":[17,5],"exp":["3","2"]},{"in":[20,4],"exp":["5","0"]},{"in":[3,7],"exp":["0","3"]}]},
+  {"id":"t28","lv":"Kolay","cat":"Karar","title":"Pozitif, negatif ya da sıfır","desc":"Girilen sayı için <b>Pozitif</b>, <b>Negatif</b> veya <b>Sıfır</b> yazdırın.","hint":"İç içe iki Eğer şekli kullanın.","tests":[{"in":[5],"exp":["pozitif"],"no":["negatif","sifir"]},{"in":[-3],"exp":["negatif"],"no":["pozitif","sifir"]},{"in":[0],"exp":["sifir"],"no":["pozitif","negatif"]}]},
+  {"id":"t29","lv":"Kolay","cat":"Karar","title":"Geçti mi, kaldı mı?","desc":"Notu alın. Not 50 veya üzeriyse <b>Geçti</b>, değilse <b>Kaldı</b> yazdırın.","hint":"Koşul: not >= 50","tests":[{"in":[50],"exp":["gecti"],"no":["kaldi"]},{"in":[49],"exp":["kaldi"],"no":["gecti"]},{"in":[100],"exp":["gecti"],"no":["kaldi"]}]},
+  {"id":"t30","lv":"Kolay","cat":"Karar","title":"İki sayıdan büyük olan","desc":"İki farklı sayı alın, <b>büyük olanı</b> yazdırın.","hint":"Koşul: a > b","tests":[{"in":[3,9],"exp":["9"]},{"in":[12,5],"exp":["12"]},{"in":[-1,-8],"exp":["-1"]}]},
+  {"id":"t31","lv":"Kolay","cat":"Karar","title":"Mutlak değer","desc":"Bir sayı alın, <b>Abs fonksiyonunu kullanmadan</b> mutlak değerini yazdırın.","hint":"Sayı negatifse -1 ile çarpın: x = -x","tests":[{"in":[-7],"exp":["7"]},{"in":[5],"exp":["5"]},{"in":[0],"exp":["0"]}]},
+  {"id":"t33","lv":"Kolay","cat":"Karar","title":"5'e bölünebilme","desc":"Sayı 5'e tam bölünüyorsa <b>Bölünür</b>, bölünmüyorsa <b>Bölünmez</b> yazdırın.","hint":"Koşul: n % 5 == 0","tests":[{"in":[25],"exp":["bolunur"],"no":["bolunmez"]},{"in":[12],"exp":["bolunmez"],"no":["bolunur"]},{"in":[0],"exp":["bolunur"],"no":["bolunmez"]}]},
+  {"id":"t37","lv":"Kolay","cat":"Karar","title":"Hava nasıl?","desc":"Sıcaklığı alın: 10'dan küçükse <b>Soğuk</b>, 25'ten büyükse <b>Sıcak</b>, arasındaysa <b>Ilık</b> yazdırın.","hint":"İki koşul yeterli: t < 10 ve t > 25","tests":[{"in":[5],"exp":["soguk"]},{"in":[18],"exp":["ilik"]},{"in":[30],"exp":["sicak"]}]},
+  {"id":"t38","lv":"Kolay","cat":"Karar","title":"İki sayıyı sırala","desc":"İki sayı alın ve <b>küçükten büyüğe</b> sırayla yazdırın.","hint":"a > b ise önce b'yi yazdırın.","tests":[{"in":[9,3],"exp":["3","9"]},{"in":[2,7],"exp":["2","7"]},{"in":[-5,-9],"exp":["-9","-5"]}]},
+  {"id":"t40","lv":"Kolay","cat":"Karar","title":"Ehliyet alabilir mi?","desc":"Yaşı alın: 18 ve üzeriyse <b>Alabilir</b>, değilse <b>Alamaz</b> yazdırın.","hint":"Koşul: yas >= 18","tests":[{"in":[18],"exp":["alabilir"],"no":["alamaz"]},{"in":[16],"exp":["alamaz"],"no":["alabilir"]},{"in":[40],"exp":["alabilir"],"no":["alamaz"]}]},
+  {"id":"t4","lv":"Orta","cat":"Karar","title":"Tek mi, çift mi?","desc":"Girilen sayı çiftse <b>Çift</b>, tekse <b>Tek</b> yazdırın.","hint":"Kalanı bulmak için % operatörü: sayi % 2 == 0","tests":[{"in":[4],"exp":["cift"],"no":["tek"]},{"in":[7],"exp":["tek"],"no":["cift"]},{"in":[0],"exp":["cift"],"no":["tek"]}]},
+  {"id":"t5","lv":"Orta","cat":"Karar","title":"Üç sayının en büyüğü","desc":"Üç tamsayı alın ve <b>en büyüğünü</b> yazdırın.","hint":"Bir \"enBuyuk\" değişkeni tutun ve diğer sayılarla karşılaştırın.","tests":[{"in":[3,9,2],"exp":["9"]},{"in":[7,1,5],"exp":["7"]},{"in":[-1,-5,-3],"exp":["-1"]},{"in":[4,4,8],"exp":["8"]}]},
+  {"id":"t32","lv":"Orta","cat":"Karar","title":"Artık yıl","desc":"Bir yıl alın; artık yılsa <b>Artık yıl</b>, değilse <b>Artık yıl değil</b> yazdırın.","hint":"4'e bölünüp 100'e bölünmeyen ya da 400'e bölünen yıllar artıktır.","tests":[{"in":[2024],"exp":["artik yil"],"no":["degil"]},{"in":[1900],"exp":["artik yil degil"]},{"in":[2000],"exp":["artik yil"],"no":["degil"]},{"in":[2023],"exp":["artik yil degil"]}]},
+  {"id":"t34","lv":"Orta","cat":"Karar","title":"Not derecesi","desc":"0-100 arası notu alın: 85 ve üzeri <b>Pekiyi</b>, 70 ve üzeri <b>İyi</b>, 50 ve üzeri <b>Orta</b>, altı <b>Zayıf</b>.","hint":"Eğer şekillerini büyükten küçüğe doğru iç içe yerleştirin.","tests":[{"in":[90],"exp":["pekiyi"],"no":["iyi","orta","zayif"]},{"in":[70],"exp":["iyi"],"no":["pekiyi","orta","zayif"]},{"in":[55],"exp":["orta"],"no":["pekiyi","iyi","zayif"]},{"in":[20],"exp":["zayif"],"no":["pekiyi","iyi","orta"]}]},
+  {"id":"t35","lv":"Orta","cat":"Karar","title":"Üçgen olabilir mi?","desc":"Üç kenar uzunluğu alın. Bu kenarlarla üçgen çizilebiliyorsa <b>Evet</b>, çizilemiyorsa <b>Hayır</b> yazdırın.","hint":"Her kenar, diğer ikisinin toplamından küçük olmalı (and kullanın).","tests":[{"in":[3,4,5],"exp":["evet"],"no":["hayir"]},{"in":[1,2,10],"exp":["hayir"],"no":["evet"]},{"in":[5,5,5],"exp":["evet"],"no":["hayir"]}]},
+  {"id":"t36","lv":"Orta","cat":"Karar","title":"Üçgen çeşidi","desc":"Üç kenarı alın: hepsi eşitse <b>Eşkenar</b>, ikisi eşitse <b>İkizkenar</b>, hiçbiri eşit değilse <b>Çeşitkenar</b> yazdırın.","hint":"Önce üçünün eşitliğini kontrol edin, sonra herhangi ikisinin (or).","tests":[{"in":[5,5,5],"exp":["eskenar"]},{"in":[5,5,3],"exp":["ikizkenar"]},{"in":[3,4,5],"exp":["cesitkenar"]},{"in":[4,7,4],"exp":["ikizkenar"]}]},
+  {"id":"t39","lv":"Orta","cat":"Karar","title":"Dört işlem makinesi","desc":"İki sayı ve bir işlem kodu alın (1: toplama, 2: çıkarma, 3: çarpma, 4: bölme). <b>Sonucu</b> yazdırın.","hint":"İşlem koduna göre iç içe Eğer şekilleri kurun.","tests":[{"in":[8,2,1],"exp":["10"]},{"in":[8,2,2],"exp":["6"]},{"in":[8,2,3],"exp":["16"]},{"in":[8,2,4],"exp":["4"]}]},
+  {"id":"t41","lv":"Orta","cat":"Karar","title":"Kargo ücreti","desc":"Paketin ağırlığını (kg) alın: 1 kg'a kadar <b>20</b> TL, 5 kg'a kadar <b>35</b> TL, daha ağırsa <b>50</b> TL yazdırın.","hint":"Koşullar: agirlik <= 1, agirlik <= 5","tests":[{"in":[1],"exp":["20"]},{"in":[3],"exp":["35"]},{"in":[10],"exp":["50"]}]},
+  {"id":"t42","lv":"Orta","cat":"Karar","title":"Üç sayının en küçüğü","desc":"Üç sayı alın ve <b>en küçüğünü</b> yazdırın.","hint":"enKucuk = a ile başlayın, b ve c ile karşılaştırın.","tests":[{"in":[4,2,9],"exp":["2"]},{"in":[-3,0,5],"exp":["-3"]},{"in":[7,7,1],"exp":["1"]}]},
+  {"id":"t43","lv":"Orta","cat":"Karar","title":"Haftanın günü","desc":"1-7 arası bir sayı alın ve karşılık gelen <b>gün adını</b> yazdırın (1: Pazartesi … 7: Pazar).","hint":"7 farklı durum için iç içe Eğer şekilleri gerekir.","tests":[{"in":[1],"exp":["pazartesi"]},{"in":[3],"exp":["carsamba"]},{"in":[7],"exp":["pazar"],"no":["pazartesi"]},{"in":[5],"exp":["cuma"]}]},
+  {"id":"t44","lv":"Orta","cat":"Karar","title":"Sinema bileti","desc":"Yaşı alın: 12 yaş altı <b>20</b> TL, 65 ve üzeri <b>25</b> TL, diğerleri <b>50</b> TL ödesin. Ücreti yazdırın.","hint":"Koşullar: yas < 12, yas >= 65","tests":[{"in":[8],"exp":["20"]},{"in":[30],"exp":["50"]},{"in":[70],"exp":["25"]}]},
+  {"id":"t45","lv":"Kolay","cat":"Döngü","title":"1'den N'e kadar yazdır","desc":"N sayısını alın ve 1'den N'e kadar tüm sayıları alt alta yazdırın.","hint":"For i = 1 → n","tests":[{"in":[5],"exp":["1","2","3","4","5"]},{"in":[3],"exp":["1","2","3"]}]},
+  {"id":"t46","lv":"Kolay","cat":"Döngü","title":"Geri sayım","desc":"N sayısını alın ve N'den 1'e kadar <b>geriye doğru</b> sayın.","hint":"For döngüsünde yönü \"Azalan\" seçin.","tests":[{"in":[4],"exp":["4","3","2","1"]},{"in":[6],"exp":["6","5","4","3","2","1"]}]},
+  {"id":"t47","lv":"Kolay","cat":"Döngü","title":"Çift sayılar","desc":"N'yi alın; 1 ile N arasındaki <b>çift sayıları</b> yazdırın.","hint":"For döngüsünde adımı 2 yapın veya i % 2 == 0 kontrol edin.","tests":[{"in":[10],"exp":["2","4","6","8","10"]},{"in":[7],"exp":["2","4","6"]}]},
+  {"id":"t48","lv":"Kolay","cat":"Döngü","title":"Tek sayıların toplamı","desc":"N'yi alın; 1 ile N arasındaki <b>tek sayıların toplamını</b> yazdırın.","hint":"toplam = 0 ile başlayın.","tests":[{"in":[10],"exp":["25"]},{"in":[7],"exp":["16"]},{"in":[1],"exp":["1"]}]},
+  {"id":"t6","lv":"Orta","cat":"Döngü","title":"1'den N'e kadar toplam","desc":"Bir N sayısı alın ve 1 + 2 + … + N toplamını yazdırın.","hint":"toplam = 0 ile başlayın, For döngüsünde toplam = toplam + i","tests":[{"in":[5],"exp":["15"]},{"in":[10],"exp":["55"]},{"in":[100],"exp":["5050"]}]},
+  {"id":"t7","lv":"Orta","cat":"Döngü","title":"Çarpım tablosu","desc":"Bir N sayısı alın; N×1'den N×10'a kadar sonuçları alt alta yazdırın.","hint":"For i = 1 → 10 içinde Çıktı: n * i","tests":[{"in":[3],"exp":["3","6","9","12","15","18","21","24","27","30"]},{"in":[7],"exp":["7","14","21","28","35","42","49","56","63","70"]}]},
+  {"id":"t49","lv":"Orta","cat":"Döngü","title":"Bir sayının bölenleri","desc":"Bir sayı alın ve tüm <b>pozitif bölenlerini</b> küçükten büyüğe yazdırın.","hint":"1'den n'e kadar her i için: n % i == 0 ise yazdır.","tests":[{"in":[12],"exp":["1","2","3","4","6","12"]},{"in":[7],"exp":["1","7"]},{"in":[30],"exp":["1","2","3","5","6","10","15","30"]}]},
+  {"id":"t50","lv":"Orta","cat":"Döngü","title":"Bölen sayısı","desc":"Bir sayının kaç tane pozitif <b>böleni</b> olduğunu yazdırın.","hint":"Bölenleri saymak için bir sayaç değişkeni kullanın.","tests":[{"in":[12],"exp":["6"]},{"in":[7],"exp":["2"]},{"in":[36],"exp":["9"]}]},
+  {"id":"t51","lv":"Orta","cat":"Döngü","title":"Üs alma (döngüyle)","desc":"Taban ve üs alın; <b>^ operatörünü kullanmadan</b> taban<sup>üs</sup> değerini yazdırın.","hint":"sonuc = 1 ile başlayın, üs kadar tabanla çarpın.","tests":[{"in":[2,10],"exp":["1024"]},{"in":[3,4],"exp":["81"]},{"in":[5,0],"exp":["1"]}]},
+  {"id":"t52","lv":"Orta","cat":"Döngü","title":"Basamak sayısı","desc":"Pozitif bir tamsayının kaç <b>basamaklı</b> olduğunu yazdırın.","hint":"Sayı 0 olana kadar Int(n / 10) yapın ve sayın.","tests":[{"in":[12345],"exp":["5"]},{"in":[7],"exp":["1"]},{"in":[100],"exp":["3"]}]},
+  {"id":"t53","lv":"Orta","cat":"Döngü","title":"Basamakların toplamı","desc":"Pozitif bir tamsayının tüm <b>basamaklarının toplamını</b> yazdırın.","hint":"Döngüde: toplam = toplam + n % 10 · n = Int(n / 10)","tests":[{"in":[1234],"exp":["10"]},{"in":[909],"exp":["18"]},{"in":[5],"exp":["5"]}]},
+  {"id":"t54","lv":"Orta","cat":"Döngü","title":"Fibonacci dizisi","desc":"N'yi alın ve Fibonacci dizisinin ilk N terimini yazdırın (1, 1, 2, 3, 5, …).","hint":"İki değişken tutun: onceki ve simdiki. yeni = onceki + simdiki","tests":[{"in":[7],"exp":["1","1","2","3","5","8","13"]},{"in":[10],"exp":["1","1","2","3","5","8","13","21","34","55"]}]},
+  {"id":"t55","lv":"Orta","cat":"Döngü","title":"N. Fibonacci sayısı","desc":"N'yi alın ve Fibonacci dizisinin <b>N. terimini</b> yazdırın (1. ve 2. terim 1'dir).","hint":"Döngüyü N-2 kez çalıştırın.","tests":[{"in":[10],"exp":["55"]},{"in":[1],"exp":["1"]},{"in":[20],"exp":["6765"]}]},
+  {"id":"t61","lv":"Orta","cat":"Döngü","title":"Karelerin toplamı","desc":"N'yi alın; 1² + 2² + … + N² toplamını yazdırın.","hint":"toplam = toplam + i * i","tests":[{"in":[3],"exp":["14"]},{"in":[10],"exp":["385"]}]},
+  {"id":"t62","lv":"Orta","cat":"Döngü","title":"0 girilene kadar topla","desc":"Kullanıcı <b>0</b> girene kadar sayı almaya devam edin; sonra girilen sayıların <b>toplamını</b> yazdırın.","hint":"While veya Do döngüsü: sayi != 0 olduğu sürece","tests":[{"in":[5,3,7,0],"exp":["15"]},{"in":[0],"exp":["0"]},{"in":[10,-4,0],"exp":["6"]}]},
+  {"id":"t63","lv":"Orta","cat":"Döngü","title":"Pozitif sayı iste","desc":"Kullanıcı <b>pozitif bir sayı girene kadar</b> tekrar sayı isteyin. Sonunda girilen pozitif sayıyı yazdırın.","hint":"Do döngüsü: koşul sayi <= 0","tests":[{"in":[-3,-1,8],"exp":["8"]},{"in":[4],"exp":["4"]}]},
+  {"id":"t66","lv":"Orta","cat":"Döngü","title":"Bileşik faiz","desc":"Ana parayı ve yıl sayısını alın; para her yıl <b>%10</b> artıyor. Sonundaki tutarı yazdırın.","hint":"Her yıl: para = para + para * 10 / 100 (para Ondalık olmalı)","tests":[{"in":[1000,2],"exp":["1210"]},{"in":[1000,3],"exp":["1331"]},{"in":[500,1],"exp":["550"]}]},
+  {"id":"t67","lv":"Orta","cat":"Döngü","title":"Bakteri üremesi","desc":"Bakteri sayısı her saat <b>ikiye katlanır</b>. Başlangıç sayısını ve hedef sayıyı alın; hedefe ulaşmak (veya geçmek) için kaç <b>saat</b> gerektiğini yazdırın.","hint":"sayi < hedef olduğu sürece: sayi = sayi * 2, saat = saat + 1","tests":[{"in":[1,1000],"exp":["10"]},{"in":[5,100],"exp":["5"]},{"in":[10,10],"exp":["0"]}]},
+  {"id":"t8","lv":"Zor","cat":"Döngü","title":"Faktöriyel","desc":"Girilen N için <b>N!</b> değerini hesaplayın (0! = 1).","hint":"sonuc = 1 ile başlayıp 1'den N'e kadar çarpın.","tests":[{"in":[5],"exp":["120"]},{"in":[0],"exp":["1"]},{"in":[6],"exp":["720"]}]},
+  {"id":"t9","lv":"Zor","cat":"Döngü","title":"Asal sayı mı?","desc":"Girilen sayı asalsa <b>Asal</b>, değilse <b>Asal değil</b> yazdırın.","hint":"2'den sayı-1'e kadar bölenleri deneyin. 1 asal değildir!","tests":[{"in":[7],"exp":["asal"],"no":["degil"]},{"in":[9],"exp":["asal degil"]},{"in":[2],"exp":["asal"],"no":["degil"]},{"in":[1],"exp":["asal degil"]}]},
+  {"id":"t10","lv":"Zor","cat":"Döngü","title":"Basamakları ters çevir","desc":"Pozitif bir tamsayıyı ters çevirip tek bir sayı olarak yazdırın (1234 → <b>4321</b>).","hint":"Son basamak: sayi % 10 · Sayıdan son basamağı atmak: Int(sayi / 10) · ters = ters * 10 + basamak","tests":[{"in":[1234],"exp":["4321"]},{"in":[907],"exp":["709"]},{"in":[5],"exp":["5"]}]},
+  {"id":"t56","lv":"Zor","cat":"Döngü","title":"EBOB","desc":"İki sayının <b>en büyük ortak bölenini</b> yazdırın.","hint":"Öklid: b sıfır olana kadar → kalan = a % b · a = b · b = kalan","tests":[{"in":[12,18],"exp":["6"]},{"in":[17,5],"exp":["1"]},{"in":[100,75],"exp":["25"]}]},
+  {"id":"t57","lv":"Zor","cat":"Döngü","title":"EKOK","desc":"İki sayının <b>en küçük ortak katını</b> yazdırın.","hint":"EKOK = a * b / EBOB · veya büyük sayının katlarını deneyin.","tests":[{"in":[4,6],"exp":["12"]},{"in":[5,7],"exp":["35"]},{"in":[12,18],"exp":["36"]}]},
+  {"id":"t58","lv":"Zor","cat":"Döngü","title":"Mükemmel sayı","desc":"Kendisi hariç bölenlerinin toplamı kendisine eşit olan sayılar mükemmeldir. Mükemmelse <b>Mükemmel</b>, değilse <b>Mükemmel değil</b> yazdırın.","hint":"1'den n-1'e kadar bölenleri toplayın.","tests":[{"in":[6],"exp":["mukemmel"],"no":["degil"]},{"in":[28],"exp":["mukemmel"],"no":["degil"]},{"in":[12],"exp":["mukemmel degil"]}]},
+  {"id":"t59","lv":"Zor","cat":"Döngü","title":"Armstrong sayısı","desc":"Üç basamaklı bir sayı, basamaklarının küplerinin toplamına eşitse <b>Evet</b>, değilse <b>Hayır</b> yazdırın (153 = 1³+5³+3³).","hint":"Basamakları % 10 ve Int(n / 10) ile ayırın.","tests":[{"in":[153],"exp":["evet"],"no":["hayir"]},{"in":[370],"exp":["evet"],"no":["hayir"]},{"in":[123],"exp":["hayir"],"no":["evet"]}]},
+  {"id":"t60","lv":"Zor","cat":"Döngü","title":"Palindrom sayı","desc":"Sayı tersten okunduğunda aynıysa <b>Evet</b>, değilse <b>Hayır</b> yazdırın (12321 → Evet).","hint":"Sayıyı ters çevirip orijinaliyle karşılaştırın.","tests":[{"in":[12321],"exp":["evet"],"no":["hayir"]},{"in":[1234],"exp":["hayir"],"no":["evet"]},{"in":[7],"exp":["evet"],"no":["hayir"]}]},
+  {"id":"t64","lv":"Zor","cat":"Döngü","title":"0 girilene kadar en büyük","desc":"Kullanıcı <b>0</b> girene kadar pozitif sayılar alın; girilenlerin <b>en büyüğünü</b> yazdırın.","hint":"enBuyuk = 0 ile başlayın; her sayıyı karşılaştırın.","tests":[{"in":[4,9,2,0],"exp":["9"]},{"in":[15,3,0],"exp":["15"]}]},
+  {"id":"t65","lv":"Zor","cat":"Döngü","title":"0 girilene kadar ortalama","desc":"Kullanıcı <b>0</b> girene kadar sayı alın; girilen sayıların (0 hariç) <b>ortalamasını</b> yazdırın.","hint":"Hem toplamı hem adet sayısını tutun.","tests":[{"in":[10,20,30,0],"exp":["20"]},{"in":[5,0],"exp":["5"]},{"in":[4,8,0],"exp":["6"]}]},
+  {"id":"t68","lv":"Zor","cat":"Döngü","title":"1'den N'e asal sayılar","desc":"N'yi alın; 2 ile N arasındaki tüm <b>asal sayıları</b> yazdırın.","hint":"İç içe iki döngü: dıştaki sayıları, içteki bölenleri dener.","tests":[{"in":[20],"exp":["2","3","5","7","11","13","17","19"]},{"in":[10],"exp":["2","3","5","7"]}]},
+  {"id":"t69","lv":"Zor","cat":"Döngü","title":"İkilik sisteme çevir","desc":"Pozitif bir tamsayıyı alın ve <b>ikilik (binary)</b> karşılığını tek bir sayı/metin olarak yazdırın (10 → 1010).","hint":"Sayıyı 2'ye bölerek kalanları toplayın; kalanları ters sırada birleştirin (Metin ve & kullanılabilir).","tests":[{"in":[10],"exp":["1010"]},{"in":[5],"exp":["101"]},{"in":[8],"exp":["1000"]}]},
+  {"id":"t70","lv":"Zor","cat":"Döngü","title":"Collatz adımları","desc":"Bir sayı alın: çiftse ikiye bölün, tekse 3 ile çarpıp 1 ekleyin. Sayı <b>1 olana kadar</b> kaç adım sürdüğünü yazdırın.","hint":"While n != 1 içinde Eğer n % 2 == 0","tests":[{"in":[6],"exp":["8"]},{"in":[1],"exp":["0"]},{"in":[27],"exp":["111"]}]},
+  {"id":"t71","lv":"Kolay","cat":"Dizi","title":"Diziyi ters yazdır","desc":"5 sayıyı bir diziye alın ve <b>ters sırada</b> yazdırın.","hint":"Okurken For i = 0 → 4, yazarken For i = 4 → 0 (Azalan)","tests":[{"in":[1,2,3,4,5],"exp":["5","4","3","2","1"]},{"in":[9,8,7,6,5],"exp":["5","6","7","8","9"]}]},
+  {"id":"t76","lv":"Kolay","cat":"Dizi","title":"Dizinin toplamı","desc":"Önce N'yi, sonra N sayıyı diziye alın; elemanların <b>toplamını</b> yazdırın.","hint":"Dizi boyutu olarak n kullanabilirsiniz: Tamsayı dizi d[n]","tests":[{"in":[4,5,10,15,20],"exp":["50"]},{"in":[3,-1,1,7],"exp":["7"]}]},
+  {"id":"t83","lv":"Kolay","cat":"Dizi","title":"Geçen öğrenci sayısı","desc":"5 öğrencinin notunu diziye alın; <b>50 ve üzeri</b> alan öğrenci sayısını yazdırın.","hint":"Sayaç: notlar[i] >= 50","tests":[{"in":[45,60,70,30,90],"exp":["3"]},{"in":[10,20,30,40,49],"exp":["0"]}]},
+  {"id":"t72","lv":"Orta","cat":"Dizi","title":"Dizideki en büyük","desc":"Önce eleman sayısı N'yi, sonra N sayıyı diziye alın. <b>En büyük</b> elemanı yazdırın.","hint":"enBuyuk = dizi[0] ile başlayın.","tests":[{"in":[5,3,8,1,9,4],"exp":["9"]},{"in":[3,-2,-7,-1],"exp":["-1"]}]},
+  {"id":"t73","lv":"Orta","cat":"Dizi","title":"Dizideki en küçük","desc":"Önce N'yi, sonra N sayıyı diziye alın. <b>En küçük</b> elemanı yazdırın.","hint":"enKucuk = dizi[0] ile başlayın.","tests":[{"in":[5,3,8,1,9,4],"exp":["1"]},{"in":[4,10,20,5,40],"exp":["5"]}]},
+  {"id":"t74","lv":"Orta","cat":"Dizi","title":"Dizide arama","desc":"5 sayıyı diziye alın, ardından aranacak sayıyı alın. Bulunursa <b>indeksini</b> (0'dan başlayarak), bulunmazsa <b>Yok</b> yazdırın.","hint":"bulundu adında Mantıksal bir değişken kullanın.","tests":[{"in":[4,8,15,16,23,15],"exp":["2"]},{"in":[4,8,15,16,23,7],"exp":["yok"]}]},
+  {"id":"t77","lv":"Orta","cat":"Dizi","title":"Kaç kez geçiyor?","desc":"6 sayıyı diziye alın, ardından bir sayı alın. Bu sayının dizide <b>kaç kez</b> geçtiğini yazdırın.","hint":"Bir sayaç kullanın: d[i] == x ise artırın.","tests":[{"in":[1,3,1,5,1,2,1],"exp":["3"]},{"in":[1,2,3,4,5,6,9],"exp":["0"]}]},
+  {"id":"t80","lv":"Orta","cat":"Dizi","title":"İki dizinin toplamı","desc":"3 elemanlı A dizisini, sonra 3 elemanlı B dizisini alın. <b>A[i] + B[i]</b> değerlerini sırayla yazdırın.","hint":"Üç dizi tanımlayın: a, b ve c (veya doğrudan yazdırın).","tests":[{"in":[1,2,3,10,20,30],"exp":["11","22","33"]},{"in":[5,5,5,1,2,3],"exp":["6","7","8"]}]},
+  {"id":"t82","lv":"Orta","cat":"Dizi","title":"En büyük ve yeri","desc":"5 sayıyı diziye alın; <b>en büyük elemanı</b> ve <b>indeksini</b> (0'dan başlayarak) sırayla yazdırın.","hint":"enBuyuk ile birlikte yer değişkenini de güncelleyin.","tests":[{"in":[3,8,1,9,4],"exp":["9","3"]},{"in":[50,10,20,30,40],"exp":["50","0"]}]},
+  {"id":"t11","lv":"Zor","cat":"Dizi","title":"Dizi ortalaması","desc":"5 öğrencinin notunu bir <b>diziye</b> alın ve ortalamayı yazdırın.","hint":"Tamsayı dizisi notlar[5] tanımlayın; For i = 0 → 4","tests":[{"in":[50,60,70,80,90],"exp":["70"]},{"in":[100,90,85,70,60],"exp":["81"]}]},
+  {"id":"t75","lv":"Zor","cat":"Dizi","title":"Ortalamanın üstündekiler","desc":"5 sayıyı diziye alın; <b>ortalamadan büyük</b> kaç eleman olduğunu yazdırın.","hint":"Önce ortalamayı hesaplayın, sonra diziyi ikinci kez gezin.","tests":[{"in":[10,20,30,40,50],"exp":["2"]},{"in":[5,5,5,5,25],"exp":["1"]}]},
+  {"id":"t78","lv":"Zor","cat":"Dizi","title":"Küçükten büyüğe sırala","desc":"5 sayıyı diziye alın ve <b>küçükten büyüğe sıralayarak</b> yazdırın.","hint":"Kabarcık sıralaması: yan yana iki eleman yanlış sıradaysa yerlerini değiştirin.","tests":[{"in":[5,3,9,1,4],"exp":["1","3","4","5","9"]},{"in":[2,2,8,-1,0],"exp":["-1","0","2","2","8"]}]},
+  {"id":"t79","lv":"Zor","cat":"Dizi","title":"Büyükten küçüğe sırala","desc":"5 sayıyı diziye alın ve <b>büyükten küçüğe sıralayarak</b> yazdırın.","hint":"Kabarcık sıralamasında karşılaştırmayı ters çevirin.","tests":[{"in":[5,3,9,1,4],"exp":["9","5","4","3","1"]},{"in":[10,30,20,50,40],"exp":["50","40","30","20","10"]}]},
+  {"id":"t81","lv":"Zor","cat":"Dizi","title":"Diziyi sağa kaydır","desc":"4 sayıyı diziye alın; elemanları <b>bir sağa kaydırın</b> (sonuncu başa geçsin) ve yazdırın (1 2 3 4 → 4 1 2 3).","hint":"Son elemanı geçici değişkende saklayın, geriden başa doğru kaydırın.","tests":[{"in":[1,2,3,4],"exp":["4","1","2","3"]},{"in":[7,8,9,10],"exp":["10","7","8","9"]}]},
+  {"id":"t84","lv":"Zor","cat":"Dizi","title":"Dizi simetrik mi?","desc":"5 sayıyı diziye alın; dizi baştan ve sondan aynı okunuyorsa <b>Evet</b>, değilse <b>Hayır</b> yazdırın.","hint":"d[i] ile d[4 - i] elemanlarını karşılaştırın.","tests":[{"in":[1,2,3,2,1],"exp":["evet"],"no":["hayir"]},{"in":[1,2,3,4,5],"exp":["hayir"],"no":["evet"]}]},
+  {"id":"t85","lv":"Kolay","cat":"Metin","title":"Merhaba, adın ne?","desc":"Kullanıcının adını alın ve <b>Merhaba ad</b> şeklinde selamlayın (Ali → Merhaba Ali).","hint":"Ad değişkeni Metin (String) türünde olmalı. Çıktı: \"Merhaba \" & ad","tests":[{"in":["Ali"],"exp":["merhaba Ali"]},{"in":["Zeynep"],"exp":["merhaba Zeynep"]}]},
+  {"id":"t90","lv":"Kolay","cat":"Metin","title":"Kelimeyi N kez yaz","desc":"Bir kelime ve N sayısı alın; kelimeyi <b>N kez</b> alt alta yazdırın.","hint":"For i = 1 → n içinde Çıktı kelime","tests":[{"in":["hey",3],"exp":["hey","hey","hey"]},{"in":["kod",2],"exp":["kod","kod"]}]},
+  {"id":"t86","lv":"Orta","cat":"Metin","title":"Metni ters çevir","desc":"Bir kelime alın ve <b>tersten</b> yazdırın (kalem → melak).","hint":"For i = Len(k) - 1 → 0 (Azalan) içinde: ters = ters & Char(k, i)","tests":[{"in":["kalem"],"exp":["melak"]},{"in":["abc"],"exp":["cba"]}]},
+  {"id":"t89","lv":"Orta","cat":"Metin","title":"Harf sayma","desc":"Bir kelime ve bir harf alın; harfin kelimede <b>kaç kez</b> geçtiğini yazdırın.","hint":"Char(kelime, i) == harf ise sayacı artırın.","tests":[{"in":["ananas","a"],"exp":["3"]},{"in":["algoritma","z"],"exp":["0"]}]},
+  {"id":"t87","lv":"Zor","cat":"Metin","title":"Palindrom kelime","desc":"Kelime tersten de aynı okunuyorsa <b>Evet</b>, değilse <b>Hayır</b> yazdırın (kayak → Evet).","hint":"Kelimeyi ters çevirip == ile karşılaştırın.","tests":[{"in":["kayak"],"exp":["evet"],"no":["hayir"]},{"in":["kalem"],"exp":["hayir"],"no":["evet"]},{"in":["ses"],"exp":["evet"],"no":["hayir"]}]},
+  {"id":"t88","lv":"Zor","cat":"Metin","title":"Sesli harf sayısı","desc":"Küçük harflerle yazılmış bir kelime alın ve kaç <b>sesli harf</b> (a e ı i o ö u ü) içerdiğini yazdırın.","hint":"Char(k, i) ile her harfi kontrol edin; or ile 8 sesliyi karşılaştırın.","tests":[{"in":["bilgisayar"],"exp":["4"]},{"in":["okul"],"exp":["2"]},{"in":["kitap"],"exp":["2"]}]},
+  {"id":"t98","lv":"Kolay","cat":"Fonksiyon","title":"Selamlama prosedürü","desc":"Değer döndürmeyen <b>Selamla(ad)</b> fonksiyonu yazın; ekrana \"Merhaba ad\" yazsın. Main'de adı alın ve <b>Çağır</b> şekliyle fonksiyonu çalıştırın.","hint":"Dönüş türü \"Yok\" olsun. Çağır şekline: Selamla(ad)","tests":[{"in":["Ece"],"exp":["merhaba Ece"]},{"in":["Mert"],"exp":["merhaba Mert"]}]},
+  {"id":"t91","lv":"Orta","cat":"Fonksiyon","title":"Kare fonksiyonu","desc":"<b>Kare(n)</b> adında, aldığı sayının karesini döndüren bir fonksiyon yazın. Main'de bir sayı alıp sonucu yazdırın.","hint":"＋ Fonksiyon ile oluşturun; dönüş türü Tamsayı, dönüş değişkeni sonuc.","tests":[{"in":[7],"exp":["49"]},{"in":[-3],"exp":["9"]}]},
+  {"id":"t92","lv":"Orta","cat":"Fonksiyon","title":"EnBuyuk fonksiyonu","desc":"İki sayının büyüğünü döndüren <b>EnBuyuk(a, b)</b> fonksiyonu yazın. Main'de üç sayı alın ve fonksiyonu iki kez kullanarak en büyüğünü yazdırın.","hint":"EnBuyuk(EnBuyuk(x, y), z)","tests":[{"in":[3,11,7],"exp":["11"]},{"in":[20,5,15],"exp":["20"]}]},
+  {"id":"t96","lv":"Orta","cat":"Fonksiyon","title":"Mutlak fark fonksiyonu","desc":"İki sayı arasındaki farkın mutlak değerini döndüren <b>Fark(a, b)</b> fonksiyonu yazın ve sonucu yazdırın.","hint":"Fonksiyon içinde Eğer a > b","tests":[{"in":[3,10],"exp":["7"]},{"in":[10,3],"exp":["7"]},{"in":[-4,4],"exp":["8"]}]},
+  {"id":"t97","lv":"Orta","cat":"Fonksiyon","title":"Çevre ve alan fonksiyonları","desc":"<b>Cevre(a, b)</b> ve <b>Alan(a, b)</b> fonksiyonlarını yazın. Dikdörtgenin kenarlarını alıp önce çevresini, sonra alanını yazdırın.","hint":"Her fonksiyon ayrı bir sekmede oluşturulur.","tests":[{"in":[3,5],"exp":["16","15"]},{"in":[10,2],"exp":["24","20"]}]},
+  {"id":"t99","lv":"Orta","cat":"Fonksiyon","title":"Çift mi fonksiyonu","desc":"Sayı çiftse true döndüren <b>CiftMi(n)</b> fonksiyonu yazın. Main'de 5 sayı alıp kaç tanesinin çift olduğunu yazdırın.","hint":"Main'de bir döngü içinde: Eğer CiftMi(x)","tests":[{"in":[1,2,3,4,6],"exp":["3"]},{"in":[1,3,5,7,9],"exp":["0"]}]},
+  {"id":"t93","lv":"Zor","cat":"Fonksiyon","title":"AsalMi fonksiyonu","desc":"Sayı asalsa true döndüren <b>AsalMi(n)</b> fonksiyonu yazın. Main'de N alıp 1 ile N arasında kaç asal sayı olduğunu yazdırın.","hint":"Dönüş türü Mantıksal (Boolean) olsun. Main'de: Eğer AsalMi(i)","tests":[{"in":[10],"exp":["4"]},{"in":[30],"exp":["10"]}]},
+  {"id":"t94","lv":"Zor","cat":"Fonksiyon","title":"Kombinasyon","desc":"Bir <b>Faktoriyel(n)</b> fonksiyonu yazın ve onu kullanarak C(n, r) = n! / (r! · (n−r)!) değerini yazdırın. Önce n, sonra r alınır.","hint":"sonuc = Faktoriyel(n) / (Faktoriyel(r) * Faktoriyel(n - r))","tests":[{"in":[5,2],"exp":["10"]},{"in":[6,3],"exp":["20"]},{"in":[4,4],"exp":["1"]}]},
+  {"id":"t95","lv":"Zor","cat":"Fonksiyon","title":"Dijital kök","desc":"Basamaklarının toplamını döndüren <b>BasamakToplami(n)</b> fonksiyonu yazın. Sayı tek basamaklı olana kadar fonksiyonu tekrar uygulayıp sonucu yazdırın (9875 → 29 → 11 → 2).","hint":"Main'de: While n >= 10 içinde n = BasamakToplami(n)","tests":[{"in":[9875],"exp":["2"]},{"in":[38],"exp":["2"]},{"in":[5],"exp":["5"]}]},
+  {"id":"t100","lv":"Zor","cat":"Fonksiyon","title":"Ortalama fonksiyonu (dizi)","desc":"Bir diziyi ve boyutunu parametre olarak alıp ortalamayı döndüren <b>Ortalama(d, n)</b> fonksiyonu yazın. Main'de 5 notu diziye alıp sonucu yazdırın.","hint":"Parametre tanımlarken \"[ ]\" kutusunu işaretleyin; dönüş türü Ondalık.","tests":[{"in":[50,60,70,80,90],"exp":["70"]},{"in":[100,100,90,90,70],"exp":["90"]}]}
+];
+let solved={};try{solved=JSON.parse(store.get('akislab.solved')||'{}')}catch(e){}
+let openTask=null;
+const norm=s=>String(s).toLocaleLowerCase('tr').replace(/[çğıöşü]/g,m=>({ç:'c',ğ:'g',ı:'i',ö:'o',ş:'s',ü:'u'}[m]));
+function findTok(out,tok,from){
+  let i=from;
+  while((i=out.indexOf(tok,i))!==-1){const b=out[i-1]||' ',a=out[i+tok.length]||' ';
+    const numeric=/^-?\d/.test(tok);
+    if(!/[a-z0-9]/.test(b)&&!(b==='-'&&numeric)&&(!numeric||(!/[a-z0-9]/.test(a)&&!(a==='.'&&/\d/.test(out[i+tok.length+1]||'')))))return i+tok.length;i++}
+  return -1;
+}
+function runHeadless(inputs){
+  let out='';const R=makeRunner(prog,{out:(t,nl)=>{out+=t+(nl?'\n':' ')}});const q=[...inputs];let send,steps=0;
+  try{while(true){const r=R.gen.next(send);send=undefined;if(r.done)break;if(r.value.k==='input'){if(!q.length)return{out,err:'Program beklenenden fazla girdi istedi.'};send=String(q.shift())}if(++steps>300000)return{out,err:'Program çok uzun sürdü (sonsuz döngü olabilir).'}}}
+  catch(e){return{out,err:e.message}}
+  return{out};
+}
+function testTask(t){
+  const res=t.tests.map(ts=>{const r=runHeadless(ts.in);if(r.err)return{ok:false,ts,r};const o=norm(r.out);let pos=0,ok=true;
+    for(const e of ts.exp){const p=findTok(o,norm(e),pos);if(p<0){ok=false;break}pos=p}
+    if(ok&&ts.no)for(const n of ts.no)if(findTok(o,norm(n),0)>=0)ok=false;return{ok,ts,r}});
+  const all=res.every(x=>x.ok);if(all){solved[t.id]=true;store.set('akislab.solved',JSON.stringify(solved))}
+  renderTasks();
+  const trEl=$('#tr_'+t.id);if(trEl)trEl.innerHTML=(all?'<div class="p">🎉 Tebrikler! Tüm testler geçti.</div>':'')+res.map((x,i)=>`<div class="${x.ok?'p':'f'}">${x.ok?'✔':'✘'} Test ${i+1} · Girdi: <b>${x.ts.in.length?esc(x.ts.in.join(', ')):'—'}</b> · Beklenen: <b>${esc(x.ts.exp.join(' '))}</b>${x.ok?'':'<br>'+(x.r.err?'Hata: '+esc(x.r.err):'Çıktınız: <b>'+esc(x.r.out.trim().slice(0,160)||'(boş)')+'</b>')}</div>`).join('');
+}
+let tFilt={cat:'Tümü',lv:'Tümü',open:false};
+function renderTasks(){
+  const n=TASKS.filter(t=>solved[t.id]).length;
+  const cats=['Tümü','Temel','Karar','Döngü','Dizi','Metin','Fonksiyon'],lvs=['Tümü','Kolay','Orta','Zor'];
+  const cnt=c=>c==='Tümü'?TASKS.length:TASKS.filter(t=>t.cat===c).length;
+  const chip=(k,v,lbl)=>`<button class="tchip${tFilt[k]===v?' on':''}" data-f="${k}" data-v="${v}">${lbl}</button>`;
+  const list=TASKS.map((t,i)=>({t,i})).filter(({t})=>(tFilt.cat==='Tümü'||t.cat===tFilt.cat)&&(tFilt.lv==='Tümü'||t.lv===tFilt.lv)&&(!tFilt.open||!solved[t.id]));
+  $('#tasks').innerHTML=`<style>.tchips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}.tchip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;color:#444a63}.tchip:hover{border-color:var(--acc)}.tchip.on{background:var(--acc);border-color:var(--acc);color:#fff}.task h4 .no{color:var(--mut);font-weight:700;font-size:12px;min-width:26px}.task h4 .ct{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;background:#eefaf9;color:#0d9488}.task h4 .lv.Kolay{background:#e8f8ee;color:#15803d}.task h4 .lv.Zor{background:#fdecef;color:#be123c}</style>
+  <div style="font-weight:700;font-size:14px">Görevler <span style="float:right;color:var(--mut);font-weight:600">${n} / ${TASKS.length} çözüldü</span></div><div class="prog"><div style="width:${n/TASKS.length*100}%"></div></div>
+  <div style="font-size:12.5px;color:var(--mut);margin-bottom:10px">Bir görev seçin, akış diyagramınızı oluşturun ve <b>Test Et</b>'e basın. Programınız farklı girdilerle otomatik olarak denenir.</div>
+  <div class="tchips">${cats.map(c=>chip('cat',c,c+' <span style="opacity:.6">'+cnt(c)+'</span>')).join('')}</div>
+  <div class="tchips" style="margin-bottom:12px">${lvs.map(l=>chip('lv',l,l)).join('')}<button class="tchip${tFilt.open?' on':''}" data-f="open">Çözülmemişler</button></div>`+
+  (list.length?'':'<div class="empty">Bu filtrede görev yok. 🎉</div>')+
+  list.map(({t,i})=>`<div class="task${openTask===t.id?' on':''}" data-t="${t.id}"><h4><span class="no">${i+1}.</span>${esc(t.title)}<span class="lv ${t.lv}">${t.lv}</span><span class="ct">${t.cat}</span>${solved[t.id]?'<span class="done">✔</span>':''}</h4>
+    <div class="tb2">${t.desc}<div class="hintx">💡 ${esc(t.hint)}</div><div style="display:flex;gap:6px"><button class="btn pri" data-test="${t.id}">Test Et</button><button class="btn" data-blank="${t.id}">Boş sayfada başla</button></div><div class="tres" id="tr_${t.id}"></div></div></div>`).join('');
+}
+$('#tasks').addEventListener('click',e=>{
+  const tb=e.target.closest('[data-test]');if(tb){stopRun(true);testTask(TASKS.find(t=>t.id===tb.dataset.test));return}
+  const bb=e.target.closest('[data-blank]');if(bb){const t=TASKS.find(x=>x.id===bb.dataset.blank);pushUndo();loadProg(emptyProgram());prog.name=t.title;render();toast('Boş sayfa açıldı (Ctrl+Z ile önceki programa dönebilirsiniz).');return}
+  const fb=e.target.closest('[data-f]');if(fb){if(fb.dataset.f==='open')tFilt.open=!tFilt.open;else tFilt[fb.dataset.f]=fb.dataset.v;renderTasks();return}
+  if(e.target.closest('.tb2'))return;
+  const c=e.target.closest('.task');if(c){openTask=openTask===c.dataset.t?null:c.dataset.t;renderTasks()}
+});
+
+/* ================= Yardım ================= */
+$('#help').innerHTML=`
+<h3>🧭 Nasıl kullanılır?</h3>
+<p>Diyagramdaki <b>oklara</b> tıklayın ve eklemek istediğiniz şekli seçin. Bir şekle <b>çift tıklayarak</b> içeriğini düzenleyin. <b>▶ Çalıştır</b> ile programı çalıştırın, <b>⏭ Adım</b> ile her adımı tek tek izleyin. Çalışan şekil turuncu renkle parlar; değişkenlerin değerleri sağ alttaki tabloda görünür.</p>
+<h3>🔷 Şekiller</h3>
+<table>
+<tr><td>${miniIcon('declare')}</td><td><b>Tanımla</b>: değişken oluşturur (Tamsayı, Ondalık, Metin, Mantıksal).</td></tr>
+<tr><td>${miniIcon('assign')}</td><td><b>Ata</b>: bir değeri değişkene yerleştirir: <code>toplam = a + b</code></td></tr>
+<tr><td>${miniIcon('input')}</td><td><b>Girdi</b>: kullanıcıdan değer okur.</td></tr>
+<tr><td>${miniIcon('output')}</td><td><b>Çıktı</b>: ekrana yazar: <code>"Sonuç: " &amp; x</code></td></tr>
+<tr><td>${miniIcon('if')}</td><td><b>Eğer</b>: koşula göre iki yoldan birini seçer.</td></tr>
+<tr><td>${miniIcon('while')}</td><td><b>While</b>: koşul doğru oldukça tekrar eder (önce kontrol).</td></tr>
+<tr><td>${miniIcon('for')}</td><td><b>For</b>: sayaçla belirli sayıda tekrar eder.</td></tr>
+<tr><td>${miniIcon('do')}</td><td><b>Do</b>: önce çalışır, sonra kontrol eder (en az 1 kez).</td></tr>
+<tr><td>${miniIcon('call')}</td><td><b>Çağır</b>: bir fonksiyonu çalıştırır.</td></tr>
+<tr><td>${miniIcon('comment')}</td><td><b>Yorum</b>: açıklama notu (çalışmaz).</td></tr>
+</table>
+<h3>➗ Operatörler</h3>
+<table>
+<tr><td><code>+ - * /</code></td><td>Toplama, çıkarma, çarpma, bölme</td></tr>
+<tr><td><code>%</code> veya <code>mod</code></td><td>Bölümden kalan: <code>7 % 2</code> → 1</td></tr>
+<tr><td><code>^</code></td><td>Üs alma: <code>2 ^ 3</code> → 8</td></tr>
+<tr><td><code>&amp;</code></td><td>Metin birleştirme: <code>"Ali" &amp; " Can"</code></td></tr>
+<tr><td><code>== != &lt; &gt; &lt;= &gt;=</code></td><td>Karşılaştırma (<code>=</code> ve <code>&lt;&gt;</code> da kabul edilir)</td></tr>
+<tr><td><code>and or not</code></td><td>Mantıksal VE, VEYA, DEĞİL (<code>&amp;&amp; || !</code> da olur)</td></tr>
+</table>
+<h3>🧰 Hazır fonksiyonlar</h3>
+<table>
+<tr><td><code>Sqrt(x)</code></td><td>Karekök</td></tr><tr><td><code>Abs(x)</code></td><td>Mutlak değer</td></tr>
+<tr><td><code>Int(x)</code></td><td>Tam kısmı alır: Int(7.8) → 7</td></tr><tr><td><code>Random(n)</code></td><td>0 ile n-1 arası rastgele tamsayı</td></tr>
+<tr><td><code>Len(s)</code></td><td>Metnin uzunluğu</td></tr><tr><td><code>Char(s, i)</code></td><td>Metnin i. karakteri (0'dan başlar)</td></tr>
+<tr><td><code>ToString(x)</code></td><td>Sayıyı metne çevirir</td></tr><tr><td><code>ToInteger(s) · ToReal(s)</code></td><td>Metni sayıya çevirir</td></tr>
+<tr><td><code>ToFixed(x, d)</code></td><td>x'i d basamaklı metin yapar</td></tr><tr><td><code>Size(dizi)</code></td><td>Dizinin eleman sayısı</td></tr>
+<tr><td><code>Sin Cos Tan Ln Log10 Sgn</code></td><td>Matematik fonksiyonları, <code>Pi</code> sabiti</td></tr>
+</table>
+<h3>💾 Flowgorithm uyumluluğu</h3>
+<p><b>📂 Aç</b> ile Flowgorithm'de hazırlanmış <code>.fprg</code> dosyalarını yükleyebilir, <b>💾 Kaydet</b> ile Flowgorithm'de açılabilen dosyalar oluşturabilirsiniz. Dosyayı diyagram alanına sürükleyip bırakmak da olur.</p>
+<h3>⌨️ Kısayollar</h3>
+<p><code>F5</code> çalıştır · <code>F10</code> adım · <code>Del</code> sil · <code>Ctrl+C / X / V</code> kopyala / kes / yapıştır · <code>Ctrl+Z / Y</code> geri al / yinele · <code>Ctrl + tekerlek</code> yakınlaştır</p>
+<p style="color:var(--mut);font-size:12px;margin-top:18px">AkışLab · sunays.school için hazırlandı.</p>`;
+
+/* ================= Olaylar ================= */
+$('#canvas').addEventListener('click',e=>{
+  const c=e.target.closest('.conn');if(c){e.stopPropagation();openMenu(+c.dataset.t,e.clientX,e.clientY);return}
+  const n=e.target.closest('.node');if(n){select(+n.dataset.n);return}
+  select(null);
+});
+$('#canvasWrap').addEventListener('click',e=>{if(e.target.id==='canvasWrap'||e.target.id==='canvas')select(null)});
+$('#canvas').addEventListener('dblclick',e=>{
+  const n=e.target.closest('.node');if(n&&nodeIx[n.dataset.n]){openEdit(nodeIx[n.dataset.n].node,false);return}
+  if(e.target.closest('.term'))openFnDialog(curFn);
+});
+$('#fnbar').addEventListener('click',e=>{
+  const sb=e.target.closest('#selbar button');if(sb){const a=sb.dataset.a;if(a==='edit'&&nodeIx[selId])openEdit(nodeIx[selId].node,false);if(a==='del')delSel();if(a==='copy')copySel(false);if(a==='cut')copySel(true);return}
+  const t=e.target.closest('.ftab');if(!t)return;if(t.dataset.i==='add'){openFnDialog(null);return}
+  curFn=+t.dataset.i;selId=null;render();
+});
+$('#fnbar').addEventListener('dblclick',e=>{const t=e.target.closest('.ftab');if(t&&t.dataset.i!=='add')openFnDialog(+t.dataset.i)});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{showPane(b.dataset.p);if(b.dataset.p==='pCode')renderCode();if(b.dataset.p==='pTask')renderTasks()});
+$('#codeSel').onchange=()=>{store.set('akislab.code',$('#codeSel').value);renderCode()};
+$('#bCopy').onclick=async()=>{try{await navigator.clipboard.writeText(codeText());toast('Kod kopyalandı!')}catch(e){const r=document.createRange();r.selectNodeContents($('#code'));const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Kod seçildi, Ctrl+C ile kopyalayın.')}};
+$('#bNew').onclick=()=>{pushUndo();loadProg(emptyProgram());render();conClear();toast('Yeni program. Önceki programa dönmek için Ctrl+Z.')};
+$('#bOpen').onclick=()=>$('#file').click();
+$('#bSave').onclick=saveFprg;
+$('#bPng').onclick=exportPng;
+$('#bUndo').onclick=undo;$('#bRedo').onclick=redo;
+$('#bRun').onclick=doRun;$('#bStep').onclick=doStep;
+$('#bPause').onclick=()=>{if(run&&!run.done){run.mode='pause';updateRunBtns()}};
+$('#bStop').onclick=()=>stopRun(false);
+const setZoom=z=>{zoom=Math.max(.4,Math.min(2,Math.round(z*10)/10));render()};
+$('#bZi').onclick=()=>setZoom(zoom+.1);$('#bZo').onclick=()=>setZoom(zoom-.1);
+$('#canvasWrap').addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();setZoom(zoom+(e.deltaY<0?.1:-.1))}},{passive:false});
+$('#speed').onchange=()=>store.set('akislab.speed',$('#speed').value);
+document.addEventListener('keydown',e=>{
+  if($('#modal').classList.contains('on'))return;
+  const tag=e.target.tagName;if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+  const k=e.key.toLowerCase(),c=e.ctrlKey||e.metaKey;
+  if(e.key==='F5'){e.preventDefault();doRun()}
+  else if(e.key==='F10'){e.preventDefault();doStep()}
+  else if(e.key==='Delete'||e.key==='Backspace'){if(selId){e.preventDefault();delSel()}}
+  else if(c&&k==='z'&&!e.shiftKey){e.preventDefault();undo()}
+  else if(c&&(k==='y'||(k==='z'&&e.shiftKey))){e.preventDefault();redo()}
+  else if(c&&k==='c')copySel(false);
+  else if(c&&k==='x')copySel(true);
+  else if(c&&k==='v'&&clipNode&&selId&&nodeIx[selId]){e.preventDefault();const {node,list}=nodeIx[selId];pushUndo();const n=cloneNode(clipNode);list.splice(list.indexOf(node)+1,0,n);selId=n.id;render()}
+  else if(e.key==='Enter'&&selId&&nodeIx[selId])openEdit(nodeIx[selId].node,false);
+  else if(e.key==='Escape'){closeMenu();select(null)}
+});
+
+/* ================= Başlat ================= */
+(function init(){
+  let p=null;try{const s=store.get('akislab.prog');if(s)p=JSON.parse(s)}catch(e){}
+  if(!p||!p.functions||!p.functions.length)p=EXAMPLES[1][2]();
+  loadProg(p);
+  const sp=store.get('akislab.speed');if(sp)$('#speed').value=sp;
+  const cs=store.get('akislab.code');if(cs)$('#codeSel').value=cs;
+  render();updateRunBtns();renderTasks();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>render());
+})();
+</script>
+</body>
+</html>
