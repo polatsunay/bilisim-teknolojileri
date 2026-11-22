@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlowCircuit Studio – Algoritma, Devre ve Gerçek Hayat Simülatörü</title>
+<style>
+  :root{
+    --bg:#eef0f3; --panel:#fff; --sub:#f3f4f6; --ink:#1f2937; --muted:#6b7280; --line:#d9dde3;
+    --teal:#0f8c8c; --teal-d:#0b6e6e; --amber:#d97706; --red:#dc2626; --purple:#7c3aed; --glow:#f59e0b;
+    --r:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+  header.top{background:#15202b;color:#f8fafc;padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-bottom:3px solid var(--teal);position:sticky;top:0;z-index:30}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#0f8c8c,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+  .brand h1{font-size:17px}
+  .brand p{font-size:11.5px;color:#94a3b8}
+  .hctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  select.preset{background:#243140;color:#fff;border:1px solid #3b4a5c;padding:8px 10px;border-radius:7px;font-size:13px;font-weight:600;max-width:360px;cursor:pointer}
+  .btn{border:none;padding:8px 13px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+  .btn:active{transform:translateY(1px)}
+  .b-run{background:var(--teal);color:#fff}.b-run:hover{background:var(--teal-d)}.b-run.on{background:var(--amber)}
+  .b-step{background:#334155;color:#fff;border:1px solid #475569}
+  .b-reset{background:#7f1d1d;color:#fecaca}
+  .speed{display:flex;align-items:center;gap:6px;background:#243140;padding:6px 10px;border-radius:7px;font-size:12px;color:#cbd5e1}
+  .speed input{width:80px;accent-color:var(--teal)}
+  .speed b{min-width:30px;color:#fff}
+
+  main.ws{display:grid;grid-template-columns:minmax(340px,.78fr) 1.9fr;gap:12px;padding:12px;flex:1;width:100%;max-width:1900px;margin:0 auto}
+  @media(max-width:1200px){main.ws{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 2px 6px rgba(0,0,0,.05);display:flex;flex-direction:column;overflow:hidden;min-width:0}
+  .ph{background:var(--sub);padding:9px 14px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+  .pt{font-size:13.5px;font-weight:800;display:flex;gap:8px;align-items:center}
+  .badge{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:700;background:#d1fae5;color:#065f46}
+  .badge.alt{background:#e0e7ff;color:#3730a3}
+
+  /* Senaryo kartı */
+  .scenario{padding:10px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fffbeb,#fff)}
+  .scenario h2{font-size:14px;margin-bottom:3px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .lvl{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:99px;background:#fde68a;color:#78350f}
+  .scenario p{font-size:12.3px;color:#4b5563;line-height:1.45}
+  .scenario .real{margin-top:4px;color:#065f46}
+  .edited{font-size:10.5px;color:#b45309;font-weight:700}
+
+  .tb{padding:8px 12px;background:#fafafa;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .tbl{font-size:11.5px;font-weight:800;color:var(--muted);margin-right:2px}
+  .ab{padding:5px 9px;border-radius:6px;font-size:12px;font-weight:700;border:1px solid transparent;cursor:pointer}
+  .ab:hover{transform:translateY(-1px)}
+  .a-sen{background:#e0f2fe;color:#0369a1;border-color:#bae6fd}
+  .a-out{background:#fef3c7;color:#92400e;border-color:#fde68a}
+  .a-if{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+  .a-del{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+  .a-prn{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+  .a-clr{background:#fee2e2;color:#991b1b;border-color:#fecaca;margin-left:auto}
+
+  .flow{padding:16px 12px;overflow:auto;flex:1;min-height:420px;max-height:calc(100vh - 290px);background-image:radial-gradient(#d4d8de 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;align-items:center}
+  .fw{display:flex;flex-direction:column;align-items:center;width:100%}
+  .arr{width:2px;height:16px;background:#64748b;position:relative;flex:none}
+  .arr::after{content:"";position:absolute;bottom:0;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #64748b}
+  .shape{position:relative;transition:box-shadow .2s,transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;font-weight:600;max-width:100%}
+  .shape.active-exec{outline:3px solid var(--glow);box-shadow:0 0 18px rgba(245,158,11,.8);transform:scale(1.03);z-index:5}
+  .oval{background:#1e293b;color:#fff;padding:7px 26px;border-radius:99px;font-weight:800;font-size:12.5px}
+  .loop{border:2px dashed var(--teal);background:rgba(15,140,140,.04);border-radius:14px;padding:12px 10px 16px;width:100%;display:flex;flex-direction:column;align-items:center}
+  .loopb{background:var(--teal);color:#fff;font-size:11px;font-weight:800;padding:3px 11px;border-radius:99px;margin-bottom:9px}
+  .para{padding:7px 14px;border-radius:6px;transform:skewX(-9deg)}
+  .para>*{transform:skewX(9deg)}
+  .p-in{background:#e0f2fe;border:2px solid #0284c7;color:#0c4a6e}
+  .p-out{background:#dcfce7;border:2px solid #16a34a;color:#14532d}
+  .rect{background:#fef3c7;border:2px solid #d97706;color:#78350f;padding:7px 11px;border-radius:5px}
+  .rect.dl{background:#f1f5f9;border-color:#64748b;color:#1e293b}
+  .ifw{width:100%;display:flex;flex-direction:column;align-items:center;background:rgba(124,58,237,.04);border:1px solid #ddd6fe;border-radius:11px;padding:8px}
+  .dia{background:#ede9fe;border:2px solid #7c3aed;color:#4c1d95;padding:7px 12px;border-radius:18px;justify-content:center}
+  .tag{font-size:9.5px;padding:2px 6px;border-radius:99px;color:#fff;font-weight:800}
+  .brs{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:8px}
+  .br{border-radius:8px;padding:6px;display:flex;flex-direction:column;align-items:center;min-height:64px;min-width:0}
+  .br-t{background:rgba(16,185,129,.07);border:1.5px solid #6ee7b7}
+  .br-f{background:rgba(239,68,68,.06);border:1.5px solid #fca5a5}
+  .brt{font-size:10.5px;font-weight:800;padding:2px 4px 2px 9px;border-radius:99px;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;width:100%;color:#fff;gap:4px}
+  .br-t .brt{background:#10b981}.br-f .brt{background:#ef4444}
+  .brt select{font-size:10.5px;font-weight:700;border:none;border-radius:99px;padding:1px 3px;background:rgba(255,255,255,.9);color:#111;max-width:84px}
+  .empty{font-size:11px;color:#9ca3af;font-style:italic}
+  .is,.ii{background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.2);border-radius:4px;padding:2px 5px;font-size:12px;font-weight:600;color:#1e293b;max-width:150px}
+  .ii{width:60px;text-align:center}
+  .ii.txt{width:120px;text-align:left}
+  .ctl{display:inline-flex;gap:2px;margin-left:2px}
+  .ctl button{border:none;width:18px;height:18px;border-radius:50%;font-size:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;background:#64748b;color:#fff}
+  .ctl button.x{background:#ef4444}
+  .ctl button:hover{filter:brightness(1.15)}
+
+  /* Sağ panel */
+  .dock{background:#1e293b;color:#f8fafc;padding:8px 12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .dock-t{font-size:12px;font-weight:800;color:#38bdf8}
+  .sc{background:#293548;border:1px solid #475569;border-radius:8px;padding:5px 10px;display:flex;align-items:center;gap:8px;font-size:12px}
+  .sc input[type=range]{width:110px;accent-color:#38bdf8}
+  .sc b{color:#fde68a;min-width:34px;display:inline-block}
+  .tgl{background:#ef4444;color:#fff;border:2px solid #fca5a5;padding:4px 10px;border-radius:6px;font-weight:800;font-size:11.5px;cursor:pointer}
+  .tgl.on{background:#10b981;border-color:#6ee7b7}
+  .mute{margin-left:auto;background:#334155;color:#e2e8f0;border:1px solid #475569;padding:5px 9px;border-radius:6px;font-size:12px;cursor:pointer}
+
+  .stage{display:grid;grid-template-columns:1.5fr 1fr;gap:10px;padding:10px;background:#e5e8ec;border-bottom:1px solid var(--line)}
+  @media(max-width:1500px){.stage{grid-template-columns:1fr}}
+  .view{background:#fff;border:1px solid #cfd5dc;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+  .vh{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 10px;background:#f8fafc;border-bottom:1px solid #e2e8f0;font-size:12px;font-weight:800;color:#334155;flex-wrap:wrap}
+  .vh .zoom button{border:1px solid #cbd5e1;background:#fff;border-radius:5px;width:26px;height:24px;font-weight:800;cursor:pointer}
+  .vh select{font-size:12px;font-weight:700;padding:3px 6px;border-radius:5px;border:1px solid #cbd5e1}
+  #circuitWrap{overflow:auto;background:#f4f6f8;max-height:620px}
+  #circuitWrap svg{display:block}
+  #sceneWrap svg{display:block;width:100%;height:auto}
+  .chips{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px;border-top:1px solid #e2e8f0;background:#fafafa}
+  .chip{font-size:11px;padding:3px 8px;border-radius:99px;background:#f1f5f9;border:1px solid #e2e8f0;color:#334155;font-weight:600}
+  .chip.on{background:#dcfce7;border-color:#86efac;color:#14532d}
+  .chip.sen{background:#e0f2fe;border-color:#bae6fd;color:#075985}
+
+  .tabs{display:flex;background:var(--sub);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tab{padding:9px 14px;font-size:12.5px;font-weight:800;background:transparent;border:none;border-bottom:3px solid transparent;color:var(--muted);cursor:pointer}
+  .tab.active{color:var(--teal-d);border-bottom-color:var(--teal);background:#fff}
+  .tc{padding:10px 14px;overflow:auto;max-height:300px;min-height:150px}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:7px;margin-bottom:9px}
+  .wi{background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:5px 9px;display:flex;flex-direction:column}
+  .wi.v{background:#eef2ff;border-color:#c7d2fe}
+  .wn{font-size:10.5px;color:#64748b;font-weight:800}
+  .wv{font-size:15px;font-weight:800;font-family:ui-monospace,Menlo,monospace}
+  .log{background:#0f172a;color:#a7f3d0;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:8px 11px;border-radius:8px;display:flex;justify-content:space-between;gap:10px}
+  .log.warn{color:#fde68a}
+  pre.serial,pre.code{background:#0f172a;color:#e2e8f0;padding:10px 12px;border-radius:8px;font-family:"Fira Code",Consolas,ui-monospace,monospace;font-size:12px;line-height:1.45;overflow:auto;min-height:130px;white-space:pre}
+  pre.serial{color:#86efac;max-height:230px}
+  .rowbtn{display:flex;gap:6px;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .sbtn{background:var(--teal);color:#fff;border:none;padding:5px 10px;border-radius:5px;font-size:11.5px;font-weight:800;cursor:pointer}
+  .sbtn.g{background:#64748b}
+  table.bom{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px}
+  table.bom th,table.bom td{border:1px solid #e2e8f0;padding:5px 8px;text-align:left;vertical-align:top}
+  table.bom th{background:#f1f5f9;font-weight:800}
+  table.bom td.n{text-align:center;font-weight:800;width:44px}
+  h4.bt{font-size:12.5px;margin:4px 0 6px;color:#0f766e}
+  .toast{position:fixed;bottom:16px;right:16px;background:#1e293b;color:#fff;padding:10px 15px;border-radius:8px;font-size:13px;font-weight:600;border-left:4px solid var(--teal);opacity:0;pointer-events:none;transition:opacity .25s;z-index:100}
+  .toast.show{opacity:1}
+
+  /* SVG animasyonları */
+  .spin{animation:spin .45s linear infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .pulse{animation:pulse .5s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.15}}
+  .sonar{animation:dash .6s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-12}}
+  .smooth{transition:transform .6s ease}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="logo">FC</div>
+    <div>
+      <h1>FlowCircuit Studio</h1>
+      <p>Algoritmanı kur → Tinkercad devren otomatik kurulsun → gerçek hayatta ne olduğunu gör</p>
+    </div>
+  </div>
+  <div class="hctl">
+    <select id="presetSelect" class="preset" title="Hazır gerçek hayat senaryosu seç"></select>
+    <button id="btnRun" class="btn b-run">▶ Simülasyonu Başlat</button>
+    <button id="btnStep" class="btn b-step">⏭ Adım Adım</button>
+    <button id="btnReset" class="btn b-reset">■ Sıfırla</button>
+    <div class="speed"><span>Hız:</span><input type="range" id="speed" min="0" max="5" step="1" value="2"><b id="speedLbl">1x</b></div>
+  </div>
+</header>
+
+<main class="ws">
+  <section class="panel">
+    <div class="ph">
+      <div class="pt">1. Akış Diyagramı (Flowgorithm) <span class="badge" id="loopBadge">void loop()</span></div>
+    </div>
+    <div class="scenario" id="scenarioCard"></div>
+    <div class="tb">
+      <span class="tbl">+ Blok:</span>
+      <button class="ab a-sen" onclick="addMain('sensor')">▱ Sensör Oku</button>
+      <button class="ab a-out" onclick="addMain('output')">▭ Bileşen Kontrol</button>
+      <button class="ab a-if" onclick="addMain('if')">◆ Eğer</button>
+      <button class="ab a-del" onclick="addMain('delay')">⏱ Bekle</button>
+      <button class="ab a-prn" onclick="addMain('print')">▱ Yazdır</button>
+      <button class="ab a-clr" onclick="clearAlgorithm()">Temizle</button>
+    </div>
+    <div class="flow" id="flow"></div>
+  </section>
+
+  <section class="panel">
+    <div class="ph">
+      <div class="pt">2. Otomatik Kurulan Devre &amp; Gerçek Hayat Karşılığı <span class="badge" id="compBadge">0 bileşen</span></div>
+    </div>
+    <div class="dock" id="dock"></div>
+    <div class="stage">
+      <div class="view">
+        <div class="vh"><span>🔌 Devre Görünümü (Tinkercad tarzı) — Arduino Uno R3 + Breadboard</span>
+          <span class="zoom"><button onclick="zoom(-1)">−</button> <button onclick="zoom(0)">⤢</button> <button onclick="zoom(1)">+</button></span></div>
+        <div id="circuitWrap"></div>
+      </div>
+      <div class="view">
+        <div class="vh"><span>🏠 Gerçek Hayat Sahnesi</span>
+          <select id="sceneSelect" onchange="setScene(this.value)">
+            <option value="ev">Akıllı Ev</option>
+            <option value="trafik">Trafik Kavşağı</option>
+            <option value="park">Otopark / Garaj</option>
+            <option value="sokak">Sokak (Gece-Gündüz)</option>
+          </select></div>
+        <div id="sceneWrap"></div>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="watch" onclick="tab('watch')">Değişken İzleyici</button>
+      <button class="tab" data-tab="serial" onclick="tab('serial')">Seri Monitör</button>
+      <button class="tab" data-tab="code" onclick="tab('code')">Arduino C++ Kodu</button>
+      <button class="tab" data-tab="bom" onclick="tab('bom')">Malzeme Listesi &amp; Bağlantılar</button>
+    </div>
+    <div class="tc" id="tab-watch">
+      <div class="wgrid" id="watch"></div>
+      <div class="log" id="logBox"><span id="logText">Hazır. "Simülasyonu Başlat" veya "Adım Adım" ile çalıştır.</span><span id="stepText">Adım: 0</span></div>
+    </div>
+    <div class="tc" id="tab-serial" style="display:none">
+      <div class="rowbtn"><span>Serial.begin(9600) — Yazdır bloklarının çıktısı burada görünür.</span><button class="sbtn g" onclick="clearSerial()">Temizle</button></div>
+      <pre class="serial" id="serial"></pre>
+    </div>
+    <div class="tc" id="tab-code" style="display:none">
+      <div class="rowbtn"><span>Bu kodu Tinkercad → Kod → <b>Metin</b> moduna veya Arduino IDE'ye yapıştırabilirsin.</span><button class="sbtn" onclick="copyCode()">Kodu Kopyala</button></div>
+      <pre class="code" id="code"></pre>
+    </div>
+    <div class="tc" id="tab-bom" style="display:none"><div id="bom"></div></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+// =====================================================================
+// 1) DONANIM TANIMLARI – PIN HARİTASI (gerçek Arduino Uno ile uyumlu)
+// =====================================================================
+const SENSORS = {
+  button:     { v:"buton",    label:"Buton",            pin:"D2",    sel:"Buton (D2) → buton" },
+  ldr:        { v:"isik",     label:"LDR Işık Sensörü", pin:"A0",    sel:"LDR Işık (A0) → isik" },
+  ultrasonic: { v:"mesafe",   label:"HC-SR04 Mesafe",   pin:"D7/D8", sel:"Ultrasonik (D7/D8) → mesafe" },
+  pir:        { v:"hareket",  label:"PIR Hareket",      pin:"D4",    sel:"PIR Hareket (D4) → hareket" },
+  tmp36:      { v:"sicaklik", label:"TMP36 Sıcaklık",   pin:"A1",    sel:"TMP36 Sıcaklık (A1) → sicaklik" },
+  mq2:        { v:"gaz",      label:"MQ-2 Gaz Sensörü", pin:"A2",    sel:"MQ-2 Gaz (A2) → gaz" }
+};
+const VARS = { buton:"button", isik:"ldr", mesafe:"ultrasonic", hareket:"pir", sicaklik:"tmp36", gaz:"mq2" };
+const VAR_UNIT = { buton:"", isik:"", mesafe:" cm", hareket:"", sicaklik:" °C", gaz:"" };
+
+const OUTPUTS = {
+  redLed:    { label:"Kırmızı LED", pin:"D13", num:13, kind:"led", color:"#ff2a2a", wire:"#e53935" },
+  yellowLed: { label:"Sarı LED",    pin:"D12", num:12, kind:"led", color:"#ffd000", wire:"#f9a825" },
+  greenLed:  { label:"Yeşil LED",   pin:"D11", num:11, kind:"led", color:"#22e05a", wire:"#43a047" },
+  whiteLed:  { label:"Beyaz LED",   pin:"D10", num:10, kind:"led", color:"#ffffff", wire:"#b0bec5" },
+  blueLed:   { label:"Mavi LED",    pin:"D6",  num:6,  kind:"led", color:"#2f7bff", wire:"#1e88e5" },
+  rgbLed:    { label:"RGB LED",     pin:"A3/A4/A5", kind:"rgb" },
+  buzzer:    { label:"Piezo Buzzer",pin:"D3",  num:3,  kind:"buzzer" },
+  fan:       { label:"DC Motor (Fan)", pin:"D5", num:5, kind:"fan" },
+  servo:     { label:"Servo Motor SG90", pin:"D9", num:9, kind:"servo" }
+};
+const RGB_COLORS = {
+  off:{name:"Kapalı",r:0,g:0,b:0}, red:{name:"Kırmızı",r:1,g:0,b:0}, green:{name:"Yeşil",r:0,g:1,b:0},
+  blue:{name:"Mavi",r:0,g:0,b:1}, yellow:{name:"Sarı",r:1,g:1,b:0}, purple:{name:"Mor",r:1,g:0,b:1},
+  cyan:{name:"Turkuaz",r:0,g:1,b:1}, white:{name:"Beyaz",r:1,g:1,b:1}
+};
+const SERVO_ANGLES = [0,45,90,135,180];
+
+// Sahneye göre "gerçek hayattaki görevi"
+const ROLES = {
+  ev: { redLed:"Alarm lambası", yellowLed:"Kapı önü lambası", greenLed:"Güvenlik paneli (hazır)", whiteLed:"Salon tavan lambası",
+        blueLed:"Yatak odası gece lambası", rgbLed:"Salon ortam ışığı", buzzer:"Siren / kapı zili", fan:"Salon vantilatörü",
+        servo:"Akıllı kapı kilidi", button:"Kapı zili butonu", ldr:"Çatıdaki gün ışığı sensörü", ultrasonic:"Kapı önü mesafe sensörü",
+        pir:"Salon hareket sensörü", tmp36:"Salon termometresi", mq2:"Mutfak gaz dedektörü" },
+  trafik: { redLed:"Taşıt KIRMIZI ışığı", yellowLed:"Taşıt SARI ışığı", greenLed:"Taşıt YEŞİL ışığı", buzzer:"Görme engelli yaya sesli uyarı",
+        button:"Yaya geçiş butonu" },
+  park: { redLed:"DUR uyarı ışığı", yellowLed:"YAVAŞLA uyarı ışığı", greenLed:"Rahat mesafe ışığı", buzzer:"Park uyarı bipleri",
+        ultrasonic:"Duvardaki park sensörü" },
+  sokak: { whiteLed:"Sokak lambası 1", yellowLed:"Sokak lambası 2", ldr:"Direkteki gün ışığı sensörü" }
+};
+
+// =====================================================================
+// 2) HAZIR GERÇEK HAYAT SENARYOLARI (malzemeleri eksiksiz)
+// =====================================================================
+const O = (target, value) => ({type:"output", target, value});
+const S = sensor => ({type:"sensor", sensor});
+const D = ms => ({type:"delay", ms});
+const PR = (text, variable="") => ({type:"print", text, variable});
+const IF = (variable, op, threshold, t, f=[]) => ({type:"if", variable, op, threshold, trueBranch:t, falseBranch:f});
+
+const PRESETS = [
+  { group:"Başlangıç", title:"Salon Lambasını Yak", scene:"ev",
+    desc:"Tek bir çıkış komutu: D10'a bağlı beyaz LED sürekli yanar. Akım sınırlamak için 220Ω direnç kullanılır.",
+    real:"Gerçek hayatta: Evdeki bir lambayı anahtarla açmak gibi – burada anahtarı Arduino çeviriyor.",
+    prog:[ O("whiteLed",1) ] },
+  { group:"Başlangıç", title:"Alarm Işığı Yanıp Sönme (Blink)", scene:"ev",
+    desc:"LED yak → 500 ms bekle → söndür → 500 ms bekle. Döngü sayesinde sonsuza kadar tekrar eder.",
+    real:"Gerçek hayatta: Alarm sistemlerinin, yol çalışması uyarı lambalarının yanıp sönmesi.",
+    prog:[ O("redLed",1), D(500), O("redLed",0), D(500) ] },
+  { group:"Başlangıç", title:"Trafik Lambası", scene:"trafik",
+    desc:"Kırmızı (3 sn) → Kırmızı+Sarı (1 sn) → Yeşil (3 sn) → Sarı (1 sn). Türkiye'deki gerçek sıra kullanıldı.",
+    real:"Gerçek hayatta: Kavşaktaki lambalar. Arabanın ışığa göre durup kalktığını sahnede izle.",
+    prog:[ O("redLed",1), O("yellowLed",0), O("greenLed",0), D(3000), O("yellowLed",1), D(1000),
+           O("redLed",0), O("yellowLed",0), O("greenLed",1), D(3000), O("greenLed",0), O("yellowLed",1), D(1000), O("yellowLed",0) ] },
+  { group:"Orta", title:"Yaya Butonlu Trafik Lambası", scene:"trafik",
+    desc:"Normalde taşıtlara yeşil yanar. Yaya butona basınca sarı → kırmızı yanar, buzzer görme engelli yayalar için öter.",
+    real:"Gerçek hayatta: Okul önlerindeki butonlu yaya geçitleri. Butona bas, yayanın karşıya geçişini izle.",
+    prog:[ S("button"), O("greenLed",1), O("redLed",0),
+      IF("buton","==",1,[ O("greenLed",0), O("yellowLed",1), D(1000), O("yellowLed",0), O("redLed",1), O("buzzer",1),
+         PR("Yayalar gecebilir"), D(4000), O("buzzer",0), O("redLed",0) ]) ] },
+  { group:"Orta", title:"Akıllı Kapı Zili", scene:"ev",
+    desc:"Butona basılınca buzzer çalar, kapı önü lambası yanar ve seri monitöre mesaj yazılır.",
+    real:"Gerçek hayatta: Işıklı kapı zilleri – gece misafir geldiğinde kapı önü aydınlanır.",
+    prog:[ S("button"),
+      IF("buton","==",1,[ O("buzzer",1), O("yellowLed",1), PR("Kapida biri var!"), D(800), O("buzzer",0) ],
+                        [ O("buzzer",0), O("yellowLed",0) ]) ] },
+  { group:"Orta", title:"Otomatik Sokak Lambası (LDR)", scene:"sokak", env:{isik:650},
+    desc:"LDR ve 10kΩ direnç gerilim bölücü kurar. Ortam kararınca (isik < 300) sokak lambası kendiliğinden yanar.",
+    real:"Gerçek hayatta: Belediyelerin sokak lambaları akşam kendiliğinden yanar. Işık kaydırıcısını azalt!",
+    prog:[ S("ldr"), PR("Isik: ","isik"), IF("isik","<",300,[ O("whiteLed",1) ],[ O("whiteLed",0) ]), D(200) ] },
+  { group:"Orta", title:"Park Sensörü (HC-SR04)", scene:"park", env:{mesafe:120},
+    desc:"Mesafe < 15 cm: kırmızı + sürekli bip. 15–40 cm: sarı + kesik bip. Daha uzak: yeşil. İç içe EĞER (else-if) kullanır.",
+    real:"Gerçek hayatta: Arabaların park sensörü. Mesafe kaydırıcısıyla arabayı duvara yaklaştır.",
+    prog:[ S("ultrasonic"), PR("Mesafe (cm): ","mesafe"),
+      IF("mesafe","<",15,[ O("redLed",1), O("yellowLed",0), O("greenLed",0), O("buzzer",1) ],
+        [ IF("mesafe","<",40,[ O("redLed",0), O("yellowLed",1), O("greenLed",0), O("buzzer",1), D(150), O("buzzer",0) ],
+                            [ O("redLed",0), O("yellowLed",0), O("greenLed",1), O("buzzer",0) ]) ]), D(100) ] },
+  { group:"Orta", title:"Hareket Sensörlü Lamba (PIR)", scene:"ev",
+    desc:"PIR sensörü hareket algılarsa salon lambası yanar ve 3 saniye açık kalır; hareket yoksa söner.",
+    real:"Gerçek hayatta: Apartman merdivenlerindeki ve AVM tuvaletlerindeki otomatik lambalar.",
+    prog:[ S("pir"), IF("hareket","==",1,[ O("whiteLed",1), PR("Hareket algilandi"), D(3000) ],[ O("whiteLed",0) ]) ] },
+  { group:"İleri", title:"Akıllı Termostat + Fan (TMP36)", scene:"ev", env:{sicaklik:24},
+    desc:"Sıcaklık > 28 °C ise fan (transistörlü DC motor) çalışır ve ortam ışığı kırmızı olur; < 18 °C mavi, arada yeşil.",
+    real:"Gerçek hayatta: Klimaların ve kombi termostatlarının çalışma mantığı.",
+    prog:[ S("tmp36"), PR("Sicaklik: ","sicaklik"),
+      IF("sicaklik",">",28,[ O("fan",1), O("rgbLed","red") ],
+        [ O("fan",0), IF("sicaklik","<",18,[ O("rgbLed","blue") ],[ O("rgbLed","green") ]) ]), D(500) ] },
+  { group:"İleri", title:"Gaz Kaçağı Alarmı (MQ-2)", scene:"ev", env:{gaz:150},
+    desc:"Gaz değeri 400'ü aşınca siren çalar, alarm lambası yanıp söner ve fan havalandırma için çalışır.",
+    real:"Gerçek hayatta: Mutfaklardaki doğalgaz dedektörleri. Gaz kaydırıcısını artır, dumanı gör.",
+    prog:[ S("mq2"), PR("Gaz: ","gaz"),
+      IF("gaz",">",400,[ O("buzzer",1), O("fan",1), O("redLed",1), PR("GAZ KACAGI! Havalandirma acik"), D(300), O("redLed",0), D(300) ],
+                      [ O("buzzer",0), O("fan",0), O("redLed",0) ]) ] },
+  { group:"İleri", title:"Otomatik Kapı (Servo + HC-SR04)", scene:"ev", env:{mesafe:150},
+    desc:"Kapıya 50 cm'den yakın biri gelirse servo 90° döner (kapı açılır) ve kapı önü lambası yanar.",
+    real:"Gerçek hayatta: Market ve hastane girişlerindeki otomatik kapılar.",
+    prog:[ S("ultrasonic"),
+      IF("mesafe","<",50,[ O("servo",90), O("yellowLed",1), PR("Hos geldiniz! Kapi acildi"), D(2000) ],
+                         [ O("servo",0), O("yellowLed",0) ]) ] },
+  { group:"İleri", title:"RGB Ortam Işığı (LDR)", scene:"ev", env:{isik:650},
+    desc:"Karanlıkta mor, alacakaranlıkta turkuaz, gündüz kapalı. Ortak katotlu RGB LED, her renk bacağında 220Ω direnç.",
+    real:"Gerçek hayatta: Akıllı ampuller ve TV arkası şerit LED'ler ortam ışığına göre renk değiştirir.",
+    prog:[ S("ldr"), IF("isik","<",200,[ O("rgbLed","purple") ],[ IF("isik","<",600,[ O("rgbLed","cyan") ],[ O("rgbLed","off") ]) ]), D(200) ] },
+  { group:"İleri", title:"Hırsız Alarmı (PIR + Siren)", scene:"ev",
+    desc:"Hareket yoksa yeşil 'hazır' ışığı yanar. Hareket algılanınca kırmızı lamba ve siren yanıp söner.",
+    real:"Gerçek hayatta: Ev ve iş yeri güvenlik alarm sistemleri.",
+    prog:[ S("pir"),
+      IF("hareket","==",1,[ O("greenLed",0), O("redLed",1), O("buzzer",1), PR("HIRSIZ ALARMI!"), D(250), O("redLed",0), O("buzzer",0), D(250) ],
+                          [ O("greenLed",1), O("redLed",0), O("buzzer",0) ]) ] },
+  { group:"Proje", title:"Akıllı Ev – Tam Sistem", scene:"ev", env:{isik:650, mesafe:150, sicaklik:24, gaz:150},
+    desc:"6 sensör + 9 çıkış: Gece dış ve yatak odası lambaları yanar, hareket varsa salon aydınlanır; sıcakta fan çalışır; kapıya yaklaşınca kapı açılır; zil ve gaz alarmı.",
+    real:"Gerçek hayatta: Akıllı ev otomasyonu. Tüm sensör kaydırıcılarıyla evin tepkisini sahnede izle.",
+    prog:[ S("ldr"), S("pir"), S("tmp36"), S("mq2"), S("ultrasonic"), S("button"), O("greenLed",1),
+      IF("isik","<",300,[ O("yellowLed",1), O("blueLed",1), IF("hareket","==",1,[ O("whiteLed",1) ],[ O("whiteLed",0) ]) ],
+                        [ O("yellowLed",0), O("blueLed",0), O("whiteLed",0) ]),
+      IF("sicaklik",">",28,[ O("fan",1), O("rgbLed","red") ],[ O("fan",0), O("rgbLed","green") ]),
+      IF("mesafe","<",50,[ O("servo",90) ],[ O("servo",0) ]),
+      IF("buton","==",1,[ PR("Zil caldi!"), O("buzzer",1), D(300), O("buzzer",0) ]),
+      IF("gaz",">",400,[ O("redLed",1), O("buzzer",1), O("fan",1), PR("GAZ ALARMI!") ],[ O("redLed",0), O("buzzer",0) ]),
+      D(100) ] }
+];
+
+// =====================================================================
+// 3) DURUM
+// =====================================================================
+let program = [];
+let presetIndex = PRESETS.length - 1;
+let edited = false;
+let usedSet = new Set();
+let currentScene = "ev";
+const ENV_DEFAULT = { buton:0, isik:650, mesafe:120, hareket:0, sicaklik:24, gaz:150 };
+const env = { ...ENV_DEFAULT };                       // gerçek ortam (kaydırıcılar)
+const vars = { buton:0, isik:0, mesafe:0, hareket:0, sicaklik:0, gaz:0 };  // Arduino değişkenleri (sensör okununca güncellenir)
+const readOnce = {};
+const out = { redLed:0, yellowLed:0, greenLed:0, whiteLed:0, blueLed:0, buzzer:0, fan:0, servo:0, R:0, G:0, B:0 };
+const sim = { running:false, timer:null, queue:[], qi:0, steps:0, loops:0, activeId:null, lastSensor:null, txUntil:0 };
+const SPEEDS = [0.25, 0.5, 1, 2, 4, 8];
+const STEP_MS = 420;
+let speed = 1, zoomLv = 1, isMuted = false, audio = null, osc = null, serialLines = [], lastCode = "", wireCount = {mm:0, mf:0};
+let idc = 0;
+const gid = () => "b" + (++idc).toString(36) + Math.random().toString(36).slice(2,5);
+const $ = id => document.getElementById(id);
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+function assignIds(list){ list.forEach(b=>{ b.id = gid(); if(b.type==="if"){ assignIds(b.trueBranch); assignIds(b.falseBranch); } }); return list; }
+
+// =====================================================================
+// 4) KULLANILAN BİLEŞENLERİ ALGILA
+// =====================================================================
+function detectUsed(list){
+  const u = new Set();
+  (function scan(l){ for(const b of l){
+    if(b.type==="sensor") u.add(b.sensor);
+    else if(b.type==="output") u.add(b.target);
+    else if(b.type==="print" && b.variable) u.add(VARS[b.variable]);
+    else if(b.type==="if"){ u.add(VARS[b.variable]); scan(b.trueBranch); scan(b.falseBranch); }
+  }})(list);
+  return u;
+}
+const usesPrint = list => list.some(b => b.type==="print" || (b.type==="if" && (usesPrint(b.trueBranch)||usesPrint(b.falseBranch))));
+
+// =====================================================================
+// 5) AKIŞ DİYAGRAMI EDİTÖRÜ
+// =====================================================================
+function ctl(id){ return `<span class="ctl"><button title="Yukarı" onclick="moveB('${id}',-1)">▲</button><button title="Aşağı" onclick="moveB('${id}',1)">▼</button><button class="x" title="Sil" onclick="delB('${id}')">✕</button></span>`; }
+function varOptions(sel, withNone){
+  return (withNone?`<option value="" ${!sel?"selected":""}>(değişken yok)</option>`:"") +
+    Object.keys(VARS).map(v=>`<option value="${v}" ${sel===v?"selected":""}>${v}</option>`).join("");
+}
+function blockHTML(b){
+  const act = sim.activeId===b.id ? " active-exec" : "";
+  if(b.type==="sensor"){
+    return `<div class="shape para p-in${act}" data-bid="${b.id}"><span>Girdi:</span>
+      <select class="is" onchange="upd('${b.id}','sensor',this.value)">
+      ${Object.entries(SENSORS).map(([k,s])=>`<option value="${k}" ${b.sensor===k?"selected":""}>${s.sel}</option>`).join("")}
+      </select>${ctl(b.id)}</div>`;
+  }
+  if(b.type==="output"){
+    let vc;
+    if(b.target==="rgbLed") vc = `<select class="is" onchange="upd('${b.id}','value',this.value)">${Object.entries(RGB_COLORS).map(([k,c])=>`<option value="${k}" ${b.value===k?"selected":""}>Renk: ${c.name}</option>`).join("")}</select>`;
+    else if(b.target==="servo") vc = `<select class="is" onchange="upd('${b.id}','value',Number(this.value))">${SERVO_ANGLES.map(a=>`<option value="${a}" ${Number(b.value)===a?"selected":""}>Açı: ${a}°</option>`).join("")}</select>`;
+    else vc = `<select class="is" onchange="upd('${b.id}','value',Number(this.value))"><option value="1" ${Number(b.value)===1?"selected":""}>AÇ (HIGH)</option><option value="0" ${Number(b.value)===0?"selected":""}>KAPAT (LOW)</option></select>`;
+    return `<div class="shape rect${act}" data-bid="${b.id}"><span>Çıkış:</span>
+      <select class="is" onchange="upd('${b.id}','target',this.value)">
+      ${Object.entries(OUTPUTS).map(([k,o])=>`<option value="${k}" ${b.target===k?"selected":""}>${o.label} (${o.pin})</option>`).join("")}
+      </select>${vc}${ctl(b.id)}</div>`;
+  }
+  if(b.type==="delay"){
+    return `<div class="shape rect dl${act}" data-bid="${b.id}"><span>⏱ Bekle:</span>
+      <input type="number" class="ii" min="10" max="10000" step="50" value="${b.ms}" onchange="upd('${b.id}','ms',Math.max(10,Number(this.value)||0))"><span>ms</span>${ctl(b.id)}</div>`;
+  }
+  if(b.type==="print"){
+    return `<div class="shape para p-out${act}" data-bid="${b.id}"><span>Çıktı (Yazdır):</span>
+      <input class="ii txt" value="${esc(b.text)}" onchange="upd('${b.id}','text',this.value)">
+      <span>+</span><select class="is" onchange="upd('${b.id}','variable',this.value)">${varOptions(b.variable,true)}</select>${ctl(b.id)}</div>`;
+  }
+  if(b.type==="if"){
+    const branch = (key, cls, title) => {
+      const items = b[key];
+      let h = `<div class="br ${cls}"><div class="brt"><span>${title}</span>
+        <select onchange="addChild('${b.id}','${key}',this.value);this.value=''"><option value="">+ Ekle</option><option value="output">Çıkış</option><option value="delay">Bekle</option><option value="print">Yazdır</option><option value="if">Eğer</option><option value="sensor">Sensör</option></select></div>`;
+      if(!items.length) h += `<span class="empty">(boş – hiçbir şey yapma)</span>`;
+      items.forEach((c,i)=>{ h += `<div class="fw">${blockHTML(c)}</div>`; if(i<items.length-1) h += `<div class="arr"></div>`; });
+      return h + `</div>`;
+    };
+    return `<div class="ifw"><div class="shape dia${act}" data-bid="${b.id}"><span class="tag" style="background:#7c3aed">◆ EĞER</span>
+      <select class="is" onchange="upd('${b.id}','variable',this.value)">${varOptions(b.variable,false)}</select>
+      <select class="is" onchange="upd('${b.id}','op',this.value)">${["<",">","==","!=","<=",">="].map(o=>`<option value="${o}" ${b.op===o?"selected":""}>${esc(o)}</option>`).join("")}</select>
+      <input type="number" class="ii" value="${b.threshold}" onchange="upd('${b.id}','threshold',Number(this.value))"><span>?</span>${ctl(b.id)}</div>
+      <div class="brs">${branch("trueBranch","br-t","DOĞRU (Evet)")}${branch("falseBranch","br-f","YANLIŞ (Hayır)")}</div></div>`;
+  }
+  return "";
+}
+function renderFlow(){
+  let h = `<div class="fw"><div class="shape oval">Başla – setup()</div><div class="arr"></div></div><div class="loop"><div class="loopb">↻ Sonsuz Döngü – void loop()</div>`;
+  if(!program.length) h += `<div style="padding:18px;color:#64748b;font-size:13px;text-align:center">Algoritma boş. Yukarıdan Sensör, Bileşen Kontrol veya Eğer bloğu ekle.</div>`;
+  program.forEach((b,i)=>{ h += `<div class="fw">${blockHTML(b)}</div>`; if(i<program.length-1) h += `<div class="arr"></div>`; });
+  h += `</div><div class="fw"><div class="arr"></div><div class="shape oval">↻ Başa dön (loop)</div></div>`;
+  $("flow").innerHTML = h;
+}
+function highlightActive(){
+  document.querySelectorAll("#flow .active-exec").forEach(e=>e.classList.remove("active-exec"));
+  if(!sim.activeId) return;
+  const el = document.querySelector(`#flow [data-bid="${sim.activeId}"]`);
+  if(el){ el.classList.add("active-exec"); el.scrollIntoView({block:"nearest", behavior:"smooth"}); }
+}
+function findB(id, list=program){
+  for(let i=0;i<list.length;i++){ const b=list[i];
+    if(b.id===id) return {b, list, i};
+    if(b.type==="if"){ const r = findB(id,b.trueBranch) || findB(id,b.falseBranch); if(r) return r; } }
+  return null;
+}
+function newBlock(type){
+  const id = gid();
+  if(type==="sensor") return {id,type,sensor:"ldr"};
+  if(type==="output") return {id,type,target:"redLed",value:1};
+  if(type==="delay") return {id,type,ms:1000};
+  if(type==="print") return {id,type,text:"Merhaba",variable:""};
+  if(type==="if") return {id,type,variable:"isik",op:"<",threshold:300,trueBranch:[{id:gid(),type:"output",target:"whiteLed",value:1}],falseBranch:[{id:gid(),type:"output",target:"whiteLed",value:0}]};
+}
+function afterEdit(msg){ stopSim(); sim.queue=[]; sim.qi=0; edited=true; refreshAll(); if(msg) toast(msg); }
+function addMain(t){ program.push(newBlock(t)); afterEdit("Blok eklendi – devre otomatik güncellendi"); }
+function addChild(ifId, key, t){ if(!t) return; const r=findB(ifId); if(r){ r.b[key].push(newBlock(t)); afterEdit(); } }
+function upd(id, f, v){ const r=findB(id); if(!r) return; r.b[f]=v;
+  if(f==="target") r.b.value = v==="rgbLed" ? "red" : (v==="servo" ? 90 : 1);
+  afterEdit(); }
+function delB(id){ const r=findB(id); if(r){ r.list.splice(r.i,1); afterEdit(); } }
+function moveB(id,d){ const r=findB(id); if(!r) return; const j=r.i+d; if(j<0||j>=r.list.length) return; [r.list[r.i],r.list[j]]=[r.list[j],r.list[r.i]]; afterEdit(); }
+function clearAlgorithm(){ program=[]; afterEdit("Algoritma temizlendi"); resetSim(); }
+
+// =====================================================================
+// 6) TINKERCAD TARZI DEVRE MOTORU (Breadboard + Arduino Uno + bileşenler)
+// =====================================================================
+const P = 12;
+const BB = { x:20, y:14, w:756, h:232 };
+const colX = c => BB.x + 24 + (c-1)*P;
+const ROWS = { a:66, b:78, c:90, d:102, e:114, f:144, g:156, h:168, i:180, j:192 };
+const RAIL = { topNeg:28, topPos:40, botNeg:218, botPos:230 };
+const AX = 200, AY = 360;
+const APIN = {};
+["SCL","SDA","AREF","GND","13","12","11","10","9","8"].forEach((n,i)=>APIN[n]={x:AX+100+i*12,y:AY+14});
+["7","6","5","4","3","2","1","0"].forEach((n,i)=>APIN[n]={x:AX+224+i*12,y:AY+14});
+["NC","IOREF","RESET","3.3V","5V","GND ","GND  ","VIN"].forEach((n,i)=>APIN[n]={x:AX+118+i*12,y:AY+238});
+["A0","A1","A2","A3","A4","A5"].forEach((n,i)=>APIN[n]={x:AX+226+i*12,y:AY+238});
+const YB = k => AY + 262 + k*5;
+const XL = k => AX - 12 - k*6;
+const HCX=792, HCY=14, PIRX=872, PIRY=96, SVX=650, SVY=500, MX=806, MY=392, MQX=24, MQY=456;
+
+function shade(hex, f=0.62){
+  const n = parseInt(hex.slice(1),16); const r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+  return `rgb(${Math.round(r*f)},${Math.round(g*f)},${Math.round(b*f)})`;
+}
+function roundedPath(pts, r=5){
+  const p = pts.filter((q,i)=> i===0 || q.x!==pts[i-1].x || q.y!==pts[i-1].y);
+  let d = `M ${p[0].x} ${p[0].y}`;
+  for(let i=1;i<p.length-1;i++){
+    const a=p[i-1], b=p[i], c=p[i+1];
+    const d1=Math.hypot(b.x-a.x,b.y-a.y), d2=Math.hypot(c.x-b.x,c.y-b.y), rr=Math.min(r,d1/2,d2/2);
+    const s={x:b.x+(a.x-b.x)*rr/d1, y:b.y+(a.y-b.y)*rr/d1}, e={x:b.x+(c.x-b.x)*rr/d2, y:b.y+(c.y-b.y)*rr/d2};
+    d += ` L ${s.x.toFixed(1)} ${s.y.toFixed(1)} Q ${b.x} ${b.y} ${e.x.toFixed(1)} ${e.y.toFixed(1)}`;
+  }
+  const L = p[p.length-1]; return d + ` L ${L.x} ${L.y}`;
+}
+function wireSVG(w){
+  const d = roundedPath(w.pts), sh = w.color==="#263238" ? "#000" : shade(w.color);
+  const a=w.pts[0], z=w.pts[w.pts.length-1];
+  return `<g><title>${esc(w.title||"Kablo")}</title><path d="${d}" fill="none" stroke="${sh}" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${d}" fill="none" stroke="${w.color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="${a.x-2.6}" y="${a.y-2.6}" width="5.2" height="5.2" rx="1" fill="${sh}"/><rect x="${z.x-2.6}" y="${z.y-2.6}" width="5.2" height="5.2" rx="1" fill="${sh}"/></g>`;
+}
+const BANDS = { "220":["#d32f2f","#d32f2f","#6d4c41","#c9a227"], "10k":["#6d4c41","#111","#ef6c00","#c9a227"], "1k":["#6d4c41","#111","#d32f2f","#c9a227"] };
+function resistorSVG(p1, p2, val){
+  const dx=p2.x-p1.x, dy=p2.y-p1.y, L=Math.hypot(dx,dy), ang=Math.atan2(dy,dx)*180/Math.PI, mx=(p1.x+p2.x)/2, my=(p1.y+p2.y)/2, bl=Math.min(18,L-8);
+  const bands = BANDS[val]; const pos=[-bl/2+3.2,-bl/2+6.4,-bl/2+9.6,bl/2-3.2];
+  return `<g><title>${val}Ω direnç</title><line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#9ea3a8" stroke-width="1.5"/>
+    <g transform="translate(${mx} ${my}) rotate(${ang})"><rect x="${-bl/2}" y="-3.3" width="${bl}" height="6.6" rx="3.2" fill="#dcc08e" stroke="#9c7b4c" stroke-width=".6"/>
+    ${bands.map((c,i)=>`<rect x="${pos[i]-.8}" y="-3.3" width="1.7" height="6.6" fill="${c}"/>`).join("")}
+    <rect x="${-bl/2+1}" y="-2.6" width="${bl-2}" height="1.4" rx=".7" fill="#fff" opacity=".35"/></g>
+    <rect x="${p1.x-2}" y="${p1.y-2}" width="4" height="4" fill="#6b7280"/><rect x="${p2.x-2}" y="${p2.y-2}" width="4" height="4" fill="#6b7280"/></g>`;
+}
+
+let BB_CACHE = "";
+function breadboardSVG(){
+  if(BB_CACHE) return BB_CACHE;
+  let s = `<g><rect x="${BB.x+2}" y="${BB.y+3}" width="${BB.w}" height="${BB.h}" rx="7" fill="rgba(0,0,0,.12)"/>
+    <rect x="${BB.x}" y="${BB.y}" width="${BB.w}" height="${BB.h}" rx="7" fill="#f3f2ed" stroke="#cdc9bb" stroke-width="1.2"/>
+    <rect x="${BB.x+6}" y="${BB.y+42}" width="${BB.w-12}" height="${BB.h-84}" rx="3" fill="#f7f6f1"/>
+    <rect x="${BB.x+6}" y="123" width="${BB.w-12}" height="12" fill="#e2e0d7"/><line x1="${BB.x+6}" y1="129" x2="${BB.x+BB.w-6}" y2="129" stroke="#d2cfc3"/>`;
+  const x1=colX(1)-6, x2=colX(60)+6;
+  s += `<line x1="${x1}" y1="20" x2="${x2}" y2="20" stroke="#2f6fd6" stroke-width="1.3"/><line x1="${x1}" y1="48" x2="${x2}" y2="48" stroke="#d63b3b" stroke-width="1.3"/>
+        <line x1="${x1}" y1="210" x2="${x2}" y2="210" stroke="#2f6fd6" stroke-width="1.3"/><line x1="${x1}" y1="238" x2="${x2}" y2="238" stroke="#d63b3b" stroke-width="1.3"/>`;
+  [[RAIL.topNeg,"−","#2f6fd6"],[RAIL.topPos,"+","#d63b3b"],[RAIL.botNeg,"−","#2f6fd6"],[RAIL.botPos,"+","#d63b3b"]].forEach(([y,t,c])=>{
+    s += `<text x="${BB.x+9}" y="${y+3.5}" font-size="10" font-weight="800" fill="${c}" text-anchor="middle">${t}</text><text x="${BB.x+BB.w-9}" y="${y+3.5}" font-size="10" font-weight="800" fill="${c}" text-anchor="middle">${t}</text>`;
+  });
+  let holes = "";
+  for(let c=1;c<=60;c++){
+    const x=colX(c);
+    for(const r in ROWS) holes += `<rect x="${x-2.1}" y="${ROWS[r]-2.1}" width="4.2" height="4.2" rx=".8"/>`;
+    for(const k in RAIL) holes += `<rect x="${x-2.1}" y="${RAIL[k]-2.1}" width="4.2" height="4.2" rx=".8"/>`;
+    if(c===1 || c%5===0){ s += `<text x="${x}" y="58" font-size="6.5" fill="#9a968a" text-anchor="middle">${c}</text><text x="${x}" y="206" font-size="6.5" fill="#9a968a" text-anchor="middle">${c}</text>`; }
+  }
+  s += `<g fill="#55534d" stroke="#8d8a80" stroke-width=".35">${holes}</g>`;
+  for(const r in ROWS){ s += `<text x="${BB.x+11}" y="${ROWS[r]+2.5}" font-size="7" fill="#9a968a" text-anchor="middle">${r}</text><text x="${BB.x+BB.w-11}" y="${ROWS[r]+2.5}" font-size="7" fill="#9a968a" text-anchor="middle">${r}</text>`; }
+  s += `</g>`;
+  BB_CACHE = s; return s;
+}
+
+function arduinoSVG(lOn, txOn){
+  const x=AX, y=AY;
+  let s = `<g><title>Arduino Uno R3</title><rect x="${x+3}" y="${y+5}" width="324" height="252" rx="9" fill="rgba(0,0,0,.18)"/>
+  <path d="M${x+9} ${y} H${x+312} L${x+324} ${y+12} V${y+240} L${x+312} ${y+252} H${x+9} Q${x} ${y+252} ${x} ${y+243} V${y+9} Q${x} ${y} ${x+9} ${y} Z" fill="#00878f" stroke="#00666c" stroke-width="1.5"/>`;
+  [[x+16,y+234],[x+302,y+22],[x+302,y+234],[x+86,y+20]].forEach(([a,b])=> s+=`<circle cx="${a}" cy="${b}" r="5.5" fill="#f4f4f4" stroke="#b8c0c0"/><circle cx="${a}" cy="${b}" r="3" fill="#e5e7eb"/>`);
+  // USB-B ve güç jakı
+  s += `<rect x="${x-16}" y="${y+34}" width="62" height="52" rx="2" fill="url(#metal)" stroke="#7a7f85"/><rect x="${x-12}" y="${y+46}" width="20" height="28" fill="#8e959c"/>
+        <rect x="${x-8}" y="${y+184}" width="54" height="46" rx="3" fill="#1b1b1b"/><circle cx="${x+10}" cy="${y+207}" r="8" fill="#333"/><circle cx="${x+10}" cy="${y+207}" r="3" fill="#bbb"/>`;
+  // Reset, kristal, regülatör, kondansatörler
+  s += `<rect x="${x+56}" y="${y+12}" width="16" height="16" rx="2" fill="#c9cdd2"/><circle cx="${x+64}" cy="${y+20}" r="5" fill="#c0392b"/>
+        <text x="${x+64}" y="${y+38}" font-size="5.5" fill="#fff" text-anchor="middle">RESET</text>
+        <rect x="${x+100}" y="${y+150}" width="26" height="10" rx="5" fill="url(#metal)" stroke="#888"/>
+        <rect x="${x+60}" y="${y+182}" width="18" height="12" fill="#222"/><circle cx="${x+68}" cy="${y+214}" r="8" fill="url(#metal)" stroke="#777"/><circle cx="${x+92}" cy="${y+214}" r="8" fill="url(#metal)" stroke="#777"/>`;
+  // ATmega328P
+  s += `<rect x="${x+150}" y="${y+168}" width="150" height="36" rx="2" fill="#1f1f1f"/><path d="M${x+150} ${y+180} a6 6 0 0 1 0 12" fill="#3a3a3a"/>`;
+  for(let i=0;i<14;i++){ s += `<rect x="${x+156+i*10.2}" y="${y+163}" width="4" height="5" fill="#c8c8c8"/><rect x="${x+156+i*10.2}" y="${y+204}" width="4" height="5" fill="#c8c8c8"/>`; }
+  s += `<text x="${x+226}" y="${y+190}" font-size="8" fill="#9aa1a8" font-family="monospace" text-anchor="middle">ATMEGA328P-PU</text>`;
+  // ICSP
+  for(let i=0;i<3;i++) for(let j=0;j<2;j++) s += `<rect x="${x+300+j*8}" y="${y+112+i*8}" width="6" height="6" fill="#111"/>`;
+  // Logo
+  s += `<text x="${x+118}" y="${y+124}" font-size="30" fill="#fff" font-weight="300">∞</text>
+        <text x="${x+162}" y="${y+120}" font-size="30" font-weight="900" font-style="italic" fill="#fff">UNO</text>
+        <text x="${x+164}" y="${y+138}" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">ARDUINO</text>
+        <text x="${x+210}" y="${y+46}" font-size="7" fill="#fff" text-anchor="middle" font-weight="700">DIGITAL (PWM ~)</text>
+        <text x="${x+256}" y="${y+222}" font-size="7" fill="#fff" text-anchor="middle" font-weight="700">ANALOG IN</text>
+        <text x="${x+166}" y="${y+222}" font-size="7" fill="#fff" text-anchor="middle" font-weight="700">POWER</text>`;
+  // LED'ler
+  s += `<rect x="${x+124}" y="${y+58}" width="8" height="4" fill="${lOn?"#ffb300":"#8a6d3b"}"/>${lOn?`<circle cx="${x+128}" cy="${y+60}" r="6" fill="#ffb300" opacity=".55" filter="url(#glowS)"/>`:""}<text x="${x+136}" y="${y+62}" font-size="6" fill="#fff">L</text>
+        <rect x="${x+124}" y="${y+68}" width="8" height="4" fill="${txOn?"#ffb300":"#8a6d3b"}"/><text x="${x+136}" y="${y+72}" font-size="6" fill="#fff">TX</text>
+        <rect x="${x+124}" y="${y+78}" width="8" height="4" fill="#8a6d3b"/><text x="${x+136}" y="${y+82}" font-size="6" fill="#fff">RX</text>
+        <rect x="${x+282}" y="${y+62}" width="8" height="4" fill="#4ade80"/><circle cx="${x+286}" cy="${y+64}" r="5" fill="#4ade80" opacity=".5" filter="url(#glowS)"/><text x="${x+276}" y="${y+66}" font-size="6" fill="#fff" text-anchor="end">ON</text>`;
+  // Pin başlıkları
+  const header = (x0, n, yy) => { let h=`<rect x="${x0}" y="${yy}" width="${n*12}" height="14" rx="1.5" fill="#1a1a1a"/>`; for(let i=0;i<n;i++) h+=`<rect x="${x0+3.5+i*12}" y="${yy+3.5}" width="5" height="7" fill="#000" stroke="#444" stroke-width=".5"/>`; return h; };
+  s += header(x+94,10,y+7) + header(x+218,8,y+7) + header(x+112,8,y+231) + header(x+220,6,y+231);
+  const PWM = ["3","5","6","9","10","11"];
+  for(const [n,p] of Object.entries(APIN)){
+    const top = p.y < y+100; const lbl = n.trim()==="NC" ? "" : (PWM.includes(n) ? "~"+n : n.trim());
+    if(top) s += `<text transform="rotate(-90 ${p.x+2.2} ${p.y+12})" x="${p.x+2.2}" y="${p.y+12}" font-size="6" fill="#fff" text-anchor="end">${lbl}</text>`;
+    else s += `<text transform="rotate(-90 ${p.x+2.2} ${p.y-10})" x="${p.x+2.2}" y="${p.y-10}" font-size="6" fill="#fff" text-anchor="start">${lbl}</text>`;
+  }
+  return s + `</g>`;
+}
+
+// ---- Bileşen çizimleri ----
+function ledSVG(c, color, on, title){
+  const xA=colX(c), xK=colX(c+1), cx=(xA+xK)/2, yl=ROWS.d;
+  const white = color==="#ffffff";
+  const offFill = white ? "#e3e8ec" : color;
+  return `<g><title>${esc(title)}</title>
+    <path d="M${xA} ${yl} V${yl-5} L${xA+2} ${yl-8} V90" stroke="#a9adb2" stroke-width="1.6" fill="none"/>
+    <path d="M${xK} ${yl} V90" stroke="#a9adb2" stroke-width="1.6" fill="none"/>
+    ${on?`<circle cx="${cx}" cy="79" r="17" fill="${white?"#fff8d6":color}" opacity=".85" filter="url(#glow)"/>`:""}
+    <rect x="${cx-8.5}" y="86.5" width="17" height="4" rx="1.2" fill="${on?(white?"#fff":color):offFill}" opacity="${on?1:.75}" stroke="${shade(white?"#c8d0d6":color,.7)}" stroke-width=".7"/>
+    <path d="M${cx-7} 87.5 V76 A7 7 0 0 1 ${cx+7} 76 V87.5 Z" fill="${on?(white?"#fffbe8":color):offFill}" opacity="${on?1:.62}" stroke="${shade(white?"#c8d0d6":color,.7)}" stroke-width=".8"/>
+    <path d="M${cx-4.5} 85 V76.5 A4.5 4.5 0 0 1 ${cx-1} 72.3" stroke="#fff" stroke-width="1.6" fill="none" opacity=".6"/>
+    <rect x="${xA-2}" y="${yl-2}" width="4" height="4" fill="#6b7280"/><rect x="${xK-2}" y="${yl-2}" width="4" height="4" fill="#6b7280"/></g>`;
+}
+function rgbSVG(on){
+  const cx=(colX(4)+colX(7))/2, has=out.R||out.G||out.B, col=`rgb(${out.R*255},${out.G*255},${out.B*255})`;
+  const legs=[[4,"#a9adb2"],[5,"#a9adb2"],[6,"#a9adb2"],[7,"#a9adb2"]].map(([c,s])=>`<path d="M${colX(c)} ${ROWS.d} V92 L${cx+(c-5.5)*4} 88" stroke="${s}" stroke-width="1.5" fill="none"/><rect x="${colX(c)-2}" y="${ROWS.d-2}" width="4" height="4" fill="#6b7280"/>`).join("");
+  return `<g><title>RGB LED (ortak katot) – R:A3 · G:A4 · B:A5, katot GND</title>${legs}
+    ${has?`<circle cx="${cx}" cy="76" r="20" fill="${col}" opacity=".85" filter="url(#glow)"/>`:""}
+    <rect x="${cx-10}" y="85" width="20" height="4" rx="1.2" fill="${has?col:"#eef1f3"}" stroke="#b9c1c7" stroke-width=".7"/>
+    <path d="M${cx-8.5} 86 V74 A8.5 8.5 0 0 1 ${cx+8.5} 74 V86 Z" fill="${has?col:"#f1f4f6"}" opacity="${has?1:.85}" stroke="#b9c1c7" stroke-width=".8"/>
+    <path d="M${cx-5.5} 83 V74.5 A5.5 5.5 0 0 1 ${cx-1.5} 69.4" stroke="#fff" stroke-width="1.6" fill="none" opacity=".7"/>
+    <text x="${colX(4)}" y="${ROWS.d+9}" font-size="5.5" fill="#c62828" text-anchor="middle">R</text><text x="${colX(5)}" y="${ROWS.d+9}" font-size="5.5" fill="#333" text-anchor="middle">−</text>
+    <text x="${colX(6)}" y="${ROWS.d+9}" font-size="5.5" fill="#2e7d32" text-anchor="middle">G</text><text x="${colX(7)}" y="${ROWS.d+9}" font-size="5.5" fill="#1565c0" text-anchor="middle">B</text></g>`;
+}
+function legs(cols, row, toY){ return cols.map(c=>`<line x1="${colX(c)}" y1="${ROWS[row]}" x2="${colX(c)}" y2="${toY}" stroke="#a9adb2" stroke-width="1.5"/><rect x="${colX(c)-2}" y="${ROWS[row]-2}" width="4" height="4" fill="#6b7280"/>`).join(""); }
+function to92(cx, cy, label, title){
+  return `<g><title>${esc(title)}</title><path d="M${cx-12} ${cy+7} V${cy-1} A12 9 0 0 1 ${cx+12} ${cy-1} V${cy+7} Z" fill="#262626" stroke="#000" stroke-width=".7"/>
+    <rect x="${cx-12}" y="${cy+5}" width="24" height="2" fill="#3a3a3a"/><text x="${cx}" y="${cy+3.5}" font-size="5.5" fill="#d6d6d6" text-anchor="middle" font-weight="700">${label}</text></g>`;
+}
+function piezoSVG(on){
+  const cx=colX(48), cy=150;
+  return `<g><title>Piezo Buzzer – (+) D3, (−) GND</title>${legs([47,49],"g",150)}
+    ${on?`<g class="pulse" stroke="#f57c00" stroke-width="1.8" fill="none"><path d="M${cx+16} ${cy-9} q6 9 0 18"/><path d="M${cx+21} ${cy-13} q9 13 0 26"/><path d="M${cx-16} ${cy-9} q-6 9 0 18"/></g>`:""}
+    <circle cx="${cx}" cy="${cy}" r="13" fill="#1d1d1d" stroke="#000"/><circle cx="${cx}" cy="${cy}" r="9" fill="none" stroke="#3b3b3b"/><circle cx="${cx}" cy="${cy}" r="2.5" fill="#050505"/>
+    <text x="${cx-7}" y="${cy-5}" font-size="6" fill="#ccc">+</text></g>`;
+}
+function buttonSVG(pressed){
+  const cx=colX(53), cy=129;
+  return `<g style="cursor:pointer" onclick="toggleEnv('buton')"><title>Push buton – D2 (10kΩ pull-down). Tıkla: bas/bırak</title>
+    ${[52,54].map(c=>`<rect x="${colX(c)-2}" y="${ROWS.e-2}" width="4" height="4" fill="#6b7280"/><rect x="${colX(c)-2}" y="${ROWS.f-2}" width="4" height="4" fill="#6b7280"/>`).join("")}
+    <rect x="${cx-15}" y="${cy-16}" width="30" height="32" rx="2" fill="#3b3b3b" stroke="#111"/>
+    <rect x="${cx-12}" y="${cy-13}" width="24" height="26" rx="2" fill="#6e6e6e"/>
+    <circle cx="${cx}" cy="${cy}" r="${pressed?7:8.5}" fill="${pressed?"#7f1d1d":"#c62828"}" stroke="#2a0c0c" stroke-width="1.2"/>
+    ${pressed?`<circle cx="${cx}" cy="${cy}" r="11" fill="none" stroke="#22c55e" stroke-width="2"/>`:""}
+    <circle cx="${cx-8.5}" cy="${cy-10}" r="1.4" fill="#222"/><circle cx="${cx+8.5}" cy="${cy-10}" r="1.4" fill="#222"/><circle cx="${cx-8.5}" cy="${cy+10}" r="1.4" fill="#222"/><circle cx="${cx+8.5}" cy="${cy+10}" r="1.4" fill="#222"/></g>`;
+}
+function ldrSVG(){
+  const cx=(colX(10)+colX(11))/2, cy=145, br=clamp(env.isik/1023,0,1);
+  return `<g><title>LDR (fotodirenç) – 5V ile A0 arasında, A0–GND arası 10kΩ</title>${legs([10,11],"g",148)}
+    <circle cx="${cx}" cy="${cy}" r="${10+br*6}" fill="#fff59d" opacity="${0.15+br*0.5}" filter="url(#glowS)"/>
+    <circle cx="${cx}" cy="${cy}" r="8" fill="#d9924c" stroke="#8a5427"/>
+    <path d="M${cx-5} ${cy-4} h10 v2.7 h-10 v2.7 h10 v2.7 h-10" fill="none" stroke="#6b3a14" stroke-width="1.1"/>
+    <circle cx="${cx}" cy="${cy}" r="8" fill="url(#gloss)"/></g>`;
+}
+function diodeSVG(p1,p2){
+  const mx=(p1.x+p2.x)/2;
+  return `<g><title>1N4007 diyot (motor koruma)</title><line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#9ea3a8" stroke-width="1.5"/>
+    <rect x="${mx-8}" y="${p1.y-3}" width="16" height="6" rx="1.5" fill="#1d1d1d"/><rect x="${mx+4}" y="${p1.y-3}" width="2.6" height="6" fill="#cfd4d8"/>
+    <rect x="${p1.x-2}" y="${p1.y-2}" width="4" height="4" fill="#6b7280"/><rect x="${p2.x-2}" y="${p2.y-2}" width="4" height="4" fill="#6b7280"/></g>`;
+}
+function hcsr04SVG(active){
+  const x=HCX, y=HCY;
+  const trans = cx => `<circle cx="${cx}" cy="${y+25}" r="17" fill="url(#metal)" stroke="#6b7280" stroke-width="1.2"/><circle cx="${cx}" cy="${y+25}" r="12.5" fill="#4b5563"/><circle cx="${cx}" cy="${y+25}" r="12.5" fill="url(#mesh)"/>`;
+  return `<g><title>HC-SR04 ultrasonik mesafe sensörü – VCC:5V, Trig:D7, Echo:D8, GND</title>
+    ${active?`<g class="sonar" stroke="#38bdf8" stroke-width="1.6" fill="none" stroke-dasharray="4 4" opacity=".9"><path d="M${x+20} ${y+4} q44 -14 88 0"/><path d="M${x+28} ${y+9} q36 -10 72 0"/></g>`:""}
+    <rect x="${x}" y="${y}" width="128" height="52" rx="3" fill="#1d5fb4" stroke="#0d3a73"/>
+    ${trans(x+30)}${trans(x+98)}
+    <rect x="${x+56}" y="${y+5}" width="16" height="7" rx="3" fill="url(#metal)"/>
+    <text x="${x+64}" y="${y+33}" font-size="6.5" fill="#fff" text-anchor="middle" font-weight="800">HC-SR04</text>
+    ${["VCC","Trig","Echo","Gnd"].map((t,i)=>`<text x="${x+46+i*12}" y="${y+48}" font-size="4.6" fill="#fff" text-anchor="middle">${t}</text><rect x="${x+44.5+i*12}" y="${y+52}" width="3" height="6" fill="#d4af37"/>`).join("")}
+    <text x="${x+64}" y="${y+70}" font-size="7.5" fill="#0d3a73" text-anchor="middle" font-weight="800">${env.mesafe} cm</text></g>`;
+}
+function pirSVG(){
+  const x=PIRX, y=PIRY, on=env.hareket===1;
+  let facets=""; for(let i=-2;i<=2;i++){ facets+=`<line x1="${x+38+i*8}" y1="${y+9}" x2="${x+38+i*8}" y2="${y+55}" stroke="#d8d8cf" stroke-width=".8"/>`; facets+=`<line x1="${x+15}" y1="${y+32+i*8}" x2="${x+61}" y2="${y+32+i*8}" stroke="#d8d8cf" stroke-width=".8"/>`; }
+  return `<g style="cursor:pointer" onclick="toggleEnv('hareket')"><title>PIR HC-SR501 hareket sensörü – VCC:5V, OUT:D4, GND. Tıkla: hareket var/yok</title>
+    <rect x="${x}" y="${y}" width="76" height="70" rx="3" fill="#1d7a3c" stroke="#0f4d24"/>
+    <circle cx="${x+38}" cy="${y+32}" r="25" fill="#f8f8f2" stroke="#c9c9bf"/><clipPath id="pirclip"><circle cx="${x+38}" cy="${y+32}" r="24"/></clipPath><g clip-path="url(#pirclip)">${facets}</g>
+    <circle cx="${x+38}" cy="${y+32}" r="25" fill="url(#gloss)"/>
+    <circle cx="${x+66}" cy="${y+62}" r="3" fill="${on?"#ff1744":"#5b1a1a"}"/>${on?`<circle cx="${x+66}" cy="${y+62}" r="6" fill="#ff1744" opacity=".6" filter="url(#glowS)"/>`:""}
+    ${["VCC","OUT","GND"].map((t,i)=>`<text x="${x+24+i*14}" y="${y+67}" font-size="4.8" fill="#fff" text-anchor="middle">${t}</text><rect x="${x+22.5+i*14}" y="${y+70}" width="3" height="10" fill="#d4af37"/>`).join("")}
+    <text x="${x+38}" y="${y+92}" font-size="7" fill="#14532d" text-anchor="middle" font-weight="800">PIR ${on?"• HAREKET":"• sakin"}</text></g>`;
+}
+function servoSVG(angle){
+  const x=SVX, y=SVY, sx=x+18, sy=y+16;
+  return `<g><title>Servo SG90 – Turuncu: D9, Kırmızı: 5V, Kahverengi: GND · Açı ${angle}°</title>
+    <path d="M${x-24} ${y+10} H${x}" stroke="#ff9800" stroke-width="2.2"/><path d="M${x-24} ${y+16} H${x}" stroke="#d32f2f" stroke-width="2.2"/><path d="M${x-24} ${y+22} H${x}" stroke="#5d4037" stroke-width="2.2"/>
+    <rect x="${x-28}" y="${y+6}" width="8" height="20" rx="1" fill="#111"/>
+    <rect x="${x-8}" y="${y+10}" width="8" height="12" rx="1" fill="#2556c2" opacity=".9"/><rect x="${x+64}" y="${y+10}" width="8" height="12" rx="1" fill="#2556c2" opacity=".9"/>
+    <rect x="${x}" y="${y}" width="64" height="32" rx="3" fill="#2a5fd0" stroke="#173a85"/><rect x="${x+3}" y="${y+3}" width="58" height="26" rx="2" fill="#3a6fe0" opacity=".6"/>
+    <text x="${x+44}" y="${y+20}" font-size="7" font-weight="800" fill="#fff" text-anchor="middle">SG90</text>
+    <g transform="rotate(${-angle} ${sx} ${sy})"><path d="M${sx-4} ${sy-5} L${sx+30} ${sy-3} A3 3 0 0 1 ${sx+30} ${sy+3} L${sx-4} ${sy+5} Z" fill="#f5f5f5" stroke="#9e9e9e"/>
+      ${[8,14,20,26].map(d=>`<circle cx="${sx+d}" cy="${sy}" r=".9" fill="#9e9e9e"/>`).join("")}</g>
+    <circle cx="${sx}" cy="${sy}" r="6.5" fill="#fafafa" stroke="#9e9e9e"/><circle cx="${sx}" cy="${sy}" r="2" fill="#777"/>
+    <text x="${x+32}" y="${y+46}" font-size="7.5" font-weight="800" fill="#173a85" text-anchor="middle">Servo ${angle}°</text></g>`;
+}
+function motorSVG(on){
+  const x=MX, y=MY, fx=x+112, fy=y+20;
+  const blades = [0,120,240].map(a=>`<path transform="rotate(${a} ${fx} ${fy})" d="M${fx} ${fy} C${fx+6} ${fy-10} ${fx+24} ${fy-12} ${fx+28} ${fy-2} C${fx+20} ${fy+3} ${fx+8} ${fy+4} ${fx} ${fy} Z" fill="#60a5fa" stroke="#1d4ed8" stroke-width=".8" opacity=".92"/>`).join("");
+  return `<g><title>DC Motor + pervane (NPN transistör ile sürülür, 1N4007 koruma diyotu)</title>
+    <path d="M${x} ${y+12} H${x-6}" stroke="#d32f2f" stroke-width="2"/><path d="M${x} ${y+28} H${x-6}" stroke="#263238" stroke-width="2"/>
+    <rect x="${x}" y="${y}" width="78" height="40" rx="8" fill="url(#metalV)" stroke="#6b7280"/>
+    <rect x="${x+62}" y="${y+4}" width="16" height="32" rx="4" fill="#d4d4d8" stroke="#6b7280"/>
+    <text x="${x+32}" y="${y+24}" font-size="7" fill="#374151" text-anchor="middle" font-weight="800">DC 5V</text>
+    <rect x="${x+78}" y="${y+18}" width="30" height="4" fill="#9ca3af"/>
+    <circle cx="${fx}" cy="${fy}" r="31" fill="none" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="2 3"/>
+    <g class="${on?"spin":""}">${blades}<circle cx="${fx}" cy="${fy}" r="31" fill="none" stroke="none"/></g>
+    <circle cx="${fx}" cy="${fy}" r="5" fill="#1e3a8a"/>
+    <text x="${x+56}" y="${y+66}" font-size="7.5" font-weight="800" fill="#1e3a8a" text-anchor="middle">Fan ${on?"DÖNÜYOR":"duruyor"}</text></g>`;
+}
+function mq2SVG(){
+  const x=MQX, y=MQY, hi=env.gaz>400;
+  return `<g><title>MQ-2 gaz sensörü modülü – VCC:5V, GND, AO:A2</title>
+    ${["VCC","GND","DO","AO"].map((t,i)=>`<rect x="${x+16.5+i*12}" y="${y-8}" width="3" height="8" fill="#d4af37"/><text x="${x+18+i*12}" y="${y+7}" font-size="4.8" fill="#fff" text-anchor="middle">${t}</text>`).join("")}
+    <rect x="${x}" y="${y}" width="88" height="62" rx="3" fill="#1d5fb4" stroke="#0d3a73"/>
+    <circle cx="${x+30}" cy="${y+36}" r="19" fill="url(#metal)" stroke="#666"/><circle cx="${x+30}" cy="${y+36}" r="15" fill="url(#mesh)"/>
+    <rect x="${x+60}" y="${y+14}" width="14" height="14" rx="1" fill="#1e40af" stroke="#93c5fd"/><circle cx="${x+67}" cy="${y+21}" r="4" fill="#e5e7eb"/>
+    <circle cx="${x+62}" cy="${y+44}" r="2.6" fill="#ef4444"/><circle cx="${x+74}" cy="${y+44}" r="2.6" fill="${hi?"#22c55e":"#14532d"}"/>
+    <text x="${x+44}" y="${y+76}" font-size="7.5" font-weight="800" fill="#0d3a73" text-anchor="middle">MQ-2 Gaz: ${env.gaz}</text></g>`;
+}
+
+function renderCircuit(){
+  usedSet = detectUsed(program);
+  const used = usedSet;
+  $("compBadge").textContent = `${used.size} bileşen otomatik bağlandı`;
+  const wires=[], band=[]; let comps="", parts="";
+  const cnt={mm:0, mf:0};
+  const J=(c,r)=>({x:colX(c), y:ROWS[r]});
+  const RP=(c,rail)=>({x:colX(c), y:RAIL[rail]});
+  const pin=n=>APIN[n];
+  const W=(pts,color,title,kind="mm")=>{ wires.push({pts,color,title}); cnt[kind]++; };
+  const BW=(from,to,color,title,kind="mm")=>{ band.push({from,to,color,title}); cnt[kind]++; };
+  const topPin=(n,target,color,title)=>BW([pin(n)],[target],color,title);
+  const botPin=(n,k,target,color,title)=>BW([pin(n),{x:pin(n).x,y:YB(k)},{x:XL(k),y:YB(k)}],[target],color,title);
+  const RED="#d32f2f", BLK="#263238";
+
+  if(used.size){
+    topPin("GND", RP(19,"botNeg"), BLK, "Arduino GND → breadboard (−) hattı");
+    botPin("5V", 0, RP(3,"botPos"), RED, "Arduino 5V → breadboard (+) hattı");
+    W([RP(1,"botNeg"),RP(1,"topNeg")], BLK, "Alt (−) hat → üst (−) hat köprüsü");
+    W([RP(2,"botPos"),RP(2,"topPos")], RED, "Alt (+) hat → üst (+) hat köprüsü");
+  }
+  const LEDSLOT = { redLed:21, yellowLed:24, greenLed:27, whiteLed:30, blueLed:33 };
+  for(const k in LEDSLOT){ if(!used.has(k)) continue;
+    const c=LEDSLOT[k], o=OUTPUTS[k];
+    parts += resistorSVG(J(c,"e"), J(c,"f"), "220");
+    W([J(c+1,"a"), RP(c+1,"topNeg")], BLK, `${o.label} katot (−) → GND`);
+    topPin(String(o.num), J(c,"j"), o.wire, `${o.pin} → 220Ω → ${o.label} anot (+)`);
+    comps += ledSVG(c, o.color, out[k]===1, `${o.label} – anot: ${o.pin} (220Ω üzerinden), katot: GND`);
+  }
+  if(used.has("rgbLed")){
+    [4,6,7].forEach(c=> parts += resistorSVG(J(c,"e"), J(c,"f"), "220"));
+    W([J(5,"a"), RP(5,"topNeg")], BLK, "RGB ortak katot → GND");
+    botPin("A3",4,J(4,"j"),"#e53935","A3 → 220Ω → RGB Kırmızı");
+    botPin("A4",5,J(6,"j"),"#43a047","A4 → 220Ω → RGB Yeşil");
+    botPin("A5",6,J(7,"j"),"#1e88e5","A5 → 220Ω → RGB Mavi");
+    comps += rgbSVG();
+  }
+  if(used.has("ldr")){
+    W([J(10,"j"),RP(10,"botPos")], RED, "LDR bacağı → 5V");
+    parts += resistorSVG(J(11,"i"), J(13,"i"), "10k");
+    W([J(13,"j"),RP(13,"botNeg")], BLK, "10kΩ → GND");
+    botPin("A0",1,J(11,"j"),"#00acc1","A0 ← LDR/10kΩ orta noktası (gerilim bölücü)");
+    comps += ldrSVG();
+  }
+  if(used.has("tmp36")){
+    W([J(16,"j"),RP(16,"botPos")], RED, "TMP36 +Vs → 5V");
+    W([J(18,"j"),RP(18,"botNeg")], BLK, "TMP36 GND");
+    botPin("A1",2,J(17,"j"),"#26a69a","A1 ← TMP36 Vout");
+    comps += legs([16,17,18],"g",145) + to92(colX(17),138,"TMP36","TMP36 sıcaklık sensörü (düz yüz önde: +Vs, Vout, GND)");
+  }
+  if(used.has("fan")){
+    topPin("5", J(37,"j"), "#8e24aa", "D5 → 1kΩ → transistör beyzi");
+    parts += resistorSVG(J(37,"h"), J(39,"h"), "1k");
+    W([J(38,"j"),RP(38,"botNeg")], BLK, "Transistör emiter → GND");
+    parts += diodeSVG(J(40,"g"), J(43,"g"));
+    W([J(43,"j"),RP(43,"botPos")], RED, "Motor (+) hattı → 5V");
+    BW([{x:MX-6,y:MY+12},{x:MX-14,y:MY+12}],[J(43,"h")],"#d32f2f","Motor (+) → 5V");
+    BW([{x:MX-6,y:MY+28},{x:MX-22,y:MY+28}],[J(40,"i")],"#455a64","Motor (−) → transistör kollektör");
+    comps += legs([38,39,40],"f",141) + to92(colX(39),134,"NPN","NPN transistör PN2222 (E-B-C)");
+    comps += motorSVG(out.fan===1);
+  }
+  if(used.has("buzzer")){
+    topPin("3", J(47,"j"), "#fb8c00", "D3 → buzzer (+)");
+    W([J(49,"j"),RP(49,"botNeg")], BLK, "Buzzer (−) → GND");
+    comps += piezoSVG(out.buzzer===1);
+  }
+  if(used.has("button")){
+    W([J(52,"a"),RP(52,"topPos")], RED, "Buton bacağı → 5V");
+    topPin("2", J(54,"j"), "#7e57c2", "D2 ← buton");
+    parts += resistorSVG(J(54,"h"), J(56,"h"), "10k");
+    W([J(56,"j"),RP(56,"botNeg")], BLK, "10kΩ pull-down → GND");
+    comps += buttonSVG(env.buton===1);
+  }
+  if(used.has("ultrasonic")){
+    const hp=i=>({x:HCX+46+i*12, y:HCY+58});
+    BW([hp(0)],[RP(60,"botPos")],RED,"HC-SR04 VCC → 5V","mf");
+    BW([hp(3)],[RP(59,"botNeg")],BLK,"HC-SR04 GND","mf");
+    BW([hp(1)],[pin("7")],"#00897b","HC-SR04 Trig → D7","mf");
+    BW([hp(2)],[pin("8")],"#3949ab","HC-SR04 Echo → D8","mf");
+    comps += hcsr04SVG(sim.lastSensor==="ultrasonic");
+  }
+  if(used.has("pir")){
+    const pp=i=>({x:PIRX+24+i*14, y:PIRY+80});
+    BW([pp(0)],[RP(58,"botPos")],RED,"PIR VCC → 5V","mf");
+    BW([pp(2)],[RP(57,"botNeg")],BLK,"PIR GND","mf");
+    BW([pp(1)],[pin("4")],"#d81b60","PIR OUT → D4","mf");
+    comps += pirSVG();
+  }
+  if(used.has("servo")){
+    BW([{x:SVX-28,y:SVY+10},{x:600,y:SVY+10}],[pin("9")],"#ff9800","Servo sinyal (turuncu) → D9");
+    BW([{x:SVX-28,y:SVY+16},{x:594,y:SVY+16}],[RP(55,"botPos")],RED,"Servo (+) kırmızı → 5V");
+    BW([{x:SVX-28,y:SVY+22},{x:588,y:SVY+22}],[RP(53,"botNeg")],"#5d4037","Servo (−) kahverengi → GND");
+    comps += servoSVG(out.servo);
+  }
+  if(used.has("mq2")){
+    const mp=i=>({x:MQX+18+i*12, y:MQY-8});
+    BW([mp(0)],[RP(8,"botPos")],RED,"MQ-2 VCC → 5V","mf");
+    BW([mp(1)],[RP(9,"botNeg")],BLK,"MQ-2 GND","mf");
+    W([mp(3),{x:mp(3).x,y:MQY-24},{x:140,y:MQY-24},{x:140,y:YB(3)},{x:pin("A2").x,y:YB(3)},pin("A2")],"#5c6bc0","MQ-2 AO → A2","mf");
+    comps += mq2SVG();
+  }
+
+  // Kablo şeritlerini çakışmasız yerleştir
+  const lanes=[];
+  band.forEach(w=>{ const xa=w.from[w.from.length-1].x, xb=w.to[0].x, a=Math.min(xa,xb)-5, b=Math.max(xa,xb)+5;
+    let L=0; while(lanes[L] && lanes[L].some(([p,q])=>!(b<p||a>q))) L++; (lanes[L]=lanes[L]||[]).push([a,b]); w.lane=L; });
+  const topY=BB.y+BB.h+8, botY=AY-10, sp=Math.min(8,(botY-topY)/(lanes.length+1));
+  band.forEach(w=>{ const ly=topY+(w.lane+1)*sp, xa=w.from[w.from.length-1].x, xb=w.to[0].x;
+    wires.push({pts:[...w.from,{x:xa,y:ly},{x:xb,y:ly},...w.to], color:w.color, title:w.title}); });
+
+  wireCount = cnt;
+  const txOn = performance.now() < sim.txUntil;
+  const empty = used.size ? "" : `<text x="480" y="300" font-size="14" fill="#94a3b8" text-anchor="middle" font-weight="700">Algoritmaya blok ekledikçe bileşenler buraya otomatik yerleşir.</text>`;
+  $("circuitWrap").innerHTML = `<svg viewBox="0 0 960 660" style="width:${zoomLv*100}%;min-width:${zoomLv*620}px" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+      <filter id="glowS" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.2"/></filter>
+      <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset=".5" stop-color="#b8bec6"/><stop offset="1" stop-color="#e5e7eb"/></linearGradient>
+      <linearGradient id="metalV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e5e7eb"/><stop offset=".45" stop-color="#9ca3af"/><stop offset="1" stop-color="#d1d5db"/></linearGradient>
+      <radialGradient id="gloss" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <pattern id="mesh" width="3" height="3" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="#6b7280"/><circle cx="1.5" cy="1.5" r=".8" fill="#374151"/></pattern>
+    </defs>
+    ${breadboardSVG()}${arduinoSVG(out.redLed===1 && used.has("redLed"), txOn)}
+    ${wires.map(wireSVG).join("")}${parts}${comps}${empty}
+  </svg>`;
+}
+function zoom(d){ zoomLv = d===0 ? 1 : clamp(zoomLv + d*0.25, 0.75, 2.5); renderCircuit(); }
+
+// =====================================================================
+// 7) GERÇEK HAYAT SAHNELERİ
+// =====================================================================
+const SKY_DEFS = `<defs>
+  <linearGradient id="skyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#dbeafe"/></linearGradient>
+  <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070b1f"/><stop offset="1" stop-color="#28345a"/></linearGradient>
+  <filter id="sglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="sglowS" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+  <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7c2" stop-opacity=".95"/><stop offset="1" stop-color="#fff7c2" stop-opacity="0"/></linearGradient>
+  <linearGradient id="coneY" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd54f" stop-opacity=".9"/><stop offset="1" stop-color="#ffd54f" stop-opacity="0"/></linearGradient>
+</defs>`;
+function skyLayer(){
+  let stars=""; for(let i=0;i<34;i++){ const x=(i*97)%560, y=(i*53)%150+6; stars+=`<circle cx="${x}" cy="${y}" r="${i%3?0.9:1.5}" fill="#fff"/>`; }
+  return `<rect width="560" height="380" fill="url(#skyD)"/><rect id="skN" width="560" height="380" fill="url(#skyN)" opacity="0"/>
+    <g id="skStars" opacity="0">${stars}</g>
+    <g id="skSun"><circle cx="500" cy="48" r="30" fill="#fde047" opacity=".35" filter="url(#sglow)"/><circle cx="500" cy="48" r="19" fill="#facc15"/></g>
+    <g id="skMoon" opacity="0"><circle cx="500" cy="48" r="17" fill="#f1f5f9"/><circle cx="508" cy="42" r="15" fill="#0c1230"/></g>
+    <g id="skClouds" fill="#fff" opacity=".9"><ellipse cx="110" cy="40" rx="30" ry="11"/><ellipse cx="135" cy="34" rx="22" ry="11"/><ellipse cx="380" cy="30" rx="26" ry="9"/></g>`;
+}
+function person(id, x, y, color="#2563eb", extra=""){
+  return `<g id="${id}" ${extra}><circle cx="${x}" cy="${y-38}" r="7" fill="#f2c9a0" stroke="#7a4b2a" stroke-width=".6"/><path d="M${x-6} ${y-44} q6 -6 12 0" fill="#3f2a1d"/>
+    <rect x="${x-7}" y="${y-30}" width="14" height="18" rx="4" fill="${color}"/><rect x="${x-6}" y="${y-13}" width="5" height="13" fill="#1f2937"/><rect x="${x+1}" y="${y-13}" width="5" height="13" fill="#1f2937"/>
+    <rect x="${x-10}" y="${y-29}" width="4" height="14" rx="2" fill="${color}"/><rect x="${x+6}" y="${y-29}" width="4" height="14" rx="2" fill="${color}"/></g>`;
+}
+function carSVG(id, color="#e11d48", w=92){
+  const h=w*0.36;
+  return `<g id="${id}"><path d="M0 ${h*0.55} Q0 ${h*0.3} ${w*0.12} ${h*0.28} L${w*0.28} ${h*0.02} Q${w*0.32} 0 ${w*0.38} 0 L${w*0.66} 0 Q${w*0.72} 0 ${w*0.76} ${h*0.05} L${w*0.9} ${h*0.3} Q${w} ${h*0.34} ${w} ${h*0.58} L${w} ${h*0.8} L0 ${h*0.8} Z" fill="${color}" stroke="${shade(color,.6)}"/>
+    <path d="M${w*0.31} ${h*0.08} L${w*0.48} ${h*0.08} L${w*0.48} ${h*0.3} L${w*0.22} ${h*0.3} Z" fill="#bfdbfe"/><path d="M${w*0.52} ${h*0.08} L${w*0.68} ${h*0.08} L${w*0.82} ${h*0.3} L${w*0.52} ${h*0.3} Z" fill="#bfdbfe"/>
+    <rect x="${w*0.94}" y="${h*0.38}" width="${w*0.06}" height="${h*0.12}" fill="#fef9c3"/><rect x="0" y="${h*0.38}" width="${w*0.04}" height="${h*0.12}" fill="#b91c1c"/>
+    <circle cx="${w*0.22}" cy="${h*0.82}" r="${h*0.2}" fill="#111"/><circle cx="${w*0.22}" cy="${h*0.82}" r="${h*0.09}" fill="#9ca3af"/>
+    <circle cx="${w*0.78}" cy="${h*0.82}" r="${h*0.2}" fill="#111"/><circle cx="${w*0.78}" cy="${h*0.82}" r="${h*0.09}" fill="#9ca3af"/></g>`;
+}
+
+const SCENES = {
+  ev: {
+    build(){
+      return `<svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg">${SKY_DEFS}${skyLayer()}
+      <rect y="330" width="560" height="50" fill="#4d7c0f"/><rect y="330" width="560" height="6" fill="#65a30d"/><rect x="430" y="330" width="130" height="8" fill="#a8a29e"/>
+      <g><rect x="12" y="250" width="10" height="80" fill="#78350f"/><circle cx="17" cy="240" r="24" fill="#15803d"/><circle cx="32" cy="256" r="16" fill="#166534"/></g>
+      <rect x="330" y="56" width="22" height="48" fill="#7c2d12"/>
+      <rect x="58" y="122" width="364" height="210" fill="#e9d6b3" stroke="#7c5a32" stroke-width="2"/>
+      <polygon points="38,124 240,42 442,124" fill="#9a3412" stroke="#6b230c" stroke-width="2"/>
+      <path d="M70 112 L410 112 M100 100 L380 100 M130 88 L350 88 M160 76 L320 76" stroke="#7c2d12" stroke-width="1.2" opacity=".6"/>
+      <!-- Odalar -->
+      <rect x="64" y="128" width="172" height="90" fill="#dbeafe"/><rect x="244" y="128" width="172" height="90" fill="#fef9c3"/>
+      <rect x="58" y="218" width="364" height="8" fill="#a8a29e"/>
+      <rect x="64" y="226" width="112" height="104" fill="#ecfccb"/><rect x="184" y="226" width="150" height="104" fill="#ffedd5"/><rect x="342" y="226" width="74" height="104" fill="#e2e8f0"/>
+      <rect x="236" y="128" width="8" height="90" fill="#c4a77d"/><rect x="176" y="226" width="8" height="104" fill="#c4a77d"/><rect x="334" y="226" width="8" height="104" fill="#c4a77d"/>
+      <!-- Pencereler -->
+      <g class="win"><rect x="84" y="142" width="46" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="300" y="142" width="50" height="36" fill="#bfe3ff" stroke="#fff" stroke-width="3"/><rect x="80" y="238" width="40" height="28" fill="#bfe3ff" stroke="#fff" stroke-width="3"/></g>
+      <path d="M107 142 V178 M84 160 H130 M325 142 V178 M300 160 H350 M100 238 V266" stroke="#fff" stroke-width="2"/>
+      <!-- Yatak odası -->
+      <rect x="150" y="192" width="78" height="18" rx="3" fill="#fff"/><rect x="150" y="196" width="56" height="16" rx="3" fill="#3b82f6"/><rect x="222" y="176" width="8" height="36" rx="2" fill="#92400e"/><rect x="208" y="186" width="14" height="8" rx="3" fill="#f8fafc"/>
+      <rect x="126" y="198" width="18" height="14" fill="#92400e"/>
+      <!-- Çalışma odası -->
+      <rect x="268" y="196" width="80" height="4" fill="#78350f"/><rect x="272" y="200" width="3" height="18" fill="#78350f"/><rect x="342" y="200" width="3" height="18" fill="#78350f"/>
+      <rect x="290" y="178" width="34" height="18" rx="1" fill="#1f2937"/><rect x="304" y="194" width="6" height="3" fill="#374151"/><rect x="370" y="186" width="20" height="32" rx="3" fill="#475569"/>
+      <!-- Mutfak -->
+      <rect x="66" y="298" width="108" height="32" fill="#d6d3d1"/><rect x="88" y="294" width="56" height="36" fill="#e5e7eb" stroke="#9ca3af"/>
+      <ellipse cx="103" cy="296" rx="9" ry="2.5" fill="#374151"/><ellipse cx="129" cy="296" rx="9" ry="2.5" fill="#374151"/><rect x="96" y="304" width="40" height="20" rx="2" fill="#1f2937" opacity=".85"/>
+      <path d="M96 238 H136 L130 252 H102 Z" fill="#9ca3af"/>
+      <!-- Salon -->
+      <rect x="196" y="300" width="74" height="30" rx="6" fill="#b45309"/><rect x="198" y="290" width="70" height="14" rx="6" fill="#d97706"/>
+      <rect x="276" y="318" width="36" height="12" fill="#78350f"/>
+      <!-- Giriş holü kapı -->
+      <rect x="358" y="262" width="44" height="68" fill="#5b3415"/><rect id="evDoorOut" x="361" y="265" width="38" height="65" fill="#bfe3ff"/>
+      <!-- Karanlık katmanlar -->
+      <rect id="dkBed" x="64" y="128" width="172" height="90" fill="#070b1f" opacity="0"/><rect id="dkStudy" x="244" y="128" width="172" height="90" fill="#070b1f" opacity="0"/>
+      <rect id="dkKitchen" x="64" y="226" width="112" height="104" fill="#070b1f" opacity="0"/><rect id="dkSalon" x="184" y="226" width="150" height="104" fill="#070b1f" opacity="0"/><rect id="dkHol" x="342" y="226" width="74" height="104" fill="#070b1f" opacity="0"/>
+      <!-- Işık efektleri -->
+      <polygon id="evWhiteCone" points="222,246 238,246 290,330 170,330" fill="url(#cone)" opacity="0"/>
+      <circle id="evBlueGlow" cx="135" cy="190" r="48" fill="#3b82f6" opacity="0" filter="url(#sglow)"/>
+      <rect id="evRGBGlow" x="270" y="252" width="60" height="44" rx="8" fill="#f00" opacity="0" filter="url(#sglow)"/>
+      <circle id="evRedGlow" cx="379" cy="236" r="26" fill="#ef4444" opacity="0" filter="url(#sglow)"/>
+      <circle id="evYellowGlow" cx="430" cy="262" r="34" fill="#fde047" opacity="0" filter="url(#sglow)"/>
+      <!-- TV -->
+      <rect x="280" y="260" width="44" height="30" rx="1.5" fill="#111827" stroke="#374151"/><rect x="296" y="290" width="12" height="4" fill="#374151"/>
+      <!-- Cihazlar -->
+      <g id="evWhite"><line x1="230" y1="226" x2="230" y2="236" stroke="#334155"/><path d="M220 244 Q230 232 240 244 Z" fill="#475569"/><circle id="evWhiteBulb" cx="230" cy="246" r="4.5" fill="#d1d5db"/></g>
+      <g id="evBlue"><rect x="131" y="190" width="8" height="8" fill="#94a3b8"/><path d="M128 190 L142 190 L138 182 L132 182 Z" fill="#e2e8f0"/><circle id="evBlueBulb" cx="135" cy="188" r="3" fill="#94a3b8"/></g>
+      <g id="evRed"><rect x="372" y="226" width="14" height="4" fill="#334155"/><path id="evRedBulb" d="M373 230 V235 A6 6 0 0 0 385 235 V230 Z" fill="#7f1d1d"/></g>
+      <g id="evGreen"><rect x="346" y="244" width="20" height="26" rx="2" fill="#1f2937"/><circle id="evGreenLed" cx="356" cy="252" r="3" fill="#14532d"/><text x="356" y="265" font-size="5" fill="#cbd5e1" text-anchor="middle">PANEL</text></g>
+      <g id="evYellow"><rect x="424" y="256" width="10" height="4" fill="#334155"/><circle id="evYellowBulb" cx="430" cy="264" r="5" fill="#a16207"/></g>
+      <g id="evRGB"><rect x="278" y="258" width="48" height="2" fill="#94a3b8"/></g>
+      <g id="evFan"><rect x="316" y="300" width="3" height="28" fill="#475569"/><ellipse cx="317" cy="329" rx="9" ry="2" fill="#334155"/><circle cx="317" cy="292" r="12" fill="#e2e8f0" stroke="#64748b" opacity=".9"/>
+        <g id="evFanBlades"><path d="M317 292 l0 -10 a4 4 0 0 1 4 6 Z M317 292 l9 5 a4 4 0 0 1 -7 3 Z M317 292 l-9 5 a4 4 0 0 1 3 -7 Z" fill="#2563eb"/></g><circle cx="317" cy="292" r="2" fill="#1e293b"/></g>
+      <g id="evThermo"><rect x="190" y="240" width="8" height="40" rx="4" fill="#fff" stroke="#64748b"/><rect id="evThermoFill" x="192" y="260" width="4" height="18" fill="#ef4444"/><circle cx="194" cy="281" r="5" fill="#ef4444"/><text id="evThermoTxt" x="201" y="248" font-size="7.5" font-weight="800" fill="#b91c1c">24°C</text></g>
+      <g id="evPIR"><rect x="322" y="228" width="10" height="5" fill="#e2e8f0"/><circle cx="327" cy="235" r="5" fill="#f8fafc" stroke="#94a3b8"/><circle id="evPIRLed" cx="331" cy="231" r="1.5" fill="#7f1d1d"/></g>
+      ${person("evPerson",250,330,"#16a34a",'opacity="0"')}
+      <g id="evMQ2"><rect x="156" y="236" width="16" height="12" rx="2" fill="#f8fafc" stroke="#64748b"/><circle id="evMQ2Led" cx="164" cy="242" r="2.5" fill="#14532d"/></g>
+      <g id="evSmoke" opacity="0" fill="#9ca3af"><circle cx="110" cy="282" r="9"/><circle cx="122" cy="270" r="12"/><circle cx="104" cy="262" r="10"/><circle cx="134" cy="256" r="11"/><circle cx="118" cy="246" r="9"/></g>
+      <g id="evBuzzer"><rect x="46" y="240" width="12" height="16" rx="2" fill="#dc2626"/><circle cx="52" cy="248" r="4" fill="#7f1d1d"/>
+        <g id="evBuzzWaves" stroke="#f97316" stroke-width="2" fill="none" opacity="0" class="pulse"><path d="M42 240 q-6 8 0 16"/><path d="M36 236 q-9 12 0 24"/></g></g>
+      <g id="evLDR"><line x1="240" y1="42" x2="240" y2="30" stroke="#334155" stroke-width="2"/><circle cx="240" cy="25" r="6" fill="#d9924c" stroke="#8a5427"/><path d="M236 23 h8 v2 h-8 v2 h8" stroke="#6b3a14" fill="none" stroke-width=".8"/></g>
+      <g id="evHC"><rect x="424" y="236" width="14" height="8" rx="1" fill="#1d5fb4"/><circle cx="428" cy="240" r="2.4" fill="#cbd5e1"/><circle cx="434" cy="240" r="2.4" fill="#cbd5e1"/>
+        <g id="evSonar" class="sonar" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="3 3" fill="none" opacity="0"><path d="M442 240 H540"/></g></g>
+      <g id="evBell"><rect x="424" y="290" width="9" height="13" rx="2" fill="#f8fafc" stroke="#64748b"/><circle id="evBellBtn" cx="428.5" cy="296.5" r="2.5" fill="#94a3b8"/></g>
+      <g id="evVisitorWrap" class="smooth">${person("evVisitor",470,334,"#e11d48")}</g>
+      <!-- Kapı paneli (servo) -->
+      <g id="evDoor" style="transform-origin:361px 0px;transition:transform .7s ease"><rect x="361" y="265" width="38" height="65" fill="#a16207" stroke="#713f12"/><rect x="366" y="272" width="28" height="22" fill="#b7791f"/><rect x="366" y="300" width="28" height="24" fill="#b7791f"/><circle cx="393" cy="300" r="2.2" fill="#fde68a"/></g>
+      <g id="evLock"><rect x="350" y="296" width="6" height="10" rx="1" fill="#2a5fd0"/></g>
+      <!-- Etiketler -->
+      <g font-size="8.5" font-weight="800" fill="#334155" paint-order="stroke" stroke="#fff" stroke-width="2.4">
+        <text x="70" y="138">Yatak Odası</text><text x="250" y="138">Çalışma Odası</text><text x="70" y="236">Mutfak</text><text x="190" y="236">Salon</text><text x="346" y="236">Giriş</text></g>
+      <text id="evInfo" x="280" y="372" font-size="9" fill="#fff" text-anchor="middle" font-weight="700"></text>
+      </svg>`;
+    },
+    update(){
+      const u=usedSet, n=nightness();
+      skyUpdate(n);
+      document.querySelectorAll("#sceneWrap .win rect").forEach(r=>r.setAttribute("fill", mix("#bfe3ff","#1b2547",n)));
+      $("evDoorOut").setAttribute("fill", mix("#bfe3ff","#1b2547",n));
+      const show=(id,v)=>{ const e=$(id); if(e) e.style.display = v ? "" : "none"; };
+      show("evWhite",u.has("whiteLed")); show("evBlue",u.has("blueLed")); show("evRed",u.has("redLed")); show("evGreen",u.has("greenLed"));
+      show("evYellow",u.has("yellowLed")); show("evRGB",u.has("rgbLed")); show("evFan",u.has("fan")); show("evThermo",u.has("tmp36"));
+      show("evPIR",u.has("pir")); show("evMQ2",u.has("mq2")); show("evBuzzer",u.has("buzzer")); show("evLDR",u.has("ldr")); show("evHC",u.has("ultrasonic"));
+      show("evBell",u.has("button")); show("evLock",u.has("servo")); show("evVisitorWrap",u.has("ultrasonic")||u.has("button"));
+      const w=out.whiteLed&&u.has("whiteLed"), b=out.blueLed&&u.has("blueLed"), y=out.yellowLed&&u.has("yellowLed"), r=out.redLed&&u.has("redLed"), g=out.greenLed&&u.has("greenLed");
+      const dk=n*0.72;
+      $("dkBed").setAttribute("opacity", dk*(b?0.55:1)); $("dkStudy").setAttribute("opacity",dk); $("dkKitchen").setAttribute("opacity",dk);
+      $("dkSalon").setAttribute("opacity", dk*(w?0.08:1)); $("dkHol").setAttribute("opacity", dk*(r?0.6:1));
+      $("evWhiteCone").setAttribute("opacity", w?0.85:0); $("evWhiteBulb").setAttribute("fill", w?"#fffbe6":"#d1d5db");
+      $("evBlueGlow").setAttribute("opacity", b?0.6:0); $("evBlueBulb").setAttribute("fill", b?"#93c5fd":"#94a3b8");
+      $("evRedGlow").setAttribute("opacity", r?0.85:0); $("evRedBulb").setAttribute("fill", r?"#ff3b3b":"#7f1d1d");
+      $("evYellowGlow").setAttribute("opacity", y?0.9:0); $("evYellowBulb").setAttribute("fill", y?"#fff176":"#a16207");
+      $("evGreenLed").setAttribute("fill", g?"#4ade80":"#14532d");
+      const hasRGB=u.has("rgbLed")&&(out.R||out.G||out.B);
+      $("evRGBGlow").setAttribute("opacity", hasRGB?0.9:0); $("evRGBGlow").setAttribute("fill", `rgb(${out.R*255},${out.G*255},${out.B*255})`);
+      const fb=$("evFanBlades"); fb.classList.toggle("spin", !!(out.fan&&u.has("fan")));
+      const t=env.sicaklik, hh=clamp((t+10)/70,0,1)*36; $("evThermoFill").setAttribute("y", 278-hh); $("evThermoFill").setAttribute("height", hh); $("evThermoTxt").textContent = `${t}°C`;
+      $("evPIRLed").setAttribute("fill", env.hareket?"#ff1744":"#7f1d1d");
+      $("evPerson").setAttribute("opacity", u.has("pir")&&env.hareket?1:0);
+      $("evSmoke").setAttribute("opacity", u.has("mq2") ? clamp((env.gaz-250)/500,0,0.9) : 0);
+      $("evMQ2Led").setAttribute("fill", env.gaz>400?"#ef4444":"#14532d");
+      $("evBuzzWaves").setAttribute("opacity", out.buzzer&&u.has("buzzer")?1:0);
+      $("evSonar").setAttribute("opacity", u.has("ultrasonic")?0.8:0);
+      $("evBellBtn").setAttribute("fill", env.buton?"#22c55e":"#94a3b8");
+      const vx = u.has("ultrasonic") ? clamp(env.mesafe,2,200)/200*80 - 18 : -14;
+      $("evVisitorWrap").style.transform = `translateX(${vx}px)`;
+      const open = u.has("servo") ? clamp(out.servo/90,0,1) : 0;
+      $("evDoor").style.transform = `scaleX(${1-open*0.82})`;
+      const info=[]; if(u.has("ldr")) info.push(n>0.5?"🌙 Gece":"☀️ Gündüz"); if(u.has("tmp36")) info.push(`🌡 ${t}°C`); if(u.has("ultrasonic")) info.push(`🚶 Kapıya ${env.mesafe} cm`); if(u.has("servo")) info.push(`🚪 Kapı ${out.servo>=45?"AÇIK":"KAPALI"}`);
+      $("evInfo").textContent = info.join("   ");
+    }
+  },
+  trafik: {
+    build(){
+      let zebra=""; for(let i=0;i<6;i++) zebra+=`<rect x="300" y="${236+i*14}" width="50" height="8" fill="#f8fafc"/>`;
+      return `<svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg">${SKY_DEFS}${skyLayer()}
+        <g fill="#94a3b8"><rect x="20" y="110" width="70" height="110"/><rect x="100" y="80" width="60" height="140"/><rect x="420" y="96" width="80" height="124"/><rect x="510" y="130" width="50" height="90"/></g>
+        <g fill="#e2e8f0" opacity=".8">${Array.from({length:18},(_,i)=>`<rect x="${30+(i%3)*18+(i>8?395:0)}" y="${122+Math.floor((i%9)/3)*28}" width="10" height="14"/>`).join("")}</g>
+        <rect y="200" width="560" height="32" fill="#cbd5e1"/><rect y="228" width="560" height="4" fill="#94a3b8"/>
+        <rect y="232" width="560" height="88" fill="#374151"/><g fill="#facc15">${Array.from({length:12},(_,i)=>`<rect x="${i*50}" y="274" width="26" height="4"/>`).join("")}</g>
+        ${zebra}<rect x="286" y="232" width="5" height="88" fill="#f8fafc"/>
+        <rect y="320" width="560" height="60" fill="#cbd5e1"/><rect y="320" width="560" height="4" fill="#94a3b8"/>
+        <g id="tlCarWrap">${carSVG("tlCar","#e11d48",96)}</g>
+        ${person("tlPed",325,226,"#7c3aed")}
+        <rect x="372" y="94" width="6" height="134" fill="#4b5563"/>
+        <rect x="358" y="72" width="34" height="86" rx="6" fill="#111827" stroke="#000"/>
+        ${[["tlR",90,"#ef4444"],["tlY",115,"#facc15"],["tlG",140,"#22c55e"]].map(([id,y,c])=>`<circle id="${id}Glow" cx="375" cy="${y}" r="16" fill="${c}" opacity="0" filter="url(#sglowS)"/><circle id="${id}" cx="375" cy="${y}" r="9" fill="#1f2937" data-on="${c}"/><path d="M364 ${y-10} h22" stroke="#0b0f19" stroke-width="3"/>`).join("")}
+        <g id="tlBtn"><rect x="380" y="176" width="16" height="22" rx="3" fill="#facc15" stroke="#a16207"/><circle id="tlBtnC" cx="388" cy="190" r="4" fill="#111"/><text x="388" y="184" font-size="4.5" text-anchor="middle" fill="#111">BAS</text></g>
+        <g id="tlSpk"><rect x="362" y="176" width="12" height="14" rx="2" fill="#1f2937"/><g id="tlWaves" class="pulse" stroke="#f97316" stroke-width="1.6" fill="none" opacity="0"><path d="M358 178 q-5 5 0 10"/><path d="M353 175 q-8 8 0 16"/></g></g>
+        <text id="tlInfo" x="280" y="368" font-size="11" font-weight="800" fill="#1f2937" text-anchor="middle"></text>
+      </svg>`;
+    },
+    update(){
+      skyUpdate(0);
+      const u=usedSet, set=(id,on)=>{ const e=$(id); e.setAttribute("fill", on? e.dataset.on : "#1f2937"); $(id+"Glow").setAttribute("opacity", on?0.9:0); };
+      set("tlR", out.redLed&&u.has("redLed")); set("tlY", out.yellowLed&&u.has("yellowLed")); set("tlG", out.greenLed&&u.has("greenLed"));
+      $("tlBtn").style.display = u.has("button")?"":"none"; $("tlSpk").style.display = u.has("buzzer")?"":"none";
+      $("tlBtnC").setAttribute("fill", env.buton?"#22c55e":"#111");
+      $("tlWaves").setAttribute("opacity", out.buzzer?1:0);
+      $("tlInfo").textContent = out.redLed ? "Taşıtlar DUR – yayalar geçebilir" : out.yellowLed ? "SARI – dikkat, duruşa hazırlan" : out.greenLed ? "YEŞİL – taşıtlar geçiyor, yayalar bekler" : "Lambalar kapalı";
+    },
+    tick(dt){
+      const red=out.redLed&&usedSet.has("redLed"), yel=out.yellowLed&&usedSet.has("yellowLed"), grn=out.greenLed&&usedSet.has("greenLed");
+      const A=SA; const stopFront=284, front=A.carX+96;
+      let target=110;
+      if((red||(yel&&!grn)) && front<=stopFront+1 && front>stopFront-170) target = Math.max(0, (stopFront-front)*1.6);
+      if((red||(yel&&!grn)) && front>stopFront-2 && front<=stopFront+1) target=0;
+      A.carV += (target-A.carV)*Math.min(1,dt*3);
+      A.carX += A.carV*dt; if(A.carX>600) A.carX=-130;
+      if(front<stopFront && A.carX+96+A.carV*dt>stopFront && (red||(yel&&!grn))) A.carX=stopFront-96;
+      const cw=$("tlCarWrap"); if(cw) cw.setAttribute("transform",`translate(${A.carX.toFixed(1)} 262)`);
+      if(red){ A.pedY = Math.min(A.pedY + 34*dt, 112); } else if(A.pedY>=112){ A.pedY = 0; }
+      const p=$("tlPed"); if(p) p.setAttribute("transform",`translate(0 ${A.pedY.toFixed(1)})`);
+    }
+  },
+  park: {
+    build(){
+      return `<svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg">${SKY_DEFS}
+        <rect width="560" height="380" fill="#e5e7eb"/><rect width="560" height="120" fill="#cbd5e1"/>
+        <rect y="300" width="560" height="80" fill="#6b7280"/><g fill="#fde047">${[60,200,340].map(x=>`<rect x="${x}" y="336" width="80" height="5"/>`).join("")}</g>
+        <rect x="500" y="40" width="60" height="262" fill="#9ca3af" stroke="#6b7280"/><g stroke="#8b929b">${Array.from({length:10},(_,i)=>`<line x1="500" y1="${60+i*24}" x2="560" y2="${60+i*24}"/>`).join("")}</g>
+        <rect x="508" y="130" width="40" height="92" rx="5" fill="#111827"/>
+        ${[["pkG",148,"#22c55e"],["pkY",176,"#facc15"],["pkR",204,"#ef4444"]].map(([id,y,c])=>`<circle id="${id}Glow" cx="528" cy="${y}" r="16" fill="${c}" opacity="0" filter="url(#sglowS)"/><circle id="${id}" cx="528" cy="${y}" r="8" fill="#1f2937" data-on="${c}"/>`).join("")}
+        <g id="pkBuzz"><rect x="512" y="232" width="32" height="16" rx="3" fill="#1f2937"/><text x="528" y="243" font-size="6" fill="#e5e7eb" text-anchor="middle">BUZZER</text>
+          <g id="pkWaves" class="pulse" stroke="#f97316" stroke-width="2" fill="none" opacity="0"><path d="M506 234 q-6 6 0 12"/><path d="M500 230 q-9 10 0 20"/></g></g>
+        <g id="pkHC"><rect x="494" y="262" width="10" height="22" rx="1" fill="#1d5fb4"/><circle cx="499" cy="267" r="3" fill="#cbd5e1"/><circle cx="499" cy="279" r="3" fill="#cbd5e1"/></g>
+        <g id="pkCarWrap">${carSVG("pkCar","#2563eb",150)}</g>
+        <line id="pkSonar" class="sonar" x1="300" y1="273" x2="494" y2="273" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="5 4"/>
+        <rect id="pkDistBg" x="360" y="254" width="70" height="16" rx="4" fill="#0f172a"/><text id="pkDist" x="395" y="265" font-size="9" font-weight="800" fill="#7dd3fc" text-anchor="middle">120 cm</text>
+        <text id="pkStop" x="250" y="90" font-size="40" font-weight="900" fill="#dc2626" text-anchor="middle" opacity="0">DUR!</text>
+        <text x="20" y="28" font-size="12" font-weight="800" fill="#334155">Kapalı Otopark – Duvardaki park sensörü</text>
+      </svg>`;
+    },
+    update(){
+      const u=usedSet, set=(id,on)=>{ const e=$(id); e.setAttribute("fill", on? e.dataset.on : "#1f2937"); $(id+"Glow").setAttribute("opacity", on?0.9:0); };
+      set("pkG", out.greenLed&&u.has("greenLed")); set("pkY", out.yellowLed&&u.has("yellowLed")); set("pkR", out.redLed&&u.has("redLed"));
+      $("pkBuzz").style.display = u.has("buzzer")?"":"none"; $("pkWaves").setAttribute("opacity", out.buzzer?1:0);
+      $("pkStop").setAttribute("opacity", out.redLed&&u.has("redLed")?1:0);
+      $("pkDist").textContent = `${env.mesafe} cm`;
+    },
+    tick(dt){
+      const A=SA, target = 494 - clamp(env.mesafe,2,200)*1.9 - 150;
+      A.pkX += (target-A.pkX)*Math.min(1,dt*3.5);
+      const front=A.pkX+150, c=$("pkCarWrap"); if(!c) return;
+      c.setAttribute("transform",`translate(${A.pkX.toFixed(1)} 236)`);
+      $("pkSonar").setAttribute("x1", front.toFixed(1));
+      const mid=(front+494)/2; $("pkDist").setAttribute("x", mid.toFixed(1)); $("pkDistBg").setAttribute("x", (mid-35).toFixed(1));
+    }
+  },
+  sokak: {
+    build(){
+      const lamp=(id,x)=>`<g id="${id}"><polygon id="${id}Cone" points="${x+44},126 ${x+58},126 ${x+130},300 ${x-30},300" fill="url(#cone)" opacity="0"/>
+        <ellipse id="${id}Pool" cx="${x+51}" cy="302" rx="80" ry="10" fill="#fff7c2" opacity="0" filter="url(#sglowS)"/>
+        <rect x="${x-3}" y="110" width="6" height="190" fill="#374151"/><path d="M${x} 112 Q${x+10} 100 ${x+51} 106" stroke="#374151" stroke-width="5" fill="none"/>
+        <path d="M${x+38} 106 H${x+64} L${x+58} 120 H${x+44} Z" fill="#1f2937"/><ellipse id="${id}Bulb" cx="${x+51}" cy="121" rx="7" ry="3" fill="#9ca3af"/>
+        <rect x="${x-9}" y="296" width="18" height="6" fill="#1f2937"/></g>`;
+      return `<svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg">${SKY_DEFS}${skyLayer()}
+        <g fill="#475569"><rect x="0" y="150" width="80" height="140"/><rect x="88" y="120" width="70" height="170"/><rect x="380" y="130" width="90" height="160"/><rect x="478" y="170" width="82" height="120"/></g>
+        <g id="skWin" fill="#fde68a" opacity="0">${Array.from({length:20},(_,i)=>`<rect x="${(i<10?10:390)+(i%3)*24+(i%10>5?(i<10?84:96):0)}" y="${160+Math.floor((i%10)/3)*30}" width="10" height="14"/>`).join("")}</g>
+        <rect y="290" width="560" height="22" fill="#9ca3af"/><rect y="312" width="560" height="68" fill="#374151"/><g fill="#f8fafc">${Array.from({length:12},(_,i)=>`<rect x="${i*50}" y="344" width="26" height="4"/>`).join("")}</g>
+        ${lamp("skL1",170)}${lamp("skL2",290)}
+        <g id="skLDR"><line x1="170" y1="110" x2="170" y2="96" stroke="#374151" stroke-width="2"/><circle cx="170" cy="92" r="6" fill="#d9924c" stroke="#8a5427"/><path d="M166 90 h8 v2 h-8 v2 h8" stroke="#6b3a14" fill="none" stroke-width=".8"/></g>
+        ${person("skP",250,300,"#0ea5e9")}
+        <text id="skInfo" x="280" y="30" font-size="12" font-weight="800" fill="#fff" text-anchor="middle" paint-order="stroke" stroke="#0f172a" stroke-width="3"></text>
+      </svg>`;
+    },
+    update(){
+      const u=usedSet, n = u.has("ldr") ? nightness() : 0; skyUpdate(n);
+      $("skWin").setAttribute("opacity", n*0.9);
+      const lamp=(id,on,vis)=>{ $(id).style.display = vis?"":"none"; $(id+"Cone").setAttribute("opacity", on?0.75*(0.35+n*0.65):0); $(id+"Pool").setAttribute("opacity", on?0.7:0); $(id+"Bulb").setAttribute("fill", on?"#fffbe6":"#9ca3af"); };
+      lamp("skL1", !!(out.whiteLed&&u.has("whiteLed")), true);
+      lamp("skL2", !!(out.yellowLed&&u.has("yellowLed")), u.has("yellowLed"));
+      $("skLDR").style.display = u.has("ldr")?"":"none";
+      $("skInfo").textContent = (u.has("ldr")?`LDR değeri: ${env.isik} → ${n>0.5?"Hava karanlık":"Hava aydınlık"}`:"") + `   Lamba: ${out.whiteLed?"YANIYOR":"sönük"}`;
+    }
+  }
+};
+const SA = { carX:-120, carV:110, pedY:0, pkX:100 };
+function nightness(){ return usedSet.has("ldr") ? clamp((620-env.isik)/480,0,1) : 0; }
+function mix(a,b,t){ const pa=parseInt(a.slice(1),16), pb=parseInt(b.slice(1),16); const c=[16,8,0].map(s=>Math.round(((pa>>s)&255)*(1-t)+((pb>>s)&255)*t)); return `rgb(${c.join(",")})`; }
+function skyUpdate(n){
+  const s=(id,a,v)=>{ const e=$(id); if(e) e.setAttribute(a,v); };
+  s("skN","opacity",n); s("skStars","opacity",n); s("skMoon","opacity",n); s("skSun","opacity",1-n); s("skClouds","opacity",0.9*(1-n));
+}
+function setScene(name){ currentScene=name; $("sceneSelect").value=name; $("sceneWrap").innerHTML = SCENES[name].build(); SA.carX=-120; SA.pedY=0; updateScene(); }
+function updateScene(){ SCENES[currentScene].update(); renderChips(); }
+let lastT=performance.now();
+function animLoop(t){ const dt=Math.min(0.05,(t-lastT)/1000); lastT=t; const sc=SCENES[currentScene]; if(sc.tick) sc.tick(dt); requestAnimationFrame(animLoop); }
+
+function stateText(k){
+  if(SENSORS[k]){ const v=SENSORS[k].v; return `${env[v]}${VAR_UNIT[v]}`; }
+  if(k==="rgbLed"){ const e=Object.values(RGB_COLORS).find(c=>c.r===out.R&&c.g===out.G&&c.b===out.B); return e?e.name:"?"; }
+  if(k==="servo") return `${out.servo}°`;
+  return out[k] ? "AÇIK" : "kapalı";
+}
+function renderChips(){
+  const roles = ROLES[currentScene]||{};
+  const items=[...usedSet].map(k=>{
+    const name = roles[k] || ROLES.ev[k] || (OUTPUTS[k]||SENSORS[k]).label;
+    const on = SENSORS[k] ? false : (k==="rgbLed" ? (out.R||out.G||out.B) : (k==="servo" ? out.servo>0 : out[k]));
+    return `<span class="chip ${SENSORS[k]?"sen":(on?"on":"")}">${esc(name)}: <b>${stateText(k)}</b></span>`;
+  });
+  $("chips").innerHTML = items.join("") || `<span class="chip">Sahnede kullanılan cihaz yok</span>`;
+}
+
+// =====================================================================
+// 8) SENSÖR KONTROL ÇUBUĞU
+// =====================================================================
+function renderDock(){
+  const u=usedSet; let h=`<span class="dock-t">⚙ Ortamı değiştir (sensör testi):</span>`; let any=false;
+  const range=(v,label,min,max,step=1)=>`<div class="sc"><span>${label}: <b id="dv_${v}">${env[v]}${VAR_UNIT[v]}</b></span><input type="range" min="${min}" max="${max}" step="${step}" value="${env[v]}" oninput="setEnv('${v}',Number(this.value))"></div>`;
+  if(u.has("button")){ any=true; h+=`<div class="sc"><span>Buton (D2):</span><button class="tgl ${env.buton?"on":""}" onclick="toggleEnv('buton')">${env.buton?"BASILI (1) – bırak":"SERBEST (0) – bas"}</button></div>`; }
+  if(u.has("pir")){ any=true; h+=`<div class="sc"><span>PIR (D4):</span><button class="tgl ${env.hareket?"on":""}" onclick="toggleEnv('hareket')">${env.hareket?"HAREKET VAR (1)":"Hareket yok (0)"}</button></div>`; }
+  if(u.has("ldr")){ any=true; h+=range("isik","☀ Işık (A0)",0,1023); }
+  if(u.has("ultrasonic")){ any=true; h+=range("mesafe","↔ Mesafe",2,200); }
+  if(u.has("tmp36")){ any=true; h+=range("sicaklik","🌡 Sıcaklık",-10,60); }
+  if(u.has("mq2")){ any=true; h+=range("gaz","💨 Gaz (A2)",0,1023); }
+  if(!any) h+=`<span style="font-size:12px;color:#94a3b8">Bu devrede giriş sensörü yok – yalnızca çıkış bileşenleri var.</span>`;
+  h+=`<button class="mute" onclick="toggleMute()">${isMuted?"🔇 Ses kapalı":"🔊 Buzzer sesi açık"}</button>`;
+  $("dock").innerHTML=h;
+}
+function setEnv(k,v){ env[k]=v; const e=$("dv_"+k); if(e) e.textContent=`${v}${VAR_UNIT[k]}`; renderCircuit(); updateScene(); renderWatch(); }
+function toggleEnv(k){ env[k]=env[k]?0:1; renderDock(); renderCircuit(); updateScene(); renderWatch(); }
+function toggleMute(){ isMuted=!isMuted; updateSound(); renderDock(); }
+
+// =====================================================================
+// 9) SİMÜLASYON MOTORU
+// =====================================================================
+function setLog(m, warn=false){ $("logText").textContent=m; $("logBox").classList.toggle("warn",warn); }
+function readSensor(s){
+  const v=SENSORS[s].v; let val=env[v];
+  if(s==="tmp36"){ const adc=Math.round((env.sicaklik/100+0.5)*1024/5); val=Math.round(((adc*5/1024)-0.5)*1000)/10; }
+  vars[v]=val; readOnce[v]=true; sim.lastSensor=s;
+  setLog(`Sensör okundu: ${v} = ${val}${VAR_UNIT[v]}`);
+}
+function applyOutput(b){
+  sim.lastSensor=null;
+  if(b.target==="rgbLed"){ const c=RGB_COLORS[b.value]||RGB_COLORS.off; out.R=c.r; out.G=c.g; out.B=c.b; setLog(`RGB LED → ${c.name}`); }
+  else if(b.target==="servo"){ out.servo=Number(b.value); setLog(`Servo motor → ${out.servo}° döndü`); }
+  else { out[b.target]=Number(b.value); setLog(`${OUTPUTS[b.target].label} (${OUTPUTS[b.target].pin}) → ${Number(b.value)?"AÇILDI (HIGH)":"KAPATILDI (LOW)"}`); }
+  updateSound();
+}
+function evalCond(b){
+  const a=vars[b.variable], t=Number(b.threshold);
+  switch(b.op){ case "<":return a<t; case ">":return a>t; case "==":return a==t; case "!=":return a!=t; case "<=":return a<=t; case ">=":return a>=t; }
+  return false;
+}
+function serialPrint(b){
+  const line = b.text + (b.variable ? String(vars[b.variable]) : "");
+  serialLines.push(line); if(serialLines.length>300) serialLines.shift();
+  const el=$("serial"); el.textContent=serialLines.join("\n"); el.scrollTop=el.scrollHeight;
+  sim.txUntil = performance.now()+180; setLog(`Seri monitör: ${line}`);
+}
+function stepOnce(){
+  if(!program.length){ setLog("Çalıştırılacak blok yok."); stopSim(); return STEP_MS; }
+  if(sim.qi>=sim.queue.length){ sim.queue=program.slice(); sim.qi=0; sim.loops++; }
+  const b=sim.queue[sim.qi++]; sim.steps++; sim.activeId=b.id; let wait=STEP_MS;
+  if(b.type==="sensor") readSensor(b.sensor);
+  else if(b.type==="output") applyOutput(b);
+  else if(b.type==="delay"){ wait=Math.max(b.ms, 60); setLog(`delay(${b.ms}) – ${b.ms} ms bekleniyor...`); }
+  else if(b.type==="print") serialPrint(b);
+  else if(b.type==="if"){
+    const r=evalCond(b);
+    if(!readOnce[b.variable]) setLog(`Uyarı: '${b.variable}' hiç okunmadı (değeri 0). Önce "Sensör Oku" bloğu ekleyin! → ${r?"DOĞRU":"YANLIŞ"}`, true);
+    else setLog(`Karar: ${b.variable} (${vars[b.variable]}) ${b.op} ${b.threshold} → ${r?"DOĞRU (Evet)":"YANLIŞ (Hayır)"}`);
+    const br = r ? b.trueBranch : b.falseBranch; if(br.length) sim.queue.splice(sim.qi,0,...br);
+  }
+  $("stepText").textContent=`Adım: ${sim.steps} · Döngü: ${sim.loops}`;
+  $("loopBadge").textContent=`loop() × ${sim.loops}`;
+  highlightActive(); renderCircuit(); updateScene(); renderWatch();
+  return wait;
+}
+function runLoop(){ if(!sim.running) return; const w=stepOnce(); sim.timer=setTimeout(runLoop, w/speed); }
+function startSim(){
+  if(sim.running){ stopSim(); return; }
+  ensureAudio();
+  sim.running=true; $("btnRun").innerHTML="⏸ Duraklat"; $("btnRun").classList.add("on"); updateSound(); runLoop();
+}
+function stopSim(){ sim.running=false; clearTimeout(sim.timer); $("btnRun").innerHTML="▶ Simülasyonu Başlat"; $("btnRun").classList.remove("on"); updateSound(); }
+function resetSim(){
+  stopSim(); sim.queue=[]; sim.qi=0; sim.steps=0; sim.loops=0; sim.activeId=null; sim.lastSensor=null;
+  Object.keys(out).forEach(k=>out[k]=0); Object.keys(vars).forEach(k=>{vars[k]=0; delete readOnce[k];});
+  $("stepText").textContent="Adım: 0"; $("loopBadge").textContent="void loop()";
+  setLog("Sıfırlandı. Tüm çıkışlar LOW, değişkenler 0.");
+  refreshAll();
+}
+function ensureAudio(){ try{ if(!audio) audio=new (window.AudioContext||window.webkitAudioContext)(); if(audio.state==="suspended") audio.resume(); }catch(e){} }
+function updateSound(){
+  const want = sim.running && !isMuted && out.buzzer===1 && usedSet.has("buzzer") && audio;
+  try{
+    if(want && !osc){ osc=audio.createOscillator(); const g=audio.createGain(); osc.type="square"; osc.frequency.value=1000; g.gain.value=0.025; osc.connect(g); g.connect(audio.destination); osc.start(); }
+    else if(!want && osc){ osc.stop(); osc.disconnect(); osc=null; }
+  }catch(e){ osc=null; }
+}
+
+// =====================================================================
+// 10) İZLEYİCİ, KOD ÜRETİCİ, MALZEME LİSTESİ
+// =====================================================================
+function renderWatch(){
+  const u=usedSet; let h="";
+  for(const [s,info] of Object.entries(SENSORS)){ if(!u.has(s)) continue; const v=info.v;
+    h+=`<div class="wi"><span class="wn">Ortam: ${info.label}</span><span class="wv">${env[v]}${VAR_UNIT[v]}</span></div>`;
+    h+=`<div class="wi v"><span class="wn">Değişken: ${v}</span><span class="wv">${readOnce[v]?vars[v]:"0 (okunmadı)"}</span></div>`; }
+  for(const [k,o] of Object.entries(OUTPUTS)){ if(!u.has(k)) continue;
+    h+=`<div class="wi"><span class="wn">${o.label} (${o.pin})</span><span class="wv">${k==="rgbLed"?`R${out.R} G${out.G} B${out.B}`:k==="servo"?out.servo+"°":out[k]}</span></div>`; }
+  $("watch").innerHTML = h || `<span style="font-size:12px;color:#94a3b8">Henüz bileşen yok.</span>`;
+}
+function genCode(){
+  const u=detectUsed(program), L=[];
+  L.push("// FlowCircuit Studio – otomatik üretilen Arduino C++ kodu");
+  L.push("// Senaryo: " + PRESETS[presetIndex].title + (edited?" (düzenlendi)":""));
+  if(u.has("servo")){ L.push("#include <Servo.h>"); L.push("Servo kapiServo;   // SG90 servo → D9"); }
+  if(u.has("button")) L.push("int buton = 0;      // D2 (10k pull-down)");
+  if(u.has("ldr")) L.push("int isik = 0;       // A0 (LDR + 10k gerilim bölücü)");
+  if(u.has("ultrasonic")){ L.push("long sure = 0;"); L.push("int mesafe = 0;     // cm, HC-SR04 Trig D7 / Echo D8"); }
+  if(u.has("pir")) L.push("int hareket = 0;    // D4 (PIR HC-SR501)");
+  if(u.has("tmp36")) L.push("float sicaklik = 0; // A1 (TMP36) °C");
+  if(u.has("mq2")) L.push("int gaz = 0;        // A2 (MQ-2 analog çıkış)");
+  L.push("", "void setup() {");
+  if(usesPrint(program)) L.push("  Serial.begin(9600);");
+  for(const k of ["redLed","yellowLed","greenLed","whiteLed","blueLed"]) if(u.has(k)) L.push(`  pinMode(${OUTPUTS[k].num}, OUTPUT);  // ${OUTPUTS[k].label}`);
+  if(u.has("rgbLed")) L.push("  pinMode(A3, OUTPUT); pinMode(A4, OUTPUT); pinMode(A5, OUTPUT); // RGB LED R-G-B");
+  if(u.has("buzzer")) L.push("  pinMode(3, OUTPUT);   // Piezo buzzer");
+  if(u.has("fan")) L.push("  pinMode(5, OUTPUT);   // Fan (NPN transistör beyzi)");
+  if(u.has("button")) L.push("  pinMode(2, INPUT);    // Buton");
+  if(u.has("pir")) L.push("  pinMode(4, INPUT);    // PIR");
+  if(u.has("ultrasonic")) L.push("  pinMode(7, OUTPUT); pinMode(8, INPUT); // HC-SR04");
+  if(u.has("servo")) L.push("  kapiServo.attach(9);");
+  L.push("}", "", "void loop() {");
+  const q = s => '"' + String(s).replace(/\\/g,"\\\\").replace(/"/g,'\\"') + '"';
+  (function comp(list, ind){
+    for(const b of list){
+      if(b.type==="sensor"){
+        if(b.sensor==="button") L.push(`${ind}buton = digitalRead(2);`);
+        if(b.sensor==="ldr") L.push(`${ind}isik = analogRead(A0);`);
+        if(b.sensor==="pir") L.push(`${ind}hareket = digitalRead(4);`);
+        if(b.sensor==="mq2") L.push(`${ind}gaz = analogRead(A2);`);
+        if(b.sensor==="tmp36") L.push(`${ind}sicaklik = (analogRead(A1) * 5.0 / 1024.0 - 0.5) * 100.0;`);
+        if(b.sensor==="ultrasonic"){ L.push(`${ind}digitalWrite(7, LOW); delayMicroseconds(2);`); L.push(`${ind}digitalWrite(7, HIGH); delayMicroseconds(10); digitalWrite(7, LOW);`); L.push(`${ind}sure = pulseIn(8, HIGH);`); L.push(`${ind}mesafe = sure * 0.034 / 2;`); }
+      } else if(b.type==="output"){
+        if(b.target==="rgbLed"){ const c=RGB_COLORS[b.value]||RGB_COLORS.off; L.push(`${ind}digitalWrite(A3, ${c.r?"HIGH":"LOW"}); digitalWrite(A4, ${c.g?"HIGH":"LOW"}); digitalWrite(A5, ${c.b?"HIGH":"LOW"}); // ${c.name}`); }
+        else if(b.target==="servo") L.push(`${ind}kapiServo.write(${Number(b.value)});`);
+        else if(b.target==="buzzer") L.push(Number(b.value)?`${ind}tone(3, 1000);`:`${ind}noTone(3);`);
+        else L.push(`${ind}digitalWrite(${OUTPUTS[b.target].num}, ${Number(b.value)?"HIGH":"LOW"});`);
+      } else if(b.type==="delay") L.push(`${ind}delay(${b.ms});`);
+      else if(b.type==="print"){
+        if(b.variable){ L.push(`${ind}Serial.print(${q(b.text)});`); L.push(`${ind}Serial.println(${b.variable});`); }
+        else L.push(`${ind}Serial.println(${q(b.text)});`);
+      } else if(b.type==="if"){
+        L.push(`${ind}if (${b.variable} ${b.op} ${b.threshold}) {`); comp(b.trueBranch, ind+"  ");
+        if(b.falseBranch.length){ L.push(`${ind}} else {`); comp(b.falseBranch, ind+"  "); }
+        L.push(`${ind}}`);
+      }
+    }
+  })(program,"  ");
+  L.push("}");
+  lastCode=L.join("\n"); $("code").textContent=lastCode;
+}
+function renderBOM(){
+  const u=usedSet; const rows=[], conn=[]; const R={"220 Ω (kırmızı-kırmızı-kahve)":0,"10 kΩ (kahve-siyah-turuncu)":0,"1 kΩ (kahve-siyah-kırmızı)":0};
+  if(!u.size){ $("bom").innerHTML=`<p style="font-size:12px;color:#94a3b8">Bileşen eklenince malzeme listesi otomatik oluşur.</p>`; return; }
+  rows.push(["Arduino Uno R3",1,"Mikrodenetleyici kartı"],["USB A-B kablosu",1,"Kod yükleme + 5V besleme"],["Breadboard (830 delik)",1,"Lehimsiz devre tahtası"]);
+  const leds={redLed:"5 mm Kırmızı LED",yellowLed:"5 mm Sarı LED",greenLed:"5 mm Yeşil LED",whiteLed:"5 mm Beyaz LED",blueLed:"5 mm Mavi LED"};
+  for(const k in leds) if(u.has(k)){ rows.push([leds[k],1,`${OUTPUTS[k].pin}`]); R["220 Ω (kırmızı-kırmızı-kahve)"]++;
+    conn.push([OUTPUTS[k].label,"Anot (+, uzun bacak)",`${OUTPUTS[k].pin} → 220Ω`],[OUTPUTS[k].label,"Katot (−, kısa bacak)","GND"]); }
+  if(u.has("rgbLed")){ rows.push(["RGB LED (ortak katot, 4 bacak)",1,"A3/A4/A5"]); R["220 Ω (kırmızı-kırmızı-kahve)"]+=3;
+    conn.push(["RGB LED","R / G / B","A3 / A4 / A5 (her biri 220Ω)"],["RGB LED","Ortak katot (en uzun)","GND"]); }
+  if(u.has("buzzer")){ rows.push(["Piezo buzzer",1,"D3 – tone()"]); conn.push(["Buzzer","+","D3"],["Buzzer","−","GND"]); }
+  if(u.has("button")){ rows.push(["Push buton 12×12 mm (4 bacak)",1,"D2"]); R["10 kΩ (kahve-siyah-turuncu)"]++; conn.push(["Buton","1. bacak","5V"],["Buton","2. bacak","D2 + 10kΩ → GND (pull-down)"]); }
+  if(u.has("ldr")){ rows.push(["LDR fotodirenç (5 mm)",1,"A0"]); R["10 kΩ (kahve-siyah-turuncu)"]++; conn.push(["LDR","1. bacak","5V"],["LDR","2. bacak","A0 + 10kΩ → GND"]); }
+  if(u.has("tmp36")){ rows.push(["TMP36 sıcaklık sensörü",1,"A1"]); conn.push(["TMP36","+Vs / Vout / GND","5V / A1 / GND"]); }
+  if(u.has("mq2")){ rows.push(["MQ-2 gaz sensörü modülü",1,"A2"]); conn.push(["MQ-2","VCC / GND / AO","5V / GND / A2 (DO boş)"]); }
+  if(u.has("pir")){ rows.push(["PIR hareket sensörü HC-SR501",1,"D4"]); conn.push(["PIR","VCC / OUT / GND","5V / D4 / GND"]); }
+  if(u.has("ultrasonic")){ rows.push(["HC-SR04 ultrasonik mesafe sensörü",1,"D7/D8"]); conn.push(["HC-SR04","VCC / Trig / Echo / GND","5V / D7 / D8 / GND"]); }
+  if(u.has("servo")){ rows.push(["Servo motor SG90 (mikro)",1,"D9"]); conn.push(["Servo","Turuncu / Kırmızı / Kahverengi","D9 / 5V / GND"]); }
+  if(u.has("fan")){ rows.push(["DC motor 3–6 V + pervane",1,"Fan"],["NPN transistör PN2222 (veya BC337)",1,"Motor anahtarı"],["1N4007 diyot",1,"Ters EMK koruması"]); R["1 kΩ (kahve-siyah-kırmızı)"]++;
+    conn.push(["Transistör","Beyz (B)","D5 → 1kΩ"],["Transistör","Emiter (E)","GND"],["Transistör","Kollektör (C)","Motor (−) + diyot anodu"],["Motor (+)","","5V + diyot katodu (bantlı uç)"]); }
+  for(const [k,v] of Object.entries(R)) if(v) rows.push([`Direnç ${k}`, v, "¼ W"]);
+  rows.push(["Jumper kablo erkek-erkek", wireCount.mm, "Breadboard bağlantıları"]);
+  if(wireCount.mf) rows.push(["Jumper kablo dişi-erkek", wireCount.mf, "Sensör modülleri için"]);
+  $("bom").innerHTML = `<h4 class="bt">🧰 Malzeme listesi (gerçek devre için eksiksiz)</h4>
+    <table class="bom"><tr><th>Malzeme</th><th>Adet</th><th>Not</th></tr>${rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
+    <h4 class="bt">🔗 Bağlantı tablosu</h4>
+    <table class="bom"><tr><th>Bileşen</th><th>Bacak</th><th>Bağlanacağı yer</th></tr>${conn.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>`;
+}
+function copyCode(){
+  const done=()=>toast("Arduino kodu panoya kopyalandı!");
+  const fallback=()=>{ const t=document.createElement("textarea"); t.value=lastCode; document.body.appendChild(t); t.select(); try{document.execCommand("copy"); done();}catch(e){toast("Kopyalanamadı – kodu seçip kopyalayın");} t.remove(); };
+  if(navigator.clipboard) navigator.clipboard.writeText(lastCode).then(done).catch(fallback); else fallback();
+}
+function clearSerial(){ serialLines=[]; $("serial").textContent=""; }
+
+// =====================================================================
+// 11) ARAYÜZ
+// =====================================================================
+function tab(n){ ["watch","serial","code","bom"].forEach(t=>$("tab-"+t).style.display = t===n?"":"none"); document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active", b.dataset.tab===n)); }
+function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2200); }
+function renderScenario(){
+  const p=PRESETS[presetIndex];
+  $("scenarioCard").innerHTML = `<h2><span class="lvl">${p.group} · ${presetIndex+1}</span>${esc(p.title)} ${edited?'<span class="edited">✎ düzenlendi</span>':""}</h2><p>${esc(p.desc)}</p><p class="real">🌍 ${esc(p.real)}</p>`;
+}
+function refreshAll(){
+  usedSet = detectUsed(program);
+  renderScenario(); renderFlow(); renderCircuit(); renderDock(); updateScene(); renderWatch(); genCode(); renderBOM();
+}
+function loadPreset(i){
+  stopSim(); presetIndex=i; edited=false;
+  const p=PRESETS[i]; program=assignIds(JSON.parse(JSON.stringify(p.prog)));
+  Object.assign(env, ENV_DEFAULT, p.env||{});
+  clearSerial(); setScene(p.scene); resetSim();
+  toast(`${p.title} yüklendi – devre otomatik kuruldu`);
+}
+(function init(){
+  const sel=$("presetSelect"); let g=null, og=null;
+  PRESETS.forEach((p,i)=>{ if(p.group!==g){ g=p.group; og=document.createElement("optgroup"); og.label=g; sel.appendChild(og); }
+    const o=document.createElement("option"); o.value=i; o.textContent=`${i+1}. ${p.title}`; og.appendChild(o); });
+  sel.value=presetIndex;
+  sel.addEventListener("change",e=>loadPreset(Number(e.target.value)));
+  $("btnRun").addEventListener("click",startSim);
+  $("btnStep").addEventListener("click",()=>{ ensureAudio(); stopSim(); stepOnce(); });
+  $("btnReset").addEventListener("click",resetSim);
+  $("speed").addEventListener("input",e=>{ speed=SPEEDS[Number(e.target.value)]; $("speedLbl").textContent=speed+"x"; });
+  loadPreset(presetIndex);
+  requestAnimationFrame(animLoop);
+})();
+</script>
+</body>
+</html>
