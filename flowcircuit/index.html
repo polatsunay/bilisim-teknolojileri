@@ -327,6 +327,7 @@ const O = (target, value) => ({type:"output", target, value});
 const S = sensor => ({type:"sensor", sensor});
 const D = ms => ({type:"delay", ms});
 const PR = (text, variable="") => ({type:"print", text, variable});
+const blink = (t,on,off,n) => Array.from({length:n},()=>[O(t,1),D(on),O(t,0),D(off)]).flat();
 const IF = (variable, op, threshold, t, f=[]) => ({type:"if", variable, op, threshold, trueBranch:t, falseBranch:f});
 
 const PRESETS = [
@@ -408,14 +409,88 @@ const PRESETS = [
       IF("mesafe","<",50,[ O("servo",90) ],[ O("servo",0) ]),
       IF("buton","==",1,[ PR("Zil caldi!"), O("buzzer",1), D(300), O("buzzer",0) ]),
       IF("gaz",">",400,[ O("redLed",1), O("buzzer",1), O("fan",1), PR("GAZ ALARMI!") ],[ O("redLed",0), O("buzzer",0) ]),
-      D(100) ] }
+      D(100) ] },
+
+  // ---------- EK SENARYOLAR ----------
+  { group:"Başlangıç", title:"Polis Çakarı (Kırmızı-Mavi)", scene:"ev",
+    desc:"Kırmızı ve mavi LED sırayla 300 ms yanıp söner. İki çıkışın zamanlamasını öğretir.",
+    real:"Gerçek hayatta: Polis, ambulans ve itfaiye araçlarının tepe lambaları.",
+    prog:[ O("redLed",1), O("blueLed",0), D(300), O("redLed",0), O("blueLed",1), D(300) ] },
+  { group:"Başlangıç", title:"SOS Acil Durum Işığı (Mors Kodu)", scene:"ev",
+    desc:"S = 3 kısa, O = 3 uzun, S = 3 kısa yanıp sönme. Uzun komut dizisini adım adım izleyerek tekrarı gözlemle.",
+    real:"Gerçek hayatta: Gemilerde, dağcılıkta ve acil durum fenerlerinde kullanılan uluslararası SOS işareti.",
+    prog:[ ...blink("redLed",200,200,3), D(400), ...blink("redLed",700,200,3), D(400), ...blink("redLed",200,200,3), D(1500) ] },
+  { group:"Başlangıç", title:"RGB Gökkuşağı Renk Döngüsü", scene:"ev",
+    desc:"RGB LED sırayla kırmızı → sarı → yeşil → turkuaz → mavi → mor olur. R, G, B bacaklarının birlikte yanmasıyla ara renkler oluşur.",
+    real:"Gerçek hayatta: Oyuncu klavyeleri, parti ışıkları ve akıllı ampullerin renk efektleri.",
+    prog:["red","yellow","green","cyan","blue","purple"].flatMap(c=>[ O("rgbLed",c), D(600) ]) },
+  { group:"Orta", title:"Merdiven Otomatiği (Zaman Ayarlı Lamba)", scene:"ev",
+    desc:"Butona basılınca lamba yanar, 5 saniye sonra kendiliğinden söner. Bekle bloğu zamanlayıcı gibi kullanılır.",
+    real:"Gerçek hayatta: Apartman merdivenlerinde basınca bir süre yanıp sönen lambalar (enerji tasarrufu).",
+    prog:[ S("button"), IF("buton","==",1,[ O("whiteLed",1), PR("Isik 5 saniye acik"), D(5000), O("whiteLed",0), PR("Isik kapandi") ]) ] },
+  { group:"Orta", title:"Butonla Açılan Kapı Kilidi", scene:"ev",
+    desc:"Butona basılınca servo 90° dönerek kilidi açar, yeşil ışık yanar; 3 saniye sonra kilit kendiliğinden kapanır.",
+    real:"Gerçek hayatta: Apartman giriş kapılarındaki otomatik kilitler ve turnikeler.",
+    prog:[ S("button"), IF("buton","==",1,[ O("servo",90), O("greenLed",1), PR("Kilit acildi"), D(3000), O("servo",0), O("greenLed",0), PR("Kilit kapandi") ],[ O("servo",0), O("greenLed",0) ]) ] },
+  { group:"Orta", title:"Dijital Mesafe Ölçer (Seri Monitör)", scene:"park", env:{mesafe:80},
+    desc:"HC-SR04 her yarım saniyede mesafeyi ölçer ve seri monitöre yazar. Çıkış yok; sadece Girdi → Çıktı.",
+    real:"Gerçek hayatta: Lazer metreler, robot süpürgelerin engel algılaması, araçların mesafe ölçümü.",
+    prog:[ S("ultrasonic"), PR("Mesafe (cm): ","mesafe"), D(500) ] },
+  { group:"Orta", title:"Gece Modlu Trafik Lambası (LDR)", scene:"trafik", env:{isik:650},
+    desc:"Gündüz normal trafik lambası çalışır. Hava kararınca (isik < 300) sadece sarı ışık yanıp söner.",
+    real:"Gerçek hayatta: Gece trafiği azalınca kavşaklarda 'flaşör' moduna geçen sarı yanıp sönen lambalar.",
+    prog:[ S("ldr"),
+      IF("isik","<",300,[ O("redLed",0), O("greenLed",0), O("yellowLed",1), D(500), O("yellowLed",0), D(500) ],
+        [ O("yellowLed",0), O("redLed",1), D(2500), O("redLed",0), O("greenLed",1), D(2500), O("greenLed",0), O("yellowLed",1), D(800), O("yellowLed",0) ]) ] },
+  { group:"Orta", title:"Bebek Odası Gece Lambası", scene:"ev", env:{isik:650},
+    desc:"Sadece hava karanlıkken ve odada hareket varken loş mavi gece lambası yanar. İç içe EĞER (iki koşul birlikte).",
+    real:"Gerçek hayatta: Gece kalkınca yanan hareket sensörlü koridor ve bebek odası lambaları.",
+    prog:[ S("ldr"), S("pir"),
+      IF("isik","<",300,[ IF("hareket","==",1,[ O("blueLed",1), D(2000) ],[ O("blueLed",0) ]) ],[ O("blueLed",0) ]) ] },
+  { group:"İleri", title:"Yangın Alarmı + Tahliye Kapısı", scene:"ev", env:{sicaklik:24, gaz:150},
+    desc:"Sıcaklık 50 °C'yi VEYA gaz 500'ü aşarsa siren çalar, alarm lambası yanar ve tahliye kapısı (servo) açılır. 'VEYA' mantığı iç içe EĞER ile kurulur.",
+    real:"Gerçek hayatta: AVM ve okullardaki yangın algılama sistemleri ve otomatik açılan acil çıkış kapıları.",
+    prog:[ S("tmp36"), S("mq2"),
+      IF("sicaklik",">",50,[ O("buzzer",1), O("redLed",1), O("servo",180), PR("YANGIN! Tahliye kapisi acik") ],
+        [ IF("gaz",">",500,[ O("buzzer",1), O("redLed",1), O("servo",180), PR("DUMAN/GAZ! Tahliye kapisi acik") ],
+                          [ O("buzzer",0), O("redLed",0), O("servo",0) ]) ]), D(300) ] },
+  { group:"İleri", title:"Gece Hırsız Alarmı (LDR + PIR)", scene:"ev", env:{isik:650},
+    desc:"Alarm sadece gece kurulur (yeşil ışık). Gece hareket algılanırsa siren ve kırmızı lamba yanıp söner. Gündüz sistem pasiftir.",
+    real:"Gerçek hayatta: Mağazaların kapanış sonrası otomatik kurulan alarm sistemleri.",
+    prog:[ S("ldr"), S("pir"),
+      IF("isik","<",300,[ O("greenLed",1),
+          IF("hareket","==",1,[ O("redLed",1), O("buzzer",1), PR("GECE ALARMI: Hareket var!"), D(300), O("redLed",0), O("buzzer",0), D(300) ],[ O("redLed",0), O("buzzer",0) ]) ],
+        [ O("greenLed",0), O("redLed",0), O("buzzer",0) ]) ] },
+  { group:"İleri", title:"Akıllı Kapı Asistanı (Mesafe + Zil)", scene:"ev", env:{mesafe:150},
+    desc:"Kapıya 80 cm'den yakın biri gelince kapı önü lambası yanar. Zile de basarsa zil çalar ve kapı açılır.",
+    real:"Gerçek hayatta: Görüntülü diyafonlu akıllı kapı zilleri (Ring vb.).",
+    prog:[ S("ultrasonic"), S("button"),
+      IF("mesafe","<",80,[ O("yellowLed",1),
+          IF("buton","==",1,[ O("buzzer",1), O("servo",90), PR("Misafir iceri alindi"), D(2000), O("buzzer",0) ],[ O("servo",0) ]) ],
+        [ O("yellowLed",0), O("servo",0) ]) ] },
+  { group:"İleri", title:"Akıllı Sera (Sıcaklık + Bitki Işığı)", scene:"ev", env:{sicaklik:24, isik:650},
+    desc:"Sera 30 °C'yi aşarsa havalandırma fanı çalışır. Işık yetersizse (isik < 400) mor bitki büyütme ışığı yanar.",
+    real:"Gerçek hayatta: Seralarda ve dikey tarımda kullanılan otomatik iklim ve LED aydınlatma sistemleri.",
+    prog:[ S("tmp36"), S("ldr"), PR("Sera sicakligi: ","sicaklik"),
+      IF("sicaklik",">",30,[ O("fan",1) ],[ O("fan",0) ]),
+      IF("isik","<",400,[ O("rgbLed","purple") ],[ O("rgbLed","off") ]), D(500) ] },
+  { group:"Proje", title:"Enerji Tasarruflu Akıllı Ev", scene:"ev", env:{isik:650, sicaklik:24},
+    desc:"Evde kimse yoksa (hareket yok) her şey kapanır. Biri varsa: karanlıksa lamba, sıcaksa fan çalışır. Durum seri monitöre yazılır.",
+    real:"Gerçek hayatta: Otellerdeki kartlı enerji sistemleri ve akıllı evlerin 'evde kimse yok' modu.",
+    prog:[ S("pir"), S("ldr"), S("tmp36"),
+      IF("hareket","==",1,[ PR("Evde biri var"),
+          IF("isik","<",300,[ O("whiteLed",1) ],[ O("whiteLed",0) ]),
+          IF("sicaklik",">",27,[ O("fan",1) ],[ O("fan",0) ]) ],
+        [ O("whiteLed",0), O("fan",0), PR("Ev bos - enerji tasarrufu") ]), D(1000) ] }
 ];
+const GORDER=["Başlangıç","Orta","İleri","Proje"];
+PRESETS.sort((a,b)=>GORDER.indexOf(a.group)-GORDER.indexOf(b.group));
 
 // =====================================================================
 // 3) DURUM
 // =====================================================================
 let program = [];
-let presetIndex = PRESETS.length - 1;
+let presetIndex = PRESETS.findIndex(p=>p.title.startsWith("Akıllı Ev – Tam"));
 let edited = false;
 let usedSet = new Set();
 let currentScene = "ev";
@@ -1076,7 +1151,7 @@ const SCENES = {
       </svg>`;
     },
     update(){
-      skyUpdate(0);
+      skyUpdate(nightness());
       const u=usedSet, set=(id,on)=>{ const e=$(id); e.setAttribute("fill", on? e.dataset.on : "#1f2937"); $(id+"Glow").setAttribute("opacity", on?0.9:0); };
       set("tlR", out.redLed&&u.has("redLed")); set("tlY", out.yellowLed&&u.has("yellowLed")); set("tlG", out.greenLed&&u.has("greenLed"));
       $("tlBtn").style.display = u.has("button")?"":"none"; $("tlSpk").style.display = u.has("buzzer")?"":"none";
