@@ -1,5 +1,31 @@
 // Okulumuzun Algoritması – öğrenci ve öğretmen sayfalarının ortak kodu · © 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.
 
+/* ===== LİSANS KORUMASI =====
+ * © 2026 Sunay Öğretmen (Sunay's School). Tüm hakları saklıdır.
+ * Bu yazılım açık kaynak DEĞİLDİR. İzinsiz kopyalanamaz, değiştirilemez, başka bir adreste yayımlanamaz.
+ * Lisans: https://polatsunay.github.io/bilisim-teknolojileri/algoritma-etkinligi/lisans.html
+ */
+const LISANS_ORIJINAL = 'https://polatsunay.github.io/bilisim-teknolojileri/algoritma-etkinligi/';
+const LISANS_GECERLI = (() => {
+  const h = location.hostname, p = location.pathname;
+  return (h === 'polatsunay.github.io' && p.startsWith('/bilisim-teknolojileri/')) || h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:';
+})();
+try {
+  console.log('%c© 2026 Sunay Öğretmen (Sunay\'s School) · Tüm hakları saklıdır.', 'font:700 14px sans-serif;color:#6c5ce7');
+  console.log('Bu yazılım lisanslıdır. İzinsiz kopyalanması, değiştirilmesi ve başka bir yerde yayımlanması yasaktır. Lisans: ' + LISANS_ORIJINAL + 'lisans.html');
+} catch (e) {}
+function lisansEngeli() {
+  const html = `<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(140deg,#341f78,#6c5ce7);font-family:system-ui,sans-serif">
+    <div style="background:#fff;border-radius:20px;padding:30px;max-width:520px;color:#22184a;text-align:center">
+      <div style="font-size:44px">🔒</div><h1 style="margin:6px 0">Lisanslı içerik</h1>
+      <p>Bu etkinlik <b>Sunay Öğretmen</b>'e aittir ve yalnızca orijinal adresinde kullanılabilir. İzinsiz kopyalanması ve başka bir sitede yayımlanması yasaktır.</p>
+      <p><a href="${LISANS_ORIJINAL}" style="display:inline-block;background:#ffc42a;color:#22184a;padding:12px 20px;border-radius:12px;font-weight:800;text-decoration:none">Orijinal etkinliğe git →</a></p>
+      <p style="font-size:13px;color:#6b6890">© 2026 Sunay Öğretmen (Sunay's School) · Tüm hakları saklıdır.<br><a href="${LISANS_ORIJINAL}lisans.html" style="color:#6c5ce7">Lisans koşulları</a></p></div></div>`;
+  const yaz = () => { document.title = 'Lisanslı içerik'; document.body.innerHTML = html; };
+  if (document.body) yaz(); else document.addEventListener('DOMContentLoaded', yaz);
+}
+if (!LISANS_GECERLI) { lisansEngeli(); throw new Error('Lisans: bu adreste çalıştırma izni yok.'); }
+
 /* ===== AYAR ===== */
 // Öğretmen: Apps Script web uygulaması URL'sini tırnakların arasına yapıştırın.
 // Boş bırakılırsa sayfalar DENEME MODUNDA çalışır (veriler yalnızca bu tarayıcıda, mail gitmez, panel şifresi: 1234).
@@ -37,6 +63,7 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '
 function problemAdi(id, kendiAd) { const p = (window.PROBLEMLER || []).find(x => x.id === id); if (!p) return ''; return p.kendi ? 'Kendi problemi: ' + (kendiAd || '') : p.ikon + ' ' + p.ad; }
 
 async function api(action, payload) {
+  if (!LISANS_GECERLI) throw new Error('Lisans: bu adreste çalıştırma izni yok.');
   if (DEMO) return demoApi(action, JSON.parse(JSON.stringify(payload || {})));
   const r = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...payload }) });
   const j = await r.json();

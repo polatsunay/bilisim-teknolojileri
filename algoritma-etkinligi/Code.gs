@@ -1,6 +1,7 @@
 /**
  * Okulumuzun Algoritması – ortak çalışma arka ucu (Google Apps Script)
  * © 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.
+ * Bu yazılım açık kaynak DEĞİLDİR; izinsiz kopyalanamaz, değiştirilemez, dağıtılamaz. Lisans: LICENSE
  *
  * KURULUM (bir kez):
  *  1) script.google.com → Yeni proje → bu kodu yapıştır → Kaydet.

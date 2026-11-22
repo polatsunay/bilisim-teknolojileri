@@ -1,4 +1,5 @@
 // Okulumuzun Algoritması – problem bankası · © 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.
+// Bu dosya lisanslıdır; izinsiz kopyalanamaz ve başka bir yerde kullanılamaz. Lisans: lisans.html
 window.PROBLEMLER = [
   { id: 'kantin', ad: 'Kantin Hesabı', ikon: '🥪', seviye: 'Kolay',
     aciklama: 'Ürünlerin fiyatı tek tek girilir, 0 girilince biter. Program toplamı hesaplar; verilen para yetiyorsa para üstünü, yetmiyorsa eksik tutarı yazar.',
