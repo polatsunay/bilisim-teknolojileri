@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Öğrenci Rehberi · Okulumuzun Algoritması</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Sans:wght@400;600;700;800&family=Fira+Mono&display=swap" rel="stylesheet">
+<style>
+:root { --mor:#6c5ce7; --koyu:#341f78; --murekkep:#22184a; --sari:#ffc42a; --turuncu:#ff7a45; --yesil:#26aa78; --mavi:#2b7de9; --pembe:#e6466e; --acik:#f4f2ff; --cizgi:#dcd7f5; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; font-family:'Fira Sans',system-ui,sans-serif; color:var(--murekkep); background:#f7f6fd; font-size:16px; line-height:1.5; }
+a { color:var(--mor); }
+.kap { max-width:980px; margin:0 auto; padding:0 18px; }
+
+/* kahraman */
+.hero { background:radial-gradient(circle at 15% 15%, #7c6cf0 0, transparent 45%), linear-gradient(140deg,var(--koyu),var(--mor)); color:#fff; padding:46px 0 54px; position:relative; overflow:hidden; }
+.hero .etiket { display:inline-block; background:var(--turuncu); font-weight:800; font-size:13px; padding:5px 14px; border-radius:20px; letter-spacing:.5px; }
+.hero h1 { font-family:'Archivo Black'; font-weight:400; font-size:clamp(34px,6vw,58px); line-height:1.02; margin:14px 0 10px; }
+.hero h1 span { color:var(--sari); }
+.hero p { font-size:19px; max-width:620px; opacity:.95; margin:0 0 22px; }
+.btnler { display:flex; gap:10px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:14px 22px; border-radius:14px; font-weight:800; font-size:17px; text-decoration:none; transition:transform .12s; }
+.btn:hover { transform:translateY(-2px); }
+.btn.sari { background:var(--sari); color:var(--murekkep); box-shadow:0 6px 0 #c9950f; }
+.btn.cam { background:rgba(255,255,255,.15); color:#fff; border:2px solid rgba(255,255,255,.4); }
+.sekiller { position:absolute; right:-20px; top:30px; opacity:.9; }
+@media (max-width:760px) { .sekiller { display:none; } }
+
+/* hızlı bakış */
+.ozet { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:-30px; position:relative; }
+.ozet div { background:#fff; border-radius:18px; padding:16px; box-shadow:0 8px 24px rgba(40,20,120,.1); text-align:center; }
+.ozet b { display:block; font-family:'Archivo Black'; font-size:26px; color:var(--mor); }
+.ozet span { font-size:14px; color:#5b5680; font-weight:600; }
+
+h2.bas { font-family:'Archivo Black'; font-weight:400; font-size:28px; margin:44px 0 6px; }
+p.alt { color:#5b5680; margin:0 0 18px; }
+
+/* başlangıç kartları */
+.iki { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.kart { background:#fff; border-radius:20px; padding:20px 22px; box-shadow:0 4px 18px rgba(40,20,120,.07); }
+.kart h3 { margin:0 0 8px; font-size:19px; display:flex; align-items:center; gap:10px; }
+.kart ol, .kart ul { margin:0; padding-left:22px; } .kart li { margin:5px 0; }
+.rozet { display:inline-flex; width:34px; height:34px; border-radius:10px; align-items:center; justify-content:center; font-size:19px; flex:none; }
+.kod { font-family:'Fira Mono'; background:var(--acik); color:var(--koyu); font-weight:700; padding:1px 8px; border-radius:6px; letter-spacing:2px; }
+kbd { font-family:'Fira Mono'; background:#fff; border:1px solid #c9c3f0; border-bottom-width:3px; border-radius:6px; padding:1px 7px; font-size:14px; }
+
+/* adımlar */
+.adimlar { position:relative; }
+.adim { display:grid; grid-template-columns:62px 1fr; gap:16px; margin-bottom:14px; }
+.adim .no { width:52px; height:52px; border-radius:50%; background:var(--mor); color:#fff; font-family:'Archivo Black'; font-size:22px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 0 var(--koyu); position:relative; z-index:1; }
+.adim:not(:last-child) .no::after { content:''; position:absolute; top:56px; left:24px; width:4px; height:calc(100% + 30px); background:var(--cizgi); z-index:-1; }
+.adim .govde { background:#fff; border-radius:18px; padding:16px 20px; box-shadow:0 4px 18px rgba(40,20,120,.07); }
+.adim h3 { margin:0 0 4px; font-size:19px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.sure { background:#e7f1fb; color:#2b5fa8; font-size:12px; font-weight:800; padding:2px 10px; border-radius:10px; }
+.kim { background:#fff4dc; color:#8a5a00; font-size:12px; font-weight:800; padding:2px 10px; border-radius:10px; }
+.adim p { margin:4px 0; }
+.ipucu { background:#e5f4e4; border-radius:12px; padding:9px 13px; font-size:14px; margin-top:8px; }
+.ipucu.sari { background:#fff4dc; }
+.ornek { background:var(--acik); border-radius:12px; padding:9px 13px; font-size:14px; margin-top:8px; }
+.adim.vurgu .no { background:var(--turuncu); box-shadow:0 4px 0 #b4441b; }
+.adim.yesil .no { background:var(--yesil); box-shadow:0 4px 0 #1d6b4b; }
+
+/* roller */
+.roller { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.rol { background:#fff; border-radius:18px; padding:18px; text-align:center; box-shadow:0 4px 18px rgba(40,20,120,.07); border-top:6px solid var(--mor); }
+.rol .ik { font-size:38px; } .rol b { display:block; font-size:18px; margin:4px 0; } .rol span { font-size:14px; color:#5b5680; }
+
+/* rubrik */
+table.rub { width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 18px rgba(40,20,120,.07); font-size:14px; }
+table.rub th { background:var(--koyu); color:#fff; padding:10px; text-align:left; font-size:13px; }
+table.rub td { padding:10px; border-bottom:1px solid #eeeaff; vertical-align:top; }
+table.rub td:first-child { font-weight:800; background:var(--acik); width:20%; }
+table.rub tr:last-child td { border-bottom:0; }
+
+/* kurallar */
+.kurallar { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.kural { background:#fff; border-radius:16px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start; box-shadow:0 3px 12px rgba(40,20,120,.06); }
+.kural .ik { font-size:24px; flex:none; } .kural b { display:block; }  .kural span { font-size:14px; color:#5b5680; }
+
+/* SSS */
+details { background:#fff; border-radius:14px; margin-bottom:10px; box-shadow:0 3px 12px rgba(40,20,120,.06); }
+summary { padding:14px 18px; font-weight:800; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+summary::-webkit-details-marker { display:none; }
+summary::after { content:'+'; font-size:22px; color:var(--mor); }
+details[open] summary::after { content:'–'; }
+details p { margin:0; padding:0 18px 14px; color:#3d3566; }
+
+.son { background:linear-gradient(120deg,var(--koyu),var(--mor)); color:#fff; border-radius:24px; padding:30px; text-align:center; margin:40px 0 20px; }
+.son h2 { font-family:'Archivo Black'; font-weight:400; font-size:30px; margin:0 0 8px; }
+footer { text-align:center; color:#8a85ad; font-size:13px; padding:10px 0 34px; }
+
+@media (max-width:760px) {
+  .ozet { grid-template-columns:1fr 1fr; } .iki, .roller, .kurallar { grid-template-columns:1fr; }
+  .adim { grid-template-columns:44px 1fr; gap:10px; } .adim .no { width:40px; height:40px; font-size:17px; }
+  .adim:not(:last-child) .no::after { top:44px; left:18px; }
+  table.rub { font-size:12px; } table.rub th, table.rub td { padding:7px; }
+}
+@media print { .hero { padding:20px 0; } .btnler, .son .btn { display:none; } .adim, .kart, .rol { break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="kap">
+    <svg class="sekiller" width="300" height="330" viewBox="0 0 300 330" aria-hidden="true">
+      <g font-family="Fira Sans" font-weight="700" font-size="18" text-anchor="middle" fill="#22184a">
+        <rect x="80" y="10" width="140" height="44" rx="22" fill="#c8c3ff" stroke="#22184a" stroke-width="3"/><text x="150" y="38">Başla</text>
+        <line x1="150" y1="54" x2="150" y2="80" stroke="#fff" stroke-width="4"/>
+        <polygon points="95,80 225,80 205,124 75,124" fill="#96c8ff" stroke="#22184a" stroke-width="3"/><text x="150" y="108">Girdi</text>
+        <line x1="150" y1="124" x2="150" y2="150" stroke="#fff" stroke-width="4"/>
+        <polygon points="150,150 215,190 150,230 85,190" fill="#ffc42a" stroke="#22184a" stroke-width="3"/><text x="150" y="196">Eğer?</text>
+        <line x1="150" y1="230" x2="150" y2="256" stroke="#fff" stroke-width="4"/>
+        <rect x="80" y="256" width="140" height="44" rx="22" fill="#c8c3ff" stroke="#22184a" stroke-width="3"/><text x="150" y="284">Bitir</text>
+      </g>
+    </svg>
+    <span class="etiket">ÖĞRENCİ REHBERİ · 9. SINIF</span>
+    <h1>Okulumuzun<br><span>Algoritması</span></h1>
+    <p>Ekibinle okulumuzdan gerçek bir problem seç, çözümünü AkışLab'de akış diyagramıyla kur, test et ve öğretmenine gönder.</p>
+    <div class="btnler">
+      <a class="btn sari" href="./" target="_blank" rel="noopener">🚀 Etkinliğe başla</a>
+      <a class="btn cam" href="../flowgorithm/" target="_blank" rel="noopener">🧩 AkışLab'i aç</a>
+    </div>
+  </div>
+</section>
+
+<div class="kap">
+  <div class="ozet">
+    <div><b>3 kişi</b><span>Ekip (en fazla 5)</span></div>
+    <div><b>2 ders</b><span>2 × 40 dakika</span></div>
+    <div><b>16</b><span>Problem seçeneği</span></div>
+    <div><b>16 puan</b><span>Değerlendirme</span></div>
+  </div>
+
+  <h2 class="bas">Önce grubunu kur</h2>
+  <p class="alt">Ekipten <b>yalnızca bir kişi</b> grup oluşturur, diğerleri o gruba katılır.</p>
+  <div class="iki">
+    <div class="kart">
+      <h3><span class="rozet" style="background:#fff4dc">👑</span>Grubu kuran kişi</h3>
+      <ol>
+        <li><b>Etkinliğe başla</b> düğmesine tıkla.</li>
+        <li><b>Yeni grup oluştur</b> sekmesini seç.</li>
+        <li>Adını ve soyadını, sınıf/şubeni yaz.</li>
+        <li><b>Grubu oluştur ve kodu al</b>'a bas.</li>
+        <li>Ekranın üstünde çıkan 5 harfli kodu (örn. <span class="kod">K7P2Q</span>) arkadaşlarına söyle ya da <b>Bağlantıyı kopyala</b>'ya basıp gönder.</li>
+      </ol>
+    </div>
+    <div class="kart">
+      <h3><span class="rozet" style="background:#e5f4e4">🙋</span>Katılan arkadaşlar</h3>
+      <ol>
+        <li><b>Etkinliğe başla</b> düğmesine tıkla.</li>
+        <li><b>Gruba katıl</b> sekmesinde kal.</li>
+        <li>Adını ve soyadını yaz.</li>
+        <li>Arkadaşının verdiği grup kodunu gir.</li>
+        <li><b>Gruba katıl</b>'a bas. Üst çubukta ekibindeki herkesi görürsün; yeşil nokta çevrimiçi demek.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 class="bas">Roller</h2>
+  <p class="alt">Herkes her şeye katkı verir ama her rolün bir sorumlusu olur. 2. derste roller değişir.</p>
+  <div class="roller">
+    <div class="rol" style="border-color:var(--mor)"><div class="ik">🎨</div><b>Tasarımcı</b><span>AkışLab'de şekilleri ekler, okları bağlar.</span></div>
+    <div class="rol" style="border-color:var(--turuncu)"><div class="ik">🔍</div><b>Analist</b><span>Girdi–İşlem–Çıktı tablosunu ve değişkenleri hazırlar.</span></div>
+    <div class="rol" style="border-color:var(--yesil)"><div class="ik">🧪</div><b>Testçi</b><span>Testleri yazar, programı adım adım çalıştırır.</span></div>
+  </div>
+
+  <h2 class="bas">Adım adım</h2>
+  <p class="alt">Sayfadaki 10 bölümü sırayla doldurun. Soldaki listede tamamlanan bölümler yeşil tik alır.</p>
+  <div class="adimlar">
+    <div class="adim"><div class="no">1</div><div class="govde"><h3>Ekip ve roller</h3><p>Ekip adınızı yazın, her rol için 1. ve 2. derste kimin sorumlu olacağını seçin.</p></div></div>
+    <div class="adim"><div class="no">2</div><div class="govde"><h3>Problem seçimi</h3><p>Kantin hesabı, devamsızlık takibi, servis doluluğu, dolap şifresi gibi 15 problemden birini seçin ya da öğretmeninizin onayıyla kendi problemlerinizi yazın.</p><div class="ipucu">Seçtiğiniz probleme göre sonraki bölümlerdeki ipuçları ve örnekler değişir. Aynı sınıfta iki ekip aynı problemi seçmesin.</div></div></div>
+    <div class="adim"><div class="no">3</div><div class="govde"><h3>Problemi parçalara ayır <span class="sure">10 dk</span> <span class="kim">Analist</span></h3><p>Kullanıcıdan ne alınacak (<b>Girdi</b>), program ne hesaplayacak (<b>İşlem</b>), ekrana ne yazılacak (<b>Çıktı</b>)?</p></div></div>
+    <div class="adim"><div class="no">4</div><div class="govde"><h3>Değişkenler <span class="sure">5 dk</span> <span class="kim">Analist</span></h3><p>En az 2 değişkenin adını, türünü ve ne tuttuğunu yazın.</p><div class="ornek">✅ <code>devamsizlik</code> · <code>toplamFiyat</code> &nbsp;&nbsp; ❌ <code>x</code> · <code>toplam fiyat</code> · <code>devamsızlık</code> <br><small>Ad anlamlı olsun; boşluk ve Türkçe karakter kullanmayın.</small></div></div></div>
+    <div class="adim"><div class="no">5</div><div class="govde"><h3>Algoritmayı cümlelerle yaz <span class="sure">5 dk</span></h3><p>Programın adımlarını sırasıyla yazın (en az 4 adım). Bu, diyagramınızın taslağıdır.</p></div></div>
+    <div class="adim vurgu"><div class="no">6</div><div class="govde"><h3>AkışLab'de diyagramı kur <span class="sure">25 dk</span> <span class="kim">Tasarımcı</span></h3><p>Başla şeklinden başlayın; Tanımla, Girdi, Ata, Karar (Eğer), Döngü ve Çıktı şekillerini ekleyip Bitir ile kapatın. <b>Çalıştır</b>'a basıp programın sorunsuz bittiğini görün.</p>
+      <div class="ipucu sari"><b>📸 Ekran görüntüsü nasıl eklenir?</b> <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> ile ekranın bir bölümünü seçin, sonra etkinlik sayfasındaki kutuya tıklayıp <kbd>Ctrl</kbd> + <kbd>V</kbd> ile yapıştırın. Diyagramı AkışLab'deki <b>PNG</b> düğmesiyle indirip kutuya sürükleyebilirsiniz de.</div>
+      <div class="ipucu"><b>Zorunlu:</b> "Program çalışırken" görüntüsünde konsoldaki çıktılar ve <i>Program başarıyla tamamlandı</i> yazısı görünmeli.</div></div></div>
+    <div class="adim"><div class="no">7</div><div class="govde"><h3>Tasarım gerekçesi <span class="sure">5 dk</span></h3><p>"Burada karar yapısı kullandık çünkü…" ve "Burada döngü kullandık çünkü…" cümlelerini tamamlayın.</p></div></div>
+    <div class="adim"><div class="no">8</div><div class="govde"><h3>Test et <span class="sure">15 dk</span> <span class="kim">Testçi</span></h3><p>Üç test yazın: <b>normal</b> bir durum, <b>sınır</b> değeri ve <b>hatalı girdi</b>. Önce beklenen sonucu yazın, sonra AkışLab'de <b>Adım</b> düğmesiyle çalıştırıp gerçek sonucu kaydedin. Fark varsa hatayı bulun ve düzeltin.</p><div class="ornek"><b>Sınır değeri</b> kararın tam değiştiği sayıdır: devamsızlık için 5, ortalama için 50. <code>&gt;</code> ile <code>&gt;=</code> arasındaki fark burada ortaya çıkar.</div></div></div>
+    <div class="adim vurgu"><div class="no">9</div><div class="govde"><h3>Takas: karşı ekibe geri bildirim ver <span class="sure">10 dk</span></h3><p>Öğretmeninizin eşleştirdiği ekiple <b>grup kodlarınızı değiştirin</b>.</p><ol style="margin:6px 0 0;padding-left:20px"><li>9. bölümde karşı ekibin kodunu girip <b>Çalışmalarını aç</b>'a basın.</li><li>Diyagramlarını ve algoritmalarını inceleyin; bir hata ya da eksik durum bulun.</li><li>Geri bildiriminizi yazıp gönderin. Onların sayfasına anında düşer.</li><li>Size gelen geri bildirime göre diyagramınızı düzeltin ve ne düzelttiğinizi yazın.</li></ol></div></div>
+    <div class="adim yesil"><div class="no">10</div><div class="govde"><h3>Kontrol et ve öğretmene gönder</h3><p>Kontrol listesindeki maddeleri AkışLab'de tek tek kontrol edip işaretleyin, sonra <b>📨 Öğretmene gönder</b>'e basın. Eksik bir şey varsa sayfa size hangi bölüm olduğunu söyler.</p><div class="ipucu">Gönderimi ekipten bir kişinin yapması yeterli. Öğretmeniniz değerlendirdiğinde puanınız ve notu sayfanın en üstünde görünür. "Düzeltme istendi" görürseniz düzeltip tekrar gönderin.</div></div></div>
+  </div>
+
+  <h2 class="bas">Nasıl puanlanacaksınız?</h2>
+  <p class="alt">Her ölçüt 1–4 puan, toplam 16 puan.</p>
+  <table class="rub">
+    <tr><th>Ölçüt</th><th>4 – Çok iyi</th><th>3 – İyi</th><th>2 – Gelişmekte</th><th>1 – Başlangıç</th></tr>
+    <tr><td>Problemi parçalama</td><td>Girdi, işlem, çıktı ve tüm değişkenler eksiksiz ve doğru</td><td>Küçük bir eksik var</td><td>Birkaç eksik ya da hatalı değişken türü</td><td>Tablo eksik ya da yok</td></tr>
+    <tr><td>Algoritma ve kontrol yapıları</td><td>Karar ve döngü doğru yerde, gerekçesi açık</td><td>İkisi de var, gerekçe zayıf</td><td>Biri eksik ya da yanlış yerde</td><td>Diyagram çalışmıyor</td></tr>
+    <tr><td>Test</td><td>3 test türü de var, sınır değeri doğru seçilmiş</td><td>3 test var, biri zayıf</td><td>Yalnızca normal durum test edilmiş</td><td>Test yapılmamış</td></tr>
+    <tr><td>İyileştirme</td><td>Geri bildirime göre düzeltme yapılmış ve açıklanmış</td><td>Düzeltme var, açıklama eksik</td><td>Geri bildirim alınmış, düzeltme yok</td><td>Takas yapılmamış</td></tr>
+  </table>
+
+  <h2 class="bas">Bilmen gerekenler</h2>
+  <div class="kurallar">
+    <div class="kural"><div class="ik">💾</div><div><b>Her şey kendiliğinden kaydedilir</b><span>Kaydet düğmesi yok. Sağ üstte "Kaydedildi ✓" yazısını görürsün.</span></div></div>
+    <div class="kural"><div class="ik">✏️</div><div><b>Aynı kutuya aynı anda yazmayın</b><span>Bir arkadaşın bir alana yazarken o kutuda onun adı görünür. Siz başka bir bölümle ilgilenin.</span></div></div>
+    <div class="kural"><div class="ik">🪪</div><div><b>Adını hep aynı yaz</b><span>Başka bir bilgisayardan girerken aynı ad ve aynı kodu kullanırsan kendi hesabınla devam edersin.</span></div></div>
+    <div class="kural"><div class="ik">🤝</div><div><b>Geri bildirim saygılı ve somut olsun</b><span>"Olmamış" yerine "Devamsızlık tam 5 girilince de mesaj gönderiyor" gibi, hatayı ve nasıl görüldüğünü yazın.</span></div></div>
+  </div>
+
+  <h2 class="bas">Sık sorulan sorular</h2>
+  <details><summary>Grup kodumuzu unuttuk, ne yapalım?</summary><p>Gruptan birinin ekranının üst çubuğunda kod yazar. Sayfanın adres çubuğundaki <code>?kod=</code> kısmında da görünür. Aynı bilgisayardan tekrar girerseniz sayfa sizi otomatik olarak grubunuza alır.</p></details>
+  <details><summary>Yanlışlıkla iki ayrı grup kurduk.</summary><p>Sorun değil. Ekip olarak hangisinde çalışacağınıza karar verin ve herkes o kodla katılsın. Boş kalan grup öğretmeninizin listesinde görünür; ona söylemeniz yeterli.</p></details>
+  <details><summary>"Bu grup dolu" yazıyor.</summary><p>Bir grupta en fazla 5 kişi olabilir. Grubunuzun kodunu doğru girdiğinizden emin olun; doğruysa öğretmeninize haber verin.</p></details>
+  <details><summary>Ekran görüntüsü yüklenmiyor.</summary><p>Görüntüyü aldıktan sonra önce etkinlik sayfasındaki kutuya bir kez tıklayın, sonra <kbd>Ctrl</kbd> + <kbd>V</kbd> yapın. Olmazsa görüntüyü bilgisayara kaydedip kutuya tıklayarak dosyayı seçin.</p></details>
+  <details><summary>"Öğretmene gönder" düğmesi eksikleri gösteriyor.</summary><p>Listedeki her maddeye tıklayınca ilgili bölüme gidersiniz. Hepsini tamamlayınca gönderim olur. En sık unutulanlar: "Program çalışırken" görüntüsü, karşı ekibe geri bildirim ve kontrol listesindeki kutular.</p></details>
+  <details><summary>Gönderdikten sonra bir hata fark ettik.</summary><p>Düzeltip <b>Güncel hâlini tekrar gönder</b>'e basın. Öğretmeniniz en son gönderilen hâli görür.</p></details>
+
+  <div class="son">
+    <h2>Hazır mısınız? 🚀</h2>
+    <p style="margin:0 0 18px;opacity:.9">Ekibinizi toplayın, bir kişi grubu kursun, kodu paylaşsın!</p>
+    <a class="btn sari" href="./" target="_blank" rel="noopener">Etkinliğe başla →</a>
+  </div>
+</div>
+
+<footer>AkışLab ve diğer eğitim oyunları: <a href="https://sites.google.com/view/sunayogretmen" target="_blank" rel="noopener">sites.google.com/view/sunayogretmen</a><br>© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.</footer>
+</body>
+</html>
