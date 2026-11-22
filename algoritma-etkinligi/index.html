@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Okulumuzun Algoritması · Sunay's School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Sans:wght@400;600;700;800&family=Fira+Mono&display=swap" rel="stylesheet">
+<style>
+:root { --mor:#6c5ce7; --koyu:#341f78; --murekkep:#22184a; --sari:#ffc42a; --turuncu:#ff7a45; --yesil:#26aa78; --acik:#f4f2ff; --cizgi:#dcd7f5; --kirmizi:#e6466e; }
+* { box-sizing: border-box; }
+body { margin:0; font-family:'Fira Sans',system-ui,sans-serif; color:var(--murekkep); background:#f7f6fd; font-size:16px; }
+button { font-family:inherit; cursor:pointer; }
+input, textarea, select { font-family:inherit; font-size:15px; color:var(--murekkep); }
+.hidden { display:none !important; }
+
+/* giriş */
+#giris { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
+  background: radial-gradient(circle at 20% 10%, #7c6cf0 0, transparent 40%), linear-gradient(140deg, var(--koyu), var(--mor)); }
+.gkart { background:#fff; border-radius:22px; padding:30px; width:100%; max-width:480px; box-shadow:0 20px 60px rgba(20,10,60,.35); }
+.gkart .etiket { display:inline-block; background:var(--turuncu); color:#fff; font-weight:800; font-size:12px; padding:4px 12px; border-radius:20px; letter-spacing:.5px; }
+.gkart h1 { font-family:'Archivo Black'; font-weight:400; font-size:34px; line-height:1.05; margin:10px 0 6px; }
+.gkart h1 span { color:var(--mor); }
+.gkart p.alt { margin:0 0 18px; color:#5b5680; }
+.sekme { display:flex; background:var(--acik); border-radius:14px; padding:4px; margin-bottom:16px; }
+.sekme button { flex:1; border:0; background:transparent; padding:10px; border-radius:10px; font-weight:700; color:#5b5680; font-size:15px; }
+.sekme button.aktif { background:#fff; color:var(--mor); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+label.l { display:block; font-weight:700; font-size:14px; margin:10px 0 5px; }
+.inp { width:100%; padding:11px 13px; border:2px solid var(--cizgi); border-radius:12px; background:#fff; outline:none; transition:border .15s; }
+.inp:focus { border-color:var(--mor); }
+.kodinp { text-transform:uppercase; letter-spacing:6px; font-size:24px; font-weight:800; text-align:center; font-family:'Fira Mono',monospace; }
+.btn { border:0; border-radius:12px; padding:12px 18px; font-weight:800; font-size:15px; background:var(--mor); color:#fff; transition:transform .1s, filter .15s; }
+.btn:hover { filter:brightness(1.08); } .btn:active { transform:scale(.98); }
+.btn.tam { width:100%; margin-top:16px; padding:14px; font-size:16px; }
+.btn.sari { background:var(--sari); color:var(--murekkep); }
+.btn.yesil { background:var(--yesil); }
+.btn.cizgili { background:#fff; color:var(--mor); border:2px solid var(--mor); }
+.btn:disabled { opacity:.55; cursor:not-allowed; }
+.hata { color:var(--kirmizi); font-weight:700; font-size:14px; min-height:20px; margin-top:8px; }
+.demo { background:#fff4dc; border-radius:10px; padding:8px 12px; font-size:13px; margin-top:14px; color:#7a5200; }
+
+/* üst çubuk */
+header { position:sticky; top:0; z-index:20; background:linear-gradient(110deg,var(--koyu),var(--mor)); color:#fff; padding:10px 18px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; box-shadow:0 4px 16px rgba(30,10,80,.25); }
+header .ad { font-family:'Archivo Black'; font-size:19px; }
+header .ad small { display:block; font-family:'Fira Sans'; font-size:11px; opacity:.8; font-weight:600; letter-spacing:.4px; }
+.kodchip { background:rgba(255,255,255,.15); border:1px dashed rgba(255,255,255,.6); padding:6px 12px; border-radius:12px; font-size:13px; display:flex; align-items:center; gap:8px; }
+.kodchip b { font-family:'Fira Mono'; font-size:20px; letter-spacing:3px; color:var(--sari); }
+.kodchip button { background:var(--sari); color:var(--murekkep); border:0; border-radius:8px; padding:4px 9px; font-weight:800; font-size:12px; }
+.uyeler { display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
+.uye { display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.14); padding:4px 10px 4px 4px; border-radius:20px; font-size:13px; font-weight:600; }
+.uye i { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-style:normal; font-weight:800; font-size:12px; color:#fff; position:relative; }
+.uye i::after { content:''; position:absolute; right:-1px; bottom:-1px; width:8px; height:8px; border-radius:50%; background:#aaa; border:2px solid var(--koyu); }
+.uye.cevrimici i::after { background:#3ddc84; }
+.kayit { font-size:12px; opacity:.9; min-width:90px; text-align:right; }
+
+/* düzen */
+.duzen { display:grid; grid-template-columns:250px 1fr; gap:22px; max-width:1180px; margin:20px auto; padding:0 16px; }
+nav.adimlar { position:sticky; top:84px; align-self:start; background:#fff; border-radius:18px; padding:10px; box-shadow:0 4px 18px rgba(40,20,120,.07); }
+nav.adimlar a { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:var(--murekkep); font-weight:600; font-size:14px; }
+nav.adimlar a:hover { background:var(--acik); }
+nav.adimlar a .no { width:24px; height:24px; border-radius:50%; background:var(--acik); color:var(--mor); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex:none; }
+nav.adimlar a.tamam .no { background:var(--yesil); color:#fff; }
+nav.adimlar a.tamam .no::before { content:'✓'; } nav.adimlar a.tamam .no span { display:none; }
+.ilerleme { height:8px; background:var(--acik); border-radius:8px; margin:8px 10px 12px; overflow:hidden; }
+.ilerleme div { height:100%; background:linear-gradient(90deg,var(--sari),var(--yesil)); width:0; transition:width .4s; }
+.ilerleme-yazi { font-size:12px; color:#6b6890; margin:8px 10px 0; font-weight:700; }
+
+main section { background:#fff; border-radius:20px; padding:22px 24px; margin-bottom:18px; box-shadow:0 4px 18px rgba(40,20,120,.07); scroll-margin-top:90px; }
+main h2 { margin:0 0 4px; font-size:21px; display:flex; align-items:center; gap:10px; }
+main h2 .no { background:var(--mor); color:#fff; width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:15px; flex:none; }
+.sure { margin-left:auto; background:#e7f1fb; color:#2b5fa8; font-size:12px; font-weight:800; padding:3px 10px; border-radius:10px; }
+.acikla { color:#5b5680; margin:4px 0 14px; }
+.ipucu { background:#e5f4e4; border-radius:12px; padding:10px 14px; font-size:14px; margin:10px 0; }
+.ipucu.sari { background:#fff4dc; }
+.ipucu b { color:#1d6b4b; } .ipucu.sari b { color:#8a5a00; }
+.iki { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.uc { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+textarea.inp { resize:vertical; min-height:90px; line-height:1.4; }
+.alan { position:relative; }
+.alan.duzenleniyor .inp { border-color:var(--turuncu); }
+.yaziyor { position:absolute; top:-9px; right:10px; background:var(--turuncu); color:#fff; font-size:11px; font-weight:800; padding:1px 8px; border-radius:8px; z-index:2; }
+
+/* problem kartları */
+.pgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(205px,1fr)); gap:12px; }
+.pkart { border:2px solid var(--cizgi); border-radius:16px; padding:12px 14px; background:#fff; text-align:left; transition:all .15s; position:relative; }
+.pkart:hover { border-color:var(--mor); transform:translateY(-2px); }
+.pkart.secili { border-color:var(--mor); background:var(--acik); box-shadow:0 0 0 3px rgba(108,92,231,.2); }
+.pkart.secili::after { content:'✓ Seçtik'; position:absolute; top:10px; right:10px; background:var(--mor); color:#fff; font-size:11px; font-weight:800; padding:2px 8px; border-radius:8px; }
+.pkart .ik { font-size:28px; }
+.pkart .ba { font-weight:800; font-size:15px; margin:4px 0 2px; }
+.sev { font-size:11px; font-weight:800; padding:2px 8px; border-radius:8px; display:inline-block; }
+.sev.Kolay { background:#e5f4e4; color:#1d6b4b; } .sev.Orta { background:#fff4dc; color:#8a5a00; } .sev.Zor { background:#fbe4ea; color:#a3214a; } .sev.oo { background:var(--acik); color:var(--mor); }
+.secilenp { margin-top:14px; background:linear-gradient(110deg,#efedff,#fff); border:2px solid var(--mor); border-radius:16px; padding:14px 16px; }
+.secilenp h3 { margin:0 0 4px; }
+
+/* tablolar */
+table.t { width:100%; border-collapse:separate; border-spacing:0; font-size:14px; }
+table.t th { background:var(--acik); color:var(--koyu); text-align:left; padding:8px; font-size:13px; }
+table.t th:first-child { border-radius:10px 0 0 10px; } table.t th:last-child { border-radius:0 10px 10px 0; }
+table.t td { padding:5px 4px; vertical-align:top; }
+table.t .inp { padding:8px 10px; border-radius:9px; font-size:14px; }
+table.t tr.ornek td { color:#8a7a50; font-style:italic; font-size:13px; padding:8px; background:#fffaf0; }
+.uyari-ad { color:var(--kirmizi); font-size:12px; font-weight:700; }
+.algsatir { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
+.algsatir span { width:26px; height:26px; flex:none; border-radius:50%; background:var(--sari); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:13px; }
+
+/* görsel yükleme */
+.gorseller { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.yukle { border:2.5px dashed var(--cizgi); border-radius:16px; padding:14px; text-align:center; background:#fbfaff; position:relative; min-height:210px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; transition:border .15s; }
+.yukle.uzerinde { border-color:var(--mor); background:var(--acik); }
+.yukle.dolu { border-style:solid; border-color:var(--yesil); }
+.yukle h4 { margin:0; font-size:15px; }
+.yukle .gerekli { font-size:11px; font-weight:800; background:var(--kirmizi); color:#fff; padding:2px 8px; border-radius:8px; }
+.yukle img { max-width:100%; max-height:260px; border-radius:10px; border:1px solid var(--cizgi); }
+.yukle small { color:#6b6890; }
+.aklink { display:inline-flex; align-items:center; gap:8px; background:var(--koyu); color:#fff; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:800; }
+
+/* kontrol */
+.kontrol label { display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border-radius:10px; cursor:pointer; }
+.kontrol label:hover { background:var(--acik); }
+.kontrol input { width:20px; height:20px; accent-color:var(--yesil); flex:none; margin-top:1px; }
+.eksikler { background:#fbe4ea; border-radius:12px; padding:10px 16px; color:#7d1636; font-size:14px; }
+.eksikler ul { margin:6px 0 0; padding-left:20px; }
+.teslimkutu { text-align:center; padding:10px 0 4px; }
+.teslimok { background:#e5f4e4; border-radius:14px; padding:14px; color:#1d6b4b; font-weight:700; margin-bottom:12px; }
+
+.rol { display:grid; grid-template-columns:120px 1fr 1fr; gap:8px; align-items:center; margin-bottom:6px; }
+.rol b { font-size:14px; } .rol small { display:block; color:#6b6890; font-weight:400; font-size:12px; }
+
+.bildirim { position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--murekkep); color:#fff; padding:12px 20px; border-radius:14px; font-weight:700; transition:transform .3s; z-index:50; max-width:90vw; }
+.bildirim.goster { transform:translateX(-50%) translateY(0); }
+footer { text-align:center; color:#8a85ad; font-size:13px; padding:10px 0 30px; }
+footer a { color:var(--mor); }
+
+/* takas */
+.takas-iki { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.takas-kutu { background:#fbfaff; border:2px solid var(--cizgi); border-radius:16px; padding:14px 16px; }
+.takas-kutu h3 { margin:0 0 8px; font-size:16px; }
+.peek { background:#fff; border:1px solid var(--cizgi); border-radius:12px; padding:10px 12px; margin:10px 0; font-size:14px; }
+.peek img { max-width:100%; border-radius:8px; border:1px solid var(--cizgi); margin-top:6px; cursor:zoom-in; }
+.peek .pk { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.gelen { background:#fff; border-left:4px solid var(--turuncu); border-radius:0 12px 12px 0; padding:10px 12px; margin-bottom:8px; font-size:14px; }
+.gelen .kim { font-size:12px; color:#6b6890; font-weight:700; margin-bottom:4px; }
+.bos { color:#8a85ad; font-size:14px; font-style:italic; padding:6px 0; }
+.verildi { background:#e5f4e4; color:#1d6b4b; border-radius:10px; padding:8px 12px; font-weight:700; font-size:14px; margin-bottom:8px; }
+
+/* öğretmen kartı */
+#ogretmen-kart { border-radius:20px; padding:20px 24px; margin-bottom:18px; color:#fff; background:linear-gradient(120deg,#1d6b4b,#26aa78); box-shadow:0 6px 22px rgba(20,100,70,.25); }
+#ogretmen-kart.duzeltme { background:linear-gradient(120deg,#b4441b,#ff7a45); box-shadow:0 6px 22px rgba(180,70,30,.25); }
+#ogretmen-kart h2 { color:#fff; margin:0 0 6px; }
+#ogretmen-kart .puan { font-family:'Archivo Black'; font-size:40px; line-height:1; }
+#ogretmen-kart .puan small { font-size:18px; opacity:.8; }
+.okriter { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:12px 0; }
+.okriter div { background:rgba(255,255,255,.16); border-radius:12px; padding:8px 10px; font-size:13px; }
+.okriter b { display:block; font-size:18px; }
+.oyorum { background:rgba(255,255,255,.95); color:var(--murekkep); border-radius:12px; padding:12px 14px; white-space:pre-wrap; }
+@media (max-width: 860px) { .takas-iki, .okriter, .peek .pk { grid-template-columns:1fr 1fr; } .takas-iki { grid-template-columns:1fr; } }
+
+@media (max-width: 860px) {
+  .duzen { grid-template-columns:1fr; } nav.adimlar { position:static; display:none; }
+  .iki, .uc, .gorseller { grid-template-columns:1fr; }
+  .rol { grid-template-columns:1fr 1fr; } .rol b { grid-column:1/-1; }
+  table.t, table.t tbody, table.t tr, table.t td { display:block; width:100%; } table.t tr:first-child { display:none; }
+  table.t tr { border-bottom:1px solid var(--cizgi); padding:6px 0; }
+  table.t td[data-l]::before { content:attr(data-l); display:block; font-size:12px; font-weight:700; color:#6b6890; margin:2px 0; }
+  header { position:static; } .uyeler { margin-left:0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ GİRİŞ ============ -->
+<div id="giris">
+  <div class="gkart">
+    <span class="etiket">ALGORİTMA ETKİNLİĞİ · 9. SINIF</span>
+    <h1>Okulumuzun <span>Algoritması</span></h1>
+    <p class="alt">Ekibinle okuldan gerçek bir problem seç, algoritmasını AkışLab'de kur, test et ve öğretmenine gönder.</p>
+    <div class="sekme"><button id="sk-katil" class="aktif" onclick="girisSekme('katil')">Gruba katıl</button><button id="sk-olustur" onclick="girisSekme('olustur')">Yeni grup oluştur</button></div>
+    <label class="l" for="g-ad">Adın ve soyadın</label>
+    <input id="g-ad" class="inp" maxlength="40" placeholder="Örn. Elif Yılmaz" autocomplete="name">
+    <div id="g-katil">
+      <label class="l" for="g-kod">Grup kodu</label>
+      <input id="g-kod" class="inp kodinp" maxlength="5" placeholder="•••••" autocomplete="off">
+      <button class="btn tam" onclick="katil()">Gruba katıl →</button>
+    </div>
+    <div id="g-olustur" class="hidden">
+      <label class="l" for="g-sube">Sınıf / Şube</label>
+      <input id="g-sube" class="inp" maxlength="20" placeholder="Örn. 9-A">
+      <button class="btn tam sari" onclick="olustur()">Grubu oluştur ve kodu al</button>
+      <p style="font-size:13px;color:#6b6890;margin:10px 0 0">Grubu ekipten <b>yalnızca bir kişi</b> oluşturur. Çıkan 5 harfli kodu arkadaşlarına söyle; onlar "Gruba katıl" ile girer.</p>
+    </div>
+    <div class="hata" id="g-hata"></div>
+    <div class="demo hidden" id="demo-uyari"><b>Deneme modu:</b> Öğretmen kurulumu henüz yapılmadı. Veriler yalnızca bu tarayıcıda tutulur ve mail gönderilmez.</div>
+  </div>
+</div>
+
+<!-- ============ UYGULAMA ============ -->
+<div id="uygulama" class="hidden">
+<header>
+  <div class="ad">Okulumuzun Algoritması<small>SUNAY'S SCHOOL · BİLİŞİM TEKNOLOJİLERİ</small></div>
+  <div class="kodchip">Grup kodu <b id="h-kod">-----</b><button onclick="koduPaylas()">Bağlantıyı kopyala</button></div>
+  <div class="uyeler" id="h-uyeler"></div>
+  <div class="kayit" id="h-kayit">Kaydedildi ✓</div>
+</header>
+
+<div class="duzen">
+  <nav class="adimlar" id="nav">
+    <div class="ilerleme-yazi" id="ilerleme-yazi">İlerleme %0</div>
+    <div class="ilerleme"><div id="ilerleme"></div></div>
+  </nav>
+
+  <main>
+    <div id="ogretmen-kart" class="hidden"></div>
+
+    <!-- 1 EKİP -->
+    <section id="s-ekip" data-baslik="Ekip ve roller">
+      <h2><span class="no">1</span>Ekip ve roller</h2>
+      <p class="acikla">Ekibinizin adını yazın ve rolleri dağıtın. Roller 2. derste değişir. Arkadaşların grup koduyla katıldıkça burada görünür.</p>
+      <div class="iki">
+        <div class="alan"><label class="l">Ekip adı</label><input class="inp" data-k="meta.ekipAdi" maxlength="40" placeholder="Örn. Döngü Avcıları"></div>
+        <div class="alan"><label class="l">Sınıf / Şube</label><input class="inp" data-k="meta.sube" maxlength="20" placeholder="Örn. 9-A"></div>
+      </div>
+      <label class="l" style="margin-top:16px">Roller</label>
+      <div id="roller"></div>
+    </section>
+
+    <!-- 2 PROBLEM -->
+    <section id="s-problem" data-baslik="Problem seçimi">
+      <h2><span class="no">2</span>Problem seçimi</h2>
+      <p class="acikla">Bir problem seçin. Sonraki bölümlerdeki ipuçları ve örnekler seçtiğiniz probleme göre değişir. Aynı sınıfta iki ekip aynı problemi seçmesin.</p>
+      <div class="pgrid" id="pgrid"></div>
+      <div id="kendi-alan" class="hidden" style="margin-top:14px">
+        <div class="iki">
+          <div class="alan"><label class="l">Problemimizin adı</label><input class="inp" data-k="kendi.ad" maxlength="60" placeholder="Örn. Okul bahçesi otopark sayacı"></div>
+          <div class="alan"><label class="l">Öğretmen onayı aldınız mı?</label><select class="inp" data-k="kendi.onay"><option value="">Seçin</option><option>Evet, onay aldık</option><option>Henüz değil</option></select></div>
+        </div>
+        <div class="alan"><label class="l">Program ne yapacak?</label><textarea class="inp" data-k="kendi.aciklama" placeholder="Problemi 2-3 cümleyle anlatın. Programda hem karar hem döngü olmalı."></textarea></div>
+      </div>
+      <div id="secilenp" class="secilenp hidden"></div>
+    </section>
+
+    <!-- 3 GİÇ -->
+    <section id="s-gic" data-baslik="Girdi – İşlem – Çıktı">
+      <h2><span class="no">3</span>Problemi parçalara ayır <span class="sure">10 dk</span></h2>
+      <p class="acikla">Kullanıcıdan ne alınacak, program ne hesaplayacak, ekrana ne yazılacak?</p>
+      <div class="uc">
+        <div class="alan"><label class="l">⬇️ Girdi</label><textarea class="inp" data-k="gic.girdi" data-ph="girdi"></textarea></div>
+        <div class="alan"><label class="l">⚙️ İşlem</label><textarea class="inp" data-k="gic.islem" data-ph="islem"></textarea></div>
+        <div class="alan"><label class="l">⬆️ Çıktı</label><textarea class="inp" data-k="gic.cikti" data-ph="cikti"></textarea></div>
+      </div>
+    </section>
+
+    <!-- 4 DEĞİŞKENLER -->
+    <section id="s-degisken" data-baslik="Değişkenler">
+      <h2><span class="no">4</span>Değişkenlerini belirle <span class="sure">5 dk</span></h2>
+      <p class="acikla">Her değişkenin adını, türünü ve ne tuttuğunu yazın. En az 2 değişken. Adlar anlamlı olsun; boşluk ve Türkçe karakter kullanmayın.</p>
+      <table class="t" id="degtablo">
+        <tr><th style="width:28%">Değişken adı</th><th style="width:22%">Türü</th><th>Ne tutuyor?</th></tr>
+      </table>
+    </section>
+
+    <!-- 5 ALGORİTMA -->
+    <section id="s-alg" data-baslik="Algoritma (cümlelerle)">
+      <h2><span class="no">5</span>Algoritmayı cümlelerle yaz <span class="sure">5 dk</span></h2>
+      <p class="acikla">Programın adımlarını sırasıyla yazın. Bu, akış diyagramının taslağıdır. En az 4 adım.</p>
+      <div class="ipucu" id="alg-ipucu"></div>
+      <div id="algliste"></div>
+    </section>
+
+    <!-- 6 AKIŞLAB -->
+    <section id="s-akis" data-baslik="Akış diyagramı ve ekran görüntüleri">
+      <h2><span class="no">6</span>Akış diyagramını AkışLab'de kur <span class="sure">25 dk</span></h2>
+      <p class="acikla">Başla şeklinden başlayın; Tanımla, Girdi, Ata, Karar, Döngü ve Çıktı şekillerini ekleyip Bitir ile kapatın. Sonra <b>Çalıştır</b>'a basıp programın çalıştığından emin olun.</p>
+      <p><a class="aklink" href="https://polatsunay.github.io/bilisim-teknolojileri/flowgorithm/" target="_blank" rel="noopener">🧩 AkışLab'i yeni sekmede aç</a></p>
+      <div class="ipucu sari"><b>Ekran görüntüsü nasıl alınır?</b> Windows'ta <b>Win + Shift + S</b> tuşlarına basın, alanı seçin, sonra aşağıdaki kutuya tıklayıp <b>Ctrl + V</b> ile yapıştırın. Diyagramı AkışLab'deki <b>PNG</b> düğmesiyle de indirip yükleyebilirsiniz.</div>
+      <div class="gorseller">
+        <div class="yukle" id="y-diyagram" tabindex="0" data-slot="diyagram"><h4>1. Akış diyagramı</h4><small>Diyagramın tamamı görünsün</small></div>
+        <div class="yukle" id="y-calisir" tabindex="0" data-slot="calisir"><h4>2. Program çalışırken <span class="gerekli">ZORUNLU</span></h4><small>Konsolda çıktılar ve "Program başarıyla tamamlandı" yazısı görünsün</small></div>
+      </div>
+      <div class="gorseller" style="margin-top:14px;grid-template-columns:1fr">
+        <div class="yukle" id="y-ek" tabindex="0" data-slot="ek" style="min-height:120px"><h4>3. Ek görüntü (isteğe bağlı)</h4><small>Örn. bir testin çalışması ya da Değişkenler paneli</small></div>
+      </div>
+      <input type="file" id="dosya" accept="image/*" class="hidden">
+    </section>
+
+    <!-- 7 GEREKÇE -->
+    <section id="s-gerekce" data-baslik="Tasarım gerekçesi">
+      <h2><span class="no">7</span>Tasarım kararını gerekçelendir <span class="sure">5 dk</span></h2>
+      <div class="ipucu" id="ger-ipucu"></div>
+      <div class="iki">
+        <div class="alan"><label class="l">Burada karar yapısı kullandık çünkü…</label><textarea class="inp" data-k="ger.karar" placeholder="Hangi soruya göre program farklı yola gidiyor?"></textarea></div>
+        <div class="alan"><label class="l">Burada döngü kullandık çünkü…</label><textarea class="inp" data-k="ger.dongu" placeholder="Hangi işlem tekrar ediyor, döngü ne zaman bitiyor?"></textarea></div>
+      </div>
+    </section>
+
+    <!-- 8 TEST -->
+    <section id="s-test" data-baslik="Test tablosu">
+      <h2><span class="no">8</span>Test et <span class="sure">15 dk</span></h2>
+      <p class="acikla">Her test için önce beklenen sonucu yazın, sonra AkışLab'de <b>Adım</b> düğmesiyle çalıştırıp gerçek sonucu kaydedin. Fark varsa hatayı bulun ve düzeltin.</p>
+      <div class="ipucu sari" id="test-ipucu"></div>
+      <table class="t" id="testtablo">
+        <tr><th style="width:12%">Test türü</th><th>Girdi</th><th>Beklenen çıktı</th><th>Gerçek çıktı</th><th style="width:12%">Doğru mu?</th><th>Ne düzelttik?</th></tr>
+      </table>
+    </section>
+
+    <!-- 9 TAKAS -->
+    <section id="s-takas" data-baslik="Takas ve iyileştirme">
+      <h2><span class="no">9</span>Takas et ve iyileştir <span class="sure">10 dk</span></h2>
+      <p class="acikla">Öğretmeninizin eşleştirdiği ekiple kodlarınızı değiştirin. Siz onların programında hata ya da eksik durum arayın, onlar da sizinkinde.</p>
+      <div class="takas-iki">
+        <div class="takas-kutu">
+          <h3>🔍 A) Karşı ekibe geri bildirim verin</h3>
+          <div id="akran-ver"></div>
+        </div>
+        <div class="takas-kutu">
+          <h3>📬 B) Size gelen geri bildirimler</h3>
+          <div id="akran-gelen"></div>
+          <details style="margin-top:8px"><summary style="cursor:pointer;font-size:13px;color:#6b6890;font-weight:700">Geri bildirimi sözlü mü aldınız? Buraya yazın</summary>
+            <div class="alan"><textarea class="inp" data-k="takas.geribildirim" placeholder="Karşı ekip programımızda ne buldu?" style="margin-top:6px"></textarea></div>
+          </details>
+          <div class="alan"><label class="l">Buna göre ne düzelttik?</label><textarea class="inp" data-k="takas.duzeltme" placeholder="Diyagramda neyi değiştirdik? Düzeltmeden sonra testi tekrar çalıştırdık mı?"></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 KONTROL + GÖNDER -->
+    <section id="s-teslim" data-baslik="Kontrol ve teslim">
+      <h2><span class="no">10</span>Kontrol et ve öğretmene gönder</h2>
+      <p class="acikla">Diyagramınız bu şartların hepsini karşılıyor mu? Her birini AkışLab'de kontrol edip işaretleyin.</p>
+      <div class="kontrol" id="kontrol"></div>
+      <div class="ipucu"><b>Erken bitirenler için ek görev:</b> Kullanıcı hatalı bir değer girerse program uyarı versin ve doğru değer girilene kadar yeniden sorsun. Bunun için döngünün içine bir karar yapısı koymanız gerekecek.</div>
+      <div id="eksikler" class="eksikler hidden"></div>
+      <div class="teslimkutu">
+        <div id="teslim-durum"></div>
+        <button class="btn yesil" style="padding:15px 28px;font-size:17px" id="gonder-btn" onclick="gonder()">📨 Öğretmene gönder</button>
+        <p style="font-size:13px;color:#6b6890">Gönderimi ekipten bir kişinin yapması yeterli. Gönderdikten sonra düzeltme yaparsanız tekrar gönderebilirsiniz.</p>
+      </div>
+    </section>
+  </main>
+</div>
+<footer>AkışLab ve diğer eğitim oyunları: <a href="https://sites.google.com/view/sunayogretmen" target="_blank">sites.google.com/view/sunayogretmen</a> · © 2026 Sunay's School – Tüm hakları saklıdır.</footer>
+</div>
+
+<div class="bildirim" id="bildirim"></div>
+
+<script src="problemler.js"></script>
+<script src="ortak.js"></script>
+<script>
+/* ======================= AYARLAR ======================= */
+const YOKLAMA_MS = 3000;
+
+const RENKLER = ['#ff7a45', '#26aa78', '#2b7de9', '#e6466e', '#a259e6'];
+
+
+/* ======================= DURUM ======================= */
+let S = { code: null, memberId: null, version: 0, data: { members: {}, fields: {} }, presence: {}, submitted: '' };
+let bekleyen = {}, gonderTimer = null, gonderiliyor = false, odak = '', yoklamaTimer = null;
+
+if (kanal) kanal.onmessage = () => { if (S.code) yokla(); };
+
+/* ======================= YARDIMCILAR ======================= */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const deger = k => { if (k in bekleyen) return bekleyen[k]; const f = S.data.fields[k]; return f ? f.v : ''; };
+const problem = () => PROBLEMLER.find(p => p.id === deger('problem'));
+function bildir(m, ms = 2800) { const b = $('#bildirim'); b.textContent = m; b.classList.add('goster'); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('goster'), ms); }
+function renk(mid) { const ids = Object.keys(S.data.members).sort((a, b) => S.data.members[a].katilma - S.data.members[b].katilma); return RENKLER[Math.max(0, ids.indexOf(mid)) % RENKLER.length]; }
+function kayitDurumu(t) { $('#h-kayit').textContent = t; }
+
+/* ======================= GİRİŞ ======================= */
+function girisSekme(s) {
+  $('#sk-katil').classList.toggle('aktif', s === 'katil'); $('#sk-olustur').classList.toggle('aktif', s === 'olustur');
+  $('#g-katil').classList.toggle('hidden', s !== 'katil'); $('#g-olustur').classList.toggle('hidden', s !== 'olustur'); $('#g-hata').textContent = '';
+}
+function adAl() { const a = $('#g-ad').value.trim(); if (a.length < 2) { $('#g-hata').textContent = 'Adını ve soyadını yaz.'; return null; } return a; }
+async function olustur() {
+  const name = adAl(); if (!name) return;
+  const sube = $('#g-sube').value.trim();
+  try { $('#g-hata').textContent = 'Grup oluşturuluyor…'; const r = await api('create', { name, sube }); basla(r, name, true); }
+  catch (e) { $('#g-hata').textContent = e.message; }
+}
+async function katil(otomatik) {
+  const name = adAl(); if (!name) return;
+  const code = $('#g-kod').value.trim().toUpperCase();
+  if (code.length !== 5) { $('#g-hata').textContent = 'Grup kodu 5 karakter olmalı.'; return; }
+  try { $('#g-hata').textContent = 'Bağlanılıyor…'; const r = await api('join', { name, code }); basla(r, name, false); }
+  catch (e) { $('#g-hata').textContent = e.message; if (otomatik) LS.removeItem('oa_oturum'); }
+}
+function basla(r, name, yeni) {
+  S.code = r.code; S.memberId = r.memberId; S.version = r.version; S.data = r.data; S.submitted = r.submitted || '';
+  LS.setItem('oa_oturum', JSON.stringify({ code: r.code, name }));
+  try { history.replaceState(null, '', location.pathname + '?kod=' + r.code); } catch (e) {}
+  $('#giris').classList.add('hidden'); $('#uygulama').classList.remove('hidden');
+  $('#h-kod').textContent = r.code;
+  kur(); hepsiniCiz();
+  if (yeni) bildir('Grup kodunuz: ' + r.code + ' · Arkadaşlarınıza söyleyin!', 6000);
+  clearInterval(yoklamaTimer); yoklamaTimer = setInterval(yokla, YOKLAMA_MS); yokla();
+}
+function koduPaylas() {
+  const url = location.origin + location.pathname + '?kod=' + S.code;
+  navigator.clipboard?.writeText(url).then(() => bildir('Bağlantı kopyalandı: ' + S.code), () => bildir('Grup kodu: ' + S.code));
+}
+
+/* ======================= SENKRON ======================= */
+function ayarla(k, v) {
+  bekleyen[k] = v; kayitDurumu('Kaydediliyor…');
+  clearTimeout(gonderTimer); gonderTimer = setTimeout(gonderBekleyen, 600);
+  ilerlemeyiCiz();
+}
+async function gonderBekleyen() {
+  if (gonderiliyor) { gonderTimer = setTimeout(gonderBekleyen, 400); return; }
+  const changes = bekleyen; const anahtarlar = Object.keys(changes); if (!anahtarlar.length) return;
+  bekleyen = {}; gonderiliyor = true;
+  try {
+    const r = await api('patch', { code: S.code, memberId: S.memberId, changes });
+    S.version = r.version; S.data = r.data; kayitDurumu('Kaydedildi ✓');
+    disariyiCiz();
+  } catch (e) {
+    bekleyen = { ...changes, ...bekleyen }; kayitDurumu('⚠️ Bağlantı yok, tekrar denenecek');
+    gonderTimer = setTimeout(gonderBekleyen, 3000);
+  } finally { gonderiliyor = false; }
+}
+async function yokla() {
+  if (!S.code || gonderiliyor) return;
+  try {
+    const r = await api('get', { code: S.code, memberId: S.memberId, version: S.version, focus: odak });
+    S.presence = r.presence || {};
+    if (!r.same && r.data) { S.version = r.version; S.data = r.data; S.submitted = r.submitted || S.submitted; disariyiCiz(); }
+    uyeleriCiz(); kimYaziyor();
+    if (!Object.keys(bekleyen).length && $('#h-kayit').textContent.startsWith('⚠️')) kayitDurumu('Kaydedildi ✓');
+  } catch (e) { kayitDurumu('⚠️ Bağlantı yok'); }
+}
+
+/* ======================= ARAYÜZ KURULUMU ======================= */
+function kur() {
+  // gezinme
+  const nav = $('#nav'); nav.querySelectorAll('a').forEach(a => a.remove());
+  $$('main section').forEach((s, i) => {
+    const a = document.createElement('a'); a.href = '#' + s.id; a.dataset.s = s.id;
+    a.innerHTML = `<span class="no"><span>${i + 1}</span></span>${s.dataset.baslik}`; nav.appendChild(a);
+  });
+  // problemler
+  $('#pgrid').innerHTML = PROBLEMLER.map(p => `<button class="pkart" data-p="${p.id}"><div class="ik">${p.ikon}</div><div class="ba">${esc(p.ad)}</div><span class="sev ${p.kendi ? 'oo' : p.seviye}">${esc(p.seviye)}</span></button>`).join('');
+  $$('.pkart').forEach(b => b.onclick = () => { ayarla('problem', b.dataset.p); problemiCiz(); });
+  // değişkenler
+  let h = `<tr class="ornek" id="deg-ornek"><td></td><td></td><td></td></tr>`;
+  for (let i = 0; i < DEG_SAYI; i++) h += `<tr><td class="alan" data-l="Değişken adı"><input class="inp" data-k="var.${i}.ad" maxlength="25" placeholder="${i === 0 ? 'Örn. yukarıdaki gibi' : ''}"><div class="uyari-ad" data-uyari="${i}"></div></td>
+    <td class="alan" data-l="Türü"><select class="inp" data-k="var.${i}.tur"><option value="">Tür seç</option>${TURLER.map(t => `<option>${t}</option>`).join('')}</select></td>
+    <td class="alan" data-l="Ne tutuyor?"><input class="inp" data-k="var.${i}.aciklama" maxlength="80"></td></tr>`;
+  $('#degtablo').insertAdjacentHTML('beforeend', h);
+  // algoritma
+  $('#algliste').innerHTML = Array.from({ length: ALG_SAYI }, (_, i) => `<div class="algsatir alan"><span>${i + 1}</span><input class="inp" data-k="alg.${i}" maxlength="160" placeholder="${i === 0 ? 'Örn. Toplamı 0 olarak başlat.' : ''}"></div>`).join('');
+  // testler
+  let t = `<tr class="ornek" id="test-ornek"></tr>`;
+  TESTLER.forEach(x => {
+    t += `<tr><td><b style="font-size:13px">${x.tur}</b></td>` + [['girdi','Girdi'], ['beklenen','Beklenen çıktı'], ['gercek','Gerçek çıktı']].map(([c, l]) => `<td class="alan" data-l="${l}"><input class="inp" data-k="test.${x.i}.${c}" maxlength="120"></td>`).join('') +
+      `<td class="alan" data-l="Doğru mu?"><select class="inp" data-k="test.${x.i}.dogru"><option value=""></option><option>Evet ✓</option><option>Hayır ✗</option></select></td><td class="alan" data-l="Ne düzelttik?"><input class="inp" data-k="test.${x.i}.duzeltme" maxlength="120"></td></tr>`;
+  });
+  $('#testtablo').insertAdjacentHTML('beforeend', t);
+  // kontrol
+  $('#kontrol').innerHTML = KONTROL.map((k, i) => `<label class="alan"><input type="checkbox" data-k="chk.${i}"> <span>${esc(k)}</span></label>`).join('');
+  // bağlama
+  $$('[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    const olay = (el.type === 'checkbox' || el.tagName === 'SELECT') ? 'change' : 'input';
+    el.addEventListener(olay, () => { ayarla(k, el.type === 'checkbox' ? el.checked : el.value); if (k.startsWith('var.')) adKontrol(); if (k.startsWith('kendi.')) problemiCiz(); });
+    el.addEventListener('focus', () => { odak = k; odakBildir(); });
+    el.addEventListener('blur', () => { if (odak === k) { odak = ''; odakBildir(); } });
+  });
+  // görseller
+  $$('.yukle').forEach(kutu => {
+    kutu.addEventListener('click', e => { if (e.target.closest('button')) return; aktifSlot = kutu.dataset.slot; $('#dosya').click(); });
+    kutu.addEventListener('focus', () => aktifSlot = kutu.dataset.slot);
+    kutu.addEventListener('mouseenter', () => aktifSlot = kutu.dataset.slot);
+    kutu.addEventListener('dragover', e => { e.preventDefault(); kutu.classList.add('uzerinde'); });
+    kutu.addEventListener('dragleave', () => kutu.classList.remove('uzerinde'));
+    kutu.addEventListener('drop', e => { e.preventDefault(); kutu.classList.remove('uzerinde'); const f = e.dataTransfer.files[0]; if (f) gorselYukle(kutu.dataset.slot, f); });
+  });
+  $('#dosya').onchange = e => { const f = e.target.files[0]; if (f && aktifSlot) gorselYukle(aktifSlot, f); e.target.value = ''; };
+  document.addEventListener('paste', e => {
+    const item = Array.from(e.clipboardData?.items || []).find(i => i.type.startsWith('image/'));
+    if (!item) return;
+    e.preventDefault();
+    const slot = aktifSlot || (deger('img.calisir') ? (deger('img.diyagram') ? 'ek' : 'diyagram') : 'calisir');
+    gorselYukle(slot, item.getAsFile());
+  });
+  akranKur();
+  // gezinmede aktif bölüm
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) $$('nav a').forEach(a => a.style.background = a.dataset.s === en.target.id ? 'var(--acik)' : ''); }), { rootMargin: '-40% 0px -55% 0px' });
+  $$('main section').forEach(s => io.observe(s));
+}
+let aktifSlot = null, odakTimer = null;
+function odakBildir() { clearTimeout(odakTimer); odakTimer = setTimeout(yokla, 250); }
+
+/* ======================= ÇİZİM ======================= */
+function hepsiniCiz() { alanlariDoldur(true); uyeleriCiz(); rolleriCiz(); problemiCiz(); gorselleriCiz(); adKontrol(); akranCiz(); ogretmenCiz(); ilerlemeyiCiz(); teslimCiz(); }
+function disariyiCiz() { alanlariDoldur(false); uyeleriCiz(); rolleriCiz(); problemiCiz(); gorselleriCiz(); adKontrol(); akranCiz(); ogretmenCiz(); ilerlemeyiCiz(); teslimCiz(); }
+
+function alanlariDoldur(hepsi) {
+  $$('[data-k]').forEach(el => {
+    const k = el.dataset.k; if (!hepsi && (el === document.activeElement || k in bekleyen)) return;
+    const v = deger(k);
+    if (el.type === 'checkbox') { if (el.checked !== !!v) el.checked = !!v; }
+    else if (el.value !== (v ?? '')) el.value = v ?? '';
+  });
+}
+
+function uyeleriCiz() {
+  const m = S.data.members, simdi = Date.now();
+  $('#h-uyeler').innerHTML = Object.keys(m).sort((a, b) => m[a].katilma - m[b].katilma).map(id => {
+    const p = S.presence[id]; const on = id === S.memberId || (p && simdi - p.seen < YOKLAMA_MS * 4);
+    return `<span class="uye ${on ? 'cevrimici' : ''}" title="${on ? 'Çevrimiçi' : 'Çevrimdışı'}"><i style="background:${renk(id)}">${esc(m[id].ad[0].toUpperCase())}</i>${esc(m[id].ad.split(' ')[0])}${id === S.memberId ? ' (sen)' : ''}</span>`;
+  }).join('');
+}
+
+function kimYaziyor() {
+  $$('.yaziyor').forEach(x => x.remove()); $$('.alan.duzenleniyor').forEach(x => x.classList.remove('duzenleniyor'));
+  const simdi = Date.now();
+  for (const id in S.presence) {
+    if (id === S.memberId) continue; const p = S.presence[id];
+    if (!p.focus || simdi - p.seen > YOKLAMA_MS * 3 || !S.data.members[id]) continue;
+    const el = document.querySelector(`[data-k="${p.focus}"]`); const alan = el?.closest('.alan'); if (!alan) continue;
+    alan.classList.add('duzenleniyor');
+    alan.insertAdjacentHTML('beforeend', `<span class="yaziyor" style="background:${renk(id)}">✏️ ${esc(S.data.members[id].ad.split(' ')[0])}</span>`);
+  }
+}
+
+function rolleriCiz() {
+  const m = S.data.members; const ids = Object.keys(m).sort((a, b) => m[a].katilma - m[b].katilma);
+  const sec = k => `<select class="inp" data-k="${k}"><option value="">Kim?</option>${ids.map(id => `<option value="${id}">${esc(m[id].ad)}</option>`).join('')}</select>`;
+  const kap = $('#roller'); const odakta = kap.contains(document.activeElement); if (odakta) return;
+  kap.innerHTML = `<div class="rol" style="font-size:12px;color:#6b6890;font-weight:700"><span></span><span>1. ders</span><span>2. ders</span></div>` +
+    ROLLER.map(r => `<div class="rol alan"><b>${r.ad}<small>${r.is}</small></b>${sec('rol.' + r.id + '.1')}${sec('rol.' + r.id + '.2')}</div>`).join('');
+  kap.querySelectorAll('[data-k]').forEach(el => {
+    el.value = deger(el.dataset.k) || '';
+    el.addEventListener('change', () => ayarla(el.dataset.k, el.value));
+    el.addEventListener('focus', () => { odak = el.dataset.k; odakBildir(); }); el.addEventListener('blur', () => { odak = ''; odakBildir(); });
+  });
+}
+
+function problemiCiz() {
+  const p = problem();
+  $$('.pkart').forEach(b => b.classList.toggle('secili', b.dataset.p === deger('problem')));
+  $('#kendi-alan').classList.toggle('hidden', !(p && p.kendi));
+  const kutu = $('#secilenp');
+  if (!p) { kutu.classList.add('hidden'); }
+  else {
+    kutu.classList.remove('hidden');
+    const ad = p.kendi ? (deger('kendi.ad') || 'Kendi problemimiz') : p.ad;
+    const ac = p.kendi ? (deger('kendi.aciklama') || p.aciklama) : p.aciklama;
+    kutu.innerHTML = `<h3>${p.ikon} ${esc(ad)}</h3><div>${esc(ac)}</div>`;
+  }
+  const q = p || { girdi: 'Önce bir problem seçin.', islem: '', cikti: '', degisken: ['…', '…', '…'], karar: '…', dongu: '…', sinir: '…', hatali: '…', ornek: ['…', '…'] };
+  $$('[data-ph]').forEach(el => el.placeholder = q[el.dataset.ph] || '');
+  $('#deg-ornek').innerHTML = `<td>Örnek: <b>${esc(q.degisken[0])}</b></td><td>${esc(q.degisken[1])}</td><td>${esc(q.degisken[2])}</td>`;
+  $('#alg-ipucu').innerHTML = `<b>Bu problemde:</b> Döngü → ${esc(q.dongu)} &nbsp;·&nbsp; Karar → ${esc(q.karar)}`;
+  $('#ger-ipucu').innerHTML = `<b>Düşünün:</b> ${esc(q.karar)} &nbsp;·&nbsp; ${esc(q.dongu)}`;
+  $('#test-ipucu').innerHTML = `<b>Sınır testi:</b> ${esc(q.sinir)} &nbsp;·&nbsp; <b>Hatalı girdi testi:</b> ${esc(q.hatali)}`;
+  $('#test-ornek').innerHTML = `<td>Örnek</td><td>${esc(q.ornek[0])}</td><td>${esc(q.ornek[1])}</td><td colspan="3">Sarı satır yalnızca örnektir; kendi testlerinizi aşağıya yazın.</td>`;
+  ilerlemeyiCiz();
+}
+
+function adKontrol() {
+  for (let i = 0; i < DEG_SAYI; i++) {
+    const v = String(deger('var.' + i + '.ad') || ''); const u = $(`[data-uyari="${i}"]`); if (!u) continue;
+    u.textContent = !v ? '' : /\s/.test(v) ? 'Boşluk kullanma' : /[çğıöşüÇĞİÖŞÜ]/.test(v) ? 'Türkçe karakter kullanma' : /^[0-9]/.test(v) ? 'Sayıyla başlayamaz' : '';
+  }
+}
+
+function gorselleriCiz() {
+  $$('.yukle').forEach(kutu => {
+    const slot = kutu.dataset.slot; const im = deger('img.' + slot);
+    const baslik = kutu.querySelector('h4').outerHTML; const alt = kutu.dataset.alt || (kutu.dataset.alt = kutu.querySelector('small').outerHTML);
+    const yuklenen = kutu.dataset.yukleniyor;
+    kutu.classList.toggle('dolu', !!(im && im.url));
+    if (yuklenen) return;
+    kutu.innerHTML = baslik + (im && im.url
+      ? `<img src="${esc(kutu.dataset.yerel || im.url)}" alt="${slot}"><div><button class="btn cizgili" style="padding:6px 12px;font-size:13px" onclick="aktifSlot='${slot}';$('#dosya').click()">Değiştir</button></div>`
+      : `${alt}<div style="font-size:30px">📋</div><b>Tıkla, sürükle ya da Ctrl+V ile yapıştır</b>`);
+  });
+}
+
+async function gorselKucult(file) {
+  const url = URL.createObjectURL(file);
+  const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+  const max = DEMO ? 1000 : 1600; const o = Math.min(1, max / Math.max(img.width, img.height));
+  const c = document.createElement('canvas'); c.width = Math.round(img.width * o); c.height = Math.round(img.height * o);
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height);
+  URL.revokeObjectURL(url);
+  return c.toDataURL('image/jpeg', DEMO ? 0.75 : 0.88);
+}
+async function gorselYukle(slot, file) {
+  if (!file || !file.type.startsWith('image/')) { bildir('Lütfen bir resim dosyası seçin.'); return; }
+  const kutu = $('#y-' + slot); kutu.dataset.yukleniyor = '1';
+  kutu.innerHTML = kutu.querySelector('h4').outerHTML + '<div style="font-size:28px">⏳</div><b>Yükleniyor…</b>';
+  try {
+    const dataUrl = await gorselKucult(file);
+    const r = await api('upload', { code: S.code, memberId: S.memberId, slot, dataUrl });
+    kutu.dataset.yerel = dataUrl;
+    S.data.fields['img.' + slot] = { v: r.img, t: Date.now(), by: S.memberId };
+    bildir('Görüntü eklendi ✓'); yokla();
+  } catch (e) { bildir('Yüklenemedi: ' + e.message, 4000); }
+  delete kutu.dataset.yukleniyor; gorselleriCiz(); ilerlemeyiCiz();
+}
+
+
+/* ======================= TAKAS (AKRAN GERİ BİLDİRİMİ) ======================= */
+const gelenler = () => Object.keys(S.data.fields).filter(k => k.startsWith('akran.')).map(k => S.data.fields[k].v).sort((a, b) => b.zaman - a.zaman);
+let akranHedef = null, sonGelenSay = null, sonOgretmen = null;
+function akranKur() {
+  $('#akran-ver').innerHTML = `<div id="akran-durum"></div>
+    <label class="l">Karşı ekibin grup kodu</label>
+    <div style="display:flex;gap:8px"><input id="akran-kod" class="inp kodinp" style="font-size:18px;letter-spacing:4px;padding:8px" maxlength="5" placeholder="•••••"><button class="btn" onclick="akranAc()">Çalışmalarını aç</button></div>
+    <div class="hata" id="akran-hata"></div><div id="akran-peek"></div>`;
+  $('#akran-kod').addEventListener('keydown', e => { if (e.key === 'Enter') akranAc(); });
+}
+async function akranAc() {
+  const hedef = $('#akran-kod').value.trim().toUpperCase(); $('#akran-hata').textContent = '';
+  if (hedef.length !== 5) { $('#akran-hata').textContent = 'Grup kodu 5 karakter olmalı.'; return; }
+  $('#akran-peek').innerHTML = '<div class="bos">Açılıyor…</div>';
+  try {
+    const r = await api('peek', { code: S.code, memberId: S.memberId, hedef });
+    akranHedef = r.code;
+    const im = (x, ad) => x && x.url ? `<div><small><b>${ad}</b></small><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.url)}" alt="${ad}"></a></div>` : `<div class="bos">${ad}: henüz yok</div>`;
+    $('#akran-peek').innerHTML = `<div class="peek"><b style="font-size:16px">${esc(r.ekipAdi || r.code)}</b> <small>· ${esc(r.sube)}</small><br>
+      <span>${esc(problemAdi(r.problem, r.kendiAd) || 'Problem seçilmemiş')}</span>
+      <div style="margin-top:6px"><b>Girdi:</b> ${esc(r.gic.girdi) || '—'}<br><b>İşlem:</b> ${esc(r.gic.islem) || '—'}<br><b>Çıktı:</b> ${esc(r.gic.cikti) || '—'}</div>
+      ${r.alg.length ? `<ol style="margin:6px 0 0;padding-left:20px">${r.alg.map(a => `<li>${esc(a)}</li>`).join('')}</ol>` : ''}
+      <div class="pk" style="margin-top:6px">${im(r.img.diyagram, 'Akış diyagramı')}${im(r.img.calisir, 'Çalışırken')}</div></div>
+      <div class="ipucu sari" style="font-size:13px"><b>Nasıl bakılır?</b> Onların diyagramını AkışLab'de kendi testlerinizle (özellikle sınır değeri ve hatalı girdi) düşünün. Döngü doğru yerde bitiyor mu? Karar sınırda doğru mu çalışıyor?</div>
+      <label class="l">Bulduğunuz hata ya da eksik durum</label>
+      <textarea class="inp" id="akran-metin" placeholder="Örn. Devamsızlık tam 5 girilince de mesaj gönderiyor; > yerine >= kullanılmış."></textarea>
+      <label class="l">Öneriniz (isteğe bağlı)</label>
+      <textarea class="inp" id="akran-oneri" style="min-height:60px" placeholder="Nasıl düzeltebilirler?"></textarea>
+      <button class="btn turuncu" style="margin-top:10px;background:var(--turuncu)" onclick="akranGonder()">📤 Geri bildirimi gönder</button>`;
+  } catch (e) { $('#akran-peek').innerHTML = ''; $('#akran-hata').textContent = e.message; }
+}
+async function akranGonder() {
+  const metin = $('#akran-metin').value.trim(), oneri = $('#akran-oneri').value.trim();
+  if (metin.length < 5) { bildir('Bulduğunuz hatayı ya da eksiği yazın.'); return; }
+  try {
+    const r = await api('akran', { code: S.code, memberId: S.memberId, hedef: akranHedef, metin, oneri });
+    S.version = r.version; S.data = r.data; $('#akran-peek').innerHTML = ''; $('#akran-kod').value = '';
+    bildir('Geri bildirim gönderildi ✓'); disariyiCiz();
+  } catch (e) { bildir('Gönderilemedi: ' + e.message, 4000); }
+}
+function akranCiz() {
+  const ver = deger('akranVerilen');
+  const d = $('#akran-durum');
+  if (d) d.innerHTML = ver ? `<div class="verildi">✅ <b>${esc(ver.ekip)}</b> ekibine geri bildirim verdiniz (${esc(ver.yazan)}). İsterseniz bir ekibe daha verebilirsiniz.</div>` : '';
+  const g = gelenler();
+  $('#akran-gelen').innerHTML = g.length ? g.map(a => `<div class="gelen"><div class="kim">${esc(a.ekip)} · ${esc(a.yazan)} · ${new Date(a.zaman).toLocaleString('tr-TR')}</div>${esc(a.metin)}${a.oneri ? `<div style="margin-top:4px"><b>Öneri:</b> ${esc(a.oneri)}</div>` : ''}</div>`).join('')
+    : `<div class="bos">Henüz geri bildirim gelmedi. Karşı ekip sizin kodunuzu (<b>${esc(S.code)}</b>) girerek yazacak.</div>`;
+  if (sonGelenSay !== null && g.length > sonGelenSay) bildir('📬 Karşı ekipten yeni geri bildirim geldi!', 4500);
+  sonGelenSay = g.length;
+}
+
+/* ======================= ÖĞRETMEN DEĞERLENDİRMESİ ======================= */
+function ogretmenCiz() {
+  const o = deger('ogretmen'), k = $('#ogretmen-kart');
+  if (!o) { k.classList.add('hidden'); sonOgretmen = 0; return; }
+  if (sonOgretmen !== null && o.zaman !== sonOgretmen) bildir(o.durum === 'duzeltme' ? '✏️ Öğretmeniniz düzeltme istedi!' : '🎓 Öğretmeninizden değerlendirme geldi!', 5000);
+  sonOgretmen = o.zaman;
+  k.classList.remove('hidden'); k.classList.toggle('duzeltme', o.durum === 'duzeltme');
+  const baslik = { duzeltme: '✏️ Öğretmeniniz düzeltme istedi', yeniden: '📨 Düzeltilmiş hâliniz gönderildi', degerlendirildi: '🎓 Öğretmen değerlendirmesi' }[o.durum] || '🎓 Öğretmen değerlendirmesi';
+  const alt = o.durum === 'duzeltme' ? 'Aşağıdaki yoruma göre çalışmanızı düzeltin, sonra 10. bölümden tekrar gönderin.' : o.durum === 'yeniden' ? 'Öğretmeniniz yeniden bakacak. Önceki değerlendirme aşağıda.' : new Date(o.zaman).toLocaleString('tr-TR');
+  k.innerHTML = `<div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:220px"><h2>${baslik}</h2><div style="opacity:.9">${esc(alt)}</div></div>
+    ${o.toplam ? `<div class="puan">${o.toplam}<small> / 16</small></div>` : ''}</div>
+    ${o.toplam ? `<div class="okriter">${RUBRIK.map(r => `<div>${esc(r.ad)}<b>${o.puanlar[r.id] ? o.puanlar[r.id] + ' · ' + SEVIYE[o.puanlar[r.id]] : '–'}</b></div>`).join('')}</div>` : '<div style="height:10px"></div>'}
+    ${o.yorum ? `<div class="oyorum"><b>Öğretmeninizin notu:</b><br>${esc(o.yorum)}</div>` : ''}`;
+}
+
+/* ======================= İLERLEME VE TESLİM ======================= */
+function dolu(k) { const v = deger(k); return v !== '' && v != null && String(v).trim() !== ''; }
+function bolumDurumu() {
+  const degSay = Array.from({ length: DEG_SAYI }, (_, i) => i).filter(i => dolu('var.' + i + '.ad') && dolu('var.' + i + '.tur')).length;
+  const algSay = Array.from({ length: ALG_SAYI }, (_, i) => i).filter(i => dolu('alg.' + i)).length;
+  const testOk = [0, 1, 2].every(i => dolu(`test.${i}.girdi`) && dolu(`test.${i}.beklenen`) && dolu(`test.${i}.gercek`) && dolu(`test.${i}.dogru`));
+  const p = problem();
+  return {
+    's-ekip': { ok: dolu('meta.ekipAdi') && dolu('meta.sube') && ROLLER.every(r => dolu('rol.' + r.id + '.1')), eksik: 'Ekip adı, şube ve 1. ders rolleri' },
+    's-problem': { ok: !!p && (!p.kendi || (dolu('kendi.ad') && dolu('kendi.aciklama'))), eksik: 'Problem seçimi' },
+    's-gic': { ok: ['girdi', 'islem', 'cikti'].every(x => dolu('gic.' + x)), eksik: 'Girdi–İşlem–Çıktı alanları' },
+    's-degisken': { ok: degSay >= 2, eksik: 'En az 2 değişken (ad ve tür)' },
+    's-alg': { ok: algSay >= 4, eksik: 'En az 4 algoritma adımı' },
+    's-akis': { ok: !!(deger('img.calisir') && deger('img.calisir').url), eksik: 'Program çalışırken ekran görüntüsü' },
+    's-gerekce': { ok: dolu('ger.karar') && dolu('ger.dongu'), eksik: 'Karar ve döngü gerekçeleri' },
+    's-test': { ok: testOk, eksik: 'Normal, sınır ve hatalı girdi testlerinin tüm sütunları' },
+    's-takas': { ok: !!deger('akranVerilen') && (gelenler().length > 0 || dolu('takas.geribildirim')) && dolu('takas.duzeltme'), eksik: 'Takas: karşı ekibe geri bildirim verin, size gelen geri bildirime göre ne düzelttiğinizi yazın' },
+    's-teslim': { ok: KONTROL.every((_, i) => !!deger('chk.' + i)), eksik: 'Kontrol listesinin tüm maddeleri' }
+  };
+}
+function ilerlemeyiCiz() {
+  const d = bolumDurumu(); const ks = Object.keys(d); const say = ks.filter(k => d[k].ok).length;
+  $$('nav a').forEach(a => a.classList.toggle('tamam', !!d[a.dataset.s]?.ok));
+  const yuz = Math.round(say / ks.length * 100);
+  $('#ilerleme').style.width = yuz + '%'; $('#ilerleme-yazi').textContent = `İlerleme %${yuz} · ${say}/${ks.length} bölüm`;
+}
+function teslimCiz() {
+  const t = deger('teslim');
+  $('#teslim-durum').innerHTML = t && t.zaman ? `<div class="teslimok">✅ ${esc(t.by)} tarafından ${new Date(t.zaman).toLocaleString('tr-TR')} tarihinde öğretmene gönderildi.</div>` : '';
+  $('#gonder-btn').textContent = t && t.zaman ? '📨 Güncel hâlini tekrar gönder' : '📨 Öğretmene gönder';
+}
+
+function rapor() {
+  const p = problem();
+  return {
+    problemAdi: p ? (p.kendi ? 'Kendi problemimiz: ' + (deger('kendi.ad') || '') : p.ad) : '',
+    problemAciklama: p ? (p.kendi ? deger('kendi.aciklama') : p.aciklama) : '',
+    roller: ROLLER.map(r => ({ rol: r.ad, k1: 'rol.' + r.id + '.1', k2: 'rol.' + r.id + '.2' })),
+    degiskenler: Array.from({ length: DEG_SAYI }, (_, i) => i).filter(i => dolu('var.' + i + '.ad')),
+    adimlar: Array.from({ length: ALG_SAYI }, (_, i) => i).filter(i => dolu('alg.' + i)),
+    testler: TESTLER.filter(t => dolu(`test.${t.i}.girdi`) || dolu(`test.${t.i}.beklenen`)),
+    kontrol: KONTROL
+  };
+}
+
+async function gonder() {
+  await gonderBekleyen();
+  const d = bolumDurumu(); const eksik = Object.keys(d).filter(k => !d[k].ok);
+  const kutu = $('#eksikler');
+  if (eksik.length) {
+    kutu.classList.remove('hidden');
+    kutu.innerHTML = `<b>Göndermeden önce şunları tamamlayın:</b><ul>${eksik.map(k => `<li><a href="#${k}">${esc(d[k].eksik)}</a></li>`).join('')}</ul>`;
+    kutu.scrollIntoView({ behavior: 'smooth', block: 'center' }); return;
+  }
+  kutu.classList.add('hidden');
+  if (!confirm('Çalışmanız öğretmene gönderilecek. Emin misiniz?')) return;
+  const b = $('#gonder-btn'); b.disabled = true; b.textContent = 'Gönderiliyor…';
+  try {
+    const r = await api('submit', { code: S.code, memberId: S.memberId, report: rapor() });
+    bildir(r.demo ? 'Deneme modu: teslim kaydedildi (mail gönderilmedi).' : 'Gönderildi! Öğretmeninize mail ulaştı ✓', 5000);
+    await yokla();
+  } catch (e) { bildir('Gönderilemedi: ' + e.message, 5000); }
+  b.disabled = false; teslimCiz();
+}
+
+/* ======================= BAŞLANGIÇ ======================= */
+(function () {
+  if (DEMO) $('#demo-uyari').classList.remove('hidden');
+  const kod = new URLSearchParams(location.search).get('kod');
+  const oturum = JSON.parse(LS.getItem('oa_oturum') || 'null');
+  if (kod) $('#g-kod').value = kod.toUpperCase();
+  if (oturum) {
+    $('#g-ad').value = oturum.name;
+    if (!kod || kod.toUpperCase() === oturum.code) { $('#g-kod').value = oturum.code; katil(true); }
+  }
+  $('#g-kod').addEventListener('keydown', e => { if (e.key === 'Enter') katil(); });
+  window.addEventListener('beforeunload', e => { if (Object.keys(bekleyen).length) { gonderBekleyen(); e.preventDefault(); e.returnValue = ''; } });
+})();
+</script>
+</body>
+</html>
