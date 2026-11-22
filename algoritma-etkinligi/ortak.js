@@ -8,7 +8,7 @@
 const LISANS_ORIJINAL = 'https://polatsunay.github.io/bilisim-teknolojileri/algoritma-etkinligi/';
 const LISANS_GECERLI = (() => {
   const h = location.hostname, p = location.pathname;
-  return (h === 'polatsunay.github.io' && p.startsWith('/bilisim-teknolojileri/')) || h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:';
+  return (h === 'polatsunay.github.io' && p.startsWith('/bilisim-teknolojileri/')) || h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:' || /(^|\.)googleusercontent\.com$/.test(h);
 })();
 try {
   console.log('%c© 2026 Sunay Öğretmen (Sunay\'s School) · Tüm hakları saklıdır.', 'font:700 14px sans-serif;color:#6c5ce7');
