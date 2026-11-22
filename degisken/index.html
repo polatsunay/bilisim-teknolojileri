@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hafıza Kutuları · sunays.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b2350;--mut:#7a7399;--bg1:#fff6e9;--bg2:#e9f4ff;--pur:#7c5cff;--pink:#ff5c8a;--yel:#ffc93c;--grn:#22c48a;--blu:#3d9bff;--org:#ff8a3d;--card:#fff;--line:#ece6ff}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Nunito,system-ui,sans-serif;color:var(--ink)}
+body{background:linear-gradient(160deg,var(--bg1),var(--bg2));min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(rgba(124,92,255,.08) 2px,transparent 2px);background-size:26px 26px;pointer-events:none;z-index:0}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,.fred{font-family:Fredoka,Nunito,system-ui,sans-serif}
+.mono{font-family:'JetBrains Mono',Consolas,monospace}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;margin-right:6px}
+.logo b{font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:23px;line-height:1;color:var(--pur);letter-spacing:-.3px}
+.logo b span{color:var(--pink)}
+.logo small{display:block;font-size:11px;color:var(--mut);font-weight:700}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:2px solid transparent;background:#f3efff;color:var(--ink);font-weight:800;font-size:14px;padding:8px 14px;border-radius:999px;transition:.15s}
+nav button:hover{transform:translateY(-2px);background:#e8e1ff}
+nav button.on{background:var(--pur);color:#fff;box-shadow:0 4px 0 #5a3fd6}
+.hright{margin-left:auto;display:flex;gap:8px;align-items:center}
+.xp{background:linear-gradient(135deg,var(--yel),var(--org));color:#fff;font-family:Fredoka,Nunito,system-ui,sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;box-shadow:0 3px 0 #d9771f;font-size:15px;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:17px}
+.spd{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--mut)}
+.spd input{accent-color:var(--pur);width:80px}
+main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:18px 16px 120px}
+.view{display:none}.view.on{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border-radius:22px;box-shadow:0 6px 0 #e4dcff,0 12px 30px rgba(80,60,180,.08);border:2px solid var(--line);padding:18px}
+.btn{border:0;border-radius:14px;padding:10px 18px;font-weight:900;font-size:15px;background:#f1edff;color:var(--ink);box-shadow:0 4px 0 #d9d0ff;transition:.1s}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #d9d0ff}
+.btn.pri{background:var(--pur);color:#fff;box-shadow:0 4px 0 #5a3fd6}
+.btn.grn{background:var(--grn);color:#fff;box-shadow:0 4px 0 #169a6b}
+.btn.pink{background:var(--pink);color:#fff;box-shadow:0 4px 0 #d63d6c}
+.btn.yel{background:var(--yel);color:#5a3b00;box-shadow:0 4px 0 #d9a21f}
+.btn:disabled{opacity:.45;cursor:default;transform:none}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+/* ---- Home ---- */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.hero h1{font-size:44px;margin:0 0 8px;line-height:1.05;color:var(--pur)}
+.hero h1 span{color:var(--pink)}
+.hero p{font-size:17px;line-height:1.55;color:#4a4270;margin:0 0 10px}
+.analogy{display:flex;gap:14px;align-items:center;background:#fff8e6;border:2px dashed #ffd47a;border-radius:18px;padding:12px 14px;margin-top:10px;font-weight:700;font-size:15px}
+.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+.mod{border-radius:24px;padding:20px;color:#fff;cursor:pointer;position:relative;overflow:hidden;transition:.2s;min-height:190px;display:flex;flex-direction:column}
+.mod:hover{transform:translateY(-6px) rotate(-.5deg)}
+.mod .em{font-size:44px}.mod h3{margin:6px 0 6px;font-size:23px}.mod p{margin:0;font-size:14px;line-height:1.45;opacity:.95;font-weight:700}
+.mod .pg{margin-top:auto;padding-top:10px;font-weight:900;font-size:13px;opacity:.95}
+.m1{background:linear-gradient(135deg,#3d9bff,#7c5cff);box-shadow:0 8px 0 #3f53c9}
+.m2{background:linear-gradient(135deg,#ff5c8a,#ff8a3d);box-shadow:0 8px 0 #c94461}
+.m3{background:linear-gradient(135deg,#22c48a,#2fb3c9);box-shadow:0 8px 0 #158a6a}
+.m4{background:linear-gradient(135deg,#ffb020,#ff6a3d);box-shadow:0 8px 0 #cc6a10}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.tip{background:#fff;border-radius:18px;padding:14px;border:2px solid var(--line);font-size:14px;line-height:1.5}
+.tip b{font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:16px;color:var(--pur);display:block;margin-bottom:4px}
+/* ---- Stage ---- */
+.stage{position:relative;background:linear-gradient(#fbfaff,#f4f0ff);border:2px solid var(--line);border-radius:22px;padding:14px;min-height:380px;display:flex;flex-direction:column;gap:12px}
+.cpu{display:flex;align-items:center;gap:10px;min-height:66px;background:#fff;border:2px dashed #d6ccff;border-radius:16px;padding:8px 12px}
+.cpu .lbl{font-family:Fredoka,Nunito,system-ui,sans-serif;font-weight:700;color:var(--pur);font-size:14px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.gear{display:inline-block;font-size:20px}
+.cpu.busy .gear{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bubble{flex:1;display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-family:'JetBrains Mono',Consolas,monospace;font-size:17px;font-weight:700;min-height:44px}
+.bubble .tk{padding:4px 7px;border-radius:9px;background:#f1edff;transition:.25s}
+.bubble .tk.id{background:#e0efff;color:#1d5fb8;border:2px dashed #7db8ff}
+.bubble .tk.val{background:#fff3d6;color:#9a5b00;border:2px solid #ffcb5c;animation:pop .35s}
+.bubble .tk.res{background:var(--grn);color:#fff;animation:pop .4s}
+.bubble .tk.err{background:#ffe1e8;color:#c21d4b;border:2px solid #ff8fab}
+.bubble .eq{color:var(--mut);font-size:15px}
+.bubble .hint{color:var(--mut);font-family:Nunito,system-ui,sans-serif;font-size:14px;font-weight:700}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.18)}100%{transform:scale(1)}}
+.memwrap{flex:1;display:flex;gap:12px;align-items:stretch}
+.mem{flex:1;display:flex;flex-wrap:wrap;gap:16px;align-content:flex-start;padding:14px 6px 6px;min-height:170px;position:relative}
+.mem .empty{color:var(--mut);font-weight:800;font-size:14px;margin:auto;text-align:center}
+.mem .mlbl{position:absolute;top:-10px;left:12px;background:#f4f0ff;padding:0 8px;font-family:Fredoka,Nunito,system-ui,sans-serif;font-weight:700;color:#a497d6;font-size:13px}
+.trash{width:64px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;font-size:34px;padding-bottom:6px;color:var(--mut)}
+.trash small{font-size:10.5px;font-weight:900}
+.trash.bump{animation:bump .35s}
+@keyframes bump{50%{transform:scale(1.25) rotate(-8deg)}}
+.box{width:124px;position:relative;animation:boxIn .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes boxIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+.box .body{height:92px;border-radius:6px 6px 14px 14px;position:relative;display:flex;align-items:center;justify-content:center;border:3px solid rgba(0,0,0,.12);box-shadow:inset 0 -10px 0 rgba(0,0,0,.08)}
+.box .lid{height:16px;margin:0 -6px;border-radius:7px;border:3px solid rgba(0,0,0,.12);transform-origin:left bottom;transition:transform .3s}
+.box.open .lid{transform:rotate(-28deg) translateY(-4px)}
+.box.t-int .body{background:#6fb6ff}.box.t-int .lid{background:#4a9bf0}
+.box.t-str .body{background:#57d39f}.box.t-str .lid{background:#33b882}
+.box .tag{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%) rotate(-3deg);background:#fff;border:3px solid var(--ink);border-radius:10px;padding:2px 12px;font-family:'JetBrains Mono',Consolas,monospace;font-weight:700;font-size:16px;white-space:nowrap;box-shadow:0 3px 0 var(--ink);z-index:2}
+.box .ty{text-align:center;font-size:11px;font-weight:900;color:var(--mut);margin-top:18px;text-transform:uppercase;letter-spacing:.5px}
+.box.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.box.glow .body{box-shadow:0 0 0 5px rgba(255,201,60,.8),inset 0 -10px 0 rgba(0,0,0,.08)}
+.box.err .body{box-shadow:0 0 0 5px rgba(255,92,138,.8),inset 0 -10px 0 rgba(0,0,0,.08)}
+.box .emptytxt{color:rgba(255,255,255,.85);font-weight:900;font-size:13px}
+.tok{display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',Consolas,monospace;font-weight:700;font-size:18px;min-width:44px;height:44px;padding:0 10px;border-radius:22px;background:#ffc93c;color:#5a3b00;border:3px solid #fff;box-shadow:0 4px 0 rgba(0,0,0,.15);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tok.s{background:#fff;color:#178a5b;border-radius:10px;border:3px dashed #33b882;font-size:15px}
+.tok.in{animation:pop .4s}
+.tok.fly{position:fixed;z-index:100;pointer-events:none;left:0;top:0}
+.screen{background:#231c46;border-radius:16px;padding:10px 12px;min-height:58px;color:#9effc9;font-family:'JetBrains Mono',Consolas,monospace;font-size:15px;position:relative}
+.screen .slbl{font-family:Fredoka,Nunito,system-ui,sans-serif;color:#a99bff;font-size:13px;margin-bottom:4px}
+.screen .ln{animation:pop .3s;transform-origin:left}
+.screen .ln:before{content:"> ";color:#7a6ccf}
+.screen .out{max-height:110px;overflow:auto}
+/* ---- code panel ---- */
+.code{display:flex;flex-direction:column;gap:7px}
+.cl{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',Consolas,monospace;font-weight:700;font-size:15px;padding:8px 12px;border-radius:12px;border:2.5px solid;position:relative;transition:.2s;background:#fff}
+.cl .no{font-size:11px;color:var(--mut);width:16px;flex:none}
+.cl.k-decl{background:#fff6c7;border-color:#e3c200}
+.cl.k-assign{background:#ffe3c7;border-color:#ff9b45}
+.cl.k-print{background:#d8f8e3;border-color:#2fbf6f;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);padding-left:20px;border-width:0}
+.cl.k-print{box-shadow:inset 0 0 0 2.5px #2fbf6f}
+.cl.now{transform:scale(1.04) translateX(6px);box-shadow:0 0 0 4px rgba(124,92,255,.35)}
+.cl.now:after{content:"👉";position:absolute;left:-30px;font-size:20px}
+.cl.done{opacity:.6}
+.cl.bad{background:#ffe1e8;border-color:#ff5c8a}
+.cl .x{margin-left:auto;display:flex;gap:4px}
+.cl .x button{border:0;background:rgba(0,0,0,.06);border-radius:7px;width:26px;height:26px;font-weight:900}
+.cl.locked{opacity:.75;border-style:dashed}
+/* ---- layout ---- */
+.two{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
+.sec-title{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.sec-title h2{margin:0;font-size:28px;color:var(--pur)}
+.sec-title p{margin:0;color:var(--mut);font-weight:700}
+.cmd{display:flex;gap:8px}
+.cmd input{flex:1;min-width:0;border:3px solid var(--line);border-radius:14px;padding:11px 12px;font:700 16px 'JetBrains Mono',Consolas,monospace;color:var(--ink)}
+.cmd input:focus{outline:none;border-color:var(--pur)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:700 13px 'JetBrains Mono',Consolas,monospace;color:#5b4bb0}
+.chip:hover{border-color:var(--pur);background:#f6f3ff}
+.mini{font-size:12.5px;color:var(--mut);font-weight:700;line-height:1.5}
+.lab-form{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;margin-top:8px}
+.lab-form input,.lab-form select{border:3px solid var(--line);border-radius:12px;padding:8px;font:700 14px Nunito,system-ui,sans-serif;min-width:0}
+.hist{max-height:300px;overflow:auto;margin-top:10px;padding-left:30px}
+/* ---- puzzles ---- */
+.pz-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--mut)}
+.dot.on{border-color:var(--pur);color:var(--pur);transform:scale(1.15)}
+.dot.ok{background:var(--grn);border-color:var(--grn);color:#fff}
+.dot.half{background:var(--yel);border-color:var(--yel);color:#5a3b00}
+.q{font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:22px;margin:12px 0 10px}
+.q code{background:#e0efff;color:#1d5fb8;padding:1px 8px;border-radius:8px;font-family:'JetBrains Mono',Consolas,monospace}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:3px solid var(--line);background:#fff;border-radius:16px;padding:14px;font:700 18px 'JetBrains Mono',Consolas,monospace;color:var(--ink);text-align:center;transition:.15s;box-shadow:0 4px 0 #ece6ff}
+.opt:hover:not(:disabled){border-color:var(--pur);transform:translateY(-2px)}
+.opt.sel{border-color:var(--pur);background:#f3efff}
+.opt.right{border-color:var(--grn);background:#dcfbea;color:#127a51}
+.opt.wrong{border-color:var(--pink);background:#ffe4ec;color:#b81d4b;animation:shake .4s}
+.fb{margin-top:12px;border-radius:16px;padding:12px 14px;font-weight:700;font-size:15px;line-height:1.5;display:none}
+.fb.on{display:block;animation:fadeUp .3s}
+.fb.ok{background:#dcfbea;border:2px solid #7fe3b6}
+.fb.no{background:#fff0f4;border:2px solid #ffb3c7}
+.fb b{font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:17px}
+.tag2{display:inline-block;font-size:11px;font-weight:900;padding:3px 9px;border-radius:999px;background:#f1edff;color:var(--pur);text-transform:uppercase;letter-spacing:.4px}
+/* ---- tasks ---- */
+.goal{background:linear-gradient(135deg,#fff7dc,#fff);border:2px solid #ffd77a;border-radius:16px;padding:10px 14px;font-weight:800}
+.goal .mono{background:#fff;border-radius:8px;padding:2px 8px;border:2px solid #ffd77a;margin:0 2px}
+.palette{display:flex;flex-direction:column;gap:6px}
+.palette .cl{cursor:pointer}
+.palette .cl:hover{transform:translateX(4px)}
+.prog{min-height:60px;border:3px dashed var(--line);border-radius:16px;padding:10px 10px 10px 34px;display:flex;flex-direction:column;gap:6px}
+.prog .ph{color:var(--mut);font-weight:800;font-size:13px;text-align:center;padding:8px;margin-left:-24px}
+.tlist{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tbtn{border:2px solid var(--line);background:#fff;border-radius:12px;padding:6px 10px;font-weight:800;font-size:13px}
+.tbtn.on{border-color:var(--pur);background:var(--pur);color:#fff}
+.tbtn.ok:after{content:" ⭐"}
+/* ---- hunter ---- */
+.hunt{max-width:760px;margin:0 auto}
+.hud{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hud .pill{background:#fff;border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:18px;font-weight:700}
+.feed{min-height:230px;display:flex;flex-direction:column;gap:8px;padding:12px 12px 12px 40px;margin:12px 0;background:#fbfaff;border-radius:18px;border:2px solid var(--line)}
+.feed .cl{animation:slideIn .35s}
+@keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+.hidden-boxes{display:flex;gap:10px;justify-content:center;margin:8px 0}
+.hb{width:70px;height:62px;border-radius:12px;background:#cfc4ff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'JetBrains Mono',Consolas,monospace;font-weight:700;color:#fff;font-size:22px;box-shadow:0 5px 0 #a596f0}
+.hb small{font-size:12px;opacity:.85}
+.timer{height:10px;background:#eee8ff;border-radius:9px;overflow:hidden}
+.timer div{height:100%;background:linear-gradient(90deg,var(--grn),var(--yel),var(--pink));width:100%}
+.big{font-family:Fredoka,Nunito,system-ui,sans-serif;font-size:52px;color:var(--pur);margin:0}
+.trace{font-family:'JetBrains Mono',Consolas,monospace;font-size:13.5px;border-collapse:collapse;width:100%;margin-top:8px}
+.trace td,.trace th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
+.trace th{font-family:Nunito,system-ui,sans-serif;color:var(--mut);font-size:12px}
+/* ---- mascot ---- */
+#mascot{position:fixed;right:18px;bottom:14px;z-index:50;display:flex;align-items:flex-end;gap:8px;pointer-events:none}
+#mascot .sp{pointer-events:auto;background:#fff;border:3px solid var(--ink);border-radius:18px 18px 4px 18px;padding:10px 14px;max-width:340px;font-weight:800;font-size:14.5px;line-height:1.45;box-shadow:0 5px 0 var(--ink);opacity:0;transform:translateY(10px) scale(.95);transition:.25s}
+#mascot .sp.on{opacity:1;transform:none}
+#mascot svg{width:86px;height:96px;filter:drop-shadow(0 6px 0 rgba(43,35,80,.18));pointer-events:auto;cursor:pointer}
+#mascot.hop svg{animation:hop .5s}
+@keyframes hop{40%{transform:translateY(-16px) rotate(-6deg)}}
+#mascot.sad svg{animation:sad .6s}
+@keyframes sad{30%,70%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.confetti{position:fixed;width:10px;height:14px;z-index:200;pointer-events:none;top:-20px}
+@media(max-width:1000px){.two{grid-template-columns:1fr}.mods{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr}.tips{grid-template-columns:1fr}}
+@media(max-width:560px){.mods{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.hero h1{font-size:34px}#mascot svg{width:60px;height:68px}#mascot .sp{max-width:240px;font-size:13px}.box{width:104px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" data-go="home">
+    <svg width="42" height="42" viewBox="0 0 42 42"><rect x="4" y="14" width="34" height="24" rx="4" fill="#6fb6ff" stroke="#2b2350" stroke-width="2.5"/><rect x="2" y="9" width="38" height="8" rx="3" fill="#4a9bf0" stroke="#2b2350" stroke-width="2.5" transform="rotate(-8 2 17)"/><circle cx="21" cy="26" r="7" fill="#ffc93c" stroke="#fff" stroke-width="2.5"/><text x="21" y="30" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="10" fill="#5a3b00">5</text></svg>
+    <div><b>Hafıza <span>Kutuları</span></b><small>sunays.school · Değişken Laboratuvarı</small></div>
+  </div>
+  <nav>
+    <button data-go="lab">🔬 Keşfet</button>
+    <button data-go="guess">🤔 Tahmin Et</button>
+    <button data-go="tasks">🧩 Görevler</button>
+    <button data-go="hunt">🎯 Değişken Avcısı</button>
+  </nav>
+  <div class="hright">
+    <div class="spd">🐢<input type="range" id="speed" min="0.5" max="2.5" step="0.25" value="1">🐇</div>
+    <button class="icon-btn" id="snd" title="Ses">🔊</button>
+    <div class="xp" id="xp">⭐ 0</div>
+  </div>
+</header>
+<main>
+<!-- HOME -->
+<section class="view on" id="v-home">
+  <div class="hero">
+    <div>
+      <h1>Değişken = <span>etiketli bir kutu</span> 📦</h1>
+      <p>Bilgisayarın hafızası, üzerinde isim etiketi olan kutularla doludur. Her kutunun bir <b>adı</b>, bir <b>türü</b> ve içinde <b>tek bir değeri</b> vardır. Yeni bir değer koyduğunda eskisi çöpe gider!</p>
+      <div class="analogy"><span style="font-size:34px">💡</span><span><span class="mono" style="color:var(--pur)">yas ← 15</span> demek: <i>"Üzerinde <b>yas</b> yazan kutuyu aç, eski değeri at, içine <b>15</b> koy."</i> Ok işareti (←) sağdan sola doğru taşımayı anlatır.</span></div>
+      <div class="row" style="margin-top:16px"><button class="btn pri" data-go="lab">🚀 Hemen başla</button><button class="btn yel" data-go="hunt">🎯 Oyuna atla</button></div>
+    </div>
+    <div class="stage" id="demoStage" style="min-height:300px"></div>
+  </div>
+  <div class="mods">
+    <div class="mod m1" data-go="lab"><div class="em">🔬</div><h3>Keşfet</h3><p>Kutular oluştur, içine değer koy, değerlerin nasıl uçtuğunu izle.</p><div class="pg" id="pg-lab">Serbest laboratuvar</div></div>
+    <div class="mod m2" data-go="guess"><div class="em">🤔</div><h3>Tahmin Et</h3><p>Kodu oku, kutuların sonunda ne olacağını tahmin et, sonra izle!</p><div class="pg" id="pg-guess"></div></div>
+    <div class="mod m3" data-go="tasks"><div class="em">🧩</div><h3>Görevler</h3><p>Kod bloklarını sıraya koy, kutuları hedefteki hale getir.</p><div class="pg" id="pg-tasks"></div></div>
+    <div class="mod m4" data-go="hunt"><div class="em">🎯</div><h3>Değişken Avcısı</h3><p>Kod hızla akıyor! Kutular gizli. Aklında tut, doğru değeri yakala.</p><div class="pg" id="pg-hunt"></div></div>
+  </div>
+  <div class="tips">
+    <div class="tip"><b>1 kutu = 1 değer</b>Bir kutu aynı anda yalnızca tek bir değer tutar. Yeni değer gelince eskisi silinir.</div>
+    <div class="tip"><b>← sağdan sola akar</b><span class="mono">x ← x + 1</span> önce sağ tarafı hesaplar, sonucu x kutusuna koyar. Matematikteki eşitlik değildir!</div>
+    <div class="tip"><b>Kopyalama ≠ bağlama</b><span class="mono">b ← a</span> yalnızca o anki değerin kopyasını alır. Sonra a değişse bile b değişmez.</div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section class="view" id="v-lab">
+  <div class="sec-title"><h2>🔬 Keşfet Laboratuvarı</h2><p>Komut yaz, ne olduğunu izle.</p></div>
+  <div class="two">
+    <div class="card">
+      <div style="font-family:Fredoka,Nunito,system-ui,sans-serif;font-weight:700;margin-bottom:6px">📦 Yeni kutu oluştur</div>
+      <div class="lab-form"><input id="lName" placeholder="kutu adı (ör. yas)" autocomplete="off"><select id="lType"><option>Tamsayı</option><option>Metin</option></select><button class="btn pri" id="lMake">Oluştur</button></div>
+      <div style="font-family:Fredoka,Nunito,system-ui,sans-serif;font-weight:700;margin:16px 0 6px">⌨️ Komut yaz</div>
+      <div class="cmd"><input id="lCmd" placeholder='ör. yas ← 15' autocomplete="off" spellcheck="false"><button class="btn grn" id="lRun">▶</button></div>
+      <div class="mini" style="margin-top:6px">Ok yerine <b>=</b> veya <b>&lt;-</b> da yazabilirsin. Ekrana yazmak için: <span class="mono">yaz x</span></div>
+      <div class="chips" id="lChips"></div>
+      <div class="row" style="margin-top:14px;justify-content:space-between"><b class="fred">📜 Çalışan satırlar</b><button class="btn" id="lReset" style="padding:6px 12px;font-size:13px">🧹 Sıfırla</button></div>
+      <div class="hist code" id="lHist"></div>
+    </div>
+    <div class="stage" id="labStage"></div>
+  </div>
+</section>
+
+<!-- GUESS -->
+<section class="view" id="v-guess">
+  <div class="sec-title"><h2>🤔 Tahmin Et</h2><p>Kodu oku, kafanda çalıştır, cevabı seç.</p></div>
+  <div class="card" style="margin-bottom:14px"><div class="pz-head"><span class="tag2" id="gTag"></span><div class="dots" id="gDots" style="margin-left:auto"></div></div>
+  <div class="two">
+    <div>
+      <div class="code" id="gCode" style="padding-left:30px"></div>
+      <div class="q" id="gQ"></div>
+      <div class="opts" id="gOpts"></div>
+      <div class="fb" id="gFb"></div>
+      <div class="row" style="margin-top:12px"><button class="btn pri" id="gCheck" disabled>✅ Kontrol et ve izle</button><button class="btn" id="gReplay" style="display:none">🔁 Tekrar izle</button><button class="btn yel" id="gNext" style="display:none">Sonraki ➜</button></div>
+    </div>
+    <div class="stage" id="guessStage"></div>
+  </div></div>
+</section>
+
+<!-- TASKS -->
+<section class="view" id="v-tasks">
+  <div class="sec-title"><h2>🧩 Görevler</h2><p>Blokları sırala, kutuları hedefe ulaştır.</p></div>
+  <div class="tlist" id="tList"></div>
+  <div class="two">
+    <div class="card">
+      <h3 style="margin:0 0 6px" id="tTitle"></h3>
+      <div class="mini" id="tDesc" style="font-size:14px;color:#4a4270"></div>
+      <div class="goal" id="tGoal" style="margin:10px 0"></div>
+      <div class="fred" style="font-weight:700;margin:10px 0 6px">🔒 Başlangıç</div>
+      <div class="code" id="tStart" style="padding-left:30px"></div>
+      <div class="fred" style="font-weight:700;margin:14px 0 6px">🧠 Senin programın</div>
+      <div class="prog code" id="tProg"></div>
+      <div class="row" style="margin-top:10px"><button class="btn grn" id="tRun">▶ Çalıştır</button><button class="btn" id="tClear">🧹 Temizle</button></div>
+      <div class="fred" style="font-weight:700;margin:16px 0 6px">🧱 Bloklar <span class="mini">(tıkla, programa eklensin)</span></div>
+      <div class="palette" id="tPal"></div>
+    </div>
+    <div class="stage" id="taskStage"></div>
+  </div>
+</section>
+
+<!-- HUNT -->
+<section class="view" id="v-hunt">
+  <div class="hunt card" id="huntBox"></div>
+</section>
+</main>
+
+<div id="mascot"><div class="sp" id="say"></div>
+<svg viewBox="0 0 90 100" id="bot"><g stroke="#2b2350" stroke-width="3">
+<line x1="45" y1="14" x2="45" y2="4"/><circle cx="45" cy="4" r="4" fill="#ff5c8a"/>
+<rect x="14" y="14" width="62" height="48" rx="16" fill="#7c5cff"/>
+<rect x="22" y="23" width="46" height="28" rx="10" fill="#fff"/>
+<g id="eyes"><circle cx="36" cy="37" r="5" fill="#2b2350" stroke="none"/><circle cx="54" cy="37" r="5" fill="#2b2350" stroke="none"/></g>
+<path id="mouth" d="M38 45 Q45 50 52 45" fill="none" stroke-linecap="round"/>
+<rect x="24" y="62" width="42" height="28" rx="8" fill="#6fb6ff"/><rect x="22" y="58" width="46" height="8" rx="3" fill="#4a9bf0"/>
+<circle cx="45" cy="77" r="7" fill="#ffc93c"/>
+<line x1="14" y1="40" x2="5" y2="52" stroke-linecap="round"/><line x1="76" y1="40" x2="85" y2="30" stroke-linecap="round"/>
+</g></svg></div>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+let SPEED=1,SOUND=true,INSTANT=false;
+const D=ms=>INSTANT?0:ms/SPEED;
+const store={get(k,d){try{const v=localStorage.getItem('hk.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('hk.'+k,JSON.stringify(v))}catch(e){}}};
+
+/* ========== Ses ========== */
+let actx=null;
+function tone(f,d=.12,type='sine',v=.12,slide=0){if(!SOUND||INSTANT)return;try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;if(slide)o.frequency.exponentialRampToValueAtTime(f*slide,actx.currentTime+d);g.gain.value=v;g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d)}catch(e){}}
+const SFX={pop:()=>tone(520,.12,'sine',.12,1.6),whoosh:()=>tone(300,.25,'triangle',.06,2.2),drop:()=>tone(200,.2,'sine',.12,.5),ok:()=>{tone(660,.12);setTimeout(()=>tone(880,.18),110)},bad:()=>tone(180,.3,'sawtooth',.06,.7),click:()=>tone(900,.04,'square',.03),win:()=>{[523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,.2,'triangle',.1),i*110))}};
+
+/* ========== Maskot ========== */
+let sayT;
+function say(html,mood='',ms=6000){
+  const s=$('#say');s.innerHTML=html;s.classList.add('on');
+  const m=$('#mascot');m.classList.remove('hop','sad');void m.offsetWidth;if(mood)m.classList.add(mood==='ok'?'hop':'sad');
+  $('#mouth').setAttribute('d',mood==='bad'?'M38 49 Q45 43 52 49':'M38 45 Q45 51 52 45');
+  clearTimeout(sayT);if(ms)sayT=setTimeout(()=>s.classList.remove('on'),ms);
+}
+$('#bot').addEventListener('click',()=>say(['Merhaba! Ben <b>Bitbit</b> 🤖 Hafıza kutularının bekçisiyim.','İpucu: <b>←</b> işaretini "içine koy" diye oku!','Bir kutu aynı anda <b>tek</b> değer tutar. Yeni gelen eskisini kovar! 😄','<span class="mono">b ← a</span> fotokopi gibidir: a\'nın değeri a\'da kalır.'][Math.floor(Math.random()*4)],'ok'));
+setInterval(()=>{const e=$('#eyes');e.setAttribute('transform','translate(45 37) scale(1 .1) translate(-45 -37)');setTimeout(()=>e.removeAttribute('transform'),140)},3800);
+
+/* ========== XP & konfeti ========== */
+let XP=store.get('xp',0);
+function addXP(n){XP+=n;store.set('xp',XP);const x=$('#xp');x.textContent='⭐ '+XP;x.animate&&x.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:400})}
+function confetti(n=70){if(INSTANT)return;const cols=['#7c5cff','#ff5c8a','#ffc93c','#22c48a','#3d9bff','#ff8a3d'];for(let i=0;i<n;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];c.style.borderRadius=Math.random()<.5?'50%':'2px';document.body.append(c);const dx=(Math.random()-.5)*200,rot=Math.random()*720;const a=c.animate?c.animate([{transform:'translate(0,0) rotate(0)'},{transform:`translate(${dx}px,${innerHeight+40}px) rotate(${rot}deg)`}],{duration:1500+Math.random()*1500,easing:'cubic-bezier(.2,.6,.4,1)',delay:Math.random()*300}):null;if(a)a.finished.then(()=>c.remove());else c.remove()}}
+
+/* ========== Dil: ayrıştırma & değerlendirme ========== */
+class KErr extends Error{constructor(m,box){super(m);this.box=box}}
+const IDS='A-Za-zÇĞİÖŞÜçğıöşü_',IDR='['+IDS+']['+IDS+'0-9]*';
+const isId=s=>new RegExp('^'+IDR+'$').test(s);
+const KW=['tanımla','yaz','tamsayı','metin'];
+function parseLine(src){
+  const s=String(src).trim().replace(/\s+/g,' ');let m;
+  if(!s)throw new KErr('Boş satır.');
+  if((m=s.match(/^tan[ıi]mla (.+?)\s*:\s*(tamsay[ıi]|metin)$/i))){
+    const names=m[1].split(',').map(t=>t.trim()).filter(Boolean);
+    for(const n of names){if(!isId(n))throw new KErr('"'+n+'" geçerli bir kutu adı değil. Harfle başlamalı, boşluk içermemeli.');if(KW.includes(n.toLocaleLowerCase('tr')))throw new KErr('"'+n+'" özel bir kelime, kutu adı olamaz.')}
+    return{k:'decl',names,type:/metin/i.test(m[2])?'Metin':'Tamsayı',src:'Tanımla '+names.join(', ')+' : '+(/metin/i.test(m[2])?'Metin':'Tamsayı')};
+  }
+  if(/^tan[ıi]mla\b/i.test(s))throw new KErr('Tanımla şöyle yazılır: Tanımla yas : Tamsayı');
+  if((m=s.match(/^yaz (.+)$/i)))return{k:'print',expr:m[1],src:'yaz '+m[1]};
+  if((m=s.match(new RegExp('^('+IDR+')\\s*(?:←|<-|:=|=)\\s*(.+)$'))))return{k:'assign',name:m[1],expr:m[2],src:m[1]+' ← '+m[2]};
+  if((m=s.match(new RegExp('^(.+?)\\s*(?:→|->)\\s*('+IDR+')$'))))throw new KErr('Ok ters! Değer sağdan sola akar: '+m[2]+' ← '+m[1]);
+  if((m=s.match(new RegExp('^(\\d+)\\s*(?:←|<-|=)\\s*('+IDR+')$'))))throw new KErr('Sol tarafta her zaman KUTU adı olmalı: '+m[2]+' ← '+m[1]);
+  throw new KErr('Bu satırı anlayamadım 🤔 Örnekler: Tanımla x : Tamsayı · x ← 5 · yaz x');
+}
+function tokenize(e){
+  const T=[];let i=0;
+  while(i<e.length){const c=e[i];
+    if(/\s/.test(c)){i++;continue}
+    if(/\d/.test(c)){let j=i;while(j<e.length&&/\d/.test(e[j]))j++;T.push({t:'num',v:+e.slice(i,j)});i=j;continue}
+    if(c==='"'||c==='“'||c==='”'){let j=i+1;while(j<e.length&&!'"“”'.includes(e[j]))j++;if(j>=e.length)throw new KErr('Metnin tırnağı kapanmamış: '+e.slice(i));T.push({t:'str',v:e.slice(i+1,j)});i=j+1;continue}
+    if(new RegExp('['+IDS+']').test(c)){let j=i;while(j<e.length&&new RegExp('['+IDS+'0-9]').test(e[j]))j++;T.push({t:'id',v:e.slice(i,j)});i=j;continue}
+    if('+-*/&()'.includes(c)){T.push({t:'op',v:c});i++;continue}
+    throw new KErr('Tanımadığım işaret: '+c);
+  }
+  if(!T.length)throw new KErr('Sağ taraf boş.');
+  return T;
+}
+function evalTokens(T){ // id'ler değerle değiştirilmiş tokenlar
+  let p=0;const peek=v=>T[p]&&T[p].t==='op'&&T[p].v===v;
+  const num=(x,op)=>{if(typeof x!=='number')throw new KErr('Metinle "'+op+'" işlemi yapılamaz. Metinleri birleştirmek için & kullan.');return x};
+  function cat(){let a=add();while(peek('&')){p++;const b=add();a=String(a)+String(b)}return a}
+  function add(){let a=mul();while(peek('+')||peek('-')){const o=T[p++].v,b=mul();if(o==='+'&&(typeof a==='string'||typeof b==='string'))a=String(a)+String(b);else a=o==='+'?num(a,o)+num(b,o):num(a,o)-num(b,o)}return a}
+  function mul(){let a=un();while(peek('*')||peek('/')){const o=T[p++].v,b=un();if(o==='*')a=num(a,o)*num(b,o);else{if(num(b,o)===0)throw new KErr('Sıfıra bölünmez! 😱');a=Math.trunc(num(a,o)/b)}}return a}
+  function un(){if(peek('-')){p++;return -num(un(),'-')}return prim()}
+  function prim(){const t=T[p];if(!t)throw new KErr('İfade yarım kalmış.');if(t.t==='num'||t.t==='str'){p++;return t.v}if(peek('(')){p++;const v=cat();if(!peek(')'))throw new KErr('Parantez kapanmamış.');p++;return v}throw new KErr('Beklenmeyen: '+t.v)}
+  const r=cat();if(p<T.length)throw new KErr('Fazladan bir şey var: '+T[p].v+' (işlem işareti eksik olabilir)');return r;
+}
+const fmtV=v=>typeof v==='string'?'"'+v+'"':String(v);
+const tokHtml=v=>esc(typeof v==='string'?v:String(v));
+
+/* ========== Sahne (bellek görselleştirme) ========== */
+function fly(fromEl,toEl,v,dur){
+  if(INSTANT||!document.body.animate||!fromEl||!toEl)return Promise.resolve();
+  const a=fromEl.getBoundingClientRect(),b=toEl.getBoundingClientRect();
+  const f=document.createElement('div');f.className='tok fly'+(typeof v==='string'?' s':'');f.innerHTML=tokHtml(v);document.body.append(f);
+  const w=f.offsetWidth,h=f.offsetHeight,x0=a.left+a.width/2-w/2,y0=a.top+a.height/2-h/2,x1=b.left+b.width/2-w/2,y1=b.top+b.height/2-h/2;
+  f.style.left=x0+'px';f.style.top=y0+'px';
+  const an=f.animate([{transform:'translate(0,0) scale(.9)'},{transform:`translate(${(x1-x0)/2}px,${(y1-y0)/2-70}px) scale(1.3) rotate(-8deg)`},{transform:`translate(${x1-x0}px,${y1-y0}px) scale(1)`}],{duration:dur,easing:'cubic-bezier(.45,.05,.4,1)'});
+  return an.finished.then(()=>f.remove());
+}
+function dropOut(tokEl,trashEl){
+  if(INSTANT||!tokEl||!tokEl.animate){tokEl&&tokEl.remove();return Promise.resolve()}
+  const a=tokEl.getBoundingClientRect(),b=trashEl.getBoundingClientRect();
+  const f=tokEl.cloneNode(true);f.classList.add('fly');f.style.left=a.left+'px';f.style.top=a.top+'px';document.body.append(f);tokEl.remove();
+  const dx=b.left+b.width/2-a.left-a.width/2,dy=b.top+b.height/2-a.top-a.height/2;
+  SFX.drop();
+  return f.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${dx*.4}px,${-60}px) rotate(120deg)`,opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(300deg) scale(.3)`,opacity:.2}],{duration:D(650),easing:'ease-in'}).finished.then(()=>{f.remove();trashEl.classList.remove('bump');void trashEl.offsetWidth;trashEl.classList.add('bump')});
+}
+class Stage{
+  constructor(el,{showScreen=true}={}){
+    this.el=el;el.innerHTML=`<div class="cpu"><div class="lbl"><span class="gear">⚙️</span>İşlemci</div><div class="bubble"><span class="hint">Hesaplamalar burada yapılır…</span></div></div>
+    <div class="memwrap"><div class="mem"><span class="mlbl">🧠 Bellek (RAM)</span><div class="empty">Henüz kutu yok.<br>Tanımla ile bir kutu oluştur!</div></div><div class="trash">🗑️<small>ESKİ DEĞERLER</small></div></div>
+    ${showScreen?'<div class="screen"><div class="slbl">🖥️ Ekran</div><div class="out"></div></div>':''}`;
+    this.cpu=el.querySelector('.cpu');this.bub=el.querySelector('.bubble');this.mem=el.querySelector('.mem');this.trash=el.querySelector('.trash');this.out=el.querySelector('.screen .out');
+    this.vars=new Map();this.output=[];this.gen=0;
+  }
+  reset(){this.gen++;this.vars.clear();this.output=[];this.mem.querySelectorAll('.box').forEach(b=>b.remove());this.mem.querySelector('.empty').style.display='';if(this.out)this.out.innerHTML='';this.hint('Hesaplamalar burada yapılır…')}
+  hint(t){this.bub.innerHTML=`<span class="hint">${t}</span>`;this.cpu.classList.remove('busy')}
+  box(name){return this.vars.get(name)}
+  setTok(v,val,anim){const slot=v.el.querySelector('.slot');slot.innerHTML='';const t=document.createElement('div');t.className='tok'+(typeof val==='string'?' s':'')+(anim?' in':'');t.innerHTML=tokHtml(val);t.title=fmtV(val);slot.append(t);v.value=val}
+  flash(v,cls){if(!v)return;v.el.classList.remove(cls);void v.el.offsetWidth;v.el.classList.add(cls);setTimeout(()=>v.el.classList.remove(cls),900)}
+  async declare(names,type){
+    for(const n of names){if(this.vars.has(n)){const v=this.vars.get(n);this.flash(v,'shake');throw new KErr('"'+n+'" adında bir kutu zaten var! Aynı isimde iki kutu olamaz.')}}
+    this.mem.querySelector('.empty').style.display='none';const g=this.gen;
+    for(const n of names){if(this.gen!==g)return;
+      const el=document.createElement('div');el.className='box '+(type==='Metin'?'t-str':'t-int');
+      el.innerHTML=`<div class="lid"></div><div class="body"><div class="slot"><span class="emptytxt">boş</span></div><div class="tag">${esc(n)}</div></div><div class="ty">${type}</div>`;
+      this.mem.append(el);this.vars.set(n,{name:n,type,value:undefined,el});SFX.pop();await sleep(D(220));
+    }
+  }
+  async evaluate(expr){
+    const T=tokenize(expr);this.cpu.classList.add('busy');
+    this.bub.innerHTML='';const spans=T.map(t=>{const s=document.createElement('span');s.className='tk'+(t.t==='id'?' id':'');s.textContent=t.t==='str'?'"'+t.v+'"':t.v;this.bub.append(s);return s});
+    await sleep(D(450));
+    const vals=[];
+    for(let i=0;i<T.length;i++){const t=T[i];
+      if(t.t!=='id'){vals.push(t);continue}
+      const v=this.vars.get(t.v);
+      if(!v){spans[i].className='tk err';throw new KErr('"'+t.v+'" adında bir kutu yok! Önce oluşturmalısın: Tanımla '+t.v+' : Tamsayı')}
+      if(v.value===undefined){spans[i].className='tk err';this.flash(v,'err');throw new KErr('"'+t.v+'" kutusu boş! İçine henüz değer konmadı, içinden bir şey okunamaz.',v)}
+      v.el.classList.add('open');this.flash(v,'glow');SFX.whoosh();
+      await fly(v.el.querySelector('.tok'),spans[i],v.value,D(650));
+      v.el.classList.remove('open');
+      spans[i].className='tk val';spans[i].textContent=fmtV(v.value);vals.push({t:typeof v.value==='string'?'str':'num',v:v.value});
+      await sleep(D(150));
+    }
+    let r;try{r=evalTokens(vals)}catch(e){throw e}
+    if(T.length>1||T[0].t==='id'){const eq=document.createElement('span');eq.className='eq';eq.textContent='=';this.bub.append(eq);await sleep(D(250))}
+    const rs=document.createElement('span');rs.className='tk res';rs.textContent=fmtV(r);this.bub.append(rs);SFX.pop();
+    await sleep(D(500));
+    return{r,el:rs};
+  }
+  async assign(name,expr){
+    const v=this.vars.get(name);
+    if(!v)throw new KErr('"'+name+'" adında bir kutu yok! Önce oluştur: Tanımla '+name+' : Tamsayı');
+    const {r,el}=await this.evaluate(expr);
+    if(v.type==='Tamsayı'&&typeof r==='string'){this.flash(v,'shake');throw new KErr(fmtV(r)+' bir METİN. Tamsayı kutusuna metin sığmaz! 🚫',v)}
+    if(v.type==='Metin'&&typeof r==='number'){this.flash(v,'shake');throw new KErr(r+' bir SAYI. Metin kutusuna koymak için tırnak kullan: "'+r+'"',v)}
+    v.el.classList.add('open');await sleep(D(200));
+    const old=v.el.querySelector('.tok');
+    if(old){await dropOut(old,this.trash)}else v.el.querySelector('.slot').innerHTML='';
+    SFX.whoosh();await fly(el,v.el.querySelector('.slot'),r,D(700));
+    this.setTok(v,r,true);SFX.pop();this.flash(v,'glow');
+    await sleep(D(250));v.el.classList.remove('open');this.hint('✔ '+esc(name)+' kutusuna '+esc(fmtV(r))+' kondu.');
+  }
+  async print(expr){
+    const {r,el}=await this.evaluate(expr);const s=typeof r==='string'?r:String(r);
+    if(this.out){const line=document.createElement('div');line.className='ln';SFX.whoosh();await fly(el,this.out,r,D(600));line.textContent=s;this.out.append(line);this.out.scrollTop=1e9}
+    this.output.push(s);this.hint('✔ Ekrana yazıldı.');
+  }
+  async exec(st){
+    if(typeof st==='string')st=parseLine(st);
+    if(st.k==='decl')return this.declare(st.names,st.type);
+    if(st.k==='assign')return this.assign(st.name,st.expr);
+    if(st.k==='print')return this.print(st.expr);
+  }
+  async runInstant(lines){const p=INSTANT,g=this.gen;INSTANT=true;try{for(const l of lines){if(this.gen!==g)return;await this.exec(l)}}finally{INSTANT=p}}
+}
+function lineHtml(src,i,extra=''){let st;try{st=parseLine(src)}catch(e){st={k:'assign',src}}return `<div class="cl k-${st.k} ${extra}"><span class="no">${i!=null?i+1:''}</span><span>${esc(st.src)}</span></div>`}
+async function runLines(stage,codeEl,lines,{offset=0}={}){
+  const els=codeEl?[...codeEl.querySelectorAll('.cl')]:[];
+  for(let i=0;i<lines.length;i++){
+    const el=els[i+offset];els.forEach(e=>e.classList.remove('now'));if(el){el.classList.add('now');el.scrollIntoView&&el.scrollIntoView({block:'nearest'})}
+    await sleep(D(250));
+    try{await stage.exec(lines[i])}
+    catch(e){if(el){el.classList.remove('now');el.classList.add('bad')}stage.bub.querySelectorAll('.tk').forEach(x=>{});stage.cpu.classList.remove('busy');throw e}
+    if(el){el.classList.remove('now');el.classList.add('done')}
+    await sleep(D(200));
+  }
+}
+
+/* ========== Navigasyon ========== */
+let curView='home';
+function go(v){curView=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));window.scrollTo&&window.scrollTo({top:0});
+  if(v==='guess')loadPuzzle(gIdx);if(v==='tasks')loadTask(tIdx);if(v==='hunt')huntMenu();if(v==='home')updateHome();if(v==='lab')say('Sol taraftan bir kutu oluştur, sonra içine değer koy! Örneğin <span class="mono">yas ← 15</span>','',7000);}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){SFX.click();go(g.dataset.go)}});
+$('#speed').oninput=e=>{SPEED=+e.target.value};
+$('#snd').onclick=()=>{SOUND=!SOUND;$('#snd').textContent=SOUND?'🔊':'🔇';store.set('snd',SOUND)};
+
+/* ========== Ana sayfa demo ========== */
+const demo=new Stage($('#demoStage'),{showScreen:false});
+let demoTok=0;
+async function demoLoop(){
+  const my=++demoTok;const seq=['Tanımla puan : Tamsayı','puan ← 10','puan ← puan + 5','puan ← puan * 2'];
+  while(my===demoTok){
+    if(curView!=='home'){await sleep(800);continue}
+    demo.reset();
+    try{for(const l of seq){if(my!==demoTok||curView!=='home')break;demo.hint('<span class="mono" style="color:var(--pur)">'+esc(parseLine(l).src)+'</span>');await sleep(D(900));const p=SOUND;SOUND=false;await demo.exec(l);SOUND=p;await sleep(D(700))}}catch(e){}
+    await sleep(2200);
+  }
+}
+function updateHome(){const g=store.get('gDone',{}),t=store.get('tDone',{});$('#pg-guess').textContent='✔ '+Object.values(g).filter(Boolean).length+' / '+PUZ.length+' soru';$('#pg-tasks').textContent='✔ '+Object.keys(t).length+' / '+TASKS.length+' görev';$('#pg-hunt').textContent='🏆 Rekor: '+store.get('hi',0)}
+
+/* ========== Keşfet ========== */
+const lab=new Stage($('#labStage'));let labBusy=false,labN=0;
+const LCH=['Tanımla yas : Tamsayı','yas ← 15','yas ← yas + 1','Tanımla ad : Metin','ad ← "Ece"','yaz "Merhaba " & ad','yaz yas','Tanımla a, b : Tamsayı','a ← 7','b ← a','a ← 100','yaz b'];
+$('#lChips').innerHTML=LCH.map(c=>`<button class="chip">${esc(c)}</button>`).join('');
+$('#lChips').onclick=e=>{const c=e.target.closest('.chip');if(c){$('#lCmd').value=c.textContent;$('#lCmd').focus()}};
+async function labExec(src){
+  if(labBusy||!src.trim())return;labBusy=true;
+  let st;try{st=parseLine(src)}catch(e){say('🤔 '+esc(e.message),'bad');SFX.bad();labBusy=false;return}
+  const h=$('#lHist');h.insertAdjacentHTML('beforeend',lineHtml(st.src,labN++,'now'));const el=h.lastElementChild;h.scrollTop=1e9;
+  try{await lab.exec(st);el.classList.remove('now');el.classList.add('done');
+    if(st.k==='assign'){const v=lab.box(st.name);if(/^\s*\w+\s*$/.test(st.expr)&&lab.box(st.expr.trim()))say('📋 <b>'+esc(st.expr.trim())+'</b> kutusundaki değerin <b>kopyası</b> alındı. '+esc(st.expr.trim())+' hâlâ aynı değeri tutuyor!','ok');
+      else if(new RegExp('\\b'+st.name+'\\b').test(st.expr))say('🔁 Önce sağ taraf hesaplandı, sonra sonuç <b>'+esc(st.name)+'</b> kutusuna kondu. Eski değer çöpe gitti!','ok');}
+    if(st.k==='decl')say('📦 Yeni kutu hazır! Şimdi içine bir değer koy: <span class="mono">'+esc(st.names[0])+' ← '+(st.type==='Metin'?'"merhaba"':'42')+'</span>','ok');
+  }catch(e){el.classList.remove('now');el.classList.add('bad');say('⚠️ '+esc(e.message),'bad');SFX.bad();lab.cpu.classList.remove('busy')}
+  labBusy=false;
+}
+$('#lRun').onclick=()=>{labExec($('#lCmd').value);$('#lCmd').select()};
+$('#lCmd').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#lRun').click()}};
+$('#lMake').onclick=()=>{const n=$('#lName').value.trim();if(!n){say('Kutuya bir <b>isim</b> vermelisin! 🏷️','bad');return}labExec('Tanımla '+n+' : '+$('#lType').value);$('#lName').value=''};
+$('#lName').onkeydown=e=>{if(e.key==='Enter')$('#lMake').click()};
+$('#lReset').onclick=()=>{if(labBusy)return;lab.reset();$('#lHist').innerHTML='';labN=0};
+
+/* ========== Tahmin Et ========== */
+const PUZ=[
+ {tag:'Tek değer',code:['Tanımla x : Tamsayı','x ← 5','x ← 8'],ask:'x',opts:['8','5','13','5 ve 8'],why:{'5':'Kutuya yeni değer gelince eskisi <b>silinir</b>. Son konan değer kalır.','13':'Değerler toplanmaz! Yeni değer eskisinin <b>üzerine yazılır</b>.','5 ve 8':'Bir kutu aynı anda yalnızca <b>tek</b> değer tutabilir. 5 çöpe gitti!'},exp:'x ← 8 satırında 5 kutudan atıldı, yerine 8 kondu.'},
+ {tag:'Kopyalama',code:['Tanımla a, b : Tamsayı','a ← 4','b ← a'],ask:'a',opts:['4','boş','0','a'],why:{'boş':'<span class="mono">b ← a</span> değeri <b>taşımaz, kopyalar</b>. a\'daki 4 yerinde kalır.','0':'a\'ya kimse 0 koymadı. Kopyalama a\'yı değiştirmez.','a':'Kutuların içinde isimler değil <b>değerler</b> durur.'},exp:'a\'daki 4\'ün bir fotokopisi b\'ye gitti; a hâlâ 4.'},
+ {tag:'Bağlantı yanılgısı',code:['Tanımla a, b : Tamsayı','a ← 5','b ← a','a ← 9'],ask:'b',opts:['5','9','14','a'],why:{'9':'b, a\'ya <b>bağlı değildir</b>! b ← a satırı çalıştığı an a\'da 5 vardı; b o 5\'in kopyasını aldı.','14':'Hiçbir satır toplama yapmıyor.','a':'b kutusunda "a" yazmaz; o anki değerin kopyası durur.'},exp:'Kopya alındıktan sonra a\'nın değişmesi b\'yi etkilemez.'},
+ {tag:'x ← x + 1',code:['Tanımla x : Tamsayı','x ← 7','x ← x + 1'],ask:'x',opts:['8','7','Hata','1'],why:{'7':'Sağ taraf hesaplandı (7 + 1 = 8) ve sonuç x\'e <b>yazıldı</b>.','Hata':'← işareti matematikteki eşitlik değil! "Sağı hesapla, sola koy" demektir.','1':'x + 1 ifadesinde x\'in o anki değeri (7) kullanılır.'},exp:'Önce sağ taraf: 7 + 1 = 8. Sonra 8 kutuya kondu.'},
+ {tag:'Okun yönü',code:['Tanımla a, b : Tamsayı','a ← 2','b ← 6','a ← b'],ask:'a',opts:['6','2','8','b'],why:{'2':'Ok <b>sağdan sola</b>: b\'nin değeri a\'ya gider. a ← b "a\'ya b\'yi koy" demek.','8':'Toplama yok; sadece kopyalama var.','b':'Kutuda değer durur, isim değil.'},exp:'a ← b: b\'deki 6\'nın kopyası a\'ya kondu.'},
+ {tag:'Okun yönü',code:['Tanımla a, b : Tamsayı','a ← 2','b ← 6','b ← a'],ask:'b',opts:['2','6','8','boş'],why:{'6':'Bu sefer hedef b! b ← a, a\'daki 2\'yi b\'ye koyar.','8':'Toplama yok.','boş':'b\'ye a\'nın kopyası kondu; boş kalmadı.'},exp:'b\'nin eski değeri (6) silindi, yerine a\'daki 2 geldi.'},
+ {tag:'Takas tuzağı',code:['Tanımla a, b : Tamsayı','a ← 3','b ← 8','a ← b','b ← a'],ask:'b',opts:['8','3','11','Hata'],why:{'3':'Tuzak! <span class="mono">a ← b</span> satırında a\'daki 3 <b>silindi</b>. Sonraki satırda a\'da 8 var; b\'ye de 8 kopyalanır.','11':'Toplama yok.','Hata':'Kod hatasız çalışır ama istenen takası yapamaz.'},exp:'İki kutu da 8 oldu. Takas için geçici bir kutu gerekir!'},
+ {tag:'Doğru takas',code:['Tanımla a, b, gecici : Tamsayı','a ← 3','b ← 8','gecici ← a','a ← b','b ← gecici'],ask:'b',opts:['3','8','11','boş'],why:{'8':'gecici kutusu a\'nın ilk değerini (3) sakladı ve sonunda b\'ye verdi.','11':'Toplama yok.','boş':'gecici\'den 3 kopyalandı.'},exp:'Geçici kutu sayesinde a = 8, b = 3 oldu. İşte takas!'},
+ {tag:'İsim mi metin mi?',code:['Tanımla x : Tamsayı','Tanımla s : Metin','x ← 10','s ← "x"'],ask:'s',opts:['"x"','"10"','10','Hata'],why:{'"10"':'Tırnak içindeki <b>"x"</b> bir metindir, x kutusuyla ilgisi yoktur.','10':'s bir Metin kutusu ve içine "x" harfi kondu.','Hata':'"x" bir metin; Metin kutusuna sorunsuz girer.'},exp:'Tırnak = metin. Tırnaksız x = kutunun adı.'},
+ {tag:'İsim mi metin mi?',code:['Tanımla x : Tamsayı','x ← 10','yaz "x"'],ask:'@out',opts:['x','10','"x"','x = 10'],why:{'10':'Tırnak içinde olduğu için kutunun değeri değil, <b>x harfi</b> yazılır.','"x"':'Ekranda tırnak işaretleri görünmez; sadece içindeki yazı çıkar.','x = 10':'Program yalnızca kendisine söyleneni yazar.'},exp:'Değeri yazdırmak için tırnaksız yazılır: yaz x'},
+ {tag:'Sıralı çalışma',code:['Tanımla x, y : Tamsayı','x ← 5','y ← x * 2','x ← 1'],ask:'y',opts:['10','2','5','1'],why:{'2':'Satırlar <b>sırayla</b> çalışır. y hesaplandığında x henüz 5\'ti.','5':'y ← x * 2 → 5 * 2 = 10.','1':'Son satır yalnızca x\'i değiştirir.'},exp:'y bir kez hesaplandı (10); sonra x değişti ama y yeniden hesaplanmaz.'},
+ {tag:'Biriktirme',code:['Tanımla t : Tamsayı','t ← 0','t ← t + 5','t ← t + 5','t ← t + 5'],ask:'t',opts:['15','5','0','Hata'],why:{'5':'Her satır t\'nin <b>o anki</b> değerine 5 ekler: 0 → 5 → 10 → 15.','0':'t ← t + 5 her seferinde t\'yi büyütür.','Hata':'x ← x + ... kalıbı tamamen geçerlidir; buna biriktirme denir.'},exp:'Bu kalıp döngülerde toplam ve sayaç için kullanılır.'},
+ {tag:'Boş kutu',code:['Tanımla a, b : Tamsayı','b ← a + 1'],ask:'b',opts:['Hata','1','0','a + 1'],why:{'1':'a\'ya hiç değer konmadı! Boş kutudan okunamaz.','0':'Kutular kendiliğinden 0 olmaz; ilk değer verilmeli.','a + 1':'Kutulara ifade değil, sonuç konur.'},exp:'Bir değişkeni kullanmadan önce mutlaka değer atanmalı.'},
+ {tag:'Tanımsız kutu',code:['Tanımla a : Tamsayı','a ← 4','z ← a'],ask:'z',opts:['Hata','4','boş','0'],why:{'4':'z diye bir kutu hiç <b>oluşturulmadı</b>! Önce Tanımla gerekir.','boş':'Kutu yoksa içi de yok; program hata verir.','0':'Tanımsız değişken kullanılamaz.'},exp:'Her kutu kullanılmadan önce Tanımla ile oluşturulmalı.'},
+ {tag:'Tür',code:['Tanımla n : Tamsayı','n ← "12"'],ask:'n',opts:['Hata','12','"12"','boş'],why:{'12':'"12" tırnak içinde, yani bir <b>metin</b>. Tamsayı kutusuna metin sığmaz.','"12"':'Tamsayı kutusu metin kabul etmez.','boş':'Program bu satırda hata verip durur.'},exp:'Kutunun türü, içine ne konabileceğini belirler.'},
+ {tag:'Metin birleştirme',code:['Tanımla ad : Metin','ad ← "Ali"','yaz "Merhaba " & ad'],ask:'@out',opts:['Merhaba Ali','Merhaba ad','"Merhaba " & ad','MerhabaAli'],why:{'Merhaba ad':'ad tırnak dışında; yani kutunun <b>değeri</b> ("Ali") kullanılır.','"Merhaba " & ad':'İfade önce hesaplanır, sonucu yazılır.','MerhabaAli':'"Merhaba " metninin sonunda bir boşluk var.'},exp:'& işareti metinleri yan yana ekler.'},
+ {tag:'Sayı gibi görünen metin',code:['Tanımla s, t : Metin','s ← "5"','t ← "3"','yaz s & t'],ask:'@out',opts:['53','8','5 & 3','Hata'],why:{'8':'s ve t <b>metin</b>! & işareti onları toplamaz, yan yana yapıştırır.','5 & 3':'İfade hesaplanır, sonucu yazılır.','Hata':'İki metni & ile birleştirmek geçerlidir.'},exp:'"5" & "3" = "53". Toplamak için sayı (Tamsayı) kutuları gerekir.'},
+ {tag:'Üç kutu',code:['Tanımla a, b, c : Tamsayı','a ← 1','b ← 2','c ← 3','a ← b','b ← c','c ← a'],ask:'c',opts:['2','1','3','6'],why:{'1':'c ← a çalıştığında a artık 1 değil; a ← b satırında 2 olmuştu.','3':'c\'nin eski değeri (3) son satırda silindi.','6':'Toplama yok.'},exp:'Satır satır izle: a=2, b=3, c=2.'},
+ {tag:'Kendi kendine',code:['Tanımla x : Tamsayı','x ← 4','x ← x * x','x ← x - 6'],ask:'x',opts:['10','-2','16','4'],why:{'-2':'İkinci satırdan sonra x artık 16! 16 - 6 = 10.','16':'Son satır 6 çıkarıyor.','4':'x iki kez değişti.'},exp:'4 → 16 → 10'},
+ {tag:'Değer mi ifade mi?',code:['Tanımla a, b : Tamsayı','a ← 3','b ← a + a','a ← 10','yaz b'],ask:'@out',opts:['6','20','a + a','13'],why:{'20':'b bir formül saklamaz! Hesaplandığı anki sonucu (6) saklar.','a + a':'Kutuya ifade değil, sonuç konur.','13':'Toplama işlemi b hesaplanırken bir kez yapıldı.'},exp:'Kutular formül değil, değer tutar (Excel hücresi gibi değildir!).'}
+];
+let gIdx=store.get('gIdx',0),gSel=null,gDone=store.get('gDone',{}),gTried={};
+const guessStage=new Stage($('#guessStage'));
+function puzAnswer(p){return p.opts[0]}
+function loadPuzzle(i){
+  gIdx=Math.max(0,Math.min(PUZ.length-1,i));store.set('gIdx',gIdx);const p=PUZ[gIdx];gSel=null;
+  $('#gTag').textContent=(gIdx+1)+' / '+PUZ.length+' · '+p.tag;
+  $('#gDots').innerHTML=PUZ.map((_,k)=>`<div class="dot${k===gIdx?' on':''}${gDone[k]===2?' ok':gDone[k]===1?' half':''}" data-k="${k}">${k+1}</div>`).join('');
+  $('#gCode').innerHTML=p.code.map((l,k)=>lineHtml(l,k)).join('');
+  $('#gQ').innerHTML=p.ask==='@out'?'🖥️ Program çalışınca <b>ekranda</b> ne yazar?':'📦 Program bitince <code>'+esc(p.ask)+'</code> kutusunda ne olur?';
+  const opts=[...p.opts].sort(()=>Math.random()-.5);
+  $('#gOpts').innerHTML=opts.map(o=>`<button class="opt" data-o="${esc(o)}">${esc(o)}</button>`).join('');
+  $('#gFb').className='fb';$('#gCheck').disabled=true;$('#gCheck').style.display='';$('#gNext').style.display='none';$('#gReplay').style.display='none';
+  guessStage.reset();guessStage.hint('Önce tahmin et, sonra izle! 👀');
+}
+$('#gDots').onclick=e=>{const d=e.target.closest('.dot');if(d&&!gBusy)loadPuzzle(+d.dataset.k)};
+$('#gOpts').onclick=e=>{const b=e.target.closest('.opt');if(!b||b.disabled)return;SFX.click();document.querySelectorAll('#gOpts .opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');gSel=b.dataset.o;$('#gCheck').disabled=false};
+let gBusy=false;
+async function playPuzzle(){
+  const p=PUZ[gIdx];gBusy=true;guessStage.reset();$('#gCode').querySelectorAll('.cl').forEach(c=>c.classList.remove('done','bad','now'));
+  try{await runLines(guessStage,$('#gCode'),p.code)}catch(e){guessStage.bub.innerHTML='<span class="tk err">⛔ HATA</span> <span class="hint">'+esc(e.message)+'</span>';SFX.bad()}
+  if(p.ask!=='@out'){const v=guessStage.box(p.ask);if(v)guessStage.flash(v,'glow')}
+  gBusy=false;
+}
+$('#gCheck').onclick=async()=>{
+  if(gBusy||gSel==null)return;const p=PUZ[gIdx],ok=gSel===puzAnswer(p);
+  document.querySelectorAll('#gOpts .opt').forEach(b=>{b.disabled=true;if(b.dataset.o===puzAnswer(p))b.classList.add('right');else if(b.dataset.o===gSel)b.classList.add('wrong')});
+  $('#gCheck').style.display='none';
+  const fb=$('#gFb');
+  if(ok){SFX.ok();const first=!gTried[gIdx];if(gDone[gIdx]!==2){gDone[gIdx]=first?2:Math.max(gDone[gIdx]||0,1);store.set('gDone',gDone);addXP(first?10:4)}fb.className='fb on ok';fb.innerHTML='<b>🎉 Doğru!</b> '+p.exp;say(['Süpersin! 🌟','Harika, hafızan çok iyi! 🧠','Tam isabet! 🎯'][Math.floor(Math.random()*3)],'ok');if(first)confetti(40)}
+  else{gTried[gIdx]=true;SFX.bad();fb.className='fb on no';fb.innerHTML='<b>🤔 Neredeyse!</b> '+(p.why[gSel]||'')+'<br><span style="opacity:.85">Doğru cevap: <b class="mono">'+esc(puzAnswer(p))+'</b> · '+p.exp+'</span>';say('Sorun değil! Şimdi adım adım izle, neyin değiştiğini gör. 👀','bad',8000)}
+  $('#gNext').style.display='';$('#gReplay').style.display='';
+  await playPuzzle();
+};
+$('#gReplay').onclick=()=>{if(!gBusy)playPuzzle()};
+$('#gNext').onclick=()=>{if(gBusy)return;if(gIdx<PUZ.length-1)loadPuzzle(gIdx+1);else{say('Tüm soruları bitirdin! 🏆 Şimdi Görevler\'e geç!','ok');confetti();loadPuzzle(0)}};
+
+/* ========== Görevler ========== */
+const TASKS=[
+ {t:'Kopya çıkar',d:'y kutusuna x\'in değerini koy ama x\'in değeri <b>bozulmasın</b>.',start:['Tanımla x, y : Tamsayı','x ← 7'],pal:['y ← x','x ← y','y ← "x"','x ← 0'],goal:{x:7,y:7}},
+ {t:'Sayacı 3\'e çıkar',d:'Sayaç şu an 0. Yalnızca verilen blokları kullanarak <b>3</b> yap.',start:['Tanımla sayac : Tamsayı','sayac ← 0'],pal:['sayac ← sayac + 1','sayac ← sayac - 1','sayac ← 1'],goal:{sayac:3},max:3},
+ {t:'Toplamı bul',d:'toplam kutusuna a ile b\'nin toplamını koy. a ve b <b>değişmesin</b>.',start:['Tanımla a, b, toplam : Tamsayı','a ← 4','b ← 6'],pal:['toplam ← a + b','a ← a + b','toplam ← a','toplam ← toplam + b','b ← a'],goal:{a:4,b:6,toplam:10}},
+ {t:'Selamla',d:'Ekrana <b>Merhaba Ece</b> yazdır. Ece kelimesi ad kutusundan gelmeli.',start:['Tanımla ad : Metin','ad ← "Ece"'],pal:['yaz "Merhaba ad"','yaz "Merhaba " & ad','yaz "Merhaba " & "ad"','yaz ad'],goal:{},out:['Merhaba Ece']},
+ {t:'Büyük takas',d:'a ile b\'nin değerlerini <b>yer değiştir</b>. Geçici kutu sana yardım edebilir.',start:['Tanımla a, b, gecici : Tamsayı','a ← 3','b ← 8'],pal:['a ← b','b ← a','gecici ← a','gecici ← b','a ← gecici','b ← gecici'],goal:{a:8,b:3}},
+ {t:'İkiye katla',d:'x şu an 5. Onu <b>20</b> yap. En fazla 3 blok kullanabilirsin.',start:['Tanımla x : Tamsayı','x ← 5'],pal:['x ← x * 2','x ← x + 2','x ← 2','x ← x - 1'],goal:{x:20},max:3},
+ {t:'Biriktir',d:'sayi kutusuna sırayla 1, 2, 3 koy ve her seferinde toplam\'a ekle. Sonunda toplam <b>6</b> olsun.',start:['Tanımla sayi, toplam : Tamsayı','toplam ← 0'],pal:['sayi ← 1','sayi ← 2','sayi ← 3','toplam ← toplam + sayi','toplam ← sayi','toplam ← 6'],goal:{toplam:6},ban:['toplam ← 6'],banMsg:'toplam ← 6 kopya çekmek olur! 😄 Sayıları tek tek ekle.'},
+ {t:'Ad soyad',d:'tam kutusuna <b>"Ada Yılmaz"</b> koy (arada boşluk olsun).',start:['Tanımla ad, soyad, tam : Metin','ad ← "Ada"','soyad ← "Yılmaz"'],pal:['tam ← ad & soyad','tam ← ad & " " & soyad','tam ← "ad soyad"','tam ← ad'],goal:{tam:'Ada Yılmaz'}},
+ {t:'Üçlü döndürme',d:'Değerleri bir sola kaydır: a ← b\'nin, b ← c\'nin, c ← a\'nın <b>ilk</b> değeri. Hedef: a=2, b=3, c=1.',start:['Tanımla a, b, c, gecici : Tamsayı','a ← 1','b ← 2','c ← 3'],pal:['gecici ← a','a ← b','b ← c','c ← gecici','c ← a','a ← c'],goal:{a:2,b:3,c:1}},
+ {t:'Sihirli takas',d:'a ile b\'yi <b>geçici kutu olmadan</b> yer değiştir! İpucu: toplama ve çıkarma.',start:['Tanımla a, b : Tamsayı','a ← 3','b ← 8'],pal:['a ← a + b','b ← a - b','a ← a - b','a ← b','b ← a'],goal:{a:8,b:3}}
+];
+let tIdx=0,tProg=[],tBusy=false;const tDone=store.get('tDone',{});
+const taskStage=new Stage($('#taskStage'));
+function goalText(T){const parts=Object.entries(T.goal).map(([k,v])=>`<span class="mono">${esc(k)} = ${esc(fmtV(v))}</span>`);if(T.out)parts.push('Ekran: <span class="mono">'+esc(T.out.join(' / '))+'</span>');return '🎯 Hedef: '+parts.join(' ')+(T.max?` <span class="tag2">en fazla ${T.max} blok</span>`:'')}
+function loadTask(i){
+  tIdx=i;tProg=[];const T=TASKS[i];
+  $('#tList').innerHTML=TASKS.map((x,k)=>`<button class="tbtn${k===i?' on':''}${tDone[k]?' ok':''}" data-k="${k}">${k+1}. ${esc(x.t)}</button>`).join('');
+  $('#tTitle').textContent=(i+1)+'. '+T.t;$('#tDesc').innerHTML=T.d;$('#tGoal').innerHTML=goalText(T);
+  $('#tStart').innerHTML=T.start.map((l,k)=>lineHtml(l,k,'locked')).join('');
+  $('#tPal').innerHTML=T.pal.map((l,k)=>{let st=parseLine(l);return `<div class="cl k-${st.k}" data-p="${k}"><span>${esc(st.src)}</span><span class="x"><button>＋</button></span></div>`}).join('');
+  renderProg();taskStage.reset();taskStage.runInstant(T.start).then(()=>taskStage.hint('Başlangıç durumu hazır. Blokları ekle ve ▶ Çalıştır!'));
+}
+function renderProg(){
+  const n=TASKS[tIdx].start.length;
+  $('#tProg').innerHTML=tProg.length?tProg.map((l,k)=>{const st=parseLine(l);return `<div class="cl k-${st.k}"><span class="no">${n+k+1}</span><span>${esc(st.src)}</span><span class="x"><button data-a="up" data-k="${k}">↑</button><button data-a="dn" data-k="${k}">↓</button><button data-a="rm" data-k="${k}">✕</button></span></div>`}).join(''):'<div class="ph">Aşağıdaki bloklara tıklayarak programını oluştur 👇</div>';
+}
+$('#tList').onclick=e=>{const b=e.target.closest('.tbtn');if(b&&!tBusy){SFX.click();loadTask(+b.dataset.k)}};
+$('#tPal').onclick=e=>{const c=e.target.closest('[data-p]');if(!c||tBusy)return;const T=TASKS[tIdx];if(T.max&&tProg.length>=T.max){say('En fazla <b>'+T.max+'</b> blok kullanabilirsin! 🧐','bad');SFX.bad();return}SFX.pop();tProg.push(T.pal[+c.dataset.p]);renderProg()};
+$('#tProg').onclick=e=>{const b=e.target.closest('button[data-a]');if(!b||tBusy)return;const k=+b.dataset.k,a=b.dataset.a;SFX.click();
+  if(a==='rm')tProg.splice(k,1);if(a==='up'&&k>0)[tProg[k-1],tProg[k]]=[tProg[k],tProg[k-1]];if(a==='dn'&&k<tProg.length-1)[tProg[k+1],tProg[k]]=[tProg[k],tProg[k+1]];renderProg()};
+$('#tClear').onclick=()=>{if(tBusy)return;tProg=[];renderProg();taskStage.reset();taskStage.runInstant(TASKS[tIdx].start)};
+function checkGoal(stage,T){
+  for(const [k,v] of Object.entries(T.goal)){const b=stage.box(k);if(!b||b.value!==v)return{ok:false,msg:'<span class="mono">'+esc(k)+'</span> kutusunda <b>'+esc(b&&b.value!==undefined?fmtV(b.value):'boş')+'</b> var, ama <b>'+esc(fmtV(v))+'</b> olmalıydı.'}}
+  if(T.out&&JSON.stringify(stage.output)!==JSON.stringify(T.out))return{ok:false,msg:'Ekranda <b>'+esc(stage.output.join(' / ')||'hiçbir şey')+'</b> yazdı, ama <b>'+esc(T.out.join(' / '))+'</b> olmalıydı.'};
+  return{ok:true};
+}
+$('#tRun').onclick=async()=>{
+  if(tBusy)return;const T=TASKS[tIdx];
+  if(!tProg.length){say('Önce programına birkaç blok ekle! 🧱','bad');return}
+  if(T.ban&&tProg.some(l=>T.ban.includes(l))){say(T.banMsg,'bad');SFX.bad();return}
+  tBusy=true;taskStage.reset();await taskStage.runInstant(T.start);renderProg();
+  const all=document.querySelectorAll('#tProg .cl');all.forEach(x=>x.classList.remove('done','bad'));
+  try{await runLines(taskStage,$('#tProg'),tProg);
+    const r=checkGoal(taskStage,T);
+    if(r.ok){SFX.win();confetti();if(!tDone[tIdx]){tDone[tIdx]=1;store.set('tDone',tDone);addXP(20)}say('🏆 Görev tamam! Kutular tam hedefteki gibi. '+(tIdx<TASKS.length-1?'Sıradaki göreve geç!':'Tüm görevleri bitirdin!'),'ok',8000);
+      $('#tList').querySelectorAll('.tbtn')[tIdx].classList.add('ok')}
+    else{SFX.bad();say('Neredeyse! '+r.msg+' Blokların sırasını kontrol et. 🔍','bad',9000)}
+  }catch(e){SFX.bad();taskStage.bub.innerHTML='<span class="tk err">⛔ HATA</span> <span class="hint">'+esc(e.message)+'</span>';say('⚠️ '+esc(e.message),'bad',9000)}
+  tBusy=false;
+};
+
+/* ========== Değişken Avcısı ========== */
+let H=null;
+function huntMenu(){
+  if(H&&H.live)return;
+  $('#huntBox').innerHTML=`<div style="text-align:center;padding:10px">
+  <div style="font-size:60px">🎯</div><h2 class="fred" style="font-size:34px;margin:4px 0;color:var(--pur)">Değişken Avcısı</h2>
+  <p style="font-weight:700;color:#4a4270;max-width:520px;margin:6px auto 14px;line-height:1.55">Kod satırları birer birer akacak. <b>Kutular gizli!</b> Değerleri aklında tut. Sonunda bir kutunun değerini soracağım. Doğru cevap = puan, hız = bonus. 3 canın var ❤️❤️❤️</p>
+  <div class="row" style="justify-content:center"><button class="btn pink" id="hStart" style="font-size:19px;padding:14px 30px">▶ Oyuna başla</button></div>
+  <p class="mini" style="margin-top:12px">🏆 Rekorun: <b>${store.get('hi',0)}</b> puan</p></div>`;
+  $('#hStart').onclick=huntStart;
+}
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function genRound(level){
+  const vars=level<3?['a','b']:['a','b','c'];const env={};const lines=['Tanımla '+vars.join(', ')+' : Tamsayı'];const trace=[];
+  for(const v of vars){env[v]=rnd(1,9);lines.push(v+' ← '+env[v]);trace.push({...env})}
+  const ops=2+Math.min(level,6);
+  for(let i=0;i<ops;i++){
+    const x=pick(vars),y=pick(vars.filter(v=>v!==x)),n=rnd(1,5);
+    const kinds=[()=>[x+' ← '+n,n],()=>[x+' ← '+y,env[y]],()=>[x+' ← '+x+' + '+n,env[x]+n],()=>[x+' ← '+x+' + '+y,env[x]+env[y]],()=>[x+' ← '+y+' - '+n,env[y]-n]];
+    if(level>=4)kinds.push(()=>[x+' ← '+x+' * 2',env[x]*2]);
+    const [l,val]=pick(kinds)();env[x]=val;lines.push(l);trace.push({...env});
+  }
+  const ask=pick(vars),ans=env[ask];
+  const ds=new Set([ans]);const cand=[ans+1,ans-1,...vars.map(v=>env[v]),...trace.slice(0,-1).map(t=>t[ask]),ans+rnd(2,5),ans-rnd(2,5)];
+  for(const c of cand.sort(()=>Math.random()-.5)){if(ds.size>=4)break;ds.add(c)}
+  while(ds.size<4)ds.add(ans+rnd(-9,9));
+  return{vars,lines,ask,ans,opts:[...ds].sort(()=>Math.random()-.5),trace};
+}
+function huntStart(){H={live:true,score:0,lives:3,level:1,streak:0,round:0};huntRound()}
+function hud(){return `<div class="hud"><span class="pill">❤️ ${'❤️'.repeat(Math.max(0,H.lives-1))}${H.lives<=0?'💀':''}</span><span class="pill">Seviye ${H.level}</span><span class="pill">🔥 x${H.streak}</span><span class="pill">⭐ ${H.score}</span></div>`}
+async function huntRound(){
+  if(!H||!H.live)return;H.round++;const R=genRound(H.level);H.R=R;const tok=H.tok=Math.random();
+  const per=Math.max(650,1700-H.level*150)/SPEED;
+  $('#huntBox').innerHTML=hud()+`<div class="hidden-boxes">${R.vars.map(v=>`<div class="hb">?<small>${v}</small></div>`).join('')}</div><div class="feed" id="hFeed"></div><div id="hQ"></div>`;
+  say('Dikkat! Satırları takip et… 👀','',2500);
+  for(let i=0;i<R.lines.length;i++){if(H.tok!==tok)return;$('#hFeed').insertAdjacentHTML('beforeend',lineHtml(R.lines[i],i,'now'));const f=$('#hFeed');[...f.children].slice(0,-1).forEach(c=>c.classList.remove('now'));SFX.click();await sleep(per)}
+  if(H.tok!==tok)return;
+  [...$('#hFeed').children].forEach(c=>c.classList.remove('now'));
+  const limit=Math.max(6,12-H.level)*1000;const t0=Date.now();
+  $('#hQ').innerHTML=`<div class="q" style="text-align:center">📦 <code>${R.ask}</code> kutusunda şimdi ne var?</div><div class="timer"><div id="hT"></div></div><div class="opts" style="margin-top:12px">${R.opts.map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join('')}</div>`;
+  const bar=$('#hT');if(bar.animate)bar.animate([{width:'100%'},{width:'0%'}],{duration:limit,fill:'forwards'});
+  const timer=setTimeout(()=>{if(H.tok===tok)huntAnswer(null,t0,limit)},limit);
+  $('#hQ').querySelector('.opts').onclick=e=>{const b=e.target.closest('.opt');if(!b||H.tok!==tok)return;clearTimeout(timer);huntAnswer(+b.dataset.o,t0,limit,b)};
+}
+function huntAnswer(v,t0,limit,btn){
+  const R=H.R;H.tok=Math.random();const ok=v===R.ans;
+  document.querySelectorAll('#hQ .opt').forEach(b=>{b.disabled=true;if(+b.dataset.o===R.ans)b.classList.add('right');else if(b===btn)b.classList.add('wrong')});
+  if(ok){const bonus=Math.round(10*(1-(Date.now()-t0)/limit));H.streak++;const pts=10*H.level+bonus+(H.streak>=3?5:0);H.score+=pts;SFX.ok();say(`+${pts} puan! ${H.streak>=3?'🔥 Seri bonusu!':'Harika takip! 🎯'}`,'ok',2500);if(H.streak%3===0){H.level++;say('⬆️ Seviye '+H.level+'! Kod hızlanıyor…','ok',3000)}}
+  else{H.lives--;H.streak=0;SFX.bad();say(v===null?'⏰ Süre doldu!':'Olmadı! Aşağıdaki tabloda adım adım bak. 👇','bad',4000)}
+  const tr=`<table class="trace"><tr><th>Satır</th>${R.vars.map(x=>`<th>${x}</th>`).join('')}</tr>${R.lines.slice(1).map((l,i)=>`<tr><td>${esc(l)}</td>${R.vars.map(x=>`<td>${R.trace[i][x]??'—'}</td>`).join('')}</tr>`).join('')}</table>`;
+  $('#hQ').insertAdjacentHTML('beforeend',`<div class="fb on ${ok?'ok':'no'}"><b>${ok?'✔ Doğru!':'✘ Doğru cevap: '+R.ans}</b>${ok?'':tr}<div class="row" style="margin-top:10px;justify-content:flex-end"><button class="btn ${H.lives>0?'pri':'pink'}" id="hNext">${H.lives>0?'Sonraki tur ➜':'Sonucu gör'}</button></div></div>`);
+  $('.hud').outerHTML=hud();
+  $('#hNext').onclick=()=>{if(H.lives>0)huntRound();else huntOver()};
+}
+function huntOver(){
+  const hi=store.get('hi',0),rec=H.score>hi;if(rec)store.set('hi',H.score);addXP(Math.round(H.score/10));H.live=false;
+  if(rec){SFX.win();confetti(120)}
+  $('#huntBox').innerHTML=`<div style="text-align:center;padding:16px"><div style="font-size:56px">${rec?'🏆':'🎮'}</div><p class="big">${H.score} puan</p><p style="font-weight:800;color:var(--mut)">${rec?'YENİ REKOR!':'Rekor: '+hi} · Ulaştığın seviye: ${H.level}</p><div class="row" style="justify-content:center;margin-top:10px"><button class="btn pink" id="hAgain">🔁 Tekrar oyna</button><button class="btn" data-go="guess">🤔 Tahmin Et'e dön</button></div></div>`;
+  $('#hAgain').onclick=huntStart;say(rec?'Muhteşem! Yeni rekor! 🏆':'Güzel oyundu! Bir tur daha? 💪','ok');
+}
+
+/* ========== Başlat ========== */
+SOUND=store.get('snd',true);$('#snd').textContent=SOUND?'🔊':'🔇';
+$('#xp').textContent='⭐ '+XP;
+updateHome();demoLoop();
+setTimeout(()=>say('Merhaba! Ben <b>Bitbit</b> 🤖 Birlikte hafıza kutularını keşfedelim! Değişken, içinde değer saklayan <b>etiketli bir kutudur</b>.','ok',7000),600);
+</script>
+</body>
+</html>
