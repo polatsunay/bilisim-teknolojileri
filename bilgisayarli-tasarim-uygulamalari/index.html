@@ -642,6 +642,183 @@ table.bt tr.hl td{background:#fff7d6}
   <div class="card acc sm"><h3>Ç) Açık uçlu</h3><ol class="tight sm"><li>3B tasarımda yalnızca görselliğe odaklanmak üretimde ne gibi sorunlara yol açar? Örnekle açıkla.</li><li>YZ araçlarıyla oluşturulan tasarımın özgünlük ve telif hakkı açısından durumunu tasarımcı gözüyle değerlendir.</li><li>Hatalı baskıların ve atık filamentin çevreye etkisini azaltmak için hangi çözümler geliştirilebilir?</li></ol><p class="xs muted">Yanıtlar için 📖 düğmesini kullan.</p></div>
  </div>
 </section>
+<section class="slide" id="s-3-0" data-sec="3" data-title="3. Öğrenme Birimi · Temel Elektronik Uygulamaları" data-ref="Kitap s. 156–158">
+ <div class="secov">
+  <div>
+   <div class="secno">3</div>
+   <h2 style="font-size:40px">Temel Elektronik Uygulamaları</h2>
+   <div class="kz"><b>Konular:</b> 3.1 Dirençler · 3.2 Kondansatörler · 3.3 Bobinler · 3.4 Diyotlar · 3.5 Transistörler · 3.6 Akım ve Gerilim Ölçümü · 3.7 Lehimleme</div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="tag">akım</span><span class="tag">diyot (LED)</span><span class="tag">lehimleme</span><span class="tag">breadboard</span><span class="tag">gerilim</span><span class="tag">multimetre</span><span class="tag">direnç</span><span class="tag">güç kaynağı</span><span class="tag">transistör</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🎯 Bu birimde</h3><ul class="tight sm"><li>Direnç değeri, dönüşüm, bağlantı, eş değer direnç; multimetre</li><li>Kondansatör ve bobin değerleri, bağlantıları, ölçümü</li><li>Diyot, LED, transistör sağlamlık testi ve bağlantısı</li><li>Ohm kanunu; akım ve gerilim ölçümü; lehimleme</li></ul></div>
+   <div class="card soft sm" id="bas3-c"><h3>🚦 Başlarken</h3>Dokunmatik ekranlar, kumandalar, ışığa duyarlı aydınlatmalar; dış dünyadan veri algılayıp çıktı üreten elektronik sistemlerdir. 2. birimde ürünün <b>formunu</b> tasarladık; bu birimde onu <b>işlevsel</b> yapacak elektronik altyapıyı öğreniyoruz. <b>Hazırlık:</b> Pil (enerji kaynağı) ve Lamba (yük) sana hangi nesneleri, sözcükleri çağrıştırıyor?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-1" data-sec="3" data-title="Direnç ve birim dönüşümü" data-olc="kanit" data-ref="Kitap 3.1 · Tablo 3.1 · Sıra Sizde · s. 159–160">
+ <h2>3.1 Dirençler · Birim Dönüşümü <small>R · ohm (Ω) · akımı sınırlar, gerilimi böler, korur</small></h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card sm"><b>Direnç:</b> elektrik akımının akışına gösterilen zorluk. <b>Tablo 3.1:</b> 1 MΩ = 10⁶ Ω · 1 kΩ = 10³ Ω · 1 mΩ = 10⁻³ Ω.</div>
+   <div class="card acc col"><h3>🔁 Dönüştürücü</h3><div id="u3-bd" style="flex:1"></div></div>
+  </div>
+  <div class="card col"><h3>🔢 Sıra Sizde: kutucuk eşleştir <span class="xs muted">(birden fazla cevap olabilir)</span></h3><div id="u3-bg" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-2" data-sec="3" data-title="Direnç çeşitleri" data-olc="kanit" data-ref="Kitap 3.1.1 · s. 160–163">
+ <h2>Direnç Çeşitleri <small>sabit · ayarlı · ortam etkili</small></h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card col"><h3>🧩 Türler <span class="xs muted">(tıkla)</span></h3><div id="u3-dc" style="flex:1"></div></div>
+   <div class="card acc col"><h3>🌡️ Ortam etkili direnç denemesi</h3><div id="u3-oe" style="flex:1"></div></div>
+  </div>
+  <div class="card col"><h3>🔢 Sıra Sizde: kutucuk numarası</h3><div id="u3-dg" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-3" data-sec="3" data-title="Direnç renk kodları" data-olc="kanit" data-ref="Kitap 3.1.2 · Tablo 3.2 · s. 163–165">
+ <h2>Direnç Renk Kodları <small>SoKaKta SaYaMaM GiBi · 4 ve 5 bantlı</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>🎨 Renk kodu hesaplayıcı</h3><div id="u3-rk" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🛡️ Sıra Sizde: teknisyen tablosu</h3><div id="u3-tk" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-4" data-sec="3" data-title="Devre tahtası (breadboard)" data-olc="kanit" data-ref="Kitap 3.1.3 · 1. Örnek Uygulama · s. 166–168">
+ <h2>Devre Tahtası (Breadboard) <small>güç hatları yatay · bileşen alanı dikey (5’li) · orta kanal</small></h2>
+ <div class="body">
+  <div class="card col" style="height:100%"><div id="u3-bb" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-5" data-sec="3" data-title="Multimetre ve güç kaynağı" data-olc="kanit" data-ref="Kitap 3.1.4–3.1.5 · 2. Örnek Uygulama · s. 168–172">
+ <h2>Multimetre · Güç Kaynağı <small>LCR metre: L endüktans · C kapasite · R direnç</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>📟 Teorik ↔ ölçülen <span class="tag">ölçüm temsilî</span></h3><div id="u3-mm" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card acc col"><h3>🎛️ Doğru mu, yanlış mı?</h3><div id="u3-mt" style="flex:1"></div></div>
+   <div class="card sm"><b>Güç kaynağı:</b> şebekeden gelen 220 V AC’yi düşük gerilimli DC’ye dönüştürür. <b>Gerilim ayar</b> düğmesi voltajı, <b>akım ayar</b> düğmesi çekilebilecek en yüksek akımı belirler; dijital göstergeler anlık izleme sağlar.</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-6" data-sec="3" data-title="Direnç bağlantıları" data-olc="kanit" data-ref="Kitap 3.1.6 · 3. Örnek · 1. Uygulama · s. 172–175">
+ <h2>Direnç Bağlantıları · Eş Değer Direnç (Reş) <small>seri: tek yol · paralel: kollar · karışık: önce paralel</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>🧮 Reş hesaplayıcı</h3><div id="u3-rc" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔢 1. Uygulama</h3><div id="u3-u1" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-7" data-sec="3" data-title="Kondansatörler" data-olc="kanit" data-ref="Kitap 3.2–3.2.2 · Tablo 3.3 · s. 175–178">
+ <h2>3.2 Kondansatörler <small>C · farad (F) · enerjiyi kısa süre depolar</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>🧩 Çeşitler <span class="xs muted">(tıkla)</span></h3><div id="u3-kc" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔤 Kod okuyucu (ör. 104)</h3><div id="u3-kd" style="flex:1"></div></div>
+  <div class="card col"><h3>🔢 Sıra Sizde: kutucuk</h3><div id="u3-kg" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-8" data-sec="3" data-title="Kondansatör bağlantıları ve ölçümü" data-olc="kanit" data-ref="Kitap 3.2.3–3.2.4 · s. 178–180">
+ <h2>Kondansatör Bağlantıları · Kapasite Ölçümü <small>dirençlerin tersi: seri azalır, paralel artar</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>🧮 Ceş hesaplayıcı</h3><div id="u3-cc" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card acc col"><h3>🔢 Sıra Sizde</h3><div id="u3-cs" style="flex:1"></div></div>
+   <div class="note w sm">⚠️ Ölçümden önce kondansatör bacakları <b>yalıtkan saplı tornavidayla kısa devre</b> edilerek deşarj edilir; deşarj edilmezse multimetreye zarar verebilir. Kutuplu kondansatör ters bağlanırsa aşırı ısınıp <b>patlayabilir</b>.</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-9" data-sec="3" data-title="Bobinler" data-olc="kanit" data-ref="Kitap 3.3 · Tablo 3.4 · s. 180–184">
+ <h2>3.3 Bobinler <small>L · henry (H) · enerjiyi manyetik alanda depolar</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>🧲 Nüve türü</h3><div id="u3-bn" style="flex:1"></div><p class="xs muted" style="margin:6px 0 0"><b>Spir:</b> telin nüve etrafındaki her tam turu. Endüktans spir sayısına bağlıdır. Bağlantı kuralları dirençlerle aynıdır.</p></div>
+  <div class="card acc col"><h3>🔢 Sıra Sizde: kutucuk</h3><div id="u3-bg2" style="flex:1;overflow:auto"></div></div>
+  <div class="card col"><h3>🧮 Görsel 3.43 devresi</h3><div id="u3-bl" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-10" data-sec="3" data-title="Diyotlar ve polarma" data-olc="kanit" data-ref="Kitap 3.4–3.4.2 · s. 184–186">
+ <h2>3.4 Diyotlar <small>akımı tek yönde geçirir · anot (+) · katot (−, şeritli taraf)</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🔋 Polarma denemesi</h3><div id="u3-pl" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🏷️ Hangi diyot?</h3><div id="u3-dt" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-11" data-sec="3" data-title="Diyot ve transistör ölçümü" data-olc="kanit" data-ref="Kitap 3.4.3 · 4. Örnek · 3.5 · 5. Örnek · s. 186–193">
+ <h2>Diyot Sağlamlık Testi · Transistörler <small>multimetre diyot kademesi</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>📟 Diyot kademesi (4. örnek değerleri)</h3><div id="u3-dm" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Transistör:</b> girişteki küçük akım/gerilimle çıkıştaki büyük akımı kontrol eder; <b>anahtarlama</b> ve <b>yükselteç</b> devrelerinde. <b>NPN:</b> iki N arasında P · <b>PNP:</b> iki P arasında N. Uçlar: kolektör (C), beyz (B), emiter (E). NPN doğru polarma: beyz ve kolektöre +, emitere −.</div>
+   <div class="card acc col"><h3>🔍 Uç tespiti</h3><div id="u3-tr" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-12" data-sec="3" data-title="Trafik lambası: T = R × C" data-olc="kanit" data-ref="Kitap 5. Uygulama · s. 194–196">
+ <h2>5. Uygulama · Transistörlü Trafik Lambası <small>3 × BC547 · beyz 100 kΩ · T = R × C</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>🚦 Kondansatör → yanma süresi <span class="tag">T = R × C ile kaba tahmin</span></h3><div id="u3-tl" style="flex:1"></div></div>
+  <div class="card acc sm"><h3>❓ Yanıtla (📖)</h3><ol class="tight sm"><li>Yeşil LED’in (C1) sarıdan daha uzun yanması için hangi bileşende nasıl değişiklik yaparsın?</li><li>Kapasite (µF) ile LED’in yanık kalma süresi arasındaki ilişki: enerji depolama ve deşarj.</li><li>Gerçek trafik ışığında sarı kırmızıdan kısa yanmalı: kondansatör seçimini hangi kriterlere göre yaparsın?</li></ol><p class="xs muted">Simülasyon temsilîdir; gerçek süreler devreye göre değişir. Kitaptaki malzemeler: 100 µF ve 2 × 220 µF (25 V) kutuplu kondansatör.</p></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-13" data-sec="3" data-title="Akım, gerilim ve ölçü aletleri" data-olc="kanit" data-ref="Kitap 3.6–3.6.2 · s. 196–198">
+ <h2>3.6 Akım ve Gerilim Ölçümü <small>koridor benzetmesi · ampermetre seri · voltmetre paralel</small></h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card sm"><b>Akım (I, amper):</b> birim zamanda geçen öğrenci sayısı. Koridor genişliği = kesit alanı; engeller = direnç. <b>Ampermetre</b> herkesin geçtiği yere kurulan <b>turnike</b> → hattı keserek <b>seri</b> bağlanır.<br><b>Gerilim (V/U, volt):</b> öğrencileri ileri iten baskı (zil, arkadan gelen grup). <b>Voltmetre</b> iki noktadaki yoğunluğu karşılaştırır → <b>paralel</b> bağlanır.</div>
+   <div class="card acc col"><h3>❓ Ölçüm neden gerekli?</h3><div id="u3-ng" style="flex:1"></div></div>
+  </div>
+  <div class="card col"><h3>🔌 Ölçü aletini bağla</h3><div id="u3-ab" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-14" data-sec="3" data-title="Ohm kanunu" data-olc="kanit" data-ref="Kitap 3.6.3 · Örnekler · Sıra Sizde · s. 198–199">
+ <h2>Ohm Kanunu <small>U = I × R · iki değer bilinirse üçüncüsü bulunur</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🔺 Ohm üçgeni hesaplayıcı</h3><div id="u3-oh" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔢 Kitaptaki örnekler ve Sıra Sizde (12 V)</h3><div id="u3-os" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-15" data-sec="3" data-title="Karışık devrede akım ve gerilim" data-olc="kanit" data-ref="Kitap 6. Örnek Uygulama · s. 200–203">
+ <h2>6. Örnek Uygulama · Karışık Devrede Akım ve Gerilim <small>9 V · R1 = 1 kΩ seri · R2 ∥ R3 · Kirchhoff</small></h2>
+ <div class="body">
+  <div class="card col" style="height:100%"><div id="u3-kr" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-16" data-sec="3" data-title="Lehimleme" data-olc="kanit" data-ref="Kitap 3.7 · 7. Örnek Uygulama · s. 205–210">
+ <h2>3.7 Lehimleme <small>kalıcı, düşük dirençli elektriksel bağlantı</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>🧰 Malzemeler <span class="xs muted">(tıkla)</span></h3><div id="u3-lm" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔢 Doğru lehim sırası</h3><div id="u3-ls" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ Doğru mu, yanlış mı?</h3><div id="u3-lt" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-17" data-sec="3" data-title="Ölçme ve Değerlendirme A–B" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme · s. 211–212">
+ <h2>Ölçme ve Değerlendirme · A ve B <small>dallanmış ağaç · kutucuk numaraları</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>A) Tanılayıcı dallanmış ağaç</h3><div id="u3-oa" style="flex:1"></div></div>
+  <div class="card acc col"><h3>B) Kutucuk numarası</h3><div id="u3-ob" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-18" data-sec="3" data-title="Ölçme ve Değerlendirme C–D" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme · s. 213–214">
+ <h2>Ölçme ve Değerlendirme · C ve D <small>çoktan seçmeli · açık uçlu (📖)</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div id="u3-oc" style="flex:1"></div></div>
+  <div class="card acc sm"><h3>D) Açık uçlu</h3><ol class="tight sm"><li>LED’in önüne bağlanan seri direnci ohm kanunu ve güvenlik açısından açıkla.</li><li>Flip-flop devresinde zil teli kullanmanın montaj düzeni ve kısa devre risklerine etkisi</li><li>9 V pilli devrede ampermetre değer okumuyor ama pil uçlarında 9 V var: olası arıza noktalarını sistemli sırala.</li></ol><p class="xs muted">Yanıtlar için 📖 düğmesini kullan.</p></div>
+ </div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -1138,6 +1315,127 @@ Object.assign(EV,{
  o2:[{c:[['Sorun','havada|destek|ince|kirilir|olcu|uymaz|basilamaz|israf'],['Örnek','orne|mesela|kalem|kupa|kanat|stand']],m:'Görselliğe odaklanınca havada kalan parçalar, çok ince duvarlar veya ölçü hataları gözden kaçar; örneğin kanadı gövdeye temas etmeyen bir İHA baskıda kopar, fazla destek de israf yaratır.'},{n:2,c:[['Özgünlük','ozgun|kopya|benzer|katki'],['Telif','telif|hak|lisans|kullanim kosul|atif']],m:'YZ ürettiği modeli eğitim verilerinden türetir; tasarım kendi katkımla özgünleşir. Platformun kullanım koşulları ve telif hakları kontrol edilmeli, kaynaklara atıf yapılmalıdır.'},{n:2,c:[['Önlem','kalibrasyon|onizleme|dogru ayar|test|kucuk'],['Geri dönüşüm','geri donus|ayrist|toplan|yeniden'],['Tasarım','dolgu|destek|optimiz|hafif|pla']],m:'Baskı öncesi kalibrasyon ve önizleme ile hatalar azaltılır; dolgu ve destek optimize edilir; doğada çözünebilen PLA tercih edilir; atık filament ayrıştırılıp geri dönüşüme gönderilir.'}]
 });
 SORU_MAP.push(['s-2-0','hz21','📖 Hazırlık · Tartışma','#bas2-c'],['s-2-7','ns21','📖 Sonuç soruları'],['s-2-9','de21','📖 Eksiltme · Etik'],['s-2-12','by22','📖 Sonuç soruları'],['s-2-16','hz22','📖 Hazırlık · Sonrası'],['s-2-18','yz23','📖 YZ soruları'],['s-2-20','o2','📖 Ç) yanıtla']);
+/* ============ 3. ÖĞRENME BİRİMİ: TEMEL ELEKTRONİK ============ */
+const fmtR=v=>v>=1e6?+(v/1e6).toPrecision(4)+' MΩ':v>=1e3?+(v/1e3).toPrecision(4)+' kΩ':+v.toPrecision(4)+' Ω';
+(function(){const R=$('#u3-bd');const U={'MΩ':1e6,'kΩ':1e3,'Ω':1,'mΩ':1e-3};R.innerHTML=`<div class="row"><input type="number" id="u3-bv" value="2.2" step="any" style="width:110px"><select id="u3-bu">${Object.keys(U).map(u=>`<option ${u==='kΩ'?'selected':''}>${u}</option>`).join('')}</select></div><div id="u3-bo" style="margin-top:8px"></div><p class="xs muted" style="margin:4px 0 0">Büyük birimden küçüğe: her basamakta ×1000 · küçükten büyüğe: ÷1000.</p>`;
+ const up=()=>{const v=(+$('#u3-bv').value||0)*U[$('#u3-bu').value];$('#u3-bo').innerHTML=`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">${Object.keys(U).map(u=>`<div class="card soft xs" style="padding:6px;text-align:center"><b class="mono" style="font-size:14px">${(v/U[u]).toLocaleString('tr-TR',{maximumFractionDigits:9})}</b><br>${u}</div>`).join('')}</div>`};$('#u3-bv').oninput=up;$('#u3-bu').onchange=up;up()})();
+gridPick($('#u3-bg'),['2200 Ω','100 kΩ','470 kΩ','0,56 kΩ','0,0022 MΩ','10 kΩ','4700 Ω','5,6 kΩ','22000 Ω','0,01 MΩ','470000 Ω','0,00056 MΩ'],[{q:'2,2 kΩ değerinin karşılığı',req:[1,5],x:'2,2 × 1000 = 2200 Ω = 0,0022 MΩ'},{q:'10000 Ω değerinin karşılığı',req:[6,10]},{q:'0,47 MΩ değerinin karşılığı',req:[3,11]},{q:'560 Ω değerinin karşılığı',req:[4,12]}]);
+
+reveal($('#u3-dc'),[{t:'🔒 Sabit',d:'Değeri üretimde belirlenir, değiştirilemez; en yaygın. Karbon, film, SMD, entegre, telli.'},{t:'🎚️ Potansiyometre',d:'Mil ile el ayarı; radyo ses düğmesi, dimmer.'},{t:'🪛 Trimpot',d:'Cihaz içinde tornavidayla bir-birkaç kez hassas ayar.'},{t:'↔️ Reosta',d:'Yüksek akım taşıyan, sürgülü; laboratuvarda akım ayarı.'},{t:'💡 LDR',d:'Işık ↑ → direnç ↓. Gece lambası, kamera ışıkölçeri.'},{t:'🔥 NTC',d:'Isındıkça direnç ↓. Hararet göstergesi, kombi, batarya sıcaklık kontrolü.'},{t:'🛡️ PTC',d:'Isındıkça direnç ↑. Aşırı ısınmaya karşı sigorta, motor sargısı koruma.'}],{cols:'1fr 1fr',single:true});
+(function(){const R=$('#u3-oe');let t='LDR',v=50;const draw=()=>{const k=v/100;const r=t==='LDR'?1-.9*k:t==='NTC'?1-.85*k:.15+.85*k;R.innerHTML=`<div class="row" style="gap:4px">${['LDR','NTC','PTC'].map(x=>`<button class="btn sm ${x===t?'on':''}" data-t="${x}">${x}</button>`).join('')}</div><label class="xs">${t==='LDR'?'Işık şiddeti':'Sıcaklık'}: ${v<34?'düşük':v<67?'orta':'yüksek'}<input type="range" min="0" max="100" value="${v}" id="u3-oev" style="width:100%"></label><div class="row" style="align-items:center;gap:8px"><span class="xs">Direnç</span><div style="flex:1;background:#e5e7eb;border-radius:6px;height:16px"><div style="width:${r*100}%;height:100%;background:#ea580c;border-radius:6px;transition:width .2s"></div></div><b class="xs">${r>.66?'yüksek':r>.33?'orta':'düşük'}</b></div><p class="xs muted" style="margin:4px 0 0">Nitel gösterim; gerçek değerler elemana göre değişir.</p>`;$$('[data-t]',R).forEach(b=>b.onclick=()=>{t=b.dataset.t;draw()});$('#u3-oev').oninput=e=>{v=+e.target.value;draw()}};draw()})();
+gridPick($('#u3-dg'),['Potansiyometre','LDR','Sabit Direnç','NTC','Trimpot','PTC','Reosta','Ayarlı Direnç','Ortam Etkili Direnç'],[{q:'Gece lambası gibi ışığa duyarlı sistemlerde sensör',req:[2]},{q:'Laboratuvarda yüksek akımı kontrol eden sürgülü direnç',req:[7]},{q:'Isındığında direnci artan sıcaklık duyarlı direnç',req:[6]},{q:'Cihaz içinde montajda tornavidayla hassas ayar',req:[5]},{q:'Işık, ısı gibi etkenlere göre değeri değişenlerin genel adı',req:[9]},{q:'Üretimde değeri sabitlenen, değiştirilemeyen',req:[3]}]);
+
+const RK=[['Siyah','#111'],['Kahverengi','#7c2d12'],['Kırmızı','#dc2626'],['Turuncu','#f97316'],['Sarı','#facc15'],['Yeşil','#16a34a'],['Mavi','#2563eb'],['Mor','#7c3aed'],['Gri','#9ca3af'],['Beyaz','#f8fafc']];const RM=[...RK.slice(0,7).map((c,i)=>[c[0],c[1],10**i]),['Altın','#d4a017',.1],['Gümüş','#c0c0c0',.01]];const RT=[['Kahverengi','#7c2d12',1],['Kırmızı','#dc2626',2],['Altın','#d4a017',5],['Gümüş','#c0c0c0',10]];
+(function(){const R=$('#u3-rk');let n=4,b=[1,0,0,2,2];const draw=()=>{const dg=n===4?[b[0],b[1]]:[b[0],b[1],b[2]];const base=+dg.join('');const m=RM[n===4?b[2]:b[3]],t=RT[n===4?b[3]:b[4]];const val=base*m[2];const bands=n===4?[RK[b[0]],RK[b[1]],m,t]:[RK[b[0]],RK[b[1]],RK[b[2]],m,t];
+  const sel=(i,list,cur)=>`<select data-i="${i}">${list.map((c,j)=>`<option value="${j}" ${j===cur?'selected':''}>${c[0]}</option>`).join('')}</select>`;
+  R.innerHTML=`<div class="row"><button class="btn sm ${n===4?'on':''}" data-n="4">4 bantlı</button><button class="btn sm ${n===5?'on':''}" data-n="5">5 bantlı</button></div><svg viewBox="0 0 360 80" style="width:100%;max-height:110px"><line x1="0" x2="360" y1="40" y2="40" stroke="#94a3b8" stroke-width="4"/><rect x="70" y="14" width="220" height="52" rx="22" fill="#e7d3a8" stroke="#a8895a"/>${bands.map((c,i)=>`<rect x="${n===4?(100+i*38+(i===3?22:0)):(96+i*32+(i===4?18:0))}" y="14" width="16" height="52" fill="${c[1]}" stroke="#0002"/>`).join('')}</svg><div style="display:grid;grid-template-columns:repeat(${n},1fr);gap:4px" class="xs">${n===4?['1. rakam','2. rakam','Çarpan','Tolerans'].map(l=>`<b>${l}</b>`).join('')+sel(0,RK,b[0])+sel(1,RK,b[1])+sel(2,RM,b[2])+sel(3,RT,b[3]):['1. rakam','2. rakam','3. rakam','Çarpan','Tolerans'].map(l=>`<b>${l}</b>`).join('')+sel(0,RK,b[0])+sel(1,RK,b[1])+sel(2,RK,b[2])+sel(3,RM,b[3])+sel(4,RT,b[4])}</div><div class="note t sm" style="margin-top:8px"><span class="mono">${base} × ${m[2]<1?m[2].toString().replace('.',','):'10'+(Math.log10(m[2])?'<sup>'+Math.log10(m[2])+'</sup>':'<sup>0</sup>')}</span> = <b style="font-size:18px">${fmtR(val)}</b> ± %${t[2]} <span class="xs">(${fmtR(val*(1-t[2]/100))} – ${fmtR(val*(1+t[2]/100))})</span></div><div class="row xs" style="gap:4px;margin-top:4px">Tablo 3.2: <button class="btn sm" data-p="3,3,1,2">330 Ω</button><button class="btn sm" data-p="2,2,2,2">2,2 kΩ</button><button class="btn sm" data-p="4,7,2,3">4,7 kΩ</button><button class="btn sm" data-p="1,0,0,0,2">100 Ω (5 bant)</button></div>`;
+  $$('[data-n]',R).forEach(x=>x.onclick=()=>{n=+x.dataset.n;b=n===4?[1,0,2,2]:[1,0,0,1,2];draw()});$$('select',R).forEach(s=>s.onchange=()=>{b[+s.dataset.i]=+s.value;draw()});$$('[data-p]',R).forEach(x=>x.onclick=()=>{const p=x.dataset.p.split(',').map(Number);if(p.length===5){n=5;b=[p[0],p[1],p[2],p[3],p[4]]}else{n=4;b=p}draw()})};draw()})();
+shortAns($('#u3-tk'),[
+ {q:'Kahverengi-Siyah-Sarı-Gümüş: 10 × 10⁴ = ? (kΩ)',a:['100 kΩ','100k','100 k','100kΩ','100000','100000 Ω'],x:'100 kΩ, tolerans %10.'},
+ {q:'Kahverengi-Yeşil-Sarı-Altın: değer? (kΩ)',a:['150 kΩ','150k','150 k','150kΩ','150000','150000 Ω'],x:'15 × 10⁴ = 150 kΩ, %5.'},
+ {q:'Kahverengi-Siyah-Siyah-Sarı-Kırmızı: değer?',a:['1 MΩ','1MΩ','1 M','1000 kΩ','1000000','1000000 Ω','1 mega ohm'],x:'100 × 10⁴ = 1 MΩ, tolerans %2.'},
+ {q:'Son direncin toleransı (kırmızı bant) kaç?',a:['%2','2','yüzde 2','% 2'],x:'Kırmızı tolerans bandı %2.'},
+ {q:'47 kΩ, %1: renk sıralaması? (4 bant)',a:['sarı-mor-turuncu-kahverengi','sarı mor turuncu kahverengi','sari-mor-turuncu-kahverengi','sari mor turuncu kahverengi'],x:'4 = sarı, 7 = mor, ×10³ = turuncu, %1 = kahverengi.'}]);
+
+(function(){const R=$('#u3-bb');const C=20,rows='ABCDE FGHIJ'.replace(' ','').split('');let parts=[],pend=null;
+ const bank=r=>'ABCDE'.includes(r)?'ust':'alt';const node=h=>h.col+'-'+bank(h.row);
+ const draw=()=>{const s=22,ox=40,oy=40;let g=`<rect x="10" y="5" width="${ox+C*s+10}" height="${oy+11*s+40}" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>`;
+  g+=`<line x1="${ox}" x2="${ox+C*s-8}" y1="14" y2="14" stroke="#dc2626" stroke-width="2"/><line x1="${ox}" x2="${ox+C*s-8}" y1="26" y2="26" stroke="#111" stroke-width="2"/><text x="20" y="18" font-size="10" fill="#dc2626">+</text><text x="20" y="30" font-size="10">−</text>`;
+  g+=`<rect x="${ox-6}" y="${oy+5*s-4}" width="${C*s}" height="${s-6}" fill="#e2e8f0"/><text x="${ox+C*s/2}" y="${oy+5*s+10}" text-anchor="middle" font-size="9" fill="#64748b">orta kanal</text>`;
+  for(let c=1;c<=C;c++){g+=`<text x="${ox+(c-1)*s+4}" y="${oy-6}" font-size="9" text-anchor="middle" fill="#64748b">${c}</text>`;rows.forEach((r,ri)=>{const y=oy+(ri<5?ri:ri+1)*s;const hl=pend&&node(pend)===c+'-'+bank(r);g+=`<rect data-h="${r}${c}" x="${ox+(c-1)*s}" y="${y}" width="9" height="9" rx="2" fill="${hl?'#fde68a':'#334155'}" style="cursor:pointer"/>`;if(c===1)g+=`<text x="${ox-16}" y="${y+8}" font-size="9" fill="#64748b">${r}</text>`})}
+  for(let c=1;c<=C;c++)['ust','alt'].forEach(b=>{if(parts.some(p=>node(p.a)===c+'-'+b||node(p.b)===c+'-'+b)){const y0=oy+(b==='ust'?0:6*s)-3;g+=`<rect x="${ox+(c-1)*s-3}" y="${y0}" width="15" height="${5*s-6}" rx="4" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/>`}});
+  const P=h=>{const ri=rows.indexOf(h.row);return[ox+(h.col-1)*s+4.5,oy+(ri<5?ri:ri+1)*s+4.5]};
+  parts.forEach((p,i)=>{const a=P(p.a),b=P(p.b);const sh=node(p.a)===node(p.b);g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${sh?'#dc2626':'#a8895a'}" stroke-width="3"/><rect x="${(a[0]+b[0])/2-14}" y="${(a[1]+b[1])/2-6}" width="28" height="12" rx="5" fill="${sh?'#fecaca':'#e7d3a8'}" stroke="${sh?'#dc2626':'#a8895a'}"/><text x="${(a[0]+b[0])/2}" y="${(a[1]+b[1])/2+4}" font-size="9" text-anchor="middle">R${i+1}</text>`});
+  const msg=parts.map((p,i)=>{if(node(p.a)===node(p.b))return `<li style="color:#dc2626">R${i+1}: iki bacak da <b>aynı dikey blokta</b> (${p.a.row}${p.a.col}–${p.b.row}${p.b.col}) → akım dirençten geçmez, <b>kısa devre</b>.</li>`;const lk=parts.map((q,j)=>j!==i&&[node(q.a),node(q.b)].some(x=>x===node(p.a)||x===node(p.b))?'R'+(j+1):null).filter(Boolean);return `<li>R${i+1}: ${p.a.row}${p.a.col}–${p.b.row}${p.b.col} ${lk.length?`· <b>${lk.join(', ')}</b> ile aynı dikey blokta buluşuyor (elektriksel bağlantı)`:'· başka elemanla bağlantısı yok'}</li>`}).join('');
+  R.innerHTML=`<div style="display:grid;grid-template-columns:1.6fr 1fr;gap:12px;align-items:start"><svg viewBox="0 0 ${ox+C*s+30} ${oy+11*s+50}" style="width:100%">${g}</svg><div><div class="note sm">${pend?`1. bacak <b>${pend.row}${pend.col}</b>: şimdi 2. bacağın deliğine tıkla.`:'Direnç yerleştirmek için iki deliğe sırayla tıkla. Turuncu çerçeve: içinde bacak olan iletken blok.'}</div><ul class="tight sm" style="margin-top:6px">${msg||'<li class="muted">Henüz direnç yok.</li>'}</ul><div class="row" style="gap:4px;margin-top:6px"><button class="btn sm" id="u3-bb1">1. örnek: A5–A9, B9–B13</button><button class="btn sm" id="u3-bb2">Hatalı: A5–E5</button><button class="btn sm" id="u3-bbr">↺ Temizle</button></div><p class="xs muted" style="margin:6px 0 0">Güç hatları yatay bağlıdır; bileşen alanında A–E (ve F–J) aynı sütundaki 5 delik dikey bağlıdır; orta kanal üst ve alt blokları ayırır. Entegreler kanalın üzerine yerleştirilir.</p></div></div>`;
+  $$('[data-h]',R).forEach(e=>e.onclick=()=>{const h={row:e.dataset.h[0],col:+e.dataset.h.slice(1)};if(!pend){pend=h}else{if(!(pend.row===h.row&&pend.col===h.col)&&parts.length<4)parts.push({a:pend,b:h});pend=null}draw()});
+  $('#u3-bb1').onclick=()=>{parts=[{a:{row:'A',col:5},b:{row:'A',col:9}},{a:{row:'B',col:9},b:{row:'B',col:13}}];pend=null;draw()};$('#u3-bb2').onclick=()=>{parts=[{a:{row:'A',col:5},b:{row:'E',col:5}}];pend=null;draw()};$('#u3-bbr').onclick=()=>{parts=[];pend=null;draw()}};draw()})();
+
+(function(){const R=$('#u3-mm');const D=[['10 kΩ (Kahverengi-Siyah-Turuncu-Altın)',1e4,5],['680 Ω (Mavi-Gri-Kahverengi-Altın)',680,5],['4,7 kΩ (Sarı-Mor-Kırmızı-Gümüş)',4700,10]];const K=[200,2e3,2e4,2e5,2e6];let d=0,k=2,m=null;
+ const draw=()=>{const r=D[d];R.innerHTML=`<select id="u3-md" style="width:100%">${D.map((x,i)=>`<option value="${i}" ${i===d?'selected':''}>${x[0]}</option>`).join('')}</select><div class="row" style="gap:3px;margin-top:6px"><span class="xs">Ω kademesi:</span>${K.map((x,i)=>`<button class="btn sm ${i===k?'on':''}" data-k="${i}">${fmtR(x).replace(' ','')}</button>`).join('')}</div><div style="display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-top:8px"><div style="background:#1f2937;border-radius:12px;padding:10px;text-align:center"><div style="background:#bef264;border-radius:6px;font:700 26px/1.4 'DejaVu Sans Mono',monospace;color:#1a2e05">${m===null?'---':m}</div><div class="xs" style="color:#cbd5e1;margin-top:6px">⚫ COM · 🔴 VΩ</div></div><div><button class="btn pri sm" id="u3-mg">📏 Probları değdir</button><div class="note sm" id="u3-mo" style="margin-top:6px">Teorik değer: <b>${fmtR(r[1])}</b> ± %${r[2]}. Kademeyi hesaplanan değerin <b>bir üst basamağına</b> getir.</div></div></div>`;
+  $('#u3-md').onchange=e=>{d=+e.target.value;m=null;draw()};$$('[data-k]',R).forEach(b=>b.onclick=()=>{k=+b.dataset.k;m=null;draw()});
+  $('#u3-mg').onclick=()=>{const v=r[1]*(1+(Math.random()*2-1)*r[2]/100*.8);if(v>K[k]){m='1 · OL';$('#u3-mo').className='note f sm';$('#u3-mo').innerHTML='Kademe değerden küçük: aşım. Bir üst kademeye geç.'}else{const u=K[k]>=2e6?1e6:K[k]>=2e3?1e3:1;m=(v/u).toFixed(K[k]/u>=200?1:K[k]/u>=20?2:3);$('#u3-mo').className='note t sm';$('#u3-mo').innerHTML=`Okunan: <b>${m} ${u===1e6?'MΩ':u===1e3?'kΩ':'Ω'}</b> · teorik ${fmtR(r[1])}. Küçük fark <b>tolerans</b> bandı içinde (±%${r[2]}).`}$('.big',R);R.querySelector('[style*="bef264"]').textContent=m}};draw()})();
+tfList($('#u3-mt'),[{t:'Direnç ölçümünde siyah prob COM, kırmızı prob VΩ soketine takılır.',a:true,x:''},{t:'Her multimetrede LCR metre (bobin ve kondansatör ölçümü) özelliği bulunur.',a:false,x:'Her modelde bulunmaz; cihaz uygunluğu denetlenmeli.'},{t:'Ölçerken probların metal uçlarına elle dokunmak sonucu etkileyebilir.',a:true,x:'İnsan vücudu da bir direnç gibi devreye girer (sonuç sorusu).'},{t:'Ölçülen ile hesaplanan arasındaki küçük fark direncin toleransından kaynaklanabilir.',a:true,x:''}]);
+
+(function(){const R=$('#u3-rc');let m='s',v=[1000,1000,330];const draw=()=>{const vals=v.filter(x=>x>0);let res=0,f='';if(m==='s'){res=vals.reduce((a,b)=>a+b,0);f='Reş = R1 + R2 + …'}else if(m==='p'){res=1/vals.reduce((a,b)=>a+1/b,0);f='1/Reş = 1/R1 + 1/R2 + …'}else{const rp=1/(1/v[1]+1/v[2]);res=v[0]+rp;f=`Rp = R2∥R3 = ${fmtR(rp)} → Reş = R1 + Rp`}
+  R.innerHTML=`<div class="row" style="gap:4px">${[['s','Seri'],['p','Paralel'],['k','Karışık: R1 + (R2∥R3)']].map(x=>`<button class="btn sm ${x[0]===m?'on':''}" data-m="${x[0]}">${x[1]}</button>`).join('')}</div><div style="display:grid;grid-template-columns:repeat(${v.length},1fr);gap:6px;margin-top:8px" class="xs">${v.map((x,i)=>`<label>R${i+1} (Ω)<input type="number" min="0" data-i="${i}" value="${x}" style="width:100%"></label>`).join('')}</div><div class="row" style="gap:4px;margin-top:4px">${m!=='k'?`<button class="btn sm" id="u3-ra">+ direnç</button>${v.length>2?'<button class="btn sm" id="u3-rd">− direnç</button>':''}`:''}</div><div class="note t sm" style="margin-top:8px"><span class="mono">${f}</span><br>Reş = <b style="font-size:18px">${fmtR(res)}</b></div><p class="xs muted">${m==='s'?'Seri: tek yol, toplam direnç artar; her dirençten aynı akım geçer.':m==='p'?'Paralel: akım kollara ayrılır, direnç sayısı arttıkça toplam azalır; uçlardaki gerilim eşittir.':'Önce paralel kolların eş değeri bulunur, devre sadeleştirilir.'}</p>`;
+  $$('[data-m]',R).forEach(b=>b.onclick=()=>{m=b.dataset.m;if(m==='k')v=v.slice(0,3).concat([1000,1000,330].slice(v.length)).slice(0,3);draw()});$$('[data-i]',R).forEach(i=>i.onchange=()=>{v[+i.dataset.i]=+i.value||0;draw()});const a=$('#u3-ra',R);if(a)a.onclick=()=>{if(v.length<5)v.push(1000);draw()};const d=$('#u3-rd',R);if(d)d.onclick=()=>{v.pop();draw()}};draw()})();
+shortAns($('#u3-u1'),[{q:'R1 = 330 Ω, R2 ∥ R3 (1 kΩ + 1 kΩ): paralel kolun eş değeri kaç Ω?',a:['500','500 Ω','0,5 kΩ','0.5 kΩ'],x:'1/Rp = 1/1000 + 1/1000 → Rp = 500 Ω'},{q:'Devrenin toplam eş değer direnci (Reş) kaç Ω?',a:['830','830 Ω','0,83 kΩ','0.83 kΩ'],x:'330 + 500 = 830 Ω. Multimetre ölçümü tolerans içinde buna yakın çıkmalı.'}]);
+
+reveal($('#u3-kc'),[{t:'± Kutuplu (elektrolitik)',d:'Kimyasal elektrolitli, yüksek kapasite. Gövdede (−) şerit, sembolde (+). Ters bağlanırsa ısınıp patlayabilir. Filtreleme, enerji depolama.'},{t:'⚪ Kutupsuz',d:'Seramik/polyester yalıtkan, iki yönde bağlanabilir, küçük kapasite. Yüksek frekans, radyo sinyali, parazit.'},{t:'🎚️ Ayarlı',d:'Trimer: tornavidayla · Varyabl: mille sürekli ayar (eski radyolarda kanal arama).'}],{single:true});
+(function(){const R=$('#u3-kd');R.innerHTML=`<input id="u3-kdc" value="104" maxlength="3" style="width:90px;font:700 22px monospace;text-align:center"><div id="u3-kdo" style="margin-top:8px"></div><p class="xs muted" style="margin:4px 0 0">İlk iki basamak sayı, üçüncü basamak çarpan (10ⁿ); sonuç <b>pF</b>. Büyük gövdelilerde değer ve çalışma gerilimi doğrudan yazılıdır.</p>`;
+ const up=()=>{const c=$('#u3-kdc').value.replace(/\D/g,'');if(c.length!==3){$('#u3-kdo').innerHTML='<div class="note sm">3 basamaklı kod gir.</div>';return}const pf=+(c.slice(0,2))*10**(+c[2]);$('#u3-kdo').innerHTML=`<div class="card soft sm"><span class="mono">${c.slice(0,2)} × 10<sup>${c[2]}</sup></span> = <b>${pf.toLocaleString('tr-TR')} pF</b><br>= <b>${(pf/1000).toLocaleString('tr-TR')} nF</b> = <b>${(pf/1e6).toLocaleString('tr-TR')} µF</b></div>`};$('#u3-kdc').oninput=up;up()})();
+gridPick($('#u3-kg'),['1000 pF','0,1 µF','100 nF','470 nF','1 nF','0,47 µF','2200 µF','0,001 µF','100000 pF'],[{q:'1 nF’ye eşit kutucuklar (kitaptaki 1. soru, birbirine eşit değerler)',req:[1,5,8],x:'1000 pF = 1 nF = 0,001 µF'},{q:'100 nF değerinin µF ve pF karşılıkları',req:[2,9]},{q:'470 nF’nin µF hâli',req:[6]}]);
+
+(function(){const R=$('#u3-cc');let m='s',v=[100,100,50];const draw=()=>{const x=v.filter(a=>a>0);const res=m==='s'?1/x.reduce((a,b)=>a+1/b,0):x.reduce((a,b)=>a+b,0);
+  R.innerHTML=`<div class="row" style="gap:4px"><button class="btn sm ${m==='s'?'on':''}" data-m="s">Seri</button><button class="btn sm ${m==='p'?'on':''}" data-m="p">Paralel</button></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px" class="xs">${v.map((a,i)=>`<label>C${i+1} (nF)<input type="number" min="0" step="any" data-i="${i}" value="${a}" style="width:100%"></label>`).join('')}</div><div class="note t sm" style="margin-top:8px"><span class="mono">${m==='s'?'1/Ceş = 1/C1 + 1/C2 + 1/C3':'Ceş = C1 + C2 + C3'}</span><br>Ceş = <b style="font-size:18px">${+res.toFixed(4)} nF</b></div><p class="xs muted">${m==='s'?'Seri: toplam kapasite en küçük kondansatörden bile küçük; çalışma gerilimleri toplanır (16 V + 16 V = 32 V). Kutuplularda − ucu diğerinin + ucuna.':'Paralel: kapasiteler toplanır. Kutuplularda − uçlar birbirine, + uçlar birbirine.'}</p>`;
+  $$('[data-m]',R).forEach(b=>b.onclick=()=>{m=b.dataset.m;v=m==='s'?[100,100,50]:[100,470,0.025];draw()});$$('[data-i]',R).forEach(i=>i.onchange=()=>{v[+i.dataset.i]=+i.value||0;draw()})};draw()})();
+shortAns($('#u3-cs'),[{q:'Seri: C1 = 100 nF, C2 = 100 nF, C3 = 50 nF → Ceş kaç nF?',a:['25','25 nF'],x:'1/Ceş = 1/100 + 1/100 + 1/50 = 4/100 → 25 nF'},{q:'Paralel: 100 nF, 470 nF, 25 pF → Ceş kaç nF?',a:['570,025','570.025','570,025 nF','570.025 nF'],x:'25 pF = 0,025 nF → 100 + 470 + 0,025 = 570,025 nF'}]);
+
+sitSort($('#u3-bn'),[{t:'Çekirdeği yok; radyo, alıcı-verici gibi yüksek frekans',a:'Hava nüveli'},{t:'Manyetik alanı güçlendirir; transformatörler',a:'Demir nüveli'},{t:'Radyo ve TV devrelerinde parazit engelleme',a:'Ferrit nüveli'}],['Hava nüveli','Demir nüveli','Ferrit nüveli']);
+gridPick($('#u3-bg2'),['L Sembolü','F Sembolü','1 mH','Henry','1000 µH','Mikro henry','Transformatörler','Radyo Alıcı-Verici','Ferrit Nüve'],[{q:'Bobinin sembolü ve temel endüktans birimi',req:[1,4]},{q:'1 mH’nin µH karşılığını doğrulayan çift',req:[3,5]},{q:'Hava nüveli ve demir nüveli bobinlerin kullanım alanları',req:[8,7]}]);
+shortAns($('#u3-bl'),[{q:'L2 = 20 mH ∥ L3 = 20 mH → Lp kaç mH?',a:['10','10 mH'],x:'1/Lp = 1/20 + 1/20 → 10 mH'},{q:'L1 = 10 mH seri Lp → Leş kaç mH?',a:['20','20 mH'],x:'10 + 10 = 20 mH. Seri bağlantı, spir sayısının artması gibi etki eder.'}]);
+
+(function(){const R=$('#u3-pl');let rev=false,mat='Si',V=1;const th={Si:[.6,.7],Ge:[.2,.3]};const draw=()=>{const on=!rev&&V>=th[mat][0];R.innerHTML=`<svg viewBox="0 0 300 150" style="width:100%;max-height:170px"><rect x="20" y="50" width="30" height="50" rx="4" fill="#e5e7eb" stroke="#334155"/><text x="35" y="${rev?96:62}" font-size="14" text-anchor="middle" fill="#dc2626">+</text><text x="35" y="${rev?62:96}" font-size="14" text-anchor="middle">−</text><path d="M35 50 V20 H270 V70 M270 110 V130 H35 V100" fill="none" stroke="${on?'#f59e0b':'#94a3b8'}" stroke-width="3"/><g transform="translate(270,90)"><polygon points="-14,-20 14,-20 0,0" fill="${on?'#f59e0b':'#334155'}"/><line x1="-14" x2="14" y1="0" y2="0" stroke="#334155" stroke-width="3"/><line x1="0" x2="0" y1="-20" y2="20" stroke="#334155" stroke-width="2"/></g><text x="238" y="74" font-size="10">anot</text><text x="234" y="108" font-size="10">katot</text>${on?'<text x="150" y="14" text-anchor="middle" font-size="11" fill="#b45309">→ akım geçiyor</text>':''}</svg><div class="row" style="gap:4px"><button class="btn sm" id="u3-plr">🔄 Pili ters çevir</button>${['Si','Ge'].map(x=>`<button class="btn sm ${x===mat?'on':''}" data-m="${x}">${x==='Si'?'Silisyum':'Germanyum'}</button>`).join('')}</div><label class="xs">Uygulanan gerilim: <b>${V.toFixed(2).replace('.',',')} V</b><input type="range" min="0" max="1.5" step="0.05" value="${V}" id="u3-plv" style="width:100%"></label><div class="note ${on?'t':'f'} sm">${rev?'<b>Ters polarma:</b> + uç katoda → diyot yalıtımda. Kırılma geriliminin üstü kalıcı arıza yapar.':V<th[mat][0]?`Doğru yönde ama eşik gerilimi (${th[mat].join('–').replace(/\./g,',')} V) aşılmadı.`:`<b>Doğru polarma:</b> + anoda, − katoda → iletim. (Eşik ${th[mat].join('–').replace(/\./g,',')} V)`}</div>`;
+  $('#u3-plr').onclick=()=>{rev=!rev;draw()};$$('[data-m]',R).forEach(b=>b.onclick=()=>{mat=b.dataset.m;draw()});$('#u3-plv').oninput=e=>{V=+e.target.value;draw()}};draw()})();
+sitSort($('#u3-dt'),[{t:'Güç kaynaklarında AC’yi DC’ye dönüştürür',a:'Kristal (doğrultma)'},{t:'Ters polarmada belirli gerilimden sonra iletir; gerilimi sabitler',a:'Zener'},{t:'Elektrik enerjisini ışığa dönüştürür',a:'LED'},{t:'Işığı akıma çevirir; kumanda alıcıları',a:'Foto diyot'},{t:'Metal-yarı iletken, çok hızlı anahtarlama, düşük gerilim düşümü',a:'Schottky'},{t:'Ters gerilimle kapasitesi değişir; radyoda frekans ayarı',a:'Varikap'}],['Kristal (doğrultma)','Zener','LED','Foto diyot','Schottky','Varikap']);
+
+(function(){const R=$('#u3-dm');let c='d',fw=true;const draw=()=>{const v=fw?(c==='d'?'0.533':'1.744'):'OL';R.innerHTML=`<div class="row" style="gap:4px"><button class="btn sm ${c==='d'?'on':''}" data-c="d">Kristal diyot (1N400x)</button><button class="btn sm ${c==='l'?'on':''}" data-c="l">LED</button><button class="btn sm" id="u3-dmf">🔄 Probları ters çevir</button></div><div style="display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-top:8px"><div style="background:#1f2937;border-radius:12px;padding:10px;text-align:center"><div style="background:#bef264;border-radius:6px;font:700 26px/1.4 monospace;color:#1a2e05">${v}${fw?' V':''}</div><div class="xs" style="color:#cbd5e1;margin-top:4px">diyot kademesi</div></div><div class="sm">🔴 kırmızı prob → <b>${fw?'anot':'katot'}</b>${c==='l'?` (${fw?'uzun':'kısa'} bacak)`:''}<br>⚫ siyah prob → <b>${fw?'katot':'anot'}</b>${c==='l'&&fw?'<br>💡 LED <b>düşük ışık</b> veriyor':''}</div></div><div class="note ${fw?'t':'w'} sm" style="margin-top:6px">${fw?`Ekrandaki ${v.replace('.',',')} V, iletime geçtiği andaki eşik gerilimi (kitaptaki ölçüm).`:'<b>OL (açık hat):</b> ters yönde akım geçmiyor → diyot ters bağlı. Bir yönde değer, diğerinde OL = sağlam.'}</div>`;
+  $$('[data-c]',R).forEach(b=>b.onclick=()=>{c=b.dataset.c;fw=true;draw()});$('#u3-dmf').onclick=()=>{fw=!fw;draw()}};draw()})();
+quiz($('#u3-tr'),[{q:'Bir bacak sabitken diğer ikisine değince iki ölçümde de değer okunuyor. Sabit bacak hangisi?',o:['Kolektör','Beyz','Emiter'],a:1,x:''},{q:'Beyze kırmızı (+) prob değince değer okunuyorsa transistör…',o:['NPN','PNP'],a:0,x:'Siyah (−) probla okunuyorsa PNP.'},{q:'Beyz sabitken diğer bacaklardan daha <b>küçük</b> değer okunan uç?',o:['Kolektör','Emiter'],a:0,x:'Büyük değer emiter, küçük değer kolektör.'},{q:'Sağlam transistörde kolektör-emiter arası her iki yönde ne görülmeli?',o:['0,00 V','Sürekli bip','OL'],a:2,x:'Hiçbir bacak arasında kısa devre (0,00 V / bip) olmamalı.'}],'Uç tespiti');
+
+(function(){const R=$('#u3-tl');const O=[47,100,220,470];const s={c1:220,c2:100,c3:220};let run=null,idx=0;const Rb=100e3;
+ const draw=()=>{const T=c=>Rb*c*1e-6;R.innerHTML=`<div style="display:grid;grid-template-columns:90px 1fr;gap:10px"><div style="background:#1f2937;border-radius:14px;padding:8px;display:grid;gap:8px;justify-items:center">${[['c3','#ef4444'],['c2','#facc15'],['c1','#22c55e']].map((l,i)=>`<div id="u3-l${l[0]}" style="width:44px;height:44px;border-radius:50%;background:${l[1]};opacity:.18;transition:opacity .2s"></div>`).join('')}</div><div><table class="bt sm" style="width:100%"><tr><th>LED</th><th>C (µF)</th><th>T = R×C</th></tr>${[['c1','🟢 Yeşil'],['c2','🟡 Sarı'],['c3','🔴 Kırmızı']].map(l=>`<tr><td>${l[1]}</td><td><select data-c="${l[0]}">${O.map(o=>`<option ${o===s[l[0]]?'selected':''}>${o}</option>`).join('')}</select></td><td class="mono">100 kΩ × ${s[l[0]]} µF ≈ <b>${T(s[l[0]]).toFixed(1).replace('.',',')} s</b></td></tr>`).join('')}</table><div class="row" style="margin-top:6px"><button class="btn pri sm" id="u3-tlr">${run?'⏹ Durdur':'▶ Çalıştır (×5 hızlı)'}</button></div></div></div><p class="xs muted" style="margin:6px 0 0">Kapasite büyüdükçe kondansatör daha çok enerji depolar ve daha uzun sürede deşarj olur → LED daha uzun yanar.</p>`;
+  $$('[data-c]',R).forEach(x=>x.onchange=()=>{s[x.dataset.c]=+x.value;stop();draw()});$('#u3-tlr').onclick=()=>{run?stop():start();draw()}};
+ const order=['c1','c2','c3'];const light=k=>{order.forEach(o=>{const e=$('#u3-l'+o);if(e)e.style.opacity=o===k?1:.18})};
+ const start=()=>{idx=0;const step=()=>{const k=order[idx%3];light(k);run=setTimeout(()=>{idx++;step()},Rb*s[k]*1e-6*1000/5)};step()};const stop=()=>{clearTimeout(run);run=null;light('')};draw()})();
+
+sitSort($('#u3-ng'),[{t:'Kurulan devre hesaplara uygun mu, teyit etmek',a:'Doğrulama ve kontrol'},{t:'Gözle görülmeyen kopukluk veya kısa devreyi bulmak',a:'Arıza teşhisi'},{t:'Elemanların katalog limitlerini aşıp aşmadığını denetlemek',a:'Güvenlik'}],['Doğrulama ve kontrol','Arıza teşhisi','Güvenlik']);
+(function(){const R=$('#u3-ab');let m='A',p='s';const draw=()=>{const ok=(m==='A'&&p==='s')||(m==='V'&&p==='p');const meter=(x,y)=>`<circle cx="${x}" cy="${y}" r="16" fill="#fff" stroke="#0f172a" stroke-width="2"/><text x="${x}" y="${y+5}" text-anchor="middle" font-size="15" font-weight="700">${m}</text>`;
+  R.innerHTML=`<div class="row" style="gap:4px"><button class="btn sm ${m==='A'?'on':''}" data-m="A">Ampermetre (A)</button><button class="btn sm ${m==='V'?'on':''}" data-m="V">Voltmetre (V)</button><span class="xs">·</span><button class="btn sm ${p==='s'?'on':''}" data-p="s">Hattı kes, seri bağla</button><button class="btn sm ${p==='p'?'on':''}" data-p="p">Direncin uçlarına paralel</button></div><svg viewBox="0 0 320 170" style="width:100%;max-height:200px;margin-top:6px"><rect x="20" y="60" width="26" height="50" rx="4" fill="#e5e7eb" stroke="#334155"/><text x="33" y="90" text-anchor="middle" font-size="10">9V</text><path d="M33 60 V25 H${p==='s'?110:290} M${p==='s'?146:0} 25 ${p==='s'?'H290':''} V140 H33 V110" fill="none" stroke="#334155" stroke-width="2.5"/>${p==='s'?meter(128,25):''}<rect x="270" y="65" width="40" height="40" fill="#e7d3a8" stroke="#a8895a"/><text x="290" y="90" text-anchor="middle" font-size="12">R</text>${p==='p'?`<path d="M290 50 H230 V70 M230 106 V120 H290" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4 3"/>${meter(230,88)}`:''}</svg><div class="note ${ok?'t':'f'} sm">${ok?(m==='A'?'✔ Turnike koridorun ortasında: tüm akım ampermetreden geçiyor.':'✔ Voltmetre yolun üzerinden atlayarak direncin iki ucu arasındaki gerilimi ölçüyor; devre durmuyor.'):(m==='A'?'✘ Ampermetre paralel bağlanmaz: akımın hepsi üzerinden geçmez, doğru sayım yapılamaz.':'✘ Voltmetre hattı keserek seri bağlanmaz; iki nokta arasına paralel bağlanır.')}</div>`;
+  $$('[data-m]',R).forEach(b=>b.onclick=()=>{m=b.dataset.m;draw()});$$('[data-p]',R).forEach(b=>b.onclick=()=>{p=b.dataset.p;draw()})};draw()})();
+
+(function(){const R=$('#u3-oh');let u='I';const v={U:12,I:3,R:4};const draw=()=>{if(u==='U')v.U=v.I*v.R;if(u==='I')v.I=v.R?v.U/v.R:0;if(u==='R')v.R=v.I?v.U/v.I:0;
+  R.innerHTML=`<div style="display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center"><svg viewBox="0 0 120 105"><polygon points="60,4 116,100 4,100" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><line x1="24" x2="96" y1="58" y2="58" stroke="#ea580c" stroke-width="2"/><line x1="60" x2="60" y1="58" y2="100" stroke="#ea580c" stroke-width="2"/>${[['U',60,46],['I',38,88],['R',82,88]].map(x=>`<text x="${x[1]}" y="${x[2]}" text-anchor="middle" font-size="20" font-weight="800" fill="${u===x[0]?'#dc2626':'#0f172a'}" data-u="${x[0]}" style="cursor:pointer">${x[0]}</text>`).join('')}</svg><div><div class="xs muted">Bulunacak büyüklüğe tıkla (üçgende kapat):</div><div style="display:grid;grid-template-columns:90px 1fr;gap:5px 8px;align-items:center;margin-top:6px" class="sm">${[['U','Gerilim (V)'],['I','Akım (A)'],['R','Direnç (Ω)']].map(x=>`<label>${x[1]}</label><input type="number" step="any" data-k="${x[0]}" value="${+(+v[x[0]]).toFixed(4)}" ${u===x[0]?'disabled style="background:#fee2e2;font-weight:700"':''}>`).join('')}</div><div class="note t sm" style="margin-top:6px"><span class="mono">${u==='U'?'U = I × R':u==='I'?'I = U / R':'R = U / I'}</span> = <b>${+(+v[u]).toFixed(4)} ${u==='U'?'V':u==='I'?'A':'Ω'}</b></div></div></div><div class="row" style="gap:4px;margin-top:6px"><span class="xs">Kitaptaki örnekler:</span><button class="btn sm" data-x="I,12,0,4">Karavan: 12 V, 4 Ω</button><button class="btn sm" data-x="U,0,0.05,100">100 Ω, 0,05 A</button><button class="btn sm" data-x="R,9,0.02,0">9 V, 0,02 A</button></div>`;
+  $$('[data-u]',R).forEach(t=>t.onclick=()=>{u=t.dataset.u;draw()});$$('[data-k]',R).forEach(i=>i.onchange=()=>{v[i.dataset.k]=+i.value||0;draw()});$$('[data-x]',R).forEach(b=>b.onclick=()=>{const p=b.dataset.x.split(',');u=p[0];v.U=+p[1];v.I=+p[2];v.R=+p[3];draw()})};draw()})();
+shortAns($('#u3-os'),[{q:'Karavan: 12 V akü, 4 Ω lamba → akım kaç A?',a:['3','3 A'],x:'I = 12 / 4 = 3 A'},{q:'100 Ω dirençten 0,05 A geçiyor → gerilim kaç V?',a:['5','5 V'],x:'U = 0,05 × 100 = 5 V'},{q:'9 V pil, 0,02 A → eş değer direnç kaç Ω?',a:['450','450 Ω'],x:'R = 9 / 0,02 = 450 Ω'},{q:'12 V, direnç 6 Ω → akım kaç A?',a:['2','2 A'],x:'I = 12 / 6 = 2 A'},{q:'Direnç 2 Ω’dan 10 Ω’a çıkarsa akım artar mı, azalır mı?',a:['azalır','azalir','azalır.'],x:'6 A’dan 1,2 A’ya düşer: direnç artınca akım azalır.'},{q:'Akım sabit kalsın, direnç arttı: gerilim artırılmalı mı, azaltılmalı mı?',a:['artırılmalı','artirilmali','artırılmalıdır','arttırılmalı'],x:'U = I × R; R artarken I sabitse U artmalı.'}]);
+
+(function(){const R=$('#u3-kr');const v={V:9,R1:1000,R2:2000,R3:2000};const draw=()=>{const Rp=1/(1/v.R2+1/v.R3),Re=v.R1+Rp,It=v.V/Re,V1=It*v.R1,Vp=It*Rp,I2=Vp/v.R2,I3=Vp/v.R3;const mA=x=>(x*1000).toFixed(3).replace('.',',')+' mA',Vf=x=>x.toFixed(3).replace('.',',')+' V';
+  R.innerHTML=`<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:14px;align-items:start"><div><svg viewBox="0 0 360 200" style="width:100%"><rect x="16" y="70" width="28" height="56" rx="4" fill="#e5e7eb" stroke="#334155"/><text x="30" y="102" text-anchor="middle" font-size="11">${v.V}V</text><path d="M30 70 V30 H90 M150 30 H210 V50 M210 50 H160 V70 M210 50 H260 V70 M160 130 V150 H210 M260 130 V150 H210 M210 150 V180 H30 V126" fill="none" stroke="#334155" stroke-width="2.5"/><rect x="90" y="20" width="60" height="20" fill="#e7d3a8" stroke="#a8895a"/><text x="120" y="34" text-anchor="middle" font-size="11">R1</text><rect x="148" y="70" width="24" height="60" fill="#e7d3a8" stroke="#a8895a"/><text x="160" y="104" text-anchor="middle" font-size="11">R2</text><rect x="248" y="70" width="24" height="60" fill="#e7d3a8" stroke="#a8895a"/><text x="260" y="104" text-anchor="middle" font-size="11">R3</text><text x="120" y="56" text-anchor="middle" font-size="10" fill="#dc2626">It ${mA(It)}</text><text x="130" y="118" text-anchor="end" font-size="10" fill="#2563eb">I2 ${mA(I2)}</text><text x="280" y="118" font-size="10" fill="#2563eb">I3 ${mA(I3)}</text><text x="120" y="14" text-anchor="middle" font-size="10" fill="#7c3aed">${Vf(V1)}</text><text x="210" y="100" text-anchor="middle" font-size="10" fill="#7c3aed">${Vf(Vp)}</text></svg><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px" class="xs">${[['V','Kaynak (V)'],['R1','R1 (Ω)'],['R2','R2 (Ω)'],['R3','R3 (Ω)']].map(x=>`<label>${x[1]}<input type="number" min="1" data-k="${x[0]}" value="${v[x[0]]}" style="width:100%"></label>`).join('')}</div><div class="row" style="gap:4px;margin-top:4px"><button class="btn sm" id="u3-kr10">R2 = 10 kΩ olsaydı?</button><button class="btn sm" id="u3-krr">↺ Kitap değerleri</button></div></div><table class="bt sm" style="width:100%"><tr><td>Rp = R2∥R3</td><td class="mono" style="text-align:right">${fmtR(Rp)}</td></tr><tr><td>Reş = R1 + Rp</td><td class="mono" style="text-align:right">${fmtR(Re)}</td></tr><tr><td>It = V / Reş</td><td class="mono" style="text-align:right">${mA(It)}</td></tr><tr><td>V<sub>R1</sub> = It × R1</td><td class="mono" style="text-align:right">${Vf(V1)}</td></tr><tr><td>V<sub>R2</sub> = V<sub>R3</sub></td><td class="mono" style="text-align:right">${Vf(Vp)}</td></tr><tr><td>I2 · I3</td><td class="mono" style="text-align:right">${mA(I2)} · ${mA(I3)}</td></tr><tr style="background:#dcfce7"><td><b>Kirchhoff akım:</b> I2 + I3</td><td class="mono" style="text-align:right">${mA(I2+I3)} = It ✔</td></tr><tr style="background:#dcfce7"><td><b>Kirchhoff gerilim:</b> V<sub>R1</sub> + V<sub>p</sub></td><td class="mono" style="text-align:right">${Vf(V1+Vp)} = ${v.V} V ✔</td></tr></table></div><p class="xs muted" style="margin:6px 0 0">Ölçümde: eş değer direnç için güç kaynağı ayrılır; voltmetre her direncin uçlarına paralel; ampermetre önce ana kola, sonra her paralel kolun girişine seri bağlanır. Akım, direnci <b>küçük</b> olan kolu daha çok tercih eder.</p>`;
+  $$('[data-k]',R).forEach(i=>i.onchange=()=>{v[i.dataset.k]=Math.max(1,+i.value||1);draw()});$('#u3-kr10').onclick=()=>{v.R2=10000;draw()};$('#u3-krr').onclick=()=>{Object.assign(v,{V:9,R1:1000,R2:2000,R3:2000});draw()}};draw()})();
+
+reveal($('#u3-lm'),[{t:'🔥 Havya',d:'Yüzeyleri ve lehim telini erime sıcaklığının üstüne çıkaran ısı kaynağı. Ucu 300 °C’u aşabilir.'},{t:'🧵 Lehim teli',d:'Genellikle %60 kalay – %40 kurşun ya da kurşunsuz. Kalay iletimi, kurşun esneklik ve düşük erime sıcaklığı sağlar.'},{t:'🧴 Lehim pastası',d:'Oksit tabakasını temizler, lehimin yayılmasını sağlar.'},{t:'💨 Lehim pompası',d:'Hatalı/fazla lehimi vakumla temizler.'},{t:'🧰 Yardımcılar',d:'Havya altlığı, lehim sökme teli, devre kartı tutucu, büyüteç.'}],{single:true});
+orderGame($('#u3-ls'),['Havya ucunu devre yoluna ve eleman ayağına aynı anda 2–3 saniye değdir','Lehim telini havyaya değil ısınan yüzeye değdir','Lehim soğuyana kadar elemanı oynatma','Görünümü kontrol et: parlak ve koni şeklinde mi?','Havyayı mutlaka altlığına koy'],{fs:12.5});
+tfList($('#u3-lt'),[{t:'İyi lehim parlak ve koni şeklindedir.',a:true,x:''},{t:'Mat ve topaklanmış (soğuk) lehim iletimi iyileştirir.',a:false,x:'Soğuk lehim elektriksel iletimi engeller.'},{t:'Lehim dumanı solunmamalı; ortam havalandırılmalıdır.',a:true,x:''},{t:'Lehimin komşu deliklere taşması sorun oluşturmaz.',a:false,x:'İstenmeyen kısa devre yolları oluşur.'},{t:'Zil telleri en kısa yoldan, birbirine temas etmeyecek şekilde düzenlenir.',a:true,x:'Parazit azalır, kısa devre riski ortadan kalkar.'}]);
+
+dyMaze($('#u3-oa'),{
+ n1:{q:'Akım ölçmek için ampermetre devreye paralel bağlanır.',v:false,D:'n2',Y:'n3',x:'Ampermetre seri bağlanır.'},
+ n2:{q:'Bir iletkenin direnci, boyu ile ters orantılıdır.',v:false,D:'n4',Y:'n5'},
+ n3:{q:'Kondansatörler, elektrik enerjisini depo eden elemanlardır.',v:true,D:'n6',Y:'n7'},
+ n4:{q:'Işık yayan diyotlara LED diyot denir.',v:true,D:'E1',Y:'E2'},
+ n5:{q:'Dirençlerin üzerindeki renk şeritleri, o direncin sadece tolerans değerini hesaplamak için kullanılır.',v:false,D:'E3',Y:'E4'},
+ n6:{q:'Ohm kanununa göre gerilim artarsa akım azalır.',v:false,D:'E5',Y:'E6',x:'I = U / R: gerilim artarsa akım artar.'},
+ n7:{q:'Lehimin parlak ve koni şeklinde olması, soğuk lehim belirtisidir.',v:false,D:'E7',Y:'E8',x:'Parlak ve koni şekli iyi lehimdir.'}},'n1',{ok:6});
+gridPick($('#u3-ob'),['Ampermetre','Transistör','Diyot','Voltmetre','Kondansatör','Direnç','Bobin','Lehim Pompası','LED'],[{q:'Devrelerde ölçüm yapmak için kullanılan cihazlar',req:[1,4]},{q:'Akımı anahtarlamak veya yükseltmek için',req:[2]},{q:'Hatalı/fazla lehimi temizleyen araç',req:[8]},{q:'Enerjiyi elektriksel veya manyetik alanda depolayanlar',req:[5,7]},{q:'Akım geçişine zorluk gösteren eleman',req:[6]}]);
+quiz($('#u3-oc'),[{q:'Kahverengi-Siyah-Kırmızı-Altın direncin değeri?',o:['100 Ω %5','1 kΩ %5','1 kΩ %10','10 kΩ %5','10 kΩ %10'],a:1,x:'10 × 10² = 1000 Ω, altın %5.'},{q:'Elektrik akımını tek yönde ileten eleman?',o:['Bobin','Direnç','Diyot','Kondansatör','Potansiyometre'],a:2,x:''},{q:'12 V ve 4 Ω → akım kaç A?',o:['3','4','12','24','48'],a:0,x:'I = 12/4'},{q:'Lehimlemede oksitlenmeyi temizleyen madde?',o:['İzopropil alkol','Lehim pastası','Lehim teli','Tiner','Vernik'],a:1,x:''},{q:'“L” sembollü, birimi henry olan eleman?',o:['Bobin','Direnç','Diyot','Kondansatör','Potansiyometre'],a:0,x:''}],'C) Çoktan seçmeli');
+
+Object.assign(SORU,{
+ hz31:{t:'Hazırlık · Devre tahtası',h:'',q:['Pil (enerji kaynağı) ve Lamba (yük) kavramlarının çağrıştırdığı nesne ve sözcükler','İki direnç aynı dikey sütunda buluşmazsa akım neden diğerine geçemez?','Bir direncin iki bacağı aynı sütuna takılırsa (A5–E5) devredeki diğer elemanlara etkisi (israf, güvenlik)']},
+ ms31:{t:'Multimetre ve bağlantılar',h:'',q:['Hesaplanan ile ölçülen arasındaki küçük fark direncin hangi özelliğinden kaynaklanır? Hangi bant belirler?','Probların metal uçlarına elle dokunmak neden değeri değiştirir?','Aynı iki direnç seri bağlanınca toplam artar, paralelde neden azalır? (akım yolu sayısı)','Kondansatör bağlantı kurallarını direnç kurallarıyla kıyasla']},
+ dy34:{t:'Diyot ve LED ölçümü',h:'',q:['Kristal diyotta problar ters çevrilince neden OL görülür?','LED’in ölçümde ışık vermesi sağlamlık dışında hangi bilgiyi kanıtlar?','Kristal diyot ile LED’in iletime geçme değerleri arasında fark var mı? Hangisi daha yüksek?']},
+ tl35:{t:'Trafik lambası (T = R × C)',h:'',q:['Yeşil LED’in sarıdan uzun yanması için hangi bileşende nasıl değişiklik yaparsın? Gerekçe','Kapasite ile LED’in yanık kalma süresi arasındaki ilişki (enerji depolama, deşarj)','Sarının kırmızıdan kısa yanması için kondansatör seçim kriterlerin']},
+ oh36:{t:'Ohm ve Kirchhoff',h:'',q:['Kabloların taşıma kapasitesi 2 A iken (12 V) direnci 4 Ω’un altına indirmenin riski ve ohm kanunuyla nedeni','It ile I2 + I3’ü kıyasla','V_R1 + V_paralel = 9 V mu?','R2 = 10 kΩ olsaydı akımın çoğu hangi yolu tercih ederdi?']},
+ o3:{t:'Ölçme D',h:'',q:['1) LED önündeki seri direnç: ohm kanunu ve güvenlik','2) Flip-flop lehimlemesinde zil teli: montaj düzeni ve kısa devre riski','3) Ampermetre değer okumuyor, pil uçlarında 9 V var: olası arıza noktaları (sistemli)']}
+});
+Object.assign(EV,{
+ hz31:[{n:2,c:[['Pil','pil|batarya|aku|sarj|enerji|kaynak|priz|guc'],['Lamba','lamba|led|isik|ampul|fener|motor|hoparlor|yuk']],m:'Pil: batarya, akü, şarj aleti, priz, enerji kaynağı. Lamba: LED, ampul, el feneri, motor, hoparlör, yük.'},{c:[['Neden','sutun|dikey|serit|blok|iletken|bagli degil|temas']],m:'Devre tahtasının altındaki iletken şeritler yalnızca aynı dikey sütundaki beş deliği birbirine bağlar; farklı sütunlardaki bacaklar arasında iletken yol yoktur.'},{n:2,c:[['Kısa devre','kisa devre|direncten gecmez|dogrudan'],['Etki','yan|isin|zarar|bozul|israf|guvenlik|asiri akim']],m:'Akım direnci atlayıp doğrudan geçer, kısa devre oluşur; sınırlanmayan yüksek akım hassas elemanları ısıtıp yakabilir, malzeme israf olur ve güvenlik riski doğar.'}],
+ ms31:[{n:2,c:[['Tolerans','tolerans'],['Bant','son bant|4\\. bant|besinci|altin|gumus|tolerans band']],m:'Direncin tolerans özelliğinden kaynaklanır; farkın sınırını son (tolerans) bandı belirler, örneğin altın ±%5.'},{c:[['Neden','vucut|insan|iletken|direnc|paralel']],m:'İnsan vücudu da bir direnç gibi davranır; ellerle dokununca vücut dirence paralel bağlanır ve ölçülen değer düşer.'},{c:[['Yol sayısı','tek yol|yol|kol|akim ayril|paralel|seri']],m:'Seride akımın tek yolu vardır, dirençler arka arkaya eklenir ve toplam artar. Paralelde akım birden fazla kola ayrılır; yol sayısı arttığı için toplam direnç azalır.'},{c:[['Fark','ters|tersi|seri.*azal|paralel.*art|kondansator']],m:'Kurallar dirençlerin tersidir: kondansatörler seri bağlanınca toplam kapasite azalır, paralelde artar; dirençlerde seri artar, paralel azalır.'}],
+ dy34:[{c:[['Neden','tek yon|ters|yalitim|akim gecmez|ters polarma']],m:'Diyot akımı tek yönde geçirir; problar ters çevrilince diyot ters polarmada kalır, yalıtıma geçer ve akım geçmediği için açık hat (OL) görülür.'},{c:[['Uç','anot|katot|uc|bacak|uzun|kisa|yon']],m:'Kırmızı probun değdiği ucun anot (uzun bacak), siyahın değdiği ucun katot olduğunu, yani uç tespitinin doğru yapıldığını kanıtlar.'},{c:[['Fark','led|yuksek|1,7|1\\.7|daha fazla']],m:'Evet; kristal diyot yaklaşık 0,53 V’ta, LED yaklaşık 1,74 V’ta iletime geçti. LED daha yüksek gerilimde iletime geçer.'}],
+ tl35:[{c:[['Değişiklik','c1|kapasite|kondansator|direnc'],['Yön','buyuk|artir|yuksek']],m:'C1 kondansatörünü sarı LED’inkinden daha büyük kapasiteli seçerim; T = R × C olduğundan kapasite artınca süre uzar.'},{c:[['İlişki','dogru oranti|artar|buyuk|uzun|depola|desarj']],m:'Kapasite büyüdükçe kondansatör daha çok enerji depolar ve daha uzun sürede deşarj olur; LED daha uzun yanar. Doğru orantılıdır.'},{c:[['Kriter','kucuk|kapasite|sure|gerilim|25|volt|kutup']],m:'Sarı için daha küçük, kırmızı için daha büyük kapasiteli kondansatör seçerim; çalışma gerilimi (25 V) devreye uygun olmalı ve kutuplar doğru bağlanmalı.'}],
+ oh36:[{n:2,c:[['Akım','3 a|artar|2 a|fazla akim|yuksek akim'],['Risk','isin|eri|yan|yangin|kablo|zarar']],m:'I = U / R; 12 V / 4 Ω = 3 A, yani 4 Ω’un altında akım 2 A’i aşar. Kablolar aşırı ısınır, yalıtım erir, yangın ve eleman hasarı riski oluşur.'},{c:[['Kıyas','esit|ayni|toplam']],m:'I2 + I3 toplamı ana kol akımına (It) eşittir: Kirchhoff’un akımlar kanunu.'},{c:[['KVL','evet|esit|9|kaynak']],m:'Evet; R1 üzerindeki gerilim ile paralel kol gerilimi toplanınca kaynak gerilimi 9 V’a ulaşılır.'},{c:[['Yol','r3|kucuk direnc|dusuk direnc|2 k']],m:'Akımın büyük çoğunluğu direnci daha küçük olan R3 (2 kΩ) kolunu tercih ederdi.'}],
+ o3:[{n:2,c:[['Sınırlama','sinir|akim|azalt'],['Ohm','ohm|i = u|u/r|direnc'],['Güvenlik','yan|koru|zarar|guvenlik']],m:'Seri direnç ohm kanununa göre (I = U / R) devreden geçen akımı sınırlar. Direnç olmadan LED’den aşırı akım geçer ve LED yanar; direnç LED’i korur, devreyi güvenli yapar.'},{n:2,c:[['Düzen','duzen|kisa yol|en kisa|kolay|arka yuz'],['Kısa devre','kisa devre|temas|izole|yalit']],m:'Zil telleri en kısa yoldan, plaketin arka yüzünden düzenli döşenir; izoleli olduğu için hatlar birbirine temas etmez, kısa devre riski ve parazit azalır, arıza tespiti kolaylaşır.'},{n:2,c:[['Bağlantı','kopuk|baglanti|kablo|soguk lehim|lehim'],['Ampermetre','ampermetre|seri|kademe|sigorta|soket|prob'],['Eleman','eleman|direnc|led|yanmis|acik devre']],m:'Pil sağlam olduğundan devrede açık devre vardır. Sırasıyla: ampermetre seri mi bağlı, doğru kademe ve sokette mi, sigortası sağlam mı; kablo ve lehim noktalarında kopukluk veya soğuk lehim var mı; direnç ya da LED gibi elemanlardan biri yanmış (açık devre) mı kontrol edilir.'}]
+});
+SORU_MAP.push(['s-3-0','hz31','📖 Hazırlık · Breadboard','#bas3-c'],['s-3-6','ms31','📖 Ölçüm · Bağlantı'],['s-3-11','dy34','📖 Diyot soruları'],['s-3-12','tl35','📖 Trafik lambası'],['s-3-15','oh36','📖 Ohm · Kirchhoff'],['s-3-18','o3','📖 D) yanıtla']);
 /* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
 const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
 function evCheck(spec,txt){
