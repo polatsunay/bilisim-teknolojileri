@@ -1185,6 +1185,139 @@ DEĞİLSE
  <h2>Ölçme ve Değerlendirme · C <small>çoktan seçmeli · 9 soru</small></h2>
  <div class="body"><div class="card acc" id="u4-oc"></div></div>
 </section>
+<section class="slide" id="s-5-0" data-sec="5" data-title="5. Öğrenme Birimi · Ağ Temelleri" data-ref="Kitap s. 226–228">
+ <div class="secov">
+  <div>
+   <div class="secno">5</div>
+   <h2 style="font-size:44px">Ağ Temelleri</h2>
+   <div class="kz"><b>Konular:</b> 5.1 Ağ Sisteminin Fiziksel Bağlantı Tasarımı · 5.2 Ağ Cihazları ve Fiziksel Bağlantıları · 5.3 TCP/IP Adresi</div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="tag">ağ sistemi</span><span class="tag">fiber optik kablo</span><span class="tag">seri iletişim</span><span class="tag">ağ topolojisi</span><span class="tag">güvenlik duvarı</span><span class="tag">UTP kablo</span><span class="tag">alt ağ maskesi</span><span class="tag">IPv6</span><span class="tag">WAN</span><span class="tag">anahtarlama cihazı</span><span class="tag">LAN</span><span class="tag">yönlendirici</span><span class="tag">DHCP</span><span class="tag">RJ-45</span><span class="tag">erişim noktası</span><span class="tag">IPv4</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🎯 Bu öğrenme biriminde sizden beklenenler</h3><ul class="tight sm"><li>Fiziksel ortama göre ağ sisteminin fiziksel bağlantı tasarımını yapabilmeniz</li><li>Ağ çeşidine göre ağ cihazlarının fiziksel bağlantılarını yapabilmeniz</li><li>Ağ cihazlarına doğru TCP/IP adres girişini yapabilmeniz</li></ul></div>
+   <div class="card soft sm"><h3>🚦 Başlarken</h3>Seri ve paralel iletişimden ağ çeşitlerine ve topolojilere, ağ cihazlarından kablo hazırlamaya, IP adreslemeye kadar ağları yalnızca kullanan değil <b>anlayan ve tasarlayabilen</b> biri olacaksın.</div>
+   <div class="card sm" id="once5-c"><h3>💭 Önce Düşün</h3>Okul, ev, hastane veya iş yerinde bilgisayarlar, yazıcılar, kameralar, modem rastgele mi yerleştirilir, yoksa bir plana göre mi bağlanır? Kurulumdan önce cihazların yeri, kablo güzergâhı ve bağlantı şekli neden belirlenmelidir?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-1" data-sec="5" data-title="Ağ sistemleri ve veri iletimi" data-ref="Kitap 5.1–5.1.2 · s. 229–233">
+ <h2>5.1 Ağ Sistemleri ve Veri İletimi <small>seri mi, paralel mi?</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div class="row"><button class="btn sm on" data-mode="seri">Seri iletişim</button><button class="btn sm" data-mode="paralel">Paralel iletişim</button><span class="xs muted">Gönderilecek bayt:</span><input type="text" id="u5-byte" value="10110010" maxlength="8" style="width:110px"><button class="btn pri sm" id="u5-send">▶ Gönder</button></div><svg id="u5-sp" viewBox="0 0 640 260" style="width:100%;flex:1;margin-top:8px"></svg><div class="note sm" id="u5-spx"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Ağ sistemi:</b> Birden fazla cihazın veri alışverişi yapabilmesi için oluşturulan yapı. Bilgi ve kaynak (donanım, yazılım, internet) paylaşımı sağlar. Bulut, IoT ve YZ ile önemi artmıştır.<br><b>Bit:</b> Sayısal verinin en küçük birimi (0/1). <b>Protokol:</b> Veri iletimindeki kurallar bütünü; farklı üreticilerin cihazları da haberleşebilir.</div>
+   <div class="card soft sm"><b>Seri:</b> tek hat, bitler art arda · kablolama sade, maliyet düşük · uzun mesafede daha az hata · hız <b>baud</b> ile ifade edilir (USB fare, Ethernet).<br><b>Paralel:</b> birden fazla hat, bitler aynı anda · kısa mesafede çok hızlı · daha fazla kablo · mesafe artınca zamanlama farkları veri bütünlüğünü bozar (işlemci–bellek, anakart veri yolları, eski yazıcılar).</div>
+   <div class="card acc sm"><b>Senkron:</b> ortak saat sinyali (clock); sürekli akış, ek başlangıç/bitiş biti yok (Ethernet, SSD, işlemci–bellek). <b>Asenkron:</b> ortak saat yok; kontrol bitleri eklenir, ihtiyaç anında gönderilir (UART, GPS, barkod okuyucu).</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-2" data-sec="5" data-title="İletişim yönü ve ağ çeşitleri" data-olc="bic" data-ref="Kitap s. 232–234">
+ <h2>İletişim Yönü ve Ağ Çeşitleri <small>simplex · half duplex · full duplex · PAN → WAN</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>↔️ İletişim yönü</h3><div id="u5-dup" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🌍 Ağ çeşitleri: senaryoyu yerleştir</h3><div id="u5-tur" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-3" data-sec="5" data-title="Fiziksel bağlantı tasarımı ve 1. Uygulama" data-olc="kanit" data-ref="Kitap 5.1.4 · 1. Uygulama · Görsel 5.12 · s. 234–238">
+ <h2>Ağın Fiziksel Bağlantı Tasarımı <small>1. Uygulama: İki katlı şirket binası</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div class="row" id="u5-dev"></div><div style="position:relative;flex:1;min-height:0;display:grid;place-items:center"><div id="u5-plan" style="position:relative;display:inline-block;cursor:crosshair"><img src="img/u5-katplani.jpg" alt="Görsel 5.12: Kat planı" draggable="false" style="display:block;max-height:440px;max-width:100%"></div></div><div class="row"><button class="btn pri sm" id="u5-chk">✅ Tasarımı kontrol et</button><button class="btn sm" id="u5-clr">↺ Temizle</button><span class="xs muted">Cihazı seç, plana tıkla; yerleştirilen simgeye tıklayınca silinir.</span></div></div>
+  <div class="card acc col"><h3>📐 İstenenler ve kontrol</h3><p class="sm" style="margin:0">Tüm bilgisayarlar internete erişmeli, ortak yazıcı kullanılmalı, <b>her iki katta</b> kablosuz ağ olmalı. Yerleştir: modem, router, switch, sunucu, ağ yazıcısı, erişim noktası. Kapsama, erişilebilirlik, güvenlik ve kablo uzunluğunu düşün.</p><div class="note sm" id="u5-chx" style="margin-top:8px;flex:1">Yerleştirmeyi bitirince kontrol et.</div><div class="xs muted"><b>Kablo güzergâhı:</b> kısa ve doğrudan · kablo kanalı/tavası · elektrik kablolarından uzak · keskin bükme ve ezilme yok · geçiş yollarında engel yok · gelecekteki genişlemeye uygun kapasite.</div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-4" data-sec="5" data-title="Fiziksel topolojiler" data-ref="Kitap 5.1.5 · s. 239–242">
+ <h2>5.1.5 Fiziksel Ağ Topolojileri <small>bir düğüme veya bağlantıya tıkla: arıza oluştur</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div class="row" id="u5-tl"></div><svg id="u5-top" viewBox="0 0 560 330" style="width:100%;flex:1"></svg><div class="note sm" id="u5-tx"></div></div>
+  <div class="card col"><div id="u5-tinfo" style="flex:1;overflow:auto"></div><div class="note xs"><b>BİLGİ KUTUSU:</b> Hücresel topoloji (4G/5G, baz istasyonları) · veri merkezlerinde Yaprak-Omurga (Leaf-Spine) ve Genişletilmiş Ağaç (Fat-Tree) · kablosuz örgü (Wireless Mesh).</div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-5" data-sec="5" data-title="Mantıksal topoloji ve organizasyon" data-olc="bic" data-ref="Kitap 5.1.6–5.1.7 · Sıra Sizde · s. 242–246">
+ <h2>Mantıksal Topolojiler ve Organizasyon Yapısı <small>Sıra Sizde: senaryoya uygun topoloji</small></h2>
+ <div class="body c2r">
+  <div class="col">
+   <div id="u5-mt"></div>
+   <div class="card soft sm"><b>İstemci / sunucu:</b> sunucu dosya, kullanıcı doğrulama, veritabanı, web, yazıcı hizmetlerini merkezî yönetir; istemciler talep eder (şirket ağları, bulut, web). <b>Eşten eşe (P2P):</b> merkezî sunucu yok; herkes hem istemci hem sunucu (küçük ofis paylaşımı, blok zinciri, dosya paylaşım uygulamaları).</div>
+  </div>
+  <div class="card acc col"><div id="u5-sen" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-6" data-sec="5" data-title="Ağ cihazları" data-olc="bic" data-ref="Kitap 5.2.1 · Sıra Sizde · s. 247–252">
+ <h2>5.2.1 Ağ Cihazları <small>Sıra Sizde: senaryoya gereken cihazları işaretle</small></h2>
+ <div class="body c2r">
+  <div id="u5-cih" style="overflow:auto"></div>
+  <div class="card acc col" id="u5-cs" style="overflow:auto"></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-7" data-sec="5" data-title="Ağ kabloları" data-ref="Kitap 5.2.2 · Tablo 5.1–5.2 · s. 253–256">
+ <h2>5.2.2 Ağ Kabloları <small>bakır (UTP/STP, koaksiyel) · fiber optik</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🧮 Tablo 5.1: Kategori karşılaştırıcı</h3><div class="row" id="u5-cat"></div><div id="u5-catv" style="margin-top:8px"></div><h3 style="margin-top:8px">🎯 Hangi kabloyu seçersin?</h3><div id="u5-kq" style="flex:1"></div></div>
+  <div class="card acc col"><h3>💡 Tablo 5.2: Tek modlu mu, çok modlu mu?</h3><div id="u5-fib" style="flex:1"></div><p class="xs muted">Fiber: veriyi <b>ışık</b> sinyaliyle iletir; yüksek hız, elektromanyetik girişimden etkilenmez, uzun mesafede düşük kayıp. Koaksiyel bugün TV, uydu ve kamera sistemlerinde.</p></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-8" data-sec="5" data-title="Kablo hazırlama: T568B" data-olc="kanit" data-ref="Kitap 5.2.3 · Örnek Uygulama · s. 256–260">
+ <h2>Bakır Ağ Kablosu Hazırlama ve Sonlandırma <small>Örnek Uygulama: T568B düz kablo</small></h2>
+ <div class="body c2l">
+  <div class="card acc col"><h3>🌈 Telleri RJ-45 konnektöre sırala</h3><div class="row" id="u5-std"><button class="btn sm on" data-s="B">T568B</button><button class="btn sm" data-s="A">T568A</button></div><div id="u5-rj" style="flex:1;margin-top:8px"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Düz kablo (straight through):</b> iki uçta aynı dizilim (A-A veya B-B); son kullanıcı cihazı → switch/router. <b>Çapraz kablo (crossover):</b> bir uç T568A, diğer uç T568B; geçmişte PC-PC, switch-switch. Bugün çoğu cihazda <b>Auto MDI-X</b> olduğu için düz kablo yaygın.</div>
+   <div class="card col"><h3>🧰 Uygulama aşamalarını sırala</h3><div id="u5-kh" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-9" data-sec="5" data-title="Ethernet kartı ve yapısal kablolama" data-ref="Kitap s. 260–263">
+ <h2>Ethernet Kartı Takma ve Yapısal Kablolama</h2>
+ <div class="body c2">
+  <div class="card col"><h3>🧪 Örnek Uygulama: Ethernet kartı + bağlantı (20 dk)</h3><div id="u5-eth" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🏢 Yapısal kablolama ekipmanları</h3><div id="u5-yk" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-10" data-sec="5" data-title="5.3 IP adresi ve alt ağ maskesi" data-olc="bic" data-ref="Kitap 5.3–5.3.2 · Tablo 5.3 · s. 263–265">
+ <h2>5.3 TCP/IP Adresi <small>IPv4 · adres sınıfları · alt ağ maskesi</small></h2>
+ <div class="body c3">
+  <div class="card col sm"><p><b>IP adresi:</b> cihazın ağdaki konumunu belirler, paketleri doğru hedefe ulaştırır. <b>MAC:</b> üretimde ağ kartına verilen benzersiz fiziksel adres. <b>IP:</b> yönetici veya DHCP tarafından mantıksal olarak atanır. Aynı ağda iki cihaz aynı IP’yi alırsa <b>IP çakışması</b> olur.</p><p><b>IPv4:</b> 32 bit, nokta ile ayrılmış 4 bölüm (oktet), her biri 0–255. Özel (yerel ağ) ve genel (internet) adresler. Adres yetersizliği → <b>NAT</b> ve <b>IPv6</b>.</p><div class="note xs"><b>Bilgi Kutusu:</b> Büyük ağlar alt ağlara (subnet) bölünür; ör. otelde resepsiyon, muhasebe, kamera, misafir ağları ayrı. Bugün <b>CIDR</b> (sınıfsız adresleme) ve <b>VLSM</b> (değişken uzunlukta maske) kullanılır.</div></div>
+  <div class="card acc col"><h3>🔎 IPv4 incele</h3><input type="text" id="u5-ip" value="192.168.1.25" style="width:100%"><div id="u5-ipx" style="margin-top:8px;flex:1"></div></div>
+  <div class="card col"><h3>🤝 Aynı ağda mı?</h3><div class="sc" style="grid-template-columns:auto 1fr"><span class="xs">Cihaz 1</span><input type="text" id="u5-a" value="192.168.1.10"><span class="xs">Cihaz 2</span><input type="text" id="u5-b" value="192.168.2.20"><span class="xs">Maske</span><input type="text" id="u5-m" value="255.255.255.0"></div><div id="u5-abx" style="margin-top:8px"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-11" data-sec="5" data-title="IP atama: statik ve dinamik" data-olc="kanit" data-ref="Kitap 5.3.3 · Örnek Uygulama · s. 265–268">
+ <h2>5.3.3 IP Adresi Atama <small>statik (elle) · dinamik (DHCP)</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>🖥️ Ethernet → İnternet Protokolü Sürüm 4 (TCP/IPv4) Özellikleri</h3><div id="u5-tcp" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Statik IP:</b> IP, alt ağ maskesi, varsayılan ağ geçidi, DNS elle girilir; değiştirilmedikçe aynı kalır. Sunucu, yazıcı, kamera, ağ cihazları için. Daha fazla kontrol ama çok cihazda yönetim yükü.<br><b>Dinamik IP:</b> <b>DHCP</b> sunucusu otomatik dağıtır; ev, okul, otel, hastane ağlarında yaygın. Yönetimi kolaylaştırır, hataları azaltır.</div>
+   <div class="card acc col"><h3>🧩 Statik mi, dinamik mi?</h3><div id="u5-sd" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-12" data-sec="5" data-title="Ölçme A–B" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme A–B · s. 269–270">
+ <h2>Ölçme ve Değerlendirme · A ve B <small>kavram haritası · eşleştirme</small></h2>
+ <div class="body c2l">
+  <div class="card acc" id="u5-oa"></div>
+  <div class="card col"><h3>B) Eşleştir</h3><div id="u5-ob" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-5-13" data-sec="5" data-title="Ölçme C–Ç" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme C–Ç–D · s. 270–273">
+ <h2>Ölçme ve Değerlendirme · C ve Ç <small>doğru-yanlış · çoktan seçmeli</small></h2>
+ <div class="body c2r">
+  <div class="card col"><h3>C) Doğru / Yanlış</h3><div id="u5-oc"></div><p class="xs muted" style="margin-top:6px">Gerekçeleri ve D bölümü açık uçlu sorular 📖 düğmelerinde.</p></div>
+  <div class="card acc" id="u5-oç"></div>
+ </div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -2415,6 +2548,183 @@ Object.assign(EV,{
  olay4:[{c:[['Araç','olay goruntuleyici|event']],m:'Olay Görüntüleyicisi'},{c:[['Gözlem','error|critical|bugcheck|hata|kayit']],m:'Hata zamanında “Critical” ve bir sürücüye ait “Error” kaydı vardı.'},{c:[['Olası sorun','surucu|guncelle|disk|ram|sistem dosya']],m:'Ekran kartı sürücüsünde uyumsuzluk olabilir.'},{c:[['Öneri','guncelle|geri al|onceki surum|kaldir|yeniden yukle|test']],m:'Sürücüyü güncellemek veya önceki sürüme geri almak.'}]
 });
 SORU_MAP.push(['s-4-0','once4','📖 Önce Düşün','#once4-c'],['s-4-5','bios4','📖 Gerekçeni yaz'],['s-4-7','kontrol4','📖 Sıra Sizde'],['s-4-8','wifi4','📖 Sıra Sizde senaryosu'],['s-4-10','saat4','📖 Sıra Sizde'],['s-4-15','ariza4','📖 Sıra Sizde tablosu'],['s-4-16','olay4','📖 Olay Görüntüleyicisi']);
+/* ============ 5. ÖĞRENME BİRİMİ: AĞ TEMELLERİ ============ */
+(function(){const S=$('#u5-sp');let mode='seri',T=[];
+ const draw=(bits,k)=>{const pc=(x,l)=>`<rect x="${x}" y="70" width="90" height="120" rx="10" fill="#fff" stroke="#2c3342" stroke-width="2"/><text x="${x+45}" y="215" text-anchor="middle" font-size="14" font-weight="700">${l}</text>`;
+  let h=pc(20,'Gönderici')+pc(530,'Alıcı');
+  if(mode==='seri'){h+=`<line x1="110" y1="130" x2="530" y2="130" stroke="#94a3b8" stroke-width="4"/>`;bits.forEach((b,i)=>{const p=k-i;if(p<0)return;const x=Math.min(110+p*52,505);h+=`<g><rect x="${x}" y="114" width="26" height="32" rx="5" fill="${b==='1'?'#db2777':'#64748b'}"/><text x="${x+13}" y="136" text-anchor="middle" fill="#fff" font-weight="800">${b}</text></g>`})}
+  else{bits.forEach((b,i)=>{const y=80+i*14;h+=`<line x1="110" y1="${y}" x2="530" y2="${y}" stroke="#cbd5e1" stroke-width="2"/>`;const x=Math.min(110+k*52,505);if(k>=0)h+=`<rect x="${x}" y="${y-6}" width="22" height="12" rx="3" fill="${b==='1'?'#db2777':'#64748b'}"/><text x="${x+11}" y="${y+4}" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">${b}</text>`})}
+  S.innerHTML=h};
+ const go=()=>{T.forEach(clearTimeout);T=[];const bits=($('#u5-byte').value.replace(/[^01]/g,'')+'00000000').slice(0,8).split('');const steps=mode==='seri'?16:9;for(let k=0;k<=steps;k++)T.push(setTimeout(()=>draw(bits,k),k*260));
+  $('#u5-spx').innerHTML=mode==='seri'?'<b>Seri:</b> 8 bit tek hat üzerinden <b>art arda</b> gider; 8 zaman adımı sürer. Kablolama sade ve ucuz, uzun mesafeye uygun.':'<b>Paralel:</b> 8 bit 8 ayrı hattan <b>aynı anda</b> gider; tek adımda ulaşır. Kısa mesafede hızlı ama daha fazla kablo gerekir; mesafe artınca zamanlama farkları sorun olur.'};
+ $$('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.classList.toggle('on',x===b));go()});$('#u5-send').onclick=go;go()})();
+
+(function(){const R=$('#u5-dup');const M={Simplex:['→','Veri yalnızca tek yönde aktarılır; alıcı cevap veremez.','📺 Televizyon yayını · ⌨️ klavyeden bilgisayara'],'Half duplex':['⇄ (sırayla)','İki yönde ama aynı anda değil; cihazlar sırayla gönderir.','📻 Telsiz: biri konuşurken diğeri bekler'],'Full duplex':['⇆ (aynı anda)','Aynı anda iki yönde aktarım.','📞 Telefon görüşmesi']};
+ R.innerHTML=`<div class="row">${Object.keys(M).map(k=>`<button class="btn sm" data-d="${k}">${k}</button>`).join('')}</div><div class="dx" style="display:flex;align-items:center;justify-content:center;gap:16px;margin:14px 0;font-size:40px"><span>💻</span><b class="dx-a mono" style="font-size:34px;color:var(--acc)"></b><span>💻</span></div><div class="note dx-t"></div><div class="dx-q" style="margin-top:8px"></div>`;
+ const sh=k=>{$$('[data-d]',R).forEach(b=>b.classList.toggle('on',b.dataset.d===k));$('.dx-a',R).textContent=M[k][0];$('.dx-t',R).innerHTML=`<b>${k}:</b> ${M[k][1]}<br>${M[k][2]}`};$$('[data-d]',R).forEach(b=>b.onclick=()=>sh(b.dataset.d));sh('Simplex');
+ classify($('.dx-q',R),[{t:'Televizyon yayını',a:'Simplex'},{t:'Telsiz haberleşmesi',a:'Half duplex'},{t:'Telefon görüşmesi',a:'Full duplex'},{t:'Klavyeden bilgisayara veri',a:'Simplex'}],['Simplex','Half duplex','Full duplex'],{cols:'1fr 1fr'})})();
+classify($('#u5-tur'),[
+ {t:'Cep telefonu ile akıllı saat arasındaki bağlantı',a:'PAN'},{t:'Okul laboratuvarındaki bilgisayarların ortak yazıcı kullanması',a:'LAN'},{t:'Belediyenin farklı hizmet binaları arasındaki ağ',a:'MAN'},{t:'Bankanın farklı şehirlerdeki şubeleri; internet',a:'WAN'},{t:'Öğretmenin evinden okul sunucusuna şifreli tünelle bağlanması',a:'VPN'},{t:'Şehre yayılmış üniversitenin kampüsleri arası bağlantı',a:'MAN'},{t:'Bilgisayar ile kablosuz fare',a:'PAN'}],['PAN','LAN','MAN','WAN','VPN'],{cols:'1fr'});
+$('#u5-tur').insertAdjacentHTML('afterbegin','<div class="row" style="gap:4px;margin-bottom:6px;font-size:12px">'+[['PAN','birkaç metre'],['LAN','ev/okul/iş yeri'],['MAN','şehir'],['WAN','ülke/kıta'],['VPN','ortak ağ üzerinden şifreli tünel']].map((x,i)=>`<span class="tag">${x[0]} · ${x[1]}</span>`).join('')+'</div>');
+
+(function(){const P=$('#u5-plan');const D=[['📡','Modem'],['🔀','Router'],['🔌','Switch'],['🗄️','Sunucu'],['🖨️','Ağ yazıcısı'],['📶','Erişim noktası']];let sel=0,items=[];
+ $('#u5-dev').innerHTML=D.map((d,i)=>`<button class="btn sm ${i?'':'on'}" data-v="${i}">${d[0]} ${d[1]}</button>`).join('');
+ $$('#u5-dev button').forEach(b=>b.onclick=()=>{sel=+b.dataset.v;$$('#u5-dev button').forEach(x=>x.classList.toggle('on',x===b))});
+ const ren=()=>{$$('.pl',P).forEach(x=>x.remove());items.forEach((it,i)=>{const e=document.createElement('span');e.className='pl';e.textContent=D[it.d][0];e.title=D[it.d][1];e.style.cssText=`position:absolute;left:${it.x*100}%;top:${it.y*100}%;transform:translate(-50%,-50%);font-size:22px;background:#fffc;border-radius:50%;padding:2px;cursor:pointer;box-shadow:0 2px 6px #0004`;e.onclick=ev=>{ev.stopPropagation();items.splice(i,1);ren()};P.appendChild(e)})};
+ P.onclick=e=>{const r=$('img',P).getBoundingClientRect();items.push({d:sel,x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height});ren()};
+ $('#u5-clr').onclick=()=>{items=[];ren();$('#u5-chx').className='note sm';$('#u5-chx').textContent='Yerleştirmeyi bitirince kontrol et.'};
+ $('#u5-chk').onclick=()=>{const fl=it=>it.y<0.5?1:2,sys=it=>it.x>0.84&&((it.y>0.25&&it.y<0.5)||(it.y>0.75));const has=(d,f)=>items.some(it=>it.d===d&&(!f||fl(it)===f));const r=[];
+  r.push([has(0),'Modem yerleştirildi (internet servis sağlayıcı bağlantısı).']);r.push([has(1),'Router yerleştirildi (yerel ağ ↔ internet).']);r.push([has(2,1)&&has(2,2),'Her katta bir switch var (bilgisayarlara kısa kablo).']);r.push([has(3),'Sunucu yerleştirildi.']);r.push([has(4),'Ortak ağ yazıcısı yerleştirildi.']);r.push([has(5,1)&&has(5,2),'Her iki katta erişim noktası var (kablosuz kapsama).']);
+  r.push([items.filter(it=>[0,1,3].includes(it.d)).every(sys)&&items.some(it=>[0,1,3].includes(it.d)),'Modem, router ve sunucu güvenlik için sistem odasında.']);
+  const n=r.filter(x=>x[0]).length;$('#u5-chx').className='note sm '+(n===r.length?'t':'w');$('#u5-chx').innerHTML=r.map(x=>(x[0]?'✅ ':'⬜ ')+x[1]).join('<br>')+`<br><b>${n} / ${r.length}</b> · Son değerlendirme dereceli puanlama anahtarına göre öğretmeninindir.`};})();
+
+(function(){const S=$('#u5-top');const TP={
+ 'Yıldız':{n:[[280,165,'S','Switch'],[280,40],[440,90],[470,230],[280,295],[100,230],[110,90]],e:[[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]],av:['Kurulumu ve yönetimi kolay','Bir cihazın arızası diğerlerini etkilemez','Sorun tespiti kolay','Yeni cihaz eklemek kolay','Bugün en yaygın topoloji'],dv:['Merkez cihaz arızalanırsa ağın tamamı çalışmaz','Daha fazla kablo','Merkez cihaz maliyeti'],ex:'Okul laboratuvarındaki bilgisayarların switche bağlanması; ev ve ofis ağları.'},
+ 'Veri yolu':{n:[[60,165,'T',''],[160,165,'T',''],[260,165,'T',''],[360,165,'T',''],[460,165,'T',''],[160,60],[260,270],[360,60],[460,270],[60,270]],e:[[0,1,'bb'],[1,2,'bb'],[2,3,'bb'],[3,4,'bb'],[1,5],[2,6],[3,7],[4,8],[0,9]],av:['Daha az kablo','Kurulum maliyeti düşük','Küçük ağlarda kolay'],dv:['Ana kablodaki arıza tüm ağı etkiler','Cihaz arttıkça performans düşer','Arıza tespiti zor','Bugün yaygın değil'],ex:'Eskiden küçük ofislerdeki koaksiyel kablolu Ethernet ağları.'},
+ 'Halka':{n:[[280,45],[430,110],[430,230],[280,295],[130,230],[130,110]],e:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]],av:['Veri çarpışması olmaz','Ağ trafiği düzenli','İletim sırası kontrol altında'],dv:['Bir cihaz veya bağlantı arızası tüm ağı etkileyebilir','Genişletmek zor','Sorun tespiti zaman alabilir'],ex:'Geçmişteki Token Ring ağları.'},
+ 'Ağaç':{n:[[280,40,'S','Ana switch'],[150,140,'S','Switch'],[410,140,'S','Switch'],[70,270],[150,270],[230,270],[340,270],[410,270],[490,270]],e:[[0,1],[0,2],[1,3],[1,4],[1,5],[2,6],[2,7],[2,8]],av:['Büyük ağlarda kullanılabilir','Genişletmek kolay','Bölümler ayrı yönetilir','Kurumsal yapılara uygun'],dv:['Kurulum maliyeti yüksek','Üst seviyedeki arıza alt bölümleri etkiler','Yönetimi daha karmaşık'],ex:'Üniversite kampüsleri, büyük şirketler, hastane ağları.'},
+ 'Örgü':{n:[[280,45],[440,120],[400,280],[160,280],[120,120]],e:[[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]],av:['Yüksek güvenilirlik','Yedeklilik yüksek','Bir bağlantı arızalansa da iletişim sürer','Kesintisiz hizmet için uygun'],dv:['Kurulum maliyeti yüksek','Çok fazla kablo ve bağlantı','Yönetimi zor'],ex:'İnternet servis sağlayıcı omurgaları, veri merkezleri, kritik kamu sistemleri.'}};
+ let cur='Yıldız',fn=new Set(),fe=new Set();
+ $('#u5-tl').innerHTML=Object.keys(TP).map(k=>`<button class="btn sm" data-t="${k}">${k}</button>`).join('')+'<button class="btn sm" id="u5-tr">↺ Onar</button>';
+ const draw=()=>{const t=TP[cur];$$('#u5-tl [data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===cur));
+  const pcs=t.n.map((n,i)=>i).filter(i=>!t.n[i][2]);const adj=t.n.map(()=>[]);t.e.forEach((e,j)=>{if(fe.has(j)||fn.has(e[0])||fn.has(e[1]))return;adj[e[0]].push(e[1]);adj[e[1]].push(e[0])});
+  let ok=new Set();const anyFail=fn.size||fe.size;
+  if(cur==='Halka'&&anyFail){ok=new Set()}else if(cur==='Veri yolu'&&([...fe].some(j=>t.e[j][2]))){ok=new Set()}else{
+   const comps=[];const seen=new Set();pcs.forEach(p=>{if(fn.has(p)||seen.has(p))return;const c=[];const q=[p];seen.add(p);while(q.length){const u=q.shift();if(!t.n[u][2])c.push(u);adj[u].forEach(v=>{if(!seen.has(v)){seen.add(v);q.push(v)}})}comps.push(c)});comps.sort((a,b)=>b.length-a.length);if(comps[0]&&comps[0].length>1)ok=new Set(comps[0])}
+  let h='';t.e.forEach((e,j)=>{const a=t.n[e[0]],b=t.n[e[1]];h+=`<line data-e="${j}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${fe.has(j)?'#d64545':e[2]?'#334155':'#94a3b8'}" stroke-width="${e[2]?8:4}" stroke-dasharray="${fe.has(j)?'6 5':''}" style="cursor:pointer"/>`});
+  t.n.forEach((n,i)=>{if(n[2]==='T'){h+=`<circle cx="${n[0]}" cy="${n[1]}" r="5" fill="#334155"/>`;return}const f=fn.has(i),sw=n[2]==='S';h+=`<g data-n="${i}" style="cursor:pointer"><rect x="${n[0]-(sw?36:24)}" y="${n[1]-18}" width="${sw?72:48}" height="36" rx="8" fill="${f?'#fde2e2':sw?'#fde68a':ok.has(i)?'#dcfce7':'#e5e7eb'}" stroke="${f?'#d64545':'#334155'}" stroke-width="2"/><text x="${n[0]}" y="${n[1]+5}" text-anchor="middle" font-size="${sw?11:16}" font-weight="700">${f?'💥':sw?n[3]:'💻'}</text></g>`});
+  S.innerHTML=h;$$('[data-e]',S).forEach(l=>l.addEventListener('click',()=>{const j=+l.dataset.e;fe.has(j)?fe.delete(j):fe.add(j);draw()}));$$('[data-n]',S).forEach(g=>g.addEventListener('click',()=>{const i=+g.dataset.n;fn.has(i)?fn.delete(i):fn.add(i);draw()}));
+  const alive=pcs.filter(p=>!fn.has(p)).length;$('#u5-tx').className='note sm '+(!anyFail?'':ok.size===alive?'t':'f');$('#u5-tx').innerHTML=!anyFail?'Bir bilgisayara, merkez cihaza veya kabloya tıklayarak arıza oluştur.':`İletişim kurabilen bilgisayar: <b>${ok.size} / ${alive}</b> (çalışan). ${ok.size===alive?'Ağ bu arızayı tolere etti.':'Arıza ağın bir kısmını veya tamamını etkiledi.'}`;
+  $('#u5-tinfo').innerHTML=`<h3>${cur} topolojisi</h3><p class="sm">${t.ex}</p><div class="c2" style="display:grid;gap:8px"><div class="note t xs"><b>Avantajlar</b><ul class="tight">${t.av.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="note f xs"><b>Dezavantajlar</b><ul class="tight">${t.dv.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`};
+ $$('#u5-tl [data-t]').forEach(b=>b.onclick=()=>{cur=b.dataset.t;fn=new Set();fe=new Set();draw()});$('#u5-tr').onclick=()=>{fn=new Set();fe=new Set();draw()};draw()})();
+
+reveal($('#u5-mt'),[
+ {t:'📣 Yayın topolojisi',d:'Gönderilen veri tüm cihazlara iletilir; her cihaz kendine ait olup olmadığını kontrol eder, asıl sahibi işler. Ethernet’te broadcast paketleri hâlâ kullanılır. Örn. öğretmenin tüm bilgisayarlara duyuru göndermesi.'},
+ {t:'🎟️ Jetonlu geçiş topolojisi',d:'Ağda dolaşan <b>jeton (token)</b> paketini alan cihaz veri gönderir, sonra jetonu aktarır; veri çarpışması önlenir. Token Ring ve bazı endüstriyel kontrol sistemleri.'},
+ {t:'📬 Unicast · Multicast · Broadcast',d:'<b>Unicast:</b> tek hedef (web sitesi, e-posta). <b>Multicast:</b> belirli bir grup (çevrim içi ders, video konferans, IPTV). <b>Broadcast:</b> tüm cihazlar (ARP istekleri, ağ duyuruları).'}],{single:true});
+classify($('#u5-sen'),[
+ {t:'Laboratuvarda 25 bilgisayar merkezî bir switch üzerinden bağlanacak.',a:'Yıldız'},
+ {t:'Küçük bir işletmede düşük maliyetli ağ isteniyor.',a:'Veri yolu',x:'Daha az kablo, düşük kurulum maliyeti.'},
+ {t:'Üniversite kampüsünde farklı binalar merkezî, hiyerarşik yapıda bağlanacak.',a:'Ağaç'},
+ {t:'Kesintisiz iletişimin kritik olduğu veri merkezinde yedekli bağlantılar.',a:'Örgü'},
+ {t:'Veri iletiminin belirli bir sırayla gerçekleşmesi istenen özel yapı.',a:'Halka'},
+ {t:'Ağdaki cihazlara aynı anda duyuru ve bilgilendirme gönderilecek.',a:'Yayın'},
+ {t:'Üretim hattında cihazlar sırayla veri gönderecek, çarpışma önlenecek.',a:'Jetonlu geçiş'}],['Yıldız','Veri yolu','Halka','Ağaç','Örgü','Yayın','Jetonlu geçiş'],{cols:'1fr'});
+$$('#u5-sen .it button').forEach(b=>{b.style.fontSize='11px';b.style.padding='2px 6px'});
+
+reveal($('#u5-cih'),[
+ {t:'🧩 Ağ arabirim kartı (NIC)',d:'Cihazı ağa bağlar. Kablolu (RJ-45; veri merkezlerinde fiber; 1/2.5/5/10 Gbps+) ve kablosuz (Wi-Fi 6, 6E, 7). Üretimde verilen benzersiz <b>MAC adresi</b> vardır; veriyi ağ ortamına uygun biçime dönüştürür.'},
+ {t:'📡 Modem',d:'Yerel ağ ile internet servis sağlayıcı altyapısı arasında bağlantı (fiber, kablo, DSL). Çoğu zaman router özelliği de içerir.'},
+ {t:'🔌 Anahtar (Switch)',d:'Aynı ağdaki cihazları birbirine bağlar; paketleri yalnızca hedef cihaza yönlendirir.'},
+ {t:'🔀 Yönlendirici (Router)',d:'Farklı ağları birbirine bağlar, paketlerin izleyeceği yolu belirler; yerel ağın internete bağlantısı.'},
+ {t:'📶 Kablosuz erişim noktası (AP)',d:'Kablolu ağa kablosuz cihazların bağlanmasını sağlayan köprü. Geniş alanlarda birden fazla AP; Wi-Fi 6/6E/7.'},
+ {t:'🧱 Güvenlik duvarı (Firewall)',d:'Gelen-giden trafiği kurallara göre denetler, yetkisiz erişimi engeller. <b>WAF</b>: web uygulamalarını SQL enjeksiyonu, XSS gibi saldırılara karşı korur.'},
+ {t:'🏗️ Çok katmanlı anahtar (Layer 3)',d:'Switch + router özellikleri; büyük işletme, kampüs, veri merkezi.'},
+ {t:'🔐 VPN Gateway',d:'Farklı konumlardaki kullanıcı veya ağları internet üzerinden şifreli ve güvenli bağlar.'}],{single:true});
+gridPick($('#u5-cs'),['Modem','Anahtarlama','Yönlendirici','Access Point','Güvenlik Duvarı','VPN Gateway'],[
+ {q:'Küçük muhasebe ofisi: 5 bilgisayar, 1 yazıcı, internet gerekiyor.',req:[1,2],ok:[1,2,3,5],x:'İnternet için modem, cihazları bağlamak için anahtarlama (modem çoğu zaman router özelliği içerir).'},
+ {q:'İki katlı otelde misafirler kablosuz internete erişecek.',req:[4],ok:[1,2,3,4,5],x:'Geniş alanlarda birden fazla access point kullanılır.'},
+ {q:'Merkez bina ile farklı şehirlerdeki şubeler arasında güvenli bağlantı.',req:[6],ok:[1,3,5,6],x:'VPN Gateway veriyi şifreleyerek güvenli bağlantı sağlar.'},
+ {q:'E-ticaret işletmesinde web sunucuları dış saldırılara karşı korunacak.',req:[5],ok:[3,5],x:'Güvenlik duvarı (ve WAF) trafiği denetler.'},
+ {q:'Üniversite binasında yüzlerce öğrenci aynı anda kablosuz ağa bağlanacak.',req:[4],ok:[2,3,4,5],x:'Birden fazla access point ile kapsama ve kapasite artırılır.'}]);
+$('#u5-cs').insertAdjacentHTML('afterbegin','<h3>✍️ Sıra Sizde: Hangi cihazlar gerekli?</h3>');
+
+(function(){const C={Cat5e:['100 MHz','1 Gbps','100 m','UTP / STP','Düşük','Ev ve küçük ofis ağları','Yaygın'],Cat6:['250 MHz','10 Gbps* (kısa mesafede)','100 m','UTP / STP','Orta','Kurumsal ağlar','Çok yaygın'],Cat6A:['500 MHz','10 Gbps','100 m','STP ağırlıklı','Yüksek','Yüksek performanslı kurumsal ağlar','Çok yaygın'],Cat7:['600 MHz','10 Gbps','100 m','STP','Çok yüksek','İşletmeler ve veri merkezleri','Özel kullanım alanları'],Cat8:['2000 MHz','25–40 Gbps','30 m','STP','Çok yüksek','Veri merkezleri ve sunucu bağlantıları','Sınırlı']};const L=['Çalışma frekansı','Maks. veri hızı','Maks. mesafe','Kablo yapısı','EMI dayanımı','Kullanım alanı','Bugün kullanım'];
+ $('#u5-cat').innerHTML=Object.keys(C).map(k=>`<button class="btn sm" data-c="${k}">${k}</button>`).join('');
+ const sh=k=>{$$('#u5-cat button').forEach(b=>b.classList.toggle('on',b.dataset.c===k));$('#u5-catv').innerHTML='<table class="bt" style="font-size:12.5px">'+L.map((l,i)=>`<tr><td><b>${l}</b></td><td>${C[k][i]}</td></tr>`).join('')+'<tr><td><b>Sonlandırma</b></td><td>RJ-45</td></tr></table>'};$$('#u5-cat button').forEach(b=>b.onclick=()=>sh(b.dataset.c));sh('Cat6')})();
+quiz($('#u5-kq'),[
+ {q:'Elektromanyetik girişimin yoğun olduğu bir fabrika ortamı için hangisi daha uygundur?',o:['UTP','STP','Koaksiyel','Telefon kablosu'],a:1,x:'STP kablolar elektromanyetik girişimin yoğun olduğu endüstriyel ortamlarda ve veri merkezlerinde kullanılır.'},
+ {q:'Veri merkezinde 30 m’lik sunucu bağlantısı için 25–40 Gbps gerekiyor. Hangi kategori?',o:['Cat5e','Cat6','Cat6A','Cat8'],a:3,x:'Cat8: 2000 MHz, 25–40 Gbps, maksimum 30 m.'}]);
+classify($('#u5-fib'),[
+ {t:'Tek ışık yolu · çekirdek ≈ 9 µm',a:'Tek modlu (SMF)'},{t:'Birden fazla ışık yolu · 50 veya 62,5 µm',a:'Çok modlu (MMF)'},{t:'Lazer ışık kaynağı · onlarca kilometre',a:'Tek modlu (SMF)'},{t:'LED/VCSEL · yüzlerce metre–birkaç km',a:'Çok modlu (MMF)'},{t:'Sarı kablo · internet omurgası, şehirler arası',a:'Tek modlu (SMF)'},{t:'Turuncu/turkuaz · veri merkezi, kampüs, bina içi',a:'Çok modlu (MMF)'},{t:'Kurulum maliyeti daha düşük, sinyal kaybı daha yüksek',a:'Çok modlu (MMF)'}],['Tek modlu (SMF)','Çok modlu (MMF)'],{cols:'1fr'});
+
+(function(){const R=$('#u5-rj');const W={wo:['Beyaz/Turuncu','#f97316',1],o:['Turuncu','#f97316',0],wg:['Beyaz/Yeşil','#16a34a',1],g:['Yeşil','#16a34a',0],wb:['Beyaz/Mavi','#2563eb',1],b:['Mavi','#2563eb',0],wbr:['Beyaz/Kahverengi','#92400e',1],br:['Kahverengi','#92400e',0]};
+ const STD={B:['wo','o','wg','b','wb','g','wbr','br'],A:['wg','g','wo','b','wb','o','wbr','br']};let std='B',pins=[];
+ const sw=k=>{const w=W[k];return w[2]?`background:repeating-linear-gradient(90deg,#fff 0 6px,${w[1]} 6px 12px)`:`background:${w[1]}`};
+ const d=()=>{const pool=Object.keys(W);R.innerHTML=`<div style="display:flex;gap:4px;justify-content:center;background:#e2e8f0;padding:10px;border-radius:10px">${[...Array(8)].map((_,i)=>`<div style="text-align:center"><div style="width:44px;height:90px;border:2px solid #475569;border-radius:4px;${pins[i]?sw(pins[i]):'background:#fff'}"></div><div class="xs mono">${i+1}</div></div>`).join('')}</div><div class="bank" style="margin-top:10px;justify-content:center">${pool.map(k=>`<span class="chip ${pins.includes(k)?'used':''}" data-w="${k}"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle;${sw(k)};border:1px solid #475569"></span> ${W[k][0]}</span>`).join('')}</div><div class="row" style="margin-top:8px"><button class="btn sm" id="rju">↶ Geri al</button><button class="btn sm" id="rjr">↺ Sıfırla</button><button class="btn pri sm" id="rjt">🔌 Test cihazına tak</button></div><div class="note sm" id="rjx" style="margin-top:6px">Pin 1’den başlayarak telleri sırayla seç. Konnektörün klipsi aşağı, pinler sana bakıyor.</div>`;
+  $$('[data-w]',R).forEach(c=>c.onclick=()=>{if(pins.length<8){pins.push(c.dataset.w);d()}});$('#rju').onclick=()=>{pins.pop();d()};$('#rjr').onclick=()=>{pins=[];d()};
+  $('#rjt').onclick=()=>{const ok=pins.length===8&&pins.every((p,i)=>p===STD[std][i]);const wrong=pins.map((p,i)=>p!==STD[std][i]?i+1:0).filter(Boolean);$('#rjx').className='note sm '+(ok?'t':'f');$('#rjx').innerHTML=ok?`✅ Test başarılı: 8 pinin tamamı T568${std} sırasında. Etiketlemeyi unutma: “PC-01 → Switch-01”.`:pins.length<8?'Önce 8 telin hepsini yerleştir.':`✘ Hatalı pin(ler): ${wrong.join(', ')}. Doğru T568${std}: ${STD[std].map(k=>W[k][0]).join(' – ')}`}};
+ $$('#u5-std button').forEach(b=>b.onclick=()=>{std=b.dataset.s;pins=[];$$('#u5-std button').forEach(x=>x.classList.toggle('on',x===b));d()});d()})();
+orderGame($('#u5-kh'),['Kablo uzunluğunu belirle ve kes.','Kablo soyucuyla dış kılıfı yaklaşık 2 cm aç.','Telleri T568B’ye göre sırala, düzleştir.','Telleri RJ-45 konnektöre sonuna kadar yerleştir.','Sıkma pensesiyle konnektörü sık; diğer uca da uygula.','İki uca etiket yapıştır (PC-01 → Switch-01).','Kablo test cihazıyla tüm pinleri test et.'],{fs:13});
+
+(function(){const R=$('#u5-eth');orderGame(R,['Bilgisayarı kapat, güç bağlantısını kes.','Kasanın yan kapağını aç.','Anakarttaki uygun PCIe yuvasını belirle.','Ethernet kartını PCIe yuvasına yerleştir ve sabitle.','Kartın oturduğunu kontrol et, kasayı kapat.','Kablonun bir ucunu karta, diğerini switch portuna tak.','Bilgisayarı aç; sürücüyü, bağlantı ışıklarını ve ağ durumunu kontrol et.'],{fs:13})})();
+classify($('#u5-yk'),[
+ {t:'Ağ kablolarının kullanıcı tarafında sonlandırıldığı bağlantı noktası',a:'Duvar prizi'},{t:'Cihazları prize, panele veya switche bağlayan kısa, hazır kablo',a:'Patch kablo'},{t:'Bina kablolarının merkezî noktada sonlandırıldığı ekipman',a:'Patch panel'},{t:'Switch, panel, router, firewall, sunucunun yerleştirildiği kabin',a:'Rack kabin'},{t:'Priz ve panel içindeki modüler RJ-45 bağlantı birimi',a:'Keystone jack'},{t:'Kablo kanalı, kablo bağı, düzenleyici, etiket',a:'Kablo yönetim aksesuarı'}],
+ ['Duvar prizi','Patch kablo','Patch panel','Rack kabin','Keystone jack','Kablo yönetim aksesuarı'],{cols:'1fr'});
+$$('#u5-yk .it button').forEach(b=>{b.style.fontSize='11px';b.style.padding='2px 6px'});
+
+const ipP=s=>{const p=String(s).trim().split('.');if(p.length!==4||p.some(x=>!/^\d{1,3}$/.test(x)||+x>255))return null;return p.map(Number)};
+(function(){const up=()=>{const p=ipP($('#u5-ip').value),R=$('#u5-ipx');if(!p){R.innerHTML='<div class="note f">✘ Geçersiz IPv4: 4 bölüm olmalı, her biri 0–255.</div>';return}
+ const f=p[0];const cls=f>=1&&f<=126?['A','Çok büyük ağlar']:f>=128&&f<=191?['B','Orta büyüklükteki ağlar']:f>=192&&f<=223?['C','Küçük ve yerel ağlar']:null;const priv=f===10||(f===172&&p[1]>=16&&p[1]<=31)||(f===192&&p[1]===168);
+ R.innerHTML=`<div style="display:flex;gap:4px;margin-bottom:8px">${p.map((x,i)=>`<div style="flex:1;text-align:center;background:${i<3?'#dbeafe':'#fde68a'};border-radius:6px;padding:4px"><b class="mono">${x}</b><div class="mono" style="font-size:9.5px">${x.toString(2).padStart(8,'0')}</div></div>`).join('')}</div><div class="note sm">${cls?`<b>${cls[0]} sınıfı</b> (ilk oktet ${f}): ${cls[1]}`:'Tablo 5.3’teki A, B, C sınıflarının dışında.'}<br>${priv?'🏠 <b>Özel</b> adres aralığında (yerel ağlarda kullanılır).':'🌐 Özel aralıkta değil.'}<br>Maske 255.255.255.0 ise: ağ <b class="mono">${p.slice(0,3).join('.')}</b> · cihaz <b class="mono">${p[3]}</b><br><span class="xs muted">32 bit = 4 × 8 bit. Mavi: ağ, sarı: cihaz (/24 için).</span></div>`};$('#u5-ip').oninput=up;up()})();
+(function(){const up=()=>{const a=ipP($('#u5-a').value),b=ipP($('#u5-b').value),m=ipP($('#u5-m').value),R=$('#u5-abx');if(!a||!b||!m){R.innerHTML='<div class="note f">Geçerli IP ve maske gir.</div>';return}
+ const na=a.map((x,i)=>x&m[i]),nb=b.map((x,i)=>x&m[i]),same=na.join()===nb.join();R.innerHTML=`<table class="bt mono" style="font-size:12px"><tr><th></th><th>Ağ adresi</th></tr><tr><td>Cihaz 1</td><td>${na.join('.')}</td></tr><tr><td>Cihaz 2</td><td>${nb.join('.')}</td></tr></table><div class="note ${same?'t':'f'}" style="margin-top:6px">${same?(a.join()===b.join()?'⚠ Aynı ağda ama <b>aynı IP</b>: IP çakışması!':'✅ Aynı ağdalar; doğrudan iletişim kurabilirler.'):'✘ Farklı ağlarda; iletişim için yönlendirici (router) gerekir.'}</div>`};['#u5-a','#u5-b','#u5-m'].forEach(s=>$(s).oninput=up);up()})();
+
+(function(){const R=$('#u5-tcp');const USED=['192.168.1.1','192.168.1.20','192.168.1.100'];
+ R.innerHTML=`<label class="sm"><input type="radio" name="u5t" value="d"> IP adresini otomatik al (DHCP)</label><br><label class="sm"><input type="radio" name="u5t" value="s" checked> Aşağıdaki IP adresini kullan:</label><div class="sc" style="grid-template-columns:200px 1fr;margin:6px 0 0 20px" id="u5-tf"><span class="xs">IP adresi</span><input type="text" id="tf-ip" placeholder="192.168.1.50"><span class="xs">Alt ağ maskesi</span><input type="text" id="tf-m" placeholder="255.255.255.0"><span class="xs">Varsayılan ağ geçidi</span><input type="text" id="tf-g" placeholder="192.168.1.1"><span class="xs">Tercih edilen DNS</span><input type="text" id="tf-d1" placeholder="8.8.8.8"><span class="xs">Diğer DNS</span><input type="text" id="tf-d2" placeholder="8.8.4.4"></div><div class="row" style="margin-top:8px"><button class="btn pri" id="tf-ok">Tamam</button><button class="btn sm" id="tf-ex">Kitap örneği</button><span class="xs muted">Ağda kullanılanlar: 192.168.1.1 (ağ geçidi), .20 (yazıcı), .100 (sunucu)</span></div><div class="term" id="tf-o" style="flex:1;margin-top:8px;min-height:110px"></div>`;
+ const O=$('#tf-o');const st=()=>{const s=$('input[name=u5t]:checked',R).value==='s';$$('#u5-tf input').forEach(i=>i.disabled=!s)};$$('input[name=u5t]',R).forEach(r=>r.onchange=st);
+ $('#tf-ex').onclick=()=>{[['tf-ip','192.168.1.50'],['tf-m','255.255.255.0'],['tf-g','192.168.1.1'],['tf-d1','8.8.8.8'],['tf-d2','8.8.4.4']].forEach(([i,v])=>$('#'+i).value=v)};
+ $('#tf-ok').onclick=()=>{let ip,mask='255.255.255.0',gw='192.168.1.1';O.innerHTML='';
+  if($('input[name=u5t]:checked',R).value==='d'){ip='192.168.1.'+(101+Math.floor(Math.random()*100));O.innerHTML+=`<span class="dim">DHCP sunucusundan adres alındı: ${ip} / ${mask}, ağ geçidi ${gw}</span>\n`}
+  else{ip=$('#tf-ip').value.trim();mask=$('#tf-m').value.trim();gw=$('#tf-g').value.trim();const e=[];const p=ipP(ip),m=ipP(mask),g=ipP(gw);
+   if(!p)e.push('IP adresi geçersiz');if(!m)e.push('alt ağ maskesi geçersiz');if(!g)e.push('ağ geçidi geçersiz');
+   if(p&&USED.includes(ip))e.push(`${ip} başka bir cihaz tarafından kullanılıyor (IP çakışması)`);
+   if(p&&m&&g&&p.map((x,i)=>x&m[i]).join()!==g.map((x,i)=>x&m[i]).join())e.push('IP ile ağ geçidi aynı ağda değil');
+   if(g&&gw!=='192.168.1.1')e.push('bu ağın ağ geçidi 192.168.1.1');
+   if(e.length){O.innerHTML+=`<span class="er">Yapılandırma sorunlu: ${e.join(' · ')}</span>\n`}}
+  O.innerHTML+=`C:\\&gt; ping 192.168.1.1\n`;const okp=!/Yapılandırma sorunlu/.test(O.textContent);
+  O.innerHTML+=okp?[1,2,3,4].map(()=>`192.168.1.1 yanıtı: bayt=32 süre&lt;1ms TTL=64`).join('\n')+'\n<span class="ok">Paket: Gönderilen = 4, Alınan = 4, Kayıp = 0 (%0 kayıp) ✔ Bağlantı aktif.</span>':'<span class="er">İstek zaman aşımına uğradı. (×4)  Kayıp = 4 (%100)</span>\n<span class="dim">Ping başarısız: IP, maske, ağ geçidi, kablo ve bağlantı ışıklarını kontrol et.</span>'};st()})();
+classify($('#u5-sd'),[{t:'Okulun web sunucusu',a:'Statik'},{t:'Otelde misafirin telefonu',a:'Dinamik'},{t:'İşletmenin ağ yazıcısı',a:'Statik'},{t:'Öğrencinin okul Wi-Fi’sine bağlanan tableti',a:'Dinamik'},{t:'Güvenlik kamerası',a:'Statik'}],['Statik','Dinamik'],{cols:'1fr'});
+
+slotFill($('#u5-oa'),`<div class="cmap" style="font-size:13px"><div class="nd t" style="font-size:17px">AĞ TEMELLERİ</div>
+ <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;text-align:center">
+  <div class="nd"><b>İletişim türleri</b><br><span class="xs">Verilerin aktarılma yöntemleri</span><br>1. {{a1}}</div>
+  <div class="nd"><b>Ağ türleri</b><br><span class="xs">Kapsama alanına göre</span><br>2. {{a2}}</div>
+  <div class="nd"><b>Ağ cihazları</b><br><span class="xs">Veri iletimi, yönlendirme, güvenlik</span><br>3. {{a3}}<br>4. {{a4}}<br>5. {{a5}}</div>
+  <div class="nd"><b>Kablolama</b><br><span class="xs">Kablo türleri ve bağlantı elemanları</span><br>6. {{a6}}<br>7. {{a7}}</div>
+  <div class="nd"><b>IP adresleme</b><br><span class="xs">Benzersiz tanımlama</span><br>8. {{a8}}<br>9. {{a9}}</div>
+ </div><div class="nd" style="margin-top:6px"><b>Ağ topolojileri</b> <span class="xs">Fiziksel / mantıksal bağlanma biçimi</span><br>10. {{a10}}</div></div>`,
+ {a1:'Seri İletişim',a2:'LAN',a3:['Anahtarlama','Yönlendirici','Güvenlik Duvarı'],a4:['Anahtarlama','Yönlendirici','Güvenlik Duvarı'],a5:['Anahtarlama','Yönlendirici','Güvenlik Duvarı'],a6:['UTP Kablo','RJ-45'],a7:['UTP Kablo','RJ-45'],a8:['IPv4','Alt Ağ Maskesi'],a9:['IPv4','Alt Ağ Maskesi'],a10:'Yıldız Topolojisi'},
+ ['Seri İletişim','LAN','Anahtarlama','Yönlendirici','IPv4','Alt Ağ Maskesi','UTP Kablo','RJ-45','Güvenlik Duvarı','Yıldız Topolojisi']);
+classify($('#u5-ob'),[{t:'IP adreslerini otomatik dağıtan hizmet',a:'D) DHCP'},{t:'Farklı ağlar arasında veri yönlendiren cihaz',a:'A) Router'},{t:'Verileri ışık sinyalleriyle ileten kablo türü',a:'E) Fiber optik'},{t:'Geniş alan ağlarını ifade eden ağ türü',a:'Ç) WAN'},{t:'Ağ trafiğini filtreleyerek güvenlik sağlayan sistem',a:'C) Güvenlik duvarı'},{t:'Kablosuz cihazların ağa bağlanmasını sağlayan cihaz',a:'B) Access Point'}],
+ ['A) Router','B) Access Point','C) Güvenlik duvarı','Ç) WAN','D) DHCP','E) Fiber optik','F) Koaksiyel'],{cols:'1fr'});
+$$('#u5-ob .it button').forEach(b=>{b.style.fontSize='10.5px';b.style.padding='2px 5px'});
+tfList($('#u5-oc'),[
+ {t:'Anahtarlama cihazı veri paketlerini yalnızca ilgili hedef porta yönlendirir.',a:true},
+ {t:'IPv6 adresleri IPv4 adreslerinden daha kısa adres yapısına sahiptir.',a:false,x:'IPv6, IPv4’ün yetersizliği nedeniyle daha geniş adres kapasitesi sunmak için geliştirilmiştir.'},
+ {t:'DHCP hizmeti IP adreslerini otomatik olarak dağıtabilir.',a:true},
+ {t:'Koaksiyel kablolar verileri ışık sinyalleriyle iletir.',a:false,x:'Koaksiyel bir bakır kablodur; ışıkla ileten fiber optiktir.'},
+ {t:'Access Point farklı ağlar arasında yönlendirme yapan cihazdır.',a:false,x:'Bu görev yönlendiricinindir (router); AP kablosuz erişim sağlar.'}]);
+quiz($('#u5-oç'),[
+ {q:'1. Okul laboratuvarındaki bilgisayarların aynı binada haberleşmesini sağlayan ağ türü hangisidir?',o:['PAN','LAN','MAN','WAN','VPN'],a:1},
+ {q:'2. Verilerin tek bir hat üzerinden sıralı gönderildiği yöntem hangisidir?',o:['Paralel iletişim','Yayın iletişimi','Seri iletişim','Hücresel iletişim','Token iletişimi'],a:2},
+ {q:'3. Telefon görüşmesinde iki kişinin aynı anda konuşup dinleyebilmesi hangisine örnektir?',o:['Simplex','Half Duplex','Broadcast','Full Duplex','Asenkron'],a:3},
+ {q:'4. Tüm cihazların merkezî bir anahtarlama cihazına bağlandığı topoloji hangisidir?',o:['Halka','Veri yolu','Ağaç','Yıldız','Örgü'],a:3},
+ {q:'5. Farklı ağlar arasında paketlerin uygun yoldan iletilmesini sağlayan cihaz hangisidir?',o:['Router','Modem','Access Point','Ethernet kartı','Ağ test cihazı'],a:0},
+ {q:'6. Her iki ucunda aynı renk diziliminin kullanıldığı kablo türü hangisidir?',o:['Çapraz kablo','Fiber kablo','Konsol kablosu','Koaksiyel kablo','Düz kablo'],a:4},
+ {q:'7. Kullanıcıya 192.168.1.50 IP ve 255.255.255.0 maske atanmıştır. Bu hangi işlemi gösterir?',o:['Ağ kablosu sonlandırma','Ağ topolojisi oluşturma','Statik IP yapılandırma','Fiber kablo testi','Ethernet kartı takma'],a:2}],'Ç) Çoktan seçmeli');
+
+Object.assign(SORU,{
+ once5:{t:'Önce Düşün',h:'<p>Ağ sistemleri ve ağ bağlantıları ile ilgili bildiklerini ve merak ettiklerini yaz.</p>',q:['<b>BİLDİKLERİM:</b>','<b>MERAK ETTİKLERİM:</b>']},
+ seripar:{t:'Sıra Sizde: Seri ↔ paralel karşılaştırma',h:'<p>Her ölçüt için seri ve paralel iletişime ait bilgiyi gerekçesiyle yaz.</p>',q:['Veri iletim şekli','Kullanılan hat sayısı','Kısa mesafedeki hız durumu','Uzun mesafedeki kullanım durumu','Kablolama maliyeti','Kullanım alanlarına örnek']},
+ cikis5:{t:'Sıra Sizde: 3-2-1 Çıkış kartı',h:'<p>Ağ topolojileri ve organizasyon yapıları.</p>',q:['<b>Üç yaz:</b> Öğrendiğin veya önemli bulduğun üç bilgi.','<b>İki sor:</b> Merak ettiğin iki soru.','<b>Bir paylaş:</b> Kat planında yaptığın ağ tasarımı hangi topolojiye yakın? Açıkla.']},
+ dtp5a:{t:'Düşün-Tartış-Paylaş: Ağ cihazları',h:'',q:['Bir otelde yüzlerce kişinin aynı anda internete bağlanabilmesi nasıl sağlanıyor?','Bir e-postanın dünyanın öbür ucuna birkaç saniyede ulaşması nasıl mümkün oluyor?','İnternet bir gün boyunca tamamen kesilse günlük yaşamında hangi faaliyetler etkilenirdi?']},
+ kablo5:{t:'Örnek Uygulamalar: Sonuç soruları',h:'',q:['Kablo sonlandırmada tellerin sıralaması yanlış yapılırsa ağ iletişiminde ne tür sorunlar oluşabilir?','Kablo etiketlemesinin yapılmaması bakım ve arıza giderme çalışmalarını nasıl etkileyebilir?','Kablo test cihazı kullanılmadan yapılan bağlantının riskleri nelerdir?','Ethernet kartının anakarta tam oturmaması ne tür sorunlara neden olabilir?','Ağ kablosunun switchte yanlış porta takılması iletişimi nasıl etkileyebilir?']},
+ dtp5b:{t:'Düşün-Tartış-Paylaş: Adresler',h:'',q:['Bir şehirde evlerin kapı numarası olmasaydı postacılar doğru adresi nasıl bulurdu? Dijital dünyada da benzer bir sisteme ihtiyaç var mı?','Milyarlarca cihaz internette birbirini nasıl buluyor olabilir? Bu iletişimi düzenleyen kurallar neler?','İnternete bağlanan cihaz sayısı çok artarsa cihazların iletişimi nasıl etkilenir?']},
+ sip5:{t:'Statik IP Örnek Uygulaması: Sonuç',h:'',q:['Aynı ağda iki farklı cihaza aynı IP adresi verilirse ne tür sorunlar yaşanabilir?','Statik IP adresi kullanmak sunucular ve ağ yazıcıları için neden önemlidir?','Ping başarısızsa hangi kontroller yapılır?']},
+ oc5:{t:'Ölçme C gerekçeleri ve D açık uçlu',h:'',q:['C) Beş D/Y ifadesinin gerekçelerini yaz.','D1) Okul binasında laboratuvar, öğretmenler odası ve idari birimler için ağ kurulacak. Kullanılacak ağ cihazlarını ve kablolama türlerini gerekçeleriyle açıkla.','D2) Bir işletmede statik ve dinamik IP kullanımının avantajlarını karşılaştır.','D3) Yıldız ve örgü topolojisini güvenilirlik, maliyet ve yönetilebilirlik açısından karşılaştır.']}
+});
+Object.assign(EV,{
+ once5:[{c:[['En az iki bilgi','#items:2']],m:'Modem internete bağlanmamızı sağlar.\nKablosuz ağa Wi-Fi denir.'},{c:[['En az bir soru','#q:1']],m:'Bir mesaj doğru bilgisayarı nasıl bulur?'}],
+ seripar:[{c:[['Seri: sırayla','sira|art arda|tek tek|bit bit'],['Paralel: aynı anda','ayni anda|eszamanli']],m:'Seri: bitler art arda, sırayla. Paralel: bitler aynı anda.'},{c:[['Seri: tek hat','tek|bir hat|1'],['Paralel: çok hat','birden fazla|cok|8|sekiz']],m:'Seri: tek hat. Paralel: birden fazla (ör. 8) hat.'},{c:[['Paralel hızlı','paralel.*hizli|hizli.*paralel|paralel daha']],m:'Kısa mesafede paralel daha hızlıdır; seri bit bit gönderir.'},{c:[['Seri uzun mesafeye uygun','seri.*uygun|uzun.*seri|seri.*uzun'],['Paralel zamanlama sorunu','zamanlama|bozul|hata|uygun degil']],m:'Seri uzun mesafeye uygundur (daha az hata); paralelde mesafe artınca zamanlama farkları veri bütünlüğünü bozar.'},{c:[['Maliyet karşılaştırması','dusuk|ucuz|az|fazla|yuksek|pahali']],m:'Seri: az kablo, düşük maliyet. Paralel: çok kablo, yüksek maliyet.'},{c:[['Seri örnek','usb|ethernet|fare|telefon'],['Paralel örnek','islemci|bellek|anakart|veri yolu|yazici']],m:'Seri: USB fare, Ethernet. Paralel: işlemci–bellek, anakart veri yolları, eski yazıcılar.'}],
+ cikis5:[{c:[['Üç bilgi','#items:3']],m:'1. Yıldız topolojide merkez cihaz arızalanırsa ağ çalışmaz.\n2. Örgü topoloji yedekliliği yüksektir.\n3. İstemci/sunucu yapısında hizmetler merkezî yönetilir.'},{c:[['İki soru','#q:2']],m:'Leaf-Spine topolojisi nasıl çalışır?\nP2P ağlar ne kadar güvenlidir?'},{c:[['Topoloji adı','yildiz|agac|orgu|veri yolu|halka'],['Gerekçe','switch|merkez|kat|bagli|cunku']],m:'Tasarımım ağaç topolojiye yakın; çünkü her kattaki switch, sistem odasındaki ana switch/router’a bağlı ve her katın bilgisayarları kendi switchine yıldız şeklinde bağlı.'}],
+ dtp5a:[{c:[['Cihaz/kavram','erisim noktasi|access|router|yonlendirici|switch|anahtar|ip|dhcp']],m:'Birden fazla erişim noktası, anahtar ve yönlendirici birlikte çalışır; DHCP her cihaza otomatik IP verir.'},{c:[['Kavram','router|yonlendir|protokol|ip|fiber|isik|ag']],m:'Veri paketleri yönlendiriciler üzerinden en uygun yoldan, fiber optik kablolarla ışık hızına yakın iletilir; protokoller iletişimi düzenler.'},{c:[['Etkilenen faaliyet','ders|odev|mesaj|banka|alisveris|eba|video|iletisim|harita']],m:'Online dersler, ödev teslimi, mesajlaşma, bankacılık, navigasyon ve video izleme etkilenirdi.'}],
+ kablo5:[{c:[['Sorun','baglanti|hiz|performans|calismaz|iletisim|hata|kayip']],m:'Bağlantı hiç kurulamaz veya performans kaybı ve bağlantı sorunları yaşanır.'},{c:[['Etki','zor|zaman|bulma|karis|ariza']],m:'Hangi kablonun hangi cihaza gittiği bulunamaz; arıza tespiti uzar, yanlış kablo sökülebilir.'},{c:[['Risk','hatali|pin|calismayan|fark edil|ariza|kopuk']],m:'Hatalı veya kopuk pinler fark edilmeden kurulum yapılır; sonra bağlantı sorunları çıkar.'},{c:[['Sorun','taninmaz|baglanti|calismaz|algilan|surucu|hasar']],m:'Kart tanınmaz veya bağlantı kesik kesik çalışır; karta zarar gelebilir.'},{c:[['Etki','baglanti|vlan|ag|iletisim|farkli|calismaz']],m:'Cihaz yanlış ağa veya kullanılmayan bir porta bağlanır; iletişim kurulamaz.'}],
+ dtp5b:[{c:[['Benzetme','adres|ip|numara']],m:'Doğru adres bulunamazdı; dijital dünyada da cihazların IP adresleri bu “kapı numarası” görevini görür.'},{c:[['Kavram','ip|protokol|dns|yonlendir|tcp']],m:'Her cihazın IP adresi vardır; TCP/IP protokolleri ve yönlendiriciler paketleri doğru hedefe ulaştırır.'},{c:[['Etki','ipv4|yetersiz|ipv6|nat|adres']],m:'IPv4 adresleri yetersiz kalır; bu yüzden NAT ve daha geniş adres kapasiteli IPv6 kullanılır.'}],
+ sip5:[{c:[['Çakışma','cakisma|iletisim|baglanti|kopar|sorun']],m:'IP adresi çakışması olur; cihazlardan biri veya ikisi ağa bağlanamaz, iletişim sorunları yaşanır.'},{c:[['Neden','ayni adres|sabit|her zaman|erisim|degismez']],m:'Kullanıcılar ve diğer cihazlar kaynağa her zaman aynı adresten erişebilir.'},{c:[['Kontrol','ip|maske|ag gecidi|kablo|isik|surucu|cakisma']],m:'IP, alt ağ maskesi ve ağ geçidinin doğruluğu, IP çakışması, kablo ve bağlantı ışıkları, sürücü durumu kontrol edilir.'}],
+ oc5:[{c:[['En az üç gerekçe','#items:3']],m:'1. Doğru: switch paketleri yalnızca hedef porta yönlendirir.\n2. Yanlış: IPv6 daha geniş adres kapasitesi için daha uzun yapıdadır.\n3. Doğru: DHCP IP’leri otomatik dağıtır.\n4. Yanlış: koaksiyel bakırdır, ışıkla fiber iletir.\n5. Yanlış: yönlendirme router’ın görevidir; AP kablosuz erişim sağlar.'},{n:3,c:[['Switch','switch|anahtar'],['Router/modem','router|yonlendirici|modem'],['AP','erisim noktasi|access|kablosuz'],['Kablo','utp|cat6|cat 6|fiber|kablo'],['Güvenlik','guvenlik duvari|firewall']],m:'Her birimde switch; internet için modem/router; kablosuz için erişim noktaları; güvenlik için güvenlik duvarı. Bina içinde Cat6 UTP kablo ve RJ-45, binalar arası veya uzun mesafede fiber.'},{c:[['Statik avantaj','statik|sabit|sunucu|yazici|kontrol'],['Dinamik avantaj','dinamik|dhcp|otomatik|kolay|hata']],m:'Statik: sunucu ve yazıcılar hep aynı adreste, daha fazla kontrol. Dinamik: DHCP ile otomatik, yönetimi kolay, hata az, çok cihazda zaman tasarrufu.'},{c:[['Güvenilirlik','guvenilir|yedek|ariza'],['Maliyet','maliyet|pahali|ucuz|kablo'],['Yönetim','yonet|kolay|zor']],m:'Güvenilirlik: örgüde yedeklilik yüksek; yıldızda merkez arızası tüm ağı durdurur. Maliyet: yıldız daha ucuz, örgü çok kablo gerektirdiği için pahalı. Yönetim: yıldız kolay, örgü zor.'}]
+});
+SORU_MAP.push(['s-5-0','once5','📖 Önce Düşün','#once5-c'],['s-5-1','seripar','📖 Sıra Sizde tablosu'],['s-5-5','cikis5','📖 3-2-1 Çıkış kartı'],['s-5-6','dtp5a','📖 Düşün-Tartış-Paylaş'],['s-5-8','kablo5','📖 Sonuç soruları'],['s-5-10','dtp5b','📖 Düşün-Tartış-Paylaş'],['s-5-11','sip5','📖 Sonuç soruları'],['s-5-13','oc5','📖 C gerekçeleri · D']);
 /* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
 const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
 function evCheck(spec,txt){
