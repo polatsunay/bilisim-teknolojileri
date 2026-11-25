@@ -1011,6 +1011,180 @@ DEĞİLSE
  <h2>Ölçme ve Değerlendirme · C <small>çoktan seçmeli · 10 soru</small></h2>
  <div class="body"><div class="card acc" id="u3-oc"></div></div>
 </section>
+<section class="slide" id="s-4-0" data-sec="4" data-title="4. Öğrenme Birimi · İşletim Sistemleri" data-ref="Kitap s. 170–172">
+ <div class="secov">
+  <div>
+   <div class="secno">4</div>
+   <h2 style="font-size:44px">İşletim Sistemleri</h2>
+   <div class="kz"><b>Konular:</b> 4.1 Sistem İlk Açılış Ayarları · 4.2 Kapalı Kaynak Kodlu İşletim Sistemi · 4.3 Açık Kaynak Kodlu İşletim Sistemi · 4.4 Donanım ve Yazılım Sorunları</div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="tag">açık kaynak kodlu İS</span><span class="tag">kapalı kaynak kodlu İS</span><span class="tag">aygıt yöneticisi</span><span class="tag">Linux</span><span class="tag">BIOS</span><span class="tag">Pardus</span><span class="tag">boot</span><span class="tag">sistem bakımı</span><span class="tag">donanım arızası</span><span class="tag">sürücü</span><span class="tag">güvenlik yazılımı</span><span class="tag">teknik servis</span><span class="tag">UEFI</span><span class="tag">veri kurtarma</span><span class="tag">yardımcı yazılım</span><span class="tag">yazılım hatası</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🎯 Bu öğrenme biriminde sizden beklenenler</h3><ul class="tight sm"><li>İlk açılış sürecini ve BIOS/UEFI ayarlarının önemini kavramanız, açılış önceliği gibi temel ayarları yapabilmeniz</li><li>Kapalı / açık kaynak kodlu işletim sistemini kurulum ve temel yapılandırma adımlarıyla uygulamanız</li><li>Kurulumdan sonra sürücü, yardımcı yazılım, uygulama ve güvenlik ayarlarını yapabilmeniz</li><li>Donanım ve yazılım sorunlarını ayırt edip temel arıza tespit adımlarını uygulayabilmeniz</li></ul></div>
+   <div class="card soft sm"><h3>🚦 Başlarken</h3>Bilgisayarın ilk açılış süreci, BIOS/UEFI ayarları, POST ve açılış önceliğinden başlayıp kapalı ve açık kaynak kodlu işletim sistemlerinin kurulumuna, sürücü-güvenlik ayarlarına ve teknik servis bakış açısıyla arıza tespitine ilerleyeceksin.</div>
+   <div class="card sm" id="once4-c"><h3>💭 Önce Düşün</h3>İşletim sistemleri hakkında neler biliyorsun, neleri merak ediyorsun?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-1" data-sec="4" data-title="İşletim sistemi nedir?" data-ref="Kitap 4.1 · s. 173">
+ <h2>4.1 İşletim Sistemi: Donanım ile Kullanıcı Arasındaki Köprü</h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card sm"><p><b>Donanım:</b> Elle tutulabilen, gözle görülebilen fiziksel parçalar (anakart, işlemci, RAM, ekran kartı, klavye, fare…).<br><b>Yazılım:</b> Donanımın ne yapacağını belirleyen komutlar, programlar ve uygulamalar (web tarayıcısı, ofis programı, oyun…).</p><p><b>İşletim sistemi;</b> donanım ile kullanıcı ve uygulama yazılımları arasında <b>köprü</b> görevi gören temel sistem yazılımıdır. Kullanıcının isteği doğrudan donanıma gitmez; işletim sistemi isteği yönetir, kaynakları hazırlar, işlemleri düzenler.</p></div>
+   <div class="card soft" id="u4-kopru"></div>
+  </div>
+  <div class="card acc col"><h3>🧩 Donanım mı, yazılım mı?</h3><div id="u4-dy1" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-2" data-sec="4" data-title="BIOS/UEFI ve POST" data-ref="Kitap 4.1.1 · s. 174–175">
+ <h2>4.1.1 BIOS/UEFI ve POST <small>işletim sistemi başlamadan önce</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>⚡ Güç düğmesinden masaüstüne</h3><div id="u4-boot" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>BIOS</b> (Basic Input/Output System · Temel Giriş/Çıkış Sistemi): Açılışta donanımları başlatır, temel kontrolleri yapar, işletim sisteminin yüklenmesini sağlar. Anakarttaki özel bir çiptedir; <b>işletim sisteminden bağımsızdır</b>, İS kurulu olmasa da BIOS ekranına girilebilir.<br><b>UEFI:</b> BIOS’un gelişmiş, modern sürümü: gelişmiş güvenlik, hızlı açılış, büyük disk desteği, bazen fare desteği.</div>
+   <div class="card soft sm"><b>POST</b> (Power-On Self Test · Açılışta Kendi Kendini Test Etme): BIOS/UEFI’nin ilk denetimi. Anakart, işlemci, RAM, ekran kartı, klavye, depolama birimi kontrol edilir. Sorun yoksa açılış önceliğine göre devam edilir; sorun varsa <b>hata mesajı</b> veya <b>bip sesi</b> verilir. Donanım arızalarını İS sorunlarından ayırmada önemli ipucu sağlar.</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-3" data-sec="4" data-title="BIOS simülatörü: açılış önceliği, tarih-saat" data-olc="kanit" data-ref="Kitap 4.1.2 · 1. ve 2. Uygulama · s. 175–179">
+ <h2>BIOS/UEFI Simülatörü <small>1. Uygulama: Açılış önceliği · 2. Uygulama: Tarih ve saat</small></h2>
+ <div class="body c2l">
+  <div id="u4-bios" style="background:#0b2a6b;color:#e6edff;border-radius:12px;font-family:var(--mono);font-size:14px;display:flex;flex-direction:column;overflow:hidden"></div>
+  <div class="card acc col"><h3>🎯 Görevler</h3><div id="u4-bt" class="chk"></div><div class="note sm" id="u4-bres" style="margin-top:8px">BIOS’a giriş tuşu marka-modele göre değişir: <b>Del, F2, F10, F12, Esc</b>. Çoğu ekranda “Press F2 to Enter Setup” gibi bir yazı görünür.</div><p class="xs muted" style="margin-top:6px">Kurulum bitince açılış önceliğinde tekrar disk ilk sıraya alınmalı; yoksa bilgisayar her açılışta kurulum USB’sinden başlayabilir.</p></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-4" data-sec="4" data-title="BIOS uyarıları: bip sesleri ve yazılı mesajlar" data-olc="bic" data-ref="Kitap Tablo 4.1–4.2 · s. 179–181">
+ <h2>BIOS Uyarıları <small>sesli ve yazılı hata mesajları</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🔊 Tablo 4.1: Bip sesini dinle, anlamını seç</h3><div id="u4-bip" style="flex:1"></div><p class="xs muted" style="margin:0">Not: Bip kodlarının anlamı BIOS türü, anakart markası ve modeline göre değişebilir; kullanım kılavuzundan yararlanılmalıdır.</p></div>
+  <div class="card acc col"><h3>📝 Tablo 4.2: Yazılı mesajın olası anlamı</h3><div id="u4-msg" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-5" data-sec="4" data-title="Sıra Sizde: BIOS/UEFI D/Y" data-olc="bic" data-ref="Kitap Sıra Sizde · s. 181">
+ <h2>Sıra Sizde: BIOS/UEFI doğru mu, yanlış mı? <small>çıkış kodunu bul</small></h2>
+ <div class="body c2r">
+  <div class="card soft col sm"><h3>Yönerge</h3><p>Her ifade için <b>Doğru (D)</b> veya <b>Yanlış (Y)</b> kararını vererek ilerle ve ulaştığın çıkış kodunu belirle.</p><p>Sonra seçimini hangi BIOS/UEFI belirtisine göre yaptığını bir cümleyle açıkla (📖).</p><div class="note xs"><b>Hatırla:</b> Save and Exit → kaydet ve çık · Exit Without Saving → kaydetmeden çık · Defaults → varsayılan · Discard Changes → değişiklikleri iptal.</div></div>
+  <div class="card acc" id="u4-dy"></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-6" data-sec="4" data-title="4.2 Kapalı kaynak kodlu İS ve kurulum hazırlığı" data-ref="Kitap 4.2–4.2.1 · Tablo 4.3 · s. 182–184">
+ <h2>4.2 Kapalı Kaynak Kodlu İşletim Sistemi <small>kurulum öncesi hazırlık</small></h2>
+ <div class="body c3">
+  <div class="card col sm"><p>Kaynak kodları kullanıcıya <b>açık olmayan</b>, geliştirme süreci belirli bir üretici tarafından yürütülen işletim sistemleri. Kullanıcı kurabilir, kullanabilir, ayarlarını değiştirip güncelleyebilir ama kaynak kodu <b>inceleyemez, değiştiremez, yeniden dağıtamaz</b>.</p><p><b>Lisans:</b> Yazılımın hangi şartlarla kullanılabileceğini belirleyen yasal kullanım hakkı (tek bilgisayar, kurumsal toplu lisans…).</p><p>Güncellemeler, güvenlik yamaları ve teknik destek merkezî olarak <b>üretici firma</b> tarafından sağlanır.</p></div>
+  <div class="card col"><h3>📋 Tablo 4.3: Hazırlıklar</h3><div id="u4-haz"></div></div>
+  <div class="card acc col"><h3>💾 Kurulum medyası oluştur (sırala)</h3><div id="u4-med" style="flex:1"></div><p class="xs muted">ISO yalnızca resmî siteden indirilmeli; bilinmeyen siteler eksik, hatalı veya zararlı dosya içerebilir.</p></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-7" data-sec="4" data-title="Kurulum adımları ve kullanıcı hesabı" data-olc="kanit" data-ref="Kitap s. 184–188 · 3. Uygulama">
+ <h2>Kapalı Kaynak Kodlu İS Kurulumu <small>3. Uygulama · 40 dk</small></h2>
+ <div class="body c2l">
+  <div class="card acc col"><h3>🧭 Kurulum adımlarını sırala</h3><div id="u4-kur" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Disk seçimi kritik!</b> Yanlış disk veya bölüm biçimlendirilirse veriler silinir. <b>Yükseltme</b> mevcut sistemi koruyarak yeni sürüme geçer; <b>özel kurulum</b> temiz kurulum yapar (eski ayar ve uygulamalar korunmayabilir).</div>
+   <div class="card col"><h3>👤 Yönetici mi, standart kullanıcı mı?</h3><div id="u4-hes" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-8" data-sec="4" data-title="Sürücüler ve Aygıt Yöneticisi" data-olc="bic" data-ref="Kitap 4.2.2 · s. 189–191">
+ <h2>4.2.2 Sürücülerin Kurulumu <small>Aygıt Yöneticisi simülasyonu</small></h2>
+ <div class="body c2">
+  <div class="card col"><div id="u4-ay" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Sürücü:</b> Donanımın işletim sistemi tarafından doğru tanınmasını ve iletişim kurmasını sağlayan özel yazılım. Masaüstüne ulaşmak, tüm donanımın tam performansla çalıştığı anlamına gelmez.<br><b>Aygıt Yöneticisi’ne ulaşma:</b> Başlat’a sağ tık → Aygıt Yöneticisi · Başlat aramasına “Aygıt Yöneticisi” yaz · Bilgisayar simgesine sağ tık.</div>
+   <div class="card acc"><h3>🛠️ Sürücü kurulum yöntemleri</h3><div id="u4-yon"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-9" data-sec="4" data-title="Yardımcı yazılımlar" data-olc="bic" data-ref="Kitap 4.2.3 · Tablo 4.4 · s. 191–193">
+ <h2>4.2.3 Yardımcı Yazılımların Kurulumu</h2>
+ <div class="body c2">
+  <div class="card col"><h3>📋 Tablo 4.4: Hangi yardımcı yazılım?</h3><div id="u4-yy" style="flex:1"></div></div>
+  <div class="card acc col"><h3>✍️ Sıra Sizde: Karar tablosu</h3><input type="text" id="u4-yyn" placeholder="İncelenecek yazılımın adı" style="width:100%"><div id="u4-kt" style="flex:1;margin-top:6px"></div><p class="xs muted">Sistem bakım yazılımlarında dikkat: “bilgisayarı hızlandırır, tüm sorunları çözer” iddiasındaki güvenilmeyen yazılımlar sistemi kararsız hâle getirebilir.</p></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-10" data-sec="4" data-title="Uygulama ve güvenlik ayarları" data-olc="kanit" data-ref="Kitap 4.2.4–4.2.5 · 4.–7. Uygulama · s. 193–200">
+ <h2>4.2.4–4.2.5 Uygulama ve Güvenlik Ayarları <small>4.–7. Uygulamalar</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>⚙️ Uygulama ayarları</h3><div id="u4-ua" style="overflow:auto"></div></div>
+  <div class="card col"><h3>🛡️ Windows Güvenliği</h3><div id="u4-ga" style="overflow:auto"></div></div>
+  <div class="card acc col"><h3>✅ Uygulama yol haritaları</h3><div id="u4-yol" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-11" data-sec="4" data-title="4.3 Açık kaynak kodlu İS ve Pardus" data-olc="bic" data-ref="Kitap 4.3 · Tablo 4.5 · s. 201–202">
+ <h2>4.3 Açık Kaynak Kodlu İşletim Sistemi <small>Pardus · Tablo 4.5</small></h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card sm"><p>Kaynak kodları kullanıcılar ve geliştiriciler tarafından <b>incelenebilen, geliştirilebilen</b> ve lisans koşulları çerçevesinde <b>paylaşılabilen</b> işletim sistemleri. <b>Kaynak kod:</b> yazılımın nasıl çalıştığını belirleyen, komutların yazıldığı temel yapı.</p><p>En yaygın örnek <b>Linux</b> tabanlı dağıtımlardır.</p></div>
+   <div class="card soft sm"><b>🇹🇷 Pardus:</b> TÜBİTAK tarafından geliştirilen, Linux tabanlı açık kaynak kodlu işletim sistemi. Bireysel kullanıcılar, eğitim ve kamu kurumları için. Masaüstü ortamı, ofis uygulamaları, internet araçları, yazılım merkezi, güncelleme sistemi ve güvenlik özellikleri sunar. Resmî site: <b>pardus.org.tr</b></div>
+  </div>
+  <div class="card acc col"><h3>⚖️ Kapalı mı, açık mı?</h3><div id="u4-ka" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-12" data-sec="4" data-title="Pardus kurulumu ve sanal makine" data-olc="kanit" data-ref="Kitap 4.3.1 · 8. Uygulama · s. 202–206">
+ <h2>4.3.1 Pardus Kurulumu <small>8. Uygulama: Sanal makinede Pardus</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🧭 Pardus kurulum akışını sırala</h3><div id="u4-par" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🖥️ Sanal makine yapılandır</h3><div id="u4-vm" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-13" data-sec="4" data-title="Pardus’ta sürücü, yazılım ve güvenlik" data-ref="Kitap 4.3.2–4.3.5 · 9. Uygulama · s. 206–212">
+ <h2>Pardus’ta Sürücü, Yazılım, Ayar ve Güvenlik</h2>
+ <div class="body c2">
+  <div id="u4-pa" style="overflow:auto"></div>
+  <div class="card acc col"><h3>🧩 Pardus’ta hangi araç?</h3><div id="u4-pq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-14" data-sec="4" data-title="4.4 Donanım arızalarını teşhis" data-olc="bic" data-ref="Kitap 4.4–4.4.1 · Tablo 4.6–4.7 · s. 212–214">
+ <h2>4.4 Donanım ve Yazılım Sorunları <small>teknik servis yaklaşımı: basitten karmaşığa</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🧩 Donanım mı, yazılım sorunu mu?</h3><div id="u4-dys" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔧 Tablo 4.7: Teşhis sürecini sırala</h3><div id="u4-tes" style="flex:1"></div><div class="note xs">Bilgisayar açılmıyorsa önce güç kablosu, priz, adaptör, güç düğmesi kontrol edilir; doğrudan anakart arızası düşünülüp parça değiştirilmez. Kasa açılmadan önce cihaz kapatılır, güç kablosu çıkarılır.</div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-15" data-sec="4" data-title="Arıza belirtileri ve tespit formu" data-olc="kanit" data-ref="Kitap Tablo 4.6 · Tablo 4.8 · Sıra Sizde · s. 213–215">
+ <h2>Arıza Belirtileri ve Teknik Servis Arıza Tespit Formu</h2>
+ <div class="body c2">
+  <div class="card col"><h3>📋 Tablo 4.6: Belirtiyi olası nedenle eşleştir</h3><div id="u4-bel" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🧾 Tablo 4.8: Arıza tespit formu</h3><div id="u4-form" style="flex:1;overflow:auto"></div><div class="row" style="margin-top:6px"><button class="btn sm" id="u4-fex">Örnek doldur</button><button class="btn sm" id="u4-fcp">📋 Kopyala</button></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-16" data-sec="4" data-title="Yazılım hatalarını saptama" data-olc="bic" data-ref="Kitap 4.4.2 · Tablo 4.9–4.10 · s. 215–220">
+ <h2>4.4.2 Yazılım Hatalarını Saptama <small>güvenli mod · geri yükleme · veri kurtarma · testler</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>📋 Tablo 4.10: Belirti → olası kaynak</h3><div id="u4-yh" style="flex:1;overflow:auto"></div></div>
+  <div class="card col"><div id="u4-ara" style="overflow:auto"></div></div>
+  <div class="card acc col"><h3>💻 chkdsk C: /f /r</h3><div id="u4-chk"></div><h3 style="margin-top:8px">🗑️ Dosya silindi! Ne yaparsın?</h3><div id="u4-sil" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-17" data-sec="4" data-title="Ölçme A–B" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme A–B · s. 221–222">
+ <h2>Ölçme ve Değerlendirme · A ve B</h2>
+ <div class="body c2r">
+  <div class="card acc col"><h3>A) D/Y çıkış</h3><div id="u4-oa" style="flex:1"></div></div>
+  <div class="card col"><h3>B) Uygun kutucukları seç</h3><div id="u4-ob" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-4-18" data-sec="4" data-title="Ölçme C · Test" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme C · s. 223–225">
+ <h2>Ölçme ve Değerlendirme · C <small>çoktan seçmeli · 9 soru</small></h2>
+ <div class="body"><div class="card acc" id="u4-oc"></div></div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -2039,6 +2213,208 @@ Object.assign(EV,{
  gddtp:[{c:[['Aşama','ayristir|zararli|toplama|parcala|geri kazan'],['Gerekçe','cunku|zira|nedeni']],m:'Ayrıştırma; çünkü atıklar türlerine göre ayrılmazsa değerli maddeler geri kazanılamaz ve zararlı maddeler doğaya karışabilir.'},{c:[['Sorun','toprak|su|zehir|kirli|saglik|agir metal']],m:'Ağır metaller toprağa ve suya karışır, uzun yıllar çevreyi zehirler, insan sağlığına zarar verir.'}]
 });
 SORU_MAP.push(['s-3-0','once3','📖 Önce Düşün','#once3-c'],['s-3-10','gpudtp','📖 Düşün-Tartış-Paylaş'],['s-3-16','eatik','📖 Düşün-Tartış-Paylaş'],['s-3-16','malz','📖 Malzeme ayrıştırma'],['s-3-17','sagdtp','📖 Sıra Sizde · DTP'],['s-3-18','gddtp','📖 Sıra Sizde soruları']);
+/* ============ 4. ÖĞRENME BİRİMİ: İŞLETİM SİSTEMLERİ ============ */
+$('#u4-kopru').innerHTML=`<div style="display:grid;grid-template-columns:1fr auto 1.2fr auto 1fr;gap:8px;align-items:center;text-align:center"><div class="note">👩‍💻 Kullanıcı<br><span class="xs">dosya aç, yazdır, internet</span></div><div class="ar">⇄</div><div class="note w">🧠 İşletim sistemi<br><span class="xs">işlemci, bellek, depolama, ağ kaynaklarını paylaştırır; hangi işlem önce, kim hangi dosyaya erişir, güvenlik</span></div><div class="ar">⇄</div><div class="note t">🔩 Donanım<br><span class="xs">CPU, RAM, disk, ağ kartı</span></div></div>`;
+classify($('#u4-dy1'),[{t:'Anakart',a:'Donanım'},{t:'Web tarayıcısı',a:'Yazılım'},{t:'RAM',a:'Donanım'},{t:'Ofis programı',a:'Yazılım'},{t:'Ekran kartı',a:'Donanım'},{t:'Oyun',a:'Yazılım'},{t:'İşletim sistemi',a:'Yazılım',x:'Temel sistem yazılımıdır.'}],['Donanım','Yazılım'],{cols:'1fr 1fr'});
+
+(function(){const R=$('#u4-boot');const S=[['⚡','Güç düğmesi'],['🔍','POST'],['📋','Açılış önceliği'],['💿','İşletim sistemi']];
+ const SC={ok:['Normal açılış','SSD ilk sırada; POST sorunsuz.',[1,1,1,1],'✅ 1 kısa bip. İşletim sistemi SSD’den yüklendi.','t'],ram:['RAM yerine tam oturmamış','POST sırasında bellek kontrolü başarısız.',[1,0,0,0],'🔊 1 uzun bip: bellek veya temel donanım sorunu olabilir. İşletim sistemi başlamaz.','f'],usb:['USB kurulum medyası ilk sırada','Kurulum USB’si takılı ve açılış önceliğinde en üstte.',[1,1,1,1],'💿 Kurulum ekranı açıldı: bilgisayar USB’deki kurulum dosyalarını çalıştırdı.','w'],nodisk:['Disk algılanmıyor','POST geçti ama başlatılabilir aygıt yok.',[1,1,0,0],'📝 “No Bootable Device”: BIOS’ta disk görünüyor mu ve açılış önceliği doğru mu kontrol edilmeli.','f']};let T=[];
+ const run=k=>{T.forEach(clearTimeout);T=[];const s=SC[k];$$('[data-sc]',R).forEach(b=>b.classList.toggle('on',b.dataset.sc===k));const box=$('.bt-s',R);box.innerHTML=S.map(x=>`<div class="note" style="flex:1;text-align:center"><div style="font-size:26px">${x[0]}</div><b class="sm">${x[1]}</b></div>`).join('<div class="ar">→</div>');$('.bt-x',R).className='note bt-x';$('.bt-x',R).textContent=s[1];
+  const nodes=$$('.note',box);s[2].forEach((ok,i)=>T.push(setTimeout(()=>{nodes[i].className='note '+(ok?'t':'f');if(i===3||!ok||(k==='nodisk'&&i===2)){$('.bt-x',R).className='note bt-x '+s[4];$('.bt-x',R).innerHTML=s[3]}},500+i*600)));
+  const stop=s[2].indexOf(0);if(stop>=0)T.push(setTimeout(()=>{$('.bt-x',R).className='note bt-x '+s[4];$('.bt-x',R).innerHTML=s[3]},500+stop*600))};
+ R.innerHTML=`<div class="row">${Object.keys(SC).map(k=>`<button class="btn sm" data-sc="${k}">${SC[k][0]}</button>`).join('')}</div><div class="bt-s" style="display:flex;gap:8px;margin:14px 0"></div><div class="note bt-x"></div>`;
+ $$('[data-sc]',R).forEach(b=>b.onclick=()=>run(b.dataset.sc));run('ok')})();
+
+(function(){const R=$('#u4-bios');const D0=['SSD: Sistem Diski','DVD-ROM','UEFI: USB Disk','Ağ (PXE)'];
+ const st={tab:'Main',order:[...D0],saved:[...D0],date:'01.01.2020',time:'00:00',sdate:'01.01.2020',stime:'00:00',sel:0,usb:true,done:{t1:false,t2:false,t3:false},phase:1};
+ const TGT={date:'25.11.2026',time:'09:30'};
+ const tasks=()=>$('#u4-bt').innerHTML=[['t1','1. Uygulama: Kurulum USB’sini birinci açılış aygıtı yap, Save and Exit ile kaydet, USB’den açıldığını gözlemle.'],['t2',`2. Uygulama: CMOS pili zayıfladığı için tarih sıfırlanmış. Öğretmenin verdiği tarih/saati gir: <b>${TGT.date} ${TGT.time}</b> ve kaydet.`],['t3','Kurulum bitti: Sistem diskini tekrar ilk sıraya al ve kaydet.']].map(t=>`<label style="cursor:default"><input type="checkbox" disabled ${st.done[t[0]]?'checked':''}> <span class="sm">${t[1]}</span></label>`).join('');
+ const draw=()=>{const tabs=['Main','Boot','Security','Advanced','Exit'];
+  let body='';
+  if(st.tab==='Main')body=`<div>System Date <span style="opacity:.6">[gg.aa.yyyy]</span></div><input type="text" id="bd" value="${st.date}" style="background:#123b8f;color:#fff;border-color:#5b7fd6;width:150px"><div style="margin-top:8px">System Time <span style="opacity:.6">[ss:dd]</span></div><input type="text" id="bh" value="${st.time}" style="background:#123b8f;color:#fff;border-color:#5b7fd6;width:110px"><div style="margin-top:12px;opacity:.85;font-size:12.5px">Processor: 4.0 GHz · Memory: 16 GB · Storage: SSD 512 GB${st.usb?' · USB Disk 16 GB':''}</div>`;
+  else if(st.tab==='Boot')body=`<div style="opacity:.8;margin-bottom:6px">Boot Priority (Boot Order)</div>${st.order.map((d,i)=>`<div data-i="${i}" style="padding:5px 8px;margin:3px 0;border-radius:6px;cursor:pointer;background:${i===st.sel?'#e6edff':'transparent'};color:${i===st.sel?'#0b2a6b':'inherit'}">Boot Option #${i+1}  ${d}</div>`).join('')}<div style="margin-top:8px"><button class="btn sm" id="bu">▲ Yukarı (+)</button> <button class="btn sm" id="bdn">▼ Aşağı (−)</button></div><div style="opacity:.7;font-size:12px;margin-top:6px">Bazı ekranlarda aynı USB “UEFI: USB Disk” ve “USB Disk” olarak iki kez görünebilir; yeni sistemlerde UEFI uyumlu seçenek tercih edilir.</div>`;
+  else if(st.tab==='Security')body=`<div>Administrator Password: <b>Not Installed</b></div><div>User (Power-On) Password: <b>Not Installed</b></div><div>Secure Boot: <b>Enabled</b></div><div style="opacity:.75;font-size:12.5px;margin-top:8px">⚠ BIOS şifresi unutulursa bilgisayara erişim zorlaşır. Okul ve servis ortamında değişiklikler kayıt altına alınmalıdır.</div>`;
+  else if(st.tab==='Advanced')body=`<div>Virtualization Technology: <b>Enabled</b></div><div>CPU Fan Speed: <b>1450 RPM</b> · CPU Temp: <b>41 °C</b></div><div style="opacity:.75;font-size:12.5px;margin-top:8px">Teknik donanım ayarları. Ne işe yaradığını bilmediğin ayarı değiştirme!</div>`;
+  else body=['Save and Exit|Değişiklikleri kaydeder ve çıkar.','Exit Without Saving|Değişiklikleri kaydetmeden çıkar.','Load Defaults|Ayarları varsayılan hâle getirir.','Discard Changes|Yapılan değişiklikleri iptal eder.'].map(x=>{const [a,b]=x.split('|');return`<div data-ex="${a}" style="padding:6px 8px;margin:4px 0;border:1px solid #5b7fd6;border-radius:6px;cursor:pointer">${a} <span style="opacity:.7;font-size:12px">— ${b}</span></div>`}).join('');
+  R.innerHTML=`<div style="background:#e6edff;color:#0b2a6b;padding:6px 12px;font-weight:700">UEFI BIOS Utility · Setup <span style="float:right;font-weight:400">${st.tab}</span></div><div style="display:flex;gap:2px;background:#123b8f">${tabs.map(t=>`<div data-t="${t}" style="padding:6px 12px;cursor:pointer;${t===st.tab?'background:#0b2a6b;color:#ffd666':''}">${t}</div>`).join('')}</div><div style="padding:14px;flex:1">${body}</div><div style="padding:6px 12px;background:#123b8f;font-size:12px;opacity:.9">←→ Sekme · ↑↓ Seç · +/− Sıra · F10 Kaydet ve Çık · Esc Çıkış</div>`;
+  $$('[data-t]',R).forEach(t=>t.onclick=()=>{st.tab=t.dataset.t;draw()});
+  if(st.tab==='Main'){$('#bd').oninput=e=>st.date=e.target.value;$('#bh').oninput=e=>st.time=e.target.value}
+  if(st.tab==='Boot'){$$('[data-i]',R).forEach(d=>d.onclick=()=>{st.sel=+d.dataset.i;draw()});const mv=k=>{const j=st.sel+k;if(j<0||j>=st.order.length)return;[st.order[st.sel],st.order[j]]=[st.order[j],st.order[st.sel]];st.sel=j;draw()};$('#bu').onclick=()=>mv(-1);$('#bdn').onclick=()=>mv(1)}
+  if(st.tab==='Exit')$$('[data-ex]',R).forEach(x=>x.onclick=()=>exit(x.dataset.ex));tasks()};
+ const res=(c,h)=>{$('#u4-bres').className='note sm '+c;$('#u4-bres').innerHTML=h};
+ const exit=a=>{if(a==='Load Defaults'){st.order=[...D0];st.sel=0;res('','Varsayılanlar yüklendi (henüz kaydedilmedi).');draw();return}
+  if(a==='Discard Changes'){st.order=[...st.saved];st.date=st.sdate;st.time=st.stime;res('','Değişiklikler iptal edildi.');draw();return}
+  if(a==='Exit Without Saving'){st.order=[...st.saved];st.date=st.sdate;st.time=st.stime;res('f','Kaydedilmeden çıkıldı; ayarlar eski hâline döndü. Bilgisayar yeniden başlıyor: '+(st.saved[0]));draw();return}
+  st.saved=[...st.order];st.sdate=st.date;st.stime=st.time;const first=st.order[0];let msg='💾 Ayarlar kaydedildi, yeniden başlatılıyor… ';
+  if(first.includes('USB')){msg+='<b>Kurulum ekranı açıldı!</b> Bilgisayar USB’den başladı.';st.done.t1=true}else if(first.includes('SSD')){msg+='İşletim sistemi SSD’den açıldı.';if(st.done.t1)st.done.t3=true}else msg+=first+' içinde başlatılabilir sistem bulunamadı, sonraki aygıta geçildi.';
+  if(st.date.trim()===TGT.date&&st.time.trim()===TGT.time){st.done.t2=true;msg+=' İşletim sistemindeki tarih-saat: '+TGT.date+' '+TGT.time+' ✔'}
+  res(Object.values(st.done).every(Boolean)?'t':'w',msg+(Object.values(st.done).every(Boolean)?'<br>🎉 Tüm görevler tamam!':''));draw()};
+ draw()})();
+
+(function(){const R=$('#u4-bip');const P={'1 kısa':['s'],'2 kısa':['s','s'],'1 uzun':['l'],'1 uzun 1 kısa':['l','s'],'1 uzun 2 kısa':['l','s','s'],'1 uzun 3 kısa':['l','s','s','s'],'Sürekli kısa':['s','s','s','s','s','s','s']};
+ const M={'1 kısa':'Sistem normal açılmış olabilir (POST başarılı).','2 kısa':'Küçük bir sistem veya ayar hatası (CMOS, yapılandırma).','1 uzun':'Bellek (RAM) veya temel donanım sorunu.','1 uzun 1 kısa':'Anakart veya bellek sorunu.','1 uzun 2 kısa':'Ekran kartı veya görüntü sistemi hatası.','1 uzun 3 kısa':'Ekran kartı belleği veya görüntü donanımı sorunu.','Sürekli kısa':'Güç, RAM veya anakart kaynaklı sorun.'};
+ let ac=null;const play=p=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime+.05;p.forEach(x=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=880;o.type='square';g.gain.value=.06;o.connect(g);g.connect(ac.destination);const d=x==='l'?.7:.16;o.start(t);o.stop(t+d);t+=d+.16})}catch(e){}};
+ const K=Object.keys(P);let cur=null,sc=0,n=0;
+ const nq=()=>{cur=K[Math.floor(Math.random()*K.length)];const opts=[...new Set([cur,...K.sort(()=>Math.random()-.5)])].slice(0,4).sort(()=>Math.random()-.5);
+  R.innerHTML=`<div class="row"><button class="btn pri" id="u4-pl">🔊 Bip sesini çal</button><span class="pill">${sc} / ${n}</span><span class="xs muted">Örüntü: <b class="mono" id="u4-pp">?</b></span></div><div class="qz-o" style="margin-top:8px">${opts.map(o=>`<button data-o="${o}">${M[o]}</button>`).join('')}</div><div class="note" id="u4-bx" style="margin-top:8px">Sesi dinle ve olası anlamı seç.</div>`;
+  $('#u4-pl').onclick=()=>play(P[cur]);
+  $$('[data-o]',R).forEach(b=>b.onclick=()=>{if(R.dataset.d)return;R.dataset.d=1;n++;const ok=b.dataset.o===cur;if(ok)sc++;b.classList.add(ok?'ok':'no');$$('[data-o]',R).forEach(x=>{if(x.dataset.o===cur)x.classList.add('ok');x.disabled=true});$('#u4-pp').textContent=cur;$('#u4-bx').className='note '+(ok?'t':'f');$('#u4-bx').innerHTML=(ok?'✔ ':'✘ ')+`<b>${cur} bip</b>: ${M[cur]} <button class="btn sm" id="u4-nx">Sonraki ▶</button>`;$('#u4-nx').onclick=()=>{delete R.dataset.d;nq()}})};nq()})();
+classify($('#u4-msg'),[
+ {t:'Keyboard Error',a:'Klavye',x:'Klavye algılanmamış veya bağlantısında sorun olabilir.'},
+ {t:'CMOS Checksum Error',a:'CMOS / pil',x:'BIOS ayarları bozulmuş veya BIOS pili zayıflamış olabilir.'},
+ {t:'CMOS Date/Time Not Set',a:'CMOS / pil',x:'Tarih-saat sıfırlanmış; sürekli tekrar ederse CMOS pili değiştirilmeli.'},
+ {t:'No Bootable Device',a:'Açılış aygıtı',x:'Başlatılabilir İS bulunan aygıt yok: diski ve açılış önceliğini kontrol et.'},
+ {t:'Boot Device Not Found',a:'Açılış aygıtı',x:'Açılış yapılacak disk veya aygıt algılanmamış olabilir.'},
+ {t:'CPU Fan Error',a:'İşlemci fanı',x:'Fan çalışmıyorsa işlemci aşırı ısınabilir; fan bağlantısı ve soğutma kontrol edilmeli.'},
+ {t:'Press F1 to Continue',a:'Kullanıcı onayı',x:'Sistem bir sorun algıladı, devam için onay bekliyor.'}],['Klavye','CMOS / pil','Açılış aygıtı','İşlemci fanı','Kullanıcı onayı'],{cols:'1fr'});
+
+dyMaze($('#u4-dy'),{
+ a:{q:'BIOS/UEFI, bilgisayar açıldığında işletim sistemi başlamadan önce devreye giren temel sistem yazılımıdır.',v:true,D:'b',Y:'c'},
+ b:{q:'POST işlemi, işletim sistemi tamamen açıldıktan sonra çalışan bir yazılım güncelleme işlemidir.',v:false,D:'d',Y:'e',x:'POST, İS yüklenmeden önceki ilk donanım kontrolüdür.'},
+ d:{q:'Bir bilgisayara USB bellekten işletim sistemi kurulacaksa BIOS/UEFI içinde açılış önceliği ayarlarının kontrol edilmesi gerekir.',v:true,D:'E1',Y:'E2'},
+ e:{q:'BIOS/UEFI ekranından çıkarken “Save and Exit” seçeneği, yapılan değişiklikleri kaydetmeden çıkmayı sağlar.',v:false,D:'E3',Y:'E4',x:'Save and Exit değişiklikleri kaydeder ve çıkar.'},
+ c:{q:'POST sürecinde RAM, işlemci, ekran kartı, depolama birimi gibi temel donanımların çalışmaya hazır olup olmadığı kontrol edilir.',v:true,D:'f',Y:'g'},
+ f:{q:'Bilgisayar açılırken duyulan kısa ve uzun bip sesleri, POST sırasında algılanan donanım sorunları hakkında ipucu verebilir.',v:true,D:'E5',Y:'E6'},
+ g:{q:'Sesli BIOS hata mesajlarının anlamı her anakart ve BIOS üreticisinde kesin olarak aynıdır.',v:false,D:'E7',Y:'E8'}},'a',{ok:4});
+
+reveal($('#u4-haz'),[
+ {t:'Sistem gereksinimlerini kontrol etme',d:'Bilgisayarın kurulacak İS’i destekleyip desteklemediği incelenir (işlemci, RAM, depolama, ekran kartı, güvenlik özellikleri, BIOS/UEFI desteği).'},
+ {t:'Veri yedekleme',d:'Kurulum sırasında silinme ihtimali olan önemli dosyalar güvenli bir ortama kopyalanır.'},
+ {t:'Kurulum medyası hazırlama',d:'İS dosyalarını içeren başlatılabilir USB bellek hazırlanır.'},
+ {t:'Lisans bilgisini kontrol etme',d:'Yasal kullanım hakkı ve etkinleştirme bilgisi gözden geçirilir.'},
+ {t:'BIOS/UEFI ayarlarını kontrol etme',d:'Bilgisayarın USB bellekten veya uygun medyadan başlatılması sağlanır.'}],{single:true});
+orderGame($('#u4-med'),['En az 8 GB boş USB belleği hazırla, içindekileri yedekle.','Resmî indirme sayfasından kurulum medyası oluşturma aracını indir ve çalıştır.','Lisans koşullarını kabul et.','Dil, sürüm (ve mimari) seçeneklerini belirle.','Ortam olarak USB flash sürücüyü ve doğru USB aygıtını seç.','Araç dosyaları indirip USB’ye aktarsın; USB başlatılabilir medya olur.'],{fs:13});
+
+orderGame($('#u4-kur'),['Resmî kaynaktan hazırlanmış USB kurulum medyasını tak.','Yeniden başlat; BIOS/UEFI veya geçici açılış menüsünden USB’yi seç.','Dil, saat biçimi ve klavye düzenini belirle.','Kurulum türünü seç (yükseltme / özel kurulum).','İS’in kurulacağı diski veya bölümü dikkatle seç.','Kurulumu başlat; dosyalar kopyalanırken bilgisayarı kapatma.','Yeniden başlayınca kullanıcı hesabı, parola, bölge, ağ, gizlilik ayarlarını yap.','Masaüstünde internet, çözünürlük, sürücü durumu ve güncellemeleri kontrol et.','Aygıt Yöneticisi’nde sürücüleri kontrol et, eksikleri yükle.'],{fs:13});
+classify($('#u4-hes'),[{t:'Sistem ayarlarını değiştirebilir, yazılım kurabilir, kullanıcı ekleyebilir.',a:'Yönetici'},{t:'Yetkileri sınırlıdır; sistemin güvenliğini korumaya yardımcı olur.',a:'Standart'},{t:'Okul laboratuvarında öğrencilerin günlük kullanımı için önerilen hesap',a:'Standart',x:'Ayarların yanlışlıkla değiştirilmesini ve izinsiz yazılım kurulmasını önler.'},{t:'Önemli bakım ve kurulum işlemleri için gereken hesap',a:'Yönetici'}],['Yönetici','Standart'],{cols:'1fr'});
+
+(function(){const R=$('#u4-ay');const T=[['🖥️ Görüntü bağdaştırıcıları',['Temel Görüntü Bağdaştırıcısı']],['🔊 Ses, video ve oyun denetleyicileri',['Yüksek Tanımlı Ses Aygıtı']],['🌐 Ağ bağdaştırıcıları',['Ethernet Denetleyicisi','⚠ Kablosuz Ağ Bağdaştırıcısı']],['💽 Disk sürücüleri',['NVMe SSD 512 GB']],['⌨️ Klavyeler · 🖱️ Fareler',['HID Klavye','HID uyumlu fare']]];let fixed=false;
+ const d=()=>{R.innerHTML=`<div style="border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13.5px"><div style="background:#f0ece3;padding:5px 10px;font-weight:700">🗂️ Aygıt Yöneticisi</div><div style="padding:6px 10px">${T.map(c=>`<div>▾ ${c[0]}${c[1].map(x=>`<div class="dv" data-w="${x.startsWith('⚠')&&!fixed?1:0}" style="margin-left:22px;cursor:pointer;padding:2px 4px;border-radius:4px;${x.startsWith('⚠')&&!fixed?'color:#b45309;font-weight:700':''}">${fixed&&x.startsWith('⚠')?'✅ Kablosuz Ağ Bağdaştırıcısı':x}</div>`).join('')}</div>`).join('')}</div></div><div class="note sm" id="u4-ayx" style="margin-top:8px">${fixed?'✅ Sürücü kuruldu; kablosuz ağ simgesi görünür oldu.':'Kurulumdan sonra kablosuz ağ simgesi görünmüyor. Uyarı simgeli aygıta tıkla.'}</div>`;
+  $$('.dv',R).forEach(v=>v.onclick=()=>{if(v.dataset.w!=='1'){$('#u4-ayx').className='note sm';$('#u4-ayx').textContent='Bu aygıt düzgün çalışıyor.';return}
+   $('#u4-ayx').className='note sm w';$('#u4-ayx').innerHTML='⚠ Sürücü eksik veya hatalı. Sağ tık → <b>Sürücüyü güncelleştir</b>:<div class="row" style="margin-top:6px"><button class="btn sm" data-m="1">Sürücüleri otomatik ara (İS güncellemesi)</button><button class="btn sm" data-m="2">Üreticinin resmî sitesinden indirdiğim sürücüye göz at</button><button class="btn sm" data-m="3">Reklamdaki “sürücü indir” sitesi</button></div>';
+   $$('[data-m]',R).forEach(b=>b.onclick=()=>{if(b.dataset.m==='3'){$('#u4-ayx').className='note sm f';$('#u4-ayx').innerHTML='✘ Güvenilmeyen kaynak! Sürücüler yalnızca işletim sistemi güncellemesi veya bilgisayar/donanım üreticisinin resmî sitesinden alınmalı.';return}fixed=true;d()})})};d()})();
+reveal($('#u4-yon'),[{n:1,t:'İşletim sisteminin güncelleme sistemi',d:'Yaygın donanımlar için sürücüler otomatik bulunup yüklenir; kolaydır ama özel donanımlar için en güncel sürücü gelmeyebilir.'},{n:2,t:'Bilgisayar üreticisinin resmî web sitesi',d:'Özellikle dizüstü bilgisayarlarda modele özel sürücüler (ekran, ses, kablosuz, Bluetooth, dokunmatik yüzey, güç yönetimi). Aygıt Yöneticisi → “Bilgisayarımdaki sürücülere göz at” → Gözat.'},{n:3,t:'Donanım üreticisinin kurulum dosyaları',d:'Ekran kartı, yazıcı, tarayıcı gibi aygıtların tüm özellikleri için. En önemli nokta: güvenilir kaynak.'}],{single:true});
+
+classify($('#u4-yy'),[
+ {t:'Metin, tablo ve sunum dosyaları oluşturmak',a:'Belge ve ofis'},{t:'PDF biçimindeki belgeleri açıp okumak',a:'PDF görüntüleyici'},{t:'İnternet sitelerine erişmek',a:'Web tarayıcısı'},{t:'Sıkıştırılmış dosyaları açmak, dosyaları paketlemek',a:'Sıkıştırma'},{t:'Ses ve video dosyalarını oynatmak',a:'Medya oynatıcı'},{t:'Önemli dosyaları güvenli bir ortama kopyalamak',a:'Yedekleme'},{t:'Teknik destek için başka bilgisayarla bağlantı kurmak',a:'Uzaktan destek'}],
+ ['Belge ve ofis','PDF görüntüleyici','Web tarayıcısı','Sıkıştırma','Medya oynatıcı','Yedekleme','Uzaktan destek'],{cols:'1fr'});
+$$('#u4-yy .it button').forEach(b=>{b.style.fontSize='11px';b.style.padding='2px 6px'});
+(function(){const R=$('#u4-kt');const C=['Yazılımın resmî web sitesi var mı?','Yazılım güvenilir bir kaynaktan indiriliyor mu?','Kullanım amacı ihtiyaca uygun mu?','Hangi işlemleri yaptığı anlaşılabiliyor mu?','Güncel bir sürümü bulunuyor mu?','İşletim sistemiyle uyumlu olduğu belirtilmiş mi?','Ücretsiz, ücretli veya deneme sürümü olduğu açıkça belirtilmiş mi?','Yazılım açık kaynak kodlu mu?'];const v={};
+ R.innerHTML='<table class="bt" style="font-size:12.5px"><tr><th>Ölçüt</th><th>Evet</th><th>Hayır</th></tr>'+C.map((c,i)=>`<tr><td>${c}</td><td style="text-align:center"><input type="radio" name="u4kt${i}" data-i="${i}" value="1"></td><td style="text-align:center"><input type="radio" name="u4kt${i}" data-i="${i}" value="0"></td></tr>`).join('')+'</table><div class="note xs" id="u4-ktx" style="margin-top:6px"></div>';
+ const up=()=>{const n=Object.keys(v).length,e=[0,1,2,3,4,5,6].filter(i=>v[i]===1).length,crit=[0,1].every(i=>v[i]===1);const ad=$('#u4-yyn').value.trim()||'Yazılım';$('#u4-ktx').className='note xs '+(n<8?'':crit&&e>=6?'t':'f');$('#u4-ktx').innerHTML=n<8?`${n} / 8 ölçüt işaretlendi.`:crit&&e>=6?`✅ ${esc(ad)} kurulum için uygun görünüyor (temel ölçütlerin ${e}/7’si sağlanıyor).`:`⚠ ${esc(ad)} için dikkat: ${!crit?'resmî site / güvenilir kaynak ölçütü sağlanmıyor. ':''}Kurmadan önce öğretmenine danış.`};
+ $$('input',R).forEach(x=>x.onchange=()=>{v[x.dataset.i]=+x.value;up()});$('#u4-yyn').oninput=up;up()})();
+
+reveal($('#u4-ua'),[
+ {t:'🖼️ Görünüm',d:'Çözünürlük, ölçeklendirme, parlaklık, tema, arka plan, görev çubuğu, bildirim. Yanlış çözünürlükte yazılar bulanık, simgeler çok büyük/küçük olabilir.'},
+ {t:'🌐 Ağ ve internet',d:'Wi-Fi seçme, ağ parolası, uçak modu, bağdaştırıcıyı etkinleştirme, IP ayarlarını görme, sorun giderme.'},
+ {t:'👥 Kullanıcı hesapları',d:'Ortak bilgisayarlarda herkesin yönetici olması doğru değildir; güçlü parola, paylaşmamak, gereksiz yönetici hesabı açmamak.'},
+ {t:'🕒 Saat, dil ve bölge',d:'Ayarlar → Zaman ve dil. Türkiye için saat dilimi genellikle <b>UTC+03:00 İstanbul</b>. Yanlış saat: dosya tarihleri hatalı, güvenlik sertifikası uyarıları, toplantı saatleri karışır, güncelleme sorunları.'}],{single:true});
+reveal($('#u4-ga'),[
+ {t:'🦠 Virüs ve tehdit koruması',d:'Virüs, casus yazılım, fidye yazılımına karşı. Tarama, tehdit geçmişi, gerçek zamanlı koruma.'},
+ {t:'🧱 Güvenlik duvarı ve ağ koruması',d:'Bilgisayar-ağ arasındaki trafiği denetler, yetkisiz erişimi engeller. Alan, özel ve ortak ağ profilleri. Kapatmak bilgisayarı savunmasız bırakır.'},
+ {t:'🌍 Uygulama ve tarayıcı denetimi',d:'Şüpheli siteler, zararlı indirmeler, güvenilmeyen uygulamalara karşı.'},
+ {t:'🔑 Hesap koruması',d:'Parola, PIN, biyometrik giriş, dinamik kilit; her kullanıcı kendi hesabıyla oturum açar.'},
+ {t:'🔄 Güncellemeler',d:'Güvenlik açıklarını kapatır, kararlılığı artırır, koruma verilerini yeniler.'}],{single:true});
+tabs($('#u4-yol'),[
+ {y:'4',h:'Çözünürlük',b:'<span class="sm">Masaüstünde boş alana sağ tık → <b>Görüntü ayarları</b> → Ekran → <b>Ekran çözünürlüğü</b> → önerileni belirle → farklı değer dene → yazı ve simgeleri incele → uygun değilse <b>Geri al</b> → en uygun çözünürlüğü not et.</span>'},
+ {y:'5',h:'Ağ',b:'<span class="sm">Sağ alttaki <b>ağ simgesi</b> → bağlı ağı kontrol et (Wi-Fi adı / Ethernet) → Başlat → <b>Ayarlar</b> → <b>Ağ ve internet</b> → bağlantı durumu → Wi-Fi/Ethernet → özellikler (ağ adı, IP, DNS).</span>'},
+ {y:'6',h:'Hesaplar',b:'<span class="sm">Başlat → Ayarlar → <b>Hesaplar</b> → hesap bilgileri → hesap adı ve türü (yönetici/standart). <b>Hiçbir hesabı silme, parola değiştirme, onaysız yetki değiştirme!</b></span>'},
+ {y:'7',h:'Güvenlik',b:'<span class="sm">Başlat aramasına <b>Windows Güvenliği</b> → Virüs ve tehdit koruması (öğretmen onayıyla <b>hızlı tarama</b>) → Güvenlik duvarı ve ağ koruması (profil açık mı?) → Uygulama ve tarayıcı denetimi → Hesap koruması.</span>'}]);
+
+classify($('#u4-ka'),[
+ {t:'Kaynak kodu kullanıcıya açık değildir.',a:'Kapalı'},{t:'Topluluklar, kurumlar veya gönüllüler geliştirebilir.',a:'Açık'},{t:'Kullanıcının değiştirme ve dağıtma yetkisi sınırlıdır.',a:'Kapalı'},{t:'Kullanma, inceleme, değiştirme ve paylaşma özgürlüğü sağlayabilir.',a:'Açık'},{t:'Çoğu zaman lisans ücreti gerektirebilir.',a:'Kapalı'},{t:'Birçok dağıtım ücretsiz kullanılabilir.',a:'Açık'},{t:'Güncelleme ve destek çoğunlukla üretici firmadan gelir.',a:'Kapalı'},{t:'Uyumluluk kullanılan dağıtıma ve donanıma göre değişebilir.',a:'Açık'}],['Kapalı','Açık'],{cols:'1fr'});
+
+orderGame($('#u4-par'),['Donanımı kontrol et, önemli dosyaları yedekle.','pardus.org.tr’den güncel masaüstü ISO’sunu indir.','Rufus gibi bir araçla USB’yi başlatılabilir medya yap (ISO’yu kopyalamak yetmez).','USB’den başlat; önyükleme menüsünde “Pardus Çalışan” ile dene.','Masaüstündeki “Pardus Yükle” ile kurulumu başlat.','Dil ve Türkçe klavye düzenini seç.','Disk bölümlemeyi dikkatle yap (otomatik bölümleme diski biçimlendirir).','Tam ad, kullanıcı adı ve parolayı gir; kurulumu başlat.','Yeniden başlatırken USB’yi çıkar; oturum açıp güncelleme ve donanımları kontrol et.'],{fs:13});
+(function(){const R=$('#u4-vm');R.innerHTML=`<div class="sc" style="grid-template-columns:110px 1fr 70px"><span>RAM</span><input type="range" id="vmr" min="1" max="8" value="1"><output id="vmro"></output><span>Sanal disk</span><input type="range" id="vmd" min="10" max="60" step="5" value="10"><output id="vmdo"></output></div><div class="row" style="margin-top:8px"><span class="sm">Tür:</span><select id="vmt"><option>Windows</option><option>Linux</option></select><select id="vmv"><option>Debian (64-bit)</option><option>Diğer</option></select><span class="sm">Sürüm:</span><select id="vms"><option>XFCE</option><option>GNOME</option></select></div><label class="sw" style="margin-top:8px"><input type="checkbox" id="vmi"><span class="tg"></span>Pardus ISO’sunu sanal optik sürücüye ekle</label><div class="row" style="margin-top:8px"><button class="btn pri" id="vmb">▶ Sanal makineyi başlat</button></div><div class="note" id="vmx" style="margin-top:8px"></div><p class="xs muted">Kitap: en az 2 GB RAM (rahat kullanım için 4 GB), en az 20 GB sanal disk; tür Linux, sürüm Debian tabanlı. Donanım durumuna göre XFCE veya GNOME. Bölümleme yalnızca sanal diski etkiler.</p>`;
+ const up=()=>{$('#vmro').textContent=$('#vmr').value+' GB';$('#vmdo').textContent=$('#vmd').value+' GB'};['#vmr','#vmd'].forEach(s=>$(s).oninput=up);up();
+ $('#vmb').onclick=()=>{const e=[];if(+$('#vmr').value<2)e.push('RAM en az 2 GB olmalı');if(+$('#vmd').value<20)e.push('sanal disk en az 20 GB olmalı');if($('#vmt').value!=='Linux')e.push('işletim sistemi türü Linux seçilmeli');if(!$('#vmv').value.startsWith('Debian'))e.push('sürüm Debian tabanlı olmalı');if(!$('#vmi').checked)e.push('ISO dosyası sanal optik sürücüye eklenmeli');
+  $('#vmx').className='note '+(e.length?'f':'t');$('#vmx').innerHTML=e.length?'✘ Düzelt: '+e.join(' · '):`✅ Sanal makine açıldı → Pardus açılış ekranı → <b>Pardus Çalışan</b> ile dene → masaüstündeki <b>Pardus Yükle</b> ile kur (${$('#vms').value}, ${$('#vmr').value} GB RAM${+$('#vmr').value>=4?', rahat kullanım':''}).`}})();
+
+reveal($('#u4-pa'),[
+ {t:'🔄 Pardus Güncelleyici',d:'Kurulumdan sonra önce sistem güncellenir; güncellemeler donanım iyileştirmeleri de içerebilir. Uygulamalar → Pardus → Pardus Güncelleyici → güncellemeleri incele ve yükle.'},
+ {t:'🧩 Sürücüler',d:'Linux tabanlı sistemlerde birçok sürücü çekirdekte hazır gelir; ekran, klavye, fare, ses, ağ, USB çoğu zaman ek işlem gerektirmez. Bazı ekran kartı, kablosuz kart, yazıcı, tarayıcı, Bluetooth için ek sürücü gerekebilir.'},
+ {t:'🖨️ Yazıcı',d:'USB ile bağlı: yerel yazıcı (çoğu zaman otomatik algılanır). Ağ kablosu / Wi-Fi: ağ yazıcısı; Yazıcı Ayarları > Ekle ve IP adresi. Sürücüler sistem depolarında olabilir; gerekirse üreticinin resmî Linux sürücüsü.'},
+ {t:'🏪 Yazılım Merkezî (Pardus Mağaza)',d:'Güvenilir yazılım depolarından ara-kur-kaldır. Kurulumda yönetici parolası istenebilir (sistemde değişiklik yapıldığı için). 9. Uygulama: öğretmenin belirlediği yazılımı bul, açıklamasını incele, Kur, çalıştığını kontrol et.'},
+ {t:'⚙️ Uygulama ayarları',d:'Ayarlar → Ekran (çözünürlük, yönelim, tazeleme hızı, ölçekleme) · Görünüm (arka plan, vurgu rengi, açık/koyu tema) · Ağ · Sistem → Kullanıcılar → Kullanıcı Ekle.'},
+ {t:'🛡️ Güvenlik',d:'Düzenli güncelleme · <b>Güvenlik Duvarı Yapılandırması (gufw)</b> ile güvenlik duvarını grafik arayüzle yönetme · <b>ClamTk</b> ile dosya, klasör, USB bellek taraması (ihtiyaç anında çalışan hafif araç). Yönetici işlemlerinde parola istenmesi önemli bir güvenlik önlemidir.'}],{single:true});
+classify($('#u4-pq'),[{t:'USB bellekten gelen dosyaları zararlı yazılıma karşı taramak',a:'ClamTk'},{t:'Güvenlik duvarını grafik arayüzle açmak/kapatmak',a:'gufw'},{t:'Sistem ve sürücü güncellemelerini yüklemek',a:'Pardus Güncelleyici'},{t:'Medya oynatıcı arayıp güvenle kurmak',a:'Yazılım Merkezî'},{t:'Ağ yazıcısını IP adresiyle eklemek',a:'Yazıcı Ayarları'}],['ClamTk','gufw','Pardus Güncelleyici','Yazılım Merkezî','Yazıcı Ayarları'],{cols:'1fr'});
+
+classify($('#u4-dys'),[
+ {t:'Açılışta bip sesleri duyuluyor.',a:'Donanım'},{t:'Program açılır açılmaz kapanıyor.',a:'Yazılım'},{t:'Cihaz aşırı ısınıp kapanıyor.',a:'Donanım'},{t:'Güncellemeden sonra bir özellik bozuldu.',a:'Yazılım'},{t:'Disk BIOS ekranında görünmüyor.',a:'Donanım'},{t:'Dosya yanlış uygulamayla açılıyor.',a:'Yazılım'},{t:'Bilinmeyen siteden program kurulduktan sonra sistem yavaşladı.',a:'Yazılım',x:'Zararlı yazılım ihtimali değerlendirilmelidir.'}],['Donanım','Yazılım'],{cols:'1fr'});
+orderGame($('#u4-tes'),['Sorunu tanımlama','Kullanıcıdan bilgi alma','Güvenliği sağlama','Dış bağlantıları kontrol etme','Basit kontrolleri yapma','Donanımı test etme','Sonucu değerlendirme','Kayıt tutma']);
+
+classify($('#u4-bel'),[
+ {t:'Bilgisayar hiç açılmıyor.',a:'Güç kablosu, adaptör, priz, PSU, anakart'},{t:'Açılıyor ama görüntü gelmiyor.',a:'Monitör, ekran kablosu, ekran kartı, RAM'},{t:'Kendiliğinden kapanıyor.',a:'Aşırı ısınma, fan arızası, güç'},{t:'Disk algılanmıyor.',a:'Disk bağlantısı, disk arızası, BIOS ayarı'},{t:'USB aygıtları çalışmıyor.',a:'USB portu, sürücü, kablo'},{t:'Ses gelmiyor.',a:'Hoparlör, ses çıkışı, ses ayarı'}],
+ ['Güç kablosu, adaptör, priz, PSU, anakart','Monitör, ekran kablosu, ekran kartı, RAM','Aşırı ısınma, fan arızası, güç','Disk bağlantısı, disk arızası, BIOS ayarı','USB portu, sürücü, kablo','Hoparlör, ses çıkışı, ses ayarı'],{cols:'1fr'});
+$$('#u4-bel .it button').forEach(b=>{b.style.fontSize='10.5px';b.style.padding='2px 5px'});
+(function(){const F=['Cihaz türü','Cihaz marka-modeli','Arıza belirtisi','Sorunun başlama zamanı','Kullanıcıdan alınan bilgi','Kontrol edilen bağlantılar','Görülen sesli/yazılı uyarılar','Yapılan temel kontroller','Olası arıza nedeni','Uygulanan işlem','Sonuç-öneri','İşlemi yapan kişi','Tarih'];
+ const EX=['Masaüstü bilgisayar','Laboratuvar PC-07','Açılıyor ama işletim sistemi başlamıyor','Bugün sabah','Dün kasa yerinden oynatılmış','Güç, monitör, SATA veri kablosu','“No Bootable Device” mesajı','BIOS’ta disk görünüyor mu kontrol edildi: görünmüyor','SATA veri kablosu yerinden çıkmış','Kasa güç kesilerek açıldı, SATA kablosu yeniden takıldı','Sistem açıldı; kablolar sabitlenmeli','Öğrenci adı',new Date().toLocaleDateString('tr-TR')];
+ $('#u4-form').innerHTML='<table class="bt" style="font-size:12.5px">'+F.map((f,i)=>`<tr><td style="width:40%"><b>${f}</b></td><td><input type="text" data-f="${i}" style="width:100%;font-size:12px;padding:3px 6px"></td></tr>`).join('')+'</table>';
+ $('#u4-fex').onclick=()=>$$('#u4-form input').forEach((x,i)=>x.value=EX[i]);
+ $('#u4-fcp').onclick=async()=>{const t='TEKNİK SERVİS ARIZA TESPİT FORMU\n'+F.map((f,i)=>f+': '+$(`#u4-form [data-f="${i}"]`).value).join('\n');try{await navigator.clipboard.writeText(t);$('#u4-fcp').textContent='✔ Kopyalandı'}catch(e){$('#u4-fcp').textContent='Kopyalanamadı'}setTimeout(()=>$('#u4-fcp').textContent='📋 Kopyala',1500)}})();
+
+classify($('#u4-yh'),[
+ {t:'Program açılmıyor.',a:'Eksik kurulum / uyumsuzluk'},{t:'Sistem yavaş çalışıyor.',a:'Başlangıç uygulamaları / zararlı yazılım'},{t:'Mavi ekran hatası oluşuyor.',a:'Sürücü / güncelleme / sistem dosyası'},{t:'İnternet bağlantısı çalışmıyor.',a:'Ağ ayarı / sürücü / güvenlik yazılımı'},{t:'Dosya yanlış uygulamayla açılıyor.',a:'Varsayılan uygulama ayarı'}],
+ ['Eksik kurulum / uyumsuzluk','Başlangıç uygulamaları / zararlı yazılım','Sürücü / güncelleme / sistem dosyası','Ağ ayarı / sürücü / güvenlik yazılımı','Varsayılan uygulama ayarı'],{cols:'1fr'});
+$$('#u4-yh .it button').forEach(b=>{b.style.fontSize='10.5px';b.style.padding='2px 5px'});
+reveal($('#u4-ara'),[
+ {t:'🚑 İS açılmıyorsa',d:'Hata mesajını not et. “No Bootable Device / Operating System Not Found” → BIOS’ta disk görünüyor mu, açılış önceliği doğru mu? Disk görünmüyorsa bağlantı/arıza; görünüyorsa yazılım onarımı. Sorun Gider > Gelişmiş Seçenekler: Başlangıç Onarma, Sistem Geri Yükleme, Başlangıç Ayarları, Komut İstemi. Açık kaynakta: Pardus Çalışan, SystemRescue gibi canlı ortamlar.'},
+ {t:'🛟 Güvenli mod',d:'Yalnızca temel sürücü ve hizmetlerle açılır. Ayarlar > Sistem > Kurtarma > Gelişmiş başlangıç > Şimdi yeniden başlat > Sorun Gider > Gelişmiş Seçenekler > Başlangıç Ayarları > Yeniden Başlat > Güvenli Mod. Düzgün açılıyorsa sorun sonradan yüklenen sürücü/uygulamadadır.'},
+ {t:'⏪ Sistem geri yükleme (10. Uygulama)',d:'Bilgisayarı önceki bir geri yükleme noktasına döndürür; kişisel dosyaları silmek için değil, sistem ayarı, sürücü ve yazılım değişikliklerini geri almak içindir.'},
+ {t:'🧠 Bellek testi',d:'Donma, yeniden başlama, mavi ekran → Başlat’ta “Windows Bellek Tanılama” → “Şimdi yeniden başlat ve sorunları denetle”.'},
+ {t:'🟦 BSOD analizi',d:'Hata kodunu not et (MEMORY_MANAGEMENT, DRIVER_IRQL_NOT_LESS_OR_EQUAL, INACCESSIBLE_BOOT_DEVICE). Döküm dosyaları: C:\\Windows\\Minidump; WinDbg ile hataya neden olan sürücü görülebilir.'},
+ {t:'📜 Olay Görüntüleyicisi',d:'Başlat’a sağ tık → Olay Görüntüleyicisi → Windows Günlükleri > Sistem → hata zamanına yakın Critical, Error, BugCheck kayıtları.'}],{single:true});
+(function(){const R=$('#u4-chk');const P=[['chkdsk','Disk denetim aracını çalıştırır.'],['C:','Denetlenecek sürücüyü belirtir.'],['/f','Bulunan dosya sistemi hatalarını düzeltmeye çalışır.'],['/r','Bozuk sektörleri arar ve okunabilir bilgileri kurtarmaya çalışır.']];
+ R.innerHTML=`<div class="code" style="padding:10px 14px;font-size:18px">${P.map((p,i)=>`<span data-p="${i}" style="cursor:pointer;padding:0 4px;border-radius:4px">${p[0]}</span>`).join(' ')}</div><div class="note xs" id="u4-chx" style="margin-top:6px">Komutun bir parçasına tıkla.</div>`;
+ $$('[data-p]',R).forEach(s=>s.onclick=()=>{$$('[data-p]',R).forEach(x=>x.style.background='');s.style.background='#ffd66655';$('#u4-chx').innerHTML='<b>'+P[s.dataset.p][0]+'</b>: '+P[s.dataset.p][1]+(s.dataset.p==='1'?' Sistem diski kullanımdaysa denetim yeniden başlatmada yapılabilir.':'')})})();
+quiz($('#u4-sil'),[
+ {q:'Ödev dosyan silindi. İlk nereye bakmalısın?',o:['Diski biçimlendir','Geri Dönüşüm Kutusu','Yeni program kur','BIOS ayarları'],a:1,x:'Silinen dosyalar genellikle önce Geri Dönüşüm Kutusu’na taşınır; Geri Yükle ile eski yerine döner.'},
+ {q:'Dosya kutuda yok. Kurtarma şansını artırmak için ne yapmalısın?',o:['Aynı diske büyük dosyalar indirmek','Diske yeni veri yazmaktan kaçınmak, yedek/bulutu kontrol etmek','Rastgele bir kurtarma programı denemek','Bölümü silmek'],a:1,x:'Yeni veri yazılırsa silinen alanın üzerine yazılabilir. Mümkünse kurtarmayı farklı bir depolama biriminden, güvenilir yazılımla yap.'}]);
+
+dyMaze($('#u4-oa'),{
+ a:{q:'Boot Priority ayarı, bilgisayarın hangi aygıttan başlatılacağını belirlemek için kullanılır.',v:true,D:'b',Y:'c'},
+ b:{q:'Kapalı kaynak kodlu işletim sistemlerinde kaynak kodları kullanıcı tarafından serbestçe incelenebilir.',v:false,D:'d',Y:'e'},
+ d:{q:'Silinen dosyaları kurtarmaya çalışırken dosyanın silindiği diske yeni dosyalar kaydetmek kurtarma şansını artırır.',v:false,D:'E1',Y:'E2'},
+ e:{q:'Güvenlik duvarı, ağ bağlantılarını denetleyerek yetkisiz erişimlere karşı koruma sağlamaya yardımcı olur.',v:true,D:'E3',Y:'E4'},
+ c:{q:'Pardus, Linux tabanlı açık kaynak kodlu bir işletim sistemidir.',v:true,D:'f',Y:'g'},
+ f:{q:'Bilgisayar hiç açılmıyorsa ilk yapılacak işlem doğrudan işletim sistemini yeniden kurmaktır.',v:false,D:'E5',Y:'E6'},
+ g:{q:'Teknik servis raporu, yapılan kontrollerin, tespit edilen sorunların ve çözümlerin kayıt altına alınmasını sağlar.',v:true,D:'E7',Y:'E8'}},'a',{ok:3});
+gridPick($('#u4-ob'),['BIOS/UEFI','POST','Boot Priority','Açık Kaynak İS','Kapalı Kaynak İS','Aygıt Yöneticisi','Güvenli Mod','Sistem Geri Yükleme','Pardus'],[
+ {q:'İlk açılış sürecinde görev alan ve açılış ayarlarıyla ilişkili olanlar?',req:[1,2,3]},
+ {q:'Açılış sorunu veya kararsız sistemde kullanılabilecek onarım ve sorun giderme yöntemleri?',req:[7,8],ok:[6,7,8]},
+ {q:'Kaynak kod erişimi ve lisans yapısı bakımından işletim sistemi türleri?',req:[4,5]},
+ {q:'Açık kaynak kodlu işletim sistemi örneği?',req:[9]},
+ {q:'Kapalı kaynak kodlu İS’de eksik veya hatalı sürücülerin kontrolünde kullanılan araç?',req:[6]}]);
+quiz($('#u4-oc'),[
+ {q:'1. Ece’nin bilgisayarı kurulum USB’si takılıyken eski işletim sistemini açmaya devam ediyor. Öncelikle hangi ayarı kontrol etmelidir?',o:['Ekran parlaklığı','Boot Priority','Masaüstü arka planı','Kullanıcı hesabı resmi','Ses seviyesi'],a:1},
+ {q:'2. Zeynep kurulumdan önce dosyalarını haricî diske kopyalıyor. En önemli nedeni nedir?',o:['Kurulum süresini uzatmak','USB belleğin kapasitesini artırmak','Ekran kartını güncellemek','Bilgisayarın fanını temizlemek','Veri kaybı riskini azaltmak'],a:4},
+ {q:'3. Kapalı kaynak kodlu İS’de sürücülerin eksik olup olmadığını kontrol etmek için hangisi incelenebilir?',o:['Varsayılan uygulamalar','Ağ ve internet ayarları','Aygıt Yöneticisi','Hesap makinesi','Güncelleme geçmişi'],a:2},
+ {q:'4. Kurulumdan sonra Aygıt Yöneticisi’nde eksik sürücüleri kontrol etmenin amacı nedir?',o:['Donanımların sistem tarafından doğru tanınıp tanınmadığını incelemek','İS’in lisans durumunu kontrol etmek','Kurulum USB’sinin başlatılabilir olup olmadığını görmek','Sistem tarih ve saat ayarlarını güncellemek','Yardımcı yazılımların güncel sürümünü denetlemek'],a:0},
+ {q:'5. Pardus ile ilgili hangisi doğrudur?',o:['Kaynak kodları hiçbir şekilde incelenemez.','Yalnızca cep telefonlarında kullanılır.','Linux tabanlı açık kaynak kodlu bir işletim sistemidir.','Sadece oyun oynamak için geliştirilmiştir.','Donanım sürücüsü değildir.'],a:2},
+ {q:'6. Bilgisayar açma düğmesine hiç tepki vermiyor. Teknik servis yaklaşımına göre ilk işlem nedir?',o:['Güç kablosu, priz, adaptör ve güç bağlantılarını kontrol etmek','RAM’i farklı yuvaya takmak','Kurulum USB’siyle başlatmayı denemek','Açılış önceliğini değiştirmek','Diski biçimlendirip İS’i yeniden kurmak'],a:0},
+ {q:'7. Açık kaynak kodlu işletim sistemlerinin en belirgin özelliklerinden biri hangisidir?',o:['Yalnızca kapalı ağlarda çalışması','Kaynak kodlarının belirli lisans koşullarıyla incelenebilmesi ve geliştirilebilmesi','Donanım sürücülerini hiç desteklememesi','Mutlaka ücretli lisans gerektirmesi','Tek bir donanım markasında çalışması'],a:1},
+ {q:'8. Pardus’ta yardımcı yazılım kurmak için en güvenli yöntemlerden biri hangisidir?',o:['Yazılım Merkezî veya güvenilir paket depolarını kullanmak','Kaynağı bilinmeyen sitelerden indirmek','Sosyal medya bağlantılarındaki dosyaları çalıştırmak','E-posta ekindeki programları kurmak','Rastgele terminal komutları denemek'],a:0},
+ {q:'9. Silinen dosyaları kurtarma ihtimalini artırmak için hangisi doğrudur?',o:['Diski hemen biçimlendirmek','Aynı diske büyük dosyalar indirmek','Dosyanın silindiği diske yeni veri yazmaktan kaçınmak','Kurtarma bitmeden yeni programlar kurmak','Dosyaların bulunduğu bölümü silmek'],a:2}],'C) Çoktan seçmeli');
+
+Object.assign(SORU,{
+ once4:{t:'Önce Düşün',h:'<p>İşletim sistemleri hakkında neler bildiğini ve hangi konuları merak ettiğini bu birimin konularıyla ilişkilendirerek yaz.</p>',q:['<b>BİLDİKLERİM:</b>','<b>MERAK ETTİKLERİM:</b>']},
+ bios4:{t:'Sıra Sizde: Çıkış kodu ve gerekçe',h:'',q:['Ulaştığın çıkış kodu ve seçimini hangi BIOS/UEFI belirtisine göre yaptığını bir cümleyle açıkla.']},
+ kontrol4:{t:'Sıra Sizde: Kurulum sonrası kontroller',h:'<p>Kurulum sonrası bilgisayarın kullanıma hazır hâle gelmesi için yapılması gereken temel kontrolleri yaz.</p>',q:['1–5. kontroller:']},
+ wifi4:{t:'Sıra Sizde: Kablosuz ağ sorunu',h:'<p>Kurulumdan sonra kablosuz ağ kullanılamıyor. Aygıt Yöneticisi’nde Ağ bağdaştırıcıları bölümünde kablosuz ağ aygıtının yanında uyarı simgesi var. Kablolu bağlantı çalışıyor ama kablosuz ağ simgesi görünmüyor.</p>',q:['Sorun görülen donanım:','Uyarı simgesinin olası nedeni:','Bu sorunu çözmek için izlenebilecek yol:','Sürücünün güvenli şekilde nereden temin edilebileceği:','Bu sorun çözülmezse yaşanabilecek durum:']},
+ saat4:{t:'Sıra Sizde: Saat, dil ve bölge',h:'<p>Saat ve tarihi incele → Ayarlar → Zaman ve dil → saat dilimi (Türkiye için uygun mu?) → otomatik ayar → Dil ve bölge.</p>',q:['Saat dilimi, klavye dili veya bölge ayarı yanlış seçilirse hangi sorunlarla karşılaşılabilir? İki örnek yaz.']},
+ ariza4:{t:'Sıra Sizde: Arıza belirtileri tablosu',h:'<p>Her belirti için en olası nedeni ve yapılacak ilk kontrolü yaz. Sonra birini seçip arıza tespit formunu doldur (slayttaki form).</p>',q:['Bilgisayar hiç açılmıyor.','Bilgisayar açılıyor ancak görüntü gelmiyor.','Bilgisayar açılışta bip sesi veriyor.','Bilgisayar kısa süre sonra kapanıyor.','USB bellek algılanmıyor.','Disk BIOS/UEFI ekranında görünmüyor.']},
+ olay4:{t:'Sıra Sizde: Olay Görüntüleyicisi formu',h:'<p>Olay Görüntüleyicisi → Windows Günlükleri > Sistem → hata zamanına yakın Critical, Error veya BugCheck kayıtlarını incele.</p>',q:['Uyguladığım araç:','Gözlemlediğim sonuç:','Olası sorun:','Önerilen işlem:']}
+});
+Object.assign(EV,{
+ once4:[{c:[['En az iki bilgi','#items:2']],m:'İşletim sistemi donanım ile kullanıcı arasında köprüdür.\nWindows ve Pardus işletim sistemidir.'},{c:[['En az bir soru','#q:1']],m:'Bilgisayar açılırken ilk olarak ne çalışır?'}],
+ bios4:[{c:[['Çıkış 4','(^|\\D)4(\\D|$)|dort|dördüncü|dorduncu'],['Gerekçe','post|save|kaydet|bios']],m:'4. Çıkış; çünkü POST işletim sistemi açılmadan önce yapılan donanım kontrolüdür ve Save and Exit değişiklikleri kaydederek çıkar.'}],
+ kontrol4:[{n:3,c:[['Güncellemeler','guncelle'],['Sürücüler','surucu|aygit yonetici'],['İnternet / ağ','internet|ag|wi-fi|wifi'],['Çözünürlük / ekran','cozunurluk|ekran'],['Güvenlik','guvenlik|antivirus|virus|guvenlik duvari'],['Yardımcı yazılım','yardimci|yazilim|program']],m:'1. Sistem güncellemelerini kontrol etmek\n2. Aygıt Yöneticisi’nde eksik sürücüleri yüklemek\n3. İnternet bağlantısını kontrol etmek\n4. Ekran çözünürlüğünü ayarlamak\n5. Güvenlik yazılımını etkinleştirmek, yardımcı yazılımları kurmak'}],
+ wifi4:[{c:[['Kablosuz ağ bağdaştırıcısı','kablosuz|wi-fi|wifi|ag kart|bagdastirici']],m:'Kablosuz ağ bağdaştırıcısı'},{c:[['Sürücü','surucu']],m:'Sürücü eksik, hatalı veya uyumsuz.'},{c:[['Yol','aygit yonetici|guncelle|surucu|indir|kur']],m:'Aygıt Yöneticisi’nde aygıta sağ tıklayıp sürücüyü güncellemek veya üreticiden indirilen sürücüyü yüklemek.'},{c:[['Güvenli kaynak','resmi|uretici|isletim sistemi guncelle|guvenilir']],m:'İşletim sistemi güncellemesinden veya bilgisayar/donanım üreticisinin resmî web sitesinden.'},{c:[['Sonuç','kablosuz|wi-fi|baglanam|internet|kablo']],m:'Bilgisayar kablosuz ağlara bağlanamaz; yalnızca kablolu bağlantıyla internete erişebilir.'}],
+ saat4:[{n:2,c:[['Sertifika/web','sertifika|site|guvenlik'],['Dosya tarihi','dosya|kayit|tarih'],['Toplantı/zaman','toplanti|saat|alarm|ders'],['Klavye','klavye|harf|karakter|turkce'],['Para/sayı biçimi','para|sayi|bicim'],['Güncelleme','guncelle']],m:'1) Saat dilimi yanlışsa çevrim içi toplantı saatleri karışır, bazı sitelerde güvenlik sertifikası uyarısı çıkar. 2) Klavye dili yanlışsa Türkçe karakterler (ş, ğ, ı) yanlış yazılır.'}],
+ ariza4:[{c:[['Neden','guc|adaptor|priz|psu|kablo|anakart'],['İlk kontrol','kontrol|bak|tak']],m:'Neden: güç kablosu, adaptör, priz, güç kaynağı. İlk kontrol: güç kablosu ve prizi kontrol etmek.'},{c:[['Neden','monitor|ekran kart|ram|kablo'],['İlk kontrol','kontrol|bak|tak']],m:'Neden: monitör, ekran kablosu, ekran kartı veya RAM. İlk kontrol: monitörün açık olduğunu ve ekran kablosunu kontrol etmek.'},{c:[['Neden','bios|uefi|ram|ekran kart|donanim'],['İlk kontrol','kilavuz|bip|ram|kontrol']],m:'Neden: BIOS/UEFI donanım hatası bildiriyor (ör. RAM). İlk kontrol: bip örüntüsünü kılavuzdan yorumlamak, RAM’in yerine oturduğunu kontrol etmek.'},{c:[['Neden','isin|fan|guc|sicak'],['İlk kontrol','fan|kontrol|havalandir']],m:'Neden: aşırı ısınma, fan arızası veya güç sorunu. İlk kontrol: fanın dönüp dönmediğini kontrol etmek.'},{c:[['Neden','port|surucu|kablo|usb'],['İlk kontrol','baska port|farkli port|kontrol|dene']],m:'Neden: USB portu, aygıt sürücüsü veya bellek arızası. İlk kontrol: farklı bir USB portunda denemek.'},{c:[['Neden','kablo|baglanti|disk|ariza|bios'],['İlk kontrol','kablo|kontrol|sata']],m:'Neden: disk bağlantısı veya disk arızası. İlk kontrol: güç keserek SATA veri ve güç kablolarını kontrol etmek.'}],
+ olay4:[{c:[['Araç','olay goruntuleyici|event']],m:'Olay Görüntüleyicisi'},{c:[['Gözlem','error|critical|bugcheck|hata|kayit']],m:'Hata zamanında “Critical” ve bir sürücüye ait “Error” kaydı vardı.'},{c:[['Olası sorun','surucu|guncelle|disk|ram|sistem dosya']],m:'Ekran kartı sürücüsünde uyumsuzluk olabilir.'},{c:[['Öneri','guncelle|geri al|onceki surum|kaldir|yeniden yukle|test']],m:'Sürücüyü güncellemek veya önceki sürüme geri almak.'}]
+});
+SORU_MAP.push(['s-4-0','once4','📖 Önce Düşün','#once4-c'],['s-4-5','bios4','📖 Gerekçeni yaz'],['s-4-7','kontrol4','📖 Sıra Sizde'],['s-4-8','wifi4','📖 Sıra Sizde senaryosu'],['s-4-10','saat4','📖 Sıra Sizde'],['s-4-15','ariza4','📖 Sıra Sizde tablosu'],['s-4-16','olay4','📖 Olay Görüntüleyicisi']);
 /* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
 const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
 function evCheck(spec,txt){
