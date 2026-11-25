@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+<!--
+  © 2026 Sunay Öğretmen (Sunay's School). Tüm hakları saklıdır.
+  Bu yazılım ve içerik açık kaynak DEĞİLDİR. İzinsiz kopyalanamaz, çoğaltılamaz, değiştirilemez,
+  başka bir adreste yayımlanamaz ve ticari amaçla kullanılamaz (5846 sayılı FSEK).
+  Lisans: https://polatsunay.github.io/bilisim-teknolojileri/lisans.html
+-->
+<html lang="tr">
+<head>
+<meta name="author" content="Sunay Öğretmen · Sunay's School"><meta name="copyright" content="© 2026 Sunay Öğretmen (Sunay's School). Tüm hakları saklıdır.">
+<script>/* LİSANS KORUMASI · © 2026 Sunay Öğretmen (Sunay's School). Tüm hakları saklıdır. Açık kaynak DEĞİLDİR; izinsiz kopyalanamaz, değiştirilemez, başka bir adreste yayımlanamaz. Lisans: https://polatsunay.github.io/bilisim-teknolojileri/lisans.html */
+(function(){var h=location.hostname,p=location.pathname,ok=(h==='polatsunay.github.io'&&p.indexOf('/bilisim-teknolojileri/')===0)||h==='localhost'||h==='127.0.0.1'||location.protocol==='file:'||/(^|\.)googleusercontent\.com$/.test(h);try{console.log('%c© 2026 Sunay Öğretmen (Sunay\'s School) · Tüm hakları saklıdır.','font:700 14px sans-serif;color:#6c5ce7');console.log('Bu içerik lisanslıdır; izinsiz kopyalanamaz, değiştirilemez, başka bir yerde yayımlanamaz. Lisans: https://polatsunay.github.io/bilisim-teknolojileri/lisans.html')}catch(e){}if(ok)return;try{window.stop()}catch(e){}var u='https://polatsunay.github.io/bilisim-teknolojileri/bilgisayarli-tasarim-uygulamalari/';document.documentElement.innerHTML='<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lisanslı içerik</title></head><body style="margin:0;font-family:system-ui,sans-serif"><div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;background:linear-gradient(140deg,#341f78,#6c5ce7)"><div style="background:#fff;border-radius:20px;padding:30px;max-width:520px;color:#22184a;text-align:center"><div style="font-size:44px">🔒</div><h1 style="margin:6px 0">Lisanslı içerik</h1><p>Bu sayfa <b>Sunay Öğretmen</b>\'e aittir ve yalnızca orijinal adresinde kullanılabilir. İzinsiz kopyalanması ve başka bir sitede yayımlanması yasaktır.</p><p><a href="'+u+'" style="display:inline-block;background:#ffc42a;color:#22184a;padding:12px 20px;border-radius:12px;font-weight:800;text-decoration:none">Orijinal sayfaya git →</a></p><p style="font-size:13px;color:#6b6890">© 2026 Sunay Öğretmen (Sunay\'s School) · Tüm hakları saklıdır.<br><a href="https://polatsunay.github.io/bilisim-teknolojileri/lisans.html" style="color:#6c5ce7">Lisans koşulları</a></p></div></div></body>';})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilgisayarlı Tasarım Uygulamaları · Etkileşimli Ders Kitabı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --ink:#1c2333; --muted:#5d6676; --line:#e4dfd4; --card:#fff;
+  --a:#e4572e; --b:#d98a00; --c:#139a8f; --d:#6c4bd8; --e:#2f6fd6; --u1:#2563eb; --g:#16a34a; --h:#db2777; --i:#0e7490;
+  --acc:var(--e);
+  --t:#1f9d55; --f:#d64545; --warn:#f4a100;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#262b36;font-family:Inter,system-ui,"Segoe UI",Roboto,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+#viewport{position:fixed;inset:0 0 54px 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#stage{width:1280px;height:720px;position:relative;flex:none;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);border-radius:16px;overflow:hidden;display:none;flex-direction:column;padding:18px 38px 22px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.slide.active{display:flex;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.slide[data-sec="a"]{--acc:var(--a)} .slide[data-sec="b"]{--acc:var(--b)} .slide[data-sec="c"]{--acc:var(--c)} .slide[data-sec="d"]{--acc:var(--d)} .slide[data-sec="e"]{--acc:var(--e)} .slide[data-sec="f"]{--acc:var(--u1)} .slide[data-sec="g"]{--acc:var(--g)} .slide[data-sec="h"]{--acc:var(--h)} .slide[data-sec="i"]{--acc:var(--i)}
+.slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--acc)}
+.top{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);min-height:24px}
+.top .wk{background:var(--acc);color:#fff;font-weight:700;padding:3px 10px;border-radius:99px}
+.top .sec{font-weight:600;color:var(--ink)}
+.top .ref{margin-left:auto;font-family:var(--mono);font-size:11.5px;background:#ece8df;padding:3px 9px;border-radius:6px}
+.olc{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:6px;border:1.5px solid currentColor}
+.olc.tani{color:#b5179e}.olc.bic{color:#0077b6}.olc.kanit{color:#2b9348}
+h2{font-size:32px;line-height:1.15;margin:6px 0 12px;letter-spacing:-.6px;font-weight:800}
+h2 small{font-size:17px;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:8px}
+h3{margin:0 0 8px;font-size:17px;letter-spacing:-.2px}
+p{margin:0 0 8px;line-height:1.45}
+.body{flex:1;min-height:0;display:grid;gap:16px}
+.c2{grid-template-columns:1fr 1fr}.c2l{grid-template-columns:1.15fr .85fr}.c2r{grid-template-columns:.85fr 1.15fr}.c3{grid-template-columns:1fr 1fr 1fr}
+.col{display:flex;flex-direction:column;gap:12px;min-height:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;min-height:0;overflow:auto}
+.card.acc{border-top:4px solid var(--acc)}
+.card.soft{background:#fbfaf6}
+.muted{color:var(--muted)} .sm{font-size:13.5px} .xs{font-size:12px}
+.k-term{font-weight:700;color:var(--acc)}
+ul.tight{margin:4px 0 6px;padding-left:20px;line-height:1.5}
+ul.tight li{margin:2px 0}
+code,.mono{font-family:var(--mono);font-size:.92em}
+code.i{background:#efebe2;padding:1px 6px;border-radius:5px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-family:var(--mono);font-size:13px;padding:2px 10px;border-radius:99px;background:#eee;color:#555}
+.pill.T{background:#dff3e7;color:var(--t)}.pill.F{background:#fbe3e3;color:var(--f)}
+.btn{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:7px 13px;cursor:pointer;font-weight:600;font-size:14px;transition:.15s}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.pri:hover{filter:brightness(1.08);color:#fff}
+.btn.sm{padding:4px 10px;font-size:13px}
+.btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+input[type=text],input[type=number]{border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;background:#fff;font-family:var(--mono);font-size:14px;outline:none}
+input[type=text]:focus,input[type=number]:focus{border-color:var(--acc)}
+input[type=range]{accent-color:var(--acc);width:100%}
+label.sw{display:inline-flex;gap:8px;align-items:center;cursor:pointer;font-size:14px;font-weight:600;user-select:none}
+label.sw input{display:none}
+label.sw .tg{width:40px;height:22px;border-radius:99px;background:#cfcac0;position:relative;transition:.2s;flex:none}
+label.sw .tg::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+label.sw input:checked+.tg{background:var(--acc)}
+label.sw input:checked+.tg::after{left:21px}
+/* code */
+.code{background:#1a1e29;color:#e3e6ee;border-radius:10px;font:13.5px/1.6 var(--mono);padding:9px 0;overflow:auto;min-height:0}
+.code .ln{display:flex;white-space:pre;padding-right:14px;position:relative;transition:background .15s}
+.code .lc{min-width:0;white-space:inherit}
+.code .ln::before{content:attr(data-n);width:30px;text-align:right;color:#576078;margin-right:12px;flex:none;user-select:none}
+.code .k{color:#c792ea}.code .s{color:#c3e88d}.code .n{color:#f78c6c}.code .c{color:#7d879e;font-style:italic}.code .b{color:#82aaff}
+.code .tab{display:inline-block;width:4ch}
+.code .ws{color:#ff6b81}.code .ws.tab{display:inline-block;width:4ch}
+.code .ln.act{background:rgba(255,214,102,.17);box-shadow:inset 3px 0 #ffd666}
+.code .ln.run{background:rgba(31,157,85,.2);box-shadow:inset 3px 0 #3ddc84}
+.code .ln.skip{opacity:.32}
+.code.click .ln{cursor:pointer}
+.code.click .ln:hover{background:rgba(255,255,255,.06)}
+.code .ln.mark{background:rgba(255,107,129,.22);box-shadow:inset 3px 0 #ff6b81}
+.code .ln.hit{background:rgba(61,220,132,.25);box-shadow:inset 3px 0 #3ddc84}
+.code .ln.miss{background:rgba(244,161,0,.25);box-shadow:inset 3px 0 #f4a100}
+.code .ln.fa{background:rgba(160,160,160,.18);box-shadow:inset 3px 0 #999}
+.code .ln .tagl{position:absolute;right:8px;font:600 10.5px Inter,sans-serif;padding:1px 7px;border-radius:5px;top:3px}
+/* terminal */
+.term{background:#0f1218;color:#d7dde8;font:13px/1.55 var(--mono);border-radius:10px;padding:10px 12px;overflow:auto;white-space:pre-wrap;min-height:60px}
+.term .er{color:#ff6b6b}.term .ok{color:#3ddc84}.term .in{color:#ffd666}.term .dim{color:#6b7489}
+.term-in{display:flex;gap:6px;align-items:center;margin-top:6px}
+.term-in input{flex:1;background:#0f1218;color:#ffd666;border-color:#2c3342}
+/* stepper */
+.stp{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;min-height:0;flex:1}
+.stp-side{display:flex;flex-direction:column;gap:8px;min-height:0}
+.note{background:#fff8e1;border:1px solid #f3e1a6;border-radius:9px;padding:8px 11px;font-size:14px;min-height:44px;line-height:1.4}
+.note.t{background:#e8f7ee;border-color:#b6e2c6}.note.f{background:#fdecec;border-color:#f3c0c0}.note.w{background:#fff0e0;border-color:#ffc47a;font-weight:700}
+table.trace{border-collapse:collapse;width:100%;font:12.5px var(--mono)}
+table.trace th,table.trace td{border:1px solid var(--line);padding:3px 7px;text-align:center}
+table.trace th{background:#f0ece3;font-family:Inter;font-size:12px}
+table.trace tr.cur td{background:#fff3c4;font-weight:700}
+.trwrap{background:#fff;border:1px solid var(--line);border-radius:9px;overflow:auto;max-height:200px}
+/* quiz */
+.qz-q{font-weight:700;font-size:17px;margin-bottom:8px;line-height:1.35}
+.qz-o{display:grid;gap:7px}
+.qz-o button{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;font-size:15px;transition:.15s}
+.qz-o button:hover:not(:disabled){border-color:var(--acc)}
+.qz-o button.ok{background:#e3f6ea;border-color:var(--t)}
+.qz-o button.no{background:#fde8e8;border-color:var(--f)}
+.qz-o button:disabled{cursor:default}
+.qz-x{margin-top:8px;font-size:14px;background:#f3f6fb;border-radius:9px;padding:8px 11px;display:none;line-height:1.4}
+.qz-h{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.qz-bar{height:5px;background:#eee;border-radius:9px;overflow:hidden;margin-bottom:10px}.qz-bar i{display:block;height:100%;background:var(--acc);transition:.3s}
+/* misc */
+.flow{display:flex;gap:10px;align-items:stretch}
+.flow .st{flex:1;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;transition:.2s;position:relative}
+.flow .st:hover{border-color:var(--acc)}
+.flow .st.on{border-color:var(--acc);background:#fff6f2;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.flow .st .nu{width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:6px}
+.flow .ar{align-self:center;font-size:22px;color:var(--muted)}
+.cards6{display:grid;align-content:start;grid-template-columns:1fr 1fr;gap:10px}
+.fc{background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:10px 12px}
+.fc .cd{font-family:var(--mono);font-size:14px;background:#1a1e29;color:#e3e6ee;padding:6px 9px;border-radius:7px;margin-bottom:8px}
+.fc.ok{border-color:var(--t);background:#f1fbf5}.fc.no{border-color:var(--f);background:#fff4f4}
+.fc .ex{font-size:13px;margin-top:6px;display:none;line-height:1.35}
+.big{font-size:44px;font-weight:800;letter-spacing:-1px;font-family:var(--mono)}
+.ladder{display:flex;flex-direction:column;gap:7px}
+.rung{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-family:var(--mono);font-size:14px;transition:.2s}
+.rung .kw{font-weight:700;color:#7a3db8;min-width:48px}
+.rung .res{margin-left:auto}
+.rung.win{border-color:var(--t);background:#effaf3;box-shadow:0 0 0 3px #d4f1df}
+.rung.skipd{opacity:.4}
+.rung.dead{border-style:dashed;border-color:var(--f)}
+.badge{font:700 11px Inter;background:var(--f);color:#fff;padding:2px 7px;border-radius:5px}
+.lst{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end;min-height:84px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:3px;transition:.3s}
+.cell .v{min-width:70px;padding:10px 10px;background:#fff;border:2px solid var(--ink);border-radius:8px;text-align:center;font-family:var(--mono);font-size:15px;font-weight:600;transition:.3s}
+.cell .ix{font:600 12px var(--mono);color:var(--e)}
+.cell .nx{font:600 12px var(--mono);color:var(--d)}
+.cell.hl .v{background:#ffe9a8;border-color:var(--warn);transform:translateY(-4px)}
+.cell.nw .v{background:#d9f5e4;border-color:var(--t)}
+.cell.sh .v{background:#e8e0ff;border-color:var(--d)}
+.cv-wrap{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cv-wrap canvas{position:absolute;left:0;top:0}
+.sc{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:14px;font-weight:600}
+.sc output{font-family:var(--mono);min-width:44px;text-align:right}
+.cls{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cls .it{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px;display:flex;gap:8px;align-items:center}
+.cls .it span{flex:1}
+.cls .it.ok{border-color:var(--t);background:#f0faf4}.cls .it.no{border-color:var(--f);background:#fff3f3}
+.chk{display:flex;flex-direction:column;gap:6px}
+.chk label{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 11px;cursor:pointer;font-size:14px;line-height:1.35}
+.chk label:has(input:checked){border-color:var(--t);background:#f1fbf5}
+.chk input{accent-color:var(--t);width:17px;height:17px;margin-top:1px;flex:none}
+.prog{height:9px;background:#eee;border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;background:var(--t);transition:.3s;width:0}
+table.tb{border-collapse:collapse;width:100%;font-size:13.5px}
+table.tb th,table.tb td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+table.tb th{font-size:12.5px;color:var(--muted);letter-spacing:.2px}
+table.tb tr.go{cursor:pointer}table.tb tr.go:hover td{background:#fff6e6}
+.wkdot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+/* cover */
+.cover{padding:0!important;background:radial-gradient(1200px 600px at 85% 30%,#efe9ff 0%,transparent 60%),radial-gradient(800px 500px at 10% 100%,#ffece4 0%,transparent 60%),var(--bg)}
+.cover::before{display:none}
+.cv-in{display:grid;grid-template-columns:1.15fr .85fr;height:100%}
+.cv-l{padding:56px 20px 40px 64px;display:flex;flex-direction:column}
+.kicker{font-weight:700;color:var(--a);letter-spacing:1.5px;text-transform:uppercase;font-size:13px}
+.cover h1{font-size:58px;line-height:1.02;letter-spacing:-2px;margin:14px 0 14px;font-weight:800}
+.cover h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.units{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.unit{background:#fff;border:1px solid var(--line);border-left:6px solid var(--u);border-radius:12px;padding:10px 14px;cursor:pointer;transition:.2s}
+.unit:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.unit b{display:block;font-size:15.5px}.unit span{font-size:12.5px;color:var(--muted);font-weight:600}
+.secov{display:grid;grid-template-columns:1fr 1fr;gap:26px;height:100%;align-items:center}
+.secno{font-size:110px;font-weight:800;color:var(--acc);line-height:.9;letter-spacing:-4px;opacity:.9}
+.kz{background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:10px;padding:10px 14px;font-size:14.5px;line-height:1.4}
+.eg{display:flex;gap:6px;flex-wrap:wrap}.eg span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:600}
+/* nav */
+#nav{position:fixed;left:0;right:0;bottom:0;height:54px;background:#1b1f29;display:flex;align-items:center;gap:10px;padding:0 16px;color:#cfd6e4;font-size:14px;z-index:20}
+#nav button{background:#2b3140;border:0;color:#e9edf5;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600}
+#nav button:hover{background:#3a4254}
+#nav .t{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nav .bar{position:absolute;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--a),var(--b),var(--c),var(--d));transition:.3s}
+#menu{position:fixed;inset:0 0 54px 0;background:rgba(18,21,28,.86);z-index:30;display:none;overflow:auto;padding:30px}
+#menu.on{display:block}
+#menu .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+#menu .grp{background:#232937;border-radius:12px;padding:12px 14px}
+#menu .grp h4{margin:0 0 6px;color:#fff;font-size:14px}
+#menu a{display:block;color:#c9d2e3;text-decoration:none;padding:4px 6px;border-radius:6px;font-size:13.5px;cursor:pointer}
+#menu a:hover{background:#333b4d;color:#fff}
+#menu a.cur{background:#3d4660;color:#fff}
+.hidden{display:none!important}
+.fl{width:100%;height:100%;display:block}
+.fl .nd rect,.fl .nd polygon{fill:#fff;stroke:#1c2333;stroke-width:1.6;transition:.25s}
+.fl .nd text{font:12.5px Inter,sans-serif;fill:#1c2333}
+.fl .nd.on rect,.fl .nd.on polygon{fill:#fff1c2;stroke:#f4a100;stroke-width:2.6}
+.fl .ed path{fill:none;stroke:#5d6676;stroke-width:1.6;transition:.25s}
+.fl .ed path.hit{stroke:transparent;stroke-width:14;marker-end:none}
+.fl .ed.on path:not(.hit){stroke:#f4a100;stroke-width:2.8}
+.fl .el{font:700 11.5px Inter,sans-serif;fill:#5d6676}
+.fl .nd.mk rect,.fl .nd.mk polygon,.fl .ed.mk path:not(.hit){stroke:#e4572e;stroke-width:3;stroke-dasharray:6 3}
+.fl .nd.good rect,.fl .nd.good polygon,.fl .ed.good path:not(.hit){stroke:#1f9d55;stroke-width:3.2}
+.fl .nd.bad rect,.fl .nd.bad polygon,.fl .ed.bad path:not(.hit){stroke:#f4a100;stroke-width:3.2;stroke-dasharray:4 3}
+#hz-f .nd,#hz-f .ed{cursor:pointer}
+.mdh{margin:8px 0 4px;letter-spacing:-.2px}h2.mdh{font-size:22px}h3.mdh{font-size:17px}h4.mdh{font-size:15px}
+.mdimg{display:inline-block;background:#eef4ff;border:1px dashed #2563eb;border-radius:6px;padding:4px 8px;font-size:12px}
+.unit-c{cursor:pointer;border-top:5px solid var(--u);transition:.2s}.unit-c:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.unit-c .secno{line-height:1;margin-bottom:4px}
+.h2-acts{float:right;display:inline-flex;gap:6px;margin-top:4px;flex-wrap:wrap;justify-content:flex-end;max-width:52%}
+.soru-btn{background:#fff8e1;border-color:#f0d27a;color:#7a5600;font-size:13px;letter-spacing:0}
+.soru-btn:hover{background:#ffefc2;border-color:#d9a400;color:#5c4000}
+#soru-m{position:absolute;inset:0;z-index:40;background:rgba(20,24,34,.55);display:none;align-items:center;justify-content:center;border-radius:16px}
+#soru-m.on{display:flex}
+.soru-c{width:860px;max-height:660px;background:#fff;border-radius:16px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+#soru-b{overflow:auto;flex:1;font-size:15px;line-height:1.5;padding-right:6px}
+#soru-b p{margin:0 0 8px}
+.soru-q{background:#fbfaf6;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+.soru-q textarea{width:100%;margin-top:6px;border:1.5px solid var(--line);border-radius:8px;padding:8px;font:14px Inter,sans-serif;resize:vertical}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}
+#koru-t{position:fixed;left:50%;bottom:70px;transform:translateX(-50%) translateY(20px);background:#1b1f29;color:#fff;font:600 14px Inter,sans-serif;padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:.25s;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+#koru-t.on{opacity:1;transform:translateX(-50%)}
+.soru-ev .note{margin-top:6px;font-size:13.5px}
+.soru-ck{margin-top:4px;display:grid;gap:2px;font-weight:400}
+.soru-md{margin:6px 0 0;background:#eef7f1;border:1px solid #b6e2c6;border-radius:8px;padding:8px 10px;font:13px/1.5 var(--mono);white-space:pre-wrap}
+.soru-q textarea:focus{outline:none;border-color:var(--acc)}
+/* ==== KİTAP 2: BTT ek bileşenler ==== */
+:root{--u1:#0f766e;--u2:#7c3aed;--u3:#ea580c;--u4:#16a34a;--u5:#7c3aed;--u6:#0891b2;--u7:#4f46e5;--u8:#db2777;--u9:#0d9488;--u10:#ca8a04}
+.slide[data-sec="1"]{--acc:var(--u1)}.slide[data-sec="2"]{--acc:var(--u2)}.slide[data-sec="3"]{--acc:var(--u3)}.slide[data-sec="4"]{--acc:var(--u4)}.slide[data-sec="5"]{--acc:var(--u5)}.slide[data-sec="6"]{--acc:var(--u6)}.slide[data-sec="7"]{--acc:var(--u7)}.slide[data-sec="8"]{--acc:var(--u8)}.slide[data-sec="9"]{--acc:var(--u9)}.slide[data-sec="10"]{--acc:var(--u10)}
+.rv{display:grid;gap:8px;align-content:start}
+.rv .r{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;transition:.15s;font-size:14px}
+.rv .r:hover{border-color:var(--acc)}
+.rv .r b{display:flex;gap:8px;align-items:center}
+.rv .r b::after{content:"＋";margin-left:auto;color:var(--acc)}
+.rv .r.on b::after{content:"−"}
+.rv .r .d{display:none;margin-top:5px;line-height:1.42;color:#323a4a}
+.rv .r.on{border-color:var(--acc);background:#fbfaff}.rv .r.on .d{display:block}
+.rv .r .n{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:6px;background:#eef2ff;color:var(--acc)}
+.dy{position:relative;display:grid;gap:10px}
+.dy .q{background:#fff;border:2px solid var(--acc);border-radius:12px;padding:12px 14px;font-size:16px;font-weight:600;line-height:1.4}
+.dy .path{display:flex;gap:6px;flex-wrap:wrap}
+.dy .path span{font:700 12px var(--mono);padding:3px 8px;border-radius:6px;background:#eee}
+.dy .path span.D{background:#dff3e7;color:var(--t)}.dy .path span.Y{background:#fbe3e3;color:var(--f)}
+.dy .ex{font-size:26px;font-weight:800;text-align:center;padding:10px;border-radius:12px}
+.tfi{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 11px;font-size:14px}
+.tfi.ok{border-color:var(--t);background:#f0faf4}.tfi.no{border-color:var(--f);background:#fff3f3}
+.tfi .x{grid-column:1/-1;font-size:13px;color:#3b4252;display:none}
+.tfi.ok .x,.tfi.no .x{display:block}
+.mail{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:15px;line-height:1.55}
+.mail .h{cursor:pointer;border-radius:4px;transition:.15s;padding:0 2px}
+.mail .h:hover{background:#fff3c4}
+.mail .h.fd{background:#fde2e2;box-shadow:inset 0 -2px #d64545}
+.mail .h.nf{background:#e7f3ff;box-shadow:inset 0 -2px #2f6fd6}
+.cmap{display:grid;gap:8px;justify-items:center}
+.cmap .nd{background:#fff;border:2px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;text-align:center;min-width:120px}
+.cmap .nd.t{border-color:var(--acc);font-weight:800}
+.slot{display:inline-block;min-width:120px;min-height:26px;border:2px dashed #b9b3a6;border-radius:7px;padding:2px 8px;font-weight:700;font-size:13px;vertical-align:middle;cursor:pointer;background:#fffdf7}
+.slot.ok{border:2px solid var(--t);background:#e8f7ee;color:#14532d}.slot.no{border-color:var(--f);background:#fdecec}
+.slot.sel{border-color:var(--acc);box-shadow:0 0 0 3px rgba(37,99,235,.18)}
+.bank{display:flex;flex-wrap:wrap;gap:6px}
+.bank .chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 11px;font-size:13px;font-weight:600;cursor:pointer}
+.bank .chip:hover{border-color:var(--acc)}.bank .chip.used{opacity:.3;pointer-events:none}.bank .chip.sel{background:var(--acc);color:#fff;border-color:var(--acc)}
+.tl{display:flex;gap:8px}
+.tl .st{flex:1;text-align:center;background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 6px;cursor:pointer;transition:.2s}
+.tl .st.on{border-color:var(--acc);background:#f5f8ff;transform:translateY(-3px)}
+.tl .st .y{font-size:24px;font-weight:800;color:var(--acc)}
+.meter{height:12px;border-radius:99px;background:#eee;overflow:hidden}.meter i{display:block;height:100%;transition:.3s}
+.ck{display:grid;gap:4px;font-size:14px}.ck div::before{content:"⬜ "}.ck div.on::before{content:"✅ "}
+.sit{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.sit .it{display:flex;gap:8px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:7px 10px;font-size:13.5px}
+.sit .it .nm{width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.sit .it span{flex:1}
+.sit .it.ok{border-color:var(--t);background:#f0faf4}.sit .it.no{border-color:var(--f);background:#fff3f3}
+.pomo{display:flex;gap:4px;height:34px}.pomo i{border-radius:6px;display:grid;place-items:center;font:700 11px Inter;color:#fff;font-style:normal}
+.imgfig{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;place-items:center}
+.imgfig img{max-width:100%;max-height:100%;display:block}
+table.bt{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
+table.bt th,table.bt td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+table.bt th{background:#f0ece3;font-size:12.5px}
+table.bt tr.hl td{background:#fff7d6}
+.cls .it{flex-wrap:wrap}.cls .it span{min-width:52%}
+.slot{min-width:96px}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+<section class="slide cover" id="s-kapak" data-sec="e" data-title="Kapak">
+ <div class="cv-in">
+  <div class="cv-l">
+   <div class="kicker">9. Sınıf · Mesleki ve Teknik Anadolu Lisesi · Bilişim Teknolojileri Alanı · Etkileşimli Ders Materyali</div>
+   <h1>Bilgisayarlı Tasarım<br><em>Uygulamaları</em></h1>
+   <p class="muted" style="font-size:15.5px;max-width:620px;margin:0">MEB ders materyalinin üç öğrenme birimi: teknik resim, üç boyutlu çizim ve baskı, temel elektronik. Konular, uygulamalar ve ölçme-değerlendirme soruları etkileşimli hâlde.</p>
+   <div class="units" style="grid-template-columns:1fr;gap:8px">
+    <div class="unit" style="--u:var(--u1)" data-go="s-1-0"><span>📐 1. Öğrenme Birimi</span><b>Temel Teknik Resim Uygulamaları</b></div>
+    <div class="unit" style="--u:var(--u2)" data-go="s-2-0"><span>🧊 2. Öğrenme Birimi</span><b>Üç Boyutlu Çizim Uygulamaları</b></div>
+    <div class="unit" style="--u:var(--u3)" data-go="s-3-0"><span>🔌 3. Öğrenme Birimi</span><b>Temel Elektronik Uygulamaları</b></div>
+   </div>
+   <p class="xs muted" style="margin-top:10px">← → ok tuşları · <b>☰</b> içindekiler · <b>F</b> tam ekran · <b>📖</b> düğmeleri kitaptaki soruları açar</p>
+  </div>
+  <div style="display:grid;place-items:center"><div style="width:380px;height:380px;border-radius:50%;background:conic-gradient(var(--u1) 0deg 120deg,var(--u2) 120deg 240deg,var(--u3) 240deg 360deg);display:grid;place-items:center;box-shadow:0 20px 50px rgba(15,118,110,.2)"><div style="width:240px;height:240px;border-radius:50%;background:var(--bg);display:grid;place-items:center;text-align:center"><div><div style="font-size:60px">📐</div><b style="font-size:20px">BTA · 9</b><div class="xs muted">3 öğrenme birimi</div></div></div></div></div>
+ </div>
+</section>
+<section class="slide" id="s-1-0" data-sec="1" data-title="1. Öğrenme Birimi · Temel Teknik Resim Uygulamaları" data-ref="Kitap s. 16–18">
+ <div class="secov">
+  <div>
+   <div class="secno">1</div>
+   <h2 style="font-size:40px">Temel Teknik Resim Uygulamaları</h2>
+   <div class="kz"><b>Konular:</b> 1.1 Çizgi Çalışması · 1.2 Norm Yazı Yazma · 1.3 Temel Geometrik Çizimler · 1.4 İzdüşüm Görünüşlerini Çizme · 1.5 İzdüşüm Görünüşlerini Ölçülendirme</div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="tag">çizgi çeşitleri</span><span class="tag">koordinat düzlemi</span><span class="tag">ölçülendirme</span><span class="tag">üst görünüş</span><span class="tag">geometrik çizimler</span><span class="tag">norm yazı</span><span class="tag">ölçü rakamı</span><span class="tag">yan görünüş</span><span class="tag">görünüş</span><span class="tag">ölçek</span><span class="tag">ön görünüş</span><span class="tag">izdüşüm</span><span class="tag">ölçü çizgisi</span><span class="tag">taşıma çizgisi</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🎯 Bu birimde</h3><ul class="tight sm"><li>Teknik resim kurallarına uygun çizgi çalışmaları ve norm yazılar</li><li>Temel geometrik çizimler</li><li>Nesnelerin izdüşüm görünüşlerini doğru yöntemle çizme</li><li>Görünüşleri ölçülendirme kurallarına göre düzenleme</li></ul></div>
+   <div class="card soft sm" id="bas1-c"><h3>🚦 Başlarken</h3>Uçak motorundan kapı koluna kadar tüm ürünler, üretimden önce teknik resim kurallarına göre çizilir; bu çizimler <b>ortak bir iletişim dili</b> oluşturur. Bina planları, yol çizgileri, haritalar, mobilya kurulum şemaları… İnsanlar bir fikri ortak anlamak için neden çizimlerden yararlanır?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-1" data-sec="1" data-title="Teknik resim araç gereci" data-olc="bic" data-ref="Kitap 1.1.1 · s. 18–22">
+ <h2>1.1 Çizgi Çalışması · Teknik Resim Araç Gereci <small>doğru, standart, anlaşılır çizim için</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🧰 Araçlar <span class="xs muted">(tıkla)</span></h3><div id="u1-ar" style="flex:1;overflow:auto"></div></div>
+  <div class="card acc col"><h3>❓ Hangi araç?</h3><div id="u1-aq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-2" data-sec="1" data-title="Kalemler ve kâğıtlar" data-olc="kanit" data-ref="Kitap s. 21–22">
+ <h2>Çizim Kalemleri ve Teknik Resim Kâğıtları <small>H · HB · B · eskiz · resim · aydınger · ozalit</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>✏️ Hangi kalem serisi?</h3><div id="u1-kl" style="flex:1"></div><p class="xs muted" style="margin:6px 0 0">Yaygın uç kalınlıkları: 0,35 · 0,5 · 0,7 · 0,9 mm. Sertlik derecesi harf ve rakamlarla gösterilir.</p></div>
+  <div class="card acc col"><h3>📄 Hangi kâğıt?</h3><div id="u1-kg" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-3" data-sec="1" data-title="Standart kâğıt ölçüleri ve antet" data-olc="kanit" data-ref="Kitap 1.1.2 · s. 22–23">
+ <h2>Standart Kâğıt Ölçüleri · Yazı Alanı (Antet) <small>A serisi: her kâğıt bir öncekinin uzun kenarından ikiye bölünür</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>📐 A0’dan A5’e</h3><div id="u1-ka" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🗂️ Çerçeve ve antet</h3><div id="u1-an" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-4" data-sec="1" data-title="Çizgi çeşitleri" data-olc="kanit" data-ref="Kitap 1.1.3 · Tablo 1.1 · s. 24–25">
+ <h2>Çizgi Çeşitleri <small>TS EN ISO 128-2 · Tablo 1.1</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>〰️ Çizgiye tıkla</h3><div id="u1-cz" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🎯 Bu yer için hangi çizgi?</h3><div id="u1-cq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-5" data-sec="1" data-title="Norm yazı" data-olc="kanit" data-ref="Kitap 1.2 · s. 26–30">
+ <h2>1.2 Norm Yazı Yazma <small>TS EN ISO 3098 · dik ve eğik (yaklaşık 75°)</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>✍️ Norm yazı önizleme</h3><div id="u1-ny" style="flex:1"></div></div>
+  <div class="card acc col"><h3>✅ Doğru mu, yanlış mı?</h3><div id="u1-nt" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-6" data-sec="1" data-title="Temel geometrik terimler" data-olc="bic" data-ref="Kitap 1.3 · s. 31">
+ <h2>1.3 Temel Geometrik Çizimler <small>teknik resimde sık kullanılan terimler</small></h2>
+ <div class="body c2">
+  <div class="card col"><div id="u1-gt" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔍 Hangi terim?</h3><div id="u1-gq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-7" data-sec="1" data-title="Doğru çizimi: dikme ve eşit bölme" data-olc="kanit" data-ref="Kitap 1.3.1 · 1–3. Örnek Uygulama · s. 31–38">
+ <h2>Doğru Çizimi <small>pergel ve cetvelle adım adım</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>📏 Çizim adımları</h3><div id="u1-dc" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔢 Dik açı oluşturma sırası</h3><div id="u1-da" style="flex:1"></div><div class="note sm" style="margin-top:6px"><b>Örnek uygulama kuralları:</b> araç gereci dikkatli kullan, alanı temiz tut, çizgileri taşırma; atölye imkânlarını <b>emanete sahip çıkma ve emeğe saygı</b> değerleriyle koru; işe vaktinde başla.</div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-8" data-sec="1" data-title="Daire içine çokgen çizimi" data-olc="kanit" data-ref="Kitap 1.3.2 · 5–8. Örnek Uygulama · s. 39–46">
+ <h2>Çokgenlerin Çizimi · Daire İçine Düzgün Çokgen <small>en az üç doğru parçasından oluşan kapalı şekil</small></h2>
+ <div class="body">
+  <div class="card col" style="height:100%"><div id="u1-cg" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-9" data-sec="1" data-title="İzdüşüm: paralel ve merkezî" data-olc="bic" data-ref="Kitap 1.4.1 · s. 48–49">
+ <h2>1.4 İzdüşüm Görünüşlerini Çizme <small>3B nesne → 2B düzlem</small></h2>
+ <div class="body c2">
+  <div class="col">
+   <div class="card sm"><b>İzdüşüm:</b> üç boyutlu bir nesnenin belirli bir bakış yönüne göre iki boyutlu bir düzlem üzerine aktarılması. Örnekler: kutunun önden görünüşü, binanın çatı planı, cismin yere düşen <b>gölgesi</b>, CAD’de ön-üst-yan görünüşler.</div>
+   <div class="card col"><h3>🔦 İzdüşüm türü</h3><div id="u1-iz" style="flex:1"></div></div>
+  </div>
+  <div class="card acc col"><h3>🏷️ Paralel mi, merkezî mi?</h3><div id="u1-iq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-10" data-sec="1" data-title="İzdüşüm düzlemleri ve noktanın izdüşümü" data-olc="kanit" data-ref="Kitap 1.4.1.1 · 9. Örnek Uygulama · s. 49–53">
+ <h2>İzdüşüm Düzlemleri · Noktanın İzdüşümü <small>aralık · kot · uzaklık → epür</small></h2>
+ <div class="body c2r">
+  <div class="col">
+   <div class="card sm"><b>Diedr:</b> birbirine dik iki düzlem (yatay = üst görünüş, düşey = ön görünüş). Gerekirse üçüncü düzlem (profil = yan).<br><b>Epür:</b> alın, yatay ve profil düzlemlerinin açılarak tek düzlemde birleştirilmiş hâli.</div>
+   <div class="card acc sm"><b>Aralık:</b> noktanın <u>profil</u> düzlemine dik uzaklığı.<br><b>Kot:</b> noktanın <u>yatay</u> düzleme dik uzaklığı.<br><b>Uzaklık:</b> noktanın <u>alın</u> düzlemine dik uzaklığı.</div>
+   <div class="card col"><h3>❓ Hangi değer?</h3><div id="u1-kq" style="flex:1"></div></div>
+  </div>
+  <div class="card col"><h3>🎯 Epür üzerinde a noktası</h3><div id="u1-ep" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-11" data-sec="1" data-title="Görünüş çeşitleri ve görünüş sayısı" data-olc="bic" data-ref="Kitap 1.4.2 · s. 58–59">
+ <h2>Görünüş Çıkarma · Görünüş Çeşitleri <small>en az sayıda görünüşle en doğru ifade</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>📦 Kapalı kutu sistemi <span class="xs muted">(tıkla)</span></h3><div id="u1-gc" style="flex:1"></div></div>
+  <div class="card acc col"><h3>✅ Görünüş belirleme kuralları</h3><div id="u1-gk" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-12" data-sec="1" data-title="Üç görünüş antrenmanı" data-olc="kanit" data-ref="Kitap 1.4.2.3 · 12. Örnek Uygulama · s. 59–63">
+ <h2>Nesnenin Üç Görünüşü <small>ön · üst · yan görünüşü bul <span class="tag">temsilî parçalar</span></small></h2>
+ <div class="body">
+  <div class="card col" style="height:100%"><div id="u1-ug" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-13" data-sec="1" data-title="Ölçek ve ölçülendirme" data-olc="kanit" data-ref="Kitap 1.5 · 13. Örnek Uygulama · s. 64–69">
+ <h2>1.5 Ölçeklendirme ve Ölçülendirme <small>1:1 · 1:n · n:1 · ölçülendirme elemanları</small></h2>
+ <div class="body c2">
+  <div class="card col"><h3>🔍 Ölçek hesaplayıcı</h3><div id="u1-ol" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card acc col"><h3>📏 Ölçülendirme elemanları <span class="xs muted">(tıkla)</span></h3><div id="u1-oe" style="flex:1"></div></div>
+   <div class="card col"><h3>🔢 13. Örnek Uygulama sırası</h3><div id="u1-os" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-14" data-sec="1" data-title="Ölçme ve Değerlendirme A–B" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme · s. 70–71">
+ <h2>Ölçme ve Değerlendirme · A ve B <small>kutucuk numaraları · çoktan seçmeli</small></h2>
+ <div class="body c2l">
+  <div class="card col"><h3>A) Kutucuk numarasını seç</h3><div id="u1-oa" style="flex:1;overflow:auto"></div></div>
+  <div class="card acc col"><div id="u1-ob" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-1-15" data-sec="1" data-title="Ölçme ve Değerlendirme C" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme · s. 72–73">
+ <h2>Ölçme ve Değerlendirme · C <small>1200 mm’lik parça · küçük elektronik parça (📖)</small></h2>
+ <div class="body c2">
+  <div class="card sm"><div class="note sm">Bir öğrenci, gerçek uzunluğu <b>1200 mm</b> olan metal parçayı <b>A4</b> kâğıdına çizmeye çalışıyor; gerçek ölçüde kâğıda sığmıyor. Öğretmeni uygun bir <b>küçültme ölçeği</b> kullanmasını istiyor. Başka bir öğrenci, elektronik devredeki çok küçük bir parçayı ayrıntılı göstermek için <b>büyütme ölçeği</b> kullanıyor.</div><ol class="tight sm"><li>İlk öğrenci hangi tür ölçek kullanmalı? Gerekçesi</li><li>İkinci öğrenci neden büyütme ölçeği kullanmış olabilir?</li><li>Yanlış ölçek kullanımı ne gibi sorunlara yol açar?</li><li>Uygun ölçek kullanmasaydı ilk öğrenci hangi yöntemlere başvurmak zorunda kalırdı?</li><li>Farklı ölçek kullanmalarına rağmen ikisi de kurallara uygun davranmış sayılır mı?</li></ol><p class="xs muted">Yanıtlar için 📖 düğmesini kullan.</p></div>
+  <div class="card acc col"><h3>🧪 1200 mm A4’e sığar mı?</h3><div id="u1-oc" style="flex:1"></div></div>
+ </div>
+</section>
+</div></div>
+<div id="menu"><div class="grid"></div></div>
+<div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
+<script>
+const BOOK={skey:'bta-soru-yanit',ul:'Öğrenme Birimi',
+ secn:{1:'Temel Teknik Resim Uygulamaları',2:'Üç Boyutlu Çizim Uygulamaları',3:'Temel Elektronik Uygulamaları',e:'Bilgisayarlı Tasarım Uygulamaları'},
+ unit:{1:1,2:2,3:3},
+ un:['Giriş','1. Temel Teknik Resim','2. Üç Boyutlu Çizim','3. Temel Elektronik']};
+
+/* ============ ÇEKİRDEK ============ */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ============ SUNUM MOTORU ============ */
+const slides=$$('.slide');let cur=0;
+const OLC={tani:'Tanılayıcı',bic:'Biçimlendirici',kanit:'Öğrenme kanıtı'};
+const SECN=BOOK.secn;
+const UNIT=BOOK.unit;
+slides.forEach(s=>{if(!s.dataset.unit&&UNIT[s.dataset.sec])s.dataset.unit=UNIT[s.dataset.sec]});
+slides.forEach(s=>{
+  if(s.classList.contains('cover'))return;
+  const t=document.createElement('div');t.className='top';
+  t.innerHTML=(s.dataset.unit?`<span class="wk">${s.dataset.unit}. ${BOOK.ul}${s.dataset.week?' · '+s.dataset.week:''}</span>`:s.dataset.week?`<span class="wk">${s.dataset.week}</span>`:'')+`<span class="sec">${SECN[s.dataset.sec]||''}</span>`+(s.dataset.olc?`<span class="olc ${s.dataset.olc}">${OLC[s.dataset.olc]}</span>`:'')+(s.dataset.ref?`<span class="ref">📘 ${s.dataset.ref}</span>`:'');
+  s.prepend(t);
+});
+const hooks={};
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');
+  $('#nav .t').textContent=`${cur+1} / ${slides.length} · ${slides[cur].dataset.title||''}`;
+  $('#nav .bar').style.width=((cur+1)/slides.length*100)+'%';
+  const h=hooks[slides[cur].id];if(h)h();
+  try{history.replaceState(null,'','#'+slides[cur].id)}catch(e){}
+}
+const goId=id=>{const i=slides.findIndex(s=>s.id===id);if(i>=0){go(i);$('#menu').classList.remove('on')}};
+function fit(){const vw=innerWidth,vh=innerHeight-54;const k=Math.min(vw/1280,vh/720)*0.97;$('#stage').style.transform=`scale(${k})`;}
+addEventListener('resize',fit);
+document.addEventListener('keydown',e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return;
+  if(document.getElementById('soru-m')&&document.getElementById('soru-m').classList.contains('on'))return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='f'||e.key==='F')fs();
+  else if(e.key==='Escape')$('#menu').classList.remove('on');
+});
+function fs(){try{if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen()}catch(e){}}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)goId(g.dataset.go)});
+function buildMenu(){
+  const UN=BOOK.un;const groups={};slides.forEach((s,i)=>{const k=UN[+(s.dataset.unit||0)];(groups[k]=groups[k]||[]).push([s,i])});
+  $('#menu .grid').innerHTML=Object.entries(groups).map(([k,a])=>`<div class="grp"><h4>${k}</h4>${a.map(([s,i])=>`<a data-i="${i}">${i+1}. ${esc(s.dataset.title||'')}</a>`).join('')}</div>`).join('');
+  $$('#menu a').forEach(a=>a.onclick=()=>{go(+a.dataset.i);$('#menu').classList.remove('on')});
+}
+
+/* ============ QUIZ ============ */
+function quiz(root,qs,title){
+  let i=0,score=0;
+  function draw(){
+    if(i>=qs.length){
+      const p=Math.round(score/qs.length*100);
+      root.innerHTML=`<div style="text-align:center;padding:30px 10px"><div class="big" style="color:var(--acc)">${score} / ${qs.length}</div><p style="font-size:18px;font-weight:700;margin-top:6px">${p>=80?'Harika! Konu sağlam 🎉':p>=50?'İyi gidiyorsun; yanlışlarını gözden geçir.':'Birlikte tekrar edelim 💪'}</p><button class="btn pri">↺ Yeniden başla</button></div>`;
+      $('button',root).onclick=()=>{i=0;score=0;draw()};return;
+    }
+    const q=qs[i];
+    root.innerHTML=`${title?`<h3>${title}</h3>`:''}<div class="qz-h"><span>Soru ${i+1} / ${qs.length}</span><span>Puan: ${score}</span></div><div class="qz-bar"><i style="width:${i/qs.length*100}%"></i></div>
+     <div class="qz-q">${q.q}</div>
+     <div class="qz-o">${q.o.map((o,k)=>`<button data-k="${k}">${String.fromCharCode(65+k)}) ${o}</button>`).join('')}</div>
+     <div class="qz-x"></div><div class="ctrl hidden nx"><button class="btn pri">${i<qs.length-1?'Sonraki soru ▶':'Sonucu gör'}</button></div>`;
+    
+    $$('.qz-o button',root).forEach(b=>b.onclick=()=>{
+      const k=+b.dataset.k,ok=k===q.a;if(ok)score++;
+      $$('.qz-o button',root).forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('ok');else if(j===k)x.classList.add('no')});
+      const x=$('.qz-x',root);x.style.display='block';x.innerHTML=(ok?'✔ <b>Doğru!</b> ':'✘ <b>Bir daha düşün.</b> ')+q.x;
+      $('.nx',root).classList.remove('hidden');$('.nx button',root).onclick=()=>{i++;draw()};
+    });
+  }
+  draw();
+}
+
+/* Sınıflandırma etkinliği: items [{t,a,x}], opts [..] */
+function classify(root,items,opts,o={}){
+  function draw(){let sc=0;
+    root.innerHTML=`<div class="cls" style="grid-template-columns:${o.cols||'1fr'}">${items.map((it,i)=>`<div class="it" data-i="${i}"><span class="sm">${it.t}</span><b class="xs res"></b>${opts.map(op=>`<button class="btn sm" data-v="${esc(op)}">${op}</button>`).join('')}</div>`).join('')}</div><div class="row" style="margin-top:8px"><span class="pill sc">0 / ${items.length}</span><button class="btn sm rs">↺ Sıfırla</button></div><p class="sm ex" style="margin-top:6px"></p>`;
+    $$('.it',root).forEach(el=>$$('button',el).forEach(b=>b.onclick=()=>{if(el.dataset.d)return;el.dataset.d=1;const it=items[el.dataset.i],ok=[].concat(it.a).includes(b.dataset.v);if(ok)sc++;el.classList.add(ok?'ok':'no');$('.res',el).textContent=ok?'✔':'→ '+[].concat(it.a).join(' / ');$('.sc',root).textContent=sc+' / '+items.length;if(it.x)$('.ex',root).innerHTML=(ok?'✔ ':'✘ ')+it.x}));
+    $('.rs',root).onclick=draw;}
+  draw();
+}
+
+/* ============ BTT BİLEŞENLERİ ============ */
+const SORU={},EV={},SORU_MAP=[];
+/* Açılır kartlar: items [{t,d,n,tag}] */
+function reveal(root,items,o={}){
+  root.classList.add('rv');if(o.cols)root.style.gridTemplateColumns=o.cols;
+  root.innerHTML=items.map((it,i)=>`<div class="r"><b>${it.n!==undefined?`<span class="n">${it.n}</span>`:''}${it.t}${it.tag?` <span class="tag">${it.tag}</span>`:''}</b><div class="d">${it.d}</div></div>`).join('');
+  $$('.r',root).forEach(r=>r.onclick=()=>{if(o.single)$$('.r',root).forEach(x=>{if(x!==r)x.classList.remove('on')});r.classList.toggle('on')});
+  if(o.all){const b=document.createElement('button');b.className='btn sm';b.textContent='Tümünü aç / kapat';b.style.justifySelf='start';b.onclick=()=>{const on=!$$('.r',root).every(x=>x.classList.contains('on'));$$('.r',root).forEach(x=>x.classList.toggle('on',on))};root.prepend(b)}
+}
+/* Doğru-Yanlış labirenti: nodes {id:{q,v:true/false,D:next,Y:next}}, çıkış 'E3' gibi */
+function dyMaze(root,nodes,first,o={}){
+  let path=[],cur=first;
+  function draw(){
+    if(String(cur).startsWith('E')){
+      const n=+cur.slice(1),ok=n===o.ok;
+      root.innerHTML=`<div class="dy"><div class="ex" style="background:${ok?'#e3f6ea':'#fde8e8'};color:${ok?'var(--t)':'var(--f)'}">${n}. Çıkış ${ok?'🎉':''}</div>
+       <div class="note ${ok?'t':'f'}">${ok?'Doğru çıkışa ulaştın! Tüm kararların doğruydu.':'Bu çıkış doğru değil. Aşağıda hangi kararının hatalı olduğunu gör.'}</div>
+       <div class="card" style="font-size:13.5px">${path.map(p=>{const N=nodes[p.id],good=(p.c==='D')===N.v;return`<div style="margin:4px 0">${good?'✅':'❌'} <b>${p.c==='D'?'Doğru':'Yanlış'}</b> dedin — ${N.q} <span class="muted">→ Bu ifade <b>${N.v?'doğrudur':'yanlıştır'}</b>. ${N.x||''}</span></div>`}).join('')}</div>
+       <div class="row"><button class="btn pri">↺ Yeniden başla</button></div></div>`;
+      $('button',root).onclick=()=>{path=[];cur=first;draw()};return}
+    const N=nodes[cur];
+    root.innerHTML=`<div class="dy"><div class="path">${path.map(p=>`<span class="${p.c}">${p.c}</span>`).join('')||'<span>Başlangıç</span>'}</div><div class="q">${N.q}</div>
+      <div class="row"><button class="btn pri" data-c="D" style="background:var(--t);border-color:var(--t)">D — Doğru</button><button class="btn pri" data-c="Y" style="background:var(--f);border-color:var(--f)">Y — Yanlış</button></div></div>`;
+    $$('[data-c]',root).forEach(b=>b.onclick=()=>{path.push({id:cur,c:b.dataset.c});cur=N[b.dataset.c];draw()});
+  }
+  draw();
+}
+/* Doğru / Yanlış listesi: items [{t,a:bool,x}] */
+function tfList(root,items){
+  root.style.display='grid';root.style.gap='7px';root.style.alignContent='start';
+  root.innerHTML=items.map((it,i)=>`<div class="tfi" data-i="${i}"><span>${i+1}. ${it.t}</span><button class="btn sm" data-v="1">Doğru</button><button class="btn sm" data-v="0">Yanlış</button><div class="x"></div></div>`).join('');
+  $$('.tfi',root).forEach(el=>$$('button',el).forEach(b=>b.onclick=()=>{if(el.dataset.d)return;el.dataset.d=1;const it=items[el.dataset.i],ok=(b.dataset.v==='1')===it.a;el.classList.add(ok?'ok':'no');b.classList.add('on');$('.x',el).innerHTML=(ok?'✔ ':'✘ Cevap: <b>'+(it.a?'Doğru':'Yanlış')+'</b>. ')+(it.x||'')}));
+}
+/* Boşluk doldurma: html içinde {{anahtar}}; ans {anahtar:'doğru'}; bank [..] */
+function slotFill(root,html,ans,bank,o={}){
+  function draw(){
+    let sel=null;
+    root.innerHTML=`<div class="sf-b">${html.replace(/\{\{(\w+)\}\}/g,(m,k)=>`<span class="slot" data-k="${k}"></span>`)}</div>
+     <div class="bank" style="margin-top:10px">${bank.map((b,i)=>`<span class="chip" data-i="${i}">${b}</span>`).join('')}</div>
+     <div class="row" style="margin-top:8px"><button class="btn pri sm sf-c">✅ Kontrol et</button><button class="btn sm sf-r">↺ Sıfırla</button><span class="pill sf-s"></span><span class="xs muted">Önce bir kavrama, sonra boş kutuya tıkla.</span></div>`;
+    $$('.chip',root).forEach(c=>c.onclick=()=>{$$('.chip',root).forEach(x=>x.classList.remove('sel'));sel=c;c.classList.add('sel')});
+    $$('.slot',root).forEach(s=>s.onclick=()=>{
+      if(s.dataset.ci!==undefined){$$('.chip',root)[s.dataset.ci].classList.remove('used');delete s.dataset.ci;s.textContent='';s.className='slot';return}
+      if(!sel)return;s.textContent=sel.textContent;s.dataset.ci=sel.dataset.i;sel.classList.add('used');sel.classList.remove('sel');sel=null});
+    $('.sf-c',root).onclick=()=>{let ok=0;const sl=$$('.slot',root);sl.forEach(s=>{const v=s.textContent.trim(),good=[].concat(ans[s.dataset.k]).includes(v);s.classList.remove('ok','no');if(v){s.classList.add(good?'ok':'no')}if(good)ok++});$('.sf-s',root).textContent=ok+' / '+sl.length+(ok===sl.length?' 🎉':'')};
+    $('.sf-r',root).onclick=draw;
+  }
+  draw();
+}
+/* Metinde şüpheli bölüm avı: parts [[metin, x|null]] (x varsa şüpheli) */
+function hunt(root,parts,need,o={}){
+  function draw(){
+    let found=0,wrong=0;const tot=parts.filter(p=>p[1]).length;
+    root.innerHTML=`<div class="mail">${parts.map((p,i)=>p[2]==='br'?'<br>':`<span class="h" data-i="${i}">${p[0]}</span>`).join(' ')}</div>
+      <div class="row" style="margin-top:8px"><span class="pill hn-s">Bulunan: 0 / ${need}</span><button class="btn sm hn-a">👁 Tümünü göster</button><button class="btn sm hn-r">↺</button></div><div class="note hn-x" style="margin-top:6px">${o.hint||'Şüpheli gördüğün bölümlere tıkla.'}</div>`;
+    $$('.h',root).forEach(h=>h.onclick=()=>{const p=parts[h.dataset.i];if(h.classList.contains('fd')||h.classList.contains('nf'))return;
+      if(p[1]){h.classList.add('fd');found++;$('.hn-x',root).className='note t hn-x';$('.hn-x',root).innerHTML='🚩 '+p[1]}else{h.classList.add('nf');wrong++;$('.hn-x',root).className='note hn-x';$('.hn-x',root).innerHTML='Bu bölüm tek başına şüpheli değil.'}
+      $('.hn-s',root).textContent=`Bulunan: ${found} / ${need}`+(found>=need?' 🎉':'')});
+    $('.hn-a',root).onclick=()=>{$$('.h',root).forEach(h=>{if(parts[h.dataset.i][1])h.classList.add('fd')});$('.hn-x',root).className='note hn-x';$('.hn-x',root).innerHTML=parts.filter(p=>p[1]).map((p,i)=>`${i+1}) ${p[1]}`).join('<br>')};
+    $('.hn-r',root).onclick=draw;
+  }
+  draw();
+}
+/* Sekmeli zaman çizelgesi: tabs [{y,h,b}] */
+function tabs(root,list,o={}){
+  root.innerHTML=`<div class="tl">${list.map((t,i)=>`<div class="st" data-i="${i}"><div class="y">${t.y}</div><div class="xs" style="font-weight:600">${t.h}</div></div>`).join('')}</div><div class="card tb-b" style="margin-top:10px;flex:1"></div>`;
+  root.style.display='flex';root.style.flexDirection='column';
+  const show=i=>{$$('.st',root).forEach((s,j)=>s.classList.toggle('on',i===j));$('.tb-b',root).innerHTML=list[i].b;if(o.on)o.on(i,$('.tb-b',root))};
+  $$('.st',root).forEach(s=>s.onclick=()=>show(+s.dataset.i));show(o.start||0);
+}
+/* Numaralı durumları kategoriye ayırma: items [{t,a,x}], cats [..] */
+function sitSort(root,items,cats){
+  function draw(){let sc=0,n=0;
+    root.innerHTML=`<div class="sit">${items.map((it,i)=>`<div class="it" data-i="${i}"><span class="nm">${i+1}</span><span>${it.t}</span><b class="res xs"></b></div>`).join('')}</div>
+     <div class="row" style="margin-top:8px">${cats.map((c,k)=>`<span class="xs"><b>Seç:</b></span>`).slice(0,1).join('')}${cats.map(c=>`<button class="btn sm ct" data-c="${esc(c)}">${c}</button>`).join('')}<span class="pill ss">0 / ${items.length}</span><button class="btn sm ss-r">↺</button></div><div class="note ss-x" style="margin-top:6px">Bir duruma tıkla, ardından kategorisini seç.</div>`;
+    let sel=null;
+    $$('.it',root).forEach(el=>el.onclick=()=>{if(el.dataset.d)return;$$('.it',root).forEach(x=>x.style.outline='');sel=el;el.style.outline='3px solid var(--acc)'});
+    $$('.ct',root).forEach(b=>b.onclick=()=>{if(!sel)return;const it=items[sel.dataset.i],ok=[].concat(it.a).includes(b.dataset.c);sel.dataset.d=1;sel.style.outline='';sel.classList.add(ok?'ok':'no');$('.res',sel).textContent=ok?'✔ '+b.dataset.c:'→ '+[].concat(it.a).join(' / ');if(ok)sc++;n++;$('.ss',root).textContent=sc+' / '+items.length;$('.ss-x',root).innerHTML=(ok?'✔ ':'✘ ')+(it.x||'');sel=null});
+    $('.ss-r',root).onclick=draw;}
+  draw();
+}
+/* Görsel (kitap sayfası) */
+const fig=(src,alt)=>`<div class="imgfig"><img src="${src}" alt="${esc(alt||'')}" draggable="false"></div>`;
+/* Grid seçimi: cells [..], qs [{q, req:[n..], ok:[n..], x}] (n: 1 tabanlı) */
+function gridPick(root,cells,qs){
+  root.innerHTML=qs.map((q,i)=>`<div class="tfi" style="grid-template-columns:1fr" data-i="${i}"><span><b>${i+1}.</b> ${q.q}</span><div class="row gp">${cells.map((c,k)=>`<button class="btn sm" data-k="${k+1}">${k+1}. ${c}</button>`).join('')}<button class="btn pri sm gp-c">Kontrol</button></div><div class="x"></div></div>`).join('');
+  root.style.display='grid';root.style.gap='7px';root.style.alignContent='start';
+  $$('.tfi',root).forEach(el=>{const q=qs[el.dataset.i];
+    $$('[data-k]',el).forEach(b=>b.onclick=()=>{b.classList.toggle('on');el.classList.remove('ok','no')});
+    $('.gp-c',el).onclick=()=>{const s=$$('[data-k].on',el).map(b=>+b.dataset.k);const ok=q.req.every(n=>s.includes(n))&&s.every(n=>(q.ok||q.req).includes(n));el.classList.remove('ok','no');el.classList.add(ok?'ok':'no');
+      $('.x',el).innerHTML=(ok?'✔ ':'✘ Beklenen: <b>'+q.req.join(', ')+'</b>'+((q.ok||[]).length>q.req.length?' (kabul edilenler: '+q.ok.join(', ')+')':'')+'. ')+(q.x||'')}});
+}
+/* Kısa yanıt kontrolü: items [{q, a:[kabul edilen..], x}] */
+function shortAns(root,items){
+  root.style.display='grid';root.style.gap='7px';root.style.alignContent='start';
+  root.innerHTML=items.map((it,i)=>`<div class="tfi" style="grid-template-columns:1fr auto" data-i="${i}"><span>${it.q}</span><span></span><input type="text" placeholder="Yanıtın" style="width:100%"><button class="btn pri sm">Kontrol</button><div class="x"></div></div>`).join('');
+  $$('.tfi',root).forEach(el=>{const it=items[el.dataset.i];const go=()=>{const v=fold($('input',el).value).replace(/\s+/g,' ').trim();const ok=it.a.some(a=>v===fold(a)||v.replace(/[^a-z0-9]/g,'')===fold(a).replace(/[^a-z0-9]/g,''));el.classList.remove('ok','no');el.classList.add(ok?'ok':'no');$('.x',el).innerHTML=(ok?'✔ ':'✘ Doğru yanıt: <b>'+it.a[0]+'</b>. ')+(it.x||'')};$('button',el).onclick=go;$('input',el).onkeydown=e=>{if(e.key==='Enter')go()}});
+}
+/* Sıralama oyunu: steps doğru sırada verilir, karıştırılarak gösterilir */
+function orderGame(root,steps,o={}){
+  function draw(){
+    let pick=[];const sh=steps.map((s,i)=>i).sort(()=>Math.random()-.5);
+    root.innerHTML=`<div class="bank og-b">${sh.map(i=>`<span class="chip" data-i="${i}">${steps[i]}</span>`).join('')}</div><ol class="og-l" style="margin:8px 0;padding-left:22px;font-size:${o.fs||14}px;line-height:1.5"></ol><div class="row"><span class="pill og-s">0 / ${steps.length}</span><button class="btn sm og-u">↶ Geri al</button><button class="btn sm og-r">↺ Karıştır</button><span class="xs muted">${o.hint||'Adımlara doğru sırayla tıkla.'}</span></div>`;
+    const L=$('.og-l',root);
+    const ren=()=>{L.innerHTML=pick.map((i,k)=>`<li style="color:${i===k?'var(--t)':'var(--f)'}">${steps[i]} ${i===k?'✔':'✘ <span class="xs">(doğrusu '+(i+1)+'. adım)</span>'}</li>`).join('');const ok=pick.filter((i,k)=>i===k).length;$('.og-s',root).textContent=ok+' / '+steps.length+(ok===steps.length?' 🎉':'');$$('.og-b .chip',root).forEach(c=>c.classList.toggle('used',pick.includes(+c.dataset.i)))};
+    $$('.og-b .chip',root).forEach(c=>c.onclick=()=>{pick.push(+c.dataset.i);ren()});
+    $('.og-u',root).onclick=()=>{pick.pop();ren()};$('.og-r',root).onclick=draw;
+  }
+  draw();
+}
+/* ============ 1. ÖĞRENME BİRİMİ: TEMEL TEKNİK RESİM ============ */
+reveal($('#u1-ar'),[
+ {t:'🪵 Çizim masası',d:'Düz, geniş yüzey; kâğıdı sabit tutar, bazı modellerde cetvel sistemi vardır.'},
+ {t:'📏 T cetveli',d:'Masanın kenarına dayanarak düzgün ve paralel çizgiler; üzerine gönye konur.'},
+ {t:'📐 Gönye',d:'30°, 45°, 60°, 90° gibi standart açılar; T cetveli üzerinde kullanılır.'},
+ {t:'🧭 Açı ölçer (iletki)',d:'Açıları ölçme ve çizme; dereceli yapısıyla hassas ölçüm.'},
+ {t:'⭕ Pergel',d:'Daire ve yay çizimi, ölçü taşıma.'},
+ {t:'🔠 Şablonlar',d:'Daire, eğri (pistole), harf-rakam şablonları; elektrik, mimari, mekanik sembol şablonları.'},
+ {t:'📏 Ölçü cetveli',d:'Uzunluk ölçme ve düz çizgi; cm ve mm çizgileri.'},
+ {t:'🔍 Ölçek cetveli',d:'Farklı ölçeklerde (küçültme/büyütme) çizim.'},
+ {t:'🧽 Silgi · 🩹 Bant',d:'Silgi yüzeye zarar vermeyecek yumuşaklıkta. Bant iz bırakmamalı: kâğıt (maskeleme), şeffaf, özel çizim bantları.'},
+ {t:'✏️ Çizim kalemleri',d:'Farklı sertlik ve uç kalınlıkları (0,35 · 0,5 · 0,7 · 0,9 mm).'},
+ {t:'🖊️ Dijital çizim tableti',d:'Bilgisayar destekli çizimde teknik çizimleri dijital ortamda oluşturur.'}],{cols:'1fr 1fr',single:true});
+quiz($('#u1-aq'),[
+ {q:'Çizim masasının kenarına dayanarak paralel çizgiler çizmek için hangisi kullanılır?',o:['Pergel','T cetveli','Açı ölçer','Ölçek cetveli'],a:1,x:'Adını T harfine benzeyen şeklinden alır.'},
+ {q:'30°, 45°, 60°, 90° gibi standart açıları çizmek için hangisi kullanılır?',o:['Gönye','Şablon','Silgi','Bant'],a:0,x:'Genellikle T cetveli üzerine yerleştirilir.'},
+ {q:'Daire ve yay çizmek, ölçü taşımak için hangisi kullanılır?',o:['Ölçü cetveli','Pergel','Gönye','Dijital tablet'],a:1,x:''},
+ {q:'Büyük bir parçayı küçülterek çizmek için hangi cetvel uygundur?',o:['T cetveli','Ölçü cetveli','Ölçek cetveli','Gönye'],a:2,x:'Ölçek cetveli farklı ölçeklerde çizim yapmayı sağlar.'},
+ {q:'Kâğıdı masaya sabitlemek için kullanılan bant nasıl olmalıdır?',o:['Söküldüğünde iz bırakmayan','Çok yapışkan','Renkli','Kalın kumaş'],a:0,x:'Kâğıt (maskeleme), şeffaf ve özel çizim bantları kullanılır.'}],'Araç gereç');
+
+sitSort($('#u1-kl'),[{t:'Yardımcı ve ince çizgiler',a:'H serisi',x:'Sert uç.'},{t:'Yazı yazma ve kesik çizgiler',a:'HB serisi',x:'Orta sertlik.'},{t:'Ana ve belirgin çizgiler',a:'B serisi',x:'Yumuşak uç.'},{t:'El ile norm yazı (genellikle)',a:'HB serisi',x:'Kitapta el çiziminde norm yazı için HB önerilir.'}],['H serisi','HB serisi','B serisi']);
+sitSort($('#u1-kg'),[{t:'İnce, düşük gramajlı; hızlı taslak ve denemeler',a:'Eskiz'},{t:'Kalın ve dayanıklı; asıl temiz çizimler',a:'Resim (Bristol vb.)'},{t:'Yarı saydam; kopyalama ve çoğaltma',a:'Aydınger'},{t:'Teknik çizimlerin çoğaltılmasında kullanılan özel kâğıt',a:'Ozalit'}],['Eskiz','Resim (Bristol vb.)','Aydınger','Ozalit']);
+
+(function(){const R=$('#u1-ka');const A=[['A0',841,1189],['A1',594,841],['A2',420,594],['A3',297,420],['A4',210,297],['A5',148,210]];let s=4;
+ const draw=()=>{const k=0.27;let rects='';let x=0,y=0,w=1189,h=841;const boxes=[];for(let i=0;i<6;i++){boxes.push([x,y,w,h]);if(w>=h){const nw=w/2;x=x+nw;w=nw}else{const nh=h/2;y=y+nh;h=nh}}
+  rects=boxes.map((b,i)=>`<rect x="${b[0]*k}" y="${b[1]*k}" width="${b[2]*k}" height="${b[3]*k}" fill="${i===s?'#99f6e4':'#fff'}" stroke="#0f766e" stroke-width="1.2" data-a="${i}" style="cursor:pointer"/>`).join('')+boxes.map((b,i)=>`<text x="${(b[0]+b[2]/2)*k}" y="${(b[1]+b[3]/2)*k+5}" text-anchor="middle" font-size="${16-i*1.5}" pointer-events="none" font-weight="700">${A[i][0]}</text>`).join('');
+  const a=A[s];R.innerHTML=`<svg viewBox="-2 -2 325 231" style="width:100%;max-height:260px">${rects}</svg><div class="row" style="gap:4px;margin-top:6px">${A.map((x,i)=>`<button class="btn sm ${i===s?'on':''}" data-b="${i}">${x[0]}</button>`).join('')}</div><div class="note t sm" style="margin-top:6px"><b>${a[0]}: ${a[1]} × ${a[2]} mm</b>${s<5?` · ikiye bölününce → ${A[s+1][0]} (${A[s+1][1]} × ${A[s+1][2]})`:''}. Tüm A kâğıtları <b>aynı orana</b> sahiptir.</div>`;
+  $$('[data-a],[data-b]',R).forEach(e=>e.onclick=()=>{s=+(e.dataset.a??e.dataset.b);draw()})};draw()})();
+(function(){const R=$('#u1-an');const I=['Çizimi yapan kişi','Kurum adı','Çizimin adı','Tarih','Ölçek','Resim numarası'];
+ R.innerHTML=`<svg viewBox="0 0 300 212" style="width:100%;max-height:230px"><rect x="1" y="1" width="297" height="210" fill="#fff" stroke="#94a3b8"/><rect x="20" y="7" width="271" height="197" fill="none" stroke="#0f766e" stroke-width="2"/><rect x="171" y="164" width="120" height="40" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>${[0,1,2].map(i=>`<line x1="171" x2="291" y1="${177+i*13}" y2="${177+i*13}" stroke="#0f766e" stroke-width=".6"/>`).join('')}<line x1="231" x2="231" y1="164" y2="204" stroke="#0f766e" stroke-width=".6"/><text x="231" y="160" font-size="9" text-anchor="middle" fill="#0f766e">antet (sağ alt köşe)</text><path d="M1 100 h19" stroke="#dc2626" marker-end="url(#ar1)" marker-start="url(#ar1)"/><text x="10" y="95" font-size="8" text-anchor="middle" fill="#dc2626">2 cm</text><path d="M291 100 h7" stroke="#dc2626"/><text x="282" y="95" font-size="8" fill="#dc2626">0,7</text><text x="150" y="16" font-size="8" fill="#dc2626" text-anchor="middle">0,7 cm</text><text x="95" y="110" font-size="11" fill="#94a3b8" text-anchor="middle">çizim alanı</text><defs><marker id="ar1" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#dc2626"/></marker></defs></svg><div class="sm">Çerçeve: dosyaya takılacak <b>sol kenardan 2 cm</b>, diğer kenarlardan <b>0,7 cm</b>. Ölçüler <b>milimetre</b>; bilgiler okunaklı.</div><div class="xs" style="margin-top:4px"><b>Antette yer alabilecek bilgiler:</b> ${I.join(' · ')} <span class="muted">(içerik alana göre değişebilir)</span></div>`})();
+
+(function(){const R=$('#u1-cz');const L=[['Sürekli kalın çizgi','','4','Görünen kenarlar, görünen yüzeyler, vida sonları'],['Sürekli ince çizgi','','1.3','Ölçü çizgileri, yardımcı çizgiler, kesit taramaları'],['Serbest el çizgisi (ince)','w','1.3','Kırık (kısaltılmış) görünüş sınırları'],['İnce kesik çizgi','10 6','1.3','Görünmeyen kenarlar ve iç detaylar'],['Kalın kesik çizgi','12 6','4','İşlenmiş yüzey sınırlarının gösterimi'],['Noktalı kesik ince çizgi','18 4 2 4','1.3','Daire ve yay eksenleri'],['Noktalı kesik kalın çizgi','18 4 2 4','4','Özel yüzey sınırlarının gösterimi'],['İki noktalı kesik çizgi','18 4 2 4 2 4','1.3','Hareketli parçaların konumları, ağırlık merkezleri']];let s=0;
+ const ln=(l,y)=>l[1]==='w'?`<path d="M10 ${y} q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#0f172a" stroke-width="${l[2]}"/>`:`<line x1="10" x2="190" y1="${y}" y2="${y}" stroke="#0f172a" stroke-width="${l[2]}" ${l[1]?`stroke-dasharray="${l[1]}"`:''}/>`;
+ const draw=()=>{R.innerHTML=`<div style="display:grid;gap:3px">${L.map((l,i)=>`<div data-i="${i}" style="display:grid;grid-template-columns:200px 1fr;align-items:center;cursor:pointer;border-radius:8px;padding:1px 6px;${i===s?'background:#ccfbf1':''}"><svg viewBox="0 0 200 16" style="width:200px;height:20px">${ln(l,8)}</svg><span class="sm">${l[0]}</span></div>`).join('')}</div><div class="note t sm" style="margin-top:6px"><b>${L[s][0]}:</b> ${L[s][3]}</div>`;$$('[data-i]',R).forEach(e=>e.onclick=()=>{s=+e.dataset.i;draw()})};draw()})();
+sitSort($('#u1-cq'),[{t:'Bir parçanın görünen kenarları',a:'Sürekli kalın'},{t:'Görünmeyen kenarlar ve iç detaylar',a:'İnce kesik'},{t:'Daire ve yay eksenleri',a:'Noktalı kesik ince'},{t:'Ölçü çizgileri ve kesit taramaları',a:'Sürekli ince'},{t:'Kırık (kısaltılmış) görünüş sınırı',a:'Serbest el'},{t:'Hareketli parçanın diğer konumu',a:'İki noktalı kesik'}],['Sürekli kalın','Sürekli ince','Serbest el','İnce kesik','Noktalı kesik ince','İki noktalı kesik']);
+
+(function(){const R=$('#u1-ny');let e=false,g=true,t='TEKNIK RESIM 0123456789';
+ const draw=()=>{R.innerHTML=`<div class="row"><button class="btn sm ${!e?'on':''}" data-e="0">Dik norm yazı</button><button class="btn sm ${e?'on':''}" data-e="1">Eğik norm yazı (~75°)</button><label class="xs"><input type="checkbox" id="u1-ng" ${g?'checked':''}> kılavuz çizgileri</label></div><input id="u1-nx" style="width:100%;margin-top:6px" value="${esc(t)}" maxlength="28"><div style="position:relative;margin-top:10px;height:120px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden">${g?[20,50,92].map(y=>`<div style="position:absolute;left:0;right:0;top:${y}px;border-top:1px ${y===50?'dashed':'solid'} #93c5fd"></div>`).join('')+(e?Array.from({length:22},(_,i)=>`<div style="position:absolute;top:0;bottom:0;left:${i*32-20}px;border-left:1px solid #dbeafe;transform:skewX(-15deg)"></div>`).join(''):''):''}<div style="position:absolute;left:14px;top:14px;font:600 44px/80px 'DejaVu Sans Mono','Consolas',monospace;letter-spacing:6px;color:#0f172a;transform:${e?'skewX(-15deg)':'none'};transform-origin:left bottom;white-space:nowrap">${esc(t)}</div></div><div class="xs muted" style="margin-top:4px">Önizleme temsilîdir: norm yazının özelliği harf boyu, aralığı ve düzeninin standart olmasıdır. Dik yazı bilgisayarlı çizimde yaygın; eğik yazı makine imalatı, metal işleri, kalıpçılık, plastik teknolojilerinde tercih edilebilir.</div>`;
+  $$('[data-e]',R).forEach(b=>b.onclick=()=>{e=b.dataset.e==='1';draw()});$('#u1-ng').onchange=x=>{g=x.target.checked;draw()};$('#u1-nx').oninput=x=>{t=x.target.value.toLocaleUpperCase('tr-TR');const p=x.target.selectionStart;draw();const i=$('#u1-nx');i.focus();i.setSelectionRange(p,p)}};draw()})();
+tfList($('#u1-nt'),[{t:'Norm yazı günümüzde TS EN ISO 3098 standardına göre düzenlenir.',a:true,x:''},{t:'Eğik norm yazılar yaklaşık 75° sağa eğiktir.',a:true,x:''},{t:'Uygulamada genellikle süslü, çok tipli yazılar tercih edilir.',a:false,x:'Sade ve okunabilir olduğu için tek tip yazı tercih edilir.'},{t:'Kılavuz çizgileri yazı yüksekliğine bağlı oranlarda hazırlanır.',a:true,x:''},{t:'Dijital ortamda norm yazı standartları yazı tipleriyle otomatik uygulanır.',a:true,x:''}]);
+
+reveal($('#u1-gt'),[
+ {t:'• Nokta',d:'Uzunluğu, genişliği, yüksekliği olmayan; yalnızca yeri ifade eden öğe.'},
+ {t:'〰 Çizgi',d:'Bir noktanın hareketiyle oluşan doğru ya da eğri iz.'},
+ {t:'⚫ Daire',d:'Merkeze eşit uzaklıktaki noktaların oluşturduğu kapalı ve <b>içi dolu</b> bölge.'},
+ {t:'⭕ Çember',d:'Dairenin sınırı: merkezden eşit uzaklıktaki noktaların oluşturduğu kapalı <b>eğri</b>.'},
+ {t:'◜ Yay',d:'Çemberin iki uç noktası olan bir bölümü.'},
+ {t:'⟋ Teğet',d:'Çembere yalnızca <b>tek noktada</b> değen doğru.'},
+ {t:'✕ Kesişme',d:'İki ya da daha fazla elemanın ortak bir noktada buluşması.'},
+ {t:'⌒ Kiriş',d:'Çember üzerindeki iki noktayı birleştiren doğru parçası.'}],{cols:'1fr 1fr',all:true});
+(function(){const R=$('#u1-gq');const Q=[['Çembere tek noktada değen doğru','Teğet',`<circle cx="60" cy="45" r="30" fill="none" stroke="#0f172a" stroke-width="2"/><line x1="10" x2="110" y1="15" y2="15" stroke="#dc2626" stroke-width="2.5"/>`],['Çember üzerindeki iki noktayı birleştiren doğru parçası','Kiriş',`<circle cx="60" cy="45" r="30" fill="none" stroke="#0f172a" stroke-width="2"/><line x1="34" x2="86" y1="30" y2="30" stroke="#dc2626" stroke-width="2.5"/>`],['Çemberin iki uçlu bir bölümü','Yay',`<path d="M30 45 A30 30 0 0 1 90 45" fill="none" stroke="#dc2626" stroke-width="3"/><circle cx="60" cy="45" r="30" fill="none" stroke="#cbd5e1" stroke-dasharray="3 3"/>`],['İçi dolu yuvarlak bölge','Daire',`<circle cx="60" cy="45" r="30" fill="#5eead4" stroke="#0f172a" stroke-width="2"/>`]];const O=['Teğet','Kiriş','Yay','Daire','Çember'];let i=0,sc=0,done=false;
+ const draw=()=>{const q=Q[i];R.innerHTML=`<svg viewBox="0 0 120 90" style="width:100%;max-height:150px">${q[2]}</svg><div class="sm"><b>${i+1}/${Q.length}.</b> ${q[0]}</div><div class="row" style="gap:4px;margin-top:6px">${O.map(o=>`<button class="btn sm" data-o="${o}">${o}</button>`).join('')}</div><div class="note sm" id="u1-gx" style="margin-top:6px">Puan: ${sc}</div>`;
+  $$('[data-o]',R).forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=b.dataset.o===q[1];if(ok)sc++;b.classList.add('on');$('#u1-gx').className='note '+(ok?'t':'f')+' sm';$('#u1-gx').innerHTML=(ok?'✔ ':'✘ Doğrusu: <b>'+q[1]+'</b>. ')+`Puan: ${sc}/${Q.length} <button class="btn sm" id="u1-gn">${i<Q.length-1?'Sonraki ▶':'↺ Baştan'}</button>`;$('#u1-gn').onclick=()=>{if(i<Q.length-1)i++;else{i=0;sc=0}done=false;draw()}})};draw()})();
+
+/* Geometrik çizim adımlayıcı */
+function geoStep(root,sets,o={}){let k=Object.keys(sets)[0],st=0;
+ const draw=()=>{const S=sets[k];const L=S.steps;R0.innerHTML=`<div class="row" style="gap:4px">${Object.keys(sets).map(n=>`<button class="btn sm ${n===k?'on':''}" data-k="${n}">${n}</button>`).join('')}</div><div style="display:grid;grid-template-columns:${o.cols||'1.1fr 1fr'};gap:10px;margin-top:6px;align-items:start"><svg viewBox="${S.vb||'0 0 400 400'}" style="width:100%;max-height:${o.h||420}px;background:#fff;border:1px solid #e2e8f0;border-radius:10px">${L.slice(0,st+1).map((s,i)=>`<g style="${i<st?'opacity:.55':''}">${s.g}</g>`).join('')}</svg><div><div style="display:grid;gap:4px">${L.map((s,i)=>`<div class="sm" style="padding:5px 8px;border-radius:8px;cursor:pointer;${i===st?'background:#ccfbf1;font-weight:600':i<st?'color:#64748b':''}" data-s="${i}"><b>${i+1}.</b> ${s.t}</div>`).join('')}</div><div class="row" style="margin-top:8px"><button class="btn sm" id="gs-p" ${st===0?'disabled':''}>◀</button><span class="pill">${st+1} / ${L.length}</span><button class="btn pri sm" id="gs-n" ${st===L.length-1?'disabled':''}>Sonraki adım ▶</button></div>${S.n?`<div class="note sm" style="margin-top:6px">${S.n}</div>`:''}</div></div>`;
+  $$('[data-k]',R0).forEach(b=>b.onclick=()=>{k=b.dataset.k;st=0;draw()});$$('[data-s]',R0).forEach(d=>d.onclick=()=>{st=+d.dataset.s;draw()});$('#gs-p',R0).onclick=()=>{st--;draw()};$('#gs-n',R0).onclick=()=>{st++;draw()}};
+ const R0=root;draw();}
+const G1={
+ ln:(a,b,c,w,d)=>`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${c||'#0f172a'}" stroke-width="${w||2}" ${d?`stroke-dasharray="${d}"`:''}/>`,
+ pt:(p,l,dx,dy,c)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${c||'#dc2626'}"/><text x="${p[0]+(dx??6)}" y="${p[1]+(dy??-6)}" font-size="15" font-weight="700" fill="${c||'#dc2626'}">${l}</text>`,
+ arc:(p,q,r,sw,c)=>`<path d="M${p[0]} ${p[1]} A${r} ${r} 0 0 ${sw} ${q[0]} ${q[1]}" fill="none" stroke="${c||'#2563eb'}" stroke-width="1.4"/>`,
+ ci:(c,r,col,w,d)=>`<circle cx="${c[0]}" cy="${c[1]}" r="${r}" fill="none" stroke="${col||'#0f172a'}" stroke-width="${w||2}" ${d?`stroke-dasharray="${d}"`:''}/>`
+};
+(function(){const{ln,pt,arc}=G1;const A=[40,250],B=[360,250],O=[200,250],C=[120,250],D=[280,250],E=[200,147.5];
+ const A2=[40,280],B2=[360,280],P=k=>[40+52*k,280-30*k],Q=k=>[40+64*k,280];
+ geoStep($('#u1-dc'),{
+  'Dikme çıkma (1. örnek)':{vb:'0 60 400 260',steps:[
+   {t:'AB doğrusu çizilir, üzerinde O noktası alınır.',g:ln(A,B)+pt(A,'A',-4,20)+pt(B,'B',-4,20)+pt(O,'O',-4,20)},
+   {t:'O merkezli, eşit uzaklıkta iki yay: doğruyu kestiği noktalar C ve D.',g:arc([120,240],[120,260],80,1)+arc([280,240],[280,260],80,0)+`<path d="M${C[0]} ${C[1]-14} A80 80 0 0 0 ${C[0]} ${C[1]+14}" fill="none" stroke="#2563eb" stroke-width="1.4"/><path d="M${D[0]} ${D[1]-14} A80 80 0 0 1 ${D[0]} ${D[1]+14}" fill="none" stroke="#2563eb" stroke-width="1.4"/>`+pt(C,'C',-4,22)+pt(D,'D',-4,22)},
+   {t:'C ve D merkez alınarak doğru üzerinde kesişen iki yay çizilir: kesişim E.',g:`<path d="M150 120 A130 130 0 0 1 230 175" fill="none" stroke="#2563eb" stroke-width="1.4"/><path d="M250 120 A130 130 0 0 0 170 175" fill="none" stroke="#2563eb" stroke-width="1.4"/>`+pt(E,'E',8,-4)},
+   {t:'E ile O birleştirilir: AB’ye O noktasından çıkılan dikme.',g:ln(E,[200,250],'#16a34a',3)+`<rect x="200" y="236" width="14" height="14" fill="none" stroke="#16a34a"/>`}],n:'Yayların kesişebilmesi için C ve D’den çizilen yayların açıklığı CO’dan büyük olmalıdır. Sonuç sorusu: pergel açıklığı değişirse dikme nasıl etkilenir? (📖)'},
+  'Beş eşit parça (3. örnek)':{vb:'0 100 400 220',steps:[
+   {t:'Bölünecek AB doğru parçası çizilir.',g:ln(A2,B2)+pt(A2,'A',-4,20)+pt(B2,'B',-4,20)},
+   {t:'A’dan dar açılı yardımcı doğru çizilir.',g:ln(A2,[340,107],'#64748b',1.4)},
+   {t:'Pergelle yardımcı doğruya beş eşit aralık işaretlenir; son nokta C.',g:[1,2,3,4,5].map(k=>pt(P(k),k===5?'C':String(k),-4,-8,k===5?'#dc2626':'#2563eb')).join('')},
+   {t:'C ile B cetvelle birleştirilir.',g:ln(P(5),B2,'#2563eb',1.6)},
+   {t:'Gönye kaydırma ile diğer işaretlerden CB’ye paraleller çizilir; AB beş eşit parçaya bölünür.',g:[1,2,3,4].map(k=>ln(P(k),Q(k),'#2563eb',1.2,'5 4')+pt(Q(k),'',0,0,'#16a34a')).join('')+ln(A2,B2,'#16a34a',3)}]}
+ },{h:330});
+ orderGame($('#u1-da'),['C noktasını bul: A merkezli yay AB’yi C’de keser','D noktasını bul: pergel değişmeden C merkezli ikinci yay','E noktasını bul: C-D doğrusu uzatılır, D merkezli yay keser','A ile E birleştirilir: AE ⟂ AB'],{fs:13})})();
+
+(function(){const{ln,pt,arc,ci}=G1;const c=[200,200],r=140;const P=(deg)=>[c[0]+r*Math.cos(deg*Math.PI/180),c[1]+r*Math.sin(deg*Math.PI/180)];
+ const A=[60,200],B=[200,60],C=[340,200],D=[200,340];const base=ln([40,200],[360,200],'#64748b',1,'14 4 2 4')+ln([200,40],[200,360],'#64748b',1,'14 4 2 4')+ci(c,r)+pt(c,'O',6,16,'#0f172a');
+ const abcd=pt(A,'A',-18,-6)+pt(B,'B',6,-6)+pt(C,'C',6,-6)+pt(D,'D',6,18);const poly=(ps,col)=>`<polygon points="${ps.map(p=>p.join(',')).join(' ')}" fill="rgba(15,118,110,.12)" stroke="${col||'#0f766e'}" stroke-width="3.5"/>`;
+ const E3=P(30),F3=P(150);const hx={E:P(60),F:P(-60),G:P(-120),H:P(120)};
+ const Es=[391.2,8.8],Fs=[8.8,8.8],k1=P(-45),k2=P(135),k3=P(-135),k4=P(45);
+ const S=[270,200],T=[200+70-156.5,200],I=P(-18),K=P(-162),N=P(54),M=P(126);
+ geoStep($('#u1-cg'),{
+  'Eşkenar üçgen':{vb:'0 30 400 340',steps:[
+   {t:'Daire ve eksenler: O merkezli dik eksenler ve daire; kesişimler A, B, C, D.',g:base+abcd},
+   {t:'D merkezli, O’dan geçen yay daireyi E ve F’de keser; E-F birleştirilir.',g:arc(F3,E3,r,1)+pt(E3,'E',6,16)+pt(F3,'F',-18,16)+ln(E3,F3,'#2563eb',1.2)},
+   {t:'B-E ve B-F birleştirilir: eşkenar üçgen.',g:poly([B,E3,F3])}]},
+  'Eşkenar dörtgen':{vb:'-10 -10 420 390',steps:[
+   {t:'Daire ve eksenler; A, B, C, D adlandırılır.',g:base+abcd},
+   {t:'Pergel BC açıklığında: B ve C’den dışarıda kesişen yaylar → E; A ve B’den → F.',g:arc([280,-18],[420,100],198,1,'#2563eb')+arc([310,0],[420,140],198,0,'#2563eb')+arc([-20,100],[120,-18],198,1)+arc([-20,140],[90,0],198,0)+pt(Es,'E',-16,16)+pt(Fs,'F',6,16)},
+   {t:'E-O ve F-O doğruları daireyi k, l, m, n’de keser.',g:ln(Es,k2,'#2563eb',1.2)+ln(Fs,k4,'#2563eb',1.2)+pt(k1,'k')+pt(k4,'l',6,16)+pt(k2,'m',-16,16)+pt(k3,'n',-16,-6)},
+   {t:'k, l, m, n sırayla birleştirilir: eşkenar dörtgen.',g:poly([k1,k4,k2,k3])}],n:'Yaylar BC açıklığıyla çizildiği için E ve F daire dışında kalır.'},
+  'Eşkenar beşgen':{vb:'0 30 400 340',steps:[
+   {t:'Dik eksenler, O merkezli çember; A, B, C, D.',g:base+abcd},
+   {t:'C merkezli, O’dan geçen yay → E, F; EF yatay ekseni S’de keser.',g:arc(P(-60),P(60),r,0)+pt(P(-60),'E',6,-6)+pt(P(60),'F',6,16)+ln(P(-60),P(60),'#2563eb',1.2)+pt(S,'S',6,16)},
+   {t:'S merkezli, SB açıklıklı yay yatay ekseni T’de keser.',g:arc(B,T,156.5,0)+pt(T,'T',-4,18)},
+   {t:'B merkezli, TB açıklıklı yay çemberi I ve K’de keser.',g:ln(T,B,'#16a34a',1.2,'4 3')+arc(K,I,164.6,0)+pt(I,'I',8,0)+pt(K,'K',-18,0)},
+   {t:'I ve K merkezli yaylar → N ve M; B, I, N, M, K birleştirilir: düzgün beşgen.',g:pt(N,'N',6,16)+pt(M,'M',-18,16)+poly([B,I,N,M,K])}],n:'TB uzunluğu beşgenin kenarıdır.'},
+  'Eşkenar altıgen':{vb:'0 30 400 340',steps:[
+   {t:'Dik eksenler, O merkezli çember; A, B, C, D.',g:base+abcd},
+   {t:'C merkezli, O’dan geçen yay → E, F; A merkezli yay → G, H.',g:arc(hx.F,hx.E,r,0)+arc(hx.G,hx.H,r,1)+pt(hx.E,'E',6,16)+pt(hx.F,'F',6,-6)+pt(hx.G,'G',-18,-6)+pt(hx.H,'H',-18,16)},
+   {t:'G, A, H, E, C, F sırayla birleştirilir: düzgün altıgen.',g:poly([hx.G,A,hx.H,hx.E,C,hx.F])}],n:'Altıgenin kenarı çemberin yarıçapına eşittir: pergel açıklığı değişmemelidir.'}
+ },{cols:'1fr 1fr',h:470})})();
+
+(function(){const R=$('#u1-iz');let m='p';
+ const draw=()=>{const sq=[[150,70],[210,70],[210,130],[150,130]];let rays='',img='';if(m==='p'){rays=sq.map(p=>`<line x1="${p[0]}" y1="${p[1]}" x2="${p[0]}" y2="${p[1]+120}" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 3"/>`).join('');img=`<rect x="150" y="190" width="60" height="10" fill="#0f766e"/>`}else{const L=[180,10];rays=sq.map(p=>{const t=(195-L[1])/(p[1]-L[1]);return `<line x1="${L[0]}" y1="${L[1]}" x2="${L[0]+(p[0]-L[0])*t}" y2="195" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 3"/>`}).join('')+`<circle cx="180" cy="10" r="6" fill="#f59e0b"/>`;const t1=(195-10)/(70-10);img=`<rect x="${180-30*t1}" y="190" width="${60*t1}" height="10" fill="#7c3aed"/>`}
+  R.innerHTML=`<div class="row"><button class="btn sm ${m==='p'?'on':''}" data-m="p">Paralel izdüşüm</button><button class="btn sm ${m==='m'?'on':''}" data-m="m">Merkezî (perspektif)</button></div><svg viewBox="40 0 280 210" style="width:100%;max-height:190px">${rays}<rect x="150" y="70" width="60" height="60" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/><line x1="50" x2="310" y1="200" y2="200" stroke="#64748b" stroke-width="2"/><text x="300" y="195" font-size="10" text-anchor="end" fill="#64748b">izdüşüm düzlemi</text>${img}</svg><div class="note ${m==='p'?'t':''} sm">${m==='p'?'<b>Paralel:</b> izdüşüm doğruları birbirine paralel; <b>ölçüler korunur</b>. Teknik resimde en sık kullanılan yöntem: bina planları, makine parçaları, CAD ön-üst-yan görünüşleri.':'<b>Merkezî:</b> doğrular <b>tek noktadan</b> çıkar; görüntü büyüyebilir, daha gerçekçi görünür. Mimari görselleştirme, oyun ve animasyon, fotoğraf ve resimde derinlik.'}</div>`;
+  $$('[data-m]',R).forEach(b=>b.onclick=()=>{m=b.dataset.m;draw()})};draw()})();
+sitSort($('#u1-iq'),[{t:'Makine parçasının üretim için teknik çizimi',a:'Paralel'},{t:'Bir oyunda sahnenin gerçekçi gösterilmesi',a:'Merkezî'},{t:'CAD’de ön, üst, yan görünüşlerin oluşturulması',a:'Paralel'},{t:'Yapının müşteriye gerçeğe yakın sunulması',a:'Merkezî'},{t:'Bina planı',a:'Paralel'},{t:'Fotoğrafta derinlik algısı',a:'Merkezî'}],['Paralel','Merkezî']);
+
+sitSort($('#u1-kq'),[{t:'Yatay düzleme dik uzaklık',a:'Kot'},{t:'Alın düzlemine dik uzaklık',a:'Uzaklık'},{t:'Profil düzlemine dik uzaklık',a:'Aralık'}],['Aralık','Kot','Uzaklık']);
+(function(){const R=$('#u1-ep');const u=24,O=[250,190];let pts=[{n:'a',ar:4,ko:2,uz:6}];
+ const draw=()=>{let g=`<line x1="20" x2="480" y1="${O[1]}" y2="${O[1]}" stroke="#0f172a" stroke-width="1.5"/><line x1="${O[0]}" x2="${O[0]}" y1="10" y2="380" stroke="#0f172a" stroke-width="1.5"/><text x="30" y="24" font-size="13" font-weight="700" fill="#0f766e">ALIN</text><text x="400" y="24" font-size="13" font-weight="700" fill="#7c3aed">PROFİL</text><text x="30" y="372" font-size="13" font-weight="700" fill="#ea580c">YATAY</text><text x="${O[0]+4}" y="${O[1]+14}" font-size="12">O</text>`;
+  for(let i=1;i<=9;i++){g+=`<line x1="${O[0]-i*u}" x2="${O[0]-i*u}" y1="${O[1]-3}" y2="${O[1]+3}" stroke="#94a3b8"/><line x1="${O[0]+i*u}" x2="${O[0]+i*u}" y1="${O[1]-3}" y2="${O[1]+3}" stroke="#94a3b8"/>`}
+  pts.forEach(p=>{const a1=[O[0]-p.ar*u,O[1]-p.ko*u],a2=[O[0]+p.uz*u,O[1]-p.ko*u],a3=[O[0]-p.ar*u,O[1]+p.uz*u];
+   g+=`<line x1="${a1[0]}" y1="${a1[1]}" x2="${a2[0]}" y2="${a2[1]}" stroke="#94a3b8" stroke-dasharray="4 3"/><line x1="${a1[0]}" y1="${a1[1]}" x2="${a3[0]}" y2="${a3[1]}" stroke="#94a3b8" stroke-dasharray="4 3"/><line x1="${a2[0]}" y1="${a2[1]}" x2="${a2[0]}" y2="${O[1]}" stroke="#94a3b8" stroke-dasharray="4 3"/><path d="M${a2[0]} ${O[1]} A${p.uz*u} ${p.uz*u} 0 0 1 ${O[0]} ${O[1]+p.uz*u}" fill="none" stroke="#f59e0b" stroke-dasharray="4 3"/><line x1="${O[0]}" y1="${a3[1]}" x2="${a3[0]}" y2="${a3[1]}" stroke="#94a3b8" stroke-dasharray="4 3"/>`+G1.pt(a1,p.n+'′',6,-6,'#0f766e')+G1.pt(a2,p.n+'″',6,-6,'#7c3aed')+G1.pt(a3,p.n,6,16,'#ea580c')});
+  if(pts.length>1){const q=pts.map(p=>[[O[0]-p.ar*u,O[1]-p.ko*u],[O[0]+p.uz*u,O[1]-p.ko*u],[O[0]-p.ar*u,O[1]+p.uz*u]]);for(let v=0;v<3;v++)g+=`<polygon points="${q.map(x=>x[v].join(',')).join(' ')}" fill="rgba(15,118,110,.08)" stroke="${['#0f766e','#7c3aed','#ea580c'][v]}" stroke-width="2.5"/>`}
+  R.innerHTML=`<svg viewBox="0 0 500 390" style="width:100%;max-height:360px;background:#fff;border-radius:10px;border:1px solid #e2e8f0">${g}</svg><div class="row" style="gap:4px;margin-top:4px"><button class="btn sm" data-x="1">a(4,2,6) · 9. örnek</button><button class="btn sm" data-x="2">ab doğrusu · 10. örnek</button><button class="btn sm" data-x="3">abc düzlemi · 11. örnek</button></div>${pts.length===1?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" class="xs">${['ar','ko','uz'].map((k,i)=>`<label>${['Aralık','Kot','Uzaklık'][i]}: <b>${pts[0][k]}</b><input type="range" min="0" max="8" value="${pts[0][k]}" data-k="${k}" style="width:100%"></label>`).join('')}</div>`:''}`;
+  $$('[data-k]',R).forEach(s=>s.oninput=()=>{pts[0][s.dataset.k]=+s.value;draw()});
+  $$('[data-x]',R).forEach(b=>b.onclick=()=>{const x=+b.dataset.x;pts=x===1?[{n:'a',ar:4,ko:2,uz:6}]:x===2?[{n:'a',ar:4,ko:3,uz:5},{n:'b',ar:2,ko:1,uz:3}]:[{n:'a',ar:4,ko:4,uz:2},{n:'b',ar:6,ko:1,uz:5},{n:'c',ar:2,ko:1,uz:3}];draw()})};draw()})();
+
+(function(){const R=$('#u1-gc');const V=[['Ön','Alın düzlemine yansıyan; genellikle nesneyi en iyi ifade eden temel görünüş.',[1,1]],['Üst','Yatay düzleme yansıyan, üstten bakıldığında elde edilen görünüş.',[1,2]],['Sol yan','Cismin sağ yan düzleme yansımasıyla elde edilen yan görünüş.',[2,1]],['Sağ yan','Cismin sol yan düzleme yansıtılmasıyla oluşan görünüş.',[0,1]],['Arka','Arka yüzeyin ön düzlemine yansıtılmasıyla elde edilir.',[3,1]],['Alt','Alt kısmın üst düzleme yansıtılmasıyla oluşan görünüş.',[1,0]]];let s=0;
+ const draw=()=>{R.innerHTML=`<div style="display:grid;grid-template-columns:repeat(4,80px);grid-template-rows:repeat(3,64px);gap:4px;justify-content:center">${V.map((v,i)=>`<div data-i="${i}" style="grid-column:${v[2][0]+1};grid-row:${v[2][1]+1};border:2px solid ${i===s?'var(--acc)':'#cbd5e1'};background:${i===s?'#ccfbf1':'#fff'};border-radius:8px;display:grid;place-items:center;cursor:pointer;font-weight:700;font-size:13px">${v[0]}</div>`).join('')}</div><div class="note t sm" style="margin-top:8px"><b>${V[s][0]} görünüş:</b> ${V[s][1]}</div><p class="xs muted" style="margin:4px 0 0">Kutunun açılmış hâli görünüşlerin düzlemdeki konumlarını gösterir (yerleşim şematiktir).</p>`;$$('[data-i]',R).forEach(e=>e.onclick=()=>{s=+e.dataset.i;draw()})};draw()})();
+tfList($('#u1-gk'),[{t:'Nesne, en iyi anlatacak en az sayıda görünüşle ifade edilmelidir.',a:true,x:''},{t:'Ön görünüş olarak en karakteristik yüzey seçilmelidir.',a:true,x:''},{t:'Gereğinden fazla görünüş çizmek çizimi her zaman daha anlaşılır yapar.',a:false,x:'Fazla görünüş çizimi karmaşıklaştırır.'},{t:'Diğer görünüşler ön görünüşe göre konumlandırılır ve onunla uyumlu çizilir.',a:true,x:''},{t:'Bilgisayar kasası için ön, üst ve yan görünüş genellikle yeterlidir.',a:true,x:'Kitaptaki Görsel 1.54 örneği.'}]);
+
+/* Üç görünüş antrenmanı */
+(function(){const R=$('#u1-ug');const OB=[
+  {n:'Parça 1',H:[[2,2,1,1],[2,2,1,0]],dis:'top2'},
+  {n:'Parça 2',H:[[1,0,1],[1,1,1],[3,1,1]],dis:'sideM'},
+  {n:'Parça 3',H:[[1,2,3],[1,1,1]],dis:'frontM'}];let oi=0,ans={},chk=false,order=[];
+ const views=H=>{const d=H.length,w=H[0].length,mh=Math.max(...H.flat());const front=[...Array(mh)].map((_,yy)=>[...Array(w)].map((_,x)=>Math.max(...H.map(r=>r[x]))>mh-1-yy?1:0));const top=[...Array(d)].map((_,zz)=>[...Array(w)].map((_,x)=>H[d-1-zz][x]>0?1:0));const side=[...Array(mh)].map((_,yy)=>[...Array(d)].map((_,zi)=>Math.max(...H[d-1-zi])>mh-1-yy?1:0));return{front,top,side}};
+ const mir=M=>M.map(r=>[...r].reverse());
+ const grid=(M,s)=>{s=s||22;const h=M.length,w=M[0].length;let r='';for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(M[y][x]){r+=`<rect x="${x*s}" y="${y*s}" width="${s}" height="${s}" fill="#ccfbf1"/>`;const e=(c,l)=>{if(!c)r+=l};e(y>0&&M[y-1][x],`<line x1="${x*s}" x2="${x*s+s}" y1="${y*s}" y2="${y*s}" stroke="#0f172a" stroke-width="2.5"/>`);e(y<h-1&&M[y+1][x],`<line x1="${x*s}" x2="${x*s+s}" y1="${y*s+s}" y2="${y*s+s}" stroke="#0f172a" stroke-width="2.5"/>`);e(x>0&&M[y][x-1],`<line x1="${x*s}" x2="${x*s}" y1="${y*s}" y2="${y*s+s}" stroke="#0f172a" stroke-width="2.5"/>`);e(x<w-1&&M[y][x+1],`<line x1="${x*s+s}" x2="${x*s+s}" y1="${y*s}" y2="${y*s+s}" stroke="#0f172a" stroke-width="2.5"/>`)}return `<svg viewBox="-3 -3 ${w*s+6} ${h*s+6}" style="width:${w*s*1.3}px;max-width:100%;height:auto">${r}</svg>`};
+ const iso=H=>{const s=34,d=H.length,w=H[0].length;const P=(x,y,z)=>[60+x*s+z*s*.5,190-y*s-z*s*.5];let r='';for(let z=d-1;z>=0;z--)for(let y=0;y<4;y++)for(let x=0;x<w;x++)if(H[z][x]>y){const f=[P(x,y,z),P(x+1,y,z),P(x+1,y+1,z),P(x,y+1,z)];const t=[P(x,y+1,z),P(x+1,y+1,z),P(x+1,y+1,z+1),P(x,y+1,z+1)];const sd=[P(x+1,y,z),P(x+1,y,z+1),P(x+1,y+1,z+1),P(x+1,y+1,z)];const pg=(q,c)=>`<polygon points="${q.map(p=>p.join(',')).join(' ')}" fill="${c}" stroke="#0f172a" stroke-width="1.2"/>`;r+=pg(sd,'#5eead4')+pg(t,'#ccfbf1')+pg(f,'#99f6e4')}return `<svg viewBox="20 20 260 200" style="width:100%;max-height:230px">${r}<text x="${60+w*34/2}" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">↑ ÖN</text></svg>`};
+ const setup=()=>{const o=OB[oi],V=views(o.H);const dis=o.dis==='top2'?views(OB[1].H).top:o.dis==='sideM'?mir(V.side):mir(V.front);const C=[['Ön',V.front],['Üst',V.top],['Yan',V.side],['Ait değil',dis]];order=C.map((c,i)=>i).sort(()=>Math.random()-.5).map(i=>C[i]);ans={};chk=false};
+ const draw=()=>{const o=OB[oi];R.innerHTML=`<div class="row" style="gap:4px">${OB.map((x,i)=>`<button class="btn sm ${i===oi?'on':''}" data-o="${i}">${x.n}</button>`).join('')}<span class="xs muted">Her çizimin hangi görünüş olduğunu seç. Yan görünüş = soldan bakış (sol yan görünüş): ön taraf çizimin <b>sağında</b>. Üst görünüşte ön taraf <b>altta</b>.</span></div><div style="display:grid;grid-template-columns:1fr 1.6fr;gap:12px;margin-top:6px;align-items:center"><div>${iso(o.H)}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${order.map((c,i)=>`<div class="card soft" style="padding:6px;text-align:center;${chk?`border:2px solid ${ans[i]===c[0]?'#16a34a':'#dc2626'}`:''}"><div style="min-height:80px;display:grid;place-items:center">${grid(c[1])}</div><div class="row" style="gap:3px;justify-content:center">${['Ön','Üst','Yan','Ait değil'].map(l=>`<button class="btn sm ${ans[i]===l?'on':''}" data-i="${i}" data-l="${l}" style="padding:2px 6px">${l}</button>`).join('')}</div>${chk&&ans[i]!==c[0]?`<div class="xs" style="color:#dc2626">Doğrusu: ${c[0]}</div>`:''}</div>`).join('')}</div></div><div class="row" style="margin-top:6px"><button class="btn pri sm" id="u1-ugc">Kontrol</button><span class="pill">${chk?order.filter((c,i)=>ans[i]===c[0]).length+' / 4':''}</span><span class="xs muted">İç kenarlar sadeleştirilmiştir; parçalar temsilîdir.</span></div>`;
+  $$('[data-o]',R).forEach(b=>b.onclick=()=>{oi=+b.dataset.o;setup();draw()});$$('[data-i]',R).forEach(b=>b.onclick=()=>{ans[b.dataset.i]=b.dataset.l;chk=false;draw()});$('#u1-ugc').onclick=()=>{chk=true;draw()}};setup();draw()})();
+
+(function(){const R=$('#u1-ol');const S=[['1:1',1],['1:2',.5],['1:5',.2],['1:10',.1],['1:20',.05],['2:1',2],['5:1',5],['10:1',10]];
+ R.innerHTML=`<div style="display:grid;grid-template-columns:1fr 120px;gap:6px 8px;align-items:center" class="sm"><label>Parçanın gerçek ölçüsü (mm)</label><input type="number" id="u1-g" value="300" min="0"><label>Ölçek</label><select id="u1-s">${S.map(s=>`<option value="${s[1]}">${s[0]}</option>`).join('')}</select></div><div id="u1-or" style="margin-top:8px"></div><p class="xs muted" style="margin:6px 0 0"><b>Ölçek:</b> çizim büyüklüğü / gerçek büyüklük. <b>1:1</b> gerçek · <b>1:n</b> küçültme (büyük parçayı kâğıda sığdırmak) · <b>n:1</b> büyütme (küçük parçanın detayını göstermek).</p>`;
+ const up=()=>{const g=+$('#u1-g').value||0,k=+$('#u1-s').value,c=g*k,t=$('#u1-s').selectedOptions[0].text;$('#u1-or').innerHTML=`<div class="card soft sm">Çizim ölçüsü = ${g} × ${t.replace(':','/')} = <b class="big" style="font-size:22px">${+c.toFixed(2)} mm</b><br><span class="xs">Ölçü rakamı olarak çizime yine <b>gerçek ölçü (${g})</b> yazılır.</span></div><div class="note ${k<1?'t':k>1?'w':''} sm" style="margin-top:6px">${k<1?'Küçültme ölçeği':k>1?'Büyütme ölçeği':'Gerçek ölçek'} · ${c<=270?'Yatay A4’ün çerçeve içi genişliğine (297 − 20 − 7 = 270 mm) sığar.':'Yatay A4’ün çerçeve içine (270 mm) sığmaz.'}</div>`};
+ $('#u1-g').oninput=up;$('#u1-s').onchange=up;up()})();
+(function(){const R=$('#u1-oe');const E={a:['Ölçü sınır çizgisi','Ölçülendirilen yüzey veya kenardan çıkarılan yardımcı çizgi; parçaya temas etmez, parçaya dik ve birbirine paraleldir.'],b:['Ölçü çizgisi','Ölçünün gösterildiği, uçlarında ok bulunan ince sürekli çizgi.'],c:['Ölçü rakamı','Parçanın gerçek ölçü değeri; ölçü çizgisinin orta kısmına okunabilir yazılır.'],d:['Ok uçları','Ölçünün başlangıç ve bitiş noktalarını gösterir.']};let s='b';
+ const draw=()=>{const h=k=>s===k?'#dc2626':'#0f172a';R.innerHTML=`<svg viewBox="0 0 320 150" style="width:100%;max-height:150px"><rect x="60" y="20" width="200" height="70" fill="#f1f5f9" stroke="#0f172a" stroke-width="3"/><g data-k="a" style="cursor:pointer"><line x1="60" x2="60" y1="95" y2="135" stroke="${h('a')}" stroke-width="1.6"/><line x1="260" x2="260" y1="95" y2="135" stroke="${h('a')}" stroke-width="1.6"/><rect x="50" y="95" width="20" height="40" fill="transparent"/><rect x="250" y="95" width="20" height="40" fill="transparent"/></g><g data-k="b" style="cursor:pointer"><line x1="66" x2="254" y1="125" y2="125" stroke="${h('b')}" stroke-width="1.6"/><rect x="80" y="118" width="60" height="14" fill="transparent"/></g><g data-k="d" style="cursor:pointer"><path d="M60 125 l10 -4 v8z M260 125 l-10 -4 v8z" fill="${h('d')}"/><rect x="58" y="117" width="18" height="16" fill="transparent"/></g><g data-k="c" style="cursor:pointer"><text x="160" y="119" text-anchor="middle" font-size="16" font-weight="700" fill="${h('c')}">80</text></g></svg><div class="note t sm"><b>${E[s][0]}:</b> ${E[s][1]}</div>`;$$('[data-k]',R).forEach(g=>g.onclick=()=>{s=g.dataset.k;draw()})};draw()})();
+orderGame($('#u1-os'),['Ölçülendirilecek kenarları belirle, ölçü sınır çizgilerini çiz','Sınır çizgileri arasına oklu ölçü çizgilerini yerleştir','Gerçek ölçü rakamlarını ölçü çizgilerinin ortasına yaz'],{fs:13});
+
+gridPick($('#u1-oa'),['Ön Görünüş','Taşıma Çizgisi','Üst Görünüş','Ölçek','Ölçü Çizgisi','Ölçü Rakamı','Kesik Çizgi','Yan Görünüş','Koordinat Düzlemi'],[
+ {q:'Görünüşler arasında hizalama yapmak amacıyla kullanılan yardımcı çizgiler',req:[2]},
+ {q:'Görünmeyen kenarları göstermek için kullanılan çizgi türü',req:[7]},
+ {q:'Çizim büyüklüğü ile gerçek büyüklük arasındaki oran',req:[4]},
+ {q:'Parçanın üstten bakıldığında görülen görünüşü',req:[3]},
+ {q:'Ölçü değerlerinin yazıldığı sayısal ifadeler',req:[6]},
+ {q:'Ölçüleri belirtmek amacıyla kullanılan ince çizgiler',req:[5]},
+ {q:'Parçanın sağ veya sol taraftan görünüşü',req:[8]},
+ {q:'Eksenlerin oluşturduğu çalışma alanı',req:[9]}]);
+quiz($('#u1-ob'),[
+ {q:'Görünmeyen kenarları göstermek için kullanılan çizgi türü?',o:['Sürekli ince çizgi','Kesik çizgi','Zincir çizgi','Serbest el çizgisi','Ölçü çizgisi'],a:1,x:'Tablo 1.1: ince kesik çizgi.'},
+ {q:'Parçanın üstten bakıldığında görülen görünüşü?',o:['Ön','Yan','Kesit','Üst','Perspektif'],a:3,x:''},
+ {q:'Çizim büyüklüğü ile gerçek büyüklük arasındaki oran?',o:['Tarama','Ölçek','Kesit','Antet','Perspektif'],a:1,x:''},
+ {q:'Büyük bir parçayı kâğıda sığdırmak için tercih edilen ölçek?',o:['Küçültme','Büyütme','Perspektif','Gerçek','Serbest'],a:0,x:'1:n'},
+ {q:'Perspektifi verilen parçanın üç görünüşünde ilk dikkate alınan?',o:['Ölçü rakamları','Kesit alanı','Ön yön','Tarama açısı','Renk tonu'],a:2,x:'12. örnek: önce ön yön dikkate alınır.'}],'B) Çoktan seçmeli');
+(function(){const R=$('#u1-oc');const S=[['1:1',1],['1:2',.5],['1:5',.2],['1:10',.1]];let s=0;
+ const draw=()=>{const L=1200*S[s][1],fit=L<=270,sc=0.4;R.innerHTML=`<div class="row" style="gap:4px">${S.map((x,i)=>`<button class="btn sm ${i===s?'on':''}" data-s="${i}">${x[0]}</button>`).join('')}</div><svg viewBox="0 0 500 150" style="width:100%;margin-top:8px"><rect x="10" y="20" width="${297*sc*1.2}" height="${210*sc*1.2}" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="14" y="15" font-size="11" fill="#0f766e">A4 (297 mm)</text><rect x="${10+20*sc*1.2}" y="70" width="${Math.min(L*sc*1.2,480)}" height="14" fill="${fit?'#14b8a6':'#f87171'}" opacity=".85"/>${!fit?`<text x="490" y="66" font-size="11" text-anchor="end" fill="#dc2626">kâğıttan taşıyor →</text>`:''}</svg><div class="note ${fit?'t':'f'} sm">${S[s][0]} ölçekte çizim uzunluğu: <b>${L} mm</b> → ${fit?'yatay A4’ün çerçeve içine sığar.':'A4’e sığmaz.'}</div>`;$$('[data-s]',R).forEach(b=>b.onclick=()=>{s=+b.dataset.s;draw()})};draw()})();
+
+Object.assign(SORU,{
+ hz11:{t:'Hazırlık ve Düşün-Tartış-Paylaş',h:'',q:['İnsanlar bir tasarımı, fikri veya ürünü ortak anlayabilmek için neden çizimlerden yararlanır?','Ölçülü, dengeli ve simetrik çalışmanın üretim kalitesine etkisini Ahilik kültüründeki işini düzgün ve eksiksiz yapma anlayışıyla ilişkilendir.','Çokgenlerin az veya fazla kullanılmasının bilgisayar performansı, modelin görünümü ve işlem yüküne etkisi']},
+ gc11:{t:'Örnek uygulamalar: sonuç soruları',h:'',q:['Dikme: pergel açıklığı C ve D’den yay çizerken değiştirilirse dikmenin doğruluğu nasıl etkilenir?','Dik açı: teknik resimde dik açıların doğru oluşturulması neden önemlidir? Günlük yaşamdan örnek ver.','Çokgen: eşkenar üçgen, beşgen veya altıgenlerin mimari, mühendislik ya da bilişimde kullanımına örnekler']},
+ iz11:{t:'İzdüşüm: Oku-Yorum ve sonuç soruları',h:'<p>Mars Climate Orbiter (1999): ekipler arasında farklı ölçü sistemleri kullanılması nedeniyle bilgiler yanlış yorumlandı ve uzay aracı kaybedildi (kitap s. 48, özet).</p>',q:['Bilgilerin farklı yorumlanması neden büyük sorunlara yol açabilir?','Bir parçanın görünüşünün herkes tarafından aynı şekilde anlaşılması neden önemlidir?','Kot, aralık ve uzaklık değerlerinden biri yanlış yerleştirilirse izdüşümde nasıl hatalar oluşur?']},
+ ol11:{t:'Ölçülendirme: sonuç soruları',h:'',q:['Ölçü çizgileri ve rakamları düzensiz yerleştirilirse okunabilirlik nasıl etkilenir?','Eksik ölçülendirme üretim ve montajda ne tür sorunlara yol açabilir?']},
+ o1:{t:'Ölçme C',h:'',q:['1) İlk öğrenci hangi tür ölçek kullanmalı? Gerekçesi','2) İkinci öğrenci neden büyütme ölçeği kullanmış olabilir?','3) Yanlış ölçek kullanımı ne gibi sorunlara yol açar?','4) Uygun ölçek kullanmasaydı ilk öğrenci hangi yöntemlere başvurmak zorunda kalırdı?','5) Farklı ölçekler kullanmalarına rağmen ikisi de kurallara uygun davranmış sayılır mı?']}
+});
+Object.assign(EV,{
+ hz11:[{c:[['Ortak dil','ortak|herkes|ayni|anlas|standart'],['Gerekçe','cunku|yanlis|hata|acik|net|kolay']],m:'Çizimler herkesin aynı şekilde anladığı ortak bir dildir; sözle anlatılan bir tasarım farklı yorumlanabilir, çizim ise ölçüleri ve şekli açık ve net gösterir.'},{c:[['Kalite','kalite|hata|uyum|dogru|duzgun'],['Ahilik','ahilik|eksiksiz|ozen|emek|duzgun']],m:'Ölçülü ve simetrik çalışma hatayı azaltır, parçaların uyumunu sağlar; bu, Ahilik kültüründeki işini özenle, eksiksiz ve düzgün yapma anlayışıyla örtüşür.'},{n:2,c:[['Az çokgen','az|dusuk|kaba|koseli'],['Fazla çokgen','fazla|cok|ayrinti|gercekci|puruzsuz'],['Performans','performans|islem|yuk|yavas|hiz']],m:'Az çokgen modeli köşeli ama hızlı yapar; fazla çokgen daha gerçekçi ve pürüzsüz görünüm sağlar ama işlem yükünü artırıp performansı düşürür.'}],
+ gc11:[{c:[['Etki','kesis|egik|dik olmaz|hata|bozul|yanlis']],m:'Açıklık değişirse yaylar doğru noktada kesişmez; E yanlış yerde oluşur ve çizilen çizgi tam dik olmaz.'},{n:2,c:[['Önem','dik|uyum|montaj|dogru|hata'],['Örnek','kapi|pencere|masa|bina|duvar|raf|kasa|ekran']],m:'Dik açı yanlış olursa parçalar birbirine uymaz; örneğin kapı kasası, pencere veya masa ayakları dik olmazsa montaj yapılamaz, yapı dengesiz olur.'},{c:[['Örnek','kopru|cati|petek|somun|vida|logo|pano|bina|mimari|ag|kafes|yaz']],m:'Eşkenar üçgen köprü ve çatı kafeslerinde dayanıklılık için, altıgen bal peteği yapılarında ve somunlarda, beşgen logo ve grafik tasarımlarda kullanılır.'}],
+ iz11:[{c:[['Sorun','hata|yanlis|kayip|maliyet|basarisiz|uyum']],m:'Farklı yorumlanan bilgiler yanlış ölçü ve üretime yol açar; parçalar uyuşmaz, zaman ve para kaybedilir, Mars örneğinde olduğu gibi proje başarısız olabilir.'},{c:[['Önem','ayni|herkes|ortak|standart|hata|uretim']],m:'Tasarımcı, üretici ve montajcı aynı parçayı üretebilsin diye; standart görünüşler herkesin aynı şekilde anlamasını sağlar ve hataları önler.'},{c:[['Hata','yanlis|kayar|farkli|yer|konum|uyusmaz|bozul']],m:'Nokta yanlış konuma yerleşir, görünüşler birbiriyle uyuşmaz ve noktanın uzaydaki yeri hatalı ifade edilir.'}],
+ ol11:[{c:[['Okunabilirlik','okun|karis|anlas|zor|hata']],m:'Çizim karışık görünür, hangi ölçünün hangi kenara ait olduğu anlaşılmaz, okunabilirlik düşer ve yanlış yorumlanabilir.'},{n:2,c:[['Üretim','uretim|hatali|yanlis|tahmin'],['Montaj','montaj|uyum|uymaz|birles'],['Maliyet','maliyet|zaman|kayip']],m:'Eksik ölçü üretimde tahmine dayalı ve hatalı parçalara, montajda parçaların birbirine uymamasına, zaman kaybına ve maliyet artışına yol açar.'}],
+ o1:[{c:[['Küçültme','kucult|1:'],['Gerekçe','sigmaz|sigdir|buyuk|1200|a4']],m:'Küçültme ölçeği (örneğin 1:5); çünkü 1200 mm’lik parça gerçek ölçüde A4’e sığmaz, 1:5 ile 240 mm olur ve sığar.'},{c:[['Gerekçe','kucuk|detay|ayrinti|net|gor']],m:'Parça çok küçük olduğu için detaylar gerçek ölçüde görülemez; büyütme ölçeğiyle ayrıntılar net gösterilir.'},{c:[['Sorun','sigmaz|okun|yanlis|hata|uretim|olcu']],m:'Çizim kâğıda sığmaz ya da detaylar okunamaz; ölçek yanlış yazılırsa ölçüler yanlış yorumlanır ve hatalı üretim yapılır.'},{c:[['Yöntem','buyuk kagit|a0|a1|a2|a3|bol|parca|kirik|kisalt']],m:'Daha büyük bir kâğıt (A3, A2 gibi) kullanmak ya da çizimi parçalara bölmek veya kırık görünüşle kısaltmak zorunda kalırdı; bunlar düzeni ve okunabilirliği zorlaştırır.'},{c:[['Yanıt','evet|uygun|sayilir'],['Gerekçe','amac|ihtiyac|ucu|parca|buyuk|kucuk|standart']],m:'Evet; ikisi de amaca uygun standart ölçek seçti: biri büyük parçayı sığdırmak için küçülttü, diğeri küçük parçanın detayı için büyüttü.'}]
+});
+SORU_MAP.push(['s-1-0','hz11','📖 Hazırlık · Tartışma','#bas1-c'],['s-1-8','gc11','📖 Sonuç soruları'],['s-1-10','iz11','📖 Oku-Yorum · Sonuç'],['s-1-13','ol11','📖 Sonuç soruları'],['s-1-15','o1','📖 C) yanıtla']);
+/* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
+const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
+function evCheck(spec,txt){
+  if(spec.startsWith('#len:'))return fold(txt).trim().length>=+spec.slice(5);
+  if(spec.startsWith('#q:'))return (txt.match(/\?/g)||[]).length>=+spec.slice(3);
+  if(spec.startsWith('#items:')){const L=txt.split('\n').filter(x=>x.trim().length>3).length,N=(txt.match(/(^|\s)[1-9][.)-]/g)||[]).length;return Math.max(L,N)>=+spec.slice(7)}
+  try{return new RegExp(spec,'m').test(fold(txt))}catch(e){return false}}
+function evaluate(k,i,txt){
+  const e=EV[k]&&EV[k][i];if(!e)return null;
+  if(fold(txt).trim().length<8)return{empty:true,e};
+  const res=e.c.map(c=>({l:c[0],ok:evCheck(c[1],txt),h:c[2]}));const got=res.filter(r=>r.ok).length;const need=e.n||e.c.length;const r=Math.min(1,got/need);
+  return{res,r,e,lvl:r>=.99?['🌟','Çok iyi! Beklenen tüm noktalar var.','t']:r>=.5?['👍','İyi, ama eksik noktalar var.','w']:['📌','Yanıtını geliştirmelisin.','f']};
+}
+
+const SKEY=BOOK.skey;let SANS={};try{SANS=JSON.parse(localStorage.getItem(SKEY)||'{}')}catch(e){}
+function soruAc(k){const s=SORU[k];if(!s)return;const m=$('#soru-m');
+  $('#soru-t').textContent=s.t;
+  $('#soru-b').innerHTML=s.h+(s.q||[]).map((q,i)=>{const ev=EV[k]&&EV[k][i];return`<div class="soru-q"><div>${q}</div><textarea data-sk="${k}-${i}" rows="3" placeholder="Yanıtını buraya yaz...">${esc(SANS[k+'-'+i]||'')}</textarea>${ev?`<div class="row" style="margin-top:6px"><button class="btn sm pri" data-ev="${i}">✅ Değerlendir</button><button class="btn sm hidden" data-md="${i}">👁 Örnek yanıt</button></div><div class="soru-ev" data-er="${i}"></div><pre class="soru-md hidden" data-mm="${i}"></pre>`:''}</div>`}).join('')+(EV[k]?'<p class="xs muted" style="margin-top:10px">ℹ️ Otomatik değerlendirme, yanıtında beklenen anahtar kavramları arar. Farklı ama doğru bir ifade kullandıysan eksik görünebilir; son değerlendirmeyi öğretmenin yapar.</p>':'');
+  $$('#soru-b [data-ev]').forEach(b=>b.onclick=()=>{const i=+b.dataset.ev,t=$(`#soru-b [data-sk="${k}-${i}"]`).value,R=evaluate(k,i,t),box=$(`#soru-b [data-er="${i}"]`);
+    if(!R)return;if(R.empty){box.innerHTML='<div class="note f">✍️ Önce yanıtını yaz, sonra değerlendir.</div>';return}
+    box.innerHTML=`<div class="note ${R.lvl[2]}"><b>${R.lvl[0]} ${R.lvl[1]}</b> <span class="pill" style="margin-left:6px">${R.res.filter(x=>x.ok).length} / ${R.res.length} ölçüt</span><div class="soru-ck">${R.res.map(x=>`<div>${x.ok?'✅':'⬜'} ${esc(x.l)}${!x.ok&&x.h?` <span class="muted">— ${esc(x.h)}</span>`:''}</div>`).join('')}</div></div>`;
+    const mb=$(`#soru-b [data-md="${i}"]`);if(R.e.m)mb.classList.remove('hidden')});
+  $$('#soru-b [data-md]').forEach(b=>b.onclick=()=>{const i=+b.dataset.md,pre=$(`#soru-b [data-mm="${i}"]`);pre.textContent=EV[k][i].m;pre.classList.toggle('hidden');b.textContent=pre.classList.contains('hidden')?'👁 Örnek yanıt':'🙈 Örnek yanıtı gizle'});
+  $$('#soru-b textarea').forEach(t=>t.oninput=()=>{SANS[t.dataset.sk]=t.value;try{localStorage.setItem(SKEY,JSON.stringify(SANS))}catch(e){}});
+  $('#soru-k').onclick=async()=>{const txt=s.t+'\n\n'+(s.q||[]).map((q,i)=>q.replace(/<[^>]+>/g,'')+'\n→ '+(SANS[k+'-'+i]||'')).join('\n\n');try{await navigator.clipboard.writeText(txt);$('#soru-k').textContent='✔ Kopyalandı'}catch(e){$('#soru-k').textContent='Kopyalanamadı'}setTimeout(()=>$('#soru-k').textContent='📋 Yanıtlarımı kopyala',1600)};
+  $('#soru-k').style.display=(s.q||[]).length?'':'none';
+  m.classList.add('on');$('#soru-b').scrollTop=0}
+(function(){
+  const m=document.createElement('div');m.id='soru-m';m.innerHTML=`<div class="soru-c"><div class="row" style="border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:22px">📖</span><b id="soru-t" style="font-size:19px;flex:1"></b><button class="btn sm" id="soru-x">✕ Kapat</button></div><div id="soru-b"></div><div class="row" style="justify-content:flex-end;border-top:1px solid var(--line);padding-top:8px"><span class="xs muted" style="flex:1">Yanıtların bu tarayıcıda saklanır.</span><button class="btn pri sm" id="soru-k">📋 Yanıtlarımı kopyala</button></div></div>`;
+  $('#stage').appendChild(m);
+  $('#soru-x').onclick=()=>m.classList.remove('on');m.onclick=e=>{if(e.target===m)m.classList.remove('on')};
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')m.classList.remove('on')},true);
+  SORU_MAP.forEach(([sid,k,lab,sel])=>{const sl=$('#'+sid);if(!sl||!SORU[k])return;const b=document.createElement('button');b.className='btn sm soru-btn';b.textContent=lab;b.onclick=e=>{e.stopPropagation();soruAc(k)};
+    if(sel){const t=$(sel,sl);if(t){b.style.marginTop='8px';t.appendChild(b);return}}
+    let h=$('h2',sl);let w=$('.h2-acts',sl);if(!w){w=document.createElement('span');w.className='h2-acts';h.appendChild(w)}w.appendChild(b)});
+})();
+
+/* ============ KOPYALAMA KORUMASI ============ */
+(function(){
+  const allow=e=>{const t=e.target;return t&&t.closest&&t.closest('input,textarea,select,[contenteditable]')};
+  const tb=document.createElement('div');tb.id='koru-t';tb.innerHTML='🔒 Bu içerik korunmaktadır · © Sunay\'s School';document.body.appendChild(tb);
+  let wt=0,tt=0;const warn=()=>{if(Date.now()-wt<1500)return;wt=Date.now();tb.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>tb.classList.remove('on'),2200)};
+  document.addEventListener('contextmenu',e=>{if(!allow(e)){e.preventDefault();warn()}});
+  ['copy','cut'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e)){e.preventDefault();warn()}}));
+  ['dragstart','selectstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!allow(e))e.preventDefault()}));
+  document.addEventListener('keydown',e=>{
+    const k=(e.key||'').toLowerCase(),c=e.ctrlKey||e.metaKey;
+    if(e.key==='F12'||(c&&e.shiftKey&&['i','j','c','k'].includes(k))||(c&&e.altKey&&['i','j','c','u'].includes(k))||(c&&['u','s','p'].includes(k))){e.preventDefault();e.stopPropagation();warn();return}
+    if(c&&['c','a','x'].includes(k)&&!allow(e)){e.preventDefault();warn()}
+  },true);
+})();
+/* BAŞLAT_YER */
+buildMenu();fit();
+$('#nav-p').onclick=()=>go(cur-1);$('#nav-n').onclick=()=>go(cur+1);$('#nav-m').onclick=()=>{$$('#menu a').forEach(a=>a.classList.toggle('cur',+a.dataset.i===cur));$('#menu').classList.toggle('on')};$('#nav-f').onclick=fs;
+$('#menu').onclick=e=>{if(e.target.id==='menu')$('#menu').classList.remove('on')};
+slides[0].classList.add('active');
+const h0=location.hash.slice(1);const i0=slides.findIndex(s=>s.id===h0);go(i0>=0?i0:0);
+</script></body></html>
