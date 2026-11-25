@@ -828,6 +828,189 @@ DEĞİLSE
   <div class="card acc" id="u2-ob"></div>
  </div>
 </section>
+<section class="slide" id="s-3-0" data-sec="3" data-title="3. Öğrenme Birimi · Donanım Birimleri" data-ref="Kitap s. 124–126">
+ <div class="secov">
+  <div>
+   <div class="secno">3</div>
+   <h2 style="font-size:44px">Donanım Birimleri</h2>
+   <div class="kz"><b>Konular:</b> 3.1 Kasa İçi Donanımlar · 3.2 Dış Donanım Birimleri · 3.3 Elektronik Atık Yönetimi</div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="tag">ağ kartı</span><span class="tag">elektronik atık</span><span class="tag">kasa</span><span class="tag">anakart</span><span class="tag">Ethernet</span><span class="tag">klavye</span><span class="tag">antistatik bileklik</span><span class="tag">fare</span><span class="tag">port</span><span class="tag">bertaraf</span><span class="tag">geri dönüşüm</span><span class="tag">RAM</span><span class="tag">depolama birimi</span><span class="tag">güç kaynağı</span><span class="tag">sağlamlık testi</span><span class="tag">ekran</span><span class="tag">HDMI</span><span class="tag">statik elektrik</span><span class="tag">ekran kartı</span><span class="tag">işlemci</span><span class="tag">USB</span><span class="tag">yazıcı</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🎯 Bu öğrenme biriminde sizden beklenenler</h3><ul class="tight sm"><li>Statik elektriğe karşı gerekli önlemleri alarak kasa içi donanım montajını yapmanız</li><li>Klavye, fare, ekran, yazıcı gibi dış birimlerin uygun port ve arayüzlerle fiziksel bağlantılarını yapmanız</li><li>E-atıkları türlerine göre ayrıştırmanız, parçaların sağlamlığını değerlendirmeniz ve bertaraf sürecini planlamanız</li></ul></div>
+   <div class="card soft sm"><h3>🚦 Başlarken</h3>Kişiler çoğu zaman yalnızca bilgisayar kullanıcısı olarak kalır. Bu birimde bilgisayarın iç yapısını tanıyıp parçaların görevlerini öğrenecek, onları doğru şekilde bir araya getirecek; böylece <b>bilgisayar kurabilen ve anlayabilen</b> bireyler olacaksınız.</div>
+   <div class="card sm" id="once3-c"><h3>💭 Önce Düşün</h3>Bilgisayarın içinde hangi parçalar var, ne işe yarıyor, nasıl kuruluyor? Eskiyen parçalar çöpe mi gider, yoksa tekrar kullanılabilir mi?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-1" data-sec="3" data-title="Kasa içi donanımlar ve statik elektrik" data-ref="Kitap 3.1–3.1.1 · s. 126–129 · 1. Uygulama">
+ <h2>3.1 Kasa İçi Donanımlar ve Statik Elektrik <small>montajdan önce: önlem!</small></h2>
+ <div class="body c3">
+  <div class="card col sm"><h3>🧠 Vücut ↔ bilgisayar</h3><div id="u3-vb"></div><p style="margin-top:8px"><b>Statik elektrik:</b> İnsan vücudunda veya yüzeylerde fark edilmeden biriken, gözle görülmeyen elektrik yükü. Genellikle <b>sürtünmeyle</b> oluşur: sentetik kıyafet, halıda yürümek, plastik yüzey.</p><p class="xs muted">Kapı koluna dokununca çarpılma, kazağa sürtünen saçın elektriklenmesi… Boşaltılmadan devreye dokunulursa anakart bozulabilir, RAM yanabilir, işlemci zarar görebilir.</p></div>
+  <div class="card col"><h3>🛡️ Yedi önlem</h3><div id="u3-onl" style="overflow:auto"></div></div>
+  <div class="card acc col"><h3>🧪 1. Uygulama: Montaj öncesi hazırlık <span class="xs muted">· 10 dk</span></h3><div id="u3-u1" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-2" data-sec="3" data-title="Anakart ve bileşenleri" data-ref="Kitap 3.1.2 · Görsel 3.1 · s. 129–131">
+ <h2>3.1.2 Anakart (Motherboard) <small>tüm birimleri birbirine bağlayan ana devre kartı</small></h2>
+ <div class="body c2l">
+  <div class="col"><div class="card soft sm">Anakart; CPU, RAM, GPU, depolama birimleri ve çevre birimleri arasında <b>veri ve enerji</b> aktarımını sağlar. Üzerindeki ince yollara <b>iz (track)</b> denir. Önyüklemeyi yöneten yazılım: <b>BIOS</b> veya daha gelişmiş <b>UEFI</b>.</div><div id="u3-ab" style="overflow:auto;flex:1"></div></div>
+  <div class="card acc col"><h3>🧩 Hangi bileşen?</h3><div id="u3-abq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-3" data-sec="3" data-title="Anakart form faktörleri" data-olc="bic" data-ref="Kitap s. 132 · Sıra Sizde">
+ <h2>Anakart Biçim Standartları (Form Faktörü) <small>boyut · montaj · bağlantı yerleşimi</small></h2>
+ <div class="body c2">
+  <div class="card col"><div id="u3-ff" style="display:flex;gap:14px;align-items:flex-end;justify-content:center;min-height:250px"></div>
+   <table class="bt" style="margin-top:10px"><tr><th>Form faktörü</th><th>Ölçü</th><th>RAM yuvası</th><th>Özellik</th></tr><tr><td><b>ATX</b></td><td>305 × 244 mm</td><td>Genellikle 4</td><td>Masaüstünde en yaygın; daha fazla bağlantı ve genişleme</td></tr><tr><td><b>Micro-ATX</b></td><td>244 × 244 mm</td><td>Genellikle 2–4</td><td>Daha kompakt; çoğu zaman ATX kasalarla uyumlu</td></tr><tr><td><b>Mini-ITX</b></td><td>170 × 170 mm</td><td>Standart 2</td><td>Küçük kasalar için</td></tr></table></div>
+  <div class="card acc col"><h3>✍️ Sıra Sizde: Form faktörlerini tanıyalım</h3><div id="u3-ffq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-4" data-sec="3" data-title="İşlemci çalışma döngüsü" data-ref="Kitap 3.1.3 · Görsel 3.6–3.7 · s. 133–136">
+ <h2>3.1.3 İşlemciler (CPU) <small>Getirme → Kod çözme → Yürütme</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div id="u3-fde" style="flex:1"></div></div>
+  <div class="card col sm"><h3>🧩 İşlemcinin yapısı</h3><div id="u3-cpu"></div><h3 style="margin-top:8px">🛣️ Veri iletim yolları (Bus)</h3><div id="u3-bus"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-5" data-sec="3" data-title="İşlemci performansı" data-ref="Kitap s. 134–135 · Tablo 3.1">
+ <h2>İşlemci Performansı <small>saat hızı · çekirdek · önbellek · mimari · TDP</small></h2>
+ <div class="body c3">
+  <div class="card acc col"><h3>🧮 İşlemci frekansı hesaplayıcı</h3><p class="xs muted" style="margin:0">İşlemci Frekansı = BCLK × İşlemci Çarpanı</p><div class="sc" style="margin-top:8px"><span>BCLK</span><input type="range" id="u3-bc" min="100" max="100" value="100" disabled><output>100 MHz</output><span>Çarpan</span><input type="range" id="u3-cr" min="8" max="60" value="40"><output id="u3-cro">40</output></div><div class="big" id="u3-fq" style="text-align:center;margin:10px 0;font-size:38px">4 GHz</div><div class="note xs" id="u3-fqx"></div><p class="xs muted">Modern sistemlerde BCLK 100 MHz’dir. Geçmişte FSB kullanılırdı; bugün tarihsel gelişimi anlamak için incelenir.</p></div>
+  <div class="card col"><h3>📏 Tablo 3.1: Hız birimleri</h3><table class="bt" style="font-size:12px"><tr><th>Birim</th><th>Değer</th><th>Açıklama</th></tr><tr><td>Hz</td><td>1 Hz</td><td>Saniyede 1 işlem</td></tr><tr><td>KHz</td><td>1.000 Hz</td><td>Bin</td></tr><tr><td>MHz</td><td>1.000.000 Hz</td><td>Milyon</td></tr><tr><td>GHz</td><td>10⁹ Hz</td><td>Milyar</td></tr><tr><td>THz</td><td>10¹² Hz</td><td>Trilyon</td></tr><tr><td>PHz</td><td>10¹⁵ Hz</td><td>Katrilyon</td></tr><tr><td>EHz</td><td>10¹⁸ Hz</td><td>Kentilyon</td></tr></table></div>
+  <div class="card col"><div id="u3-perf" style="overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-6" data-sec="3" data-title="İşlemci mimarileri ve soğutma" data-olc="bic" data-ref="Kitap s. 137–138 · Sıra Sizde">
+ <h2>İşlemci Mimarileri ve Soğutma <small>Sıra Sizde: mimari tablosu</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div id="u3-mim" style="flex:1;overflow:auto"></div></div>
+  <div class="col">
+   <div class="card sm"><h3>❄️ İşlemci soğutması</h3>Aşırı ısınma ömrü kısaltır, arızaya ve sistemin durmasına yol açabilir. Yöntemler: <b>fan</b> (hava soğutma), <b>soğutucu blok</b> (heatsink), <b>sıvı soğutma</b>.</div>
+   <div class="card acc col"><h3>🧴 Termal macun: ne kadar?</h3><div class="row" id="u3-tm"><button class="btn" data-k="0">Çok az</button><button class="btn" data-k="1">İnce ve dengeli</button><button class="btn" data-k="2">Çok fazla</button></div><div style="display:grid;place-items:center;margin:8px 0"><div style="width:120px;height:120px;background:#a7adb8;border-radius:8px;display:grid;place-items:center;position:relative"><div id="u3-tmd" style="border-radius:50%;background:#e9ecef;transition:.3s;width:0;height:0"></div><span class="xs" style="position:absolute;bottom:4px;color:#333">CPU</span></div></div><div class="note" id="u3-tmx">Bir miktar seç.</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-7" data-sec="3" data-title="Bellekler: RAM ve ROM" data-ref="Kitap 3.1.4 · Tablo 3.2 · s. 138–140">
+ <h2>3.1.4 Bellekler <small>geçici (RAM) ve kalıcı (ROM)</small></h2>
+ <div class="body c3">
+  <div class="card acc col"><h3>🔢 Tablo 3.2: Birim dönüştürücü</h3><div class="row"><input type="number" id="u3-bv" value="16" style="width:90px"><select id="u3-bf"></select><span>=</span></div><div id="u3-bo" class="mono sm" style="margin-top:8px;line-height:1.7"></div><p class="xs muted">1 Byte = 8 Bit; diğer her basamak 1024 katıdır.</p></div>
+  <div class="card col"><h3>⚡ RAM türleri</h3><div id="u3-ram" style="overflow:auto"></div></div>
+  <div class="card col"><h3>🔒 ROM türleri</h3><div id="u3-rom" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-8" data-sec="3" data-title="Disk sürücüler ve kablolar" data-ref="Kitap 3.1.5 · s. 140–142">
+ <h2>3.1.5 Disk Sürücüler <small>bilgisayarın uzun süreli hafızası</small></h2>
+ <div class="body c2">
+  <div class="col"><div id="u3-disk"></div><div class="card soft sm"><b>Kablolar:</b> veri kabloları + güç kabloları. SATA (veri) · SATA güç · M.2 · U.2 (2.5 inç NVMe) · IDE (eski, 40/80 pin) · SCSI (Paralel SCSI eski, SAS güncel).</div></div>
+  <div class="card acc col"><h3>🧩 Hangi depolama / kablo?</h3><div id="u3-dq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-9" data-sec="3" data-title="RAID teknolojisi" data-olc="bic" data-ref="Kitap 3.1.6 · s. 143–144 · Sıra Sizde">
+ <h2>3.1.6 RAID Teknolojisi <small>bir disk bozulursa ne olur?</small></h2>
+ <div class="body c2l">
+  <div class="card col"><div class="row" id="u3-rl"></div><div id="u3-rv" style="flex:1;margin-top:10px"></div></div>
+  <div class="card acc col"><h3>✍️ Sıra Sizde: Senaryolar</h3><div id="u3-rq" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-10" data-sec="3" data-title="Ekran kartı ve diğer kartlar" data-olc="bic" data-ref="Kitap 3.1.7–3.1.11 · s. 144–147">
+ <h2>Ekran Kartı, Ses Kartı, Ağ Kartı, Kasa ve Güç Kaynağı</h2>
+ <div class="body c3">
+  <div class="card col sm"><h3>🎮 Ekran kartı (GPU)</h3><p>CPU’dan gelen görsel verileri alıp grafik hesaplamalarını yapar, ekrana aktarır. Bileşenler: GPU, bellek (VRAM), bağlantı noktaları (DisplayPort, HDMI, VGA), fan ve soğutucu.</p><div class="c2" style="display:grid;gap:6px"><div class="note xs"><b>Dâhilî:</b> işlemciye entegre · ekstra kart yok · düşük güç · sınırlı performans</div><div class="note t xs"><b>Haricî:</b> PCIe slotuna takılır · kendi VRAM’i · yüksek performans · oyun ve profesyonel işler</div></div></div>
+  <div class="card acc col"><h3>✍️ Sıra Sizde: Dâhilî mi, haricî mi?</h3><div id="u3-gpu" style="flex:1"></div></div>
+  <div class="card col"><div id="u3-diger" style="overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-11" data-sec="3" data-title="Sıra Sizde: Kavram tablosu" data-olc="bic" data-ref="Kitap Sıra Sizde · s. 148">
+ <h2>Sıra Sizde: Kutucuk numarasını yaz <small>kasa içi donanım kavramları</small></h2>
+ <div class="body c2r">
+  <div class="card soft col"><div class="sit" style="grid-template-columns:1fr 1fr" id="u3-kn"></div></div>
+  <div class="card acc" id="u3-kq" style="overflow:auto"></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-12" data-sec="3" data-title="2. Uygulama: İç donanım montajı" data-olc="kanit" data-ref="Kitap 2. Uygulama · s. 149–150">
+ <h2>2. Uygulama: İç Donanım Birimlerinin Montajı <small>adımları doğru sıraya koy · 40 dk</small></h2>
+ <div class="body"><div class="card acc" id="u3-mon"></div></div>
+</section>
+
+<section class="slide" id="s-3-13" data-sec="3" data-title="3.2 Dış donanım ve portlar" data-ref="Kitap 3.2 · s. 150–152">
+ <h2>3.2 Dış Donanım Birimleri ve Giriş-Çıkış (I/O) Portları</h2>
+ <div class="body c2">
+  <div class="col"><div class="card soft sm">Giriş birimleriyle bilgisayara veri ve komut iletilir; çıkış birimleri işlenen bilgiyi kullanıcıya aktarır: <b>giriş → işlem → çıkış</b> döngüsü. Bu birimlerin işlemciyle iletişim kurduğu bağlantı noktalarına <b>I/O portları</b> denir.</div><div id="u3-port" style="overflow:auto;flex:1"></div></div>
+  <div class="card acc col"><h3>🔌 Hangi port?</h3><div id="u3-pq" style="flex:1"></div><div class="note xs"><b>Pin:</b> bağlantı noktalarındaki iletken temas alanları. Yanlış yönde takmayı ve hatalı bağlantıyla zararı önler. Port-fiş uyumunu kontrol et, zorlama, eğik/kırık/kirli pinleri incele, yönü doğru belirle.</div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-14" data-sec="3" data-title="Giriş ve çıkış birimleri" data-ref="Kitap 3.2.1–3.2.2 · s. 152–155">
+ <h2>3.2.1–3.2.2 Giriş ve Çıkış Birimleri</h2>
+ <div class="body c3">
+  <div class="card col"><h3>⌨️ Giriş birimleri</h3><div id="u3-gb" style="overflow:auto"></div></div>
+  <div class="card col"><h3>🖥️ Çıkış birimleri</h3><div id="u3-cb" style="overflow:auto"></div></div>
+  <div class="card acc col"><h3>📺 Monitör özellikleri</h3><div class="row"><select id="u3-res"><option value="1280x720">1280 × 720</option><option value="1920x1080" selected>1920 × 1080 (Full HD)</option><option value="2560x1440">2560 × 1440</option><option value="3840x2160">3840 × 2160</option></select></div><div class="note" id="u3-resx" style="margin-top:6px"></div><div class="sc" style="margin-top:8px"><span>Yenileme</span><input type="range" id="u3-hz" min="30" max="240" step="30" value="60"><output id="u3-hzo">60 Hz</output><span>Tepki</span><input type="range" id="u3-ms" min="1" max="10" value="1"><output id="u3-mso">1 ms</output></div><div class="note xs" id="u3-hzx" style="margin-top:6px"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-15" data-sec="3" data-title="Giriş-çıkış sınıflandırma ve 3. Uygulama" data-olc="bic" data-ref="Kitap 3.2.3–3.2.4 · s. 156–158 · 3. Uygulama">
+ <h2>Giriş, Çıkış veya Giriş-Çıkış? <small>Sıra Sizde · Tak çalıştır · 3. Uygulama</small></h2>
+ <div class="body c2l">
+  <div class="card acc col"><div id="u3-gc" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card sm"><b>Giriş-çıkış aygıtları:</b> interaktif (akıllı) tahta, VR gözlükleri, dokunmatik ekran. <b>BİLGİ KUTUSU:</b> Bilgisayara veri gönderiyorsa giriş, kullanıcıya veri aktarıyorsa çıkış, ikisini birlikte yapıyorsa giriş-çıkış birimidir.<br><b>Tak çalıştır (Plug and Play):</b> Takıldığı anda sistem tarafından otomatik tanınan, sürücüleri otomatik yüklenen aygıtlar (USB bellek, yazıcı, klavye, fare…).</div>
+   <div class="card col"><h3>🧪 3. Uygulama: Dış donanım montajı <span class="xs muted">· 25 dk</span></h3><div id="u3-u3" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-16" data-sec="3" data-title="3.3 Elektronik atık" data-ref="Kitap 3.3–3.3.1 · s. 158–161">
+ <h2>3.3 Elektronik Atık Yönetimi <small>atık mı, kaynak mı?</small></h2>
+ <div class="body c3">
+  <div class="card col sm"><p><b>E-atık:</b> Kullanım ömrünü tamamlamış veya artık kullanılmayan elektrikli ve elektronik cihazlar (bozuk bilgisayar, eski telefon, kablo, televizyon…). İçinde <b>kurşun, cıva, krom, kadmiyum</b> gibi ağır metaller bulunur; doğaya rastgele bırakılırsa toprağa ve suya karışarak uzun yıllar çevreyi zehirler.</p><div class="note"><b>BİLGİ KUTUSU (TÜBİTAK, BM 2020 Küresel E-Atık İzleme Raporu):</b> Her yıl kişi başı <b>7,3 kg</b> e-atık üretiliyor. 2014’te <b>44,4 megaton</b> olan miktarın 2030’da <b>74,7 megatona</b> çıkabileceği öngörülüyor.</div></div>
+  <div class="card acc col"><h3>📈 E-atık artışı</h3><div id="u3-ea" style="flex:1;display:flex;align-items:flex-end;gap:30px;justify-content:center;padding:10px"></div></div>
+  <div class="card col sm"><h3>♻️ Geri dönüşümün faydaları</h3><ul class="tight"><li>Faydalı atık maddelerin boşa gitmesi önlenir, israfın önüne geçilir.</li><li>Gereksiz enerji kullanımının önüne geçilir.</li><li>Değerli metallerin geri kazanılmasıyla doğal kaynaklar korunur.</li><li>Ekosistemin korunmasına katkı sağlar.</li><li>Geri dönüşüm endüstrisiyle yeni iş imkânları yaratılır.</li></ul></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-17" data-sec="3" data-title="Sağlamlık testleri" data-olc="bic" data-ref="Kitap 3.3.2 · Tablo 3.3 · 4. Uygulama · s. 161–163">
+ <h2>3.3.2 E-Atık Sağlamlık Testleri <small>yeniden kullanım · onarım · bertaraf</small></h2>
+ <div class="body c3">
+  <div class="card col"><h3>🔍 Test yöntemleri</h3><div id="u3-st"></div><p class="xs muted" style="margin-top:6px"><b>Yeniden kullanım (refurbished):</b> eski cihazın onarılıp tekrar kullanılması. <b>Geri dönüşüm:</b> değerli kaynakların ekonomiye kazandırılması.</p></div>
+  <div class="card col sm"><h3>📋 Tablo 3.3</h3><table class="bt"><tr><th>Durum</th><th>Açıklama</th></tr><tr><td>✅ Sağlam</td><td>Doğrudan yeniden kullanılabilir.</td></tr><tr><td>🔧 Onarılabilir</td><td>Tamir edilerek kullanılabilir.</td></tr><tr><td>⛔ Arızalı</td><td>Geri dönüşüme gönderilir (bertaraf edilir).</td></tr></table></div>
+  <div class="card acc col"><h3>🧪 4. Uygulama: Kararını ver</h3><div id="u3-u4" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-18" data-sec="3" data-title="Geri dönüşüm süreci" data-olc="bic" data-ref="Kitap s. 163–165 · Sıra Sizde">
+ <h2>Geri Dönüşüm Tesislerinin İşleyişi <small>yalnızca lisanslı tesislerde</small></h2>
+ <div class="body c2">
+  <div class="col"><div class="card acc"><h3>✍️ Sıra Sizde: Aşamaları sırala</h3><div id="u3-gd"></div></div><div class="card soft sm"><b>BİLGİ KUTUSU (sifiratik.gov.tr):</b> AEEE’deki metal miktarı madenlerdeki cevherden fazladır. 1 kg <b>demir</b>: 200 kg kaya ↔ 2 kg AEEE · 1 kg <b>bakır</b>: 200 kg maden ↔ 13 kg AEEE · 1 kg <b>altın</b>: 240.000.000 kg maden ↔ 100.000 kg AEEE.</div></div>
+  <div class="card col"><h3>✍️ Sıra Sizde: Doğru ifadeleri seç</h3><div id="u3-if" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-19" data-sec="3" data-title="Ölçme A–B" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme A–B · s. 166–167">
+ <h2>Ölçme ve Değerlendirme · A ve B <small>dallanmış ağaç · kutucuklar</small></h2>
+ <div class="body c2r">
+  <div class="card acc col"><h3>A) Dallanmış ağaç</h3><div id="u3-oa" style="flex:1"></div></div>
+  <div class="card col"><h3>B) Uygun kutucukları seç</h3><div id="u3-ob" style="flex:1;overflow:auto"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-20" data-sec="3" data-title="Ölçme C · Test" data-olc="kanit" data-ref="Kitap Ölçme ve Değerlendirme C · s. 168–169">
+ <h2>Ölçme ve Değerlendirme · C <small>çoktan seçmeli · 10 soru</small></h2>
+ <div class="body"><div class="card acc" id="u3-oc"></div></div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -1012,6 +1195,18 @@ function shortAns(root,items){
   root.style.display='grid';root.style.gap='7px';root.style.alignContent='start';
   root.innerHTML=items.map((it,i)=>`<div class="tfi" style="grid-template-columns:1fr auto" data-i="${i}"><span>${it.q}</span><span></span><input type="text" placeholder="Yanıtın" style="width:100%"><button class="btn pri sm">Kontrol</button><div class="x"></div></div>`).join('');
   $$('.tfi',root).forEach(el=>{const it=items[el.dataset.i];const go=()=>{const v=fold($('input',el).value).replace(/\s+/g,' ').trim();const ok=it.a.some(a=>v===fold(a)||v.replace(/[^a-z0-9]/g,'')===fold(a).replace(/[^a-z0-9]/g,''));el.classList.remove('ok','no');el.classList.add(ok?'ok':'no');$('.x',el).innerHTML=(ok?'✔ ':'✘ Doğru yanıt: <b>'+it.a[0]+'</b>. ')+(it.x||'')};$('button',el).onclick=go;$('input',el).onkeydown=e=>{if(e.key==='Enter')go()}});
+}
+/* Sıralama oyunu: steps doğru sırada verilir, karıştırılarak gösterilir */
+function orderGame(root,steps,o={}){
+  function draw(){
+    let pick=[];const sh=steps.map((s,i)=>i).sort(()=>Math.random()-.5);
+    root.innerHTML=`<div class="bank og-b">${sh.map(i=>`<span class="chip" data-i="${i}">${steps[i]}</span>`).join('')}</div><ol class="og-l" style="margin:8px 0;padding-left:22px;font-size:${o.fs||14}px;line-height:1.5"></ol><div class="row"><span class="pill og-s">0 / ${steps.length}</span><button class="btn sm og-u">↶ Geri al</button><button class="btn sm og-r">↺ Karıştır</button><span class="xs muted">${o.hint||'Adımlara doğru sırayla tıkla.'}</span></div>`;
+    const L=$('.og-l',root);
+    const ren=()=>{L.innerHTML=pick.map((i,k)=>`<li style="color:${i===k?'var(--t)':'var(--f)'}">${steps[i]} ${i===k?'✔':'✘ <span class="xs">(doğrusu '+(i+1)+'. adım)</span>'}</li>`).join('');const ok=pick.filter((i,k)=>i===k).length;$('.og-s',root).textContent=ok+' / '+steps.length+(ok===steps.length?' 🎉':'');$$('.og-b .chip',root).forEach(c=>c.classList.toggle('used',pick.includes(+c.dataset.i)))};
+    $$('.og-b .chip',root).forEach(c=>c.onclick=()=>{pick.push(+c.dataset.i);ren()});
+    $('.og-u',root).onclick=()=>{pick.pop();ren()};$('.og-r',root).onclick=draw;
+  }
+  draw();
 }
 /* ============ 1. ÖĞRENME BİRİMİ: DİJİTAL DÖNÜŞÜM ============ */
 reveal($('#u1-kav'),[
@@ -1609,6 +1804,241 @@ Object.assign(EV,{
  oc2:[{c:[['Yanlış','yanlis'],['Gerekçe','halusinasyon|olasi|hata|yanlis bilgi|kontrol']],m:'Yanlış. YZ en olası cevabı üretir; halüsinasyon nedeniyle hatalı bilgi verebilir.'},{c:[['Yanlış','yanlis'],['Gerekçe','gorsel|ses|video|muzik|kod']],m:'Yanlış. Üretken YZ metin yanında görsel, ses, video, müzik ve kod da üretebilir.'},{c:[['Doğru','dogru'],['Gerekçe','gercek disi|uydurma|emin|yanlis']],m:'Doğru. Halüsinasyon, gerçek dışı veya uydurma bilgilerin kendinden emin biçimde sunulmasıdır.'},{c:[['Doğru','dogru'],['Gerekçe','api|veri|baglan|sistem']],m:'Doğru. Entegrasyon, sistemlerin (çoğunlukla API ile) birbirine bağlanıp veri alışverişi yapmasıdır.'}]
 });
 SORU_MAP.push(['s-2-0','once2','📖 Önce Düşün','#once2-c'],['s-2-3','kedi','📖 Boş alanları doldur'],['s-2-4','uyg21','📖 1. Uygulama'],['s-2-5','arda','📖 DTP + Araştırma'],['s-2-6','gh','📖 Düşün-Tartış-Paylaş'],['s-2-8','muze','📖 Düşün-Tartış-Paylaş'],['s-2-9','amac','📖 Sıra Sizde'],['s-2-10','gorev','📖 Sıra Sizde'],['s-2-11','baglam','📖 Bağlam ekle'],['s-2-11','kisit','📖 Kısıt ekle'],['s-2-14','gorsel','📖 DTP · Etkinlik'],['s-2-15','stil','📖 DTP · 2. Uygulama'],['s-2-16','ses2','📖 3. Uygulama'],['s-2-17','video','📖 Sıra Sizde · 4. Uyg.'],['s-2-20','kantin','📖 Kantin chatbotu'],['s-2-21','entg','📖 Sıra Sizde'],['s-2-23','oc2','📖 C gerekçeleri']);
+/* ============ 3. ÖĞRENME BİRİMİ: DONANIM BİRİMLERİ ============ */
+classify($('#u3-vb'),[
+ {t:'🧠 Beyin bilgiyi işler →',a:'İşlemci'},{t:'⚡ Sinir sistemi bilgiyi iletir →',a:'Anakart veri yolları'},{t:'💭 Hafıza bilgileri geçici tutar →',a:'RAM'}],['İşlemci','Anakart veri yolları','RAM'],{cols:'1fr'});
+reveal($('#u3-onl'),[
+ {n:1,t:'Antistatik bileklik',d:'Bileğe takılır, kabloyla topraklanmış yüzeye bağlanır; vücuttaki yükü güvenle toprağa aktarır. En yaygın ve güvenli yöntem.'},
+ {n:2,t:'Topraklama',d:'Yükün güvenle toprağa aktarılması: antistatik bileklik, topraklı prize bağlı çalışma alanı, topraklanmış metal kasa yüzeyine dokunma, antistatik mat.'},
+ {n:3,t:'Uygun çalışma ortamı',d:'Halısız zemin; dengeli nem (çok kuru ortam statiği artırır); plastik, naylon, köpükten uzak; ahşap veya antistatik yüzey.'},
+ {n:4,t:'Uygun kıyafet',d:'Pamuklu kıyafet tercih edilmeli; yünlü kazak, polar gibi sürtünme üreten giysilerden kaçınılmalı.'},
+ {n:5,t:'Parçalara doğru dokunma',d:'Kenarlarından tutulmalı; pinlere, altın renkli temas yüzeylerine, devrelere dokunulmamalı.'},
+ {n:6,t:'Uygun yüzeyde bekletme',d:'Antistatik poşet veya mat; naylon poşet, halı, kumaş koltuk, plastik yüzeyde bekletilmemeli.'},
+ {n:7,t:'Güç bağlantısını kesmek',d:'Güç kaynağı kapatılmalı, güç kablosu prizden çıkarılmalı; enerji altında işlem hem kullanıcı hem donanım için risklidir.'}],{single:true});
+(function(){const R=$('#u3-u1');const S=['Antistatik bileklik takıldı.','Çalışma ortamı düzenlendi (halısız zemin, dengeli nem).','Doğru yüzey seçildi (antistatik mat / ahşap).','Parçalar kenarlarından tutuluyor.','Güç bağlantısı kesildi, kablo prizden çıkarıldı.'];
+ R.innerHTML='<div class="chk">'+S.map((s,i)=>`<label><input type="checkbox"> <span class="sm"><b>${i+1}. Adım:</b> ${s}</span></label>`).join('')+'</div><div class="note" id="u3-u1x" style="margin-top:8px">0 / 5 adım tamam.</div>';
+ $$('input',R).forEach(c=>c.onchange=()=>{const n=$$('input:checked',R).length;$('#u3-u1x').className='note '+(n===5?'t':'');$('#u3-u1x').textContent=n===5?'✅ Montaja hazırsın! Statik elektriğe karşı tüm önlemler alındı.':n+' / 5 adım tamam.'})})();
+
+reveal($('#u3-ab'),[
+ {t:'CPU soketi',d:'İşlemcinin takıldığı yuva (işlemci yuvası); sabitlemek için kilitli mandal mekanizması vardır.'},
+ {t:'RAM yuvaları',d:'Belleğin takıldığı alan (RAM slotları).'},
+ {t:'Yonga seti (Chipset)',d:'İşlemci, RAM, depolama ve diğer donanımlar arasındaki veri akışını düzenler; anakarta entegredir, değiştirilemez. <b>Kuzey Köprüsü:</b> işlemci, bellek, GPU gibi yüksek hızlı bileşenler. <b>Güney Köprüsü:</b> USB, SATA, PCI gibi düşük hızlı bileşenler.'},
+ {t:'VRM',d:'Güç kaynağından gelen yüksek voltajı (ör. 12 V) CPU’nun ihtiyaç duyduğu düşük ve sabit voltaja dönüştürür.'},
+ {t:'Güç konnektörleri',d:'PSU’dan gelen elektriği anakarta ve bileşenlere iletir; yanlış/eksik bağlantı sistemin çalışmamasına neden olur.'},
+ {t:'BIOS/UEFI çipi',d:'Açılışta donanımı başlatıp işletim sisteminin yüklenmesini sağlayan aygıt yazılımı. UEFI; daha hızlı açılış, gelişmiş güvenlik ve grafik arayüzlü gelişmiş sürüm.'},
+ {t:'CMOS pili',d:'Bilgisayar kapalıyken tarih, saat ve BIOS/UEFI ayarlarını korur; bitince ayarlar sıfırlanabilir.'},
+ {t:'USB',d:'Klavye, fare, yazıcı, flash bellek gibi çevre birimleri için veri yolu; veri ve güç aktarır (2.0, 3.0, 3.2, USB-C).'},
+ {t:'SATA',d:'HDD ve SSD gibi depolama birimlerini anakarta bağlar.'},
+ {t:'M.2 yuvaları',d:'NVMe SSD’ler ve bazı kablosuz kartlar için modern, hızlı bağlantı; PCIe veya SATA üzerinden çalışır.'},
+ {t:'PCIe genişleme yuvaları',d:'En yaygın yüksek hızlı genişleme yuvası: ekran kartı, NVMe SSD… Hız seviyeleri x1, x4, x8, x16.'},
+ {t:'AGP',d:'Yalnızca ekran kartları için geliştirilmiş eski nesil yuva.'},
+ {t:'NVMe',d:'PCIe tabanlı veri aktarım protokolü; M.2 SSD’lerde SATA’ya göre çok daha hızlı.'},
+ {t:'F Panel',d:'Kasanın ön kısmındaki güç ve reset düğmesi, LED’ler, USB ve ses bağlantılarının anakarta bağlandığı bölüm.'},
+ {t:'Giriş-çıkış portları',d:'Klavye, fare, monitör, yazıcı, ağ kablosu gibi haricî donanımların bağlandığı arka panel portları.'}],{single:true});
+quiz($('#u3-abq'),[
+ {q:'Bilgisayar kapalıyken saat ve BIOS ayarlarını koruyan bileşen hangisidir?',o:['VRM','CMOS pili','Chipset','F Panel'],a:1},
+ {q:'12 V’luk gerilimi CPU’nun güvenle çalışabileceği düşük değerlere indiren devre hangisidir?',o:['VRM','SATA','NVMe','AGP'],a:0},
+ {q:'USB, SATA ve PCI gibi düşük hızlı bileşenleri yöneten yonga seti hangisidir?',o:['Kuzey Köprüsü','Güney Köprüsü','CMOS','BIOS'],a:1},
+ {q:'Güç düğmesi, reset düğmesi ve LED’lerin anakarta bağlandığı bölüm hangisidir?',o:['M.2','PCIe','F Panel','CPU soketi'],a:2},
+ {q:'Ekran kartının takıldığı modern, yüksek hızlı genişleme yuvası hangisidir?',o:['AGP','PCIe','SATA','RAM yuvası'],a:1}]);
+
+(function(){const F=[['ATX',305,244,'#2563eb'],['Micro-ATX',244,244,'#0d9488'],['Mini-ITX',170,170,'#db2777']];
+ $('#u3-ff').innerHTML=F.map(f=>`<div style="text-align:center"><div style="width:${f[1]*.62}px;height:${f[2]*.62}px;background:${f[3]}22;border:3px solid ${f[3]};border-radius:6px;display:grid;place-items:center;font-weight:800;color:${f[3]}">${f[0]}</div><div class="xs mono">${f[1]}×${f[2]} mm</div></div>`).join('')})();
+shortAns($('#u3-ffq'),[
+ {q:'1. Hangi form faktörü daha fazla genişleme imkânı sunar?',a:['ATX'],x:'Geniş yapısıyla daha fazla bağlantı ve genişleme sunar.'},
+ {q:'2. En küçük boyutlu anakart hangisidir?',a:['Mini-ITX','mini itx','miniitx'],x:'170 × 170 mm.'},
+ {q:'3. Küçük kasalar için en uygun form faktörü hangisidir?',a:['Mini-ITX','mini itx','miniitx'],x:'Küçük kasalar için tasarlanmıştır.'},
+ {q:'4. Oyun bilgisayarları için en uygun form faktörü genellikle hangisidir?',a:['ATX'],x:'Daha fazla genişleme (ör. güçlü ekran kartı, çok RAM) imkânı sunar.'}]);
+
+(function(){const R=$('#u3-fde');const S=[
+  ['Fetch · Getirme','📥','Komut RAM’den alınır ve işlemcinin kaydedicilerine (register) yerleştirilir. CPU, komutun adresini bulmak için <b>adres hattını</b> kullanır.','Öğrenci sınavda soruyu okur ve belleğe alır.'],
+  ['Decode · Kod çözme','🧩','<b>Kontrol birimi</b> komutun türünü (veri okuma, toplama, çıkarma…) çözümler ve işlem adımlarını planlar.','Öğrenci soruda ne istendiğini anlar.'],
+  ['Execute · Yürütme','⚙️','Aritmetik veya mantıksal işlem yapılır (ALU); sonuç kaydedicilere veya belleğe yazılır.','Öğrenci cevabı bulur ve işaretler.']];let k=0,cyc=0,t=null;
+ const d=()=>{R.innerHTML=`<div style="display:flex;gap:10px;justify-content:center">${S.map((s,i)=>`<div class="note ${i===k?'w':''}" style="flex:1;text-align:center;transition:.3s;${i===k?'transform:scale(1.04)':''}"><div style="font-size:30px">${s[1]}</div><b>${s[0]}</b></div>`).join('')}</div><div class="card soft sm" style="margin-top:10px"><p>${S[k][2]}</p><p class="muted">🎓 Benzetme: ${S[k][3]}</p></div><div class="row" style="margin-top:8px"><button class="btn pri sm" id="u3-fn">Sonraki aşama ▶</button><button class="btn sm" id="u3-fa">${t?'⏸ Durdur':'▶ Otomatik döngü'}</button><span class="pill">Tamamlanan komut döngüsü: ${cyc}</span></div><p class="xs muted" style="margin-top:6px">Bu üç aşama, bilgisayar açık kaldığı sürece sürekli tekrarlanır (komut döngüsü). İşlemci, kendi komut seti mimarisi (ISA) temelinde çalışır.</p>`;
+  $('#u3-fn').onclick=nx;$('#u3-fa').onclick=()=>{if(t){clearInterval(t);t=null}else t=setInterval(nx,1100);d()}};
+ const nx=()=>{k=(k+1)%3;if(k===0)cyc++;d()};d()})();
+reveal($('#u3-cpu'),[{t:'CU · Kontrol birimi',d:'Hangi işlemin ne zaman yapılacağını belirler, tüm süreci yönetir.'},{t:'ALU · Aritmetik mantık birimi',d:'Toplama, çıkarma gibi aritmetik ve karşılaştırma, AND, OR gibi mantıksal işlemler.'},{t:'Kaydediciler (registers)',d:'Çekirdek içindeki çok hızlı, küçük alanlar; o anda işlenen geçici veriler.'},{t:'Önbellek (cache)',d:'RAM’den daha hızlı erişilen geçici bellek; L1, L2, L3 seviyeleri.'}],{single:true});
+reveal($('#u3-bus'),[{t:'Adres yolu',d:'Belleğe/aygıtlara erişim için adres bilgisi taşır; genişliği erişilebilecek maksimum belleği belirler. 32 bit ≈ 4 GB.'},{t:'Veri yolu',d:'İşlemci ile bellek veya G/Ç aygıtları arasında veriyi taşır.'},{t:'Kontrol yolu',d:'Kontrol sinyallerini taşır; veri gönderme-alma zamanlamasını belirleyerek senkron çalışmayı sağlar.'}],{single:true});
+
+(function(){const C=$('#u3-cr');const up=()=>{const c=+C.value,m=100*c;$('#u3-cro').textContent=c;$('#u3-fq').textContent=(m/1000).toLocaleString('tr-TR')+' GHz';$('#u3-fqx').innerHTML=`100 MHz × ${c} = <b>${m.toLocaleString('tr-TR')} MHz</b> = ${(m/1000).toLocaleString('tr-TR')} GHz → saniyede yaklaşık ${(m/1000).toLocaleString('tr-TR')} milyar döngü.`};C.oninput=up;up()})();
+reveal($('#u3-perf'),[
+ {t:'🧵 Çekirdek sayısı',d:'Aynı anda kaç işlemin paralel yapılabileceği: çift, dört, sekiz, on altı ve üzeri. Arttıkça çoklu görev performansı artar.'},
+ {t:'⚡ Cache (önbellek)',d:'L1: en hızlı, en küçük · L2: orta · L3: daha büyük ama daha yavaş. Amaç RAM’e erişim ihtiyacını azaltmak.'},
+ {t:'🔢 32-bit / 64-bit',d:'64-bit daha fazla veri işler ve daha fazla RAM destekler; bugün çoğu sistem 64-bit.'},
+ {t:'🔥 TDP',d:'Çalışırken üretilen ısı miktarı. Yüksek TDP güçlü soğutma ister; düşük TDP az enerji tüketir. Dizüstü ve veri merkezleri için önemlidir.'},
+ {t:'👯 Hyper-Threading',d:'Her fiziksel çekirdeğin iki sanal çekirdek gibi çalışması; daha fazla iş parçacığı (thread).'},
+ {t:'📐 IPC',d:'Saat başına komut sayısı. Yeni mimarili bir işlemci daha düşük saat hızında bile daha yüksek performans gösterebilir.'}],{single:true});
+
+classify($('#u3-mim'),[
+ {t:'<b>x86</b> · CISC tabanlı · geniş yazılım desteği, yüksek performans',a:'Masaüstü, dizüstü, sunucu'},
+ {t:'<b>RISC</b> · basit ve hızlı komut, enerji verimliliği',a:'Mobil, gömülü sistemler'},
+ {t:'<b>RISC-V</b> · açık kaynak, esnek yapı',a:'Araştırma, eğitim, gömülü'},
+ {t:'<b>CISC</b> · karmaşık komut seti',a:'Masaüstü, dizüstü, sunucu'},
+ {t:'<b>ARM</b> · RISC tabanlı · düşük güç tüketimi',a:'Mobil, gömülü sistemler'},
+ {t:'<b>MIPS</b> · RISC tabanlı',a:'Router, oyun konsolları'},
+ {t:'<b>VLIW</b> · aynı anda çoklu işlem',a:'DSP, medya, yüksek perf. hesaplama'},
+ {t:'<b>FPGA</b> · programlanabilir donanım',a:'Prototipleme, özel uygulamalar'},
+ {t:'<b>Power</b> · yüksek performans',a:'Sunucu, büyük veri'}],
+ ['Masaüstü, dizüstü, sunucu','Mobil, gömülü sistemler','Araştırma, eğitim, gömülü','Router, oyun konsolları','DSP, medya, yüksek perf. hesaplama','Prototipleme, özel uygulamalar','Sunucu, büyük veri'],{cols:'1fr'});
+$$('#u3-mim .it').forEach(el=>$$('button',el).forEach(b=>{b.style.fontSize='11px';b.style.padding='2px 6px'}));
+$$('#u3-tm button').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;$$('#u3-tm button').forEach(x=>x.classList.toggle('on',x===b));const z=[22,78,118][k];$('#u3-tmd').style.width=$('#u3-tmd').style.height=z+'px';if(k===2){$('#u3-tmd').style.borderRadius='40%'}else $('#u3-tmd').style.borderRadius='50%';
+ $('#u3-tmx').className='note '+(k===1?'t':'f');$('#u3-tmx').innerHTML=['✘ Az sürülürse yeterli temas sağlanamaz, ısı iletimi engellenir.','✔ Doğru! Termal macun yüzeyi ince ve dengeli kaplamalı; hava boşluklarını doldurarak ısı iletimini iyileştirir.','✘ Fazla sürülürse ısı iletimi yavaşlar.'][k]});
+
+(function(){const U=['Bit','Byte','KB','MB','GB','TB','PB','EB','ZB','YB'];const S=$('#u3-bf');S.innerHTML=U.map((u,i)=>`<option value="${i}" ${u==='GB'?'selected':''}>${u}</option>`).join('');
+ const bits=(v,i)=>i===0?v:v*8*Math.pow(1024,i-1);
+ const up=()=>{const v=+$('#u3-bv').value||0,i=+S.value;const b=bits(v,i);$('#u3-bo').innerHTML=U.map((u,j)=>{const x=j===0?b:b/8/Math.pow(1024,j-1);if(Math.abs(j-i)>3&&j!==0)return'';const s=x>=1e15||(x<1e-3&&x>0)?x.toExponential(3):x.toLocaleString('tr-TR',{maximumFractionDigits:4});return`<div${j===i?' style="font-weight:800;color:var(--acc)"':''}>${s} ${u}</div>`}).join('')};
+ $('#u3-bv').oninput=up;S.onchange=up;up()})();
+reveal($('#u3-ram'),[
+ {t:'DRAM',d:'Sürekli erişilen, sık değişen veriler; sürekli yenilenme (refresh) gerekir. SRAM’den yavaş ama kapasitesi yüksek.'},
+ {t:'SRAM',d:'Yenilemeye ihtiyaç duymadan saklar; hızlı ve güvenilir. Genellikle işlemci önbelleğinde.'},
+ {t:'SDRAM',d:'İşlemci saat hızıyla senkronize çalışan DRAM; düzenli ve hızlı aktarım.'},
+ {t:'DDR SDRAM',d:'Her saat döngüsünde veriyi iki kez aktarır; DDR, DDR2, DDR3, DDR4, DDR5 nesilleri.'},
+ {t:'LPDDR',d:'Düşük güç tüketimi için optimize; telefon, tablet, taşınabilir cihazlar.'},
+ {t:'RDRAM',d:'Rambus teknolojisi, yüksek bant genişliği; geçmişte bazı konsol ve bilgisayarlarda; bugün kullanılmıyor.'}],{single:true});
+classify($('#u3-rom'),[
+ {t:'Yalnızca bir kez programlanabilir; sonra değiştirilemez.',a:'PROM'},
+ {t:'Ultraviyole (UV) ışıkla silinip tekrar programlanabilir.',a:'EPROM'},
+ {t:'Elektriksel yöntemle silinip yeniden yazılabilir.',a:'EEPROM'},
+ {t:'EEPROM’un gelişmişi; USB bellek, SSD ve hafıza kartlarında.',a:'Flash'}],['PROM','EPROM','EEPROM','Flash'],{cols:'1fr'});
+
+reveal($('#u3-disk'),[
+ {t:'💿 HDD',d:'Verileri dönen <b>manyetik plakalarda</b> saklar; okuma-yazma kafası vardır. Elektrik kesilince veri silinmez.'},
+ {t:'⚡ SSD',d:'Verileri <b>flaş bellek hücrelerinde</b> saklar, <b>hareketli parça yoktur</b>; HDD’den çok daha hızlı. Türleri: SATA SSD, M.2 SSD, mSATA SSD, NVMe SSD.'},
+ {t:'📀 Optik disk sürücü',d:'Verileri <b>lazer ışığıyla</b> okur/yazar: CD, DVD, Blu-ray.'}],{all:true});
+classify($('#u3-dq'),[
+ {t:'İçinde dönen plakalar ve okuma-yazma kafası var.',a:'HDD'},{t:'Hareketli parça içermez, flaş hücreler kullanır.',a:'SSD'},{t:'Lazer ışığıyla okur.',a:'Optik'},
+ {t:'Yalnızca enerji iletir, veri taşımaz.',a:'SATA güç'},{t:'Eski nesil, 40/80 pinli geniş şerit kablo.',a:'IDE'},{t:'2.5 inç NVMe SSD’yi PCIe portuna bağlar.',a:'U.2'}],['HDD','SSD','Optik','SATA güç','IDE','U.2'],{cols:'1fr'});
+
+(function(){const L={0:['RAID 0','Striping: veri disklere bölünür. Yüksek hız, yedeklilik yok. En az 2 disk.',2,'stripe'],1:['RAID 1','Mirroring: birebir kopya. Yüksek güvenlik. En az 2 disk.',2,'mirror'],5:['RAID 5','Performans ve güvenlik dengeli; bir disk arızalansa da çalışır.',3,'parity'],6:['RAID 6','RAID 5’in gelişmişi; en az 4 disk, iki disk arızasına karşı koruma.',4,'parity2'],10:['RAID 10','RAID 0 + RAID 1: hem hız hem güvenlik; fazla disk, yüksek maliyet.',4,'r10']};
+ let lv=0,dead=[];$('#u3-rl').innerHTML=Object.keys(L).map(k=>`<button class="btn sm" data-l="${k}">${L[k][0]}</button>`).join('')+'<span class="xs muted">· Diske tıkla: arızalansın</span>';
+ const draw=()=>{const [n,ds,c,m]=L[lv];$$('#u3-rl button').forEach(b=>b.classList.toggle('on',+b.dataset.l===lv));
+  const blocks=['A','B','C','D'];const disks=[...Array(c)].map((_,i)=>{let it=[];if(m==='stripe')it=blocks.filter((b,j)=>j%c===i);else if(m==='mirror')it=blocks;else if(m==='parity')it=blocks.map((b,j)=>j%c===i?'P':b).slice(0,3);else if(m==='parity2')it=['A','B','P','Q'];else it=i<2?['A','C']:['B','D'];return it});
+  const lost=m==='stripe'?dead.length>0:m==='mirror'?dead.length>=2:m==='parity'?dead.length>=2:m==='parity2'?dead.length>=3:(dead.includes(0)&&dead.includes(1))||(dead.includes(2)&&dead.includes(3));
+  $('#u3-rv').innerHTML=`<p class="sm"><b>${n}:</b> ${ds}</p><div style="display:flex;gap:12px;justify-content:center;margin:10px 0">${disks.map((it,i)=>`<div data-d="${i}" style="cursor:pointer;width:90px;border:3px solid ${dead.includes(i)?'var(--f)':'#555'};border-radius:10px;padding:6px;background:${dead.includes(i)?'#fde2e2':'#fff'};text-align:center"><div class="xs">Disk ${i+1} ${dead.includes(i)?'💥':'💾'}</div>${it.map(b=>`<div class="mono" style="margin:3px 0;padding:3px;border-radius:5px;background:${b==='P'||b==='Q'?'#fde68a':'#dbeafe'};opacity:${dead.includes(i)?.3:1}">${b}</div>`).join('')}</div>`).join('')}</div><div class="note ${dead.length?(lost?'f':'t'):''}">${!dead.length?'Bir diske tıklayarak arıza oluştur.':lost?'💥 Veriler kayboldu! Bu seviye bu kadar arızayı tolere edemez.':'✅ Veriler hâlâ güvende; sistem çalışmaya devam ediyor.'}</div><p class="xs muted" style="margin-top:6px">${m==='r10'?'Diskler 1-2 ve 3-4 kendi aralarında aynadır (temsilî).':m.startsWith('parity')?'P/Q: hata kontrol (parite) bilgisi (temsilî yerleşim).':''} RAID 2, 3, 4 yaygın değil; RAID 7 standart dışıdır. RAID özellikle NAS cihazlarında kullanılır.</p>`;
+  $$('[data-d]',$('#u3-rv')).forEach(d=>d.onclick=()=>{const i=+d.dataset.d;dead=dead.includes(i)?dead.filter(x=>x!==i):[...dead,i];draw()})};
+ $$('#u3-rl button').forEach(b=>b.onclick=()=>{lv=+b.dataset.l;dead=[];draw()});draw()})();
+quiz($('#u3-rq'),[
+ {q:'Video düzenleme şirketi: en önemli beklenti yüksek okuma-yazma hızı; dosyaların yedeği başka ortamda. Hangi RAID?',o:['RAID 0','RAID 1','RAID 6','RAID 7'],a:0,x:'RAID 0 veriyi disklere bölerek yüksek hız sağlar; yedeklilik yoktur ama yedek zaten başka ortamda tutuluyor.'},
+ {q:'Hastane kayıt sistemi: bir disk arızalansa bile veriler korunmalı. Hangisi daha uygundur?',o:['RAID 0','RAID 1','Tek disk','RAID 2'],a:1,x:'RAID 1 birebir kopya tutar; bir disk bozulsa da veri kaybı olmaz. (RAID 5, 6 ve 10 da arızaya karşı koruma sağlar.)'}]);
+
+classify($('#u3-gpu'),[
+ {t:'İnternette gezinme ve ofis programları',a:'Dâhilî',x:'Düşük güç tüketimi yeterli; yüksek grafik gücüne gerek yok.'},
+ {t:'Yüksek grafik gerektiren bilgisayar oyunları',a:'Haricî',x:'Kendi VRAM’i ve yüksek performansı var.'},
+ {t:'Film izleme ve günlük kullanım',a:'Dâhilî'},
+ {t:'3D modelleme ve video düzenleme',a:'Haricî',x:'Profesyonel işler için idealdir.'}],['Dâhilî','Haricî'],{cols:'1fr'});
+reveal($('#u3-diger'),[
+ {t:'🔊 Ses kartı',d:'Dijital veriyi analog sese, mikrofondan gelen analog sesi dijitale çevirir. Türler: onboard, haricî, profesyonel (Audio Interface). Kalite: bit ve Hz (ör. 24-bit / 192 kHz).'},
+ {t:'🌐 Ağ arabirim kartı (NIC)',d:'Bilgisayarı yerel ağa/internete fiziksel olarak bağlar; Ethernet gibi katman 2 protokolleri. <b>Kablolu:</b> Ethernet, RJ-45, 10/100/1000 Mbps. <b>Kablosuz:</b> Wi-Fi; 802.11a/b/g/n/ac/ax.'},
+ {t:'🗄️ Bilgisayar kasası',d:'Tüm iç donanımı bir arada tutar ve korur. Formlar: full tower (tam kule), mid tower (orta kule), mini tower (küçük kule).'},
+ {t:'🔌 Güç kaynağı (PSU)',d:'Prizdeki AC’yi bileşenlerin kullanacağı DC’ye dönüştürür. 220 V’u ±12 V, ±5 V, ±3,3 V gruplarına böler. Kapasite birimi vat (300W, 500W, 750W…).'}],{single:true});
+
+(function(){const K=['Anakart','PSU','NIC','Ses kartı','Topraklama','Antistatik bileklik','RAID','Mid Tower','RAM','DVD','RISCV','ALU','Mini tower','GPU','ROM','AGP','CISC','SSD'];
+ $('#u3-kn').innerHTML=K.map((k,i)=>`<div class="it" style="padding:4px 8px"><span class="nm" style="width:22px;height:22px;font-size:11px">${i+1}</span><span class="xs">${k}</span></div>`).join('');
+ const Q=[['a) Vücutta biriken elektrik yükünün güvenle toprağa aktarılması işleminin genel adı?',5],['b) Bileğe takılan, kabloyla topraklanmış yüzeye bağlanan güvenlik ekipmanı?',6],['c) Grafik işlemlerini yaparak görüntüyü ekrana aktaran birim?',14],['ç) Tüm donanım bileşenlerini birbirine bağlayan temel devre kartı?',1],['d) Verilerin kalıcı olarak saklandığı bellek türü?',15],['e) Verileri geçici depolayan ve işlemciye hızlı erişim sağlayan birim?',9],['f) Bilgisayarın çalışması için gerekli elektriği sağlayan birim?',2],['g) 40-50 cm yüksekliğindeki kasa türü?',8],['ğ) 30-40 cm yüksekliğindeki kasa türü?',13],['h) Bilgisayarın internete veya yerel ağa fiziksel bağlanmasını sağlayan birim?',3],['ı) Müzik dinlemek için kasada çalışır durumda olması gereken birim?',4],['i) Yerli mikroişlemcimiz ÇAKIL hangi işlemci mimarisini kullanır?',11],['j) Aritmetiksel ve mantıksal işlemleri gerçekleştiren birim?',12]];
+ shortAns($('#u3-kq'),Q.map(q=>({q:q[0],a:[String(q[1]),K[q[1]-1],q[1]+' '+K[q[1]-1]],x:`${q[1]}. ${K[q[1]-1]}`})))})();
+
+orderGame($('#u3-mon'),['Kasayı düz ve güvenli bir zemine yerleştir (güç kesik, antistatik bileklik takılı).','Anakart yükseltici vidalarını yerleştir, anakartı oturt ve vidala.','İşlemci: soket mandalını aç, yön işaretini hizala, zorlamadan yerleştir, mandalı kapat.','Termal macun sür, soğutucuyu/fanı yerleştir, fan kablosunu CPU fan pinine bağla.','RAM: slot mandallarını aç, çentiği hizala, bastırarak oturt.','Güç kaynağını yerleştir ve vidalarla sabitle.','SSD/HDD’yi uygun bölmeye yerleştir.','SATA veri kablosunu anakarta bağla.','SATA güç kablosunu PSU’dan bağla.','Optik sürücüyü ön panelden yerleştir, veri ve güç bağlantılarını yap.','Dâhilî kartlar: PCIe slot kapağını çıkar, kartı yerleştir, vidayı tak.','Kılavuza göre Power SW, Reset SW, HDD LED, Power LED bağlantılarını yap.','Güç bağlantılarını yap.','Son kontrolleri yap ve sistemi çalıştır.'],{fs:13,hint:'Kitaptaki 14 montaj adımını doğru sırayla seç.'});
+
+reveal($('#u3-port'),[
+ {t:'PS/2',d:'Klavye ve fare için eski tip bağlantı.'},{t:'USB',d:'Klavye, fare, yazıcı, bellek, haricî disk… Veri + enerji. Bant genişliği yüksek port (ör. USB 3.0) yüksek çözünürlüklü kamerada daha iyi performans verir.'},
+ {t:'VGA',d:'Analog sinyal ileten eski nesil görüntü bağlantısı.'},{t:'DVI',d:'Analog ve dijital sinyal; VGA’dan daha kaliteli görüntü.'},
+ {t:'HDMI',d:'Ses ve görüntüyü aynı anda ileten dijital bağlantı; monitör, televizyon, projeksiyon. Genel kullanıcı elektroniğinde yaygın.'},
+ {t:'DisplayPort',d:'Yüksek çözünürlük ve bant genişliği; profesyonel monitörlerde tercih edilir.'},
+ {t:'LAN Ethernet (RJ-45)',d:'Yerel ağ ve internet bağlantısı.'},{t:'Ses (Audio Jack)',d:'Kulaklık, hoparlör, mikrofon.'},
+ {t:'Thunderbolt',d:'Veri, görüntü ve güç aktarımını aynı anda yapar; genellikle USB-C yapısında.'},
+ {t:'Wi-Fi bağlantı noktası',d:'Haricî antenlerin takıldığı nokta; daha stabil ve geniş kapsama.'},{t:'Optik ses',d:'Sesi optik kablo ile dijital iletir; parazit ve sinyal kaybı azalır.'}],{single:true});
+classify($('#u3-pq'),[
+ {t:'Monitöre hem görüntü hem ses gönderilecek.',a:'HDMI'},{t:'Bilgisayar kablolu internete bağlanacak.',a:'RJ-45'},{t:'Profesyonel, yüksek çözünürlüklü tasarım monitörü.',a:'DisplayPort'},{t:'Eski tip mor/yeşil yuvarlak klavye girişi.',a:'PS/2'},{t:'Tek kabloyla veri, görüntü ve güç (USB-C yapısı).',a:'Thunderbolt'},{t:'Analog sinyal ileten eski görüntü bağlantısı.',a:'VGA'}],
+ ['HDMI','RJ-45','DisplayPort','PS/2','Thunderbolt','VGA'],{cols:'1fr'});
+
+reveal($('#u3-gb'),[
+ {t:'Klavye',d:'Metin ve komut girişi; USB, Bluetooth, RF, dongle, Wi-Fi, PS/2, Thunderbolt bağlantıları; Q ve F düzenleri.'},
+ {t:'Fare',d:'İmleci kontrol eder; kablolu (USB, eskiden PS/2) veya kablosuz (Bluetooth, RF 2.4 GHz). Optik, lazer, eski tip bilyeli.'},
+ {t:'Dokunmatik yüzey',d:'Dizüstünde fare yerine parmak hareketleriyle.'},
+ {t:'Tarayıcı',d:'1) Belge ışıkla aydınlatılır 2) Yansıyan ışık CCD/CIS sensörlerince algılanır 3) Piksel verisine dönüştürülüp JPG, PNG, PDF olarak kaydedilir.'},
+ {t:'Mikrofon · Web kamera',d:'Ses girişi · görüntü aktarımı (video konferans).'},
+ {t:'Barkod / karekod okuyucu',d:'Optik sensörle kodları okuyup veri girişini otomatikleştirir.'},
+ {t:'Kızılötesi / Bluetooth aygıtlar',d:'Kızılötesi ışınlarla veya radyo dalgalarıyla kablosuz veri transferi.'},
+ {t:'Optik okuyucu',d:'Basılı kâğıttaki işaretli kutucukları okur.'},
+ {t:'Oyun kumandası · Grafik tablet',d:'Oyunlara komut verme · çizim ve tasarımı doğal ve hassas aktarma (dijital kalemle).'}],{single:true});
+reveal($('#u3-cb'),[
+ {t:'Monitör',d:'CRT, LCD, Plazma, LED, OLED, Mini-LED, Micro-LED. Bugün LED ve OLED yaygın (ince, az enerji, yüksek kalite).'},
+ {t:'Yazıcı',d:'<b>Mürekkep püskürtmeli:</b> sıvı mürekkep damlacıkları, renkli/fotoğraf. <b>Lazer:</b> toner, tambur, ısı ve basınç. <b>Termal:</b> özel kâğıda ısı. <b>3D:</b> katman katman nesne üretimi.'},
+ {t:'Hoparlör ve kulaklık',d:'Dijital ses verisini analog ses dalgasına dönüştürür; kulaklık yalnızca kullanıcıya duyurur.'},
+ {t:'Projektör',d:'<b>DLP:</b> mikroskobik aynalı DMD çip, keskin görüntü, taşınabilir (bazen gökkuşağı etkisi). <b>LCD:</b> sıvı kristal panel, doğal ve canlı renk, sınıf. <b>Lazer:</b> uzun ömür, az bakım, büyük salon.'}],{single:true});
+(function(){const up=()=>{const [w,h]=$('#u3-res').value.split('x').map(Number);$('#u3-resx').innerHTML=`${w} yatay × ${h} dikey = <b>${(w*h).toLocaleString('tr-TR')}</b> piksel`+(w===1920?' (≈ 2 milyon, kitaptaki örnek)':'');const hz=+$('#u3-hz').value,ms=+$('#u3-ms').value;$('#u3-hzo').textContent=hz+' Hz';$('#u3-mso').textContent=ms+' ms';$('#u3-hzx').innerHTML=`Ekran saniyede <b>${hz}</b> kez yenilenir. ${ms<=2?'Tepki süresi çok hızlı: görüntü net ve akıcı.':ms>=8?'Tepki süresi yavaş: hızlı sahnelerde bulanıklık olabilir.':'Tepki süresi orta.'}`};
+ ['#u3-res','#u3-hz','#u3-ms'].forEach(s=>$(s).oninput=up);up()})();
+
+sitSort($('#u3-gc'),[
+ {t:'Klavye',a:'Giriş'},{t:'Dokunmatik yüzey',a:'Giriş'},{t:'Projektör',a:'Çıkış'},{t:'Mikrofon',a:'Giriş'},{t:'Optik okuyucu',a:'Giriş'},{t:'Dokunmatik ekran',a:'Giriş-Çıkış'},{t:'Monitör',a:'Çıkış'},{t:'Tarayıcı',a:'Giriş'},{t:'İnteraktif tahta',a:'Giriş-Çıkış'},{t:'VR gözlükleri',a:'Giriş-Çıkış'},{t:'Oyun kumandası',a:'Giriş'},{t:'Kızılötesi / Bluetooth aygıtlar',a:'Giriş'}],['Giriş','Çıkış','Giriş-Çıkış']);
+(function(){const R=$('#u3-u3');const S=['Klavyeyi USB portuna (kablosuzsa alıcıyı USB-A’ya) bağla.','Fareyi USB portuna bağla.','Monitör sinyal kablosunu (HDMI/DisplayPort) tak, güç kablosunu prize bağla.','Hoparlör/kulaklığın 3,5 mm jakını ses çıkışına (veya USB’ye) tak.','Web kamerasını boş bir USB portuna tak.','Yazıcıyı USB ile bağla; tanınmazsa sürücüyü kur.','Kablolu ağ için RJ-45’i Ethernet portuna tak.'];
+ R.innerHTML='<p class="xs muted" style="margin:0 0 4px">Roller: bağlantı sorumlusu · kontrol sorumlusu · raporlayıcı. Konnektörü zorlamadan ve doğru yönde tak; her bağlantıdan sonra kontrol et.</p><div class="chk">'+S.map((s,i)=>`<label style="padding:5px 9px"><input type="checkbox"> <span class="xs"><b>${i+1}.</b> ${s}</span></label>`).join('')+'</div><div class="note xs" id="u3-u3x" style="margin-top:6px">0 / 7</div>';
+ $$('input',R).forEach(c=>c.onchange=()=>{const n=$$('input:checked',R).length;$('#u3-u3x').className='note xs '+(n===7?'t':'');$('#u3-u3x').textContent=n===7?'✅ Tüm dış birimler bağlandı; sistemi başlatıp kontrol et.':n+' / 7'})})();
+
+(function(){const D=[['2014',44.4],['2030 (öngörü)',74.7]];$('#u3-ea').innerHTML=D.map(d=>`<div style="text-align:center"><b class="mono">${d[1].toLocaleString('tr-TR')} Mt</b><div style="width:90px;height:${d[1]*3}px;background:linear-gradient(var(--acc),#fdba74);border-radius:8px 8px 0 0;margin-top:4px"></div><div class="xs">${d[0]}</div></div>`).join('')+'<div class="xs muted" style="align-self:center;max-width:150px">Nedenler: cihaz üretiminin artması, kullanım sürelerinin kısalması, yüksek tamir maliyetleri.</div>'})();
+
+reveal($('#u3-st'),[
+ {n:1,t:'Fiziksel kontrol',d:'Kabloda sorun, kırık/çatlak, yanık izi, eğik pin var mı? Fiziksel hasar varsa parça kullanılmaz.'},
+ {n:2,t:'POST kontrolü',d:'Power-On Self Test: açılışta RAM, işlemci ve anakartı kontrol eder; hata varsa bip sesi veya mesaj verir.'},
+ {n:3,t:'Yazılım tabanlı testler',d:'<b>Disk sağlığı:</b> okuma-yazma hataları, disk ömrü. <b>RAM testi:</b> hatalı hücreler.'},
+ {n:4,t:'Deneme amaçlı kullanım',d:'Parça çalışır bir sistemde denenir: açılıyor mu, performansı nasıl, hata veriyor mu?'}],{single:true});
+classify($('#u3-u4'),[
+ {t:'RAM · POST kontrolü · Sistem hata vermeden açıldı.',a:'Yeniden kullanım'},
+ {t:'HDD · Disk sağlığı testi · Çok sayıda okuma hatası bulundu.',a:'Bertaraf / geri dönüşüm',x:'Arızalı parça geri dönüşüme gönderilir.'},
+ {t:'Güç kablosu · Fiziksel kontrol · Dış yüzeyde çatlak var.',a:'Bertaraf / geri dönüşüm',x:'Kitap: Fiziksel bir hasar tespit edilirse parça kullanılmaz.'},
+ {t:'SSD · Test ortamında kullanım · Sorunsuz çalışıyor.',a:'Yeniden kullanım'}],['Yeniden kullanım','Onarım','Bertaraf / geri dönüşüm'],{cols:'1fr'});
+
+orderGame($('#u3-gd'),['Toplama ve taşıma','Ayrıştırma','Zararlı maddelerin ayrılması','Parçalama ve işleme','Geri kazanım'],{hint:'Belediye/yetkili firma toplar → türlerine ayır → kurşun, cıva, kadmiyum ayrılır → küçük parçalar → altın, bakır, alüminyum geri kazanılır.'});
+gridPick($('#u3-if'),['Plastik parçalar ayrı toplanmalıdır.','Tüm atıklar karışık depolanabilir.','Çalışan parçalar yeniden kullanılabilir.','Kırık parçalar doğrudan kullanılmalıdır.','Metal ve plastik birlikte ayrıştırılmalıdır.','Elektronik devreler ayrı sınıflandırılmalıdır.','Zararlı maddeler dikkatli ayrılmalıdır.','Sağlamlık testi yapılmadan karar verilmelidir.','Onarılabilir parçalar yeniden değerlendirilebilir.','Atıklar gelişigüzel depolanabilir.'],[
+ {q:'Atık ayrıştırma kriterlerine uygun ifadeleri seç.',req:[1,6,7],x:'Atıklar plastik, metal, cam, elektronik devre biçiminde türlerine göre ayrılır; zararlı maddeler özel yöntemlerle ayrılır.'},
+ {q:'Sağlamlık durumuna göre doğru değerlendirme ifadelerini seç.',req:[3,9],x:'Sağlam parça yeniden kullanılır, onarılabilir parça tamir edilerek kullanılır.'}]);
+$$('#u3-if .gp button[data-k]').forEach(b=>{b.textContent=b.dataset.k;b.title=b.textContent});
+$('#u3-if').insertAdjacentHTML('afterbegin','<div class="xs" style="line-height:1.5">'+['Plastik parçalar ayrı toplanmalıdır.','Tüm atıklar karışık şekilde depolanabilir.','Çalışan parçalar yeniden kullanılabilir.','Kırık parçalar doğrudan kullanılmalıdır.','Metal ve plastik birlikte ayrıştırılmalıdır.','Elektronik devreler ayrı sınıflandırılmalıdır.','Zararlı maddeler dikkatli ayrılmalıdır.','Sağlamlık testi yapılmadan karar verilmelidir.','Onarılabilir parçalar yeniden değerlendirilebilir.','Atıklar gelişigüzel depolanabilir.'].map((s,i)=>`<b>${i+1}.</b> ${s}`).join(' · ')+'</div>');
+
+dyMaze($('#u3-oa'),{
+ a:{q:'RAM, verileri kalıcı olarak saklar.',v:false,D:'b',Y:'c',x:'RAM geçici bellektir.'},
+ b:{q:'Antistatik bileklik, elektronik parçaları statik elektriğe karşı korur.',v:true,D:'d',Y:'e'},
+ d:{q:'HDMI bağlantısı hem ses hem görüntü aktarabilir.',v:true,D:'E1',Y:'E2'},
+ e:{q:'RAID 1 sistemi veri yedekliliği sağlar.',v:true,D:'E3',Y:'E4'},
+ c:{q:'SSD’lerde hareketli parça bulunur.',v:false,D:'f',Y:'g',x:'SSD hareketli parça içermez.'},
+ f:{q:'Haricî ekran kartlarının kendi belleği bulunabilir.',v:true,D:'E5',Y:'E6'},
+ g:{q:'Elektronik atıklar normal çöpe atılmalıdır.',v:false,D:'E7',Y:'E8',x:'E-atıklar lisanslı geri dönüşüm tesislerinde işlenmelidir.'}},'a',{ok:8});
+gridPick($('#u3-ob'),['Anakart','Antistatik bileklik','RAM','SATA','HDMI','ROM','Ağ kartı','Tehlikeli maddeler','SSD'],[
+ {q:'Veri saklama veya verilere erişme göreviyle ilişkili kavramlar?',req:[3,6,9],ok:[1,3,4,6,9]},
+ {q:'Depolama birimleri ve bunların anakarta bağlanmasıyla ilişkili kavramlar?',req:[4,9],ok:[1,4,9]},
+ {q:'Dış donanım bağlantıları ve ağ bağlantısıyla ilişkili kavramlar?',req:[5,7]},
+ {q:'Kalıcı veri saklama veya kalıcı bellek yapısıyla ilişkili kavramlar?',req:[6,9]},
+ {q:'Geçici bellek, kalıcı bellek ve depolama birimi olarak sınıflandırılabilecek kavramlar?',req:[3,6,9]},
+ {q:'Montaj sırasında statik elektrikten korunma ve güvenli çalışmayla ilgili kavramlar?',req:[2],ok:[2,8]}]);
+quiz($('#u3-oc'),[
+ {q:'1. Donanım montajı sırasında statik elektriğe karşı alınabilecek en güvenli önlem hangisidir?',o:['Bilgisayarı açık bırakmak','Plastik masa üzerinde çalışmak','Halı üzerinde çalışmak','Donanımları çıplak elle tutmak','Antistatik bileklik kullanmak'],a:4},
+ {q:'2. İşlemcinin anakart üzerindeki yerine doğru yerleştirilmesini sağlayan bölüm hangisidir?',o:['PCIe yuvası','RAM slotu','SATA portu','CPU soketi','Güç konnektörü'],a:3},
+ {q:'3. RAM bellek montajı yapılırken hangisine dikkat edilmelidir?',o:['RAM’in ters yönde zorlanmasına','Metal temas yüzeyine dokunulmasına','Güç kablosunun çıkarılmasına','Slot mandallarının açık olmasına','RAM’in yalnızca vidalanmasına'],a:3,x:'2. Uygulama: RAM slot mandallarını aç, çentiği hizala, bastırarak oturt.'},
+ {q:'4. Güç kaynağının (PSU) temel görevi hangisidir?',o:['Görüntü işlemek','Verileri depolamak','Ses üretmek','İnternet bağlantısı kurmak','Bilgisayara enerji sağlamak'],a:4},
+ {q:'5. Ekran kartı gibi yüksek hızlı dâhilî kartların bağlandığı genişleme yuvası hangisidir?',o:['HDMI','PCIe','PS/2','SATA','USB'],a:1},
+ {q:'6. Monitör ile bilgisayar arasında hem görüntü hem ses aktarabilen bağlantı hangisidir?',o:['HDMI','PS/2','RJ-45','SATA','VGA'],a:0},
+ {q:'7. Aşağıdakilerden hangisi giriş birimidir?',o:['Hoparlör','Klavye','Monitör','Projektör','Yazıcı'],a:1},
+ {q:'8. E-atıkların çevreye zarar vermeden işlenebilmesi için ilk yapılması gereken işlem hangisidir?',o:['Yakılması','Parçalanması','Ayrıştırılması','Toprağa gömülmesi','Depolanmadan atılması'],a:2,x:'Tesiste atıklar önce türlerine göre ayrıştırılır; bu en önemli basamaklardan biridir.'},
+ {q:'9. Yeniden kullanılabilecek parçaların çalışıp çalışmadığını belirleyen test hangisidir?',o:['Voltaj testi','Performans artırma','Sağlamlık testi','Şifreleme testi','BIOS güncellemesi'],a:2},
+ {q:'10. Geri dönüşüme uygun olmayan e-atıkların güvenli şekilde yok edilmesine ne ad verilir?',o:['Bertaraf','Formatlama','Önyükleme','Sanallaştırma','Sıkıştırma'],a:0}],'C) Çoktan seçmeli');
+
+Object.assign(SORU,{
+ once3:{t:'Önce Düşün',h:'<p>Bilgisayarın içindeki parçaları, ne işe yaradıklarını, nasıl kurulduğunu ve eskiyen parçaların sonra ne olduğunu düşün.</p>',q:['<b>BİLDİKLERİM:</b>','<b>MERAK ETTİKLERİM:</b>']},
+ gpudtp:{t:'Düşün-Tartış-Paylaş: Ekran kartları',h:'',q:['Haricî ekran kartlarının kendi belleğine sahip olması neden performansı artırır?','Hangi durumlarda dâhilî ekran kartları tercih edilebilir?']},
+ eatik:{t:'Düşün-Tartış-Paylaş: E-atık tahminleri',h:'<p>Önce tahminini yaz, sonra Bilgi Kutusu verileriyle karşılaştır.</p>',q:['Eski bir bilgisayar anakartının içinde ne kadar altın olabilir?','Çöpe atılan bir pil toprağı ne kadar süre zehirler?','Kullanılmayan eski cihazları yeniden kullanmak mümkün müdür?','Geri dönüşümün ekonomik faydaları neler olabilir?','Geri dönüşümün çevreye faydaları neler olabilir?']},
+ malz:{t:'Sıra Sizde: Malzeme türüne göre ayrıştırma',h:'<p>RAM, kablo, sabit disk ve anakartı <b>plastik / metal / devre kartı</b> kategorilerine göre sınıflandır (birden fazla olabilir).</p>',q:['RAM:','Kablo:','Sabit disk:','Anakart:']},
+ sagdtp:{t:'Sağlamlık: Sıra Sizde ve DTP',h:'<p>Görseldeki RAM, fare, HDD ve klavyeyi inceleyip <b>Sağlam / Bozuk / Emin değilim</b> diye işaretle; sonra soruları yanıtla.</p>',q:['Gözlem sonuçların (RAM, fare, HDD, klavye):','Hangi parçalar yeniden kullanılabilir durumdadır?','Hangi parçaların kullanılması risk oluşturabilir?','Sağlamlık testleri neden önemlidir?']},
+ gddtp:{t:'Sıra Sizde: Geri dönüşüm soruları',h:'',q:['Sence en önemli aşama hangisidir? Neden?','Elektronik atıklar geri dönüştürülmezse çevrede ne gibi sorunlar oluşabilir?']}
+});
+Object.assign(EV,{
+ once3:[{c:[['En az iki bilgi','#items:2']],m:'İşlemci bilgisayarın beynidir.\nRAM geçici bellektir.\nGüç kaynağı enerji sağlar.'},{c:[['En az bir soru','#q:1']],m:'Eski bilgisayar parçaları nasıl geri dönüştürülür?'}],
+ gpudtp:[{c:[['VRAM / kendi bellek','vram|bellek|hafiza'],['Neden','ram|paylas|hiz|beklemez|grafik']],m:'Kendi belleği (VRAM) olduğu için sistem RAM’ini paylaşmaz; grafik verilerine hızlı erişir ve yüksek performans sunar.'},{c:[['Durum','ofis|internet|film|gunluk|dusuk guc|pil|ince|ekonomik']],m:'Ofis programları, internette gezinme, film izleme gibi günlük kullanımda; düşük güç tüketimi istenen dizüstü bilgisayarlarda.'}],
+ eatik:[{c:[['Tahmin','gram|kg|az|cok|miktar|biraz|\\d|altin']],m:'Anakartlarda az miktarda altın bulunur; Bilgi Kutusuna göre 1 kg altın için 100.000 kg AEEE yeterliyken madenden 240.000.000 kg işlenmesi gerekir.'},{c:[['Tahmin','yil|uzun|sure|ay|\\d|asir|nesil']],m:'Uzun yıllar boyunca; e-atıklar toprağa ve suya karışarak uzun süre çevreyi zehirler.'},{c:[['Görüş','evet|mumkun|onar|yeniden|tamir']],m:'Evet; çalışan parçalar (ör. RAM) başka cihazda yeniden kullanılabilir, bozuk cihazlar onarılabilir.'},{c:[['Ekonomik fayda','metal|is|maliyet|kaynak|tasarruf|israf']],m:'Değerli metaller geri kazanılır, israf önlenir, geri dönüşüm endüstrisiyle yeni iş imkânları doğar.'},{c:[['Çevresel fayda','enerji|dogal kaynak|ekosistem|zehir|kirlilik']],m:'Doğal kaynaklar ve ekosistem korunur, gereksiz enerji kullanımı önlenir, zararlı maddeler doğaya karışmaz.'}],
+ malz:[{c:[['Kategori','metal|devre|plastik']],m:'Metal, devre kartı'},{c:[['Kategori','metal|plastik']],m:'Plastik, metal'},{c:[['Kategori','metal|devre|plastik']],m:'Metal, devre kartı, plastik'},{c:[['Kategori','devre|metal']],m:'Devre kartı, metal'}],
+ sagdtp:[{c:[['Gözlem','saglam|bozuk|emin']],m:'RAM: Sağlam · Fare: Emin değilim · HDD: Bozuk · Klavye: Sağlam'},{c:[['Parça','ram|ssd|fare|klavye|saglam']],m:'Testlerden hatasız geçen RAM ve SSD yeniden kullanılabilir.'},{c:[['Riskli parça','hdd|kablo|catlak|hata|arizali']],m:'Okuma hatası veren HDD ve çatlak güç kablosu risk oluşturur.'},{c:[['Önem','kullanilabilir|risk|kaynak|butce|karar|guvenli']],m:'Parçanın yeniden kullanılabilir, onarılabilir ya da atık olduğunu belirlemek; bütçeyi ve doğal kaynakları korumak ve güvenli kullanım için önemlidir.'}],
+ gddtp:[{c:[['Aşama','ayristir|zararli|toplama|parcala|geri kazan'],['Gerekçe','cunku|zira|nedeni']],m:'Ayrıştırma; çünkü atıklar türlerine göre ayrılmazsa değerli maddeler geri kazanılamaz ve zararlı maddeler doğaya karışabilir.'},{c:[['Sorun','toprak|su|zehir|kirli|saglik|agir metal']],m:'Ağır metaller toprağa ve suya karışır, uzun yıllar çevreyi zehirler, insan sağlığına zarar verir.'}]
+});
+SORU_MAP.push(['s-3-0','once3','📖 Önce Düşün','#once3-c'],['s-3-10','gpudtp','📖 Düşün-Tartış-Paylaş'],['s-3-16','eatik','📖 Düşün-Tartış-Paylaş'],['s-3-16','malz','📖 Malzeme ayrıştırma'],['s-3-17','sagdtp','📖 Sıra Sizde · DTP'],['s-3-18','gddtp','📖 Sıra Sizde soruları']);
 /* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
 const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
 function evCheck(spec,txt){
