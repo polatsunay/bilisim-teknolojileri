@@ -3030,11 +3030,12 @@ function soruAc(k){const s=SORU[k];if(!s)return;const m=$('#soru-m');
     const mb=$(`#soru-b [data-md="${i}"]`);if(R.e.m)mb.classList.remove('hidden')});
   $$('#soru-b [data-md]').forEach(b=>b.onclick=()=>{const i=+b.dataset.md,pre=$(`#soru-b [data-mm="${i}"]`);pre.textContent=EV[k][i].m;pre.classList.toggle('hidden');b.textContent=pre.classList.contains('hidden')?'👁 Örnek yanıt':'🙈 Örnek yanıtı gizle'});
   $$('#soru-b textarea').forEach(t=>t.oninput=()=>{SANS[t.dataset.sk]=t.value;try{localStorage.setItem(SKEY,JSON.stringify(SANS))}catch(e){}});
-  $('#soru-k').onclick=async()=>{const txt=s.t+'\n\n'+(s.q||[]).map((q,i)=>q.replace(/<[^>]+>/g,'')+'\n→ '+(SANS[k+'-'+i]||'')).join('\n\n');try{await navigator.clipboard.writeText(txt);$('#soru-k').textContent='✔ Kopyalandı'}catch(e){$('#soru-k').textContent='Kopyalanamadı'}setTimeout(()=>$('#soru-k').textContent='📋 Yanıtlarımı kopyala',1600)};
-  $('#soru-k').style.display=(s.q||[]).length?'':'none';
+  $('#soru-k').onclick=async()=>{const txt=s.t+'\n\n'+(s.q||[]).map((q,i)=>q.replace(/<[^>]+>/g,'')+'\n→ '+(SANS[k+'-'+i]||'')).join('\n\n');try{await navigator.clipboard.writeText(txt);$('#soru-k').textContent='✔ Kopyalandı'}catch(e){$('#soru-k').textContent='Kopyalanamadı'}setTimeout(()=>$('#soru-k').textContent='📋 Kopyala',1600)};
+  $('#soru-k').style.display=$('#soru-g').style.display=(s.q||[]).length?'':'none';
+  $('#soru-g').onclick=()=>ogrGonder(k);ogrWho();
   m.classList.add('on');$('#soru-b').scrollTop=0}
 (function(){
-  const m=document.createElement('div');m.id='soru-m';m.innerHTML=`<div class="soru-c"><div class="row" style="border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:22px">📖</span><b id="soru-t" style="font-size:19px;flex:1"></b><button class="btn sm" id="soru-x">✕ Kapat</button></div><div id="soru-b"></div><div class="row" style="justify-content:flex-end;border-top:1px solid var(--line);padding-top:8px"><span class="xs muted" style="flex:1">Yanıtların bu tarayıcıda saklanır.</span><button class="btn pri sm" id="soru-k">📋 Yanıtlarımı kopyala</button></div></div>`;
+  const m=document.createElement('div');m.id='soru-m';m.innerHTML=`<div class="soru-c"><div class="row" style="border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:22px">📖</span><b id="soru-t" style="font-size:19px;flex:1"></b><button class="btn sm" id="soru-x">✕ Kapat</button></div><div id="soru-b"></div><div class="row" style="justify-content:flex-end;border-top:1px solid var(--line);padding-top:8px"><span class="xs muted" style="flex:1" id="soru-who">Yanıtların bu tarayıcıda saklanır.</span><button class="btn sm" id="soru-k">📋 Kopyala</button><button class="btn pri sm" id="soru-g">📤 Öğretmene gönder</button></div></div>`;
   $('#stage').appendChild(m);
   $('#soru-x').onclick=()=>m.classList.remove('on');m.onclick=e=>{if(e.target===m)m.classList.remove('on')};
   document.addEventListener('keydown',e=>{if(e.key==='Escape')m.classList.remove('on')},true);
@@ -3042,6 +3043,27 @@ function soruAc(k){const s=SORU[k];if(!s)return;const m=$('#soru-m');
     if(sel){const t=$(sel,sl);if(t){b.style.marginTop='8px';t.appendChild(b);return}}
     let h=$('h2',sl);let w=$('.h2-acts',sl);if(!w){w=document.createElement('span');w.className='h2-acts';h.appendChild(w)}w.appendChild(b)});
 })();
+
+/* ============ ÖĞRETMENE GÖNDER ============
+ Adres, sitenin kökündeki ogretmen-ayar.js dosyasından okunur (window.OGRETMEN_URL). Tüm kitaplar aynı adresi kullanır. */
+const OGR_KEY='ogr-kimlik';let OGR={};try{OGR=JSON.parse(localStorage.getItem(OGR_KEY)||'{}')}catch(e){}
+(function(){if(window.OGRETMEN_URL!==undefined)return;const sc=document.createElement('script');sc.src='../ogretmen-ayar.js?v='+Date.now().toString().slice(0,-5);document.head.appendChild(sc)})();
+function ogrWho(){const w=$('#soru-who');if(w)w.innerHTML=OGR.ad?`👤 <b>${esc(OGR.ad)}</b> · ${esc(OGR.sinif)} · No ${esc(OGR.no)} <a href="#" id="soru-wc" style="color:inherit">değiştir</a>`:'Yanıtların bu tarayıcıda saklanır.';const c=$('#soru-wc');if(c)c.onclick=e=>{e.preventDefault();ogrKimlik(()=>{})}}
+function ogrKimlik(then){const b=$('#soru-b');const old=b.innerHTML;
+ b.insertAdjacentHTML('afterbegin',`<div id="ogr-f" class="note" style="margin-bottom:10px;background:#eff6ff;border-color:#bfdbfe"><b>📤 Öğretmene göndermeden önce bilgilerini yaz</b><div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px"><input type="text" id="ogr-ad" placeholder="Ad Soyad" value="${esc(OGR.ad||'')}" style="flex:2;min-width:160px"><input type="text" id="ogr-sn" placeholder="Sınıf/Şube (ör. 10-A)" value="${esc(OGR.sinif||'')}" style="flex:1;min-width:110px"><input type="text" id="ogr-no" placeholder="Okul no" value="${esc(OGR.no||'')}" style="width:90px"><button class="btn pri sm" id="ogr-ok">Kaydet ve gönder</button><button class="btn sm" id="ogr-vz">Vazgeç</button></div><div class="xs" id="ogr-er" style="color:#b91c1c;margin-top:4px"></div></div>`);
+ $('#soru-b').scrollTop=0;$$('#ogr-f input').forEach(i=>i.onkeydown=e=>e.stopPropagation());$('#ogr-ad').focus();
+ $('#ogr-vz').onclick=()=>$('#ogr-f').remove();
+ $('#ogr-ok').onclick=()=>{const ad=$('#ogr-ad').value.trim(),sn=$('#ogr-sn').value.trim(),no=$('#ogr-no').value.trim();if(ad.split(/\s+/).length<2||!sn||!no){$('#ogr-er').textContent='Ad soyad, sınıf/şube ve okul numarasını eksiksiz yaz.';return}
+  OGR={ad,sinif:sn,no};try{localStorage.setItem(OGR_KEY,JSON.stringify(OGR))}catch(e){}$('#ogr-f').remove();ogrWho();then()}}
+function ogrGonder(k){const s=SORU[k],btn=$('#soru-g');const url=window.OGRETMEN_URL;
+ const set=(t,ms)=>{btn.textContent=t;if(ms)setTimeout(()=>{btn.textContent='📤 Öğretmene gönder';btn.disabled=false},ms)};
+ if(!url){set('⚠ Gönderim henüz açık değil',2500);return}
+ const ys=(s.q||[]).map((q,i)=>{const t=(SANS[k+'-'+i]||'').trim();const R=t?evaluate(k,i,t):null;return{soru:q.replace(/<[^>]+>/g,''),yanit:t,deger:R&&!R.empty?`${R.res.filter(x=>x.ok).length}/${R.res.length} ölçüt`:''}}).filter(x=>x.yanit);
+ if(!ys.length){set('✍️ Önce yanıt yaz',2000);return}
+ if(!OGR.ad){ogrKimlik(()=>ogrGonder(k));return}
+ btn.disabled=true;set('⏳ Gönderiliyor…');
+ const data={kitap:document.title.split('·')[0].trim(),kod:SKEY.replace('-soru-yanit',''),bolum:s.t+(s.h?' · '+String(s.h).replace(/<[^>]+>/g,''):''),slayt:(document.querySelector('.slide.on,.slide.active')||{}).dataset?.title||'',ad:OGR.ad,sinif:OGR.sinif,no:OGR.no,yanitlar:ys};
+ fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)}).then(()=>set('✔ Gönderildi ('+ys.length+' yanıt)',2600)).catch(()=>set('✘ Gönderilemedi, internetini kontrol et',3000))}
 
 /* ============ KOPYALAMA KORUMASI ============ */
 (function(){
