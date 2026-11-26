@@ -465,6 +465,229 @@ table.bt tr.hl td{background:#fff7d6}
   <div class="card acc col"><h3>🔘 7–10</h3><div id="u1-o1" style="flex:1"></div></div>
  </div>
 </section>
+<section class="slide" id="s-2-0" data-sec="2" data-title="2. Ünite · Robotik Bileşenler" data-ref="Kitap s. 67–68">
+ <div class="secov">
+  <div>
+   <div class="secno">2</div>
+   <h2 style="font-size:40px">Robotik Bileşenler</h2>
+   <div class="kz"><b>Konular:</b> 2.1 Akış Diyagramı · 2.2 Kodlama Kavramları · 2.3 Kod Düzenleme ve Hata Ayıklama · 2.4 Temel Elektronik · 2.5 Elektronik Eklentiler · 2.6 Problem Çözme · 2.7 Sensörler · 2.8 Modüller · 2.9 Motorlar · 2.10 Hareket Sistemleri · 2.11 Elektronik Tasarımın Kodları</div>
+   <div class="row" style="margin-top:12px;gap:6px;flex-wrap:wrap"><span class="tag">hata ayıklama</span><span class="tag">direnç</span><span class="tag">akım</span><span class="tag">gerilim</span><span class="tag">sensör</span><span class="tag">modül</span><span class="tag">analog</span><span class="tag">dijital</span><span class="tag">servo</span><span class="tag">step</span><span class="tag">sürücü</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🧪 Kart simülatörü</h3><p class="sm" style="margin:0">Bu ünitedeki kodları tarayıcıda çalıştırabilirsin: <b>✔ Kontrol Et</b> derleme hatalarını bulur, <b>▶ Yükle ve Çalıştır</b> kodu sanal karta yükler. Buton, potansiyometre, ultrasonik sensör gibi parçaları kendin kontrol edersin; LED, motor, servo ve seri port ekranı tepki verir.</p><p class="xs muted" style="margin:6px 0 0">Kitaptaki kodlarda yazım hataları var; her birini “kitaptaki” ve “düzeltilmiş” hâliyle iki ayrı sekmede veriyoruz.</p></div>
+   <div class="card soft sm" id="bas2-c"><h3>🚦 Başlarken</h3>En çok kullandığın elektronik cihazın içinde hangi parçalar var? Bir elektronik sistem hangi işlemi nasıl yapacağını nereden biliyor? Akıllı telefon ekranına dokunulduğunu nasıl algılar?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-1" data-sec="2" data-title="Algoritma ve akış diyagramı" data-olc="bic" data-ref="Kitap 2.1–2.1.1 · 1–2. Örnek · Görsel 2.4 · s. 69–72">
+ <h2>2.1 Algoritma ve Akış Diyagramı <small>başlangıcı ve sonu olan sonlu işlemler kümesi</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>🍳 1. Örnek: Sahanda yumurta (sırala)</h3><div id="u2-sy" style="flex:1"></div><div class="note sm" style="margin-top:6px"><b>Bilgi Notu:</b> İlk algoritma Harezmî’nin <i>Kitâbü’l-Muhtasar fî Hisâbi’l-Cebr ve’l-Mukabele</i> kitabında sunuldu; “algoritma” sözcüğü onun adının Avrupalılarca söylenişinden gelir.</div></div>
+  <div class="card acc col"><h3>🔷 Görsel 2.4: Hangi sembol?</h3><div id="u2-sb" style="flex:1"></div></div>
+  <div class="card col"><h3>🧩 Sembolün görevi</h3><div id="u2-sg" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-2" data-sec="2" data-title="Akış diyagramı: otopark bariyeri" data-olc="kanit" data-ref="Kitap 2.1.2–2.1.3 · 1. Sıra Sizde · 1–2. Etkinlik · Kontrol Noktası · s. 72–76">
+ <h2>Akış Diyagramını Çalıştır: Otopark Bariyeri <small>1. Sıra Sizde fikri · temsilî çözüm</small></h2>
+ <div class="body c2" style="grid-template-columns:1.3fr 1fr">
+  <div class="card acc col"><h3>🚧 RFID ile açılan bariyer <span class="xs muted">(çözüm temsilîdir, kitapta cevap yok)</span></h3><div id="u2-ob" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card col"><h3>✅ Kontrol Noktası</h3><div id="u2-k1"></div></div>
+   <div class="card sm"><b>Karmaşık algoritmalarda hata yönetimi:</b> yazılım testleri, simülasyonlar ve hataya duyarlı analiz. Hatayı <b>erken</b> bulmak; üretim maliyetinin artmasını ve kalitenin düşmesini önler.</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-3" data-sec="2" data-title="Mikrodenetleyici tabanlı geliştirme kartı" data-olc="bic" data-ref="Kitap 2.2 · Görsel 2.8–2.9 · s. 76–78">
+ <h2>2.2 Mikrodenetleyici Tabanlı Geliştirme Kartı <small>14 dijital + 6 analog pin</small></h2>
+ <div class="body c2" style="grid-template-columns:1.35fr 1fr">
+  <div class="card acc col"><h3>🔌 Kartın pinleri: bir bölgeye tıkla <span class="xs muted">(çizim temsilî)</span></h3><div id="u2-kp" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ Doğru mu, yanlış mı?</h3><div id="u2-kd" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-4" data-sec="2" data-title="IDE · setup ve loop" data-olc="kanit" data-ref="Kitap 2.2.1 · Görsel 2.10–2.12 · 3–4. Örnek · s. 78–82">
+ <h2>Program Yapısı: setup() bir kez, loop() sonsuz <small>3–4. Örnek</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s1" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-5" data-sec="2" data-title="#define, #include, seri port" data-olc="kanit" data-ref="Kitap s. 82–84 · Görsel 2.15–2.16">
+ <h2>#define, #include ve Seri Port Ekranı <small>baud hızı iki tarafta aynı olmalı</small></h2>
+ <div class="body c2" style="grid-template-columns:1.6fr 1fr">
+  <div class="card acc col" style="min-height:0"><div id="u2-s2" style="flex:1;min-height:0"></div></div>
+  <div class="col">
+   <div class="card col"><h3>🛠️ IDE düğmeleri (Görsel 2.10)</h3><div id="u2-ide"></div></div>
+   <div class="card sm"><b>Dene:</b> Seri port ekranındaki hızı 4800 yap, kodu yeniden çalıştır. Hızlar farklı olunca veriler bozuk görünür. <b>Serial.print</b> yan yana, <b>Serial.println</b> yazdıktan sonra alt satıra geçer.</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-6" data-sec="2" data-title="Değişkenler ve veri tipleri" data-olc="kanit" data-ref="Kitap s. 84–86 · Tablo 2.1 · Görsel 2.17 · 2. Sıra Sizde">
+ <h2>Değişkenler ve Veri Tipleri <small>tür · ad · = · değer</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.15fr 1fr">
+  <div class="card col"><h3>🏷️ Bu ad geçerli mi? (Görsel 2.17)</h3><div id="u2-ad" style="flex:1"></div></div>
+  <div class="card acc col"><h3>📦 Hangi veri tipi sığar?</h3><div id="u2-vt" style="flex:1"></div></div>
+  <div class="card col"><h3>🔎 2. Sıra Sizde: Hata nerede?</h3><div id="u2-sr2" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-7" data-sec="2" data-title="Operatörler · 6. Örnek" data-olc="kanit" data-ref="Kitap 2.2.2 · 5–6. Örnek · s. 87–90">
+ <h2>2.2.2 Operatörler: Aritmetik, Karşılaştırma, Mantıksal <small>&amp;&amp; · || · !</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s3" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-8" data-sec="2" data-title="if / else · 7–9. Örnek" data-olc="kanit" data-ref="Kitap s. 90–94 · Şema 2.3">
+ <h2>Sabitler ve if / else <small>HIGH/LOW · INPUT/OUTPUT · true/false</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s4" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-9" data-sec="2" data-title="switch / case · map · 10. Örnek" data-olc="kanit" data-ref="Kitap s. 94–96 · Şema 2.4">
+ <h2>switch / case ve map() <small>10. Örnek · analogRead 0–1023</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s5" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-10" data-sec="2" data-title="Döngüler · 11–13. Örnek" data-olc="kanit" data-ref="Kitap s. 96–99 · Şema 2.5–2.6">
+ <h2>Döngüler: for, while, do/while <small>11–13. Örnek</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s6" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-11" data-sec="2" data-title="break, continue, return, random" data-olc="kanit" data-ref="Kitap s. 100–104 · 14–21. Örnek">
+ <h2>break · continue · return · goto · random · delay <small>14–21. Örnek</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s7" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-12" data-sec="2" data-title="Dijital ve analog giriş-çıkış" data-olc="kanit" data-ref="Kitap 2.2.3 · 22–24. Örnek · s. 105–110">
+ <h2>2.2.3 Dijital ve Analog Giriş-Çıkış <small>analogRead 0–1023 · analogWrite (PWM) 0–255</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s8" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-13" data-sec="2" data-title="3. Sıra Sizde: kara şimşek" data-olc="kanit" data-ref="Kitap s. 105 · 3. Sıra Sizde">
+ <h2>3. Sıra Sizde: Kara Şimşek <small>sıralı yanıp sönen çoklu LED</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s9" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-14" data-sec="2" data-title="Hata ayıklama · 25 ve 29. Örnek" data-olc="kanit" data-ref="Kitap 2.2.4 · 2.3.3–2.3.4 · 25., 29. Örnek · 4. Sıra Sizde · 3. Etkinlik · s. 110–122">
+ <h2>Kodların Mantığını Anlama ve Hata Ayıklama <small>seri monitör = en iyi dedektif</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s10" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-15" data-sec="2" data-title="Temiz kod" data-olc="bic" data-ref="Kitap 2.3.1–2.3.2 · 26–28. Örnek · Kontrol Noktası · s. 112–122">
+ <h2>2.3 Kod Düzenleme ve Temiz Kod <small>okunabilir · sade · bakımı kolay</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>🐞 Hata türü hangisi?</h3><div id="u2-ht" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🧹 Önce / sonra</h3><div id="u2-tk" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ Temiz kod mu?</h3><div id="u2-tc" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-16" data-sec="2" data-title="Gerilim ve akım" data-olc="kanit" data-ref="Kitap 2.4 · Görsel 2.21–2.25 · 2–3. Uygulama · s. 123–126">
+ <h2>2.4 Temel Elektronik: Gerilim ve Akım <small>2. ve 3. Uygulama</small></h2>
+ <div class="body c2">
+  <div class="card acc col"><h3>🔋 2. Uygulama: Pil sayısı ve bağlantı → parlaklık</h3><div id="u2-pl" style="flex:1"></div></div>
+  <div class="card col"><h3>💡 3. Uygulama: Akım yoksa ne olur?</h3><div id="u2-ak" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-17" data-sec="2" data-title="Ohm kanunu ve güç" data-olc="kanit" data-ref="Kitap s. 125–131 · Görsel 2.24, 2.33 · 5–6. Sıra Sizde">
+ <h2>Ohm Kanunu, Güç ve Direnç Bağlantıları <small>V = I · R · P = V · I</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1fr 1fr">
+  <div class="card acc col"><h3>⚡ Hesaplayıcı</h3><div id="u2-oh" style="flex:1"></div></div>
+  <div class="card col"><h3>🔗 Seri / paralel dirençler</h3><div id="u2-sp" style="flex:1"></div></div>
+  <div class="card col"><h3>🧮 6. Sıra Sizde</h3><div id="u2-6s" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-18" data-sec="2" data-title="Direnç renk kodu ve LED direnci" data-olc="kanit" data-ref="Kitap s. 127–137 · 30–31. Örnek · 7. Sıra Sizde">
+ <h2>Direnç Renk Kodu ve LED’e Uygun Direnç <small>30–31. Örnek</small></h2>
+ <div class="body c2">
+  <div class="card acc col"><h3>🌈 Renk bantlarından değer (4 bant)</h3><div id="u2-rk" style="flex:1"></div></div>
+  <div class="card col"><h3>💡 LED’i yak: yön + direnç</h3><div id="u2-ld" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-19" data-sec="2" data-title="Elektronik bileşenler ve breadboard" data-olc="bic" data-ref="Kitap 2.4.1–2.4.4 · Tablo 2.2 · Görsel 2.35–2.45 · s. 131–138">
+ <h2>Bileşenler, Semboller ve Breadboard</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1fr 1.2fr">
+  <div class="card col"><h3>🧩 Bileşenler</h3><div id="u2-bl" style="flex:1"></div></div>
+  <div class="card col"><h3>🔣 Tablo 2.2: Sembol hangisinin?</h3><div id="u2-sm" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🍞 Breadboard: bir deliğe tıkla</h3><div id="u2-bb" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-20" data-sec="2" data-title="Elektronik eklentileri belirleme" data-olc="kanit" data-ref="Kitap 2.5 · Tablo 2.3 · 4. Uygulama · s. 138–142">
+ <h2>2.5 Elektronik Eklentileri Belirleme <small>Tablo 2.3</small></h2>
+ <div class="body c2">
+  <div class="card acc col"><h3>🗂️ Bileşen hangi grupta?</h3><div id="u2-eg" style="flex:1"></div></div>
+  <div class="card col"><h3>🪜 Bileşen belirleme süreci (sırala)</h3><div id="u2-es" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-21" data-sec="2" data-title="Problemleri robotik kodlama ile çözme" data-olc="kanit" data-ref="Kitap 2.6 · 8. Sıra Sizde · 5. Uygulama · s. 142–146">
+ <h2>2.6 Problemleri Robotik Kodlama ile Çözme <small>5. Uygulama: çarpışan robot</small></h2>
+ <div class="body c2" style="grid-template-columns:1.25fr 1fr">
+  <div class="card acc col"><h3>🤖 Engel kodu nasıl davranıyor? <span class="xs muted">(oda ve robot temsilî)</span></h3><div id="u2-rb" style="flex:1"></div></div>
+  <div class="col">
+   <div class="card col"><h3>🪜 Sistematik çözüm (sırala)</h3><div id="u2-pc"></div></div>
+   <div class="card col"><h3>🔧 8. Sıra Sizde: olası neden</h3><div id="u2-8s" style="flex:1"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-22" data-sec="2" data-title="Robotikte sensörler" data-olc="kanit" data-ref="Kitap 2.7 · Görsel 2.46–2.55 · 9. Sıra Sizde · s. 146–154">
+ <h2>2.7 Robotikte Sensörler <small>fiziksel/kimyasal uyarı → elektrik sinyali</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.15fr 1fr">
+  <div class="card col"><h3>🔋 Pasif mi, aktif mi?</h3><div id="u2-pa" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🌡️ Direnci değişen sensörler</h3><div id="u2-nt" style="flex:1"></div></div>
+  <div class="card col"><h3>🎯 Hangi sensör?</h3><div id="u2-hs" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-23" data-sec="2" data-title="Modüller · çizgi izleyen robot" data-olc="kanit" data-ref="Kitap 2.8 · 32. Örnek · 10. Sıra Sizde · s. 155–158">
+ <h2>2.8 Robotikte Modüller <small>32. Örnek: çizgi izleyen robot</small></h2>
+ <div class="body c2" style="grid-template-columns:1fr 1.3fr">
+  <div class="card col"><h3>🧱 Modüller</h3><div id="u2-md" style="flex:1"></div></div>
+  <div class="card acc col"><h3>⚫ Çizgi izleyen robot <span class="xs muted">(pist ve kurallar temsilî)</span></h3><div id="u2-ci" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-24" data-sec="2" data-title="Motor türleri" data-olc="kanit" data-ref="Kitap 2.9 · Görsel 2.61–2.69 · 11. Sıra Sizde · 4. Etkinlik · s. 158–166">
+ <h2>2.9 Motor Türleri ve Motor Sürücüler</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>⚙️ DC · servo · step</h3><div id="u2-mt" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🎛️ Servo: darbe genişliği → açı</h3><div id="u2-sv" style="flex:1"></div></div>
+  <div class="card col"><h3>🔩 Redüktör ve step adımı</h3><div id="u2-rd" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-25" data-sec="2" data-title="Robotik hareket sistemleri" data-olc="kanit" data-ref="Kitap 2.10 · 33–35. Örnek · 12. Sıra Sizde · s. 167–172">
+ <h2>2.10 Robotik Hareket Sistemleri <small>tekerlek · palet · ayak · robot kol · pervane</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>🚜 Hangi mekanizma?</h3><div id="u2-hm" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🚁 Quadcopter pervaneleri <span class="xs muted">(temsilî)</span></h3><div id="u2-qc" style="flex:1"></div></div>
+  <div class="card col"><h3>🧩 33–35. Örnek: bileşenler</h3><div id="u2-ob3" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-2-26" data-sec="2" data-title="6. ve 7. Uygulama" data-olc="kanit" data-ref="Kitap 2.11 · 6–7. Uygulama · Şema 2.10–2.11 · s. 172–177">
+ <h2>2.11 Elektronik Tasarımın Kodları <small>6. ve 7. Uygulama · çözümler temsilî</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s11" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-27" data-sec="2" data-title="Ek etkinlikler" data-olc="kanit" data-ref="Kitap 1–3. Ek Etkinlik · s. 178–180">
+ <h2>Ek Etkinlikler <small>rastgelelik · hırsız alarmı · depo robotu</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u2-s12" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-2-28" data-sec="2" data-title="2. Ünite ölçme ve değerlendirme" data-olc="kanit" data-ref="Kitap 2. Ünite Ölçme · s. 181–182">
+ <h2>2. Ünite Ölçme ve Değerlendirme <small>1–10</small></h2>
+ <div class="body c3" style="grid-template-columns:1.1fr 1fr 1.1fr">
+  <div class="card col"><h3>✍️ 3–6</h3><div id="u2-bo" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ 7–8 · D/Y</h3><div id="u2-dy"></div><p class="xs muted" style="margin:8px 0 0">1–2. sorular 📖 düğmesinde.</p></div>
+  <div class="card acc col"><h3>🔘 9–10</h3><div id="u2-o1" style="flex:1"></div></div>
+ </div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -658,6 +881,216 @@ function orderGame(root,steps,o={}){
     $('.og-u',root).onclick=()=>{pick.pop();ren()};$('.og-r',root).onclick=draw;
   }
   draw();
+}
+/* ============ AKIŞ DİYAGRAMI İZLEYİCİ (fcRun) ============
+ spec = {w,h, nodes:{id:{t:'start|end|in|out|proc|dec|loop|pre', x,y,w?,h?, l:'etiket', run:(v,io)=>{}, test:(v)=>bool, next, yes, no}},
+         edges:[{f,fp,t,tp,via:[[x,y]],l}], vars:['a','b'], inputs:{ad:'varsayılan'}, start:'id' }
+ io.read(ad) → girdi değeri (sayıya çevrilebiliyorsa sayı), io.out(metin) → çıktı */
+function fcSVG(spec,act){const N=spec.nodes;const W=spec.w||420,H=spec.h||520;
+ const sz=n=>[n.w||({dec:120,loop:130,start:96,end:96}[n.t]||128),n.h||({dec:62,loop:44,start:34,end:34}[n.t]||40)];
+ const anc=(id,p)=>{const n=N[id],[w,h]=sz(n);return{t:[n.x,n.y-h/2],b:[n.x,n.y+h/2],l:[n.x-w/2,n.y],r:[n.x+w/2,n.y]}[p||'b']};
+ const shape=(id)=>{const n=N[id],[w,h]=sz(n),x=n.x-w/2,y=n.y-h/2,on=act===id;const st=`fill:${on?'#fde68a':({start:'#dcfce7',end:'#fee2e2',in:'#e0f2fe',out:'#ede9fe',proc:'#fff',dec:'#fef3c7',loop:'#ffedd5',pre:'#f1f5f9'}[n.t])};stroke:${on?'#d97706':'#334155'};stroke-width:${on?3:1.6}`;let s;
+  if(n.t==='start'||n.t==='end')s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h/2}" style="${st}"/>`;
+  else if(n.t==='in')s=`<polygon points="${x+14},${y} ${x+w},${y} ${x+w-14},${y+h} ${x},${y+h}" style="${st}"/>`;
+  else if(n.t==='out')s=`<path d="M${x},${y} H${x+w} V${y+h-6} C${x+w*.75},${y+h-16} ${x+w*.25},${y+h+6} ${x},${y+h-6} Z" style="${st}"/>`;
+  else if(n.t==='dec')s=`<polygon points="${n.x},${y} ${x+w},${n.y} ${n.x},${y+h} ${x},${n.y}" style="${st}"/>`;
+  else if(n.t==='loop')s=`<polygon points="${x+14},${y} ${x+w-14},${y} ${x+w},${n.y} ${x+w-14},${y+h} ${x+14},${y+h} ${x},${n.y}" style="${st}"/>`;
+  else if(n.t==='pre')s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" style="${st}"/><line x1="${x+9}" y1="${y}" x2="${x+9}" y2="${y+h}" style="stroke:#334155"/><line x1="${x+w-9}" y1="${y}" x2="${x+w-9}" y2="${y+h}" style="stroke:#334155"/>`;
+  else s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" style="${st}"/>`;
+  const lines=String(n.l).split('\n');const fs=n.fs||12.5;return s+lines.map((t,i)=>`<text x="${n.x}" y="${n.y+(i-(lines.length-1)/2)*(fs+2)+fs*.35}" text-anchor="middle" style="font:${fs}px var(--mono);fill:#0f172a">${esc(t)}</text>`).join('')};
+ const edge=e=>{const a=anc(e.f,e.fp),b=anc(e.t,e.tp||'t');const pts=[a,...(e.via||[]),b];const d='M'+pts.map(p=>p.join(',')).join(' L');const m=pts[e.li??0],m2=pts[(e.li??0)+1];const lx=(m[0]+m2[0])/2,ly=(m[1]+m2[1])/2;
+  return `<path d="${d}" style="fill:none;stroke:#475569;stroke-width:1.5" marker-end="url(#fcar)"/>${e.l?`<text x="${lx+(e.lx||4)}" y="${ly+(e.ly||-3)}" style="font:bold 11px var(--sans,Arial);fill:${/Evet/.test(e.l)?'#15803d':'#b91c1c'}">${e.l}</text>`:''}`};
+ return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;max-height:100%"><defs><marker id="fcar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>${spec.edges.map(edge).join('')}${Object.keys(N).map(shape).join('')}</svg>`}
+function fcRun(root,spec,o={}){let cur=null,prev=null,v={},out=[],steps=0,done=false,t=null,inLog=[];
+ const ins=spec.inputs||{};
+ root.innerHTML=`<div style="display:grid;grid-template-columns:${o.cols||'1.5fr 1fr'};gap:8px;height:100%;min-height:0"><div class="fc-d" style="min-height:0;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;height:${o.h||400}px"></div><div style="display:flex;flex-direction:column;gap:5px;min-height:0">${Object.keys(ins).length?`<div class="card soft" style="padding:5px 8px"><div class="xs muted">Girdiler</div>${Object.entries(ins).map(([k,d])=>`<label class="xs" style="display:flex;gap:4px;align-items:center;margin-top:2px"><b style="font-family:var(--mono);min-width:54px">${k}</b><input data-in="${k}" value="${esc(String(d))}" style="width:100%;font:12.5px var(--mono)"></label>`).join('')}</div>`:''}<div class="row" style="gap:4px;flex-wrap:wrap"><button class="btn pri sm fc-s">⏭ Adım</button><button class="btn sm fc-a">⏩ Çalıştır</button><button class="btn sm fc-r">↺</button></div><div class="fc-m xs" style="min-height:30px;padding:4px 7px;border-radius:8px;background:#f8fafc;border:1px solid #e2e8f0"></div><table class="fc-v xs" style="border-collapse:collapse;width:100%"></table><pre class="fc-o" style="margin:0;flex:1;min-height:40px;max-height:${o.oh||120}px;overflow:auto;background:#0b1220;color:#d1fae5;border-radius:10px;padding:6px 9px;font:12.5px/1.45 var(--mono);white-space:pre-wrap"></pre></div></div>`;
+ const D=$('.fc-d',root),M=$('.fc-m',root);
+ const fmt=x=>typeof x==='number'?(Number.isInteger(x)?String(x):String(+x.toFixed(4))):typeof x==='boolean'?(x?'Doğru':'Yanlış'):String(x);
+ const io={read:k=>{const el=$(`[data-in="${k}"]`,root);let raw=el?el.value:'';const parts=raw.split(/[;,]\s*/);const idx=inLog.filter(x=>x===k).length;inLog.push(k);let r=parts.length>1?parts[Math.min(idx,parts.length-1)]:raw;r=r.trim();return r!==''&&!isNaN(+r)?+r:r},out:s=>out.push(fmt(s))};
+ const draw=msg=>{D.innerHTML=fcSVG(spec,cur);M.innerHTML=msg||(cur?'':'⏭ Adım ile başla.');const vs=spec.vars||Object.keys(v);$('.fc-v',root).innerHTML=vs.length?`<tr>${vs.map(k=>`<th style="border:1px solid #cbd5e1;padding:2px 4px;background:#f1f5f9;font-family:var(--mono)">${k}</th>`).join('')}</tr><tr>${vs.map(k=>`<td style="border:1px solid #cbd5e1;padding:2px 4px;text-align:center;font-family:var(--mono)">${k in v?esc(fmt(v[k])):'—'}</td>`).join('')}</tr>`:'';const O=$('.fc-o',root);O.textContent=out.join('\n')||'# çıktı';O.scrollTop=O.scrollHeight};
+ const reset=()=>{clearInterval(t);cur=null;prev=null;v={};out=[];steps=0;done=false;inLog=[];draw()};
+ const step=()=>{if(done)return false;if(cur===null){cur=spec.start;draw(`▶ <b>${esc(spec.nodes[cur].l.replace(/\n/g,' '))}</b>`);return true}
+  const n=spec.nodes[cur];let msg='',nx=n.next;
+  try{if(n.t==='loop'&&n.inc&&prev!==n.entry){n.inc(v)}if(n.t==='dec'||n.t==='loop'){const r=!!n.test(v);nx=r?n.yes:n.no;msg=`${n.t==='loop'?'🔁':'❓'} <b>${esc(n.l.replace(/\n/g,' '))}</b> → <b style="color:${r?'#15803d':'#b91c1c'}">${r?(n.t==='loop'?'devam':'Evet'):(n.t==='loop'?'döngü biter':'Hayır')}</b>`}else if(n.run){n.run(v,io)}}catch(e){msg='⚠️ '+e.message;done=true;draw(msg);return false}
+  if(n.t==='end'||!nx){done=true;cur=n.t==='end'?cur:null;draw('⏹ Algoritma bitti.'+(steps>0?` (${steps} adım)`:''));return false}
+  prev=cur;cur=nx;steps++;if(steps>(o.max||400)){done=true;draw('⚠️ Çok fazla adım: sonsuz döngü olabilir!');return false}
+  const m=spec.nodes[cur];draw((msg?msg+'<br>':'')+`➡ <b>${esc(m.l.replace(/\n/g,' '))}</b>`);return true};
+ $('.fc-s',root).onclick=()=>{clearInterval(t);step()};$('.fc-r',root).onclick=reset;
+ $('.fc-a',root).onclick=()=>{reset();t=setInterval(()=>{if(!step())clearInterval(t)},o.speed||380)};
+ $$('[data-in]',root).forEach(i=>i.onchange=reset);draw()}
+/* ============ KART SİMÜLATÖRÜ (ardSim) ============
+ Mikrodenetleyici tabanlı geliştirme kartı için C/C++ alt kümesini JS'ye çevirip Web Worker içinde çalıştırır.
+ ardSim(root,{ex:[{n,code,note,parts}], parts, h, cols})
+ parts: {t:'led',pin,c,l} {t:'rgb',r,g,b} {t:'btn',pin,l} {t:'pot'|'an',pin:'A0',l,v,u} {t:'us',trig,echo} {t:'pir',pin} {t:'servo',pin} {t:'motor',pin,l} {t:'buz',pin} */
+const ARD_TYPES='(?:long\\s+long|int|long|float|double|byte|bool|boolean|char|short|String|word|uint8_t|uint16_t|int16_t|uint32_t|size_t)';
+function ardTranspile(src){
+ const errs=[],warn=[];const S=[];
+ // dizgeleri ve yorumları maskele
+ let m='';for(let i=0;i<src.length;){const c=src[i],n=src[i+1];
+  if(c==='/'&&n==='/'){while(i<src.length&&src[i]!=='\n'){m+=' ';i++}continue}
+  if(c==='/'&&n==='*'){m+='  ';i+=2;while(i<src.length&&!(src[i]==='*'&&src[i+1]==='/')){m+=src[i]==='\n'?'\n':' ';i++}m+='  ';i+=2;continue}
+  if(c==='"'||c==="'"){let j=i+1,s='';while(j<src.length&&src[j]!==c&&src[j]!=='\n'){if(src[j]==='\\'){s+=src[j]+src[j+1];j+=2;continue}s+=src[j++]}
+   if(src[j]!==c){errs.push([lineOf(src,i),'Kapatılmamış tırnak işareti']);}
+   S.push(c==="'"&&s.length>1?{s,w:1}:{s});m+='__S'+(S.length-1)+'__';const L=j-i+1-('__S'+(S.length-1)+'__').length;i=j+1;if(L>0)m+=' '.repeat(L);continue}
+  m+=c;i++}
+ function lineOf(t,i){return t.slice(0,i).split('\n').length}
+ const lines=m.split('\n');
+ // derleyici benzeri denetimler
+ lines.forEach((l,k)=>{const t=l.trim();if(!t)return;
+  if(/[çğıöşüÇĞİÖŞÜ]/.test(t))errs.push([k+1,'Kodda Türkçe karakter var (stray \'\\304\' in program): değişken ve fonksiyon adlarında Türkçe karakter kullanılamaz.']);
+  if(/\bgoto\b/.test(t))errs.push([k+1,'Bu simülatör goto komutunu çalıştırmaz (gerçek kart derler).']);
+  if(t.startsWith('#'))return;
+  if(/[;{}:,]$/.test(t)||/^(if|else|for|while|do|switch|case|default)\b/.test(t)||/^\}?\s*else\b/.test(t))return;
+  if(/^(async\s+)?(void|int|long|float|double|bool|boolean|byte|char|String)\s+\w+\s*\([^;]*\)$/.test(t))return;
+  let nx='';for(let j=k+1;j<lines.length;j++){if(lines[j].trim()){nx=lines[j].trim();break}}
+  if(/^[{.+\-*/%&|?)=<>]/.test(nx))return;
+  if(/[\w)\]]$|__$/.test(t))errs.push([k+1,"Satır sonunda ';' eksik (expected ';' before …)"]);});
+ let dep=0,par=0;for(const ch of m){if(ch==='{')dep++;if(ch==='}')dep--;if(ch==='(')par++;if(ch===')')par--;if(dep<0){errs.push([0,"Fazladan '}' var"]);dep=0}}
+ if(dep>0)errs.push([0,`${dep} adet '{' kapatılmamış (expected '}' at end of input)`]);if(par!==0)errs.push([0,'Parantezler dengeli değil']);
+ // dönüşümler
+ let j=m;
+ j=j.replace(/^\s*#include.*$/gm,'');
+ j=j.replace(/^\s*#define\s+(\w+)\s+(.+?)[;,]?\s*$/gm,'const $1 = $2;');
+ j=j.replace(/\b(\d+(?:\.\d+)?)(?:UL|ul|L|l|U|u|f|F)\b/g,'$1');
+ j=j.replace(/\bServo\s+(\w+(?:\s*,\s*\w+)*)\s*;/g,(_,a)=>'let '+a.split(',').map(x=>x.trim()+'=new Servo()').join(',')+';');
+ const fns=[];
+ j=j.replace(new RegExp('\\b(?:static\\s+)?(?:unsigned\\s+)?(?:void|'+ARD_TYPES.slice(3,-1)+')\\s+(\\w+)\\s*\\(([^()]*)\\)\\s*;','g'),(a,n)=>/^(if|while|for|switch)$/.test(n)?a:'');
+ j=j.replace(new RegExp('\\b(?:static\\s+)?(?:unsigned\\s+)?(?:void|'+ARD_TYPES.slice(3,-1)+')\\s+(\\w+)\\s*\\(([^()]*)\\)\\s*\\{','g'),(a,n,p)=>{fns.push(n);const ps=p.trim()&&p.trim()!=='void'?p.split(',').map(x=>x.trim().split(/[\s*&]+/).pop().replace(/\[.*\]/,'')).join(','):'';return`async function ${n}(${ps}){`});
+ j=j.replace(new RegExp('\\b(?:const\\s+)?(?:unsigned\\s+)?'+ARD_TYPES+'\\s+(\\w+)\\s*\\[\\s*(\\w*)\\s*\\]\\s*(?:=\\s*(\\{[^}]*\\}|__S\\d+__))?\\s*;','g'),(a,n,sz,ini)=>ini?(ini[0]==='{'?`let ${n}=[${ini.slice(1,-1)}];`:`let ${n}=${ini};`):`let ${n}=new Array(${sz||0}).fill(0);`);
+ // tip bildirimleri → let (ilk değer yoksa 0)
+ const re=new RegExp('\\b(?:static\\s+)?(?:const\\s+)?(?:volatile\\s+)?(?:unsigned\\s+)?('+ARD_TYPES.slice(3,-1)+')\\s+(?=[A-Za-z_])','g');
+ const ints=new Set();let out='',last=0,mm;while((mm=re.exec(j))){out+=j.slice(last,mm.index);let k=re.lastIndex,d=0,seg='';while(k<j.length){const ch=j[k];if('([{'.includes(ch))d++;if(')]}'.includes(ch)){if(d===0)break;d--}if((ch===';')&&d===0)break;seg+=ch;k++}
+  const parts=[];let cur='',dd=0;for(const ch of seg){if('([{'.includes(ch))dd++;if(')]}'.includes(ch))dd--;if(ch===','&&dd===0){parts.push(cur);cur=''}else cur+=ch}parts.push(cur);
+  const z=mm[1]==='String'?'""':'0';const isI=/^(long\s+long|int|long|byte|short|word|uint8_t|uint16_t|int16_t|uint32_t|size_t)$/.test(mm[1]);
+  out+='let '+parts.map(p=>{const q=p.trim();const e=q.indexOf('=');if(e<0){if(isI&&/^\w+$/.test(q))ints.add(q);return q+'='+z}const nm=q.slice(0,e).trim();if(isI&&/^\w+$/.test(nm)){ints.add(nm);return nm+' = __int('+q.slice(e+1).trim()+')'}return q}).join(', ');last=k;re.lastIndex=k}
+ j=out+j.slice(last);
+ ints.forEach(n=>{j=j.replace(new RegExp('(^|[^\\w.])('+n+')\\s*([+\\-*/%]?)=(?!=)\\s*([^;{},]+);','g'),(a,pre,v,op,ex)=>op?`${pre}${v} = __int(${v} ${op} (${ex}));`:/^__int\(/.test(ex)?a:`${pre}${v} = __int(${ex});`)});
+ j=j.replace(/\((?:int|long|byte|unsigned int|unsigned long)\)\s*/g,'__int').replace(/\((?:float|double)\)\s*/g,'');
+ j=j.replace(/(?<![\w.])(?:int|long|byte|word)\s*\(/g,'__int(').replace(/(?<![\w.])float\s*\(/g,'Number(').replace(/(?<![\w.])char\s*\(/g,'String.fromCharCode(');
+ j=j.replace(/\.length\(\)/g,'.length');
+ // await ekle
+ const aw=['delay','delayMicroseconds',...fns];
+ j=j.replace(new RegExp('(function\\s+)?(?<![\\w.])('+aw.join('|')+')\\s*\\(','g'),(a,f,n)=>f?a:'await '+n+'(');
+ // döngülere nefes alma noktası
+ const doT=new Set();{const r=/\bdo\s*\{/g;let q;while((q=r.exec(j))){let k=q.index+q[0].length,d=1;while(k<j.length&&d){if(j[k]==='{')d++;if(j[k]==='}')d--;k++}const rest=j.slice(k);const w=rest.match(/^\s*while\b/);if(w)doT.add(k+w[0].length-5)}}
+ let res='',i=0;const kw=/\b(while|for)\s*\(|\bdo\s*\{/g;let q;const ins=[];
+ while((q=kw.exec(j))){if(q[0].startsWith('do')){ins.push([q.index+q[0].length,' await __y();']);continue}
+  if(doT.has(q.index))continue;let k=q.index+q[0].length,d=1;while(k<j.length&&d){if(j[k]==='(')d++;if(j[k]===')')d--;k++}
+  let s=k;while(/\s/.test(j[s]||''))s++;
+  if(j[s]==='{')ins.push([s+1,' await __y();']);
+  else if(j[s]===';')ins.push([s,'{await __y();}',1]);
+  else{let e=s,dd=0;while(e<j.length){if('({['.includes(j[e]))dd++;if(')}]'.includes(j[e]))dd--;if(j[e]===';'&&dd<=0)break;e++}ins.push([s,'{ await __y(); ']);ins.push([e+1,' }'])}}
+ ins.sort((a,b)=>a[0]-b[0]);for(const [p,t,rm] of ins){res+=j.slice(i,p)+t;i=p+(rm||0)}res+=j.slice(i);j=res;
+ j=j.replace(/__S(\d+)__/g,(_,n)=>JSON.stringify(S[+n].s.replace(/\\n/g,'\n').replace(/\\t/g,'\t').replace(/\\"/g,'"')));
+ S.forEach(s=>{if(s.w)warn.push('Tek tırnak (\'…\') yalnızca tek karakter içindir; metin için çift tırnak ("…") kullanılmalı.')});
+ return{js:j,errs,warn:[...new Set(warn)],fns};
+}
+const ARD_WORKER=`
+const HIGH=1,LOW=0,INPUT=0,OUTPUT=1,INPUT_PULLUP=2,A0=14,A1=15,A2=16,A3=17,A4=18,A5=19,LED_BUILTIN=13,DEC=10,HEX=16,BIN=2,CHANGE=1,RISING=3,FALLING=2,PI=Math.PI;
+const N=20;let mode=new Array(N).fill(0),out=new Array(N).fill(0),pwm=new Array(N).fill(null),inp=new Array(N).fill(0),an=[0,0,0,0,0,0],us={},sim=0,speed=1,baud=0,inbox='',dirty=true,cnt=0,serUsed=false,tones={};
+onmessage=e=>{const d=e.data;if(d.t==='in')inp[d.pin]=d.v;if(d.t==='an')an[d.i]=d.v;if(d.t==='us')us[d.echo]=d.d;if(d.t==='ser')inbox+=d.s;if(d.t==='speed')speed=d.v;if(d.t==='init'){Object.assign(inp,d.inp);an=d.an;us=d.us;speed=d.speed}};
+const P=p=>{p=+p;return p>=14?p:p};
+function flush(){if(dirty){postMessage({t:'pins',mode,out,pwm,tones,ms:Math.round(sim)});dirty=false}}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function __y(f){cnt++;sim+=0.05;if(f||cnt%40===0){flush();postMessage({t:'hb'});await sleep(f?2:0)}}
+function pinMode(p,m){mode[P(p)]=m;if(m===INPUT_PULLUP&&!inp.__set)inp[P(p)]=inp[P(p)];dirty=true}
+function digitalWrite(p,v){p=P(p);out[p]=v?1:0;pwm[p]=null;dirty=true;if((p===0||p===1)&&serUsed)postMessage({t:'warn',m:'0 ve 1 numaralı pinler (RX/TX) seri haberleşme sırasında kullanılmamalı.'})}
+function digitalRead(p){p=P(p);if(p>=14)return an[p-14]>511?1:0;if(mode[p]===OUTPUT)return out[p];return inp[p]?1:0}
+function analogRead(p){p=+p;const i=p>=14?p-14:p;return Math.max(0,Math.min(1023,Math.round(an[i]||0)))}
+function analogWrite(p,v){p=P(p);v=Math.max(0,Math.min(255,Math.floor(v)));pwm[p]=v;out[p]=v>0?1:0;dirty=true;if(![3,5,6,9,10,11].includes(p))postMessage({t:'warn',m:p+' numaralı pin PWM (~) pini değil: analogWrite yalnızca 3, 5, 6, 9, 10, 11 pinlerinde ara değer verir.'})}
+async function delay(ms){ms=+ms||0;sim+=ms;flush();const r=ms/speed;postMessage({t:'sleep',ms:r});await sleep(Math.max(r,1))}
+async function delayMicroseconds(u){sim+=u/1000;await __y()}
+function millis(){return Math.floor(sim)}function micros(){return Math.floor(sim*1000)}
+function map(x,a,b,c,d){return Math.trunc((x-a)*(d-c)/(b-a))+c}
+function constrain(x,a,b){return Math.min(Math.max(x,a),b)}
+const min=Math.min,max=Math.max,abs=Math.abs,pow=Math.pow,sqrt=Math.sqrt,sq=x=>x*x,round=Math.round,floor=Math.floor,ceil=Math.ceil,sin=Math.sin,cos=Math.cos;
+function __int(x){return Math.trunc(+x)}
+function random(a,b){if(b===undefined){b=a;a=0}return a+Math.floor(Math.random()*(b-a))}function randomSeed(){}
+function pulseIn(p){const d=us[P(p)];if(d===undefined)return 0;sim+=d*0.058;return Math.round(d*58.2)}
+function tone(p,f,dur){tones[P(p)]=f;dirty=true;if(dur)setTimeout(()=>{tones[P(p)]=0;dirty=true;flush()},dur/speed)}
+function noTone(p){tones[P(p)]=0;dirty=true}
+const __fmt=x=>typeof x==='number'&&!Number.isInteger(x)?x.toFixed(2):typeof x==='boolean'?(x?1:0):String(x);
+const Serial={begin(b){baud=b;serUsed=true;postMessage({t:'baud',b})},print(x,f){if(typeof x==='number'&&f!==undefined&&f>2&&f!==10)x=x.toString(f);else if(typeof x==='number'&&typeof f==='number'&&!Number.isInteger(x))x=x.toFixed(f);postMessage({t:'ser',s:__fmt(x)})},println(x,f){if(x===undefined)x='';this.print(x,f);postMessage({t:'ser',s:'\\n'})},write(x){postMessage({t:'ser',s:typeof x==='number'?String.fromCharCode(x):String(x)})},available(){return inbox.length},read(){if(!inbox.length)return -1;const c=inbox.charCodeAt(0);inbox=inbox.slice(1);return c},readString(){const s=inbox;inbox='';return s},parseInt(){const m=inbox.match(/-?\\d+/);inbox='';return m?+m[0]:0},end(){}};
+class Servo{attach(p){this.p=P(p);this.a=90}write(a){this.a=Math.max(0,Math.min(180,Math.round(a)));postMessage({t:'servo',p:this.p,a:this.a})}read(){return this.a}detach(){}attached(){return true}}
+function __err(e){let m=String(e&&e.message||e);const r=m.match(/^(\\S+) is not defined/);if(r)m="‘"+r[1]+"’ bu kapsamda tanımlanmamış ("+r[1]+" was not declared in this scope)";else if(/is not a function/.test(m))m='Tanımsız bir fonksiyon çağrıldı: '+m;postMessage({t:'err',m})}
+`;
+function ardSim(root,o){
+ const EX=o.ex||[{n:'Kod',code:o.code||'',parts:o.parts}];let cur=0,W=null,run=false,dl=0,wd=null,baud=0,mon='',ser='',url=null;
+ const st={inp:{},an:[512,512,512,512,512,512],us:{},speed:1,mon:9600};
+ const parts=()=>EX[cur].parts||o.parts||[];
+ const pinN=p=>typeof p==='string'?14+(+p.replace(/\D/g,'')):p;
+ root.innerHTML=`<div class="ard" style="display:grid;grid-template-columns:${o.cols||'1.12fr 1fr'};gap:10px;height:100%;min-height:0">
+  <div style="display:flex;flex-direction:column;min-height:0;gap:6px">
+   ${EX.length>1?`<div class="row ard-ex" style="gap:3px;flex-wrap:wrap">${EX.map((e,i)=>`<button class="btn sm" data-x="${i}" style="font-size:11px;padding:3px 8px">${e.n}</button>`).join('')}</div>`:''}
+   <div class="ard-note xs" style="display:none;padding:6px 8px;border-radius:7px;background:#fff7ed;border:1px solid #fed7aa;line-height:1.4"></div>
+   <div style="position:relative;flex:1;min-height:${o.h||200}px;display:flex;background:#1a1e29;border-radius:10px;overflow:hidden"><pre class="ard-ln" style="margin:0;padding:8px 6px 8px 8px;color:#5b6478;font:12.5px/1.5 var(--mono);text-align:right;user-select:none;overflow:hidden;min-width:28px"></pre><textarea class="ard-ed" spellcheck="false" style="flex:1;resize:none;border:0;outline:0;background:transparent;color:#e3e6ee;font:12.5px/1.5 var(--mono);padding:8px 8px 8px 4px;white-space:pre;overflow:auto;tab-size:2"></textarea></div>
+   <div class="row" style="gap:4px;flex-wrap:wrap;align-items:center"><button class="btn sm ard-k">✔ Kontrol Et</button><button class="btn pri sm ard-r">▶ Yükle ve Çalıştır</button><button class="btn sm ard-s">⏹ Durdur</button><button class="btn sm ard-o" title="Kodu ilk hâline döndür">↺</button><select class="ard-sp" style="font-size:11px"><option value="1">1×</option><option value="4">4×</option><option value="10">10×</option></select><span class="ard-st xs" style="font-family:var(--mono)"></span></div>
+   <div class="ard-msg xs" style="font-family:var(--mono);min-height:16px;max-height:64px;overflow:auto;color:#b91c1c;line-height:1.35"></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;min-height:0">
+   <div class="ard-parts" style="display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start"></div>
+   <div style="flex:1;display:flex;flex-direction:column;min-height:90px;background:#0f1218;border-radius:10px;overflow:hidden"><div style="display:flex;gap:6px;align-items:center;padding:4px 8px;background:#1f2430;color:#cbd5e1;font-size:11px"><b>Seri port ekranı</b><span class="ard-bd" style="margin-left:auto"></span><select class="ard-mb" style="font-size:10.5px"><option>4800</option><option selected>9600</option><option>19200</option></select><button class="ard-cl" style="font-size:10.5px">Temizle</button></div><pre class="ard-ser" style="flex:1;margin:0;padding:6px 8px;color:#d7dde8;font:12px/1.4 var(--mono);overflow:auto;white-space:pre-wrap"></pre><div style="display:flex"><input class="ard-in" placeholder="Karta gönder…" style="flex:1;border:0;background:#161b25;color:#e3e6ee;font:12px var(--mono);padding:4px 8px;border-radius:0"><button class="ard-snd" style="font-size:11px">Gönder</button></div></div>
+  </div></div>`;
+ const E=$('.ard-ed',root),LN=$('.ard-ln',root),M=$('.ard-msg',root),SER=$('.ard-ser',root),ST=$('.ard-st',root);
+ const lnUp=()=>{LN.textContent=E.value.split('\n').map((_,i)=>i+1).join('\n');LN.scrollTop=E.scrollTop};E.oninput=lnUp;E.onscroll=()=>{LN.scrollTop=E.scrollTop};
+ E.onkeydown=e=>{if(e.key==='Tab'){e.preventDefault();const s=E.selectionStart;E.value=E.value.slice(0,s)+'  '+E.value.slice(E.selectionEnd);E.selectionStart=E.selectionEnd=s+2;lnUp()}e.stopPropagation()};
+ const garble=s=>s.replace(/[^\n]/g,()=>'�ÿ¤þ¿×ß'[Math.floor(Math.random()*7)]);
+ const serShow=()=>{SER.textContent=mon;SER.scrollTop=SER.scrollHeight};
+ function drawParts(){const P=$('.ard-parts',root);P.innerHTML=parts().map((p,i)=>{const lb=p.l||'';const box=(c,w)=>`<div class="ard-p" data-i="${i}" style="background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:5px 8px;text-align:center;min-width:${w||64}px;font-size:11px">${c}</div>`;
+  if(p.t==='led')return box(`<div class="ard-led" style="width:30px;height:30px;border-radius:50%;margin:0 auto 2px;background:#d1d5db;border:2px solid #9ca3af;transition:.08s"></div><b>${lb||'LED'}</b><div class="xs muted">pin ${p.pin}</div>`);
+  if(p.t==='rgb')return box(`<div class="ard-led" style="width:30px;height:30px;border-radius:50%;margin:0 auto 2px;background:#d1d5db;border:2px solid #9ca3af"></div><b>RGB LED</b><div class="xs muted">R${p.r} G${p.g} B${p.b}</div>`);
+  if(p.t==='btn')return box(`<button class="ard-b" style="width:44px;height:30px;border-radius:8px;border:2px solid #475569;background:#e2e8f0;font-weight:800;cursor:pointer">⏺</button><div><b>${lb||'Buton'}</b></div><div class="xs muted">pin ${p.pin} · <label><input type="checkbox" class="ard-bk"> kilitle</label></div>`,82);
+  if(p.t==='pot'||p.t==='an')return box(`<b>${lb||'Potansiyometre'}</b> <span class="xs muted">${p.pin}</span><input type="range" class="ard-a" min="0" max="1023" value="${p.v??512}" style="width:118px;display:block"><span class="ard-av xs" style="font-family:var(--mono)"></span>`,130);
+  if(p.t==='us')return box(`<b>Ultrasonik</b> <span class="xs muted">T${p.trig} E${p.echo}</span><input type="range" class="ard-u" min="2" max="200" value="${p.v??40}" style="width:118px;display:block"><span class="ard-uv xs" style="font-family:var(--mono)"></span>`,130);
+  if(p.t==='pir')return box(`<label style="cursor:pointer"><input type="checkbox" class="ard-pir"> 🚶 Hareket</label><div><b>PIR</b></div><div class="xs muted">pin ${p.pin}</div>`,82);
+  if(p.t==='servo')return box(`<svg viewBox="0 0 60 36" width="62" height="36"><path d="M6 32 A24 24 0 0 1 54 32" fill="none" stroke="#cbd5e1" stroke-width="3"/><line class="ard-sv" x1="30" y1="32" x2="30" y2="10" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="32" r="4" fill="#334155"/></svg><div><b>Servo</b> <span class="ard-sa" style="font-family:var(--mono)">90°</span></div><div class="xs muted">pin ${p.pin}</div>`);
+  if(p.t==='motor')return box(`<div class="ard-m" style="font-size:26px;display:inline-block;line-height:1">⚙️</div><div><b>${lb||'DC motor'}</b></div><div class="xs muted">pin ${p.pin} <span class="ard-mv"></span></div>`);
+  if(p.t==='buz')return box(`<div class="ard-z" style="font-size:24px;line-height:1;opacity:.35">🔔</div><div><b>Buzzer</b></div><div class="xs muted">pin ${p.pin} <span class="ard-zv"></span></div>`);
+  return ''}).join('');
+  $$('.ard-p',P).forEach(el=>{const p=parts()[+el.dataset.i];
+   if(p.t==='btn'){const b=$('.ard-b',el),k=$('.ard-bk',el);const set=v=>{st.inp[p.pin]=v;b.style.background=v?'#fbbf24':'#e2e8f0';W&&W.postMessage({t:'in',pin:p.pin,v})};set(st.inp[p.pin]||0);
+    b.onpointerdown=e=>{e.preventDefault();set(1)};b.onpointerup=b.onpointerleave=()=>{if(!k.checked)set(0)};k.onchange=()=>set(k.checked?1:0)}
+   if(p.t==='pot'||p.t==='an'){const a=$('.ard-a',el),v=$('.ard-av',el),i=pinN(p.pin)-14;const up=()=>{st.an[i]=+a.value;v.textContent=p.u?p.u(+a.value):`${a.value} · ${(a.value*5/1023).toFixed(2)} V`;W&&W.postMessage({t:'an',i,v:+a.value})};a.oninput=up;up()}
+   if(p.t==='us'){const a=$('.ard-u',el),v=$('.ard-uv',el);const up=()=>{st.us[p.echo]=+a.value;v.textContent=a.value+' cm';W&&W.postMessage({t:'us',echo:p.echo,d:+a.value})};a.oninput=up;up()}
+   if(p.t==='pir'){const c=$('.ard-pir',el);c.onchange=()=>{st.inp[p.pin]=c.checked?1:0;W&&W.postMessage({t:'in',pin:p.pin,v:st.inp[p.pin]})}}});
+ }
+ const COL={red:[239,68,68],green:[34,197,94],yellow:[250,204,21],blue:[59,130,246],white:[240,240,240],orange:[249,115,22]};
+ let rot={};
+ function showPins(d){parts().forEach((p,i)=>{const el=$(`.ard-p[data-i="${i}"]`,root);if(!el)return;
+  const lv=pn=>{const pw=d.pwm[pn];return pw!==null&&pw!==undefined?pw/255:d.out[pn]?(d.mode[pn]===1?1:0.18):0};
+  if(p.t==='led'){const v=lv(p.pin),c=COL[p.c||'red'];const L=$('.ard-led',el);L.style.background=v?`rgba(${c},${0.25+0.75*v})`:'#d1d5db';L.style.boxShadow=v?`0 0 ${6+18*v}px rgba(${c},${v})`:'none';L.title=v&&d.mode[p.pin]!==1?'pinMode(OUTPUT) yapılmadığı için LED çok sönük yanar':''}
+  if(p.t==='rgb'){const r=lv(p.r),g=lv(p.g),b=lv(p.b);const L=$('.ard-led',el);L.style.background=r+g+b?`rgb(${Math.round(80+175*r)},${Math.round(80+175*g)},${Math.round(80+175*b)})`:'#d1d5db';L.style.boxShadow=r+g+b?`0 0 14px rgb(${255*r},${255*g},${255*b})`:'none'}
+  if(p.t==='motor'){const v=lv(p.pin);rot[i]=v;$('.ard-mv',el).textContent=v?Math.round(v*100)+'%':'dur'}
+  if(p.t==='buz'){const f=(d.tones||{})[p.pin]||(d.out[p.pin]?2000:0);const z=$('.ard-z',el);z.style.opacity=f?1:.35;z.style.transform=f?'rotate(-12deg) scale(1.15)':'';$('.ard-zv',el).textContent=f?f+' Hz':''}})}
+ let raf=null,ang={};const spin=()=>{parts().forEach((p,i)=>{if(p.t==='motor'&&rot[i]){ang[i]=((ang[i]||0)+rot[i]*25)%360;const m=$(`.ard-p[data-i="${i}"] .ard-m`,root);if(m)m.style.transform=`rotate(${ang[i]}deg)`}});raf=requestAnimationFrame(spin)};
+ function servo(pn,a){parts().forEach((p,i)=>{if(p.t==='servo'&&p.pin===pn){const el=$(`.ard-p[data-i="${i}"]`,root);const r=(180-a)*Math.PI/180;const l=$('.ard-sv',el);l.setAttribute('x2',30+22*Math.cos(r));l.setAttribute('y2',32-22*Math.sin(r));$('.ard-sa',el).textContent=a+'°'}})}
+ function stop(msg){if(W){W.terminate();W=null}if(url){URL.revokeObjectURL(url);url=null}run=false;clearInterval(wd);cancelAnimationFrame(raf);rot={};ST.textContent=msg||'⏹ durdu';$('.ard-r',root).disabled=false}
+ function check(){const r=ardTranspile(E.value);let e=r.errs.slice();if(!e.length){try{new (Object.getPrototypeOf(async function(){}).constructor)(r.js)}catch(x){e.push([0,'Sözdizimi hatası: '+x.message])}}
+  M.style.color=e.length?'#b91c1c':'#15803d';M.innerHTML=e.length?e.slice(0,4).map(([l,t])=>`✘ ${l?'Satır '+l+': ':''}${esc(t)}`).join('<br>'):'✔ Derleme başarılı. '+(r.warn.length?'<span style="color:#b45309">⚠ '+esc(r.warn[0])+'</span>':'');return e.length?null:r}
+ function start(){stop();const r=check();if(!r)return;mon='';serShow();baud=0;$('.ard-bd',root).textContent='';
+  const body=ARD_WORKER+'\n(async()=>{try{\n'+r.js+'\n;if(typeof setup==="function")await setup();while(true){if(typeof loop!=="function")break;await loop();await __y(1)}flush();postMessage({t:"end"})}catch(e){__err(e)}})();';
+  url=URL.createObjectURL(new Blob([body],{type:'text/javascript'}));W=new Worker(url);run=true;$('.ard-r',root).disabled=true;ST.textContent='▶ çalışıyor';dl=Date.now()+2500;
+  W.postMessage({t:'init',inp:st.inp,an:st.an,us:st.us,speed:st.speed});
+  W.onmessage=e=>{const d=e.data;dl=Math.max(dl,Date.now()+2500);
+   if(d.t==='pins'){showPins(d);ST.textContent='▶ çalışıyor · '+(d.ms/1000).toFixed(1)+' sn'}
+   if(d.t==='sleep')dl=Date.now()+d.ms+2500;
+   if(d.t==='ser'){mon+=baud&&baud!==st.mon?garble(d.s):d.s;if(mon.length>6000)mon=mon.slice(-5000);serShow()}
+   if(d.t==='baud'){baud=d.b;$('.ard-bd',root).textContent='kod: '+d.b+' baud';if(baud!==st.mon){M.style.color='#b45309';M.innerHTML+=`<br>⚠ Koddaki hız (${d.b}) ile ekrandaki hız (${st.mon}) farklı: veriler bozuk görünür.`}}
+   if(d.t==='servo')servo(d.p,d.a);
+   if(d.t==='warn'&&!M.innerHTML.includes(d.m)){M.style.color='#b45309';M.innerHTML+='<br>⚠ '+esc(d.m)}
+   if(d.t==='err'){M.style.color='#b91c1c';M.innerHTML='✘ Çalışma hatası: '+esc(d.m);stop('✘ hata')}
+   if(d.t==='end')stop('■ program bitti')};
+  W.onerror=e=>{M.style.color='#b91c1c';M.innerHTML='✘ '+esc(e.message||'Hata');stop('✘ hata')};
+  wd=setInterval(()=>{if(run&&Date.now()>dl){M.style.color='#b91c1c';M.innerHTML='✘ Program yanıt vermiyor: bekleme (delay) içermeyen sonsuz bir döngüye girmiş olabilir. Simülatör durduruldu.';stop('✘ takıldı')}},400);raf=requestAnimationFrame(spin)}
+ function load(i){stop('');cur=i;E.value=EX[i].code.replace(/^\n/,'');lnUp();M.innerHTML='';mon='';serShow();st.inp={};drawParts();
+  $$('.ard-ex [data-x]',root).forEach(b=>b.classList.toggle('on',+b.dataset.x===i));const N=$('.ard-note',root);N.style.display=EX[i].note?'block':'none';N.innerHTML=EX[i].note||''}
+ $$('.ard-ex [data-x]',root).forEach(b=>b.onclick=()=>load(+b.dataset.x));
+ $('.ard-k',root).onclick=check;$('.ard-r',root).onclick=start;$('.ard-s',root).onclick=()=>stop();$('.ard-o',root).onclick=()=>load(cur);
+ $('.ard-sp',root).onchange=e=>{st.speed=+e.target.value;W&&W.postMessage({t:'speed',v:st.speed})};
+ $('.ard-mb',root).onchange=e=>{st.mon=+e.target.value};$('.ard-cl',root).onclick=()=>{mon='';serShow()};
+ const snd=()=>{const v=$('.ard-in',root).value;if(W&&v)W.postMessage({t:'ser',s:v});$('.ard-in',root).value=''};$('.ard-snd',root).onclick=snd;$('.ard-in',root).onkeydown=e=>{e.stopPropagation();if(e.key==='Enter')snd()};
+ load(0);
+ return{stop,load};
 }
 /* ============ 1. ÜNİTE: ROBOTİK SİSTEMLER VE TARİHSEL GELİŞİMİ ============ */
 /* --- laboratuvar güvenliği --- */
@@ -934,6 +1367,1030 @@ Object.assign(EV,{
  o1:[{n:3,c:[['İhtiyaç','ihtiyac|analiz|problem|sorun'],['Tasarım','tasarim'],['Prototip/test','prototip|test|dogrula'],['Üretim/bakım','uretim|bakim|onarim']],m:'İhtiyaç analizi → Tasarım → Prototip üretimi → Test ve doğrulama → Üretim → Bakım ve onarım.'}]
 });
 SORU_MAP.push(['s-1-0','bs1','📖 Başlarken','#bas1-c'],['s-1-3','sr1','📖 1. Sıra Sizde'],['s-1-5','et1','📖 1. Etkinlik'],['s-1-6','sr2','📖 2. Sıra Sizde'],['s-1-7','et3','📖 3. Etkinlik'],['s-1-8','et2','📖 2. Etkinlik'],['s-1-11','et4','📖 4. Etkinlik'],['s-1-12','sr3','📖 3. Sıra Sizde'],['s-1-14','ek1','📖 Ek Etkinlikler'],['s-1-15','o1','📖 1. soru']);
+/* ============ 2. ÜNİTE: ROBOTİK BİLEŞENLER (etkileşimler) ============ */
+/* --- algoritma, semboller --- */
+orderGame($('#u2-sy'),['Başla.','Sahanı ocağa koy.','Ocağın altını yak.','Sahana yağ ekle.','Yağ kızana kadar bekle.','Yumurtayı sahana kır.','Karıştır.','Tuz ve istediğin baharatları ekle.','Servis tabağına koy.','Bitir.'],{fs:12.5});
+const fcS={
+ bas:'<svg width="70" height="26"><rect x="2" y="2" width="66" height="22" rx="11" fill="#dcfce7" stroke="#334155" stroke-width="1.6"/></svg>',
+ isl:'<svg width="70" height="26"><rect x="2" y="2" width="66" height="22" fill="#fff" stroke="#334155" stroke-width="1.6"/></svg>',
+ veri:'<svg width="70" height="26"><polygon points="12,2 68,2 58,24 2,24" fill="#e0f2fe" stroke="#334155" stroke-width="1.6"/></svg>',
+ karar:'<svg width="70" height="30"><polygon points="35,2 68,15 35,28 2,15" fill="#fef3c7" stroke="#334155" stroke-width="1.6"/></svg>',
+ ok:'<svg width="70" height="26"><line x1="4" y1="13" x2="60" y2="13" stroke="#334155" stroke-width="2"/><polygon points="60,7 68,13 60,19" fill="#334155"/></svg>',
+ bag:'<svg width="70" height="26"><circle cx="35" cy="13" r="10" fill="#fff" stroke="#334155" stroke-width="1.6"/></svg>',
+ bek:'<svg width="70" height="26"><path d="M8 2 H46 A11 11 0 0 1 46 24 H8 Z" fill="#ede9fe" stroke="#334155" stroke-width="1.6"/></svg>'};
+sitSort($('#u2-sb'),[{t:fcS.bas,a:'Başla / Dur'},{t:fcS.isl,a:'İşlem'},{t:fcS.veri,a:'Veri (girdi/çıktı)'},{t:fcS.karar,a:'Karar'},{t:fcS.ok,a:'Akış yönü'},{t:fcS.bag,a:'Bağlantı'},{t:fcS.bek,a:'Bekleme'}],['Başla / Dur','İşlem','Veri (girdi/çıktı)','Karar','Akış yönü','Bağlantı','Bekleme']);
+sitSort($('#u2-sg'),[{t:'Aritmetik, analitik ya da mantıksal hesaplama, atama',a:'İşlem'},{t:'Kapalı uçlu soru; okların üzerine Evet/Hayır yazılır',a:'Karar'},{t:'Bilgi girişi ya da elde edilen sonuç',a:'Veri'},{t:'Süreçteki gecikme veya bekleme süresi',a:'Bekleme'},{t:'Uzun diyagramlarda iki akışın birleşme yeri; başka sayfaya yönlendirme',a:'Bağlantı'},{t:'Diyagramın nerede başladığını ve bittiğini gösterir',a:'Başla/Dur'}],['İşlem','Karar','Veri','Bekleme','Bağlantı','Başla/Dur']);
+
+/* --- otopark bariyeri akış diyagramı --- */
+(function(){const R=$('#u2-ob');const KAYIT=['1001','1002','2024'];
+ const D={w:340,h:470,start:'s',vars:['kart','kayitli'],inputs:{kart:'1001'},nodes:{
+  s:{t:'start',x:150,y:22,l:'Başla',next:'i'},
+  i:{t:'in',x:150,y:80,w:150,l:'RFID kartı okut',run:(v,io)=>{v.kart=String(io.read('kart'))},next:'d'},
+  d:{t:'dec',x:150,y:158,w:150,h:64,l:'Kart kayıtlı mı?',fs:12,test:v=>{v.kayitli=KAYIT.includes(v.kart);return v.kayitli},yes:'a',no:'o'},
+  a:{t:'proc',x:150,y:240,w:140,l:'Bariyeri aç',next:'w'},
+  w:{t:'pre',x:150,y:300,w:140,l:'5 sn bekle',next:'k'},
+  k:{t:'proc',x:150,y:360,w:140,l:'Bariyeri kapat',next:'e'},
+  o:{t:'out',x:290,y:240,w:90,l:'“Yetkisiz kart”',fs:11,run:(v,io)=>io.out('Yetkisiz kart!'),next:'e'},
+  e:{t:'end',x:150,y:430,l:'Bitir'}},
+  edges:[{f:'s',t:'i'},{f:'i',t:'d'},{f:'d',fp:'b',t:'a',tp:'t',l:'Evet'},{f:'a',t:'w'},{f:'w',t:'k'},{f:'k',t:'e'},{f:'d',fp:'r',t:'o',tp:'t',l:'Hayır',via:[[290,158]]},{f:'o',fp:'b',t:'e',tp:'r',via:[[290,430]]}]};
+ R.innerHTML=`<div id="u2-obf" style="flex:1"></div><p class="xs muted" style="margin:4px 0 0">Kayıtlı kartlar: ${KAYIT.join(', ')} (temsilî). Plaka tanıma kullanılırsa girdi “plakayı oku” olur; giriş saati kaydı için “plaka + saati kaydet” işlem kutusu eklenir: 📖 1. Sıra Sizde.</p>`;
+ fcRun($('#u2-obf'),D,{h:380,cols:'1.25fr 1fr',oh:60})})();
+tfList($('#u2-k1'),[{t:'Akış diyagramları hataların erken tespit edilmesini sağlar.',a:true},{t:'Karar sembolünden çıkan okların üzerine hangi cevabı temsil ettiği yazılmalıdır.',a:true},{t:'Algoritma, sonu olmayan işlemler kümesidir.',a:false,x:'Başlangıcı ve sonu olan, sonlu işlemler kümesidir.'},{t:'Akış diyagramları ekip üyelerinin süreci ortak bir dilde anlamasını sağlar.',a:true}]);
+
+/* --- kart pinleri --- */
+(function(){const R=$('#u2-kp');const Z={
+ dig:['Dijital pinler (0–13)','Giriş ya da çıkış olabilir. Her pin <b>5 V</b> ile çalışır, en fazla <b>40 mA</b> akım çekebilir.'],
+ rxtx:['0 (RX) ve 1 (TX)','Veri alıcı / veri yayıcı. Bilgisayarla bağlantı kurulurken ve program yüklenirken kullanılır; seri iletişim sırasında başka iş için kullanılamaz.'],
+ pwm:['PWM pinleri (~3, 5, 6, 9, 10, 11)','Yanlarında <b>~</b> işareti vardır. 0–255 arasında değer verilir: motor hızı, LED parlaklığı.'],
+ an:['Analog pinler (A0–A5)','Analog devre elemanlarının değerini okur: <b>0–1023</b> (10 bit ADC).'],
+ vin:['Vin','Haricî güç girişi; adaptör girişiyle aynı hatta. <b>7–12 V</b> verilmeli.'],
+ v5:['5V','5 V çıkış: 5 V ile çalışan sensörleri beslemek için.'],
+ v33:['3.3V','Regülatörden 3.3 V çıkış; en fazla <b>50 mA</b>.'],
+ gnd:['GND','Devrenin tamamlanması için topraklama.'],
+ usb:['USB girişi','Bilgisayarla iletişim, program yükleme ve besleme.'],
+ jack:['Haricî güç girişi','7–12 V adaptör önerilir; alt-üst sınır 6 V ve 20 V.'],
+ rst:['Reset düğmesi','Karttaki program baştan başlar.'],
+ led:['Yerleşik LED’ler','<b>ON</b>: enerji var. <b>RX/TX</b>: veri alışverişinde yanıp söner. <b>L</b>: 13 numaralı pine bağlı.']};
+ let k='dig';const pins=Array.from({length:14},(_,i)=>13-i);
+ const rect=(id,x,y,w,h,txt,c)=>`<g data-z="${id}" style="cursor:pointer"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${k===id?'#fde68a':c}" stroke="${k===id?'#d97706':'#0f172a'}" stroke-width="${k===id?2.5:1}"/><text x="${x+w/2}" y="${y+h/2+4}" text-anchor="middle" style="font:bold 10px var(--mono);fill:#0f172a">${txt}</text></g>`;
+ const draw=()=>{R.innerHTML=`<svg viewBox="0 0 460 250" style="width:100%;max-height:250px"><rect x="10" y="20" width="440" height="210" rx="14" fill="#0e7490"/>
+  ${pins.map((p,i)=>{const id=p<2?'rxtx':[3,5,6,9,10,11].includes(p)?'pwm':'dig';return`<g data-z="${id}" style="cursor:pointer"><rect x="${150+i*20}" y="28" width="16" height="22" fill="${k===id?'#fde68a':'#111827'}" stroke="${k===id?'#d97706':'#334155'}"/><text x="${158+i*20}" y="62" text-anchor="middle" style="font:9px var(--mono);fill:#e0f2fe">${[3,5,6,9,10,11].includes(p)?'~':''}${p}</text></g>`}).join('')}
+  ${rect('gnd',118,28,26,22,'GND','#111827').replace('fill:#0f172a','fill:#e0f2fe')}
+  ${[['A0'],['A1'],['A2'],['A3'],['A4'],['A5']].map((a,i)=>`<g data-z="an" style="cursor:pointer"><rect x="${300+i*20}" y="200" width="16" height="22" fill="${k==='an'?'#fde68a':'#111827'}" stroke="#334155"/><text x="${308+i*20}" y="194" text-anchor="middle" style="font:9px var(--mono);fill:#e0f2fe">${a}</text></g>`).join('')}
+  ${[['rst','RST',120],['v33','3.3V',148],['v5','5V',180],['gnd','GND',208],['vin','Vin',240]].map(([id,t,x])=>`<g data-z="${id}" style="cursor:pointer"><rect x="${x}" y="200" width="26" height="22" fill="${k===id?'#fde68a':'#111827'}" stroke="#334155"/><text x="${x+13}" y="194" text-anchor="middle" style="font:9px var(--mono);fill:#e0f2fe">${t}</text></g>`).join('')}
+  ${rect('usb',0,70,58,44,'USB','#cbd5e1')}${rect('jack',0,150,52,40,'DC giriş','#1f2937').replace('fill:#0f172a','fill:#fff')}
+  ${rect('rst',70,30,30,22,'⟲','#e5e7eb')}
+  <rect x="200" y="100" width="150" height="60" rx="4" fill="#1f2937"/><text x="275" y="134" text-anchor="middle" style="font:11px var(--mono);fill:#94a3b8">mikrodenetleyici</text>
+  <g data-z="led" style="cursor:pointer">${[['ON',380,90,'#22c55e'],['L',120,80,'#f59e0b'],['TX',120,100,'#f59e0b'],['RX',120,120,'#f59e0b']].map(([t,x,y,c])=>`<circle cx="${x}" cy="${y}" r="5" fill="${c}" stroke="${k==='led'?'#fde68a':'none'}" stroke-width="3"/><text x="${x+9}" y="${y+4}" style="font:9px var(--mono);fill:#e0f2fe">${t}</text>`).join('')}</g>
+  </svg><div style="padding:10px;border-radius:10px;background:#f8fafc;min-height:64px" class="sm"><b>${Z[k][0]}</b><br>${Z[k][1]}</div>`;
+  $$('[data-z]',R).forEach(g=>g.onclick=()=>{k=g.dataset.z;draw()})};draw()})();
+tfList($('#u2-kd'),[{t:'Kartta 14 dijital ve 6 analog pin vardır.',a:true},{t:'Analog girişlerden 0–255 arası değer okunur.',a:false,x:'0–1023 okunur; 0–255, PWM ile analogWrite’a verilen değerdir.'},{t:'L LED’i 13 numaralı dijital pine bağlıdır.',a:true},{t:'Vin pinine 7–12 V arası gerilim verilmelidir.',a:true},{t:'PWM pinleri 2, 4, 7, 8, 12 ve 13’tür.',a:false,x:'3, 5, 6, 9, 10, 11.'},{t:'Reset düğmesine basılınca program baştan başlar.',a:true}]);
+reveal($('#u2-ide'),[{t:'1 Kontrol Et',d:'Programı derler, hataları bulur.'},{t:'2 Yükle',d:'Derler ve kartın içine atar.'},{t:'3–5 Yeni · Aç · Kaydet',d:'Yeni sayfa, kayıtlı programı açma, kaydetme.'},{t:'6 Seri Monitör',d:'Kartla seri iletişim ekranı.'},{t:'7–8 Sketch · Boş alan',d:'Dosya adı; program yazma alanı.'},{t:'9–11 Gösterge · Rapor',d:'İlerleme; derleme hataları veya kaplanan alan; bağlı port ve kart modeli.'}],{single:true});
+
+/* --- değişkenler --- */
+(function(){const R=$('#u2-ad');const KW=['int','float','char','void','setup','loop','true','false','string','string','if','else','for','while','return','long','byte','bool','boolean','double','const','switch','case','break','high','low','input','output'];
+ R.innerHTML=`<input type="text" id="u2-adi" value="sayac 1" style="width:100%"><div id="u2-ado" style="margin-top:8px"></div><div class="row" style="gap:4px;flex-wrap:wrap;margin-top:8px">${['2sayi','sayi2','_toplam','öğrenci','ad soyad','led-pin','ledPin','void','int'].map(x=>`<button class="btn sm" data-ad="${x}" style="font-family:var(--mono)">${x}</button>`).join('')}</div>`;
+ const up=()=>{const s=$('#u2-adi').value;const r=[];if(!s)r.push('Ad boş olamaz.');if(/^\d/.test(s))r.push('Sayı ile başlayamaz (sayı içerebilir).');if(/[çğıöşüÇĞİÖŞÜ]/.test(s))r.push('Türkçe karakter içeremez.');if(/\s/.test(s))r.push('Boşluk içeremez: birleşik yaz ya da alt çizgi kullan.');if(/[^\w\sçğıöşüÇĞİÖŞÜ]/.test(s))r.push('Özel karakter içeremez (yalnızca alt çizgi _ olabilir).');if(KW.includes(s.toLowerCase())&&/^[a-z]+$/i.test(s))r.push('Dile ait anahtar kelime ('+s+') değişken adı olamaz.');
+  $('#u2-ado').innerHTML=r.length?`<div class="note f sm">✘ Geçersiz<ul class="tight" style="margin:4px 0 0">${r.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:`<div class="note t sm">✔ Geçerli: <code>int ${esc(s)} = 0;</code></div>`};
+ $('#u2-adi').oninput=up;$('#u2-adi').onkeydown=e=>e.stopPropagation();$$('[data-ad]',R).forEach(b=>b.onclick=()=>{$('#u2-adi').value=b.dataset.ad;up()});up()})();
+sitSort($('#u2-vt'),[{t:'<code>true</code> / <code>false</code> (1 bit)',a:'bool'},{t:'Tek bir karakter: <code>\'A\'</code>',a:'char'},{t:'0–255 arası (8 bit, işaretsiz)',a:'byte'},{t:'−32 768 … 32 767 (16 bit)',a:'int'},{t:'0 … 65 535 (16 bit, işaretsiz)',a:'unsigned int'},{t:'−2 147 483 648 … 2 147 483 647 (32 bit)',a:'long'},{t:'Ondalıklı sayı: 36.5',a:'float'},{t:'Metin: "Ali Veli"',a:'String'}],['bool','char','byte','int','unsigned int','long','float','String']);
+reveal($('#u2-sr2'),[
+ {t:'<code>int 2sayi = 5;</code>',d:'Değişken adı sayı ile başlayamaz.<br>✔ <code>int sayi2 = 5;</code>'},
+ {t:'<code>float derece = \'36.5\';</code>',d:'Sayı tırnak içinde yazılmış; tırnak karakter/metin içindir.<br>✔ <code>float derece = 36.5;</code>'},
+ {t:'<code>char adSoyad[20] = "Ali Veli";</code>',d:'<code>char</code> tek karakter tutar; metin için <code>String</code> kullanılır.<br>✔ <code>String adSoyad = "Ali Veli";</code><br><span class="xs muted">Not: C’de karakter dizisi olarak bu satır derlenir; kitap metin için String tipini önerir.</span>'},
+ {t:'<code>boolean KapaliMi = 10;</code>',d:'bool yalnızca true/false (1/0) tutar.<br>✔ <code>boolean kapaliMi = true;</code><br><span class="xs muted">Not: Derleyici 10’u true’ya çevirir; anlamca hatalıdır.</span>'}],{single:true});
+
+/* --- temiz kod --- */
+sitSort($('#u2-ht'),[{t:'Satır sonunda noktalı virgül unutuldu.',a:'Syntax'},{t:'Kapatılmayan kaşlı ayraç',a:'Syntax'},{t:'“Eşik değerin altında” olacakken > yazıldı; LED ters zamanda yanıyor.',a:'Mantık'},{t:'&& yerine || kullanıldı; tek butona basınca da LED yanıyor.',a:'Mantık'},{t:'float derece = \'36.5\'; (sayı yerine karakter)',a:'Tip'},{t:'int sayi = 3.75; ondalık kısım kayboldu.',a:'Tip'}],['Syntax','Mantık','Tip']);
+(function(){const R=$('#u2-tk');const T=[['26. Örnek: gereksiz iç içe if','int x=10;\nint y=20;\nif(x<y){\nif(y>5){y+=5;}\n}\nSerial.println(y);','int x = 10;\nint y = 20;\nif (x < y && y > 5) {\n  y += 5;\n}\nSerial.println(y);'],['27. Örnek: anlamlı adlar, tek görev','int f(int a,int b){return a+b;}\nvoid g(int s){Serial.println(s);}','int toplamHesapla(int sayi1, int sayi2) {\n  // İki sayıyı toplar\n  return sayi1 + sayi2;\n}\nvoid sicaklikYazdir(int sicaklik) {\n  // Sıcaklığı yazdırır\n  Serial.println("Sıcaklık: " + String(sicaklik) + "°C");\n}'],['28. Örnek: gereksiz değişkenler','int result = 0;\nint a = 5;\nint b = 10;\nint c = a + b;\nresult = c * 2;','int result = (5 + 10) * 2;']];let k=0,on=false;
+ const draw=()=>{R.innerHTML=`<div class="row" style="gap:3px;flex-wrap:wrap">${T.map((x,i)=>`<button class="btn sm ${i===k?'on':''}" data-tk="${i}" style="font-size:11px">${x[0].split(':')[0]}</button>`).join('')}</div><div class="sm" style="margin:6px 0 4px"><b>${T[k][0]}</b></div><pre class="code" style="margin:0;padding:8px 10px;font-size:12px;white-space:pre-wrap;border:3px solid ${on?'#16a34a':'#dc2626'}">${esc(on?T[k][2]:T[k][1])}</pre><div class="row" style="gap:4px;margin-top:6px"><button class="btn pri sm" id="u2-tkb">${on?'↶ Önceki hâli':'🧹 Temizle'}</button><span class="xs muted">${on?'Temiz hâl':'Karmaşık hâl'}</span></div>`;
+  $$('[data-tk]',R).forEach(b=>b.onclick=()=>{k=+b.dataset.tk;on=false;draw()});$('#u2-tkb').onclick=()=>{on=!on;draw()}};draw()})();
+tfList($('#u2-tc'),[{t:'“bilgAdet” yerine “bilgisayarAdet” demek okunabilirliği artırır.',a:true},{t:'Bir fonksiyonun birden çok görev yapması temiz kod tekniğidir.',a:false,x:'Her fonksiyon tek bir görevi yerine getirmeli.'},{t:'Ekipte ortak bir kod stili kılavuzu çakışmaları önler.',a:true},{t:'Gereksiz satırlardan arındırılmış kod daha hızlı çalışır.',a:true}]);
+
+/* --- gerilim, pil --- */
+(function(){const R=$('#u2-pl');let n=1,mod='seri',sw=true;
+ const draw=()=>{const V=!sw?0:mod==='seri'?n*1.5:1.5;const b=V/4.5;const lab=V===0?'yanmıyor':b<.4?'az parlak':b<.8?'orta parlak':'çok parlak';
+  R.innerHTML=`<div class="row" style="gap:4px;flex-wrap:wrap;align-items:center"><b class="sm">Pil:</b>${[1,2,3].map(x=>`<button class="btn sm ${x===n?'on':''}" data-pn="${x}">${x}</button>`).join('')}<b class="sm" style="margin-left:8px">Bağlantı:</b>${['seri','paralel'].map(x=>`<button class="btn sm ${x===mod?'on':''}" data-pm="${x}">${x}</button>`).join('')}<label class="sm" style="margin-left:8px"><input type="checkbox" id="u2-psw" ${sw?'checked':''}> anahtar kapalı</label></div>
+  <svg viewBox="0 0 380 170" style="width:100%;max-height:190px;margin-top:6px"><rect x="20" y="20" width="340" height="120" rx="10" fill="none" stroke="#475569" stroke-width="3"/>${Array.from({length:n},(_,i)=>mod==='seri'?`<g><rect x="${40+i*58}" y="126" width="50" height="26" rx="4" fill="#facc15" stroke="#854d0e"/><text x="${65+i*58}" y="144" text-anchor="middle" style="font:bold 11px var(--mono)">1.5V</text></g>`:`<g><rect x="${50}" y="${108+i*18-((n-1)*9)}" width="50" height="16" rx="3" fill="#facc15" stroke="#854d0e"/><text x="75" y="${120+i*18-((n-1)*9)}" text-anchor="middle" style="font:bold 9px var(--mono)">1.5V</text></g>`).join('')}
+  <circle cx="300" cy="20" r="${16}" fill="${V?`rgba(250,204,21,${0.3+0.7*b})`:'#f1f5f9'}" stroke="#334155" stroke-width="2" style="filter:${V?`drop-shadow(0 0 ${b*20}px #facc15)`:'none'}"/><text x="300" y="25" text-anchor="middle" style="font-size:14px">💡</text>
+  <g><line x1="200" y1="20" x2="${sw?240:232}" y2="${sw?20:4}" stroke="#0f172a" stroke-width="4"/><circle cx="200" cy="20" r="4"/><circle cx="240" cy="20" r="4"/></g>
+  <rect x="260" y="60" width="78" height="40" rx="6" fill="#0f172a"/><text x="299" y="86" text-anchor="middle" style="font:bold 15px var(--mono);fill:#4ade80">${V.toFixed(1)} V</text><text x="299" y="112" text-anchor="middle" style="font:10px Arial;fill:#475569">voltmetre</text></svg>
+  <div class="sm">Toplam gerilim: <b>${V.toFixed(1)} V</b> · Lamba: <b>${lab}</b></div><p class="xs muted" style="margin:4px 0 0">Seri: gerilimler toplanır (3 × 1,5 = 4,5 V). Paralel: gerilim değişmez (1,5 V). Lamba 4,5 V’ta tam parlak kabul edilmiştir (temsilî).</p>`;
+  $$('[data-pn]',R).forEach(b=>b.onclick=()=>{n=+b.dataset.pn;draw()});$$('[data-pm]',R).forEach(b=>b.onclick=()=>{mod=b.dataset.pm;draw()});$('#u2-psw').onchange=e=>{sw=e.target.checked;draw()}};draw()})();
+(function(){const R=$('#u2-ak');const S=[['Pil takılı, anahtar kapalı',1,1,1],['Pil takılı, anahtar açık',1,0,1],['Pil çıkarıldı, anahtar kapalı',0,1,1],['Pil takılı, bir kablo bağlantısı kesildi',1,1,0]];let k=0;
+ const draw=()=>{const [ad,p,a,kb]=S[k];const on=p&&a&&kb;R.innerHTML=`<div class="col" style="gap:4px">${S.map((s,i)=>`<button class="btn sm ${i===k?'on':''}" data-ak="${i}" style="text-align:left">${s[0]}</button>`).join('')}</div>
+  <svg viewBox="0 0 300 140" style="width:100%;max-height:150px;margin-top:8px"><path d="M40 110 V30 H120" fill="none" stroke="#475569" stroke-width="3"/><path d="M160 30 H260 V110 ${kb?'H40':'H170 M140 110 H40'}" fill="none" stroke="#475569" stroke-width="3"/>${kb?'':'<text x="155" y="104" text-anchor="middle" style="font-size:14px">✂️</text>'}
+  <line x1="120" y1="30" x2="${a?160:152}" y2="${a?30:12}" stroke="#0f172a" stroke-width="4"/>${p?'<rect x="24" y="58" width="32" height="40" rx="4" fill="#facc15" stroke="#854d0e"/><text x="40" y="82" text-anchor="middle" style="font:bold 9px var(--mono)">1.5V</text>':'<rect x="24" y="58" width="32" height="40" rx="4" fill="none" stroke="#94a3b8" stroke-dasharray="4 3"/>'}
+  <circle cx="260" cy="70" r="18" fill="${on?'#fde68a':'#f1f5f9'}" stroke="#334155" stroke-width="2" style="filter:${on?'drop-shadow(0 0 12px #facc15)':'none'}"/><text x="260" y="75" text-anchor="middle">💡</text>${on?'<text x="200" y="125" style="font:11px Arial;fill:#16a34a">→ akım var</text>':''}</svg>
+  <div class="sm"><b>Lamba ${on?'yanıyor':'yanmıyor'}.</b> ${on?'Devre tamamlandı; akım lambadan geçiyor.':!p?'Gerilim kaynağı yok: akımı başlatan itici güç olmadan akım oluşmaz.':!a?'Açık devre: anahtar açıkken akım geçmez.':'Devre bir noktadan koptu; akım dolaşamaz.'}</div>`;
+  $$('[data-ak]',R).forEach(b=>b.onclick=()=>{k=+b.dataset.ak;draw()})};draw()})();
+
+/* --- Ohm, güç --- */
+(function(){const R=$('#u2-oh');let un='I',V=12,I=0.5,Rv=24;
+ const draw=()=>{if(un==='V')V=+(I*Rv).toFixed(3);if(un==='I')I=+(V/Rv).toFixed(4);if(un==='R')Rv=+(V/I).toFixed(3);const P=+(V*I).toFixed(3);
+  const inp=(k,val,u)=>`<label class="sm" style="display:flex;gap:6px;align-items:center;margin:4px 0"><b style="width:18px">${k}</b>${un===k?`<span style="flex:1;font:700 18px var(--mono);color:var(--acc)">${val}</span>`:`<input type="number" data-oh="${k}" value="${val}" step="any" style="flex:1">`}<span class="xs" style="width:34px">${u}</span></label>`;
+  R.innerHTML=`<div class="row" style="gap:3px;flex-wrap:wrap"><span class="xs">Bilinmeyen:</span>${['V','I','R'].map(x=>`<button class="btn sm ${x===un?'on':''}" data-un="${x}">${x}</button>`).join('')}</div>${inp('V',V,'volt')}${inp('I',I,'amper')}${inp('R',Rv,'ohm')}<div style="margin-top:6px;padding:8px;background:#f8fafc;border-radius:8px" class="sm">Formül: <b>${un==='V'?'V = I × R':un==='I'?'I = V / R':'R = V / I'}</b><br>Güç: <b>P = V × I = ${P} W</b></div><p class="xs muted" style="margin:4px 0 0">Ohm kanunu (1827, George Simon Ohm): akım gerilimle doğru, dirençle ters orantılı.</p>`;
+  $$('[data-un]',R).forEach(b=>b.onclick=()=>{un=b.dataset.un;draw()});$$('[data-oh]',R).forEach(i=>{i.onkeydown=e=>e.stopPropagation();i.onchange=()=>{const v=+i.value;if(i.dataset.oh==='V')V=v;if(i.dataset.oh==='I')I=v;if(i.dataset.oh==='R')Rv=v||1;draw()}})};draw()})();
+(function(){const R=$('#u2-sp');let rs=[100,220,330],V=9;
+ const draw=()=>{const s=rs.reduce((a,b)=>a+b,0),p=1/rs.reduce((a,b)=>a+1/b,0);R.innerHTML=`<div class="row" style="gap:4px;flex-wrap:wrap">${rs.map((r,i)=>`<input type="number" data-rs="${i}" value="${r}" style="width:64px"> `).join('')}<button class="btn sm" id="u2-spa">+</button><button class="btn sm" id="u2-spd">−</button></div><label class="sm" style="display:block;margin-top:6px">Kaynak: <input type="number" id="u2-spv" value="${V}" style="width:60px"> V</label>
+  <table class="sm" style="width:100%;margin-top:8px;border-collapse:collapse"><tr style="background:#f1f5f9"><th></th><th>R<sub>toplam</sub></th><th>Akım</th></tr><tr><td><b>Seri</b><div class="xs muted">R₁+R₂+…</div></td><td style="font-family:var(--mono)">${s.toFixed(1)} Ω</td><td style="font-family:var(--mono)">${(V/s*1000).toFixed(1)} mA</td></tr><tr><td><b>Paralel</b><div class="xs muted">1/R = 1/R₁+1/R₂+…</div></td><td style="font-family:var(--mono)">${p.toFixed(1)} Ω</td><td style="font-family:var(--mono)">${(V/p*1000).toFixed(1)} mA</td></tr></table>
+  <p class="xs muted" style="margin:6px 0 0">Seri: akım aynı, gerilim bölünür; biri koparsa akım durur. Paralel: gerilim aynı, akım bölünür; biri çıkarılsa da diğerlerinden akım geçer.</p>`;
+  $$('[data-rs]',R).forEach(i=>{i.onkeydown=e=>e.stopPropagation();i.onchange=()=>{rs[+i.dataset.rs]=Math.max(1,+i.value);draw()}});$('#u2-spv').onkeydown=e=>e.stopPropagation();$('#u2-spv').onchange=e=>{V=+e.target.value;draw()};$('#u2-spa').onclick=()=>{if(rs.length<5){rs.push(100);draw()}};$('#u2-spd').onclick=()=>{if(rs.length>1){rs.pop();draw()}}};draw()})();
+shortAns($('#u2-6s'),[{q:'1) 220 V ile beslenen evde 3 000 W soba kaç amper akım çeker? (virgülden sonra 1 basamak)',a:['13,6','13.6','13,6 a','13.6 a','13,6 amper','13.6 amper','13,64','13.64'],x:'I = P / V = 3000 / 220 ≈ 13,6 A. (Kitaptaki “saatte” ifadesi gereksiz: akım zamana bağlı değildir.)'},{q:'2) 3 amper-saatlik (Ah) pille 12 V, 3 W lamba kaç saat yanar?',a:['12','12 saat','12saat'],x:'Lamba akımı I = 3 / 12 = 0,25 A → 3 Ah / 0,25 A = 12 saat. ⚠ Kitapta “3 amperlik pil” yazıyor; pil kapasitesi amper-saat (Ah) olarak kabul edilmiştir.'}]);
+
+/* --- renk kodu, LED --- */
+(function(){const R=$('#u2-rk');const C=[['Siyah','#111827'],['Kahverengi','#7c2d12'],['Kırmızı','#dc2626'],['Turuncu','#f97316'],['Sarı','#facc15'],['Yeşil','#16a34a'],['Mavi','#2563eb'],['Mor','#7c3aed'],['Gri','#9ca3af'],['Beyaz','#f8fafc']];const T=[['Altın','#d4a017','±%5'],['Gümüş','#c0c0c0','±%10']];let b=[2,2,1,0];
+ const fmt=v=>v>=1e6?(v/1e6).toFixed(v%1e6?1:0)+' MΩ':v>=1e3?(v/1e3).toFixed(v%1e3?1:0)+' kΩ':v+' Ω';
+ const draw=()=>{const val=(b[0]*10+b[1])*10**b[2];R.innerHTML=`<svg viewBox="0 0 360 90" style="width:100%;max-height:100px"><line x1="0" y1="45" x2="360" y2="45" stroke="#94a3b8" stroke-width="4"/><rect x="80" y="20" width="200" height="50" rx="22" fill="#e7d3a8" stroke="#a16207"/>${[110,140,170].map((x,i)=>`<rect x="${x}" y="20" width="14" height="50" fill="${C[b[i]][1]}"/>`).join('')}<rect x="240" y="20" width="14" height="50" fill="${T[b[3]][1]}"/></svg>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">${['1. rakam','2. rakam','Çarpan','Tolerans'].map((h,i)=>`<label class="xs"><b>${h}</b><select data-rb="${i}" style="width:100%">${(i<3?C:T).map((c,j)=>i===0&&j===0?'':`<option value="${j}" ${b[i]===j?'selected':''}>${c[0]}${i===2?' (×'+(10**j).toLocaleString('tr-TR')+')':i<2?' ('+j+')':' '+c[2]}</option>`).join('')}</select></label>`).join('')}</div>
+  <div style="margin-top:8px;font:800 26px var(--mono);color:var(--acc)">${fmt(val)} <span style="font-size:15px">${T[b[3]][2]}</span></div><div class="xs muted">= (${b[0]}${b[1]}) × 10<sup>${b[2]}</sup> Ω · 30. Örnek mantığı: ilk iki bant katsayı, üçüncü çarpan, dördüncü tolerans.</div>`;
+  $$('[data-rb]',R).forEach(s=>s.onchange=()=>{b[+s.dataset.rb]=+s.value;draw()})};draw()})();
+(function(){const R=$('#u2-ld');let V=6,Rv=220,flip=false;
+ const draw=()=>{const I=flip?0:Rv?(V-2)/Rv*1000:999;const st=flip?['yanmıyor','LED ters takıldı: akım yalnızca anot (uzun bacak) → katot yönünde geçer.','#94a3b8',0]:I>40?['💥 yandı!','Akım çok yüksek; direnç yok ya da çok küçük. LED bozulur.','#ef4444',1]:I<3?['çok sönük','Akım çok düşük.','#fca5a5',.25]:['yanıyor ✔','Uygun akım.','#ef4444',Math.min(1,I/20)];
+  R.innerHTML=`<div class="row" style="gap:4px;flex-wrap:wrap;align-items:center"><b class="xs">Kaynak:</b>${[3,6,9,12].map(x=>`<button class="btn sm ${x===V?'on':''}" data-lv="${x}">${x} V</button>`).join('')}</div><div class="row" style="gap:3px;flex-wrap:wrap;align-items:center;margin-top:4px"><b class="xs">Direnç:</b>${[0,100,220,330,470,560,1000].map(x=>`<button class="btn sm ${x===Rv?'on':''}" data-lr="${x}">${x?x+' Ω':'yok'}</button>`).join('')}</div>
+  <svg viewBox="0 0 340 120" style="width:100%;max-height:130px;margin-top:6px"><path d="M40 90 V30 H120 M200 30 H300 V90 H40" fill="none" stroke="#475569" stroke-width="3"/><rect x="22" y="48" width="36" height="34" rx="4" fill="#facc15" stroke="#854d0e"/><text x="40" y="70" text-anchor="middle" style="font:bold 10px var(--mono)">${V}V</text>${Rv?`<rect x="120" y="22" width="50" height="16" rx="6" fill="#e7d3a8" stroke="#a16207"/><text x="145" y="16" text-anchor="middle" style="font:10px var(--mono)">${Rv} Ω</text>`:'<line x1="120" y1="30" x2="170" y2="30" stroke="#475569" stroke-width="3"/>'}<line x1="170" y1="30" x2="200" y2="30" stroke="#475569" stroke-width="3"/>
+  <g transform="translate(300,60) rotate(${flip?-90:90})"><polygon points="-12,-10 -12,10 8,0" fill="${st[3]?st[2]:'#e5e7eb'}" stroke="#334155"/><line x1="8" y1="-10" x2="8" y2="10" stroke="#334155" stroke-width="2"/></g><circle cx="300" cy="60" r="${8+st[3]*10}" fill="${st[2]}" opacity="${st[3]*.35}"/><text x="316" y="48" style="font:9px Arial">${flip?'katot ↑':'anot ↑'}</text></svg>
+  <div class="row" style="gap:6px;align-items:center"><button class="btn sm" id="u2-lf">🔄 LED’i ters çevir</button><b class="sm">LED ${st[0]}</b></div><div class="sm">${st[1]} ${!flip&&Rv?`I ≈ (${V} − 2) / ${Rv} = <b>${I.toFixed(1)} mA</b>`:''}</div><p class="xs muted" style="margin:4px 0 0">Kitabın yaklaşık formülü: <b>Direnç = 50 × V − 100</b> → 6 V için 200 Ω (yakın değer 220 Ω). LED gerilimi ≈ 2 V ve sınır akımları temsilîdir.</p>`;
+  $$('[data-lv]',R).forEach(b=>b.onclick=()=>{V=+b.dataset.lv;draw()});$$('[data-lr]',R).forEach(b=>b.onclick=()=>{Rv=+b.dataset.lr;draw()});$('#u2-lf').onclick=()=>{flip=!flip;draw()}};draw()})();
+
+/* --- bileşenler, semboller, breadboard --- */
+reveal($('#u2-bl'),[{t:'Diyot',d:'Akımı tek yönde geçirir; anot ve katot uçları. PN, zener, LED, fotodiyot.'},{t:'Transistör',d:'Küçük akımla büyük akımı kontrol eder. BJT (emiter, beyz, kollektör), FET/MOSFET.'},{t:'Röle',d:'Düşük akımla yüksek akım çeken cihazları anahtarlar; elektromıknatısla çalışır.'},{t:'Buton',d:'Anahtarlama; 2 ve 4 bacaklı, yönü yok.'},{t:'Kondansatör',d:'Elektrik yükünü kısa süre depolar; birimi farad.'},{t:'Entegre',d:'Küçük silikon çip üzerinde binlerce eleman. İlk entegre 1958, Jack Kilby.'},{t:'LED',d:'Işık yayan diyot; uzun bacak anot. Elektrolüminesans.'}],{single:true});
+const SY={
+ dy:'<svg width="74" height="28"><line x1="0" y1="14" x2="24" y2="14" stroke="#111" stroke-width="2"/><polygon points="24,4 24,24 44,14" fill="#fff" stroke="#111" stroke-width="2"/><line x1="44" y1="4" x2="44" y2="24" stroke="#111" stroke-width="2"/><line x1="44" y1="14" x2="74" y2="14" stroke="#111" stroke-width="2"/></svg>',
+ led:'<svg width="74" height="30"><line x1="0" y1="18" x2="24" y2="18" stroke="#111" stroke-width="2"/><polygon points="24,8 24,28 44,18" fill="#fff" stroke="#111" stroke-width="2"/><line x1="44" y1="8" x2="44" y2="28" stroke="#111" stroke-width="2"/><line x1="44" y1="18" x2="74" y2="18" stroke="#111" stroke-width="2"/><path d="M38 6 L48 -2 M44 9 L54 1" stroke="#111" stroke-width="1.5"/><polygon points="48,-2 44,1 47,3" fill="#111"/></svg>',
+ dr:'<svg width="74" height="28"><line x1="0" y1="14" x2="16" y2="14" stroke="#111" stroke-width="2"/><polyline points="16,14 21,5 29,23 37,5 45,23 53,5 58,14" fill="none" stroke="#111" stroke-width="2"/><line x1="58" y1="14" x2="74" y2="14" stroke="#111" stroke-width="2"/></svg>',
+ adr:'<svg width="74" height="34"><line x1="0" y1="20" x2="16" y2="20" stroke="#111" stroke-width="2"/><polyline points="16,20 21,11 29,29 37,11 45,29 53,11 58,20" fill="none" stroke="#111" stroke-width="2"/><line x1="58" y1="20" x2="74" y2="20" stroke="#111" stroke-width="2"/><line x1="37" y1="2" x2="37" y2="13" stroke="#111" stroke-width="2"/><polygon points="33,9 41,9 37,15" fill="#111"/></svg>',
+ kon:'<svg width="74" height="28"><line x1="0" y1="14" x2="32" y2="14" stroke="#111" stroke-width="2"/><line x1="32" y1="3" x2="32" y2="25" stroke="#111" stroke-width="3"/><line x1="42" y1="3" x2="42" y2="25" stroke="#111" stroke-width="3"/><line x1="42" y1="14" x2="74" y2="14" stroke="#111" stroke-width="2"/></svg>',
+ btn:'<svg width="74" height="30"><line x1="0" y1="24" x2="22" y2="24" stroke="#111" stroke-width="2"/><circle cx="24" cy="24" r="2.5" fill="#111"/><circle cx="50" cy="24" r="2.5" fill="#111"/><line x1="52" y1="24" x2="74" y2="24" stroke="#111" stroke-width="2"/><line x1="18" y1="14" x2="56" y2="14" stroke="#111" stroke-width="2"/><line x1="37" y1="14" x2="37" y2="4" stroke="#111" stroke-width="2"/></svg>',
+ tr:'<svg width="74" height="40"><circle cx="40" cy="20" r="17" fill="#fff" stroke="#111" stroke-width="1.5"/><line x1="4" y1="20" x2="32" y2="20" stroke="#111" stroke-width="2"/><line x1="32" y1="9" x2="32" y2="31" stroke="#111" stroke-width="3"/><line x1="32" y1="15" x2="48" y2="4" stroke="#111" stroke-width="2"/><line x1="32" y1="25" x2="48" y2="36" stroke="#111" stroke-width="2"/><polygon points="48,36 41,35 45,30" fill="#111"/></svg>',
+ ro:'<svg width="74" height="36"><rect x="6" y="8" width="22" height="20" fill="#fff" stroke="#111" stroke-width="2"/><line x1="6" y1="8" x2="28" y2="28" stroke="#111" stroke-width="1.5"/><line x1="34" y1="18" x2="44" y2="18" stroke="#111" stroke-dasharray="3 2"/><circle cx="48" cy="28" r="2.5" fill="#111"/><line x1="48" y1="28" x2="66" y2="16" stroke="#111" stroke-width="2"/><circle cx="68" cy="28" r="2.5" fill="#111"/></svg>'};
+sitSort($('#u2-sm'),[{t:SY.dy,a:'Diyot'},{t:SY.led,a:'LED'},{t:SY.dr,a:'Direnç'},{t:SY.adr,a:'Ayarlı direnç'},{t:SY.kon,a:'Kondansatör'},{t:SY.btn,a:'Buton'},{t:SY.tr,a:'Transistör'},{t:SY.ro,a:'Röle'}],['Diyot','LED','Direnç','Ayarlı direnç','Kondansatör','Buton','Transistör','Röle']);
+(function(){const R=$('#u2-bb');const COLS=18;let sel=null;
+ const holes=[];const rail=(y,id)=>{for(let c=0;c<COLS;c++)holes.push({x:30+c*20,y,g:id})};
+ rail(18,'üst +');rail(30,'üst −');['a','b','c','d','e'].forEach((r,i)=>{for(let c=0;c<COLS;c++)holes.push({x:30+c*20,y:56+i*14,g:'üst sütun '+(c+1),r})});['f','g','h','i','j'].forEach((r,i)=>{for(let c=0;c<COLS;c++)holes.push({x:30+c*20,y:140+i*14,g:'alt sütun '+(c+1),r})});rail(218,'alt +');rail(230,'alt −');
+ const draw=()=>{const g=sel!==null?holes[sel].g:null;R.innerHTML=`<svg viewBox="0 0 400 248" style="width:100%"><rect x="10" y="6" width="380" height="236" rx="8" fill="#f8fafc" stroke="#cbd5e1"/><line x1="20" y1="12" x2="380" y2="12" stroke="#dc2626" stroke-width="2"/><line x1="20" y1="36" x2="380" y2="36" stroke="#2563eb" stroke-width="2"/><line x1="20" y1="212" x2="380" y2="212" stroke="#dc2626" stroke-width="2"/><line x1="20" y1="236" x2="380" y2="236" stroke="#2563eb" stroke-width="2"/><rect x="10" y="122" width="380" height="8" fill="#e2e8f0"/>${holes.map((h,i)=>`<rect data-h="${i}" x="${h.x-4}" y="${h.y-4}" width="8" height="8" rx="1.5" fill="${g&&h.g===g?(i===sel?'#d97706':'#facc15'):'#334155'}" style="cursor:pointer"/>`).join('')}</svg><div class="sm" style="min-height:40px">${g?`<b>${g}</b>: sarı deliklerin hepsi birbirine bağlı (iletim hâlinde). ${/[+−]/.test(g)?'Güç hattı boydan boya iletir.':'Ortadaki 5 delikli sütun aynı metal parçasının üzerindedir.'}`:'Bir deliğe tıkla: o delikle iletim hâlinde olan delikler yanar.'}</div><p class="xs muted" style="margin:0">Ortadaki boşluk iki yarıyı ayırır; iki taraftaki güç hatları da birbirinden ayrıktır.</p>`;
+  $$('[data-h]',R).forEach(r=>r.onclick=()=>{sel=+r.dataset.h;draw()})};draw()})();
+
+/* --- eklentiler, problem çözme --- */
+sitSort($('#u2-eg'),[{t:'Temel seviye mikrodenetleyici kartı, mini bilgisayar kartı',a:'Denetim birimi'},{t:'HC-SR04 ultrasonik, IR, DHT11',a:'Sensör'},{t:'DC motor, servo, step, röle',a:'Aktüatör'},{t:'Li-Po pil, alkalin pil, adaptör; 7805 regülatör',a:'Güç kaynağı'},{t:'L298N, L293D',a:'Motor sürücü'},{t:'HC-05 bluetooth, ESP8266 wi-fi',a:'İletişim modülü'},{t:'Direnç, kondansatör, LED, breadboard, jumper',a:'Yardımcı eleman'}],['Denetim birimi','Sensör','Aktüatör','Güç kaynağı','Motor sürücü','İletişim modülü','Yardımcı eleman']);
+orderGame($('#u2-es'),['Proje amacının netleştirilmesi','Sensör ve hareket elemanlarının belirlenmesi','Denetim biriminin belirlenmesi','Enerji gereksinimlerinin belirlenmesi','İletişim yönteminin seçilmesi','Fiziksel tasarım ve yerleşimin planlanması'],{fs:13});
+orderGame($('#u2-pc'),['Problemi tanımla','Veri topla','Hata analizi yap','Çözüm planı oluştur','Test et','Sonuçları değerlendir'],{fs:13});
+reveal($('#u2-8s'),[{t:'Robot çizgi izleme pistinden çıkıyor.',d:'<b>Problem:</b> çizgiyi takip edemiyor. <b>Olası neden:</b> sensörler kalibre değil / kirli, motor hızı çok yüksek, koddaki dönüş koşulu hatalı.'},{t:'Robot engeli algılamadan ilerliyor.',d:'<b>Problem:</b> engel algılanmıyor. <b>Olası neden:</b> sensör bağlantısı veya pin tanımı yanlış, mesafe eşiği çok küçük, sensör okuması koşulda yanlış kullanılmış.'},{t:'Robotun motorları çalışmıyor.',d:'<b>Problem:</b> hareket yok. <b>Olası neden:</b> pil zayıf, motor sürücü bağlantısı hatalı, pinMode(OUTPUT) eksik, motor komutları yanlış yazılmış.'}],{single:true});
+(function(){const R=$('#u2-rb');const W=360,H=230;const OB=[[0,0,W,8],[0,H-8,W,8],[0,0,8,H],[W-8,0,8,H],[140,60,40,90],[250,150,60,30]];let x=60,y=180,a=-Math.PI/2,st='ileri',tm=0,cr=0,t=null,esik=10,hiz=2,ok=true,trail=[];
+ const dist=()=>{for(let d=0;d<200;d+=1){const px=x+Math.cos(a)*(14+d),py=y+Math.sin(a)*(14+d);if(OB.some(([ox,oy,ow,oh])=>px>=ox&&px<=ox+ow&&py>=oy&&py<=oy+oh))return d/3}return 66};
+ const hit=()=>OB.some(([ox,oy,ow,oh])=>x+12>ox&&x-12<ox+ow&&y+12>oy&&y-12<oy+oh);
+ const step=()=>{const m=ok?dist():0;if(st==='ileri'){if(m>0&&m<esik){st='dur';tm=8}else{x+=Math.cos(a)*hiz;y+=Math.sin(a)*hiz;if(hit()){cr++;x-=Math.cos(a)*hiz*6;y-=Math.sin(a)*hiz*6;a+=Math.PI/2+Math.random()}}}
+  else if(--tm<=0){if(st==='dur'){st='geri';tm=10}else if(st==='geri'){st='sag';tm=10}else st='ileri'}
+  if(st==='geri'){x-=Math.cos(a)*1.2;y-=Math.sin(a)*1.2}if(st==='sag')a+=Math.PI/2/10;trail.push([x,y]);if(trail.length>300)trail.shift();draw(m)};
+ const draw=m=>{R.innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-height:240px;background:#f8fafc;border-radius:10px">${OB.map(o=>`<rect x="${o[0]}" y="${o[1]}" width="${o[2]}" height="${o[3]}" fill="#78350f"/>`).join('')}<polyline points="${trail.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#99f6e4" stroke-width="3"/><g transform="translate(${x},${y}) rotate(${a*180/Math.PI})"><circle r="12" fill="${st==='ileri'?'#0d9488':'#f59e0b'}"/><rect x="8" y="-4" width="6" height="8" fill="#0f172a"/><line x1="14" y1="0" x2="${14+(m||0)*3}" y2="0" stroke="${ok?'#ef4444':'#94a3b8'}" stroke-dasharray="3 3"/></g></svg>
+  <div class="row" style="gap:6px;flex-wrap:wrap;align-items:center;font-size:12px"><button class="btn pri sm" id="u2-rbs">${t?'⏸':'▶'}</button><button class="btn sm" id="u2-rbr">↺</button><label>eşik <b>${esik}</b> cm <input type="range" id="u2-rbe" min="2" max="40" value="${esik}" style="width:70px"></label><label>hız <input type="range" id="u2-rbh" min="1" max="6" value="${hiz}" style="width:60px"></label><label><input type="checkbox" id="u2-rbo" ${ok?'checked':''}> sensör çalışıyor</label></div>
+  <div class="sm">Durum: <b>${{ileri:'motorIleri()',dur:'motorDur()',geri:'motorGeri()',sag:'motorSagaDon()'}[st]}</b> · mesafe ≈ ${ok?(m||0).toFixed(0):0} cm · <b style="color:${cr?'#dc2626':'#16a34a'}">çarpışma: ${cr}</b></div>`;
+  $('#u2-rbs').onclick=()=>{if(t){clearInterval(t);t=null}else t=setInterval(step,40);draw(m)};$('#u2-rbr').onclick=()=>{clearInterval(t);t=null;x=60;y=180;a=-Math.PI/2;st='ileri';cr=0;trail=[];draw(0)};
+  $('#u2-rbe').oninput=e=>{esik=+e.target.value};$('#u2-rbh').oninput=e=>{hiz=+e.target.value};$('#u2-rbo').onchange=e=>{ok=e.target.checked}};draw(0)})();
+
+/* --- sensörler --- */
+sitSort($('#u2-pa'),[{t:'Buton, anahtar',a:'Pasif'},{t:'Potansiyometre',a:'Pasif'},{t:'LDR',a:'Pasif'},{t:'PTC / NTC',a:'Pasif'},{t:'Ultrasonik mesafe sensörü',a:'Aktif'},{t:'IR sensör',a:'Aktif'},{t:'Sıcaklık-nem sensörü (DHT11)',a:'Aktif'}],['Pasif','Aktif']);
+(function(){const R=$('#u2-nt');const S={LDR:['Işık şiddeti',-1,'Işık artınca direnç azalır. Sokak lambası: karanlıkta direnç artar → lamba yanar.'],NTC:['Sıcaklık',-1,'Sıcaklık artınca direnç azalır. Motor soğutma sıvısı, ateş ölçer, klima.'],PTC:['Sıcaklık',1,'Sıcaklık artınca direnç artar. Aşırı ısınmaya karşı koruma.'],FSR:['Kuvvet',-1,'Kuvvet artınca direnç azalır, akım artar. Robot elinin kavrama kuvveti.']};let k='LDR',v=50;
+ const draw=()=>{const [q,s,d]=S[k];const r=s<0?100-v*.85:15+v*.85;R.innerHTML=`<div class="row" style="gap:3px">${Object.keys(S).map(x=>`<button class="btn sm ${x===k?'on':''}" data-nt="${x}">${x}</button>`).join('')}</div>
+  <svg viewBox="0 0 300 150" style="width:100%;max-height:160px;margin-top:6px"><line x1="40" y1="130" x2="290" y2="130" stroke="#94a3b8"/><line x1="40" y1="10" x2="40" y2="130" stroke="#94a3b8"/><path d="${Array.from({length:21},(_,i)=>{const vv=i*5,rr=s<0?100-vv*.85:15+vv*.85;return(i?'L':'M')+(40+vv*2.5)+' '+(130-rr*1.1)}).join(' ')}" fill="none" stroke="var(--acc)" stroke-width="3"/><circle cx="${40+v*2.5}" cy="${130-r*1.1}" r="7" fill="#f59e0b"/><text x="165" y="146" text-anchor="middle" style="font:11px Arial;fill:#475569">${q} →</text><text x="14" y="70" transform="rotate(-90 14 70)" text-anchor="middle" style="font:11px Arial;fill:#475569">direnç →</text></svg>
+  <input type="range" id="u2-ntr" min="0" max="100" value="${v}" style="width:100%"><div class="sm">${d}</div><p class="xs muted" style="margin:2px 0 0">Eğri biçimi temsilîdir; yön kitaptaki tanıma uygundur.</p>`;
+  $$('[data-nt]',R).forEach(b=>b.onclick=()=>{k=b.dataset.nt;draw()});$('#u2-ntr').oninput=e=>{v=+e.target.value;draw();$('#u2-ntr').focus()}};draw()})();
+sitSort($('#u2-hs'),[{t:'Uçağın hava hızı (Pito tüpü)',a:'Hız'},{t:'Telefon ekranını yataydan dikeye döndürme',a:'Eğim'},{t:'Hava yastığını tetikleyen ani yavaşlama',a:'İvme'},{t:'TV kumandasının kızılötesi sinyali',a:'Fotodiyot'},{t:'Alarmı tetikleyen sıcakkanlı canlı',a:'PIR'},{t:'Açılan pencere (mıknatıs uzaklaşır)',a:'Reed röle'},{t:'Dokunmatik ekran',a:'Kapasitif'},{t:'Park ederken arkadaki mesafe',a:'Ultrasonik'}],['Hız','Eğim','İvme','Fotodiyot','PIR','Reed röle','Kapasitif','Ultrasonik']);
+
+/* --- modüller, çizgi izleyen --- */
+reveal($('#u2-md'),[{t:'⏰ Zaman modülü DS1302',d:'Gerçek zamanlı saat (RTC): saniye, dakika, saat, gün, ay, yıl. Üzerinde CR2032 pil.'},{t:'💾 SD-Mikro SD kayıt modülü',d:'SPI ile SD karta okuma/yazma; AMS1117-3.3 regülatörü ile 5 V veya 3.3 V.'},{t:'📶 Bluetooth modülü HC-05',d:'Kablosuz seri haberleşme, yakın mesafe kontrol.'},{t:'🌐 Wi-fi modülü ESP8266',d:'TCP/IP destekli, dâhilî antenli ekonomik wi-fi modülü; uzaktan erişim.'},{t:'📏 HC-SR04 · 🌡️ DHT11',d:'Ultrasonik mesafe → engel algılayan robot; sıcaklık-nem → akıllı sera.'}],{single:true});
+(function(){const R=$('#u2-ci');const W=420,H=250;let cv,ctx,x,y,a,t=null,sp=2,tr=6,off=0,trk;
+ R.innerHTML=`<canvas id="u2-cic" width="${W}" height="${H}" style="width:100%;border-radius:10px;background:#fff;border:1px solid #e2e8f0"></canvas><div class="row" style="gap:6px;flex-wrap:wrap;align-items:center;font-size:12px"><button class="btn pri sm" id="u2-cis">▶ Başlat</button><button class="btn sm" id="u2-cir">↺</button><label>hız <input type="range" id="u2-cih" min="1" max="6" value="2" style="width:70px"></label><label>dönüş <input type="range" id="u2-cid" min="1" max="12" value="6" style="width:70px"></label><span id="u2-cio" style="font-family:var(--mono)"></span></div><p class="xs muted" style="margin:2px 0 0">1. Veri toplama: iki ışık sensörü zemini okur. 2. Veri analizi: sol sensör siyahtaysa sola, sağ siyahtaysa sağa dön, ikisi de beyazsa düz git. 3. Robot çizgiyi izler. Hızı çok artırınca pistten çıkar mı?</p>`;
+ cv=$('#u2-cic');ctx=cv.getContext('2d');
+ const drawTrack=()=>{ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.strokeStyle='#111';ctx.lineWidth=14;ctx.lineJoin='round';ctx.beginPath();ctx.ellipse(210,125,165,85,0,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(120,60);ctx.bezierCurveTo(180,150,240,100,300,190);ctx.stroke();trk=ctx.getImageData(0,0,W,H)};
+ const black=(px,py)=>{px=Math.round(px);py=Math.round(py);if(px<0||py<0||px>=W||py>=H)return false;return trk.data[(py*W+px)*4]<100};
+ const reset=()=>{x=210+165;y=125;a=Math.PI/2;drawTrack();render(false,false)};
+ const sens=()=>{const L=[x+Math.cos(a-0.5)*16,y+Math.sin(a-0.5)*16],Rr=[x+Math.cos(a+0.5)*16,y+Math.sin(a+0.5)*16];return[L,Rr,black(...L),black(...Rr)]};
+ const render=(l,r)=>{ctx.putImageData(trk,0,0);const [L,Rr]=sens();ctx.save();ctx.translate(x,y);ctx.rotate(a);ctx.fillStyle='#0d9488';ctx.fillRect(-12,-10,22,20);ctx.fillStyle='#0f172a';ctx.fillRect(-10,-13,10,4);ctx.fillRect(-10,9,10,4);ctx.restore();[[L,l],[Rr,r]].forEach(([p,b])=>{ctx.fillStyle=b?'#ef4444':'#22c55e';ctx.beginPath();ctx.arc(p[0],p[1],4,0,7);ctx.fill()});$('#u2-cio').textContent=`sol:${l?'SİYAH':'beyaz'} sağ:${r?'SİYAH':'beyaz'} → ${l&&!r?'sola dön':r&&!l?'sağa dön':l&&r?'düz (kavşak)':'düz git'}`};
+ const step=()=>{const [, ,l,r]=sens();const d=tr*Math.PI/180;if(l&&!r)a-=d;else if(r&&!l)a+=d;x+=Math.cos(a)*sp;y+=Math.sin(a)*sp;if(x<0||y<0||x>W||y>H){x=W/2;y=H/2}render(l,r)};
+ $('#u2-cis').onclick=()=>{if(t){clearInterval(t);t=null;$('#u2-cis').textContent='▶ Başlat'}else{t=setInterval(step,30);$('#u2-cis').textContent='⏸ Durdur'}};$('#u2-cir').onclick=()=>{clearInterval(t);t=null;$('#u2-cis').textContent='▶ Başlat';reset()};
+ $('#u2-cih').oninput=e=>{sp=+e.target.value};$('#u2-cid').oninput=e=>{tr=+e.target.value};x=375;y=125;a=Math.PI/2;drawTrack();x=210+165-8;render(false,false)})();
+
+/* --- motorlar --- */
+tabs($('#u2-mt'),[{y:'🔋',h:'Fırçalı DC',b:'Mil üzerinde bobinler, gövdede mıknatıslar; akım fırçalarla (kömür) verilir. <b>+</b> gerilimin büyüklüğü ve yönüyle hız ve yön kontrolü. <b>−</b> fırçalar aşınır, verim düşer. Yön için H-köprüsü (4 transistör), küçük motorlar için L293D.'},{y:'⚙️',h:'Redüktörlü',b:'Mile dişli seti: hız 30’da 1’e düşerken tork 30 katına çıkabilir.'},{y:'🌀',h:'Fırçasız',b:'Mıknatıs milde, sargılar sabit; 3 kablo. <b>+</b> yüksek performans, kolay bakım. <b>−</b> mutlaka sürücü (ESC) gerekir, maliyet yüksek. Inrunner / outrunner.'},{y:'🎯',h:'Servo',b:'İçinde DC motor, dişli, konum potansiyometresi ve kontrol devresi; genellikle 5 V; PWM ile çalışır. <b>+</b> hassas konum, sürücü gerekmez. <b>−</b> kısıtlı hareket (çoğu 180°).'},{y:'👣',h:'Step',b:'Adım adım, çok hassas konum: CNC, 3D yazıcı. Unipolar (ortak uç) / bipolar (H-köprüsü). <b>+</b> düşük devirde yüksek tork, hassas konum ve hız. <b>−</b> verim düşük, haricî konum sınırlaması gerekir.'}]);
+(function(){const R=$('#u2-sv');let p=1.5;const draw=()=>{const ang=Math.round((p-1)*180);const r=(180-ang)*Math.PI/180;R.innerHTML=`<svg viewBox="0 0 300 90" style="width:100%;max-height:90px"><polyline points="10,70 30,70 30,20 ${30+p*20},20 ${30+p*20},70 230,70 230,20 ${230+p*20},20 ${230+p*20},70 290,70" fill="none" stroke="#2563eb" stroke-width="2.5"/><text x="${30+p*10}" y="14" text-anchor="middle" style="font:bold 11px var(--mono)">${p.toFixed(2)} ms</text><text x="130" y="86" text-anchor="middle" style="font:10px Arial;fill:#64748b">periyot (temsilî ölçek)</text></svg>
+  <svg viewBox="0 0 200 110" style="width:100%;max-height:120px"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#e2e8f0" stroke-width="10"/><line x1="100" y1="100" x2="${100+75*Math.cos(r)}" y2="${100-75*Math.sin(r)}" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/><circle cx="100" cy="100" r="9" fill="#334155"/><text x="100" y="60" text-anchor="middle" style="font:800 20px var(--mono);fill:var(--acc)">${ang}°</text></svg>
+  <input type="range" id="u2-svr" min="1" max="2" step="0.05" value="${p}" style="width:100%"><div class="xs muted">Kitap: 1.000 µs → 0°, 2.000 µs → hareket sınırı (çoğu servoda 180°). Aradaki değerler orantılı kabul edilmiştir.</div>`;$('#u2-svr').oninput=e=>{p=+e.target.value;draw();$('#u2-svr').focus()}};draw()})();
+(function(){const R=$('#u2-rd');let o=30,st=0;const draw=()=>{R.innerHTML=`<label class="sm">Dişli oranı: <b>${o}:1</b></label><input type="range" id="u2-rdo" min="1" max="60" value="${o}" style="width:100%"><div class="xs">Hız</div><div style="height:12px;background:#e2e8f0;border-radius:6px"><div style="height:100%;width:${100/o}%;background:#0ea5e9;border-radius:6px;min-width:3px"></div></div><div class="xs" style="margin-top:4px">Tork</div><div style="height:12px;background:#e2e8f0;border-radius:6px"><div style="height:100%;width:${Math.min(100,o/60*100)}%;background:#f97316;border-radius:6px"></div></div><div class="sm" style="margin-top:4px">Hız <b>1/${o}</b>, tork <b>${o} katı</b></div>
+  <hr style="border:0;border-top:1px solid var(--line);margin:8px 0"><b class="sm">Step motor</b><div class="row" style="gap:8px;align-items:center"><svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="34" fill="#f1f5f9" stroke="#334155"/>${Array.from({length:24},(_,i)=>`<line x1="${40+30*Math.cos(i*Math.PI/12)}" y1="${40+30*Math.sin(i*Math.PI/12)}" x2="${40+34*Math.cos(i*Math.PI/12)}" y2="${40+34*Math.sin(i*Math.PI/12)}" stroke="#94a3b8"/>`).join('')}<line x1="40" y1="40" x2="${40+28*Math.cos(st*Math.PI/12-Math.PI/2)}" y2="${40+28*Math.sin(st*Math.PI/12-Math.PI/2)}" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/></svg><div><button class="btn sm" id="u2-rdb">◀ 1 adım</button> <button class="btn sm" id="u2-rdf">1 adım ▶</button><div class="xs muted" style="margin-top:4px">Adım ${st} · Her komutta sabit açı kadar döner (adım sayısı temsilî).</div></div></div>`;
+  $('#u2-rdo').oninput=e=>{o=+e.target.value;draw();$('#u2-rdo').focus()};$('#u2-rdf').onclick=()=>{st=(st+1)%24;draw()};$('#u2-rdb').onclick=()=>{st=(st+23)%24;draw()}};draw()})();
+
+/* --- hareket sistemleri --- */
+sitSort($('#u2-hm'),[{t:'Düz zeminde hızlı hareket; omni, mecanum çeşitleri',a:'Tekerlek'},{t:'Sıralı tekerlekler + gerili kayış; engebeli, kaygan yüzey',a:'Palet'},{t:'Merdiven tırmanabilir, zıplayabilir; en büyük zorluk denge',a:'Ayak'},{t:'Endüstride manipülasyon; sabit çalışma alanı',a:'Robot kol'},{t:'Dönmeyi doğrusal itmeye çevirir; uçangözler',a:'Pervane'}],['Tekerlek','Palet','Ayak','Robot kol','Pervane']);
+(function(){const R=$('#u2-qc');const M={Dur:[0,0,0,0],'Havada asılı':[2,2,2,2],Yüksel:[3,3,3,3],Alçal:[1,1,1,1],'İleri eğil':[1,1,3,3],'Sağa yatış':[3,1,3,1],'Saat yönünde dön':[3,1,1,3]};const DIR=[1,-1,-1,1];let k='Havada asılı',ang=0,raf;
+ R.innerHTML=`<svg id="u2-qcs" viewBox="0 0 200 170" style="width:100%;max-height:180px"></svg><div class="row" style="gap:3px;flex-wrap:wrap" id="u2-qcb"></div><p class="xs muted" style="margin:4px 0 0">Çapraz pervaneler aynı yönde döner (↻ ↺ çiftleri); hızlarının değişmesi yükselme, alçalma, eğim, yuvarlanma ve sapmaya etki eder. Hız düzeyleri temsilîdir.</p>`;
+ const pos=[[50,40],[150,40],[50,130],[150,130]];
+ const btns=()=>{$('#u2-qcb').innerHTML=Object.keys(M).map(x=>`<button class="btn sm ${x===k?'on':''}" data-qc="${x}" style="font-size:11px">${x}</button>`).join('');$$('[data-qc]',R).forEach(b=>b.onclick=()=>{k=b.dataset.qc;btns()})};
+ const loop=()=>{if(!document.body.contains(R))return;ang+=1;const s=M[k];$('#u2-qcs').innerHTML=`<text x="100" y="12" text-anchor="middle" style="font:10px Arial;fill:#64748b">ön ↑</text><line x1="50" y1="40" x2="150" y2="130" stroke="#334155" stroke-width="8"/><line x1="150" y1="40" x2="50" y2="130" stroke="#334155" stroke-width="8"/><rect x="85" y="70" width="30" height="30" rx="6" fill="#0d9488"/>${pos.map(([px,py],i)=>`<g transform="translate(${px},${py})"><circle r="26" fill="rgba(13,148,136,${.08+s[i]*.1})" stroke="#94a3b8" stroke-dasharray="3 3"/><g transform="rotate(${ang*s[i]*12*DIR[i]})"><rect x="-22" y="-3" width="44" height="6" rx="3" fill="#475569"/></g><text y="40" text-anchor="middle" style="font:10px var(--mono)">${DIR[i]>0?'↻':'↺'} ${'▮'.repeat(s[i])||'0'}</text></g>`).join('')}`;raf=requestAnimationFrame(loop)};btns();loop()})();
+sitSort($('#u2-ob3'),[{t:'LiDAR, ultrasonik, kameralarla engel algılama; depo-lojistik',a:'Otonom mobil robot'},{t:'Şarj edilebilir batarya, öğrenme ve planlama algoritmaları ile rota',a:'Otonom mobil robot'},{t:'Pervane açısı ve motor hızlarıyla yön ve hız',a:'İHA'},{t:'Uçuş kontrol kartı: yükseklik, hız, yön verisi',a:'İHA'},{t:'Bitki tanıma ve yalnızca gereken yere ilaçlama',a:'Tarım robotu'},{t:'Çamurlu arazi için palet ya da dayanıklı tekerlek',a:'Tarım robotu'}],['Otonom mobil robot','İHA','Tarım robotu']);
+
+/* --- ölçme --- */
+shortAns($('#u2-bo'),[
+ {q:'3) Herhangi bir enerji türünü mekanik enerjiye dönüştüren aygıt',a:['motor','motorlar','elektrik motoru','aktüatör','dc motor'],x:'Kitapta DC motor “elektrik enerjisini mekanik enerjiye dönüştüren makine” olarak tanımlanır.'},
+ {q:'4) Dışarıdan güç kaynağına ihtiyaç duymadan sinyal üreten sensörler',a:['pasif sensörler','pasif sensör','pasif']},
+ {q:'5) Motorları kodla kontrol etmek, hızını ve yönünü ayarlamak için ___ kullanılır.',a:['motor sürücü','motor sürücüler','motor sürücüsü','sürücü','motor sürücü devresi']},
+ {q:'6) Hesaplama veya atama işlemi için akış diyagramında ___ şekli kullanılır.',a:['dikdörtgen','işlem','işlem sembolü','dikdörtgen şekli']}]);
+tfList($('#u2-dy'),[{t:'7) 3D yazıcılarda yazdırma kafasını milimetrik konumlandıran servo motorlar kullanılır.',a:false,x:'Step motorlar kullanılır (X, Y, Z için üç step motor).'},{t:'8) Redüktör, motorlara bağlı dişli sistemidir.',a:true}]);
+quiz($('#u2-o1'),[{q:'9) Hangisi temiz kod yazma tekniklerinden biridir?',o:['Tek satırda tüm işlemleri yazmak','Değişken isimlerini kısa ve anlamsız vermek','Gereksiz yorum satırları eklemek','Anlamlı değişken ve fonksiyon isimleri kullanmak','Fonksiyon kullanmamak'],a:3},{q:'10) İlk algoritmayı “Kitâbü’l-Muhtasar…” kitabıyla kim sunmuştur?',o:['Biruni','Harezmî','Cahit Arf','Ali Kuşçu','Mimar Sinan'],a:1}],'9–10. sorular');
+
+Object.assign(SORU,{
+ bs2:{t:'Başlarken',h:'',q:['En çok kullandığın elektronik cihazın içinde hangi parçalar var?','Elektronik bir sistem hangi işlemi nasıl yapacağını nereden bilir?','Akıllı telefon ekranına dokunulduğunu nasıl algılar?']},
+ s2a:{t:'1. Sıra Sizde · 1–2. Etkinlik',h:'',q:['RFID ile açılan otopark bariyerinin algoritması','RFID yerine plaka tanıma kullanılırsa akış diyagramı nasıl değişir?','Plaka ve giriş saati kaydedilecekse neler eklenmeli?','2. Etkinlik: ATM akış diyagramına para yatırma özelliği nasıl eklenir?']},
+ s2b:{t:'3. Sıra Sizde',h:'',q:['Kara şimşek uygulamasının kodunu nasıl yazdın? Hangi yapıyı (for, dizi, delay) kullandın?']},
+ s2c:{t:'4. Sıra Sizde · 3. Etkinlik · 1. Uygulama',h:'',q:['4. Sıra Sizde: Koddaki sorun ve düzeltilmiş hâli','3. Etkinlik: Hata tespiti, düzeltme ve sadeleştirme için yaptığın aşamalar','1. Uygulama: Servo beklenen açıya dönmezse hangi adımları izlersin?']},
+ s2d:{t:'2–3. Uygulama',h:'',q:['2. Uygulama: 1, 2, 3 pilde toplam gerilim ve lambanın parlaklığı','3. Uygulama: Akım olduğunda lambada ne gözlemlendi, akım kesilince ne değişti?']},
+ s2e:{t:'7. Sıra Sizde',h:'',q:['12 V akü ile LED yakmak için kaç ohm’luk direnç gerekir?']},
+ s2f:{t:'4. Uygulama',h:'',q:['Seçtiğin proje ve 3 temel bileşen (sensör, motor, kart)','Bileşenlerin işlevi ve projeye katkısı']},
+ s2g:{t:'5. Uygulama',h:'',q:['a) Robot neden engellerle çarpışıyor?','b) Engelleri aşması için ne yapabiliriz?','Adım adım çözüm planın','Kod engelleri algılayıp doğru tepki verir mi? Geliştirme önerin','Hâlâ çarpışıyorsa ne yaparsın?']},
+ s2h:{t:'9. Sıra Sizde',h:'',q:['Otomatik bir sera için gereken sensörler ve alternatifleri']},
+ s2i:{t:'10. Sıra Sizde',h:'',q:['Domates tarlasında kullanılacak robotun sahip olması gereken modüller']},
+ s2j:{t:'11. Sıra Sizde · 4. Etkinlik',h:'',q:['Aynı anda DC motor ve servo sürmek için nasıl bir motor sürücü gerekir?','4. Etkinlik: Devrende kullanılabilecek alternatif bileşenler ve tasarım değişiklikleri']},
+ s2k:{t:'12. Sıra Sizde',h:'',q:['Dört yönlü hareket edebilen ekskavatörün nasıl çalışırdı?','Hangi motorları kullanırdın?','Benzer çalışan robotlar var mı?']},
+ s2l:{t:'6. Uygulama · Ek Etkinlikler',h:'',q:['6. Uygulama: Farklı bir devre şeması nasıl olabilirdi?','6. Uygulama: Donanıma uygun kod yazarken nelere dikkat ettin?','1. Ek: 0–100 arası rastgele sayı için hangi fonksiyon kullanılır?','1. Ek: Sensör değeri 300’e eşit veya büyükse hangi değer döner?','3. Ek: Depo robotunda hangi motorlar ve sürücüler; dengeli taşıma ve hassas duruş için hangi motor ve algoritma?']},
+ o2:{t:'2. Ünite: açık uçlu',h:'',q:['1) Elektronik devrelerde sensörlerin rolü nedir?','2) Robot yasasının üç maddesi nedir?']}
+});
+Object.assign(EV,{
+ bs2:[{c:[['Parça','islemci|direnc|transistor|kondansator|pil|batarya|ekran|sensor|devre|kart|cip']],m:'İşlemci (entegre), dirençler, kondansatörler, transistörler, batarya, sensörler, ekran.'},{c:[['Yanıt','program|yazilim|kod|algoritma']],m:'İçine yüklenen program (yazılım / kod) sayesinde.'},{c:[['Yanıt','kapasitif|dokunmatik|sensor|elektrik']],m:'Kapasitif sensör: parmak ekrana yaklaşınca kapasitans değişir, ekran bunu algılar.'}],
+ s2a:[{n:3,c:[['Okut','kart|rfid|okut'],['Karar','kayitli|yetki|dogru|gecerli'],['Aç/kapat','ac|kapat']],m:'Başla → kartı okut → kart kayıtlı mı? Evet: bariyeri aç, bekle, kapat. Hayır: “yetkisiz kart” uyarısı → Bitir.'},{c:[['Değişim','plaka|kamera|goruntu']],m:'Girdi “kartı okut” yerine “kamerayla plakayı oku” olur; karar “plaka kayıtlı mı?” olur.'},{c:[['Ekle','kaydet|veri tabani|saat|zaman']],m:'Plakayı ve giriş saatini kaydeden bir işlem kutusu ve veritabanı (kayıt) eklenir.'},{c:[['Ekle','yatir|para|tutar|secim|karar']],m:'“İşlem seç” kararı eklenir: para çek / para yatır. Yatırmada tutar alınır, bakiye artırılır, fiş verilir.'}],
+ s2b:[{c:[['Yapı','for|dizi|delay|digitalwrite|dongu']],m:'Pinleri bir dizide tuttum; for döngüsüyle sırayla yakıp söndürdüm, aralara delay koydum; sonra ters yönde tekrarladım.'}],
+ s2c:[{c:[['Düzeltme','kasli|ayrac|\\{|setup|loop|serial.begin']],m:'Kod derlenir ve 45 yazdırır ama döngü gövdesi kaşlı ayraç içinde değildir ve kod setup/loop dışında kalmıştır; for gövdesi {} içine alınır, kod setup() içine yazılır, Serial.begin eklenir.'},{c:[['Aşama','tespit|duzelt|sadele|tekrar|gereksiz']],m:'Önce tekrarlayan yazdırmaları ve kullanılmayan x değişkenini tespit ettik, sonra düzelttik, tekrar eden kodu fonksiyona taşıyarak sadeleştirdik.'},{c:[['Adım','seri monitor|kablo|baglanti|pin|aci|guc']],m:'Seri monitöre açı değerlerini yazdırırım, kablo ve pin bağlantılarını, güç kaynağını kontrol ederim.'}],
+ s2d:[{n:2,c:[['Gerilim','1[.,]5|3|4[.,]5'],['Parlaklık','parlak|az|orta|cok']],m:'1 pil: 1,5 V az parlak · 2 pil: 3 V orta parlak · 3 pil: 4,5 V çok parlak (seri bağlantıda).'},{c:[['Gözlem','yandi|yanar|sondu|soner|yanmadi|kesil']],m:'Akım varken lamba yandı; akım kesilince (anahtar açık, pil çıkarıldı, kablo koptu) lamba söndü.'}],
+ s2e:[{c:[['Değer','500|470|560']],m:'Direnç = 50 × 12 − 100 = 500 Ω. Yakın standart değer olarak 470 Ω veya 560 Ω kullanılabilir.'}],
+ s2f:[{n:2,c:[['Proje','cizgi|engel|otonom'],['Bileşen','sensor|motor|kart|mikrodenetleyici']],m:'Engel algılayan robot: ultrasonik sensör (HC-SR04), DC motor + L298N sürücü, mikrodenetleyici tabanlı kart.'},{c:[['Katkı','algila|hareket|karar|kontrol|mesafe']],m:'Sensör mesafeyi algılar, kart karar verir, motorlar robotu hareket ettirir.'}],
+ s2g:[{c:[['Neden','sensor|algila|mesafe|hiz']],m:'Sensör engeli algılamıyor ya da geç algılıyor; hız çok yüksek.'},{c:[['Çözüm','sensor|mesafe|dur|don|yavas']],m:'Mesafe sensörü kullanıp eşik altında durmak, geri gitmek ve dönmek; hızı azaltmak.'},{c:[['Plan','#items:3']],m:'1. Mesafeyi ölç\n2. Eşiğin altındaysa dur, geri git, sağa dön\n3. Değilse ileri git\n4. Test et ve eşiği ayarla'},{c:[['Değerlendirme','evet|hayir|esik|sensor|sol|sag|0']],m:'Kısmen: mesafe 0 dönerse (sensör hatası) koşul sağlanmaz ve robot çarpar; ayrıca hep sağa döner. Sensör kontrolü ve iki yönü ölçüp boş tarafa dönme eklenebilir.'},{c:[['Geliştirme','sensor|ek|esik|hiz|kalibr|test']],m:'Eşik mesafesini büyütür, hızı düşürür, ikinci sensör eklerim, sensörü kalibre edip yeniden test ederim.'}],
+ s2h:[{c:[['Sensör','nem|sicaklik|isik|ldr|gaz|toprak|yagmur']],m:'Toprak nem sensörü (alternatif: kapasitif nem), sıcaklık-nem sensörü DHT11 (alternatif: NTC), ışık için LDR (alternatif: fotodiyot), gaz sensörü.'}],
+ s2i:[{c:[['Modül','gps|kamera|wi-?fi|bluetooth|nem|sd|zaman|motor']],m:'GPS, kameralı bitki tanıma, toprak nem sensörü, wi-fi/bluetooth iletişim, SD kayıt, zaman modülü, motor sürücü.'}],
+ s2j:[{c:[['Yanıt','l298n|l293d|ayri|pwm|surucu|servo']],m:'DC motor için H-köprülü bir sürücü (L298N / L293D); servo PWM ile doğrudan karttan sürülür, ortak ve yeterli güç kaynağı sağlanır.'},{c:[['Alternatif','ldr|direnc|fotodiyot|transistor|pot']],m:'LDR yerine fotodiyot, sabit direnç yerine potansiyometre, LED’i sürmek için transistör kullanılabilir.'}],
+ s2k:[{c:[['Çalışma','tekerlek|palet|omni|mecanum|dort yon|don']],m:'Mecanum/omni tekerlekli ya da paletli, her yöne dönebilen gövde; kol servo ile kontrol edilir.'},{c:[['Motor','dc|servo|step|reduktor']],m:'Hareket için redüktörlü DC motor, kol eklemleri için servo, hassas konum için step motor.'},{c:[['Yanıt','evet|var|amfibi|robot']],m:'Evet: amfibi ekskavatörler ve yürüyen (örümcek) ekskavatörler.'}],
+ s2l:[{c:[['Fikir','rgb|led|buton|pot|farkli|pin']],m:'RGB LED yerine üç ayrı LED kullanılabilir ya da butonun pull-down direnci yerine INPUT_PULLUP seçilebilir.'},{c:[['Dikkat','pin|pwm|analog|dijital|map|direnc']],m:'Pin numaralarının devreyle aynı olması, PWM ve analog pinlerin doğru seçilmesi, potansiyometre değerinin map ile 1–10’a dönüştürülmesi.'},{c:[['Fonksiyon','random']],m:'random(0, 101) (random(101) de olur).'},{c:[['Değer','\\b1\\b|bir']],m:'1 değerini döndürür.'},{n:2,c:[['Motor','dc|step|servo'],['Sürücü','l298n|l293d|surucu']],m:'Hareket: redüktörlü DC motor + L298N. Kaldırma: step motor + step sürücü (hassas konum). Dengeli taşıma için PID benzeri kontrol algoritması.'}],
+ o2:[{c:[['Rol','algila|veri|cevre|fiziksel|sinyal']],m:'Sensörler çevreden ışık, sıcaklık, mesafe gibi fiziksel/kimyasal değişimleri algılar ve bunları devrenin işleyebileceği elektriksel sinyallere dönüştürür.'},{n:3,c:[['1. yasa','zarar'],['2. yasa','emir|emrine'],['3. yasa','varligini|kendini koru']],m:'1) Robot insana zarar veremez ya da zarar görmesine seyirci kalamaz.\n2) Birinci yasayla çelişmedikçe insanın emrine uyar.\n3) Birinci ve ikinci yasayla çelişmedikçe kendi varlığını korur.'}]
+});
+SORU_MAP.push(['s-2-0','bs2','📖 Başlarken','#bas2-c'],['s-2-2','s2a','📖 1. Sıra Sizde · Etkinlikler'],['s-2-13','s2b','📖 3. Sıra Sizde'],['s-2-14','s2c','📖 4. Sıra Sizde · 3. Etkinlik'],['s-2-16','s2d','📖 2–3. Uygulama'],['s-2-18','s2e','📖 7. Sıra Sizde'],['s-2-20','s2f','📖 4. Uygulama'],['s-2-21','s2g','📖 5. Uygulama'],['s-2-22','s2h','📖 9. Sıra Sizde'],['s-2-23','s2i','📖 10. Sıra Sizde'],['s-2-24','s2j','📖 11. Sıra Sizde · 4. Etkinlik'],['s-2-25','s2k','📖 12. Sıra Sizde'],['s-2-27','s2l','📖 6. Uygulama · Ek Etkinlikler'],['s-2-28','o2','📖 1–2. sorular']);
+/* ============ 2. ÜNİTE: KART SİMÜLATÖRÜ ÖRNEKLERİ ============ */
+const KN=(t)=>`<b>⚠ Kitaptaki kodda hata var:</b> ${t}`;
+const DN=(t)=>`<b>✔ Düzeltilmiş hâl:</b> ${t}`;
+
+ardSim($('#u2-s1'),{h:240,ex:[
+ {n:'3. Örnek',parts:[{t:'btn',pin:3}],note:'setup() kart enerjilenince ya da reset atılınca <b>bir kez</b> çalışır: pin modları, seri haberleşme, kütüphane başlatma burada. loop() boş olduğu için kart başka bir şey yapmaz.',code:`
+int buton = 3; // Buton 3. pine tanımlandı.
+void setup ()
+{
+  Serial.begin (9600); // Seri haberleşme başlatıldı.
+  pinMode (buton, INPUT); // Pin modu tanımlandı.
+}
+void loop ()
+{
+}`},
+ {n:'4. Örnek (kitaptaki)',parts:[{t:'btn',pin:3}],note:KN('<code>buttonPin</code> tanımlı değil (değişkenin adı <code>buton</code>), metinler tek tırnakla yazılmış, loop() kapatılmamış ve <code>delay</code> yalnızca else satırına bağlı. <b>✔ Kontrol Et</b> ile hataları gör.'),code:`
+int buton = 3; // buton 3. pine tanımlandı.
+void setup()
+{
+  Serial.begin(9600); // seri haberleşme başlatıldı.
+  pinMode(buton, INPUT); // 3. pin, giriş pini oldu.
+}
+void loop()
+{
+  if (digitalRead(buttonPin) == HIGH)
+  Serial.write('Basıldı'); // Seri ekrana yazdı.
+  else
+  Serial.write('Basılmadı'); delay(1000);
+`},
+ {n:'4. Örnek (düzeltilmiş)',parts:[{t:'btn',pin:3}],note:DN('Butonu basılı tut: seri port ekranında “Basıldı” yazar. loop() sonsuz döngüdür; her saniye butonu yeniden okur.'),code:`
+int buton = 3; // buton 3. pine tanımlandı.
+void setup()
+{
+  Serial.begin(9600); // seri haberleşme başlatıldı.
+  pinMode(buton, INPUT); // 3. pin, giriş pini oldu.
+}
+void loop()
+{
+  if (digitalRead(buton) == HIGH)
+    Serial.println("Basıldı"); // Seri ekrana yazdı.
+  else
+    Serial.println("Basılmadı");
+  delay(1000); // 1 saniye bekle.
+}`}]});
+
+ardSim($('#u2-s2'),{h:210,ex:[
+ {n:'#define + print/println',parts:[{t:'led',pin:13,l:'L LED'}],note:'<code>#define ledpin 13</code>: program “ledpin” gördüğü yerde 13’ü kullanır. <span class="xs">(Kitapta satır sonunda virgül var: <code>#define ledpin 13,</code> — #define satırı virgül ya da noktalı virgülle bitmez.)</span>',code:`
+#define ledpin 13
+int sayac = 0;
+void setup()
+{
+  pinMode(ledpin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Merhaba!");
+}
+void loop()
+{
+  sayac = sayac + 1;
+  Serial.print("Yanip sonme sayisi: "); // yan yana yazar
+  Serial.println(sayac);                 // yazar ve alt satira gecer
+  digitalWrite(ledpin, HIGH);
+  delay(500);
+  digitalWrite(ledpin, LOW);
+  delay(500);
+}`},
+ {n:'Kitaptaki yazım: 9.600',parts:[],note:KN('Metinde <code>Serial.begin (9.600);</code> yazıyor. Noktalı yazılınca hız 9,6 olur ve ekrandaki 9600 ile eşleşmez: çıktı bozuk görünür. Doğrusu <code>Serial.begin(9600);</code>'),code:`
+void setup()
+{
+  Serial.begin(9.600);
+}
+void loop()
+{
+  Serial.println("merhaba");
+  delay(1000);
+}`}]});
+
+ardSim($('#u2-s3'),{h:240,ex:[
+ {n:'5. Örnek (kitaptaki)',parts:[],note:KN('<code>j</code> hiç tanımlanmamış, <code>x</code> ve <code>r</code>’ye başlangıç değeri verilmemiş, kod bir fonksiyonun içinde değil. Çalıştırıp hata mesajını gör.'),code:`
+int x,y,i,r;
+void setup()
+{
+  Serial.begin(9600);
+  y = x + 3;
+  x = x - 7;
+  i = j * 6;
+  r = r / 5;
+}
+void loop() { }`},
+ {n:'5. Örnek (düzeltilmiş)',parts:[],note:DN('Değişkenlere başlangıç değeri verildi. Dikkat: int ile bölme tam sayı verir (20 / 5 = 4, 22 / 5 = 4).'),code:`
+int x = 10, y, i, r = 22, j = 2;
+void setup()
+{
+  Serial.begin(9600);
+  y = x + 3;   Serial.print("y = x + 3 = ");  Serial.println(y);
+  x = x - 7;   Serial.print("x = x - 7 = ");  Serial.println(x);
+  i = j * 6;   Serial.print("i = j * 6 = ");  Serial.println(i);
+  r = r / 5;   Serial.print("r = r / 5 = ");  Serial.println(r);
+}
+void loop() { }`},
+ {n:'6. Örnek (&&)',parts:[{t:'btn',pin:2,l:'Buton 1'},{t:'btn',pin:3,l:'Buton 2'},{t:'led',pin:13}],note:'İki butona birlikte bas (birini “kilitle”, diğerine bas). <b>Fark et:</b> kitaptaki kodda LED’i söndüren bir satır yok; LED bir kez yanınca hep yanık kalır. Bir sonraki sekmede else eklendi.',code:`
+int buton1 = 2; // Butonu 2. pine tanımladık.
+int buton2 = 3; // Butonu 3. pine tanımladık.
+int led = 13;   // LED'i 13. pine tanımladık.
+void setup()
+{
+  pinMode(buton1, INPUT);
+  pinMode(buton2, INPUT);
+  pinMode(led, OUTPUT);
+}
+void loop() // sonsuz döngü
+{
+  int oku1 = digitalRead(2);
+  int oku2 = digitalRead(3);
+  if (oku1 == HIGH && oku2 == HIGH)
+  {
+    digitalWrite(led, HIGH); // LED'i yak.
+  }
+}`},
+ {n:'|| ve else',parts:[{t:'btn',pin:2,l:'Buton 1'},{t:'btn',pin:3,l:'Buton 2'},{t:'led',pin:13}],note:'<b>||</b>: herhangi bir butona basınca LED yanar. <b>else</b> ile basılmadığında söner. && ile değiştirip farkı dene.',code:`
+int buton1 = 2;
+int buton2 = 3;
+int led = 13;
+void setup()
+{
+  pinMode(buton1, INPUT);
+  pinMode(buton2, INPUT);
+  pinMode(led, OUTPUT);
+}
+void loop()
+{
+  int oku1 = digitalRead(buton1);
+  int oku2 = digitalRead(buton2);
+  if (oku1 == HIGH || oku2 == HIGH)
+  {
+    digitalWrite(led, HIGH);
+  }
+  else
+  {
+    digitalWrite(led, LOW);
+  }
+}`}]});
+
+ardSim($('#u2-s4'),{h:250,ex:[
+ {n:'7. Örnek (kitaptaki)',parts:[{t:'btn',pin:10},{t:'led',pin:13}],note:KN('<code>if (buton == a)</code> butonu okumuyor; pin numarası olan 10’u true (1) ile karşılaştırıyor, bu yüzden koşul hiç sağlanmaz. Ayrıca pinMode yok ve loop() kapatılmamış.'),code:`
+int a = true;  // a doğru.
+int b = false; // b yanlış.
+int led=13;    // LED 13. pine tanımlandı.
+int buton=10;  // Buton 10. pine tanımlandı.
+void setup() //ana kurulum
+{ }
+void loop() // sonsuz döngü
+{
+  if (buton == a) // Butona basıldı mı?
+  {
+    digitalWrite(led, HIGH); // LED'e 5V ver.
+    delay(1000);             // 1 saniye bekle.
+    digitalWrite(led, LOW);  // LED'i söndür.
+  }
+`},
+ {n:'7. Örnek (düzeltilmiş)',parts:[{t:'btn',pin:10},{t:'led',pin:13}],note:DN('Buton <code>digitalRead(buton)</code> ile okunuyor ve pin modları tanımlandı. true = 1 = HIGH olduğu için karşılaştırma çalışır.'),code:`
+int a = true;  // a doğru (1).
+int b = false; // b yanlış (0).
+int led = 13;
+int buton = 10;
+void setup()
+{
+  pinMode(buton, INPUT);
+  pinMode(led, OUTPUT);
+}
+void loop()
+{
+  if (digitalRead(buton) == a) // Butona basıldı mı?
+  {
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+  }
+}`},
+ {n:'8. Örnek (if)',parts:[{t:'btn',pin:7},{t:'led',pin:9}],note:'Yalnızca if var: butona bir kez basınca LED yanar ve <b>sönmez</b>; çünkü basılmadığı durum için bir işlem yazılmamış. (Kitapta loop() kapanış ayracı da eksik; burada eklendi.)',code:`
+int buton = 7; // Buton, 7. pine tanımlandı.
+int led = 9;   // LED, 9. pine tanımlandı.
+void setup()
+{
+  pinMode(buton, INPUT); // 7. pin giriş
+  pinMode(led, OUTPUT);  // 9. pin çıkış
+}
+void loop() // sonsuz döngü
+{
+  if (digitalRead(buton) == HIGH)
+  {
+    digitalWrite(led, HIGH);
+  }
+}`},
+ {n:'9. Örnek (if/else)',parts:[{t:'btn',pin:7},{t:'led',pin:9}],note:'else eklendi: butona basılmadığında LED söner.',code:`
+int buton = 7; // Buton, 7. pine tanımlandı.
+int led = 9;   // LED, 9. pine tanımlandı.
+void setup()
+{
+  pinMode(buton, INPUT);
+  pinMode(led, OUTPUT);
+}
+void loop() //sonsuz döngü
+{
+  if (digitalRead(buton) == HIGH)
+  {
+    digitalWrite(led, HIGH);
+  }
+  else // Butona basılmamışsa
+  {
+    digitalWrite(led, LOW); // LED'i söndür.
+  }
+}`}]});
+
+ardSim($('#u2-s5'),{h:250,ex:[
+ {n:'10. Örnek (kitaptaki)',parts:[{t:'pot',pin:'A0'}],note:KN('<code>map(okunandeger, 0, 1023, 0, 1)</code> tam sayı bölmesi yaptığı için yalnızca 1023 değerinde 1 verir; 512–1022 arası da 0 olur. Potansiyometreyi kaydırıp dene. Ayrıca soru 0/1 yazdırmayı istiyor, kod “düşük/yüksek” yazdırıyor.'),code:`
+void setup()
+{
+  Serial.begin(9600); //Seri haberleşme başlatıldı.
+}
+void loop()
+{
+  int okunandeger = analogRead(A0);
+  int menzil = map(okunandeger, 0, 1023, 0, 1);
+  switch (menzil)
+  {
+    case 0:
+      Serial.println("düşük");
+      break;
+    case 1:
+      Serial.println("yüksek");
+      break;
+  }
+  delay(300);
+}`},
+ {n:'10. Örnek (düzeltilmiş)',parts:[{t:'pot',pin:'A0'}],note:DN('<code>map(okunandeger, 0, 1024, 0, 2)</code>: 0–511 → 0, 512–1023 → 1. Soruda istendiği gibi 0 ve 1 yazdırılıyor.'),code:`
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  int okunandeger = analogRead(A0);
+  int menzil = map(okunandeger, 0, 1024, 0, 2);
+  switch (menzil)
+  {
+    case 0: // 0-511
+      Serial.println(0);
+      break;
+    case 1: // 512-1023
+      Serial.println(1);
+      break;
+  }
+  delay(300);
+}`}]});
+
+ardSim($('#u2-s6'),{h:250,ex:[
+ {n:'11. Örnek (kitaptaki)',parts:[{t:'led',pin:0,l:'LED (pin 0)'}],note:KN('LED 0 numaralı pine (RX) tanımlanmış, pinMode yok, LED söndükten sonra bekleme yok: LED hep yanıyor gibi görünür ve sönük kalır.'),code:`
+int led=0;
+void setup()
+{
+}
+void loop()
+{
+  for( int i=0; i<100; i++)
+  {
+    digitalWrite(led, HIGH); //LED'i yak.
+    delay(1000);             // 1 saniye bekle.
+    digitalWrite(led, LOW);  //LED'i söndür.
+  }
+}`},
+ {n:'11. Örnek (düzeltilmiş)',parts:[{t:'led',pin:13}],note:DN('LED 13. pinde, pinMode var, söndükten sonra da 1 sn bekleniyor. 100 tekrar bitince program durur (while(true)). Hızlı görmek için 10× seç.'),code:`
+int led = 13;
+void setup()
+{
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  for (int i = 0; i < 100; i++)
+  {
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+    delay(1000);
+    Serial.println(i + 1);
+  }
+  while (true) { delay(1000); } // 100 kez yaptı, dur.
+}`},
+ {n:'12. Örnek (kitaptaki)',parts:[{t:'led',pin:13}],note:KN('while satırından sonra kaşlı ayraç yok: döngünün içinde yalnızca ilk satır (LED’i yak) kalır, <code>ifade</code> hiç artmaz ve döngü sonsuza kadar sürer. LED de hiç sönmez. (Kitapta LED 0. pinde; burada 13 kullanıldı.)'),code:`
+int ifade=0;
+int led=13;
+void setup()
+{
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  while (ifade<50) // Koşulu kontrol eder.
+  digitalWrite(led, HIGH); //LED'i yakar.
+  delay(1000);
+  digitalWrite(led, LOW);
+  ifade=ifade+1;
+  Serial.println(ifade);
+}`},
+ {n:'12. Örnek (düzeltilmiş)',parts:[{t:'led',pin:13}],note:DN('Döngü gövdesi kaşlı ayraç içinde. <code>ifade &lt; 49</code> ile soruda istenen 49 tekrar yapılır (kitaptaki <code>&lt; 50</code> 50 kez çalışır).'),code:`
+int ifade = 0;
+int led = 13;
+void setup()
+{
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  while (ifade < 49)
+  {
+    digitalWrite(led, HIGH);
+    delay(500);
+    digitalWrite(led, LOW);
+    delay(500);
+    ifade++;
+    Serial.println(ifade);
+  }
+}`},
+ {n:'13. Örnek (kitaptaki)',parts:[],note:KN('<code>do</code> yazılmamış: kaşlı ayraçlı blok bir kez çalışır, ardından <code>while (sayi&lt;25);</code> boş bir sonsuz döngü olur. Program “sayi =5” yazıp takılır.'),code:`
+void setup()
+{
+  int sayi = 0;
+  Serial.begin(9600);
+  {
+    sayi = sayi+5;
+    Serial.print("sayi =");
+    Serial.println(sayi);
+    delay(500); // 500 ms bekleme
+  }
+  while (sayi< 25);
+}
+void loop()
+{
+}`},
+ {n:'13. Örnek (düzeltilmiş)',parts:[],note:DN('<code>do { … } while (sayi &lt; 25);</code> Önce artırır ve yazar, sonra koşulu kontrol eder: 5, 10, 15, 20, 25.'),code:`
+void setup()
+{
+  int sayi = 0;
+  Serial.begin(9600);
+  do
+  {
+    sayi = sayi + 5;
+    Serial.print("sayi = ");
+    Serial.println(sayi);
+    delay(500);
+  }
+  while (sayi < 25);
+}
+void loop()
+{
+}`}]});
+
+ardSim($('#u2-s7'),{h:240,ex:[
+ {n:'14. break',parts:[{t:'led',pin:9,l:'LED (~9)'},{t:'an',pin:'A0',l:'Sensör',v:100}],note:'LED yavaşça parlıyor (PWM). Sensör değerini 300’ün üstüne çıkar: <b>break</b> döngüden çıkar ve döngü baştan başlar. (Kitaptaki parça tam programa çevrildi; pinler temsilî.)',code:`
+int PWMpin = 9;
+int sensorPin = A0;
+int sens;
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  for (int x = 0; x < 255; x++)
+  {
+    analogWrite(PWMpin, x);
+    sens = analogRead(sensorPin);
+    if (sens > 300)
+    {
+      x = 0;
+      Serial.println("Sensor > 300: break!");
+      break;
+    }
+    delay(20);
+  }
+}`},
+ {n:'15. continue',parts:[],note:'x 40’tan büyük ve 120’den küçükken <b>continue</b> o turun kalanını atlar; bu değerler ekrana yazılmaz. ⚠ Kitaptaki açıklamada “120’den büyük ve 120’den küçük” yazıyor; doğrusu “40’tan büyük ve 120’den küçük”.',code:`
+void setup()
+{
+  Serial.begin(9600);
+  for (int x = 0; x < 255; x = x + 10)
+  {
+    if (x > 40 && x < 120)
+    {
+      continue; // bu değerlerde aşağıdaki satır çalışmaz
+    }
+    Serial.println(x);
+  }
+}
+void loop() { }`},
+ {n:'16. return',parts:[{t:'an',pin:'A0',l:'Sensör',v:200}],note:'<code>sensorkontrol()</code> fonksiyonu değeri <b>return</b> ile döndürür: 250’den büyükse 1, değilse 0.',code:`
+int sensorkontrol()
+{
+  if (analogRead(0) > 250)
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+}
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  Serial.println(sensorkontrol());
+  delay(500);
+}`},
+ {n:'17. return (loop)',parts:[{t:'led',pin:13}],note:'return’den sonraki satırlar hiç çalışmaz: LED yanar ama hiç sönmez.',code:`
+void setup()
+{
+  pinMode(13, OUTPUT);
+}
+void loop()
+{
+  digitalWrite(13, HIGH);
+  delay(500);
+  return;
+  // Çalışması istenmeyen kodlar:
+  digitalWrite(13, LOW);
+  delay(500);
+}`},
+ {n:'18. goto',parts:[],note:'goto akışı etiketli bir satıra yönlendirir. Bu simülatör goto’yu çalıştırmaz; gerçek kart derler. Okunabilirliği bozduğu için genelde önerilmez.',code:`
+void loop()
+{
+  int x = analogRead(0);
+  if (x < 200)
+  {
+    goto buradandevam;
+  }
+  buradandevam:
+  delay(1000);
+  // istenen kod
+}`},
+ {n:'19. random(300)',parts:[],note:'0 ile 299 arasında rastgele sayı (üst sınır dâhil değil).',code:`
+long rastgelesayi;
+void setup()
+{
+  randomSeed(analogRead(0));
+  Serial.begin(9600);
+}
+void loop()
+{
+  rastgelesayi = random(300);
+  Serial.println(rastgelesayi);
+  delay(1000);
+}`},
+ {n:'20. random(10,20)',parts:[],note:'10 ile 19 arasında: alt sınır dâhil, üst sınır dâhil değil.',code:`
+long rastgelesayi;
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  rastgelesayi = random(10, 20);
+  Serial.println(rastgelesayi);
+  delay(1000);
+}`},
+ {n:'21. delay (düzeltilmiş)',parts:[{t:'led',pin:8}],note:'delayMicroseconds(100) yalnızca 0,1 milisaniye bekler: LED 1 sn yanar, gözün fark edemeyeceği kadar kısa söner. ⚠ Kitapta loop() kapatılmamış ve yorumda pin 8 “giriş” denmiş; LED çıkıştır.',code:`
+int led = 8; // dijital pin 8 çıkış
+void setup()
+{
+  pinMode(led, OUTPUT);
+}
+void loop()
+{
+  digitalWrite(led, HIGH); // LED yansın.
+  delay(1000);             // 1 sn bekle.
+  digitalWrite(led, LOW);  // LED sönsün.
+  delayMicroseconds(100);  // 100 mikrosaniye bekle.
+}`}]});
+
+ardSim($('#u2-s8'),{h:240,ex:[
+ {n:'22. Örnek: digitalRead',parts:[{t:'btn',pin:2}],note:'Basılmadıysa 0, basıldıysa 1.',code:`
+int buton = 2; // Buton dijital 2'ye tanımlandı.
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(buton, INPUT);
+}
+void loop()
+{
+  int butondurumu = digitalRead(buton);
+  Serial.println(butondurumu);
+  delay(1000);
+}`},
+ {n:'23. Örnek: volt',parts:[{t:'pot',pin:'A0'}],note:'0–1023 değeri 0–5 V’a çevrilir: volt = değer × (5.0 / 1023.0). Kitaptaki kodda bekleme yok, ekran çok hızlı akar; burada okunabilsin diye delay(300) eklendi.',code:`
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  int sensor = analogRead(A0);
+  float volt = sensor * (5.0 / 1023.0);
+  Serial.println(volt);
+  delay(300);
+}`},
+ {n:'24. Örnek: PWM parlaklık',parts:[{t:'pot',pin:'A3'},{t:'led',pin:3,l:'LED (~3)'}],note:'Potansiyometreyi kaydır: 0–1023 değeri 4’e bölünerek 0–255 olur ve LED parlaklığı değişir. 3 numaralı pin PWM (~) pinidir.',code:`
+int ledPin = 3;     // LED, 3. pine tanımlandı.
+int analogPin = A3; // Potansiyometre A3'e bağlandı.
+int deger = 0;
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+void loop() {
+  deger = analogRead(analogPin);  // 0-1023
+  analogWrite(ledPin, deger / 4); // 0-255
+}`}]});
+
+ardSim($('#u2-s9'),{h:250,ex:[
+ {n:'Kendi kodun',parts:[8,9,10,11,12,13].map((p,i)=>({t:'led',pin:p,c:['red','orange','yellow','green','blue','white'][i]})),note:'LED’ler 8–13 numaralı pinlerde. Sıralı yakıp söndüren kodu sen yaz, sonra <b>▶</b> ile dene.',code:`
+// 3. Sıra Sizde: Kara şimşek
+// LED'ler 8, 9, 10, 11, 12, 13 numaralı pinlerde.
+void setup()
+{
+
+}
+void loop()
+{
+
+}`},
+ {n:'Örnek çözüm (temsilî)',parts:[8,9,10,11,12,13].map((p,i)=>({t:'led',pin:p,c:['red','orange','yellow','green','blue','white'][i]})),note:'Kitapta çözüm verilmiyor; bu bir örnek çözümdür. Dizi ve for döngüsüyle ileri-geri tarama.',code:`
+int ledler[6] = {8, 9, 10, 11, 12, 13};
+int bekle = 100;
+void setup()
+{
+  for (int i = 0; i < 6; i++)
+  {
+    pinMode(ledler[i], OUTPUT);
+  }
+}
+void loop()
+{
+  for (int i = 0; i < 6; i++)   // ileri
+  {
+    digitalWrite(ledler[i], HIGH);
+    delay(bekle);
+    digitalWrite(ledler[i], LOW);
+  }
+  for (int i = 4; i > 0; i--)   // geri
+  {
+    digitalWrite(ledler[i], HIGH);
+    delay(bekle);
+    digitalWrite(ledler[i], LOW);
+  }
+}`}]});
+
+ardSim($('#u2-s10'),{h:250,ex:[
+ {n:'25. Örnek',parts:[{t:'an',pin:'A0',l:'Sıcaklık sensörü',v:250},{t:'led',pin:13}],note:'Seri monitör sensör değerini gösterir; değer eşiği (300) geçince LED yanar. Yorum satırları her satırın görevini açıklar.',code:`
+int sensorPin = A0;    // Sıcaklık sensörünün bağlı olduğu pin
+int ledPin = 13;       // LED'in bağlı olduğu pin
+int esikDegeri = 300;  // Eşik değer
+int sensorDegeri = 0;  // Sensör okuma değeri
+void setup() {
+  pinMode(ledPin, OUTPUT);  // LED çıkış
+  Serial.begin(9600);       // Seri haberleşme
+}
+void loop() {
+  sensorDegeri = analogRead(sensorPin);  // Sensörden okuma
+  Serial.println(sensorDegeri);          // Değeri yazdır
+  if (sensorDegeri > esikDegeri) {       // Eşiğin üstündeyse
+    digitalWrite(ledPin, HIGH);          // LED yanar
+  } else {
+    digitalWrite(ledPin, LOW);           // LED söner
+  }
+  delay(1000);                           // 1 sn bekle
+}`},
+ {n:'29. Örnek (kitaptaki)',parts:[{t:'an',pin:'A0',l:'Sıcaklık sensörü',v:250}],note:KN('<code>sensorDeğeri</code> Türkçe “ğ” ile yazılmış (tanımlı değişken <code>sensorDegeri</code>) ve loop() kapatılmamış. ✔ Kontrol Et.'),code:`
+int sensorPin = A0; // Sıcaklık sensörünün bağlı olduğu pin
+int sensorDegeri = 0;
+void setup() {
+  Serial.begin(9600); // Seri monitör başlatılıyor.
+}
+void loop() {
+  sensorDegeri = analogRead(sensorPin); // Sensör değerini oku.
+  Serial.print("Sıcaklık Değeri: ");
+  Serial.println(sensorDeğeri); // Sensör değerini yazdır.
+  delay(1000);
+`},
+ {n:'29. Örnek (düzeltilmiş)',parts:[{t:'an',pin:'A0',l:'Sıcaklık sensörü',v:250}],note:DN('Değişken adı tutarlı, ayraç kapatıldı. Her saniye bir okuma yapılıyor.'),code:`
+int sensorPin = A0;
+int sensorDegeri = 0;
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  sensorDegeri = analogRead(sensorPin);
+  Serial.print("Sıcaklık Değeri: ");
+  Serial.println(sensorDegeri);
+  delay(1000);
+}`},
+ {n:'4. Sıra Sizde',parts:[],note:'Kitaptaki kod parçası (tam programa yerleştirildi). Döngü gövdesinde kaşlı ayraç yok, açıklamalar yanlış satırlarda. Çalıştır, sonucu gör, sonra düzenle. 📖 4. Sıra Sizde.',code:`
+void setup() {
+  Serial.begin(9600);
+  int sonuc = 0;
+  int sayac = 10;
+  for (int i = 0; i < sayac; i++)
+  sonuc += i;
+  // Döngü içinde toplanan değerler
+  Serial.println(sonuc);
+  // Döngü dışında
+}
+void loop() { }`},
+ {n:'3. Etkinlik (hatalı kod)',parts:[{t:'led',pin:4}],note:'LED’i yanıp söndüren ama tekrarlı ve gereksiz satırlar içeren kod. Tekrarları ve kullanılmayan <code>x</code>’i bul; kodu sadeleştirip yeniden çalıştır. 📖 3. Etkinlik.',code:`
+int led = 4;
+int durum = 0;
+void setup()
+{
+  pinMode(led, OUTPUT);
+  Serial.begin(9600); // Seri monitör başlatılıyor.
+  Serial.println("Program baslatildi");
+  Serial.println("LED kontrolu baslatiliyor...");
+}
+void loop() {
+  digitalWrite(led, HIGH); // LED'i yak.
+  durum = 1;
+  Serial.print("LED su anda: ");
+  Serial.println(durum);
+  Serial.println("LED AÇILDI");
+  Serial.println("LED AÇILDI");
+  delay(1000);
+  digitalWrite(led, LOW); // LED'i söndür.
+  durum = 0;
+  Serial.print("LED su anda: ");
+  Serial.println(durum);
+  Serial.println("LED KAPATILDI");
+  Serial.println("LED KAPATILDI"); // LED durumunu seri monitöre yazdır.
+  delay(1000);
+  int x = 0;
+  x = x + 1;
+}`},
+ {n:'1. Uygulama: servo',parts:[{t:'servo',pin:9}],note:'Servo 0°, 90° ve 180°’ye döner; her adımda açı seri monitöre yazılır. Motor beklenen açıya gitmiyorsa önce seri monitör çıktısına, sonra pin (9) ve kablo bağlantısına bak. (Örnek kod temsilîdir.)',code:`
+#include <Servo.h>
+Servo motor;
+int acilar[3] = {0, 90, 180};
+void setup()
+{
+  motor.attach(9);
+  Serial.begin(9600);
+}
+void loop()
+{
+  for (int i = 0; i < 3; i++)
+  {
+    motor.write(acilar[i]);
+    Serial.print("Hedef aci: ");
+    Serial.println(acilar[i]);
+    delay(1000);
+  }
+}`}]});
+
+ardSim($('#u2-s11'),{h:250,ex:[
+ {n:'6. Uygulama',parts:[{t:'pot',pin:'A0'},{t:'btn',pin:2},{t:'rgb',r:9,g:10,b:11}],note:'Potansiyometre değeri map ile 1–10’a dönüştürülür; butona basınca RGB LED o sayı kadar yanıp söner. Kitapta yalnızca devre şeması var; kod ve pinler temsilîdir.',code:`
+int potPin = A0;
+int butonPin = 2;
+int kirmizi = 9, yesil = 10, mavi = 11;
+void setup()
+{
+  pinMode(butonPin, INPUT);
+  pinMode(kirmizi, OUTPUT);
+  pinMode(yesil, OUTPUT);
+  pinMode(mavi, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  int sayi = map(analogRead(potPin), 0, 1023, 1, 10);
+  if (digitalRead(butonPin) == HIGH)
+  {
+    Serial.print("Yanip sonme sayisi: ");
+    Serial.println(sayi);
+    for (int i = 0; i < sayi; i++)
+    {
+      digitalWrite(yesil, HIGH);
+      delay(300);
+      digitalWrite(yesil, LOW);
+      delay(300);
+    }
+  }
+}`},
+ {n:'7. Uygulama',parts:[{t:'us',trig:9,echo:10,v:40},{t:'led',pin:13},{t:'motor',pin:5}],note:'Engelle mesafe 15 cm veya daha azsa LED yanar, motor durur; fazlaysa LED söner, motor çalışır. Ultrasonik sensörün mesafesini kaydır. Kod ve pinler temsilîdir.',code:`
+int trigPin = 9;
+int echoPin = 10;
+int ledPin = 13;
+int motorPin = 5;   // transistör üzerinden DC motor
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(motorPin, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long sure = pulseIn(echoPin, HIGH);
+  int mesafe = sure * 0.034 / 2;   // cm
+  Serial.print("Mesafe: ");
+  Serial.println(mesafe);
+  if (mesafe <= 15)
+  {
+    digitalWrite(ledPin, HIGH);
+    digitalWrite(motorPin, LOW);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+    digitalWrite(motorPin, HIGH);
+  }
+  delay(200);
+}`}]});
+
+ardSim($('#u2-s12'),{h:250,ex:[
+ {n:'1. Ek Etkinlik',parts:[{t:'an',pin:'A0',l:'Sensör',v:200}],note:'1) random(0, 101) ile 0–100 arası sayı. 2) Sensör değeri 300’den küçükse 0, değilse 1 döndüren fonksiyon. Kod temsilîdir.',code:`
+int sensorDurumu()
+{
+  if (analogRead(A0) < 300)
+    return 0;
+  else
+    return 1;
+}
+void setup()
+{
+  Serial.begin(9600);
+  randomSeed(analogRead(A1));
+}
+void loop()
+{
+  int sayi = random(0, 101);
+  Serial.print("Rastgele: ");
+  Serial.print(sayi);
+  Serial.print("  Sensor durumu: ");
+  Serial.println(sensorDurumu());
+  delay(1000);
+}`},
+ {n:'2. Ek: Hırsız alarmı',parts:[{t:'pir',pin:2},{t:'led',pin:13},{t:'buz',pin:8}],note:'PIR hareket algılayınca LED yanar ve buzzer öter. “Hareket” kutusunu işaretle. Kod temsilîdir.',code:`
+int pirPin = 2;
+int ledPin = 13;
+int buzzerPin = 8;
+void setup()
+{
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  if (digitalRead(pirPin) == HIGH)
+  {
+    digitalWrite(ledPin, HIGH);
+    tone(buzzerPin, 1000);
+    Serial.println("HAREKET ALGILANDI!");
+    delay(500);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+    noTone(buzzerPin);
+  }
+  delay(100);
+}`}]});
 /* ============ KİTAP SORULARI + DEĞERLENDİRME ============ */
 const fold=s=>String(s).toLocaleLowerCase('tr').replace(/[çÇ]/g,'c').replace(/[ğĞ]/g,'g').replace(/[ıİ]/g,'i').replace(/[öÖ]/g,'o').replace(/[şŞ]/g,'s').replace(/[üÜ]/g,'u').replace(/[âÂ]/g,'a').replace(/[îÎ]/g,'i').replace(/[ûÛ]/g,'u').replace(/[’‘]/g,"'").replace(/[“”]/g,'"');
 function evCheck(spec,txt){
