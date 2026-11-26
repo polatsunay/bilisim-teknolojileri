@@ -688,6 +688,177 @@ table.bt tr.hl td{background:#fff7d6}
   <div class="card acc col"><h3>🔘 9–10</h3><div id="u2-o1" style="flex:1"></div></div>
  </div>
 </section>
+<section class="slide" id="s-3-0" data-sec="3" data-title="3. Ünite · Proje Geliştirme" data-ref="Kitap s. 183–184">
+ <div class="secov">
+  <div>
+   <div class="secno">3</div>
+   <h2 style="font-size:40px">Proje Geliştirme</h2>
+   <div class="kz"><b>Konular:</b> 3.1 Ortam Algılayıcı Sensörlerle Uygulamalar · 3.2 Farklı Motor Türleri ve Motor Sürücüleri ile Proje Geliştirme · 3.3 Hareketli Parçalar ile Robotik Üniteler · 3.4 İletişim Ekipmanları ile Sistem Entegrasyonu · 3.5 İleri Seviye Sensörler ile Özgün Projeler</div>
+   <div class="row" style="margin-top:12px;gap:6px;flex-wrap:wrap"><span class="tag">veri</span><span class="tag">analiz</span><span class="tag">motor sürücüsü</span><span class="tag">dişli kutusu</span><span class="tag">palet</span><span class="tag">bluetooth</span><span class="tag">wi-fi</span><span class="tag">RF</span><span class="tag">görüntü işleme</span><span class="tag">prototipleme</span></div>
+  </div>
+  <div class="col">
+   <div class="card acc"><h3>🛠️ Proje geliştirme</h3><p class="sm" style="margin:0">Problemi belirle → çözümü planla → tasarımı oluştur → prototip geliştir → test et → sonuçları analiz et. Bu ünitedeki örneklerin çoğunu kart simülatöründe çalıştırabilirsin.</p></div>
+   <div class="card soft sm" id="bas3-c"><h3>🚦 Başlarken</h3>Yeni bir sensör tasarlasaydın işlevi ne olurdu? Bir motora daha fazla elektrik vermek daha fazla güce nasıl katkı sağlar? İletişim ekipmanlarının projelere katkıları neler olabilir?</div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-1" data-sec="3" data-title="Sensör seçimi ve bağlanması" data-olc="bic" data-ref="Kitap 3.1.1 · Görsel 3.1–3.7 · 1. Sıra Sizde · s. 185–188">
+ <h2>3.1.1 Sensör Seçimi, Bağlantısı ve Veri İşleme <small>map(isi, 0, 1024, −50, 450)</small></h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>📶 Analog mı, dijital mi?</h3><div id="u3-ad" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🌡️ map() ile ham veriyi sıcaklığa çevir</h3><div id="u3-mp" style="flex:1"></div></div>
+  <div class="card col"><h3>🔷 Sensör akış diyagramında hangi şekille?</h3><div id="u3-fs" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-2" data-sec="3" data-title="1. Örnek: ışığa duyarlı aydınlatma" data-olc="kanit" data-ref="Kitap 1. Örnek · Şema 3.1 · 2. Sıra Sizde · s. 189–191">
+ <h2>1. Örnek: Işık Sensörlü Aydınlatma <small>&lt; 250 iki lamba · 250–499 bir lamba · ≥ 500 kapalı</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s1" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-3" data-sec="3" data-title="2. Örnek: akıllı sera · 1. Uygulama" data-olc="kanit" data-ref="Kitap 2. Örnek · Şema 3.2 · 1. Uygulama · s. 192–196">
+ <h2>2. Örnek: Akıllı Sera <small>&lt; 15 °C ısıtıcı · 15–29 °C ikisi kapalı · ≥ 30 °C fan</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s2" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-4" data-sec="3" data-title="3. Örnek: park sensörü" data-olc="kanit" data-ref="Kitap 3. Örnek · Şema 3.3 · s. 197–201">
+ <h2>3. Örnek: Park Sensörü <small>&gt; 100 cm üç lamba · 50–100 cm iki lamba · &lt; 50 cm yalnız kırmızı</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s3" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-5" data-sec="3" data-title="1. Etkinlik: boy ölçer" data-olc="kanit" data-ref="Kitap 1. Etkinlik · 3. Sıra Sizde · s. 201–203">
+ <h2>1. Etkinlik: Boy Ölçer <small>boy = 200 cm − ölçülen mesafe · çözüm temsilî</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s4" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-6" data-sec="3" data-title="4. Örnek: gaz kaçağı" data-olc="kanit" data-ref="Kitap 4. Örnek · Şema 3.4 · s. 204–208">
+ <h2>4. Örnek: Gaz Kaçağı Uyarı Sistemi <small>MQ-2 · &lt; 500 ppm yeşil · 500–699 sarı · ≥ 700 kırmızı</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s5" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-7" data-sec="3" data-title="5. Örnek: akıllı sulama" data-olc="kanit" data-ref="Kitap 5. Örnek · Şema 3.5 · s. 208–211">
+ <h2>5. Örnek: Akıllı Sulama <small>nem &lt; %50 → pompa çalışır</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s6" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-8" data-sec="3" data-title="6. Örnek: adaptif hız sabitleyici" data-olc="kanit" data-ref="Kitap 6. Örnek · Şema 3.6 · Kontrol Noktası · s. 211–216">
+ <h2>6. Örnek: Adaptif Hız Sabitleyici <small>&gt; 20 cm 3. kademe · 16–20 cm 2. · 11–15 cm 1. · ≤ 10 cm dur</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s7" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-9" data-sec="3" data-title="Motor türleri ve sürücüler" data-olc="bic" data-ref="Kitap 3.2.1–3.2.2 · Tablo 3.1–3.2 · Görsel 3.19–3.23 · s. 216–221">
+ <h2>3.2 Farklı Motor Türleri ve Motor Sürücüleri</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1fr 1.1fr">
+  <div class="card col"><h3>🪜 Tablo 3.1: Birlikte çalıştırma (sırala)</h3><div id="u3-t1" style="flex:1"></div><div class="card soft sm" style="margin-top:8px"><b>Step açısı:</b> 360 ÷ adım sayısı. <input type="number" id="u3-sa" value="300" style="width:70px"> adım → <b id="u3-sao" style="font-family:var(--mono)">1.2°</b></div></div>
+  <div class="card acc col"><h3>🔗 Tablo 3.2: Motor → sürücü</h3><div id="u3-t2" style="flex:1"></div></div>
+  <div class="card col"><h3>🧰 Sürücü kartları</h3><div id="u3-sk" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-10" data-sec="3" data-title="Birden fazla motor, dişli kutuları" data-olc="kanit" data-ref="Kitap 3.2.3 · 2–3. Uygulama · s. 221–224">
+ <h2>3.2.3 Birden Fazla Motor ve Dişli Kutularıyla Yüksek Güç</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>🔌 Seri ve paralel bağlanan motorlar</h3><div id="u3-sp" style="flex:1"></div></div>
+  <div class="card acc col"><h3>⚙️ Dişli oranı: hız ↔ tork <span class="xs muted">(temsilî)</span></h3><div id="u3-ds" style="flex:1"></div></div>
+  <div class="card col"><h3>📈 2–3. Uygulama: artış yüzdesi</h3><div id="u3-yz" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-11" data-sec="3" data-title="7. Örnek: motor kontrol istasyonu" data-olc="kanit" data-ref="Kitap 3.2.4 · 7. Örnek · Şema 3.7 · s. 225–227">
+ <h2>7. Örnek: Motor Kontrol İstasyonu <small>servo + DC motor (L293D) · 4 buton</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s8" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-12" data-sec="3" data-title="8. Örnek: motor test kodları" data-olc="kanit" data-ref="Kitap 8. Örnek · Şema 3.8–3.11 · s. 228–234">
+ <h2>8. Örnek: Fırçalı, Fırçasız, Step ve Servo Motor Testleri</h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s9" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-13" data-sec="3" data-title="Hareketli parçalar" data-olc="kanit" data-ref="Kitap 3.3.1–3.3.3 · 4. Sıra Sizde · s. 234–238">
+ <h2>3.3 Hareketli Parçalar ile Robotik Üniteler</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1fr 1.1fr">
+  <div class="card col"><h3>🪜 Tasarım aşamaları (sırala)</h3><div id="u3-ta" style="flex:1"></div></div>
+  <div class="card col"><h3>🧩 Hareketli parçaların tasarıma etkisi</h3><div id="u3-et" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔋 Robot kol kaç saat çalışır?</h3><div id="u3-en" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-14" data-sec="3" data-title="9. Örnek: robot kol" data-olc="kanit" data-ref="Kitap 9. Örnek · Şema 3.12 · Görsel 3.36–3.62 · s. 238–246">
+ <h2>9. Örnek: Joystick ile Robot Kol <small>4 servo · 2 joystick (4 eksen)</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s10" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-15" data-sec="3" data-title="10–11. Örnek: paletli robot" data-olc="kanit" data-ref="Kitap 3.3.4 · 10–11. Örnek · s. 247–258">
+ <h2>10. Örnek: Bluetooth Kontrollü Paletli Robot <small>F · B · L · R · S komutları</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s11" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-16" data-sec="3" data-title="Kablosuz iletişim türleri" data-olc="bic" data-ref="Kitap 3.4.1–3.4.3 · Tablo 3.3 · Görsel 3.75–3.82 · s. 258–279">
+ <h2>3.4 İletişim Ekipmanları ve Protokoller</h2>
+ <div class="body c3" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card col"><h3>📡 Hangi iletişim türü?</h3><div id="u3-it" style="flex:1"></div></div>
+  <div class="card acc col"><h3>📊 Tablo 3.3: Avantaj mı, dezavantaj mı?</h3><div id="u3-t3" style="flex:1"></div></div>
+  <div class="card col"><h3>🌈 Elektromanyetik spektrum (uzun dalgadan kısaya)</h3><div id="u3-em" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-17" data-sec="3" data-title="12. Örnek: bluetooth RGB" data-olc="kanit" data-ref="Kitap 12. Örnek · Şema 3.22 · s. 266–268">
+ <h2>12. Örnek: Telefonla RGB LED Rengi Değiştirme <small>K · Y · M · B harfleri</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s12" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-18" data-sec="3" data-title="13–14. Örnek: wi-fi ile veri" data-olc="kanit" data-ref="Kitap 13–14. Örnek · s. 269–278">
+ <h2>13–14. Örnek: Wi-fi ile Uzaktan Kontrol ve Veri Gönderme</h2>
+ <div class="body c2">
+  <div class="card col"><h3>🏠 13. Örnek: Komut → alıcı ne yapar?</h3><div id="u3-k13" style="flex:1"></div></div>
+  <div class="card acc col"><h3>☁️ 14. Örnek: ESP8266 AT komut sırası</h3><div id="u3-at" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-19" data-sec="3" data-title="Performans görevi · öz değerlendirme" data-olc="kanit" data-ref="Kitap Performans Görevi · s. 280–283">
+ <h2>Performans Görevi: Wi-fi ile Sıcaklık Verisi Aktarımı <small>MLX90614 → ESP8266 → I2C LCD</small></h2>
+ <div class="body c2" style="grid-template-columns:1fr 1.1fr">
+  <div class="card col"><h3>🪜 Görev adımları (sırala)</h3><div id="u3-pg" style="flex:1"></div></div>
+  <div class="card acc col"><h3>📝 Öz değerlendirme formu</h3><div id="u3-oz" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-20" data-sec="3" data-title="İleri seviye sensörler" data-olc="kanit" data-ref="Kitap 3.5.1–3.5.3 · 15. Örnek · 4. Uygulama · 2. Etkinlik · s. 283–287">
+ <h2>3.5 İleri Seviye Sensörler <small>görüntü işleme · lidar · termal kamera · IMU</small></h2>
+ <div class="body c2" style="grid-template-columns:1.2fr 1fr">
+  <div class="card acc col"><h3>🔦 Lidar: uçuş süresi (time-of-flight) ile tarama <span class="xs muted">(oda temsilî)</span></h3><div id="u3-ld" style="flex:1"></div></div>
+  <div class="card col"><h3>🎯 Hangi ileri seviye sensör?</h3><div id="u3-is" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-21" data-sec="3" data-title="Prototipleme · akıllı şapka" data-olc="kanit" data-ref="Kitap 3.5.4 · 16. Örnek · s. 288–289">
+ <h2>16. Örnek: Görme Engelliler için Akıllı Şapka <small>iki ultrasonik sensör · iki titreşim motoru · kod temsilî</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s13" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-22" data-sec="3" data-title="FPV uçangöz" data-olc="kanit" data-ref="Kitap 17. Örnek · Görsel 3.93–3.113 · s. 289–299">
+ <h2>FPV Uçangöz: Parçalar, Hesaplar ve Güvenli Uçuş <small>17. Örnek</small></h2>
+ <div class="body c3" style="grid-template-columns:1.1fr 1fr 1fr">
+  <div class="card col"><h3>🚁 Parça hangi görevi yapar?</h3><div id="u3-fp" style="flex:1"></div></div>
+  <div class="card acc col"><h3>🔋 LiPo ve motor KV hesabı</h3><div id="u3-lp" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ Güvenli uçuş</h3><div id="u3-gu" style="flex:1"></div></div>
+ </div>
+</section>
+
+<section class="slide" id="s-3-23" data-sec="3" data-title="1. Ek Uygulama: kapı sistemi" data-olc="kanit" data-ref="Kitap 1. Ek Uygulama · s. 300–301">
+ <h2>1. Ek Uygulama: Otomatik ve Manuel Kontrollü Kapı <small>PIR + servo · potansiyometre + servo · kod temsilî</small></h2>
+ <div class="body" style="display:grid;grid-template-columns:1fr;min-height:0"><div class="card acc col" style="min-height:0"><div id="u3-s14" style="flex:1;min-height:0"></div></div></div>
+</section>
+
+<section class="slide" id="s-3-24" data-sec="3" data-title="3. Ünite ölçme ve değerlendirme" data-olc="kanit" data-ref="Kitap 3. Ünite Ölçme · s. 302–303">
+ <h2>3. Ünite Ölçme ve Değerlendirme <small>1–10</small></h2>
+ <div class="body c3" style="grid-template-columns:1.15fr 1fr 1fr">
+  <div class="card col"><h3>✍️ 2–6</h3><div id="u3-bo" style="flex:1"></div></div>
+  <div class="card col"><h3>✅ 7–8 · D/Y</h3><div id="u3-dy"></div><p class="xs muted" style="margin:8px 0 0">1. soru (hava kalitesi sistemi) 📖 düğmesinde.</p></div>
+  <div class="card acc col"><h3>🔘 9–10</h3><div id="u3-o1" style="flex:1"></div></div>
+ </div>
+</section>
 </div></div>
 <div id="menu"><div class="grid"></div></div>
 <div id="nav"><div class="bar"></div><button id="nav-m">☰ İçindekiler</button><button id="nav-p">◀ Geri</button><div class="t"></div><span style="font-size:11px;color:#8a93a8;white-space:nowrap">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir · <a href="../lisans.html" target="_blank" rel="noopener" style="color:inherit">Lisans</a></span><button id="nav-n">İleri ▶</button><button id="nav-f">⛶</button></div>
@@ -931,13 +1102,14 @@ function ardTranspile(src){
   if(c==='/'&&n==='*'){m+='  ';i+=2;while(i<src.length&&!(src[i]==='*'&&src[i+1]==='/')){m+=src[i]==='\n'?'\n':' ';i++}m+='  ';i+=2;continue}
   if(c==='"'||c==="'"){let j=i+1,s='';while(j<src.length&&src[j]!==c&&src[j]!=='\n'){if(src[j]==='\\'){s+=src[j]+src[j+1];j+=2;continue}s+=src[j++]}
    if(src[j]!==c){errs.push([lineOf(src,i),'Kapatılmamış tırnak işareti']);}
-   S.push(c==="'"&&s.length>1?{s,w:1}:{s});m+='__S'+(S.length-1)+'__';const L=j-i+1-('__S'+(S.length-1)+'__').length;i=j+1;if(L>0)m+=' '.repeat(L);continue}
+   S.push(c==="'"&&s.length>1?{s,w:1}:c==="'"?{s,ch:1}:{s});m+='__S'+(S.length-1)+'__';const L=j-i+1-('__S'+(S.length-1)+'__').length;i=j+1;if(L>0)m+=' '.repeat(L);continue}
   m+=c;i++}
  function lineOf(t,i){return t.slice(0,i).split('\n').length}
  const lines=m.split('\n');
  // derleyici benzeri denetimler
  lines.forEach((l,k)=>{const t=l.trim();if(!t)return;
   if(/[çğıöşüÇĞİÖŞÜ]/.test(t))errs.push([k+1,'Kodda Türkçe karakter var (stray \'\\304\' in program): değişken ve fonksiyon adlarında Türkçe karakter kullanılamaz.']);
+  if(/&(lt|gt|amp);/.test(t))errs.push([k+1,'“&lt;”, “&gt;” gibi web kodları var: bunların yerine < ve > yazılmalı.']);
   if(/\bgoto\b/.test(t))errs.push([k+1,'Bu simülatör goto komutunu çalıştırmaz (gerçek kart derler).']);
   if(t.startsWith('#'))return;
   if(/[;{}:,]$/.test(t)||/^(if|else|for|while|do|switch|case|default)\b/.test(t)||/^\}?\s*else\b/.test(t))return;
@@ -953,6 +1125,8 @@ function ardTranspile(src){
  j=j.replace(/^\s*#define\s+(\w+)\s+(.+?)[;,]?\s*$/gm,'const $1 = $2;');
  j=j.replace(/\b(\d+(?:\.\d+)?)(?:UL|ul|L|l|U|u|f|F)\b/g,'$1');
  j=j.replace(/\bServo\s+(\w+(?:\s*,\s*\w+)*)\s*;/g,(_,a)=>'let '+a.split(',').map(x=>x.trim()+'=new Servo()').join(',')+';');
+ j=j.replace(/\b(Stepper|AF_DCMotor|SoftwareSerial|LiquidCrystal_I2C|LiquidCrystal)\s+(\w+)\s*\(([^()]*)\)\s*;/g,'let $2=new $1($3);');
+ j=j.replace(/\b(SoftwareSerial|LiquidCrystal_I2C)\s+(\w+)\s*;/g,'let $2=new $1();');
  const fns=[];
  j=j.replace(new RegExp('\\b(?:static\\s+)?(?:unsigned\\s+)?(?:void|'+ARD_TYPES.slice(3,-1)+')\\s+(\\w+)\\s*\\(([^()]*)\\)\\s*;','g'),(a,n)=>/^(if|while|for|switch)$/.test(n)?a:'');
  j=j.replace(new RegExp('\\b(?:static\\s+)?(?:unsigned\\s+)?(?:void|'+ARD_TYPES.slice(3,-1)+')\\s+(\\w+)\\s*\\(([^()]*)\\)\\s*\\{','g'),(a,n,p)=>{fns.push(n);const ps=p.trim()&&p.trim()!=='void'?p.split(',').map(x=>x.trim().split(/[\s*&]+/).pop().replace(/\[.*\]/,'')).join(','):'';return`async function ${n}(${ps}){`});
@@ -971,6 +1145,7 @@ function ardTranspile(src){
  // await ekle
  const aw=['delay','delayMicroseconds',...fns];
  j=j.replace(new RegExp('(function\\s+)?(?<![\\w.])('+aw.join('|')+')\\s*\\(','g'),(a,f,n)=>f?a:'await '+n+'(');
+ j=j.replace(/(?<![\w.])(\w+)\.step\s*\(/g,'await $1.step(');
  // döngülere nefes alma noktası
  const doT=new Set();{const r=/\bdo\s*\{/g;let q;while((q=r.exec(j))){let k=q.index+q[0].length,d=1;while(k<j.length&&d){if(j[k]==='{')d++;if(j[k]==='}')d--;k++}const rest=j.slice(k);const w=rest.match(/^\s*while\b/);if(w)doT.add(k+w[0].length-5)}}
  let res='',i=0;const kw=/\b(while|for)\s*\(|\bdo\s*\{/g;let q;const ins=[];
@@ -981,7 +1156,7 @@ function ardTranspile(src){
   else if(j[s]===';')ins.push([s,'{await __y();}',1]);
   else{let e=s,dd=0;while(e<j.length){if('({['.includes(j[e]))dd++;if(')}]'.includes(j[e]))dd--;if(j[e]===';'&&dd<=0)break;e++}ins.push([s,'{ await __y(); ']);ins.push([e+1,' }'])}}
  ins.sort((a,b)=>a[0]-b[0]);for(const [p,t,rm] of ins){res+=j.slice(i,p)+t;i=p+(rm||0)}res+=j.slice(i);j=res;
- j=j.replace(/__S(\d+)__/g,(_,n)=>JSON.stringify(S[+n].s.replace(/\\n/g,'\n').replace(/\\t/g,'\t').replace(/\\"/g,'"')));
+ j=j.replace(/__S(\d+)__/g,(_,n)=>S[+n].ch?String((S[+n].s.replace(/^\\n$/,'\n')||' ').charCodeAt(0)):JSON.stringify(S[+n].s.replace(/\\n/g,'\n').replace(/\\t/g,'\t').replace(/\\"/g,'"')));
  S.forEach(s=>{if(s.w)warn.push('Tek tırnak (\'…\') yalnızca tek karakter içindir; metin için çift tırnak ("…") kullanılmalı.')});
  return{js:j,errs,warn:[...new Set(warn)],fns};
 }
@@ -1012,6 +1187,12 @@ function noTone(p){tones[P(p)]=0;dirty=true}
 const __fmt=x=>typeof x==='number'&&!Number.isInteger(x)?x.toFixed(2):typeof x==='boolean'?(x?1:0):String(x);
 const Serial={begin(b){baud=b;serUsed=true;postMessage({t:'baud',b})},print(x,f){if(typeof x==='number'&&f!==undefined&&f>2&&f!==10)x=x.toString(f);else if(typeof x==='number'&&typeof f==='number'&&!Number.isInteger(x))x=x.toFixed(f);postMessage({t:'ser',s:__fmt(x)})},println(x,f){if(x===undefined)x='';this.print(x,f);postMessage({t:'ser',s:'\\n'})},write(x){postMessage({t:'ser',s:typeof x==='number'?String.fromCharCode(x):String(x)})},available(){return inbox.length},read(){if(!inbox.length)return -1;const c=inbox.charCodeAt(0);inbox=inbox.slice(1);return c},readString(){const s=inbox;inbox='';return s},parseInt(){const m=inbox.match(/-?\\d+/);inbox='';return m?+m[0]:0},end(){}};
 class Servo{attach(p){this.p=P(p);this.a=90}write(a){this.a=Math.max(0,Math.min(180,Math.round(a)));postMessage({t:'servo',p:this.p,a:this.a})}read(){return this.a}detach(){}attached(){return true}}
+class Stepper{constructor(spr){this.spr=spr||200;this.rpm=10;this.ang=0}setSpeed(r){this.rpm=r||1}async step(n){const tot=Math.abs(n)/this.spr*60000/this.rpm;const k=Math.max(1,Math.min(Math.abs(n),40));for(let i=0;i<k;i++){this.ang+=n/k*360/this.spr;postMessage({t:'stepper',a:this.ang});sim+=tot/k;await sleep(Math.max(1,tot/k/speed))}}}
+const FORWARD=1,BACKWARD=2,BRAKE=3,RELEASE=4;
+class AF_DCMotor{constructor(n){this.n=n;this.s=255}setSpeed(v){this.s=v}run(d){postMessage({t:'af',n:this.n,d,s:this.s})}}
+class SoftwareSerial{constructor(){}begin(b){}print(x){Serial.print(x)}println(x){Serial.println(x)}write(x){Serial.write(x)}available(){return Serial.available()}read(){return Serial.read()}}
+class LiquidCrystal_I2C{constructor(a,c,r){this.c=c||16;this.r=r||2;this.b=Array.from({length:this.r},()=>' '.repeat(this.c));this.x=0;this.y=0;this.bl=1}_p(){postMessage({t:'lcd',rows:this.b,bl:this.bl})}init(){this._p()}begin(){this._p()}backlight(){this.bl=1;this._p()}noBacklight(){this.bl=0;this._p()}clear(){this.b=this.b.map(()=>' '.repeat(this.c));this.x=0;this.y=0;this._p()}setCursor(x,y){this.x=x;this.y=y}print(v){const s=__fmt(v);let row=this.b[this.y]||'';for(const ch of s){if(this.x<this.c){row=row.slice(0,this.x)+ch+row.slice(this.x+1);this.x++}}this.b[this.y]=row;this._p()}}
+const LiquidCrystal=LiquidCrystal_I2C;
 function __err(e){let m=String(e&&e.message||e);const r=m.match(/^(\\S+) is not defined/);if(r)m="‘"+r[1]+"’ bu kapsamda tanımlanmamış ("+r[1]+" was not declared in this scope)";else if(/is not a function/.test(m))m='Tanımsız bir fonksiyon çağrıldı: '+m;postMessage({t:'err',m})}
 `;
 function ardSim(root,o){
@@ -1043,8 +1224,14 @@ function ardSim(root,o){
   if(p.t==='pot'||p.t==='an')return box(`<b>${lb||'Potansiyometre'}</b> <span class="xs muted">${p.pin}</span><input type="range" class="ard-a" min="0" max="1023" value="${p.v??512}" style="width:118px;display:block"><span class="ard-av xs" style="font-family:var(--mono)"></span>`,130);
   if(p.t==='us')return box(`<b>Ultrasonik</b> <span class="xs muted">T${p.trig} E${p.echo}</span><input type="range" class="ard-u" min="2" max="200" value="${p.v??40}" style="width:118px;display:block"><span class="ard-uv xs" style="font-family:var(--mono)"></span>`,130);
   if(p.t==='pir')return box(`<label style="cursor:pointer"><input type="checkbox" class="ard-pir"> 🚶 Hareket</label><div><b>PIR</b></div><div class="xs muted">pin ${p.pin}</div>`,82);
-  if(p.t==='servo')return box(`<svg viewBox="0 0 60 36" width="62" height="36"><path d="M6 32 A24 24 0 0 1 54 32" fill="none" stroke="#cbd5e1" stroke-width="3"/><line class="ard-sv" x1="30" y1="32" x2="30" y2="10" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="32" r="4" fill="#334155"/></svg><div><b>Servo</b> <span class="ard-sa" style="font-family:var(--mono)">90°</span></div><div class="xs muted">pin ${p.pin}</div>`);
+  if(p.t==='servo')return box(`<svg viewBox="0 0 60 36" width="62" height="36"><path d="M6 32 A24 24 0 0 1 54 32" fill="none" stroke="#cbd5e1" stroke-width="3"/><line class="ard-sv" x1="30" y1="32" x2="30" y2="10" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="32" r="4" fill="#334155"/></svg><div><b>${lb||'Servo'}</b> <span class="ard-sa" style="font-family:var(--mono)">90°</span></div><div class="xs muted">pin ${p.pin}</div>`);
   if(p.t==='motor')return box(`<div class="ard-m" style="font-size:26px;display:inline-block;line-height:1">⚙️</div><div><b>${lb||'DC motor'}</b></div><div class="xs muted">pin ${p.pin} <span class="ard-mv"></span></div>`);
+  if(p.t==='lcd')return box(`<div class="ard-lcd" style="font:15px/1.25 var(--mono);background:#9acd32;color:#1a2e05;padding:5px 7px;border-radius:5px;white-space:pre;border:3px solid #14532d;letter-spacing:1px">${' '.repeat(16)}\n${' '.repeat(16)}</div><div class="xs muted">LCD 16×2 (I2C)</div>`,190);
+  if(p.t==='step')return box(`<svg viewBox="0 0 60 60" width="56" height="56"><circle cx="30" cy="30" r="26" fill="#f1f5f9" stroke="#334155"/><line class="ard-st2" x1="30" y1="30" x2="30" y2="8" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="30" r="4" fill="#334155"/></svg><div><b>${lb||'Step motor'}</b></div><div class="xs muted ard-sta">0°</div>`);
+  if(p.t==='relay')return box(`<div class="ard-rl" style="font-size:24px;line-height:1;opacity:.35">${p.ic||'💧'}</div><div><b>${lb||'Röle'}</b></div><div class="xs muted">pin ${p.pin} <span class="ard-rv">kapalı</span></div>`,84);
+  if(p.t==='hmotor')return box(`<div class="ard-m" style="font-size:26px;display:inline-block;line-height:1">⚙️</div><div><b>${lb||'DC motor'}</b></div><div class="xs muted">${p.a}/${p.b} <span class="ard-mv">dur</span></div>`,84);
+  if(p.t==='afm')return box(`<div class="ard-m" style="font-size:26px;display:inline-block;line-height:1">⚙️</div><div><b>${lb||'Motor '+p.n}</b></div><div class="xs muted ard-mv">RELEASE</div>`,84);
+  if(p.t==='tank')return box(`<svg class="ard-tk" viewBox="0 0 160 110" width="170" height="116" style="background:#f8fafc;border-radius:6px"><rect x="2" y="2" width="156" height="106" fill="none" stroke="#94a3b8"/><g class="ard-tkr"><rect x="-12" y="-10" width="24" height="20" rx="3" fill="#0d9488"/><rect x="-13" y="-13" width="26" height="4" fill="#0f172a"/><rect x="-13" y="9" width="26" height="4" fill="#0f172a"/><polygon points="12,-4 18,0 12,4" fill="#f59e0b"/></g></svg><div class="xs muted">${lb||'Paletli robot (üstten)'}</div>`,180);
   if(p.t==='buz')return box(`<div class="ard-z" style="font-size:24px;line-height:1;opacity:.35">🔔</div><div><b>Buzzer</b></div><div class="xs muted">pin ${p.pin} <span class="ard-zv"></span></div>`);
   return ''}).join('');
   $$('.ard-p',P).forEach(el=>{const p=parts()[+el.dataset.i];
@@ -1061,14 +1248,17 @@ function ardSim(root,o){
   if(p.t==='led'){const v=lv(p.pin),c=COL[p.c||'red'];const L=$('.ard-led',el);L.style.background=v?`rgba(${c},${0.25+0.75*v})`:'#d1d5db';L.style.boxShadow=v?`0 0 ${6+18*v}px rgba(${c},${v})`:'none';L.title=v&&d.mode[p.pin]!==1?'pinMode(OUTPUT) yapılmadığı için LED çok sönük yanar':''}
   if(p.t==='rgb'){const r=lv(p.r),g=lv(p.g),b=lv(p.b);const L=$('.ard-led',el);L.style.background=r+g+b?`rgb(${Math.round(80+175*r)},${Math.round(80+175*g)},${Math.round(80+175*b)})`:'#d1d5db';L.style.boxShadow=r+g+b?`0 0 14px rgb(${255*r},${255*g},${255*b})`:'none'}
   if(p.t==='motor'){const v=lv(p.pin);rot[i]=v;$('.ard-mv',el).textContent=v?Math.round(v*100)+'%':'dur'}
+  if(p.t==='relay'){const on=p.inv?!d.out[p.pin]:!!d.out[p.pin];const r=$('.ard-rl',el);r.style.opacity=on?1:.35;r.style.transform=on?'scale(1.2)':'';$('.ard-rv',el).textContent=on?'ÇALIŞIYOR':'kapalı'}
+  if(p.t==='hmotor'){const A=d.out[p.a],B=d.out[p.b];const en=p.en!==undefined?lv(p.en):1;const dir=A&&!B?1:B&&!A?-1:0;rot[i]=dir*en;$('.ard-mv',el).textContent=dir?(dir>0?'↻ ileri ':'↺ geri ')+Math.round(en*100)+'%':'dur'}
   if(p.t==='buz'){const f=(d.tones||{})[p.pin]||(d.out[p.pin]?2000:0);const z=$('.ard-z',el);z.style.opacity=f?1:.35;z.style.transform=f?'rotate(-12deg) scale(1.15)':'';$('.ard-zv',el).textContent=f?f+' Hz':''}})}
- let raf=null,ang={};const spin=()=>{parts().forEach((p,i)=>{if(p.t==='motor'&&rot[i]){ang[i]=((ang[i]||0)+rot[i]*25)%360;const m=$(`.ard-p[data-i="${i}"] .ard-m`,root);if(m)m.style.transform=`rotate(${ang[i]}deg)`}});raf=requestAnimationFrame(spin)};
+ let raf=null,ang={},af={},tk={x:80,y:55,a:0};
+ const tankStep=()=>{parts().forEach((p,i)=>{if(p.t!=='tank')return;const L=af[p.a||1]||0,R=af[p.b||2]||0;const v=(L+R)/2*1.2,w=(L-R)*0.05;tk.a+=w;tk.x+=Math.cos(tk.a)*v;tk.y+=Math.sin(tk.a)*v;tk.x=Math.max(14,Math.min(146,tk.x));tk.y=Math.max(14,Math.min(96,tk.y));const g=$(`.ard-p[data-i="${i}"] .ard-tkr`,root);if(g)g.setAttribute('transform',`translate(${tk.x},${tk.y}) rotate(${tk.a*180/Math.PI})`)})};const spin=()=>{tankStep();parts().forEach((p,i)=>{if(['motor','hmotor','afm'].includes(p.t)&&rot[i]){ang[i]=((ang[i]||0)+rot[i]*25)%360;const m=$(`.ard-p[data-i="${i}"] .ard-m`,root);if(m)m.style.transform=`rotate(${ang[i]}deg)`}});raf=requestAnimationFrame(spin)};
  function servo(pn,a){parts().forEach((p,i)=>{if(p.t==='servo'&&p.pin===pn){const el=$(`.ard-p[data-i="${i}"]`,root);const r=(180-a)*Math.PI/180;const l=$('.ard-sv',el);l.setAttribute('x2',30+22*Math.cos(r));l.setAttribute('y2',32-22*Math.sin(r));$('.ard-sa',el).textContent=a+'°'}})}
- function stop(msg){if(W){W.terminate();W=null}if(url){URL.revokeObjectURL(url);url=null}run=false;clearInterval(wd);cancelAnimationFrame(raf);rot={};ST.textContent=msg||'⏹ durdu';$('.ard-r',root).disabled=false}
- function check(){const r=ardTranspile(E.value);let e=r.errs.slice();if(!e.length){try{new (Object.getPrototypeOf(async function(){}).constructor)(r.js)}catch(x){e.push([0,'Sözdizimi hatası: '+x.message])}}
+ function stop(msg){af={};tk={x:80,y:55,a:0};if(W){W.terminate();W=null}if(url){URL.revokeObjectURL(url);url=null}run=false;clearInterval(wd);cancelAnimationFrame(raf);rot={};ST.textContent=msg||'⏹ durdu';$('.ard-r',root).disabled=false}
+ function check(){const r=ardTranspile(E.value);let e=r.errs.slice();if(!e.length){try{new (Object.getPrototypeOf(async function(){}).constructor)(r.js)}catch(x){const m=x.message;const d=m.match(/Identifier '(\w+)' has already been declared/);e.push([0,d?`‘${d[1]}’ iki kez tanımlanmış (redefinition of '${d[1]}')`:/Unexpected identifier '?(\w*)/.test(m)?'Sözdizimi hatası: beklenmeyen ifade '+(m.match(/'(\w+)'/)||['',''])[1]+' (yazım hatası olabilir: ör. “void” yerine “oid”)':/Unexpected token '&'/.test(m)?'Sözdizimi hatası: “&” karakteri beklenmiyor (&lt; yerine < olmalı)':'Sözdizimi hatası: '+m])}}
   M.style.color=e.length?'#b91c1c':'#15803d';M.innerHTML=e.length?e.slice(0,4).map(([l,t])=>`✘ ${l?'Satır '+l+': ':''}${esc(t)}`).join('<br>'):'✔ Derleme başarılı. '+(r.warn.length?'<span style="color:#b45309">⚠ '+esc(r.warn[0])+'</span>':'');return e.length?null:r}
  function start(){stop();const r=check();if(!r)return;mon='';serShow();baud=0;$('.ard-bd',root).textContent='';
-  const body=ARD_WORKER+'\n(async()=>{try{\n'+r.js+'\n;if(typeof setup==="function")await setup();while(true){if(typeof loop!=="function")break;await loop();await __y(1)}flush();postMessage({t:"end"})}catch(e){__err(e)}})();';
+  const body=ARD_WORKER+`\nObject.assign(inp,${JSON.stringify(st.inp)});an=${JSON.stringify(st.an)};us=${JSON.stringify(st.us)};speed=${st.speed};`+'\n(async()=>{try{\n'+r.js+'\n;if(typeof setup==="function")await setup();while(true){if(typeof loop!=="function")break;await loop();await __y(1)}flush();postMessage({t:"end"})}catch(e){__err(e)}})();';
   url=URL.createObjectURL(new Blob([body],{type:'text/javascript'}));W=new Worker(url);run=true;$('.ard-r',root).disabled=true;ST.textContent='▶ çalışıyor';dl=Date.now()+2500;
   W.postMessage({t:'init',inp:st.inp,an:st.an,us:st.us,speed:st.speed});
   W.onmessage=e=>{const d=e.data;dl=Math.max(dl,Date.now()+2500);
@@ -1077,6 +1267,9 @@ function ardSim(root,o){
    if(d.t==='ser'){mon+=baud&&baud!==st.mon?garble(d.s):d.s;if(mon.length>6000)mon=mon.slice(-5000);serShow()}
    if(d.t==='baud'){baud=d.b;$('.ard-bd',root).textContent='kod: '+d.b+' baud';if(baud!==st.mon){M.style.color='#b45309';M.innerHTML+=`<br>⚠ Koddaki hız (${d.b}) ile ekrandaki hız (${st.mon}) farklı: veriler bozuk görünür.`}}
    if(d.t==='servo')servo(d.p,d.a);
+   if(d.t==='lcd')parts().forEach((p,i)=>{if(p.t==='lcd'){const L=$(`.ard-p[data-i="${i}"] .ard-lcd`,root);L.textContent=d.rows.map(r=>r.padEnd(16).slice(0,16)).join('\n');L.style.background=d.bl?'#9acd32':'#4d6619'}});
+   if(d.t==='stepper')parts().forEach((p,i)=>{if(p.t==='step'){const el=$(`.ard-p[data-i="${i}"]`,root);const r=(d.a-90)*Math.PI/180;const l=$('.ard-st2',el);l.setAttribute('x2',30+22*Math.cos(r));l.setAttribute('y2',30+22*Math.sin(r));$('.ard-sta',el).textContent=Math.round(d.a)+'°'}});
+   if(d.t==='af'){af[d.n]=d.d===1?d.s/255:d.d===2?-d.s/255:0;parts().forEach((p,i)=>{if(p.t==='afm'&&p.n===d.n){rot[i]=af[d.n];$(`.ard-p[data-i="${i}"] .ard-mv`,root).textContent=['','FORWARD','BACKWARD','BRAKE','RELEASE'][d.d]}})}
    if(d.t==='warn'&&!M.innerHTML.includes(d.m)){M.style.color='#b45309';M.innerHTML+='<br>⚠ '+esc(d.m)}
    if(d.t==='err'){M.style.color='#b91c1c';M.innerHTML='✘ Çalışma hatası: '+esc(d.m);stop('✘ hata')}
    if(d.t==='end')stop('■ program bitti')};
@@ -2388,6 +2581,857 @@ void loop()
   {
     digitalWrite(ledPin, LOW);
     noTone(buzzerPin);
+  }
+  delay(100);
+}`}]});
+/* ============ 3. ÜNİTE: PROJE GELİŞTİRME (etkileşimler) ============ */
+sitSort($('#u3-ad'),[{t:'TMP sıcaklık sensörü (Görsel 3.4): 0–1023 arası değer',a:'Analog'},{t:'LDR ışık sensörü (Görsel 3.5)',a:'Analog'},{t:'HC-SR04 ultrasonik (Görsel 3.6): yankı süresi',a:'Dijital'},{t:'Yalnızca 0 ya da 1 okunur',a:'Dijital'},{t:'Kartın A0–A5 pinlerine bağlanır',a:'Analog'},{t:'Toprak nem sensörü (5. Örnek)',a:'Analog'}],['Analog','Dijital']);
+(function(){const R=$('#u3-mp');let v=150;const draw=()=>{const t=Math.trunc(v*500/1024)-50;R.innerHTML=`<label class="sm">analogRead değeri: <b style="font-family:var(--mono)">${v}</b></label><input type="range" id="u3-mpr" min="0" max="1023" value="${v}" style="width:100%">
+  <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><svg viewBox="0 0 40 150" width="40" height="150"><rect x="14" y="6" width="12" height="118" rx="6" fill="#f1f5f9" stroke="#334155"/><rect x="16" y="${8+114*(1-(t+50)/500)}" width="8" height="${114*(t+50)/500}" fill="#ef4444"/><circle cx="20" cy="132" r="11" fill="#ef4444" stroke="#334155"/></svg><div><div style="font:800 32px var(--mono);color:var(--acc)">${t} °C</div><div class="xs muted">map(isi, 0, 1024, −50, 450)</div><div class="sm" style="margin-top:6px">= ${v} × 500 / 1024 − 50</div></div></div>
+  <p class="xs muted" style="margin:8px 0 0">Kitap: sensörden okunan veri tam sayıysa <b>int</b>, ondalıklıysa <b>float</b> değişkene atanır. Analog okuma aslında 0–1023 arasındadır (kitapta “0–1024” yazıyor).</p>`;$('#u3-mpr').oninput=e=>{v=+e.target.value;draw();$('#u3-mpr').focus()}};draw()})();
+sitSort($('#u3-fs'),[{t:'Sensörden yalnızca veri okunacak',a:'Paralelkenar'},{t:'Okunan değerle işlem (hesaplama) yapılacak',a:'Dikdörtgen'},{t:'Verinin değerine göre karar verilecek',a:'Eşkenar dörtgen'},{t:'Sensör değeri ekrana yazdırılacak',a:'Paralelkenar / belge'}],['Paralelkenar','Dikdörtgen','Eşkenar dörtgen','Paralelkenar / belge']);
+
+/* --- motor sürücüleri --- */
+orderGame($('#u3-t1'),['Motor türü seçimi','Kontrol sistemlerini birleştirme','Senkronizasyon ve koordinasyon','Sürücü ve güç kaynağı yönetimi','Simülasyon ve testler'],{fs:13});
+(function(){const i=$('#u3-sa'),o=$('#u3-sao');const up=()=>{const n=+i.value;o.textContent=n>0?(+(360/n).toFixed(3))+'°':'—'};i.oninput=up;i.onkeydown=e=>e.stopPropagation();up()})();
+sitSort($('#u3-t2'),[{t:'DC motorlar',a:'PWM motor sürücüsü'},{t:'AC (alternatif akım) motorlar',a:'Frekans invertörü (VFD)'},{t:'Step motorlar',a:'Step sürücüsü'},{t:'Servo motorlar',a:'Servo motor sürücüsü'},{t:'Senkron motorlar',a:'Vektör / döner frekans kontrolü'}],['PWM motor sürücüsü','Frekans invertörü (VFD)','Step sürücüsü','Servo motor sürücüsü','Vektör / döner frekans kontrolü']);
+reveal($('#u3-sk'),[{t:'L298N',d:'DC ve step; 24 V’a kadar, iki kanal, kanal başına 2 A. Sumo, çizgi izleyen robot.'},{t:'ESC',d:'Fırçasız motor sürücü; 2, 6, 12 kutuplu motorlar; İHA. Dâhilî 5 V BEC.'},{t:'VNH2SP30',d:'Tam köprü; iki DC motor; akıllı robot araba. PWM ile hız, dijital pinlerle yön.'},{t:'TMC2100',d:'Step; çok sessiz ve hassas; 3D yazıcılar. Çıkış akımı biraz düşük.'},{t:'DRV8825',d:'Step; 8–45 V, en fazla 1,6 A bipolar; tam adımdan 1/32 adıma.'},{t:'TB6600',d:'Step; CNC (X-Y-Z, lazer kesici); 4 A’e kadar; aşırı ısınma/akım koruması. <span class="xs muted">⚠ Kitapta başlık yanlışlıkla “TMC2100” yazılmış.</span>'},{t:'DRV8833',d:'2 kanal DC; 2,7–10,8 V; kanal başına ~1,2 A (tepe 2 A).'},{t:'5 eksen CNC kartı (MACH3)',d:'Beş step çıkışı; USB besleme, DB35 paralel giriş; 12–24 V.'}],{single:true});
+
+/* --- güç, dişli --- */
+(function(){const R=$('#u3-sp');let m='paralel',n=2;const draw=()=>{R.innerHTML=`<div class="row" style="gap:4px">${['paralel','seri'].map(x=>`<button class="btn sm ${x===m?'on':''}" data-m="${x}">${x}</button>`).join('')}<span class="xs">motor:</span>${[1,2,3].map(x=>`<button class="btn sm ${x===n?'on':''}" data-n="${x}">${x}</button>`).join('')}</div>
+  <div style="display:flex;gap:6px;margin:10px 0;justify-content:center">${Array.from({length:n},()=>'<div style="font-size:30px">⚙️</div>').join(m==='seri'?'<b style="align-self:center">—</b>':'<b style="align-self:center">‖</b>')}</div>
+  <div class="sm">${m==='paralel'?`Aynı voltaj kaynağına bağlanır; akımlar toplanır. Toplam güç = motor güçlerinin toplamı → <b>${n} kat</b>. Her motor daha az yük taşır.`:`Motorlar sırayla bağlanır; voltajlar toplanır → daha yüksek hız/güç. Her motor <b>aynı akımı</b> çektiği için özellikleri birbirine çok benzer olmalı.`}</div>`;
+  $$('[data-m]',R).forEach(b=>b.onclick=()=>{m=b.dataset.m;draw()});$$('[data-n]',R).forEach(b=>b.onclick=()=>{n=+b.dataset.n;draw()})};draw()})();
+(function(){const R=$('#u3-ds');let a=10,b=30,ang=0;R.innerHTML=`<svg id="u3-dsg" viewBox="0 0 260 130" style="width:100%;max-height:140px"></svg><label class="xs">Motor dişlisi: <b id="u3-dsa"></b> diş <input type="range" id="u3-dsr1" min="8" max="30" value="${a}" style="width:100%"></label><label class="xs">Çıkış dişlisi: <b id="u3-dsb"></b> diş <input type="range" id="u3-dsr2" min="8" max="40" value="${b}" style="width:100%"></label><div class="sm" id="u3-dso"></div>`;
+ const gear=(cx,cy,r,t,rot,c)=>`<g transform="translate(${cx},${cy}) rotate(${rot})"><circle r="${r}" fill="${c}" stroke="#334155"/>${Array.from({length:t},(_,i)=>`<rect x="-3" y="${-r-6}" width="6" height="8" fill="${c}" stroke="#334155" transform="rotate(${i*360/t})"/>`).join('')}<line x1="0" y1="0" x2="0" y2="${-r+4}" stroke="#334155" stroke-width="3"/><circle r="4" fill="#334155"/></g>`;
+ const loop=()=>{if(!document.body.contains(R))return;ang+=3;const r1=a*1.6,r2=b*1.6;$('#u3-dsg').innerHTML=gear(70,65,r1,a,ang,'#fde68a')+gear(70+r1+r2+6,65,r2,b,-ang*a/b+180/b,'#bae6fd');requestAnimationFrame(loop)};
+ const up=()=>{a=+$('#u3-dsr1').value;b=+$('#u3-dsr2').value;$('#u3-dsa').textContent=a;$('#u3-dsb').textContent=b;const r=b/a;$('#u3-dso').innerHTML=`Oran <b>${r.toFixed(2)} : 1</b> → çıkış hızı <b>${(1/r*100).toFixed(0)}%</b>, tork ≈ <b>${r.toFixed(2)} kat</b> (sürtünme kayıpları yok sayıldı). ${r>1?'Büyük dişli yavaş ama güçlü döner: redüktör.':r<1?'Hız artar, tork azalır.':''}`};
+ $('#u3-dsr1').oninput=up;$('#u3-dsr2').oninput=up;up();loop()})();
+(function(){const R=$('#u3-yz');R.innerHTML=`<label class="sm" style="display:block">1. ölçüm (tek motor / dişlisiz): <input type="number" id="u3-y1" value="40" style="width:80px"></label><label class="sm" style="display:block;margin-top:6px">2. ölçüm (iki motor / dişlili): <input type="number" id="u3-y2" value="70" style="width:80px"></label><div id="u3-yo" style="margin-top:10px;font:800 26px var(--mono);color:var(--acc)"></div><div class="xs muted">Artış % = (2. ölçüm − 1. ölçüm) ÷ 1. ölçüm × 100. Mesafe (cm) ya da yük adedi için aynı formül. Değerler örnektir; kendi ölçümlerini gir.</div>`;
+ const up=()=>{const a=+$('#u3-y1').value,b=+$('#u3-y2').value;$('#u3-yo').textContent=a?((b-a)/a*100).toFixed(1)+' % artış':'—'};$$('#u3-y1,#u3-y2').forEach(i=>{i.oninput=up;i.onkeydown=e=>e.stopPropagation()});up()})();
+
+/* --- hareketli parçalar --- */
+orderGame($('#u3-ta'),['İhtiyaç analizi','Tasarım','Prototip üretimi','Test ve doğrulama','Üretim','Bakım ve onarım'],{fs:13});
+reveal($('#u3-et'),[{t:'Kinematik ve dinamik',d:'Eklemler erişimi ve hassasiyeti artırır; ağırlık ve enerji yükü getirir.'},{t:'Malzeme ve dayanıklılık',d:'Sürekli hareket eden parçalar aşınmaya dayanıklı olmalı; yanlış seçim sık bakım ve erken arıza.'},{t:'Modülerlik',d:'Parça değişimini ve bakımı kolaylaştırır; sahada hızlı müdahale.'},{t:'Enerji ve verimlilik',d:'Az enerji tüketen ama etkili hareket sağlayan motor ve aktüatörler.'}],{single:true});
+(function(){const R=$('#u3-en');let P=200,V=24,Ah=50;const draw=()=>{const E=V*Ah,t=E/P;R.innerHTML=`${[['Güç tüketimi','W',P,'P'],['Pil gerilimi','V',V,'V'],['Pil kapasitesi','Ah',Ah,'A']].map(([l,u,v,k])=>`<label class="sm" style="display:flex;gap:6px;align-items:center;margin:4px 0"><span style="flex:1">${l}</span><input type="number" data-en="${k}" value="${v}" style="width:80px"><span class="xs" style="width:24px">${u}</span></label>`).join('')}
+  <table class="sm" style="width:100%;margin-top:6px;border-collapse:collapse"><tr><td>Enerji tüketimi</td><td style="font-family:var(--mono)">${P} W × 1 sa = ${P} Wh</td></tr><tr><td>Enerji kapasitesi</td><td style="font-family:var(--mono)">${V} V × ${Ah} Ah = ${E} Wh</td></tr><tr><td><b>Çalışma süresi</b></td><td style="font:800 20px var(--mono);color:var(--acc)">${+t.toFixed(2)} saat</td></tr></table><p class="xs muted" style="margin:4px 0 0">Kitaptaki örnek: 200 W, 24 V, 50 Ah → 6 saat. Gerçek süre hareket, yük ve çalışma koşullarına göre değişir.</p>`;
+  $$('[data-en]',R).forEach(i=>{i.onkeydown=e=>e.stopPropagation();i.onchange=()=>{const v=Math.max(0.1,+i.value);if(i.dataset.en==='P')P=v;if(i.dataset.en==='V')V=v;if(i.dataset.en==='A')Ah=v;draw()}})};draw()})();
+
+/* --- iletişim --- */
+sitSort($('#u3-it'),[{t:'Kısa mesafede kulaklık, telefon eşleştirme (~10 m)',a:'Bluetooth'},{t:'Kablosuz erişim noktası üzerinden genel ağa bağlanma',a:'Wi-fi'},{t:'TV kumandası; cihazlar birbirini görmeli',a:'Kızılötesi'},{t:'Kısa mesaj ile uzaktan kontrol; hücresel ağ',a:'GSM'},{t:'En az dört uydudan konum ve saat',a:'GPS'},{t:'NRF24L01: açık alanda 800 m’ye kadar, 2,4 GHz',a:'RF modülü'},{t:'Kapı kilidi: 13,56 MHz kart/anahtarlık',a:'RFID / NFC'}],['Bluetooth','Wi-fi','Kızılötesi','GSM','GPS','RF modülü','RFID / NFC']);
+sitSort($('#u3-t3'),[{t:'Wi-fi: yüksek veri iletim hızı',a:'Avantaj'},{t:'Wi-fi: yüksek enerji tüketimi',a:'Dezavantaj'},{t:'Bluetooth: düşük enerji tüketimi',a:'Avantaj'},{t:'Bluetooth: kısa menzil, görece düşük hız',a:'Dezavantaj'},{t:'RFID: pasif etiketlerle enerjisiz iletişim',a:'Avantaj'},{t:'RFID: büyük veri aktarımına uygun değil',a:'Dezavantaj'},{t:'Hücresel (4G/5G): geniş kapsama alanı',a:'Avantaj'},{t:'Hücresel: operatör bağımlılığı',a:'Dezavantaj'}],['Avantaj','Dezavantaj']);
+orderGame($('#u3-em'),['Radyo','Mikrodalga','Kızılötesi','Görünür ışık','Morötesi','X ışını','Gama ışını'],{fs:13,hint:'Dalga boyu en uzundan en kısaya doğru tıkla.'});
+sitSort($('#u3-k13'),[{t:'Lamba anahtarı açık → "1"',a:'Lambayı aç'},{t:'Lamba anahtarı kapalı → "2"',a:'Lambayı kapat'},{t:'"3:" + potansiyometre değeri',a:'Lamba parlaklığı'},{t:'Fan anahtarı açık → "4"',a:'Fanı çalıştır'},{t:'Fan anahtarı kapalı → "5"',a:'Fanı durdur'},{t:'"6:" + potansiyometre değeri',a:'Fan hızı'}],['Lambayı aç','Lambayı kapat','Lamba parlaklığı','Fanı çalıştır','Fanı durdur','Fan hızı']);
+(function(){const R=$('#u3-at');R.innerHTML=`<div id="u3-ato"></div><p class="xs muted" style="margin:6px 0 0">14. Örnek: DHT11 ile ölçülen sıcaklık ve nem, ESP8266 üzerinden bir veri platformuna gönderilir. ⚠ 13. Örnek’in malzeme listesinde NRF24L01 “wi-fi modülü” olarak geçiyor; NRF24L01 bir 2,4 GHz RF modülüdür, kodda ise ESP8266 kullanılıyor.</p>`;orderGame($('#u3-ato'),['AT → modül yanıt veriyor mu? (OK)','AT+CWMODE=1 → istemci (client) modu','AT+CWJAP="ağ","şifre" → ağa bağlan','AT+CIPSTART="TCP",ip,80 → sunucuya bağlan','DHT11 oku: sıcaklık ve nem','AT+CIPSEND=uzunluk → veriyi gönder','AT+CIPCLOSE → bağlantıyı kapat'],{fs:12.5})})();
+orderGame($('#u3-pg'),['Problem durumunu tanımla','Bilgi topla (donanım, yazılım)','Fikir geliştir: tasarım, akış diyagramı, devre, kod','Prototip geliştir','Ürünü test et','Sunum hazırla','Raporlandır (aşamalar, maliyet)'],{fs:13});
+(function(){const R=$('#u3-oz');const K=['Görevin amacını anladım.','Wi-fi ile veri aktarımını kavradım.','Sıcaklık sensörünü doğru kullandım.','Devre şemasını doğru kurdum.','Yazdığım kodlar doğru çalıştı.','LCD ekranda sıcaklık bilgisini doğru gösterdim.','Grup çalışmasına aktif katıldım.','Sunum ve rapor sürecine katkı sağladım.','Çalışmamın genelinden memnunum.'];const S={};
+ const draw=()=>{const sc={Evet:2,Kısmen:1,Hayır:0};const n=Object.keys(S).length,t=Object.values(S).reduce((a,b)=>a+sc[b],0);R.innerHTML=`<table class="xs" style="width:100%;border-collapse:collapse">${K.map((k,i)=>`<tr style="border-bottom:1px solid #eef2f7"><td style="padding:3px 0">${i+1}. ${k}</td>${['Evet','Kısmen','Hayır'].map(v=>`<td><button class="btn sm ${S[i]===v?'on':''}" data-oz="${i}|${v}" style="font-size:10.5px;padding:2px 6px">${v}</button></td>`).join('')}</tr>`).join('')}</table><div class="sm" style="margin-top:6px">${n}/9 işaretlendi${n?` · puan ${t}/${n*2}`:''}${n===9?` · <b>${t>=15?'Çok iyi 🌟':t>=10?'İyi 👍':'“Hayır/Kısmen” dediğin konuları tekrar et 📌'}</b>`:''}</div>`;
+  $$('[data-oz]',R).forEach(b=>b.onclick=()=>{const [i,v]=b.dataset.oz.split('|');S[i]=v;draw()})};draw()})();
+
+/* --- ileri seviye sensörler --- */
+(function(){const R=$('#u3-ld');const W=320,H=200,cx=160,cy=120;const OB=[[0,0,W,6],[0,H-6,W,6],[0,0,6,H],[W-6,0,6,H],[60,40,50,30],[220,60,30,80],[120,160,70,20]];let a=0,pts=[],t=null;
+ const cast=ang=>{for(let d=0;d<400;d+=1){const x=cx+Math.cos(ang)*d,y=cy+Math.sin(ang)*d;if(OB.some(([ox,oy,ow,oh])=>x>=ox&&x<=ox+ow&&y>=oy&&y<=oy+oh))return d}return 400};
+ const draw=()=>{const d=cast(a);const ns=(2*d/100/3e8*1e9).toFixed(1);R.innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-height:210px;background:#0f172a;border-radius:10px">${OB.map(o=>`<rect x="${o[0]}" y="${o[1]}" width="${o[2]}" height="${o[3]}" fill="#1e293b"/>`).join('')}${pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="2" fill="#22d3ee"/>`).join('')}<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*d}" y2="${cy+Math.sin(a)*d}" stroke="#ef4444" stroke-width="1.5"/><circle cx="${cx}" cy="${cy}" r="7" fill="#f59e0b"/></svg>
+  <div class="row" style="gap:6px;align-items:center;margin-top:6px"><button class="btn pri sm" id="u3-lds">${t?'⏸':'▶ Tara'}</button><button class="btn sm" id="u3-ldr">↺</button><span class="xs" style="font-family:var(--mono)">mesafe ≈ ${(d/100).toFixed(2)} m · gidiş-dönüş ≈ ${ns} ns</span></div><p class="xs muted" style="margin:4px 0 0">Lidar lazer ışınının nesneye çarpıp dönme süresinden (uçuş süresi) mesafeyi bulur: mesafe = ışık hızı × süre ÷ 2. Noktalar birleşince odanın haritası çıkar. Ölçek temsilî (100 px = 1 m).</p>`;
+  $('#u3-lds').onclick=()=>{if(t){clearInterval(t);t=null}else t=setInterval(()=>{a+=0.05;const d=cast(a);pts.push([cx+Math.cos(a)*d,cy+Math.sin(a)*d]);if(pts.length>900)pts.shift();draw()},25);draw()};$('#u3-ldr').onclick=()=>{clearInterval(t);t=null;pts=[];a=0;draw()}};draw()})();
+sitSort($('#u3-is'),[{t:'Otonom araçta trafik ışıklarını ve yol işaretlerini tanıma',a:'Görüntü işleme kamerası'},{t:'Üretim hattında kalite kontrol ve hata tespiti',a:'Görüntü işleme kamerası'},{t:'Uçangözle bir bölgenin 3 boyutlu haritası',a:'Lidar'},{t:'Depo robotunun rafın yüksekliği ve derinliğini ölçmesi (15. Örnek)',a:'Lidar'},{t:'Sıcaklık değişiminden yangın tespiti',a:'Termal kamera'},{t:'Robotun denge ve konum/hareket verisi',a:'IMU'}],['Görüntü işleme kamerası','Lidar','Termal kamera','IMU']);
+
+/* --- FPV --- */
+sitSort($('#u3-fp'),[{t:'Sensör verisini işler, motorları yönetir; jiroskop, ivmeölçer',a:'Uçuş kontrol kartı (FC)'},{t:'Fırçasız motorların hızını ve yönünü ayarlar',a:'ESC'},{t:'Görüntüyü radyo frekansına çevirip yayınlar (5,8 GHz)',a:'VTX'},{t:'Kumanda sinyallerini yakalar (2,4 GHz, 8 kanal)',a:'RF alıcı'},{t:'Düşen uçangözü bulmak için sesli ikaz',a:'Buzzer'},{t:'İtme kuvvetini üretir',a:'Pervane'},{t:'Hafif, yüksek enerji yoğunluklu batarya',a:'LiPo pil'}],['Uçuş kontrol kartı (FC)','ESC','VTX','RF alıcı','Buzzer','Pervane','LiPo pil']);
+(function(){const R=$('#u3-lp');let s=4,kv=2300;const draw=()=>{const V=s*4.2;R.innerHTML=`<label class="sm">Hücre sayısı: <b>${s}S</b></label><input type="range" id="u3-lps" min="1" max="6" value="${s}" style="width:100%"><div class="sm">Dolu gerilim: ${s} × 4,2 V = <b style="font-family:var(--mono)">${V.toFixed(1)} V</b></div><label class="sm" style="display:block;margin-top:8px">Motor KV: <input type="number" id="u3-lpk" value="${kv}" style="width:80px"></label><div class="sm">Yüksüz devir ≈ ${kv} × ${V.toFixed(1)} = <b style="font-family:var(--mono)">${Math.round(kv*V).toLocaleString('tr-TR')} dev/dk</b></div><p class="xs muted" style="margin:6px 0 0">Kitap: her LiPo hücresi doluyken 4,2 V; 3S = 12,6 V. 2300 KV: volt başına dakikada 2.300 devir. Projede 4S 1.500 mAh pil ve 2205 2300 KV motor kullanılmış.</p>`;$('#u3-lps').oninput=e=>{s=+e.target.value;draw();$('#u3-lps').focus()};const k=$('#u3-lpk');k.onkeydown=e=>e.stopPropagation();k.onchange=()=>{kv=+k.value||0;draw()}};draw()})();
+tfList($('#u3-gu'),[{t:'Uçuş öncesi bataryanın tamamen şarjlı olduğundan emin olunur.',a:true},{t:'Yasak bölgeler ve uçuş yüksekliği sınırları önemli değildir.',a:false,x:'Hava sahası sınırlamalarına, yüksekliklere ve yasak bölgelere dikkat edilmelidir.'},{t:'Uçulacak bölgede gerekirse izin alınır, insanların gizliliğine saygı gösterilir.',a:true},{t:'Bağlantı koparsa otomatik iniş yapacak ayar güvenlik önlemidir.',a:true},{t:'Simülasyonda pratik yapmadan doğrudan uçuşa geçilmelidir.',a:false,x:'Önce simülasyonla pilotluk becerileri yeterli seviyeye getirilmelidir.'}]);
+
+/* --- ölçme --- */
+shortAns($('#u3-bo'),[
+ {q:'2) 300 W robot kol, 24 V ve 50 Ah pille kaç saat çalışır?',a:['4','4 saat','4saat','dört saat'],x:'24 × 50 = 1200 Wh; 1200 / 300 = 4 saat.'},
+ {q:'3) Uçuş kontrol sistemlerinde konum kontrol ve takibi için hangi bileşen?',a:['gps modülü','gps','neo-6m gps modülü','neo-6m','neo 6m gps']},
+ {q:'4) Motorun RPM’ine göre elde edilen gücü (torku) artırmak için hangi parça?',a:['dişli','dişli çark','dişliler','dişli çarklar','dişli kutusu','redüktör']},
+ {q:'5) Ürünleri düşürmeden dikey olarak taşımak için ___ kullanılır.',a:['kovalı konveyör','kovali konveyor']},
+ {q:'6) Analog sıcaklık sensöründen ___ – ___ aralığında veri elde edilir.',a:['0-1024','0 - 1024','0-1023','0 - 1023','0 1024','0 1023'],x:'Kitap 0–1024 diyor; 10 bit ADC’de değerler aslında 0–1023’tür.'}]);
+tfList($('#u3-dy'),[{t:'7) Lidar sensörleri ışık dalgalarıyla çevrenin üç boyutlu modelini oluşturur.',a:true},{t:'8) Belirli aralıktaki verileri başka aralığa dönüştürmek için convert fonksiyonu kullanılır.',a:false,x:'map() fonksiyonu kullanılır.'}]);
+quiz($('#u3-o1'),[{q:'9) Hangisi seri monitörü başlatır?',o:['digitalWrite','PinMode();','Serial.begin(9600);','Serial.Print();','Serial.println();'],a:2},{q:'10) Robotun amacı, görevleri ve özelliklerinin belirlendiği evre?',o:['İhtiyaç analizi','Tasarım','Prototip üretimi','Üretim','Bakım onarım'],a:0}],'9–10. sorular');
+
+Object.assign(SORU,{
+ bs3:{t:'Başlarken',h:'',q:['Yeni bir sensör tasarlasaydın işlevi ne olurdu?','Bir motora daha fazla elektrik vermek daha fazla güce nasıl katkı sağlar?','İletişim ekipmanlarının projelere katkıları neler olabilir?']},
+ s3a:{t:'1. Sıra Sizde',h:'',q:['Devrelerdeki sensörlerin insan vücudundaki karşılıkları hangi organlardır? Nedenleriyle yaz.']},
+ s3b:{t:'2. Sıra Sizde',h:'',q:['Çevrende ışık sensörlerinin kullanıldığı sistemler']},
+ s3c:{t:'1. Uygulama: Kuluçka makinesi',h:'',q:['Kuluçka makinesinin akış diyagramı adımları','Gerekli malzemeler','Kodun çalışma mantığı (hangi sıcaklıkta ne olur?)']},
+ s3d:{t:'1. Etkinlik · 3. Sıra Sizde',h:'',q:['Boy ölçerden elde edilen verilerin sağlık takibi ve büyüme izleme açısından önemi','Ultrasonik sensörlerle hangi uygulamalar geliştirilebilir?','Doğru sensör seçimi çevresel verilerin doğruluğunu nasıl etkiler?','Çevresel verilerin doğru toplanması acil durum yönetimine hangi faydaları sağlar?']},
+ s3e:{t:'2–3. Uygulama',h:'',q:['2. Uygulama: tek motor ve iki motor + dişli ölçümlerin; artış yüzdesi','3. Uygulama: dişlisiz ve dişlili yük sayıların; tork artış yüzdesi']},
+ s3f:{t:'4. Sıra Sizde',h:'',q:['Hareket ve diğer alanlarda canlılardan esinlenen üç robot ve esinlendikleri canlılar']},
+ s3g:{t:'Performans Görevi',h:'',q:['Problem durumu ve uygulamanın amacı','Kullanılan donanım ve yazılım bileşenleri','Çalışmayı tekrar yapabilseydin neleri değiştirirdin?']},
+ s3h:{t:'4. Uygulama · 2. Etkinlik',h:'',q:['4. Uygulama: Mağara haritalama robotu için sensörler ve her birinin çözdüğü zorluk','Sensörler birlikte nasıl çalışacak?','2. Etkinlik: Seçtiğin yaşam alanı problemi, sensörler ve çözümün']},
+ s3i:{t:'16. Örnek · Ek Uygulama',h:'',q:['Akıllı şapka fikrini sen nasıl geliştirirdin? Eksik gördüğün nokta','1. Ek Uygulama: Kapı sisteminin akış diyagramı adımları']},
+ o3:{t:'3. Ünite: açık uçlu',h:'',q:['1) Sınıfın için ileri seviye sensörlerle hava kalitesi ölçüm ve uyarı sistemi: sensörler ve yöntemler']}
+});
+Object.assign(EV,{
+ bs3:[{c:[['İşlev','olc|algila|tespit|uyar|sensor']],m:'Örnek: Bitkinin su ihtiyacını yaprak renginden algılayıp uyaran bir sensör.'},{c:[['Yanıt','guc|hiz|tork|akim|gerilim|volt']],m:'Gerilim ve akım artarsa motorun gücü (P = V × I) ve hızı artar; ancak motorun sınır değerleri aşılmamalıdır.'},{c:[['Katkı','uzaktan|kablosuz|veri|kontrol|izle']],m:'Uzaktan kontrol, kablosuz veri aktarımı, gerçek zamanlı izleme ve hareket serbestliği.'}],
+ s3a:[{n:2,c:[['Organ','goz|kulak|burun|deri|dil'],['Neden','isik|ses|koku|sicak|dokun|tat|gaz|nem']],m:'LDR → göz (ışık), mikrofon → kulak (ses), gaz sensörü → burun (koku), sıcaklık ve dokunma sensörü → deri, nem sensörü → deri.'}],
+ s3b:[{c:[['Sistem','sokak|lamba|telefon|ekran|kamera|otomatik|perde|far|bahce']],m:'Sokak lambaları, telefonun otomatik ekran parlaklığı, araç farları, bahçe lambaları, otomatik perdeler.'}],
+ s3c:[{n:2,c:[['Okuma','olc|oku|sicaklik'],['Karar','kucuk|buyuk|esik|derece|<|>']],m:'Başla → sıcaklığı oku → 37 °C’den küçük mü? Evet: ısıtıcıyı aç; Hayır: 38 °C’den büyük mü? Evet: fanı aç; değilse ikisini de kapat → tekrar oku.'},{c:[['Malzeme','sicaklik|sensor|kart|lamba|isitici|fan|role']],m:'Mikrodenetleyici kartı, sıcaklık(-nem) sensörü, ısıtıcı (ampul/lamba), fan, röle veya transistör, devre tahtası, kablolar.'},{c:[['Mantık','isitici|fan|ac|kapat']],m:'Sıcaklık hedefin altındaysa ısıtıcı açılır, üstündeyse fan çalışır, aralıktaysa ikisi kapalı kalır.'}],
+ s3d:[{c:[['Önem','buyume|takip|saglik|degisim|kayit|hizli']],m:'Boy düzenli ve hızlı ölçülerek büyüme eğrisi takip edilir, sağlıksız değişimler erken fark edilir.'},{c:[['Uygulama','park|mesafe|seviye|engel|robot']],m:'Park sensörü, su/tank seviye ölçer, engel algılayan robot, otomatik kapı.'},{c:[['Etki','dogru|hassas|hata|guvenil']],m:'Yanlış sensör hatalı veya eksik veri toplar; doğru ve hassas sensör güvenilir veri sağlar. Sıcaklık, nem, toz, kalibrasyon verileri etkiler.'},{c:[['Fayda','erken|uyari|hizli|karar|onlem']],m:'Erken uyarı, hızlı ve doğru karar, kaynakların doğru yönlendirilmesi.'}],
+ s3e:[{c:[['Hesap','%|yuzde|artis']],m:'Örnek: 40 cm → 70 cm; artış (70 − 40) / 40 × 100 = %75.'},{c:[['Hesap','%|yuzde|artis|kat']],m:'Örnek: 5 yük → 15 yük; artış (15 − 5) / 5 × 100 = %200.'}],
+ s3f:[{c:[['Robot','#items:3']],m:'Dört ayaklı robot → köpek\nYılan robot → yılan\nUçan robot → kuş/böcek'}],
+ s3g:[{c:[['Amaç','sicaklik|veri|wi-?fi|aktar|lcd']],m:'Bir karttaki sıcaklık verisini wi-fi ile ikinci karta aktarıp LCD’de göstermek.'},{c:[['Bileşen','esp8266|mlx|lcd|kart|i2c']],m:'İki mikrodenetleyici kartı, MLX90614 sıcaklık sensörü, ESP8266 modülü, I2C LCD, IDE.'},{c:[['Yanıt','degistir|daha|duzen|test|kod|tasarim|sade']],m:'Kodları daha sade yazar, devreyi daha düzenli kurar, testi farklı ortamlarda daha çok tekrar ederdim.'}],
+ s3h:[{n:2,c:[['Sensör','lidar|termal|ultrasonik|kamera|imu'],['Zorluk','los|karanlik|dar|yuzey|harita|isik']],m:'Lidar: karanlıkta haritalama; termal kamera: loş ışıkta canlı/sıcaklık; ultrasonik: dar geçitlerde yakın mesafe; IMU: engebeli yüzeyde denge.'},{c:[['Birlikte','birlikte|birles|veri|karar|harita']],m:'Lidar haritayı, IMU konumu, ultrasonik yakın engelleri verir; işlemci verileri birleştirip rotayı belirler.'},{n:2,c:[['Problem','enerji|evcil|hirsiz|hava|guvenlik'],['Sensör','pir|isik|ldr|co2|karbondioksit|nem|kamera|ultrasonik']],m:'Enerji tasarrufu: PIR ve ışık sensörü; odada kimse yoksa ve ortam aydınlıksa lambalar kapanır.'}],
+ s3i:[{c:[['Fikir','ekle|gps|sesli|kamera|titresim|gelistir|daha|sensor']],m:'Örnek: Şapkaya GPS ve titreşimli yön uyarısı eklenerek yön bulma desteği verilebilir.'},{n:2,c:[['PIR','pir|hareket'],['Servo','servo|kapi|pot']],m:'Başla → PIR oku → hareket var mı? Evet: kapı servosunu 90°’ye aç, bekle, kapat → potansiyometreyi oku → ikinci servoyu açıya çevir → tekrar.'}],
+ o3:[{n:2,c:[['Sensör','co2|karbondioksit|gaz|toz|nem|sicaklik|mq'],['Yöntem','esik|uyar|led|buzzer|ekran|havalandir']],m:'CO₂ sensörü, gaz sensörü (MQ serisi), sıcaklık-nem sensörü; değerler eşiği aşınca LED/buzzer uyarısı ve LCD’de gösterim, gerekirse havalandırma fanı.'}]
+});
+SORU_MAP.push(['s-3-0','bs3','📖 Başlarken','#bas3-c'],['s-3-1','s3a','📖 1. Sıra Sizde'],['s-3-2','s3b','📖 2. Sıra Sizde'],['s-3-3','s3c','📖 1. Uygulama'],['s-3-5','s3d','📖 1. Etkinlik · 3. Sıra Sizde'],['s-3-10','s3e','📖 2–3. Uygulama'],['s-3-13','s3f','📖 4. Sıra Sizde'],['s-3-19','s3g','📖 Performans Görevi'],['s-3-20','s3h','📖 4. Uygulama · 2. Etkinlik'],['s-3-21','s3i','📖 16. Örnek · Ek Uygulama'],['s-3-24','o3','📖 1. soru']);
+/* ============ 3. ÜNİTE: KART SİMÜLATÖRÜ ÖRNEKLERİ ============ */
+const C1=`
+#define lamba1 12
+#define lamba2 13
+#define sensor A0
+int deger;
+void setup(){
+  pinMode(lamba1,OUTPUT);
+  pinMode(lamba2,OUTPUT);
+  pinMode(sensor,INPUT);
+  Serial.begin(9600);
+}
+__DUP__void loop(){
+  deger=analogRead(sensor);
+  Serial.print("IŞIK DEGERI:");
+  Serial.println(deger);
+  delay(300);
+  if(deger >=0 && deger<250){
+    Serial.println("IŞIK COK AZ.");
+    Serial.println("LAMBA 1 VE LAMBA 2 YANIYOR.");
+    digitalWrite(lamba1,HIGH);
+    digitalWrite(lamba2,HIGH);
+  }
+  else if(deger >=250 && deger<500){
+    Serial.println("IŞIK AZ.");
+    Serial.println("LAMBA 1 YANIYOR.");
+    digitalWrite(lamba1,HIGH);
+    digitalWrite(lamba2,LOW);
+  }
+  else{
+    Serial.println("IŞIK YETERLI.");
+    Serial.println("LAMBALAR KAPALI.");
+    digitalWrite(lamba1,LOW);
+    digitalWrite(lamba2,LOW);
+  }
+}`;
+const P1=[{t:'an',pin:'A0',l:'LDR (ışık)',v:600},{t:'led',pin:12,l:'Lamba 1',c:'yellow'},{t:'led',pin:13,l:'Lamba 2',c:'yellow'}];
+ardSim($('#u3-s1'),{h:250,ex:[
+ {n:'Kitaptaki kod',parts:P1,note:KN('<code>int deger;</code> iki kez yazılmış (setup’tan sonra tekrar). Aynı değişken iki kez tanımlanamaz; ✔ Kontrol Et.'),code:C1.replace('__DUP__','int deger;\n')},
+ {n:'Düzeltilmiş',parts:P1,note:DN('İkinci tanım silindi. Işık değerini (LDR) azaltıp artır: önce iki lamba, sonra bir lamba yanar, ışık yeterliyse ikisi de söner.'),code:C1.replace('__DUP__','')}]});
+
+const C2=`
+#define isitici 3
+#define sensor A5
+#define dcm 4
+float isi;
+float termometre;
+void setup()
+{
+  pinMode(isitici,OUTPUT);
+  pinMode(dcm,OUTPUT);
+  pinMode(sensor,INPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  isi=analogRead(sensor);
+  termometre=map(isi,0,1023,-50,450);
+  Serial.print("Ortam Sıcaklığı:");
+  Serial.println(termometre);
+  if (termometre<15){
+    digitalWrite(isitici,HIGH);
+    digitalWrite(dcm,LOW);
+    Serial.println("ORTAM ÇOK SOĞUK ISITICI AÇILDI.");
+  }
+  else if (termometre>=15 && termometre<30){
+    digitalWrite(isitici,LOW);
+    digitalWrite(dcm,LOW);
+    Serial.println("ORTAM SICAKLIĞI İDEAL ISITICI VE FAN KAPALI.");
+  }
+  else if(termometre>=30){
+    digitalWrite(isitici,LOW);
+    digitalWrite(dcm,HIGH);
+    Serial.println("ORTAM COK SICAK FAN AÇILDI.");
+  }
+  delay(500);
+}`;
+const tC=v=>`${v} → ${Math.trunc(v*500/1023)-50} °C`;
+ardSim($('#u3-s2'),{h:250,ex:[
+ {n:'2. Örnek',parts:[{t:'an',pin:'A5',l:'Sıcaklık sensörü',v:130,u:tC},{t:'led',pin:3,l:'Isıtıcı (lamba)',c:'orange'},{t:'motor',pin:4,l:'Fan'}],note:'Sensörü kaydır: 15 °C altı ısıtıcı, 30 °C ve üstü fan. Seri ekran okunabilsin diye sona <code>delay(500)</code> eklendi. ⚠ Kitapta malzeme listesinde “P2N2222A <b>PNP</b> transistör” yazıyor; P2N2222A bir NPN transistördür.',code:C2},
+ {n:'Kuluçka (temsilî)',parts:[{t:'an',pin:'A0',l:'Sıcaklık sensörü',v:180,u:tC},{t:'led',pin:3,l:'Isıtıcı',c:'orange'},{t:'motor',pin:5,l:'Fan'}],note:'1. Uygulama için örnek bir başlangıç. Kitapta çözüm yok; hedef 37–38 °C aralığı temsilî. Kendi kodunu yazıp dene.',code:`
+float sicaklik;
+void setup()
+{
+  pinMode(3, OUTPUT);  // ısıtıcı
+  pinMode(5, OUTPUT);  // fan
+  Serial.begin(9600);
+}
+void loop()
+{
+  sicaklik = map(analogRead(A0), 0, 1023, -50, 450);
+  Serial.print("Kulucka sicakligi: ");
+  Serial.println(sicaklik);
+  if (sicaklik < 37) {          // soğuk: ısıt
+    digitalWrite(3, HIGH);
+    digitalWrite(5, LOW);
+  } else if (sicaklik > 38) {   // sıcak: soğut
+    digitalWrite(3, LOW);
+    digitalWrite(5, HIGH);
+  } else {                      // ideal
+    digitalWrite(3, LOW);
+    digitalWrite(5, LOW);
+  }
+  delay(500);
+}`}]});
+
+ardSim($('#u3-s3'),{h:250,ex:[{n:'3. Örnek',parts:[{t:'us',trig:6,echo:7,v:120},{t:'led',pin:2,l:'Kırmızı',c:'red'},{t:'led',pin:3,l:'Sarı',c:'yellow'},{t:'led',pin:4,l:'Yeşil',c:'green'},{t:'buz',pin:5}],note:'Ultrasonik sensörün mesafesini azalt: lambalar söner, uyarı sesi sıklaşır. <code>alarm()</code> içindeki <code>delay(mesafe)</code> yakınlaştıkça bip aralığını kısaltır.',code:`
+#define kirmizi 2
+#define sari 3
+#define yesil 4
+#define buzzer 5
+#define tetik 6
+#define echo 7
+int mesafe=0;
+int sure=0;
+void alarm()
+{
+  tone(buzzer,400);
+  delay(10);
+  noTone(buzzer);
+  delay(mesafe);
+}
+void lambalar(){
+  if (mesafe>100){
+    digitalWrite(yesil,HIGH);
+    digitalWrite(sari,HIGH);
+    digitalWrite(kirmizi,HIGH);
+    Serial.print("NESNE UZAK!");
+    Serial.println("");
+  }
+  else if (mesafe>=50 && mesafe<=100){
+    digitalWrite(yesil,LOW);
+    digitalWrite(sari,HIGH);
+    digitalWrite(kirmizi,HIGH);
+    Serial.print("NESNE YAKIN!");
+    Serial.println("");
+  }
+  else if (mesafe<50){
+    digitalWrite(yesil,LOW);
+    digitalWrite(sari,LOW);
+    digitalWrite(kirmizi,HIGH);
+    Serial.print("DİKKAT! NESNE COK YAKIN!");
+    Serial.println("");
+  }
+}
+void setup()
+{
+  pinMode(kirmizi,OUTPUT);
+  pinMode(sari,OUTPUT);
+  pinMode(yesil,OUTPUT);
+  pinMode(buzzer,OUTPUT);
+  pinMode(tetik,OUTPUT);
+  pinMode(echo,INPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  alarm();
+  lambalar();
+  digitalWrite(tetik,0);
+  delayMicroseconds(2);
+  digitalWrite(tetik,1);
+  delayMicroseconds(10);
+  digitalWrite(tetik,0);
+  sure=pulseIn(echo,1);
+  mesafe=sure/58.2;
+  Serial.print("MESAFE:");
+  Serial.println(mesafe);
+  Serial.println("");
+  delay(10);
+}`}]});
+
+ardSim($('#u3-s4'),{h:250,ex:[{n:'Boy ölçer (temsilî)',parts:[{t:'us',trig:9,echo:10,v:40},{t:'lcd'}],note:'Sensör yerden 200 cm yükseğe yerleştirildi; altında duran kişinin başına olan mesafe ölçülür, boy = 200 − mesafe. Mesafeyi kaydır. Kitapta kod verilmiyor; bu örnek çözümdür.',code:`
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+int trigPin = 9;
+int echoPin = 10;
+int yukseklik = 200;  // sensörün yerden yüksekliği (cm)
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+}
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long sure = pulseIn(echoPin, HIGH);
+  int mesafe = sure / 58.2;
+  int boy = yukseklik - mesafe;
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("BOY OLCER");
+  lcd.setCursor(0, 1);
+  lcd.print("Boy: ");
+  lcd.print(boy);
+  lcd.print(" cm");
+  Serial.println(boy);
+  delay(500);
+}`}]});
+
+const C4=`
+#define buzzer 13
+#define gaz A0
+#define kirmizi 10
+#define mavi 12
+#define yesil 11
+int olcum, ppm;
+void ikaz()
+{
+  tone(buzzer,400);
+  delay(10);
+  noTone(buzzer);
+  delay(100000/ppm);
+}
+void setup() {
+  pinMode(buzzer,OUTPUT);
+  pinMode(kirmizi,OUTPUT);
+  pinMode(yesil,OUTPUT);
+  pinMode(mavi,OUTPUT);
+  pinMode(gaz,INPUT);
+  Serial.begin(9600);
+}
+__V__ loop() {
+  olcum=analogRead(gaz);
+  ppm=map(olcum,0,1024,200,10000);
+  Serial.print("ORTAMDAKİ GAZ PPM DEĞERİ: ");
+  Serial.println(ppm);
+  Serial.println(" ");
+  delay(100);
+  if (ppm<500){
+    Serial.println("ORTAMDA GAZ KAÇAĞI RİSKİ YOK.");
+    digitalWrite(yesil,HIGH);
+    digitalWrite(mavi,LOW);
+    digitalWrite(kirmizi,LOW);
+    ikaz();
+  }
+  else if (ppm>=500 && ppm<700){
+    Serial.println("ORTAMDA GAZ KAÇAĞI RİSKİ VAR HAVALANDIRMAYI KONTROL EDİN.");
+    digitalWrite(kirmizi,HIGH);
+    digitalWrite(yesil,HIGH);
+    digitalWrite(mavi,LOW);
+    ikaz();
+  }
+  else if (ppm>=700){
+    Serial.println("ORTAMDA PATLAMA RİSKİ VAR. GAZ VANASINI KAPATIN.");
+    digitalWrite(kirmizi,HIGH);
+    digitalWrite(yesil,LOW);
+    digitalWrite(mavi,LOW);
+    ikaz();
+  }
+}`;
+const P4=[{t:'an',pin:'A0',l:'MQ-2 gaz sensörü',v:10,u:v=>`${v} → ${Math.trunc(v*9800/1024)+200} ppm`},{t:'rgb',r:10,g:11,b:12},{t:'buz',pin:13}];
+ardSim($('#u3-s5'),{h:250,ex:[
+ {n:'Kitaptaki kod',parts:P4,note:KN('<code>void loop()</code> yerine <code>oid loop()</code> yazılmış. ✔ Kontrol Et.'),code:C4.replace('__V__','oid')},
+ {n:'Düzeltilmiş',parts:P4,note:DN('Gaz sensörünü kaydır. Sarı ışık için RGB LED’in <b>kırmızı + yeşil</b> renkleri birlikte yakılır. Uyarı aralığı <code>delay(100000/ppm)</code>: ppm arttıkça sesler sıklaşır.'),code:C4.replace('__V__','void')}]});
+
+ardSim($('#u3-s6'),{h:250,ex:[{n:'5. Örnek',parts:[{t:'an',pin:'A0',l:'Toprak nem sensörü',v:700,u:v=>`${v} → %${100-Math.trunc(v*100/1023)} nem`},{t:'relay',pin:2,inv:true,l:'Pompa (röle)'}],note:'Nem %50’nin altına düşünce “SULAMA BAŞLADI”. Dikkat: kod pompayı <b>LOW</b> ile çalıştırıyor; kullanılan röle modülünün LOW sinyalle tetiklendiği (aktif-düşük) kabul edilmiştir. Kitapta metin L298 sürücü, malzeme listesi röle diyor; kod röleye göre yazılmış.',code:`
+#define nem A0
+#define pompa 2
+int okuma;
+int ortam_nemi;
+void setup()
+{
+  pinMode(nem,INPUT);
+  pinMode(pompa,OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  okuma=analogRead(nem);
+  ortam_nemi=map(okuma,0,1023,100,0);
+  Serial.print("NEM:%");
+  Serial.println(ortam_nemi);
+  Serial.println(okuma);
+  delay(2000);
+  if (ortam_nemi<50){
+    digitalWrite(pompa,LOW);
+    Serial.println("SULAMA BAŞLADI.");
+  }
+  else{
+    digitalWrite(pompa,HIGH);
+    Serial.println("SULAMA KAPALI.");
+  }
+}`}]});
+
+const C6h=(a,b,c)=>`
+void hiz1(){
+  digitalWrite(sol_mot1,HIGH);
+  digitalWrite(sol_mot2,LOW);
+  ${a}(sol_hiz,100);
+  digitalWrite(sag_mot1,HIGH);
+  digitalWrite(sag_mot2,LOW);
+  ${a}(sag_hiz,100);
+}
+void hiz2(){
+  digitalWrite(sol_mot1,HIGH);
+  digitalWrite(sol_mot2,LOW);
+  ${a}(sol_hiz,150);
+  digitalWrite(sag_mot1,HIGH);
+  digitalWrite(sag_mot2,LOW);
+  ${a}(sag_hiz,150);
+}
+void hiz3(){
+  digitalWrite(sol_mot1,HIGH);
+  digitalWrite(sol_mot2,LOW);
+  ${a}(sol_hiz,255);
+  digitalWrite(sag_mot1,HIGH);
+  digitalWrite(sag_mot2,LOW);
+  ${a}(sag_hiz,255);
+}
+void dur(){
+  digitalWrite(sol_mot1,HIGH);
+  digitalWrite(sol_mot2,LOW);
+  ${a}(sol_hiz,0);
+  digitalWrite(sag_mot1,HIGH);
+  digitalWrite(sag_mot2,LOW);
+  ${a}(sag_hiz,0);
+}
+void setup() {
+  pinMode(yanki,INPUT);
+  pinMode(tetik,OUTPUT);
+  pinMode(sol_mot1,OUTPUT);
+  pinMode(sol_mot2,OUTPUT);
+  ${b}
+  pinMode(sag_mot1,OUTPUT);
+  pinMode(sag_mot2,OUTPUT);
+  pinMode(sag_hiz,OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  digitalWrite(tetik, LOW);
+  delayMicroseconds(5);
+  digitalWrite(${c}, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(tetik, LOW);
+  zaman = pulseIn(yanki, HIGH);
+  mesafe = zaman / 29.1 / 2;
+  Serial.print("Öndeki mesafe:");
+  Serial.println(mesafe);
+  if (mesafe>20){
+    hiz3();
+  }
+  else if (mesafe<=20 && mesafe>15){
+    hiz2();
+  }
+  else if (mesafe<=15 && mesafe>10){
+    hiz1();
+  }
+  else{
+    dur();
+  }
+  delay(200);
+}`;
+ardSim($('#u3-s7'),{h:250,ex:[
+ {n:'Kitaptaki kod',parts:[{t:'us',trig:12,echo:13,v:30},{t:'motor',pin:2,l:'Sol hız (pin 2)'},{t:'motor',pin:7,l:'Sağ hız (pin 7)'}],note:KN('<code>pinModesol_hiz,OUTPUT);</code> parantez eksik; tetik yerine <code>digitalWrite(yanki, HIGH)</code> yazılmış; hız <code>digitalWrite(…, 100)</code> ile verilmiş (digitalWrite yalnızca HIGH/LOW verir, kademe oluşmaz) ve hız pinleri 2, 7 PWM pini değil.'),code:`
+#define tetik 12
+#define yanki 13
+#define sol_mot1 4
+#define sol_mot2 3
+#define sol_hiz 2
+#define sag_mot1 6
+#define sag_mot2 5
+#define sag_hiz 7
+int zaman, mesafe;`+C6h('digitalWrite','pinModesol_hiz,OUTPUT);','yanki')},
+ {n:'Düzeltilmiş',parts:[{t:'us',trig:12,echo:13,v:30},{t:'motor',pin:10,l:'Sol motor hızı'},{t:'motor',pin:9,l:'Sağ motor hızı'}],note:DN('Hız pinleri PWM pinlerine (10 ve 9) taşındı, hız <code>analogWrite</code> ile veriliyor, tetik pini doğru. Öndeki aracın mesafesini kaydır: 3 kademe hız ve durma. (Yön pinlerindeki 3 ve 5 de PWM pinidir; sorun yok.) Seri ekran için delay(200) eklendi.'),code:`
+#define tetik 12
+#define yanki 13
+#define sol_mot1 4
+#define sol_mot2 3
+#define sol_hiz 10
+#define sag_mot1 6
+#define sag_mot2 5
+#define sag_hiz 9
+int zaman, mesafe;`+C6h('analogWrite','pinMode(sol_hiz,OUTPUT);','tetik')}]});
+
+const C7=a=>`
+#include <Servo.h>
+Servo servo_motor;
+void setup()
+{
+  pinMode(2, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(4, INPUT${a};
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, INPUT);
+  pinMode(8, INPUT);
+  servo_motor.attach(2, 500, 2500);
+  Serial.begin(9600);
+}
+void loop()
+{
+  servo_motor.write(90);
+  if (digitalRead(3) == 1) {
+    servo_motor.write(180);
+    Serial.println("SERVO SOL BASILI.");
+    delay(100);
+  }
+  else if (digitalRead(4) == 1) {
+    servo_motor.write(0);
+    Serial.println("SERVO SAG BASILI.");
+    delay(100);
+  }
+  else if (digitalRead(7) == 1) {
+    digitalWrite(5, LOW);
+    digitalWrite(6, HIGH);
+    Serial.println("DC SOL BASILI.");
+    delay(100);
+  }
+  else if (digitalRead(8) == 1) {
+    digitalWrite(5, HIGH);
+    digitalWrite(6, LOW);
+    Serial.println("DC SAG BASILI.");
+    delay(100);
+  }
+  else {
+    Serial.println("SERVO HAZIR.");
+    Serial.println("DC HAZIR.");
+    servo_motor.write(90);
+    delay(100);
+  }
+  delay(10);
+}`;
+const P7=[{t:'btn',pin:3,l:'Servo sol'},{t:'btn',pin:4,l:'Servo sağ'},{t:'btn',pin:7,l:'DC sol'},{t:'btn',pin:8,l:'DC sağ'},{t:'servo',pin:2},{t:'hmotor',a:5,b:6,l:'DC motor (L293D)'}];
+ardSim($('#u3-s8'),{h:250,ex:[
+ {n:'Kitaptaki kod',parts:P7,note:KN('<code>pinMode(4, INPUT;</code> satırında kapanış parantezi eksik. ✔ Kontrol Et.'),code:C7('')},
+ {n:'Düzeltilmiş',parts:P7,note:DN('Butonları basılı tut: servo 180° ya da 0°’ye döner; DC motor L293D üzerinden iki yönde döner (5 ve 6 numaralı pinlerden biri HIGH, diğeri LOW). Bırakınca servo 90°’ye döner. Not: DC motor butonu bırakınca durmaz; çünkü “hazır” durumunda motor pinleri kapatılmıyor.'),code:C7(')')}]});
+
+const C8f=lt=>`
+const int Enable_A = 7;
+const int Enable_B = 2;
+const int inputA1 = 6;
+const int inputA2 = 5;
+const int inputB1 = 4;
+const int inputB2 = 3;
+void setup()
+{
+  pinMode(Enable_A, OUTPUT);
+  pinMode(Enable_B, OUTPUT);
+  pinMode(inputA1, OUTPUT);
+  pinMode(inputA2, OUTPUT);
+  pinMode(inputB1, OUTPUT);
+  pinMode(inputB2, OUTPUT);
+}
+void loop()
+{
+  //---- A ve B çıkış olarak etkinleştir.------//
+  digitalWrite(Enable_A, HIGH);
+  digitalWrite(Enable_B, HIGH);
+  //----------Run motors-----------//
+  digitalWrite(inputA1, HIGH);
+  digitalWrite(inputA2, LOW);
+  digitalWrite(inputB1 , HIGH);
+  digitalWrite(inputB2, LOW);
+  delay(3000);
+  //-------Motoru devre dışı bırak.----------//
+  digitalWrite(Enable_A, LOW);
+  digitalWrite(Enable_B, LOW);
+  delay(3000);
+  //-------Ters Bağlama----------//
+  digitalWrite(Enable_A, HIGH);
+  digitalWrite(Enable_B, HIGH);
+  digitalWrite(inputA1, LOW);
+  digitalWrite(inputA2, HIGH);
+  digitalWrite(inputB1 , LOW);
+  digitalWrite(inputB2, HIGH);
+  delay(3000);
+  //-------Motor devre dışı----------//
+  digitalWrite(Enable_A, LOW);
+  digitalWrite(Enable_B, LOW);
+  delay(3000);
+  //----------Hız yükselt.----------//
+  for(int i = 0; i ${lt?'&lt;':'<'} 256; i++)
+  {
+    analogWrite(Enable_A, i);
+    analogWrite(Enable_B, i);
+    delay(40);
+  }
+  //----------Hız düşür----------//
+  for(int j = 256; j ${lt?'&gt;':'>'} 0; j--)
+  {
+    analogWrite(Enable_A, j);
+    analogWrite(Enable_B, j);
+    delay(40);
+  }
+  //-------Motoru devre dışı bırak.----------//
+  digitalWrite(Enable_A, LOW);
+  digitalWrite(Enable_B, LOW);
+  delay(3000);
+}`;
+const P8=[{t:'hmotor',a:6,b:5,en:7,l:'Motor A'},{t:'hmotor',a:4,b:3,en:2,l:'Motor B'}];
+ardSim($('#u3-s9'),{h:240,ex:[
+ {n:'Fırçalı (kitaptaki)',parts:P8,note:KN('Döngülerde <code>&lt;</code> ve <code>&gt;</code> yerine web kodları <code>&amp;lt;</code>, <code>&amp;gt;</code> basılmış. ✔ Kontrol Et.'),code:C8f(true)},
+ {n:'Fırçalı (düzeltilmiş)',parts:P8,note:DN('3 sn ileri, 3 sn dur, 3 sn geri, 3 sn dur; sonra hız kademeli artıp azalır. ⚠ Enable pinleri 7 ve 2 PWM pini değil: analogWrite ile kademeli hız alınamaz; gerçek devrede enable pinleri ~ işaretli pinlere (ör. 9, 10) bağlanmalı. Hızlı görmek için 4× seç.'),code:C8f(false)},
+ {n:'Fırçasız (kitaptaki)',parts:[{t:'servo',pin:4,l:'ESC sinyali'}],note:KN('<code>fircasiz_motor(hiz);</code> satırında <code>.write</code> eksik: nesne bir fonksiyon gibi çağrılmış.'),code:`
+#include <Servo.h>
+Servo fircasiz_motor;
+int hiz=100;
+void setup() {
+  fircasiz_motor.attach(4);
+}
+void loop() {
+  fircasiz_motor(hiz);
+  hiz=hiz+30;
+  delay(3000);
+  if(hiz>250){
+    hiz=100;
+  }
+}`},
+ {n:'Fırçasız (düzeltilmiş)',parts:[{t:'servo',pin:4,l:'ESC sinyali'}],note:DN('<code>fircasiz_motor.write(hiz);</code> ESC, servo gibi PWM sinyaliyle sürülür. Not: write() 0–180 arası değer alır; 180’in üzerindeki değerler (190, 220, 250) 180 olarak uygulanır.'),code:`
+#include <Servo.h>
+Servo fircasiz_motor;
+int hiz = 100;
+void setup() {
+  fircasiz_motor.attach(4);
+  Serial.begin(9600);
+}
+void loop() {
+  fircasiz_motor.write(hiz);
+  Serial.println(hiz);
+  hiz = hiz + 30;
+  delay(3000);
+  if (hiz > 250) {
+    hiz = 100;
+  }
+}`},
+ {n:'Step',parts:[{t:'step'}],note:'Stepper kütüphanesi: motor iki tur ileri, bir tur geri döner. ⚠ <code>motor_tur_sayisi</code> adı yanıltıcı: bu sayı motorun bir turdaki <b>adım</b> sayısıdır (60 adım → adım başına 6°).',code:`
+#include <Stepper.h>
+const int motor_tur_sayisi = 60;
+Stepper step_motorum(motor_tur_sayisi, 3,4,5,6);
+void setup(){
+  step_motorum.setSpeed(60);
+}
+void loop(){
+  step_motorum.step(2 * (motor_tur_sayisi));
+  delay(1500);
+  step_motorum.step(-motor_tur_sayisi);
+  delay(1500);
+}`},
+ {n:'Servo (düzeltilmiş)',parts:[{t:'servo',pin:13}],note:'Servo 1 sn aralıklarla 0°, 45°, 90°, 135°, 180°. ⚠ Kitapta loop() fonksiyonunun kapanış ayracı yok; burada eklendi.',code:`
+#include <Servo.h>
+Servo servo_motor_1;
+void setup()
+{
+  servo_motor_1.attach(13);
+}
+void loop()
+{
+  servo_motor_1.write(0);
+  delay(1000);
+  servo_motor_1.write(45);
+  delay(1000);
+  servo_motor_1.write(90);
+  delay(1000);
+  servo_motor_1.write(135);
+  delay(1000);
+  servo_motor_1.write(180);
+  delay(1000);
+}`}]});
+
+ardSim($('#u3-s10'),{h:250,cols:'1fr 1.1fr',ex:[{n:'9. Örnek (düzeltilmiş)',parts:[{t:'pot',pin:'A0',l:'Sol joystick X'},{t:'pot',pin:'A1',l:'Sol joystick Y'},{t:'pot',pin:'A2',l:'Sağ joystick X'},{t:'pot',pin:'A3',l:'Sağ joystick Y'},{t:'servo',pin:6,l:'X ekseni'},{t:'servo',pin:9,l:'Y ekseni'},{t:'servo',pin:3,l:'Z ekseni'},{t:'servo',pin:5,l:'Kıskaç'}],note:'Joystick eksenlerini 340’ın altına ya da 680’in üstüne kaydır: ilgili servo adım adım döner; min/max ile açı sınırlanır. ⚠ Kitapta <code>i nt s ol_joystick…</code> gibi boşluklu yazımlar var (derlenmez); burada düzeltildi. Seri ekranın taşmaması için delay(100) eklendi.',code:`
+#include <Servo.h>
+Servo servo_z_eksen;
+Servo servo_x_eksen;
+Servo servo_y_eksen;
+Servo servo_clamp;
+int x_eksen_derece = 90;
+int y_eksen_derece = 90;
+int z_eksen_derece = 85;
+int clamp_derece = 90;
+#define sol_joystick_x A0
+#define sol_joystick_y A1
+#define sag_joystick_x A2
+#define sag_joystick_y A3
+void setup() {
+  Serial.begin(9600);
+  servo_z_eksen.attach(3);
+  servo_clamp.attach(5);
+  servo_x_eksen.attach(6);
+  servo_y_eksen.attach(9);
+}
+void loop() {
+  int sol_joystick_x_deger = analogRead(sol_joystick_x);
+  int sol_joystick_y_deger = analogRead(sol_joystick_y);
+  int sag_joystick_x_deger = analogRead(sag_joystick_x);
+  int sag_joystick_y_deger = analogRead(sag_joystick_y);
+  if(sol_joystick_x_deger < 340) y_eksen_derece -=7;
+  else if(sol_joystick_x_deger > 680) y_eksen_derece +=7;
+  if(sol_joystick_y_deger < 340) clamp_derece -=5;
+  else if(sol_joystick_y_deger > 680) clamp_derece +=5;
+  if(sag_joystick_x_deger < 340) x_eksen_derece -=7;
+  else if(sag_joystick_x_deger > 680) x_eksen_derece +=7;
+  if(sag_joystick_y_deger < 340) z_eksen_derece -=7;
+  else if(sag_joystick_y_deger > 680) z_eksen_derece +=7;
+  //Max ve min açılarını giriniz.
+  z_eksen_derece = min(145, max(15, z_eksen_derece));
+  x_eksen_derece = min(175, max(40, x_eksen_derece));
+  y_eksen_derece = min(150, max(5, y_eksen_derece));
+  clamp_derece = min(90, max(75, clamp_derece));
+  Serial.print("x: ");
+  Serial.print(x_eksen_derece);
+  Serial.print(", y: ");
+  Serial.print(y_eksen_derece);
+  Serial.print(", z: ");
+  Serial.print(z_eksen_derece);
+  Serial.print(", clamp: ");
+  Serial.println(clamp_derece);
+  servo_clamp.write(clamp_derece);
+  servo_x_eksen.write(x_eksen_derece);
+  servo_y_eksen.write(y_eksen_derece);
+  servo_z_eksen.write(z_eksen_derece);
+  delay(100);
+}`}]});
+
+ardSim($('#u3-s11'),{h:250,ex:[{n:'10. Örnek (düzeltilmiş)',parts:[{t:'afm',n:1,l:'Motor 1 (sol)'},{t:'afm',n:2,l:'Motor 2 (sağ)'},{t:'tank'}],note:'▶ ile çalıştır, sonra seri ekranın altındaki kutuya <b>F</b> (ileri), <b>B</b> (geri), <b>L</b> (sol), <b>R</b> (sağ), <b>S</b> (dur) yazıp <b>Gönder</b>’e bas: telefondaki bluetooth uygulamasının yerini tutar. ⚠ Kitapta karakterler ‘F’ gibi kıvrık tırnakla yazılmış; kodda düz tek tırnak (\') kullanılmalı. 11. Örnek bu koda robot kol kodunu ekler.',code:`
+#include <AFMotor.h>        // Adafruit Motor Kütüphanesi
+#include <SoftwareSerial.h> // Bluetooth Seri İletişim
+AF_DCMotor motor1(1);
+AF_DCMotor motor2(2);
+SoftwareSerial bluetooth(10, 11); // RX, TX
+void setup() {
+  bluetooth.begin(9600);
+  motor1.setSpeed(255);
+  motor2.setSpeed(255);
+  bluetooth.println("Paletli robota hoş geldiniz!");
+}
+void loop() {
+  if (bluetooth.available()) {
+    char komut = bluetooth.read(); // Gelen komutu oku!
+    switch (komut) {
+      case 'F': ileri();   break;
+      case 'B': geri();    break;
+      case 'L': solaDon(); break;
+      case 'R': sagaDon(); break;
+      case 'S': dur();     break;
+    }
+  }
+}
+void ileri() {
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+}
+void geri() {
+  motor1.run(BACKWARD);
+  motor2.run(BACKWARD);
+}
+void solaDon() {
+  motor1.run(BACKWARD);
+  motor2.run(FORWARD);
+}
+void sagaDon() {
+  motor1.run(FORWARD);
+  motor2.run(BACKWARD);
+}
+void dur() {
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+}`}]});
+
+ardSim($('#u3-s12'),{h:250,ex:[{n:'12. Örnek (düzeltilmiş)',parts:[{t:'rgb',r:4,g:3,b:2}],note:'Seri ekrana <b>K</b>, <b>Y</b>, <b>M</b> ya da <b>B</b> yazıp gönder (telefon uygulamasındaki düğmelerin karşılığı). ⚠ Kitapta karakterler kıvrık tırnakla yazılmış. Ayrıca malzeme listesinde <b>ortak anot</b> RGB LED var: ortak anotta renk, pine LOW (0) verilince yanar; kod ortak katoda göre yazılmıştır. 4 ve 2 numaralı pinler PWM değildir; 0/255 değerlerinde sorun olmaz.',code:`
+int kirmiziPin = 4;
+int yesilPin = 3;
+int maviPin = 2;
+void setup() {
+  Serial.begin(9600);
+  pinMode(kirmiziPin, OUTPUT);
+  pinMode(yesilPin, OUTPUT);
+  pinMode(maviPin, OUTPUT);
+}
+void loop() {
+  if (Serial.available()) {
+    char renk = Serial.read();
+    renkAyarla(renk);
+  }
+}
+void renkAyarla(char renk) {
+  analogWrite(kirmiziPin, 0);
+  analogWrite(yesilPin, 0);
+  analogWrite(maviPin, 0);
+  if (renk == 'K') {
+    analogWrite(kirmiziPin, 255);
+  } else if (renk == 'Y') {
+    analogWrite(yesilPin, 255);
+  } else if (renk == 'M') {
+    analogWrite(maviPin, 255);
+  } else if (renk == 'B') {
+    analogWrite(kirmiziPin, 255);
+    analogWrite(yesilPin, 255);
+    analogWrite(maviPin, 255);
+  }
+}`}]});
+
+ardSim($('#u3-s13'),{h:250,ex:[{n:'Akıllı şapka (temsilî)',parts:[{t:'us',trig:2,echo:3,v:120},{t:'us',trig:4,echo:5,v:120},{t:'motor',pin:9,l:'Sol titreşim'},{t:'motor',pin:10,l:'Sağ titreşim'},{t:'buz',pin:8}],note:'Sol ve sağ ultrasonik sensörün mesafesini kaydır: engel hangi taraftaysa o taraftaki titreşim motoru, yaklaştıkça daha güçlü çalışır; 30 cm’den yakınsa sesli uyarı. Kitapta yalnızca tasarım anlatılıyor; kod örnektir.',code:`
+int solTrig = 2, solEcho = 3;
+int sagTrig = 4, sagEcho = 5;
+int solMotor = 9, sagMotor = 10, buzzer = 8;
+int mesafeOlc(int trig, int echo) {
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  return pulseIn(echo, HIGH) / 58;
+}
+int titresim(int mesafe) {
+  if (mesafe > 100) return 0;           // engel uzak
+  return map(mesafe, 0, 100, 255, 60);  // yaklaştıkça güçlü
+}
+void setup() {
+  pinMode(solTrig, OUTPUT); pinMode(solEcho, INPUT);
+  pinMode(sagTrig, OUTPUT); pinMode(sagEcho, INPUT);
+  pinMode(solMotor, OUTPUT); pinMode(sagMotor, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  int sol = mesafeOlc(solTrig, solEcho);
+  int sag = mesafeOlc(sagTrig, sagEcho);
+  analogWrite(solMotor, titresim(sol));
+  analogWrite(sagMotor, titresim(sag));
+  if (sol < 30 || sag < 30) tone(buzzer, 1000);
+  else noTone(buzzer);
+  Serial.print("Sol: "); Serial.print(sol);
+  Serial.print("  Sag: "); Serial.println(sag);
+  delay(200);
+}`}]});
+
+ardSim($('#u3-s14'),{h:250,ex:[{n:'Kapı sistemi (temsilî)',parts:[{t:'pir',pin:2},{t:'servo',pin:9,l:'Otomatik kapı'},{t:'pot',pin:'A0'},{t:'servo',pin:10,l:'Manuel kapı'}],note:'PIR hareket algılayınca otomatik kapı 90°’ye açılır, 3 sn sonra kapanır. Potansiyometre manuel kapının açısını 0–90° arasında ayarlar. Kitapta çözüm yok; kod örnektir.',code:`
+#include <Servo.h>
+Servo otoKapi;
+Servo elKapi;
+int pirPin = 2;
+void setup() {
+  pinMode(pirPin, INPUT);
+  otoKapi.attach(9);
+  elKapi.attach(10);
+  otoKapi.write(0);
+  Serial.begin(9600);
+}
+void loop() {
+  int aci = map(analogRead(A0), 0, 1023, 0, 90);
+  elKapi.write(aci);
+  if (digitalRead(pirPin) == HIGH) {
+    Serial.println("Hareket var: kapi aciliyor");
+    otoKapi.write(90);
+    delay(3000);
+    otoKapi.write(0);
+    Serial.println("Kapi kapandi");
   }
   delay(100);
 }`}]});
