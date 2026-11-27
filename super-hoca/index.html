@@ -101,6 +101,7 @@ kbd{font-family:inherit;background:#fff;border:1px solid #cfc6f5;border-bottom-w
 .db{position:absolute;pointer-events:auto;border-radius:50%;background:rgba(255,255,255,.18);border:3px solid rgba(255,255,255,.45);color:#fff;font-weight:900;font-size:26px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .db.basili{background:rgba(255,201,60,.5)}
 #tSol{left:18px;bottom:28px;width:78px;height:78px}#tSag{left:108px;bottom:28px;width:78px;height:78px}
+#tAsagi{left:63px;bottom:116px;width:66px;height:66px;font-size:26px;display:none;background:rgba(255,122,43,.85)!important;color:#fff}#tAsagi.acik{display:flex}
 #tZipla{right:20px;bottom:30px;width:92px;height:92px;font-size:20px}#tKos{right:124px;bottom:22px;width:72px;height:72px;font-size:15px}
 #telif{position:fixed;right:10px;bottom:6px;font-size:11px;color:rgba(255,255,255,.55);z-index:4;pointer-events:auto}
 #telif a{color:inherit}
@@ -140,7 +141,7 @@ kbd{font-family:inherit;background:#fff;border:1px solid #cfc6f5;border-bottom-w
       <label style="margin-top:12px">Ses ve müzik <input type="checkbox" class="anahtar" id="sesAc" checked></label></div>
   </div>
   <button class="buyuk" id="b-basla">▶ Maceraya başla</button>
-  <div class="kontrolbilgi">⌨️ <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> yürü · <kbd>Boşluk</kbd> / <kbd>↑</kbd> zıpla (basılı tut = daha yükseğe) · <kbd>Shift</kbd> / <kbd>X</kbd> koş, lazer at · <kbd>P</kbd> duraklat · <kbd>M</kbd> ses<br>📱 Telefonda ekrandaki düğmeleri kullan. · <a href="https://polatsunay.github.io/bilisim-teknolojileri/lisans.html" target="_blank" rel="noopener" style="color:var(--mor)">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.</a></div>
+  <div class="kontrolbilgi">⌨️ <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> yürü · <kbd>Boşluk</kbd> / <kbd>↑</kbd> zıpla (basılı tut = daha yükseğe) · <kbd>Shift</kbd> / <kbd>X</kbd> koş, lazer at · <kbd>↓</kbd> turuncu boruya gir · <kbd>P</kbd> duraklat · <kbd>M</kbd> ses<br>📱 Telefonda ekrandaki düğmeleri kullan. · <a href="https://polatsunay.github.io/bilisim-teknolojileri/lisans.html" target="_blank" rel="noopener" style="color:var(--mor)">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir.</a></div>
 </div></div>
 
 <!-- BÖLÜM SEÇ -->
@@ -180,7 +181,7 @@ kbd{font-family:inherit;background:#fff;border:1px solid #cfc6f5;border-bottom-w
   <div class="satir" style="justify-content:center"><button class="buton gri" id="b-tekrar">↻ Tekrar oyna</button><button class="buton gri" id="b-secim">☰ Bölüm seçimi</button></div>
 </div></div>
 
-<div id="dokun" class="gizli"><div class="db" id="tSol">◀</div><div class="db" id="tSag">▶</div><div class="db" id="tKos">KOŞ<br>⚡</div><div class="db" id="tZipla">ZIPLA</div></div>
+<div id="dokun" class="gizli"><div class="db" id="tSol">◀</div><div class="db" id="tSag">▶</div><div class="db" id="tKos">KOŞ<br>⚡</div><div class="db" id="tAsagi">⬇</div><div class="db" id="tZipla">ZIPLA</div></div>
 <div id="telif"><a href="https://polatsunay.github.io/bilisim-teknolojileri/lisans.html" target="_blank" rel="noopener">© 2026 Sunay's School · Tüm hakları Sunay Öğretmen'e aittir</a></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -438,6 +439,7 @@ const Ses = (() => {
     dogru() { [784, 988, 1175, 1568].forEach((f, i) => ton(f, 0.16, 'triangle', 0.18, null, i * 0.08)); },
     yanlis() { ton(220, 0.35, 'sawtooth', 0.12, 140); ton(207, 0.35, 'sawtooth', 0.1, 130, 0.12); },
     kilit() { ton(200, 0.15, 'square', 0.12); ton(160, 0.2, 'square', 0.12, null, 0.12); },
+    boru() { [392, 330, 262, 196, 392, 330, 262, 196].forEach((f, i) => ton(f, 0.08, 'square', 0.1, null, i * 0.07)); },
     yay() { ton(200, 0.3, 'triangle', 0.2, 900); },
     boss() { ton(90, 0.5, 'sawtooth', 0.2, 50); gurultu(0.3, 0.2, 400); }
   };
@@ -724,7 +726,7 @@ function bolumUret(no, soruN) {
       case 'yayla': { const dh = ri(1, 2), n = ri(5, 9), b = x; duz(n, taban + dh); dusman(b + (n >> 1)); duz(2); break; }
       case 'tugla': {
         const b = x, n = ri(8, 11); duz(n);
-        const y = taban + 3, ilk = b + 2, son = Math.min(b + n - 2, ilk + ri(3, 6));
+        const y = taban + 2, ilk = b + 2, son = Math.min(b + n - 2, ilk + ri(3, 6));
         for (let xx = ilk; xx <= son; xx++) { t[y * W + xx] = (R() < 0.3) ? T.ODUL : T.TUGLA; soruYasak[xx] = 1; }
         let odulVar = false; for (let xx = ilk; xx <= son; xx++) if (t[y * W + xx] === T.ODUL) odulVar = true;
         if (!odulVar) t[y * W + ((ilk + son) >> 1)] = T.ODUL;
@@ -775,6 +777,16 @@ function bolumUret(no, soruN) {
   // zemin karoları
   for (let xx = 0; xx < W; xx++) for (let y = 0; y < yer[xx]; y++) t[y * W + xx] = T.ZEMIN;
   for (let xx = 0; xx < W; xx++) if (yer[xx] === 0 && th.lav) { t[0 * W + xx] = T.LAV; t[1 * W + xx] = T.LAV; }
+  // her bölümde en az bir boru olsun (gizli oda için)
+  if (!ents.some(e => e.tip === 'boru' && e.x > 20 && e.x < kapiX - 30)) {
+    for (let xx = Math.floor(W * 0.2); xx < kapiX - 40; xx++) {
+      let ok = true; for (let k = -2; k < 4; k++) if (yer[xx + k] !== yer[xx] || yer[xx] <= 0 || soruYasak[xx + k] || boruBlok[xx + k] || bosAlan[xx + k]) ok = false;
+      if (!ok) continue;
+      for (let y = yer[xx]; y < yer[xx] + 7; y++) for (let k = -1; k < 3; k++) if (t[y * W + xx + k]) ok = false;
+      if (!ok) continue;
+      ents.push({ tip: 'boru', x: xx, y: yer[xx], h: 2 }); boruBlok[xx] = boruBlok[xx + 1] = 1; soruYasak[xx] = soruYasak[xx + 1] = 1; break;
+    }
+  }
   // borular katı karo
   ents.filter(e => e.tip === 'boru').forEach(e => { for (let k = 0; k < 2; k++) for (let y = e.y; y < e.y + e.h; y++) t[y * W + e.x + k] = T.BORU; });
   // BT soru kutuları: eşit aralıklı, ulaşılabilir
@@ -793,10 +805,31 @@ function bolumUret(no, soruN) {
     for (let d = 0; d <= Math.ceil(aralik * 0.6) + 6 && bulundu < 0; d++) { if (uygun(hedef + d)) bulundu = hedef + d; else if (uygun(hedef - d)) bulundu = hedef - d; }
     if (bulundu < 0) for (let xx = ilk; xx < son && bulundu < 0; xx++) if (uygun(xx)) bulundu = xx;
     if (bulundu < 0) continue;
-    const y = yer[bulundu] + 3; t[y * W + bulundu] = T.SORU; sorular.push({ x: bulundu, y, cevap: null });
+    const y = yer[bulundu] + 2; t[y * W + bulundu] = T.SORU; sorular.push({ x: bulundu, y, cevap: null });
     for (let k = -1; k <= 1; k++) soruYasak[bulundu + k] = 1;
   }
   sorular.sort((a, b) => a.x - b.x);
+  // içine girilebilen boru: bölümün ilk yarısında, üstü açık bir boru
+  const borular = ents.filter(e => e.tip === 'boru' && e.x > 20 && e.x < kapiX - 30);
+  const gb = borular.find(e => e.x > W * 0.15) || borular[0];
+  let oda = null, Wt = W, tt = t, yy = yer;
+  if (gb) {
+    gb.gizli = true; gb.kablo = false;
+    const ODA = 24; Wt = W + ODA; tt = new Uint8Array(Wt * H); yy = new Int16Array(Wt);
+    for (let y = 0; y < H; y++) tt.set(t.subarray(y * W, y * W + W), y * Wt);
+    yy.set(yer);
+    const x0 = W + 1, x1 = Wt - 1; // duvarlar x0..x0+1 ve x1-1..x1
+    for (let xx = x0; xx <= x1; xx++) {
+      const duvar = xx <= x0 + 1 || xx >= x1 - 1;
+      for (let y = 0; y < H; y++) if (duvar || y < 3 || y >= H - 3) tt[y * Wt + xx] = y < 3 && !duvar ? T.ZEMIN : T.TAS;
+      yy[xx] = duvar ? H : 3;
+    }
+    const cik = { tip: 'boru', x: x1 - 5, y: 3, h: 2, gizli: true, cikis: true };
+    for (let k = 0; k < 2; k++) for (let y = 3; y < 5; y++) tt[y * Wt + cik.x + k] = T.BORU;
+    ents.push(cik);
+    for (let sira = 0; sira < 3; sira++) for (let k = 0; k < 11; k++) ents.push({ tip: 'para', x: x0 + 3.5 + k, y: 4.2 + sira * 1.5 + (sira === 2 ? Math.sin(k / 10 * Math.PI) * 1.2 : 0), oda: true });
+    oda = { x0, x1, giris: gb, cikis: cik };
+  }
   // kontrol noktası
   let kontrolX = Math.floor(W * 0.5); while (kontrolX < W - 40 && (yer[kontrolX] === 0 || boruBlok[kontrolX])) kontrolX++;
   ents.push({ tip: 'kontrol', x: kontrolX + 0.5, y: yer[kontrolX] });
@@ -807,15 +840,15 @@ function bolumUret(no, soruN) {
   });
   if (th.boss) temiz.push({ tip: 'boss', x: bossX + 0.5, y: 3 });
   temiz.push({ tip: 'kapi', x: kapiX, y: yer[kapiX] }, { tip: 'bayrak', x: bayrakX + 0.5, y: yer[bayrakX] });
-  return { no, th, W, H, t, yer, ents: temiz, odul, sorular, kapiX, bayrakX, baslaX: 3.5, baslaY: 3, bossX, bosAlan };
+  return { no, th, W: Wt, anaW: W, oda, H, t: tt, yer: yy, ents: temiz, odul, sorular, kapiX, bayrakX, baslaX: 3.5, baslaY: 3, bossX, bosAlan };
 }
 
 /* Doğrulayıcı (testler için): bölümün geçilebilir olduğunu denetler */
 function bolumDogrula(L, soruN) {
-  const hatalar = [], { W, H, t, yer } = L;
+  const hatalar = [], { H, yer } = L, W = L.anaW || L.W, t = L.t, TW = L.W;
   // her sütunda üstüne basılabilen en yüksek yüzey (zemin, bulut, platform)
   const yuzey = Array.from(yer);
-  for (let x = 0; x < W; x++) for (let y = 0; y < H - 2; y++) if (t[y * W + x] === T.BULUT) yuzey[x] = Math.max(yuzey[x], y + 1);
+  for (let x = 0; x < W; x++) for (let y = 0; y < H - 2; y++) if (t[y * TW + x] === T.BULUT) yuzey[x] = Math.max(yuzey[x], y + 1);
   L.ents.forEach(e => {
     if (e.tip === 'platform') for (let x = Math.floor(e.x1); x < Math.ceil(e.x2 + e.w); x++) yuzey[x] = Math.max(yuzey[x], Math.round(e.y + e.h));
     if (e.tip === 'dusen') for (let x = Math.floor(e.x); x < Math.ceil(e.x + e.w); x++) yuzey[x] = Math.max(yuzey[x], Math.round(e.y + e.h));
@@ -830,8 +863,8 @@ function bolumDogrula(L, soruN) {
   }
   if (L.sorular.length !== soruN) hatalar.push('soru sayısı ' + L.sorular.length + '/' + soruN);
   L.sorular.forEach((q, i) => {
-    if (yer[q.x] !== q.y - 3) hatalar.push('soru yüksekliği x=' + q.x);
-    for (let y = q.y - 3; y < q.y; y++) if (t[y * W + q.x]) hatalar.push('soru altı dolu x=' + q.x);
+    if (yer[q.x] !== q.y - 2) hatalar.push('soru yüksekliği x=' + q.x);
+    for (let y = q.y - 2; y < q.y; y++) if (t[y * TW + q.x]) hatalar.push('soru altı dolu x=' + q.x);
     if (i > 0 && q.x - L.sorular[i - 1].x < 8) hatalar.push('sorular çok sık x=' + q.x);
     if (q.x >= L.kapiX) hatalar.push('soru kapıdan sonra');
   });
@@ -846,7 +879,7 @@ const kok = $('#sahne');
 const G = {
   durum: 'menu', L: null, oyuncu: null, ents: [], parcaciklar: [], dinamik: [], lazerler: [], tumsek: [],
   puan: 0, para: 0, can: 5, sure: 400, bolum: 0, istat: { dogru: 0, yanlis: 0 }, kontrol: null, deste: [], soruSayac: 0,
-  girdi: { sol: 0, sag: 0, zipla: 0, kos: 0, ziplaBas: 0, kosBas: 0 }, mesajT: 0
+  girdi: { sol: 0, sag: 0, zipla: 0, kos: 0, asagi: 0, ziplaBas: 0, kosBas: 0 }, mesajT: 0
 };
 window.SH = { G, bolumUret, bolumDogrula, FIZ, T, SORULAR: (typeof SORULAR !== 'undefined' ? SORULAR : []) };
 
@@ -918,14 +951,37 @@ const dunya = {
     // yedek "kullanıldı" kutuları gizli başlar
     const KU = this.inst.kullanildi; if (KU) { const sakla = new THREE.Matrix4().makeScale(0, 0, 0); for (let i = KU.n; i < KU.im.count; i++) KU.im.setMatrixAt(i, sakla); this.kullanBos = KU.n; }
     for (const k in this.inst) this.inst[k].im.instanceMatrix.needsUpdate = true;
+    // gizli oda arka duvarı
+    if (L.oda) {
+      const ow = L.oda.x1 - L.oda.x0 + 1, cv = document.createElement('canvas'); cv.width = 512; cv.height = 256; const c = cv.getContext('2d');
+      c.fillStyle = '#1a1240'; c.fillRect(0, 0, 512, 256); c.strokeStyle = 'rgba(120,200,255,.18)'; c.lineWidth = 2;
+      for (let i = 0; i <= 512; i += 32) { c.beginPath(); c.moveTo(i, 0); c.lineTo(i, 256); c.stroke(); } for (let j = 0; j <= 256; j += 32) { c.beginPath(); c.moveTo(0, j); c.lineTo(512, j); c.stroke(); }
+      c.fillStyle = 'rgba(255,210,60,.9)'; c.font = 'bold 26px sans-serif'; c.textAlign = 'center'; c.fillText('GİZLİ VERİ ODASI', 256, 44);
+      c.fillStyle = 'rgba(90,255,180,.35)'; c.font = '16px monospace'; for (let k = 0; k < 40; k++) c.fillText(Math.random() < .5 ? '1' : '0', 16 + Math.random() * 480, 70 + Math.random() * 180);
+      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace || tx.colorSpace; tx.encoding = THREE.sRGBEncoding;
+      const duvar = new THREE.Mesh(new THREE.PlaneGeometry(ow + 1, L.H + 2), new THREE.MeshBasicMaterial({ map: tx, toneMapped: false }));
+      duvar.position.set(L.oda.x0 + ow / 2, L.H / 2, -1.6); this.grup.add(duvar);
+    }
     // borular
+    this.boruOklar = [];
     L.ents.filter(e => e.tip === 'boru').forEach(e => {
-      const bm = mat('#17b6a3', { metalness: 0.45, roughness: 0.28 }), rm = mat('#14a08f', { metalness: 0.45, roughness: 0.25 });
+      const gz = e.gizli;
+      const bm = gz ? mat('#ff4d00', { metalness: 0.15, roughness: 0.35, emissive: '#ff2a00', emissiveIntensity: 0.35 }) : mat('#7d8a92', { metalness: 0.5, roughness: 0.4 });
+      const rm = gz ? mat('#ffd23c', { metalness: 0.4, roughness: 0.25, emissive: '#ffae00', emissiveIntensity: 0.45 }) : mat('#6a767e', { metalness: 0.5, roughness: 0.38 });
       const g = new THREE.Group();
       const govdeM = new THREE.Mesh(silindir(0.86, 0.86, e.h - 0.45, 24), bm); govdeM.position.y = (e.h - 0.45) / 2; g.add(govdeM);
       const ag = new THREE.Mesh(silindir(1.0, 1.0, 0.45, 24), rm); ag.position.y = e.h - 0.225; g.add(ag);
       const ic = new THREE.Mesh(silindir(0.8, 0.8, 0.02, 24), mat('#062a26')); ic.position.y = e.h + 0.001; g.add(ic);
-      const serit = new THREE.Mesh(silindir(0.88, 0.88, 0.12, 24), mat('#ffc93c', { emissive: '#ffb000', emissiveIntensity: 0.3 })); serit.position.y = e.h * 0.45; g.add(serit);
+      if (gz) {
+        [0.3, 0.62].forEach(f => { const sr = new THREE.Mesh(silindir(0.88, 0.88, 0.14, 24), mat(f < 0.5 ? '#b04dff' : '#2fd3ff', { emissive: f < 0.5 ? '#8a2be2' : '#00b7ff', emissiveIntensity: 0.6 })); sr.position.y = (e.h - 0.45) * f; g.add(sr); });
+        const ok = new THREE.Group();
+        const uc = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.6, 20), mat('#ffe14d', { emissive: '#ffc400', emissiveIntensity: 0.9 })); uc.rotation.x = Math.PI; ok.add(uc);
+        const sap = new THREE.Mesh(silindir(0.15, 0.15, 0.5, 12), uc.material); sap.position.y = 0.5; ok.add(sap);
+        ok.position.y = e.h + 1.5; g.add(ok); this.boruOklar.push({ m: ok, h: e.h + 1.5 });
+        const isik = new THREE.PointLight('#ff9a3c', 1.2, 5); isik.position.y = e.h + 0.6; g.add(isik);
+      } else {
+        const serit = new THREE.Mesh(silindir(0.88, 0.88, 0.1, 24), mat('#56616a')); serit.position.y = e.h * 0.45; g.add(serit);
+      }
       g.position.set(e.x + 1, e.y, 0); golgeli(g); g.traverse(o => { if (o.isMesh) o.receiveShadow = true; }); this.grup.add(g);
     });
     arkaPlan(L, this.grup);
@@ -1187,6 +1243,11 @@ function oyuncuGuncelle(o, dt) {
   }
   if (o.durum === 'bayrak') { bayrakAnimasyon(o, dt); return; }
   if (o.durum === 'kapi') return;
+  if (o.durum === 'boru') { boruAnimasyon(o, dt); return; }
+  const ustBoru = boruUstunde(o);
+  dokunAsagiGoster(!!ustBoru);
+  if (G.L.oda && !G.boruIpucu) { const gb = G.L.oda.giris; if (Math.abs(o.x - (gb.x + 1)) < 4) { G.boruIpucu = true; mesaj('🟠 Turuncu boru gizli odaya açılır! Üstüne çık, ⬇ bas.', 2.8); } }
+  if (ustBoru && gi.asagi) { boruyaGir(o, ustBoru); return; }
   const kos = gi.kos, maxV = kos ? FIZ.kos : FIZ.yuru, ivme = kos ? FIZ.ivmeK : FIZ.ivmeY;
   const yon = (gi.sag ? 1 : 0) - (gi.sol ? 1 : 0);
   o.kayma = false;
@@ -1219,6 +1280,7 @@ function oyuncuGuncelle(o, dt) {
   if (o.yerde && havada && hizY < -8) o.k.sqY = 0.8;
   if (o.yerde) o.ezmeSeri = 0;
   if (o.kafa) bloğaVur(o.kafa.x, o.kafa.y, o);
+  if (!G.kutuIpucu) { const q = G.L.sorular.find(q => q.cevap === null && Math.abs(q.x + 0.5 - o.x) < 2.5); if (q) { G.kutuIpucu = true; mesaj('❓ BT kutusunun altına gel ve zıpla — kafanla vur!', 2.6); } }
   if (o.x < 0.4) { o.x = 0.4; o.vx = Math.max(0, o.vx); }
   if (o.y < -2.5) { oyuncuOl(true); return; }
   // lav
@@ -1230,7 +1292,7 @@ function oyuncuGuncelle(o, dt) {
   if (o.yildizT > 0) { o.yildizT -= dt; o.k.parla(new THREE.Color().setHSL((performance.now() / 300) % 1, 1, 0.5), 0.7); if (o.yildizT <= 0) o.k.parla('#000000', 0); }
   o.k.g.visible = !(o.hasarT > 0 && Math.floor(o.hasarT * 14) % 2 === 0);
   // bayrak
-  if (G.bayrak && o.x >= G.L.bayrakX + 0.2 && (!G.kapi || G.kapi.acik)) bayrakBasla(o);
+  if (G.bayrak && o.x >= G.L.bayrakX + 0.2 && o.x < (G.L.anaW || G.L.W) && (!G.kapi || G.kapi.acik)) bayrakBasla(o);
 }
 
 function bloğaVur(x, y, o) {
@@ -1282,6 +1344,34 @@ function oyuncuOl(dustu) {
   o.durum = 'olu'; o.olumT = dustu ? 0.6 : 0; o.vy = dustu ? 0 : 13; o.vx = 0; o.k.g.visible = true; o.yildizT = 0; o.k.parla('#000000', 0);
   Ses.durdur(); sfx('olum');
 }
+function boruUstunde(o) {
+  if (!o.yerde || !G.L.oda) return null;
+  for (const e of [G.L.oda.giris, G.L.oda.cikis]) if (Math.abs(o.x - (e.x + 1)) < 0.75 && Math.abs(o.y - (e.y + e.h)) < 0.05) return e;
+  return null;
+}
+function boruyaGir(o, e) {
+  o.durum = 'boru'; o.boruT = 0; o.boruE = e; o.boruFaz = 'in'; o.vx = 0; o.vy = 0; o.x = e.x + 1; sfx('boru'); dokunAsagiGoster(false);
+}
+function boruAnimasyon(o, dt) {
+  o.boruT += dt; const e = o.boruE;
+  if (o.boruFaz === 'in') {
+    o.y = e.y + e.h - Math.min(1, o.boruT / 0.7) * (o.h + 0.2);
+    if (o.boruT >= 0.8) {
+      const oda = G.L.oda;
+      if (!e.cikis) { // gizli odaya düş
+        o.x = oda.x0 + 3; o.y = G.L.H - 4.2; o.durum = 'oyun'; o.yerde = false; o.vy = 0; o.yon = 1;
+        mesaj('💰 Gizli Veri Odası! Paraları topla, turuncu borudan çık.', 2.4);
+      } else { // giriş borusundan yukarı çık
+        const g = oda.giris; o.x = g.x + 1; o.y = g.y + g.h - o.h - 0.2; o.boruE = g; o.boruFaz = 'out'; o.boruT = 0; sfx('boru');
+      }
+      kameraAni();
+    }
+  } else {
+    o.y = e.y + e.h - (o.h + 0.2) * (1 - Math.min(1, o.boruT / 0.7));
+    if (o.boruT >= 0.75) { o.y = e.y + e.h; o.durum = 'oyun'; o.yerde = true; o.hasarT = Math.max(o.hasarT, 0.6); }
+  }
+}
+function dokunAsagiGoster(v) { const el = document.getElementById('tAsagi'); if (el && el.classList.contains('acik') !== v) el.classList.toggle('acik', v); }
 function olumBitti() {
   G.can--;
   if (G.can <= 0) { oyunBitti(); return; }
@@ -1364,7 +1454,7 @@ function varlikGuncelle(e, dt, o) {
       e.ust.position.y = 0.8 - e.sik * 0.45; e.sarmal.scale.z = 1.4 * (1 - e.sik * 0.55); e.sarmal.position.y = 0.44 - e.sik * 0.2; break;
     }
     case 'para': { e.mesh.rotation.y += dt * 4; if (o.durum === 'oyun' && kesisir({ x: e.x, y: e.y, w: 0.6, h: 0.8 }, o)) paraAl(e); break; }
-    case 'kontrol': { if (!e.alindi && o.x > e.x) { e.alindi = true; G.kontrol = { x: e.x, y: e.y }; e.bayrakM.material.color.set('#22c48a'); sfx('cik'); mesaj('✅ Kontrol noktası!', 1.2); } break; }
+    case 'kontrol': { if (!e.alindi && o.x > e.x && o.x < (G.L.anaW || G.L.W)) { e.alindi = true; G.kontrol = { x: e.x, y: e.y }; e.bayrakM.material.color.set('#22c48a'); sfx('cik'); mesaj('✅ Kontrol noktası!', 1.2); } break; }
     case 'kapi': {
       const kalan = G.L.sorular.filter(q => q.cevap === null).length, bossVar = G.boss && !G.boss.olu;
       const acilmali = (!kayit.zorunlu || kalan === 0) && !bossVar;
@@ -1532,7 +1622,7 @@ function hudGuncelle(zorla) {
   hudYaz('#hud-can', '×' + G.can); hudYaz('#hud-para', G.para); hudYaz('#hud-puan', G.puan); hudYaz('#hud-bolum', (G.bolum + 1) + ' · ' + G.L.th.ad);
   const c = G.L.sorular.filter(q => q.cevap !== null).length; hudYaz('#hud-soru-s', c + '/' + G.L.sorular.length);
   hudYaz('#hud-sure', Math.max(0, Math.ceil(G.sure)));
-  const pct = sinirla(G.oyuncu.x / G.L.bayrakX * 100, 0, 100);
+  const px = (G.L.oda && G.oyuncu.x > G.L.anaW) ? G.L.oda.giris.x + 1 : G.oyuncu.x; const pct = sinirla(px / G.L.bayrakX * 100, 0, 100);
   if (G.ilerOy) G.ilerOy.style.left = pct + '%';
 }
 function ilerlemeCiz() {
@@ -1549,7 +1639,9 @@ function kameraAni() { const o = G.oyuncu; kamHedef.set(o.x + 2, Math.max(5, o.y
 function kameraKonum(lerp) {
   const o = G.oyuncu, L = G.L, d = kameraUzaklik();
   const vis = 2 * d * Math.tan(THREE.MathUtils.degToRad(kamera.fov / 2)) * kamera.aspect;
-  const hx = sinirla(o.x + o.yon * 1.6, vis / 2 - 1, L.W - vis / 2 + 1);
+  let sx0 = vis / 2 - 1, sx1 = (L.anaW || L.W) - vis / 2 + 1;
+  if (L.oda && o.x > L.anaW) { sx0 = L.oda.x0 + vis / 2 - 0.5; sx1 = L.oda.x1 + 1 - vis / 2 + 0.5; if (sx0 > sx1) sx0 = sx1 = (L.oda.x0 + L.oda.x1 + 1) / 2; }
+  const hx = sinirla(o.x + o.yon * 1.6, sx0, sx1);
   const hy = sinirla(o.y + 1.4, 5.0, L.H - 4.5);
   kamHedef.x += (hx - kamHedef.x) * lerp; kamHedef.y += (hy - kamHedef.y) * lerp * 0.7;
   kamera.position.set(kamHedef.x, kamHedef.y + 1.5, d); kamera.lookAt(kamHedef.x, kamHedef.y - 0.1, 0);
@@ -1566,7 +1658,7 @@ function sahneKur() {
 }
 function bolumBaslat(no, yeniden) {
   G.bolum = no; sahneKur();
-  G.ents = []; G.parcaciklar = []; G.dinamik = []; G.lazerler = []; G.tumsek = []; G.kapi = null; G.bayrak = null; G.boss = null; G.kontrol = null;
+  G.ents = []; G.parcaciklar = []; G.dinamik = []; G.lazerler = []; G.tumsek = []; G.kapi = null; G.bayrak = null; G.boss = null; G.kontrol = null; G.boruIpucu = false;
   G.L = bolumUret(no, kayit.soruN);
   G.varlikGrup = new THREE.Group(); sahne.add(G.varlikGrup);
   dunya.kur(G.L);
@@ -1633,6 +1725,7 @@ function gorselGuncelle(dt) {
   o.k.guncelle(dt, { durum: o.durum, vx: o.vx, yon: o.yon, yerde: o.yerde, kayma: o.kayma }, kamera);
   if (o.durum !== 'olu') kameraKonum(Math.min(1, dt * 6));
   dunya.tumsekGuncelle(dt);
+  if (dunya.boruOklar) { const z = performance.now() / 1000; dunya.boruOklar.forEach(b => { b.m.position.y = b.h + Math.abs(Math.sin(z * 3.2)) * 0.45; b.m.rotation.y = z * 2; }); }
   if (dunya.lavDoku) dunya.lavDoku.offset.x = (performance.now() / 6000) % 1;
   if (dunya.soruMalz) dunya.soruMalz.emissiveIntensity = 0.45 + Math.sin(performance.now() / 250) * 0.2;
   G.parcaciklar = G.parcaciklar.filter(p => {
@@ -1714,7 +1807,7 @@ function devam() { if (G.durum !== 'dur') return; gizle('dur'); G.durum = 'oyun'
 
 /* ---------- girdi ---------- */
 const dokunmatik = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0 && matchMedia('(pointer: coarse)').matches);
-const TUS = { ArrowLeft: 'sol', KeyA: 'sol', ArrowRight: 'sag', KeyD: 'sag', Space: 'zipla', ArrowUp: 'zipla', KeyW: 'zipla', KeyZ: 'zipla', ShiftLeft: 'kos', ShiftRight: 'kos', KeyX: 'kos', KeyJ: 'kos' };
+const TUS = { ArrowDown: 'asagi', KeyS: 'asagi', ArrowLeft: 'sol', KeyA: 'sol', ArrowRight: 'sag', KeyD: 'sag', Space: 'zipla', ArrowUp: 'zipla', KeyW: 'zipla', KeyZ: 'zipla', ShiftLeft: 'kos', ShiftRight: 'kos', KeyX: 'kos', KeyJ: 'kos' };
 addEventListener('keydown', e => {
   Ses.baslat();
   if (G.durum === 'soru') {
@@ -1764,7 +1857,7 @@ function arayuzBagla() {
     if (G.bolum >= 9) { menuyeDon(); return; }
     G.tasinanGuc = G.oyuncu ? G.oyuncu.guc : 0; G.bolumBasPuan = G.puan; bolumBaslat(G.bolum + 1);
   };
-  dokunBagla('tSol', 'sol'); dokunBagla('tSag', 'sag'); dokunBagla('tZipla', 'zipla'); dokunBagla('tKos', 'kos');
+  dokunBagla('tSol', 'sol'); dokunBagla('tSag', 'sag'); dokunBagla('tZipla', 'zipla'); dokunBagla('tKos', 'kos'); dokunBagla('tAsagi', 'asagi');
   // menüdeyken dokunmatik düğmelerin varsayılan davranışını engelle
   $('#dokun').addEventListener('touchstart', e => e.preventDefault(), { passive: false });
 }
